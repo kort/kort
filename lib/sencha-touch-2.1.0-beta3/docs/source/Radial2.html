@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Ext-chart-axis-Radial'>/**
+</span> * @class Ext.chart.axis.Radial
+ * @extends Ext.chart.axis.Abstract
+ *
+ * Radial Axis is the axis to be used with a Radar Series. The Radial axis
+ * is a circular display of numerical data by steps, with the number of circles
+ * equivalent to the defined number of `steps`. Given the maximum data value,
+ * the axis will compute step values depending on the number of defined `steps`.
+ *
+ * A possible configuration for this axis would look like:
+ *
+ *      axes: [{
+ *          steps: 5,
+ *          type: 'Radial',
+ *          position: 'radial',
+ *          label: {
+ *              display: 'none'
+ *          }
+ *      }]
+ */
+Ext.define('Ext.chart.axis.Radial', {
+
+    extend: 'Ext.chart.axis.Abstract',
+
+    config: {
+<span id='Ext-chart-axis-Radial-cfg-maximum'>        /**
+</span>         * @cfg {Number} maximum (optional) the maximum value to be displayed in the axis.
+         */
+        maximum: false,
+
+<span id='Ext-chart-axis-Radial-cfg-steps'>        /**
+</span>         * @cfg {Number} steps (required) the number of steps to add to the radial axis.
+         */
+        step: 10,
+
+        position: 'radial',
+
+<span id='Ext-chart-axis-Radial-cfg-rotation'>        /**
+</span>         * @cfg {Number} rotation
+         * The angle in degrees at which the first pie slice should start.
+         */
+        rotation: 0
+    }
+
+});
+</pre>
+</body>
+</html>

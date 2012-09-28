@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Ext-draw-sprite-Image'>/**
+</span> *
+ */
+Ext.define(&quot;Ext.draw.sprite.Image&quot;, {
+    extend: &quot;Ext.draw.sprite.Rect&quot;,
+    alias: 'sprite.image',
+    type: 'image',
+    statics: {
+        imageLoaders: {}
+    },
+
+    inheritableStatics: {
+        def: {
+            processors: {
+                src: 'string'
+            },
+            defaults: {
+                src: '',
+                width: null,
+                height: null
+            }
+        }
+    },
+
+    render: function (surface, ctx) {
+        var me = this,
+            attr = me.attr,
+            mat = attr.matrix,
+            src = attr.src,
+            x = attr.x,
+            y = attr.y,
+            width = attr.width,
+            height = attr.height,
+            loadingStub = Ext.draw.sprite.Image.imageLoaders[src],
+            imageLoader;
+
+        if (loadingStub &amp;&amp; loadingStub.done) {
+            mat.toContext(ctx);
+            ctx.drawImage(loadingStub.image, x, y, width || loadingStub.width, height || loadingStub.width);
+        } else if (!loadingStub) {
+            imageLoader = new Image();
+            loadingStub = Ext.draw.sprite.Image.imageLoaders[src] = {
+                image: imageLoader,
+                done: false,
+                pendingSprites: [me],
+                pendingSurfaces: [surface]
+            };
+            imageLoader.width = width;
+            imageLoader.height = height;
+            imageLoader.onload = function () {
+                var i;
+                if (!loadingStub.done) {
+                    loadingStub.done = true;
+                    for (i = 0; i &lt; loadingStub.pendingSprites.length; i++) {
+                        loadingStub.pendingSprites[i].setDirty(true);
+                    }
+                    for (i in loadingStub.pendingSurfaces) {
+                        loadingStub.pendingSurfaces[i].renderFrame();
+                    }
+                }
+            };
+            imageLoader.src = src;
+        } else {
+            Ext.Array.include(loadingStub.pendingSprites, me);
+            Ext.Array.include(loadingStub.pendingSurfaces, surface);
+        }
+    }
+});</pre>
+</body>
+</html>

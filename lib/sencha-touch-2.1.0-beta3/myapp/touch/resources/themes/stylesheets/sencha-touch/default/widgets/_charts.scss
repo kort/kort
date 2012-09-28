@@ -1,0 +1,150 @@
+@import '../global';
+
+@mixin sencha-charts {
+  @include sencha-draw;
+  .x-spark {
+    position: relative;
+  }
+  
+  $legend-border-color: #ccc !default;
+  $legend-border: 1px solid $legend-border-color !default;
+  $legend-background-color: #fff !default;
+  $legend-z-index: 10 !default;
+  $legend-item-border: 1px solid rgba($legend-border-color, .5) !default;
+  $legend-item-background: rgba(#fff, 0) !default;
+
+  $marker-size: .8em !default;
+
+  .x-legend {
+    z-index: $legend-z-index;
+    border: $legend-border;
+    background: $legend-background-color;
+    overflow: hidden;
+    position: absolute;
+    @include border-radius(5px);
+    @if (lightness($legend-background-color) > 30) {
+      @include box-shadow(rgba(#fff, .6) 0 1px 1px);
+    } @else {
+      @include box-shadow(rgba(#fff, .2) 0 1px 0);
+    }
+    
+    .x-legend-item {
+      padding: .8em 1em .8em $marker-size + 1em;
+      @include readable-color($base-color, 50);
+      background: $legend-item-background;
+      max-width: 20em;
+      min-width: 8em;
+      font-size: 14px;
+      line-height: 14px;
+      font-weight: bold;
+      position: relative;
+    
+      .x-legend-item-marker {
+        width: $marker-size;
+        height: $marker-size;
+        @include border-radius($marker-size/2);
+        @include box-shadow(rgba(#fff, .3) 0 1px 0, rgba(#000, .4) 0 1px 0 inset);
+        position: absolute;
+        left: .7em;
+        top: 1em;
+      }
+    
+      &:last-child {
+        border: 0;
+      }
+    
+      &.x-dragging {
+        @include box-shadow(darken($legend-background-color, 50) 0 0 .5em);
+      }
+    
+      &.x-drop-hover {
+        @include box-shadow(rgba(0, 0, 200, 0.9) 0 0 .3em 0 true);
+      }
+    }
+    
+    .x-legend-inactive {
+      @include opacity(.3);
+    }
+    
+    &.x-legend-horizontal {
+      .x-legend-inner > * {
+        display: -webkit-box;
+        @include box-orient(horizontal);
+        padding: 0 .4em;
+      }
+      
+      .x-legend-item {
+        border: 0;
+        border-right: $legend-item-border;
+        white-space: nowrap;
+        max-width: none;
+        min-width: 0;
+      
+        &:last-child {
+          border: 0;
+        }
+      }
+    }
+  }
+
+  .x-legend-button-icon {
+    -webkit-mask-image: theme-image($theme-name, 'pictos/list.png');
+  }
+  
+  .x-panzoom-toggle-icon {
+    -webkit-mask-image: theme-image($theme-name, 'pictos/move.png');
+  }
+  
+  .x-zooming > .x-panzoom-toggle-icon {
+    -webkit-mask-image: theme-image($theme-name, 'pictos/resize.png');
+  }
+
+  .x-chart-toolbar {
+    position: absolute;
+    z-index: 9;
+    @include display-box;
+    padding: .6em;
+  
+    .x-button {
+      margin: .2em;
+    }
+  
+    &[data-side=left], &[data-side=right] {
+      top: 0;
+      @include box-orient(vertical);
+    }
+  
+    &[data-side=left] {
+      left: 0;
+    }
+  
+    &[data-side=right] {
+      right: 0;
+    }
+  
+    &[data-side=top], &[data-side=bottom] {
+      @include box-orient(horizontal);
+      right: 0;
+    }
+  
+    &[data-side=top] {
+      top: 0;
+    }
+  
+    &[data-side=bottom] {
+      bottom: 0;
+      @include box-orient(horizontal);
+    }
+  }
+
+  @if $include-default-icons {
+    @include pictos-iconmask('bookmarks');
+    @include pictos-iconmask('download');
+    @include pictos-iconmask('favorites');
+    @include pictos-iconmask('info');
+    @include pictos-iconmask('more');
+    @include pictos-iconmask('time');
+    @include pictos-iconmask('user');
+    @include pictos-iconmask('team');
+  }
+}

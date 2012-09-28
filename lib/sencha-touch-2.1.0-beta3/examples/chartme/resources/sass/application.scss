@@ -1,0 +1,57 @@
+$base-color: #585858;
+$base_gradient: 'bevel';
+
+//$toolbar-gradient: 'glossy';
+
+@import 'sencha-touch/default/all';
+
+@include sencha-panel;
+@include sencha-buttons;
+@include sencha-sheet;
+@include sencha-picker;
+@include sencha-tabs;
+@include sencha-toolbar;
+@include sencha-toolbar-forms;
+@include sencha-indexbar;
+@include sencha-list;
+@include sencha-list-paging;
+@include sencha-list-pullrefresh;
+//@include sencha-layout;
+@include sencha-carousel;
+@include sencha-form;
+@include sencha-msgbox;
+@include sencha-loading-spinner;
+@include sencha-draw;
+@include sencha-charts;
+
+.chart-container {
+	border-radius: 6px;
+	@include background-image(linear-gradient(top, rgba(89,89,89,1) 1%,rgba(89,89,89,1) 12%,rgba(68,68,68,1) 33%,rgba(56,56,56,1) 81%,rgba(56,56,56,1) 94%,rgba(63,63,63,1) 100%));
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap; 
+	margin-top: 5px;
+	margin-right: 5px;
+}
+
+#bottomRight .chart-container:nth-child(2){
+	margin-right: 0px;
+}
+
+#MainView {
+	background-color: black;
+}
+
+.drop-border {
+	border: 2px grey solid !important;
+}
+
+.temp-container {
+	border-radius: 6px;
+	//background-color: grey;
+	@include background-image(linear-gradient(top, rgba(89,89,89,1) 1%,rgba(89,89,89,1) 12%,rgba(68,68,68,1) 33%,rgba(56,56,56,1) 81%,rgba(56,56,56,1) 94%,rgba(63,63,63,1) 100%));
+	//opacity:.75;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}

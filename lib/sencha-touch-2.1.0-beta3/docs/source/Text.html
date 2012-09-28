@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Ext-draw-sprite-Text'>/**
+</span> *
+ */
+Ext.define(&quot;Ext.draw.sprite.Text&quot;, {
+    extend: &quot;Ext.draw.sprite.Sprite&quot;,
+    requires: ['Ext.draw.TextMeasurer'],
+    alias: 'sprite.text',
+    type: 'text',
+    divBased: false,
+    lineBreakRe: /\n/g,
+    inheritableStatics: {
+        shortHand1Re: /'(.*)'/g,
+        shortHand2Re: / /g,
+        shortHand3Re: /\s*,\s*/g,
+        shortHand4Re: /\$\$\$\$/g,
+        def: {
+            processors: {
+                x: &quot;number&quot;,
+                y: &quot;number&quot;,
+                text: &quot;string&quot;,
+                fontSize: function (n) {
+                    if (!isNaN(n)) {
+                        return +n + 'px';
+                    } else if (n.match(Ext.dom.Element.unitRe)) {
+                        return n;
+                    }
+                },
+                fontStyle: (function (fontStyles) {
+                    return function (n) {
+                        if (!n) {
+                            return &quot;&quot;;
+                        } else if (n === 'normal') {
+                            return '';
+                        } else if (!Ext.isString(n)) {
+                            return undefined;
+                        } else if (n in fontStyles) {
+                            return n;
+                        }
+                    };
+                })({&quot;normal&quot;: true, &quot;italic&quot;: true, &quot;oblique&quot;: true}),
+                fontVariant: (function (fontVariants) {
+                    return function (n) {
+                        if (!n) {
+                            return &quot;&quot;;
+                        } else if (n === 'normal') {
+                            return '';
+                        } else if (n in fontVariants) {
+                            return n;
+                        }
+                    };
+                })({&quot;normal&quot;: true, &quot;small-caps&quot;: true}),
+                fontWeight: (function (fontWeights) {
+                    return function (n) {
+                        if (!n) {
+                            return &quot;&quot;;
+                        } else if (n === 'normal') {
+                            return '';
+                        } else if (!isNaN(n)) {
+                            n = +n;
+                            if (100 &lt;= n &amp;&amp; n &lt;= 900) {
+                                return n;
+                            }
+                        } else if (n in fontWeights) {
+                            return n;
+                        }
+                    };
+                })({&quot;normal&quot;: true, &quot;bold&quot;: true, &quot;bolder&quot;: true, &quot;lighter&quot;: true}),
+                fontFamily: &quot;string&quot;,
+                textAlign: (function (textAligns) {
+                    return function (n) {
+                        if (n === 'middle') {
+                            return 'center';
+                        } else if (!n) {
+                            return &quot;center&quot;;
+                        } else if (!Ext.isString(n)) {
+                            return undefined;
+                        } else if (n in textAligns) {
+                            return n;
+                        }
+                    };
+                })({&quot;left&quot;: true, &quot;right&quot;: true, &quot;center&quot;: true, &quot;start&quot;: true, &quot;end&quot;: true}),
+                textBaseline: (function (textBaselines) {
+                    return function (n) {
+                        if (n === false) {
+                            return &quot;alphabetic&quot;;
+                        } else if (n in textBaselines) {
+                            return n;
+                        } else if (n === 'center') {
+                            return 'middle';
+                        }
+                    };
+                })({&quot;top&quot;: true, &quot;hanging&quot;: true, &quot;middle&quot;: true, &quot;alphabetic&quot;: true, &quot;ideographic&quot;: true, &quot;bottom&quot;: true}),
+                font: &quot;string&quot;
+            },
+            aliases: {
+                &quot;font-size&quot;: &quot;fontSize&quot;,
+                &quot;font-family&quot;: &quot;fontFamily&quot;,
+                &quot;font-weight&quot;: &quot;fontWeight&quot;,
+                &quot;font-variant&quot;: &quot;fontVariant&quot;,
+                &quot;text-anchor&quot;: &quot;textAlign&quot;
+            },
+            defaults: {
+                fontStyle: '',
+                fontVariant: '',
+                fontWeight: '',
+                fontSize: '10px',
+                fontFamily: 'sans-serif',
+                font: '10px sans-serif',
+                textBaseline: &quot;alphabetic&quot;,
+                textAlign: &quot;start&quot;,
+                strokeStyle: 'none',
+                divBased: true,
+                fillStyle: '#000',
+                x: 0,
+                y: 0,
+                text: ''
+            },
+            dirtyTriggers: {
+                fontStyle: 'font,bbox',
+                fontVariant: 'font,bbox',
+                fontWeight: 'font,bbox',
+                fontSize: 'font,bbox',
+                fontFamily: 'font,bbox',
+                font: 'font-short-hand,bbox,canvas',
+                textBaseline: 'bbox,canvas',
+                textAlign: 'bbox,canvas',
+                x: &quot;bbox&quot;,
+                y: &quot;bbox&quot;,
+                text: &quot;bbox&quot;
+            },
+            updaters: {
+                &quot;font-short-hand&quot;: (function (dispatcher) {
+                    return function (attrs) {
+                        // TODO: Do this according to http://www.w3.org/TR/CSS21/fonts.html#font-shorthand
+                        var value = attrs.font,
+                            parts, part, i, ln, dispKey;
+                        value = value.replace(Ext.draw.sprite.Text.shortHand1Re, function (a, arg1) {
+                            return arg1.replace(Ext.draw.sprite.Text.shortHand2Re, '$$$$');
+                        });
+                        value = value.replace(Ext.draw.sprite.Text.shortHand3Re, ',');
+                        parts = value.split(' ');
+
+                        attrs = {};
+                        for (i = 0, ln = parts.length; i &lt; ln; i++) {
+                            part = parts[i];
+                            dispKey = dispatcher[part];
+                            if (dispKey) {
+                                attrs[dispKey] = part;
+                            } else if (part.match(Ext.dom.Element.unitRe)) {
+                                attrs.fontSize = part;
+                            } else {
+                                attrs.fontFamily = part.replace(Ext.draw.sprite.Text.shortHand4Re, ' ');
+                            }
+                        }
+                        this.setAttributesCanonical(attrs);
+                    };
+                })({
+                    &quot;italic&quot;: &quot;fontStyles&quot;,
+                    &quot;oblique&quot;: &quot;fontStyles&quot;,
+                    &quot;bold&quot;: &quot;fontWeights&quot;,
+                    &quot;bolder&quot;: &quot;fontWeights&quot;,
+                    &quot;lighter&quot;: &quot;fontWeights&quot;,
+                    &quot;100&quot;: &quot;fontWeights&quot;,
+                    &quot;200&quot;: &quot;fontWeights&quot;,
+                    &quot;300&quot;: &quot;fontWeights&quot;,
+                    &quot;400&quot;: &quot;fontWeights&quot;,
+                    &quot;500&quot;: &quot;fontWeights&quot;,
+                    &quot;600&quot;: &quot;fontWeights&quot;,
+                    &quot;700&quot;: &quot;fontWeights&quot;,
+                    &quot;800&quot;: &quot;fontWeights&quot;,
+                    &quot;900&quot;: &quot;fontWeights&quot;,
+                    &quot;small-caps&quot;: &quot;fontVariant&quot;
+                }),
+                &quot;font&quot;: function (attrs) {
+                    var font = '';
+                    if (attrs.fontWeight) {
+                        font += attrs.fontWeight + ' ';
+                    }
+                    if (attrs.fontVariant) {
+                        font += attrs.fontVariant + ' ';
+                    }
+                    if (attrs.fontSize) {
+                        font += attrs.fontSize + ' ';
+                    }
+                    if (attrs.fontFamily) {
+                        font += attrs.fontFamily + ' ';
+                    }
+                    this.setAttributesCanonical({
+                        font: font.substr(0, font.length - 1)
+                    });
+                }
+            }
+        }
+    },
+
+    constructor: function (config) {
+        Ext.draw.sprite.Sprite.prototype.constructor.call(this, config);
+    },
+
+    updatePlainBBox: function (plain) {
+        var me = this,
+            attr = me.attr,
+            x = attr.x,
+            y = attr.y,
+            font = attr.font,
+            text = attr.text,
+            baseline = attr.textBaseline,
+            alignment = attr.textAlign,
+            size = Ext.draw.TextMeasurer.measureText(text, font),
+            height = size.height,
+            width = size.width;
+
+        switch (baseline) {
+            case 'hanging' :
+            case 'top':
+                break;
+            case 'ideographic' :
+            case 'bottom' :
+                y -= height;
+                break;
+            case 'alphabetic' :
+                y -= height * 0.8;
+                break;
+            case 'middle' :
+            case 'center' :
+                y -= height * 0.5;
+                break;
+        }
+        switch (alignment) {
+            case 'end' :
+            case 'right' :
+                x -= width;
+                break;
+            case 'middle' :
+            case 'center' :
+                x -= width * 0.5;
+                break;
+        }
+
+        plain.x = x;
+        plain.y = y;
+        plain.width = width;
+        plain.height = height;
+    },
+
+    setText: function (text) {
+        this.setAttributesCanonical({text: text});
+    },
+
+    useAttributes: function (ctx) {
+        var me = this,
+            attr = me.attr,
+            font = attr.font;
+
+        if (font !== ctx.font) {
+            ctx.font = font;
+        }
+        ctx.textAlign = attr.textAlign;
+        ctx.textBaseline = attr.textBaseline;
+        Ext.draw.sprite.Sprite.prototype.useAttributes.call(this, ctx);
+    },
+
+    setElementStyles: function (element, styles) {
+        var stylesCache = element.stylesCache || (element.stylesCache = {}),
+            style = element.dom.style,
+            name;
+        for (name in styles) {
+            if (stylesCache[name] !== styles[name]) {
+                stylesCache[name] = style[name] = styles[name];
+            }
+        }
+    },
+
+    render: function (surface, ctx) {
+        var attr = this.attr,
+            mat = Ext.draw.Matrix.fly(attr.matrix.elements.slice(0)),
+            bbox = this.getBBox(true),
+            lineBreakRe = this.lineBreakRe,
+            parent, div, x, y, i, lines, style;
+        if (attr.text.length === 0) {
+            return;
+        }
+        if ((surface instanceof Ext.draw.engine.Svg) || this.divBased) {
+            parent = surface.element;
+            div = surface.textDivs[surface.textPosition];
+            if (!div) {
+                div = Ext.Element.create({
+                    style: {
+                        &quot;position&quot;: &quot;absolute&quot;,
+                        &quot;left&quot;: 0,
+                        &quot;top&quot;: 0,
+                        &quot;width&quot;: bbox.width,
+                        &quot;text-align&quot;: attr.textAlign,
+                        &quot;overflow&quot;: 'visible',
+                        &quot;white-space&quot;: 'nowrap',
+                        &quot;font&quot;: attr.font
+                    }
+                });
+                parent.append(div);
+                surface.textDivs[surface.textPosition] = div;
+            }
+
+            mat.postpend(1, 0, 0, 1, bbox.x, bbox.y);
+            mat.prependMatrix(surface.matrix);
+            div.setHtml(attr.text.replace(lineBreakRe, '&lt;br/&gt;'));
+            div.dom.style.display = attr.hidden ? &quot;none&quot; : &quot;block&quot;;
+            this.setElementStyles(div, {
+                font: attr.font,
+                left: '0px',
+                top: '0px',
+                color: attr.fillStyle,
+                webkitTransformOrigin: &quot;0% 0%&quot;,
+                webkitTransform: mat.toSvg()
+            });
+            surface.textPosition++;
+        } else {
+            lines = attr.text.split('\n');
+            x = attr.x;
+            y = attr.y;
+            mat.toContext(ctx);
+            if (ctx.strokeStyle !== 'rgba(0, 0, 0, 0)') {
+                for (i = 0; i &lt; lines.length; i++) {
+                    ctx.strokeText(lines[i], x, y + bbox.height / lines.length * i);
+                }
+            }
+            if (ctx.fillStyle !== 'rgba(0, 0, 0, 0)') {
+                for (i = 0; i &lt; lines.length; i++) {
+                    ctx.fillText(lines[i], x, y + bbox.height / lines.length * i);
+                }
+            }
+        }
+    }
+}, function () {
+    if (Ext.os.is.Android &amp;&amp; !Ext.browser.is.Chrome) {
+        this.prototype.divBased = true;
+    }
+});</pre>
+</body>
+</html>

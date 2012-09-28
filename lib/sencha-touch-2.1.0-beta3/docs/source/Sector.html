@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Ext-draw-sprite-Sector'>/**
+</span> *
+ */
+Ext.define(&quot;Ext.draw.sprite.Sector&quot;, {
+    extend: &quot;Ext.draw.sprite.Path&quot;,
+    alias: 'sprite.sector',
+    type: 'sector',
+    inheritableStatics: {
+        def: {
+            processors: {
+                centerX: &quot;number&quot;,
+                centerY: &quot;number&quot;,
+                startAngle: &quot;number&quot;,
+                endAngle: &quot;number&quot;,
+                startRho: &quot;number&quot;,
+                endRho: &quot;number&quot;,
+                margin: &quot;number&quot;
+            },
+            aliases: {
+                rho: 'endRho'
+            },
+            dirtyTriggers: {
+                centerX: &quot;path,bbox&quot;,
+                centerY: &quot;path,bbox&quot;,
+                startAngle: &quot;path,bbox&quot;,
+                endAngle: &quot;path,bbox&quot;,
+                startRho: &quot;path,bbox&quot;,
+                endRho: &quot;path,bbox&quot;,
+                margin: &quot;path,bbox&quot;
+            },
+            defaults: {
+                centerX: 0,
+                centerY: 0,
+                startAngle: 0,
+                endAngle: 0,
+                startRho: 0,
+                endRho: 150,
+                margin: 0,
+                path: 'M 0,0'
+            }
+        }
+    },
+
+    drawPath: function (path, attr) {
+        var startAngle = Math.min(attr.startAngle, attr.endAngle),
+            endAngle = Math.max(attr.startAngle, attr.endAngle),
+            midAngle = (startAngle + endAngle) * 0.5,
+            margin = attr.margin,
+            centerX = attr.centerX,
+            centerY = attr.centerY,
+            startRho = Math.min(attr.startRho, attr.endRho),
+            endRho = Math.max(attr.startRho, attr.endRho);
+
+        if (margin) {
+            centerX += margin * Math.cos(midAngle);
+            centerY += margin * Math.sin(midAngle);
+        }
+        path.moveTo(centerX + startRho * Math.cos(startAngle), centerY + startRho * Math.sin(startAngle));
+        path.lineTo(centerX + endRho * Math.cos(startAngle), centerY + endRho * Math.sin(startAngle));
+        path.arc(centerX, centerY, endRho, startAngle, endAngle, false);
+        path.lineTo(centerX + startRho * Math.cos(endAngle), centerY + startRho * Math.sin(endAngle));
+        path.arc(centerX, centerY, startRho, endAngle, startAngle, true);
+    }
+});</pre>
+</body>
+</html>

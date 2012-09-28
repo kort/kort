@@ -1,0 +1,45 @@
+/**
+ * Cusotm css for the Carousel example
+ */
+
+body,
+.x-fullscreen, .x-layout-fit-item, .x-layout-card-item {
+    background-color: #000;
+}
+
+.my-carousel-item {
+    background: url(images/loading.png) no-repeat center center;
+}
+
+@media screen and (orientation:portrait) {
+    .my-carousel-item-img {
+        background-size: 100% auto;
+    }
+}
+
+@media screen and (orientation:landscape) {
+    .my-carousel-item-img {
+        background-size: auto 100%;
+    }
+}
+
+.x-portrait .my-carousel-item-img {
+    background-size: 100% auto;
+}
+
+.x-landscape .my-carousel-item-img {
+    background-size: auto 100%;
+}
+
+.my-carousel-item-img {
+    background-position: center center;
+}
+
+.x-carousel-indicator > * {
+    background-color: orange !important;
+    opacity: 0.4;
+}
+
+.x-carousel-indicator > .x-carousel-indicator-active {
+    opacity: 1;
+}

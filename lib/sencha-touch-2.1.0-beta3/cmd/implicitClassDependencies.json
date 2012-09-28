@@ -1,0 +1,103 @@
+[
+    {
+        "baseClassName" : "Ext.Component",
+        "propertyName" : "componentLayout",
+        "aliasPrefix" : "layout.",
+        "defaultPropertyName" : "defaultComponentLayoutType"
+    },
+    {
+        "baseClassName" : "Ext.container.AbstractContainer",
+        "propertyName" : "layout",
+        "aliasPrefix" : "layout.",
+        "defaultPropertyName" : "defaultLayoutType"
+    },
+    {
+        "baseClassName" : "Ext.data.Model",
+        "propertyName" : "proxy",
+        "aliasPrefix" : "proxy.",
+        "defaultPropertyName" : "defaultProxyType"
+    },
+    {
+        "baseClassName" : "Ext.data.proxy.Proxy",
+        "propertyName" : "reader",
+        "aliasPrefix" : "reader.",
+        "defaultPropertyName" : "defaultReaderType"
+    },
+    {
+        "baseClassName" : "Ext.data.proxy.Proxy",
+        "propertyName" : "writer",
+        "aliasPrefix" : "writer.",
+        "defaultPropertyName" : "defaultWriterType"
+    },
+    {
+        "baseClassName" : "Ext.data.Store",
+        "propertyName" : "proxy",
+        "aliasPrefix" : "proxy."
+    },
+    {
+        "baseClassName" : "Ext.data.Store",
+        "propertyName" : "model",
+        "isMvcDep" : true
+    },
+    {
+        "baseClassName" : "Ext.app.Profile",
+        "propertyName" : "models",
+        "aliasPrefix" : "model.",
+        "isProfileDep" : true
+    },
+    {
+        "baseClassName" : "Ext.app.Profile",
+        "propertyName" : "stores",
+        "aliasPrefix" : "store.",
+        "isProfileDep" : true
+    },
+    {
+        "baseClassName" : "Ext.app.Profile",
+        "propertyName" : "views",
+        "aliasPrefix" : "view.",
+        "isProfileDep" : true
+    },
+    {
+        "baseClassName" : "Ext.app.Profile",
+        "propertyName" : "controllers",
+        "aliasPrefix" : "controller.",
+        "isProfileDep" : true
+    },
+    {
+        "baseClassName" : "Ext.app.Controller",
+        "propertyName" : "models",
+        "aliasPrefix" : "model.",
+        "isMvcDep" : true
+    },
+    {
+        "baseClassName" : "Ext.app.Controller",
+        "propertyName" : "stores",
+        "aliasPrefix" : "store.",
+        "isMvcDep" : true
+    },
+    {
+        "baseClassName" : "Ext.app.Controller",
+        "propertyName" : "views",
+        "aliasPrefix" : "view.",
+        "isMvcDep" : true
+    },
+    {
+        "baseClassName" : "Ext.app.Application",
+        "propertyName" : "controllers",
+        "aliasPrefix" : "controller.",
+        "isMvcDep" : true
+    },
+    {
+        "baseClassName" : "Ext.app.Application",
+        "propertyName" : "profiles",
+        "aliasPrefix" : "profile.",
+        "isMvcDep" : true
+    },
+    {
+        "baseClassName" : "Ext.app.Application",
+        "propertyName" : "forms",
+        "aliasPrefix" : "form.",
+        "isMvcDep" : true
+    }
+
+]

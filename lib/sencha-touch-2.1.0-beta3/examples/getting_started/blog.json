@@ -1,0 +1,22 @@
+[
+    {
+        title: 'Ext Scheduler 2.0',
+        leaf: true,
+        text: '<p>In my previous post I introduced you to the Ext Scheduler, an Ext JS component for scheduling tasks and resources. At Bryntum, we have since then been busy upgrading our code base to Ext JS 4. While we upgraded our scheduler and Gantt components we also took the opportunity to re-factor our code to make use of the new capabilities in Ext JS 4.</p><p>In the previous scheduler version, several key parts of the component relied on third party extensions such as LockingGridView, ColumnHeaderGroup, Maxim’s TreeGrid and Saki’s Ext.ux.form.DateTime. It’s a major step forward for us to have that functionality available natively in Ext JS 4, and we’re very happy that our components are now 100% based on code supported by Sencha. Here’s a look at the 2.0 scheduler version which uses the new Ext TreePanel.</p>'
+    },
+    {
+        title: 'Previewing Touch 2',
+        leaf: true,
+        text: '<p>Today, we’d like to give you a glimpse into some of the new features in Sencha Touch 2.0. We’re incredibly excited about this upcoming release and we hope that you’ll share in our excitement by developing some amazing mobile apps.</p><p>Let’s start with a quick recap. Since the initial release of Sencha Touch last year, HTML5 and the mobile web has grown by leaps and bounds. Many developers made the decision to create their apps using the mobile web as a platform, and frameworks like Sencha Touch played a major role in accelerating the adoption of HTML5 and browser-based apps. We couldn’t be happier, and to our community of web developers, we thank you.</p>'
+    },
+    {
+        title: 'Sencha Con 2011',
+        leaf: true,
+        text: '<p>SenchaCon 2011 is going to be in Austin, Texas, October 23-26, and it’s set to be our biggest and best event ever. We’re putting the finishing touches to the schedule right now, and we thought we’d share some of the excitement with you!</p><p>The conference is spread over three days, with the first two focused on presentation sessions and workshops, and the Wednesday dedicated to an all-day Sencha Hackathon.</p>'
+    },
+    {
+        title: 'Docs in Ext JS 4',
+        leaf: true,
+        text: '<p>At Sencha, we’ve been challenging ourselves to improve our API documentation, and listening to your feedback on what we should focus on. Today, I’d like to share a few of the improvements we’ve made, as well as some of what we’re working on for the future. We hope you like what we’ve done and where we’re headed.</p><p>The first thing you’ll notice when you load the docs is that tabs are back — and sexier than ever! While the earlier versions of the docs app had many improvements, tabs were missed by many so today we’re bringing them back by popular demand</p>'
+    }
+]
