@@ -1,0 +1,181 @@
+@import "compass";
+@import "compass/reset";
+
+@import "desktop";
+@import "phone";
+@import "tablet";
+
+// Variables
+$default-border-radius: 4px;
+$blue: #1985D0;
+
+@mixin bevel-by-background($bg-color) {
+  @if (lightness($bg-color) > 50) { @include bevel-text(light) }
+  @else { @include bevel-text; }
+}
+
+body {
+    font-family: Helvetica;
+    -webkit-text-size-adjust:100%;
+}
+
+#wrapper {
+    opacity: 0;
+    background: #fff;
+    -webkit-transition: opacity .5s ease-in;
+
+    footer {
+        display: none;
+    }
+}
+
+// Links
+a, a:link, a:visited, a:active, a:hover {
+    text-decoration: none;
+}
+
+// Header
+#wrapper > header {
+    height: 44px;
+    color: #fff;
+    position: relative;
+    background: $blue;
+    border-bottom: 1px solid darken($blue, 50%);
+    @include background-image(linear-gradient(color_stops(lighten($blue, 30%), lighten($blue, 7%) 2%, darken($blue, 7%))));
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+
+    img {
+        height: 42px;
+        margin: 1px 0 0 10px;
+    }
+
+    ul {
+        position: absolute;
+        top: 8px;
+        right: 12px;
+        @include box-shadow(0 1px 0 rgba(255, 255, 255, .2));
+        @include border-radius;
+
+        li {
+            position: relative;
+
+            a {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                cursor: pointer;
+            }
+
+            @include inline-block;
+            background: darken($blue, 12);
+            width: 34px;
+            height: 28px;
+            @include box-shadow(inset 0 0 1px rgba(0, 0, 0, .3), inset 0 0 13px rgba(0, 0, 0, .4));
+            -webkit-transition: background 0.1s linear;
+            cursor: pointer;
+            position: relative;
+
+            &:before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+
+            &:first-child {
+                @include border-left-radius;
+                border-right: 1px solid darken($blue, 3);
+
+                &:before {
+                    background-image: url(../images/like.png);
+                    background-size: 50%;
+                }
+            }
+
+            &:last-child {
+                @include border-right-radius;
+
+                &:before {
+                    background-image: url(../images/tweet.png);
+                    background-size: 70%;
+                }
+            }
+
+            &:active {
+                cursor: default;
+                background: darken($blue, 12);
+                @include box-shadow(inset 0 1px 1px rgba(0, 0, 0, .3), inset 0 4px 13px rgba(0, 0, 0, .2));
+
+                &:hover {
+                    background: darken($blue, 15);
+                }
+            }
+
+            &:hover {
+                background: darken($blue, 17);
+            }
+        }
+    }
+}
+
+// Sections
+section > header {
+    color: #777;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .8);
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 8px;
+    border-bottom: 1px solid #D4D4D4;
+    @include background(linear-gradient(top, #F0F0F0, #DFDFDF));
+}
+
+section li {
+    line-height: 20px;
+    min-height: 60px;
+    border-bottom: 1px solid #eaeaea;
+
+    &:nth-child(odd) {
+        background: #fcfcfc;
+    }
+
+    a {
+        display: block;
+        margin: 1px 0;
+        padding: 15px 29px 15px 15px;
+        min-height: 60px;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, .05);
+        background: url(../images/list-arrow.png) no-repeat center right;
+        background-size: 19px 14px;
+    }
+
+    img {
+        float: left;
+        margin-right: 15px;
+        width: 57px;
+        height: 57px;
+    }
+
+    h3 {
+        font-weight: bold;
+        color: #333333;
+        font-size: 16px;
+        padding-bottom: 2px;
+    }
+
+    p {
+        color: #B2B2B2;
+    }
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Ext-chart-series-Area'>/**
+</span> * TODO: Finish documentation
+ *
+ */
+Ext.define('Ext.chart.series.Area', {
+    
+    extend: 'Ext.chart.series.StackedCartesian',
+    
+    alias: 'series.area',
+    type: 'area',
+    seriesType: 'areaSeries',
+    
+    requires: ['Ext.chart.series.sprite.Area'],
+    
+    config: {
+        highlightCfg: {
+            lineWidth: 3,
+            stroke: '#55c',
+            opacity: 0.8,
+            color: '#f00'
+        }
+    }
+});
+</pre>
+</body>
+</html>

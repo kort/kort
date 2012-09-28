@@ -1,0 +1,1458 @@
+{
+    "urlId": "clothes-shoes-and-jewelry",
+    "children": [{
+        "label": "Clothing",
+        "urlId": "womens-clothes",
+        "hasWideIcon": true,
+        "children": [{
+            "label": "Denim",
+            "urlId": "jeans"
+        }, {
+            "label": "Dresses",
+            "urlId": "dresses"
+        }, {
+            "label": "Intimates",
+            "urlId": "womens-intimates",
+            "children": [{
+                "label": "Bras",
+                "urlId": "bras"
+            }, {
+                "label": "Camisoles",
+                "urlId": "camisoles"
+            }, {
+                "label": "Chemises",
+                "urlId": "chemises"
+            }, {
+                "label": "Pajamas",
+                "urlId": "pajamas"
+            }, {
+                "label": "Panties",
+                "urlId": "panties"
+            }, {
+                "label": "Robes",
+                "urlId": "robes"
+            }, {
+                "label": "Socks",
+                "urlId": "socks"
+            }, {
+                "label": "Shapewear",
+                "urlId": "shapewear"
+            }, {
+                "label": "Slippers",
+                "urlId": "slippers"
+            }]
+        }, {
+            "label": "Jackets",
+            "urlId": "jackets"
+        }, {
+            "label": "Outerwear",
+            "urlId": "womens-outerwear"
+        }, {
+            "label": "Pants & Shorts",
+            "urlId": "pants-shorts"
+        }, {
+            "label": "Skirts",
+            "urlId": "skirts"
+        }, {
+            "label": "Sweaters",
+            "urlId": "sweaters"
+        }, {
+            "label": "Swimwear",
+            "urlId": "swimsuits"
+        }, {
+            "label": "Tops",
+            "urlId": "womens-tops"
+        }, {
+            "label": "Petites",
+            "urlId": "petites",
+            "children": [{
+                "label": "Denim",
+                "urlId": "petite-jeans"
+            }, {
+                "label": "Dresses",
+                "urlId": "petite-dresses"
+            }, {
+                "label": "Intimates",
+                "urlId": "petite-intimates"
+            }, {
+                "label": "Jackets",
+                "urlId": "petite-jackets"
+            }, {
+                "label": "Outerwear",
+                "urlId": "petite-outerwear"
+            }, {
+                "label": "Pants & Shorts",
+                "urlId": "petite-pants-shorts"
+            }, {
+                "label": "Skirts",
+                "urlId": "petite-skirts"
+            }, {
+                "label": "Sweaters",
+                "urlId": "petite-sweaters"
+            }, {
+                "label": "Swimwear",
+                "urlId": "petite-swimsuits"
+            }, {
+                "label": "Tops",
+                "urlId": "petite-tops"
+            }]
+        }, {
+            "label": "Plus Sizes",
+            "urlId": "plus-sizes",
+            "children": [{
+                "label": "Denim",
+                "urlId": "plus-size-jeans"
+            }, {
+                "label": "Dresses",
+                "urlId": "plus-size-dresses"
+            }, {
+                "label": "Intimates",
+                "urlId": "plus-size-intimates"
+            }, {
+                "label": "Jackets",
+                "urlId": "plus-size-jackets"
+            }, {
+                "label": "Outerwear",
+                "urlId": "plus-size-outerwear"
+            }, {
+                "label": "Pants & Shorts",
+                "urlId": "plus-size-pants-shorts"
+            }, {
+                "label": "Skirts",
+                "urlId": "plus-size-skirts"
+            }, {
+                "label": "Sweaters",
+                "urlId": "plus-size-sweaters"
+            }, {
+                "label": "Swimwear",
+                "urlId": "plus-size-swimsuits"
+            }, {
+                "label": "Tops",
+                "urlId": "plus-size-tops"
+            }]
+        }, {
+            "label": "Maternity",
+            "urlId": "maternity-clothes",
+            "children": [{
+                "label": "Denim",
+                "urlId": "maternity-jeans"
+            }, {
+                "label": "Dresses",
+                "urlId": "maternity-dresses"
+            }, {
+                "label": "Intimates",
+                "urlId": "maternity-intimates"
+            }, {
+                "label": "Jackets",
+                "urlId": "maternity-jackets"
+            }, {
+                "label": "Outerwear",
+                "urlId": "maternity-outerwear"
+            }, {
+                "label": "Pants & Shorts",
+                "urlId": "maternity-pants-shorts"
+            }, {
+                "label": "Skirts",
+                "urlId": "maternity-skirts"
+            }, {
+                "label": "Sweaters",
+                "urlId": "maternity-sweaters"
+            }, {
+                "label": "Swimwear",
+                "urlId": "maternity-swimsuits"
+            }, {
+                "label": "Tops",
+                "urlId": "maternity-tops"
+            }]
+        }, {
+            "label": "Teens",
+            "urlId": "teen-girls-clothes",
+            "children": [{
+                "label": "Denim",
+                "urlId": "teen-girls-jeans"
+            }, {
+                "label": "Dresses",
+                "urlId": "teen-girls-dresses"
+            }, {
+                "label": "Intimates",
+                "urlId": "teen-girls-intimates"
+            }, {
+                "label": "Jackets",
+                "urlId": "teen-girls-jackets"
+            }, {
+                "label": "Outerwear",
+                "urlId": "teen-girls-outerwear"
+            }, {
+                "label": "Pants & Shorts",
+                "urlId": "teen-girls-pants-shorts"
+            }, {
+                "label": "Skirts",
+                "urlId": "teen-girls-skirts"
+            }, {
+                "label": "Sweaters",
+                "urlId": "teen-girls-sweaters"
+            }, {
+                "label": "Swimwear",
+                "urlId": "teen-girls-swimsuits"
+            }, {
+                "label": "Tops",
+                "urlId": "teen-girls-tops"
+            }]
+        }]
+    }, {
+        "label": "Shoes",
+        "urlId": "womens-shoes",
+        "hasWideIcon": true,
+        "children": [{
+            "label": "Athletic",
+            "urlId": "shoes-athletic"
+        }, {
+            "label": "Boots",
+            "urlId": "boots"
+        }, {
+            "label": "Evening",
+            "urlId": "evening-shoes"
+        }, {
+            "label": "Flats",
+            "urlId": "flats"
+        }, {
+            "label": "Mules & Clogs",
+            "urlId": "mules-and-clogs"
+        }, {
+            "label": "Platforms",
+            "urlId": "platforms"
+        }, {
+            "label": "Pumps",
+            "urlId": "pumps"
+        }, {
+            "label": "Sandals",
+            "urlId": "sandals"
+        }, {
+            "label": "Wedges",
+            "urlId": "wedges"
+        }]
+    }, {
+        "label": "Handbags",
+        "urlId": "handbags",
+        "children": [{
+            "label": "Backpacks",
+            "urlId": "backpacks"
+        }, {
+            "label": "Clutches",
+            "urlId": "clutches"
+        }, {
+            "label": "Evening",
+            "urlId": "evening-handbags"
+        }, {
+            "label": "Hobos",
+            "urlId": "hobo-bags"
+        }, {
+            "label": "Satchels",
+            "urlId": "satchels"
+        }, {
+            "label": "Shoulder Bags",
+            "urlId": "shoulder-bags"
+        }, {
+            "label": "Totes",
+            "urlId": "tote-bags"
+        }, {
+            "label": "Wallets",
+            "urlId": "wallets"
+        }]
+    }, {
+        "label": "Accessories",
+        "urlId": "womens-accessories",
+        "children": [{
+            "label": "Belts",
+            "urlId": "belts"
+        }, {
+            "label": "Hats",
+            "urlId": "hats"
+        }, {
+            "label": "Gloves",
+            "urlId": "gloves"
+        }, {
+            "label": "Jewelry",
+            "urlId": "jewelry",
+            "children": [{
+                "label": "Bracelets",
+                "urlId": "bracelets"
+            }, {
+                "label": "Earrings",
+                "urlId": "earrings"
+            }, {
+                "label": "Necklaces",
+                "urlId": "necklaces"
+            }, {
+                "label": "Pins",
+                "urlId": "brooches-and-pins"
+            }, {
+                "label": "Rings",
+                "urlId": "rings"
+            }, {
+                "label": "Watches",
+                "urlId": "watches"
+            }]
+        }, {
+            "label": "Scarves & Wraps",
+            "urlId": "scarves"
+        }, {
+            "label": "Sunglasses",
+            "urlId": "sunglasses"
+        }]
+    }, {
+        "label": "Beauty",
+        "urlId": "womens-beauty",
+        "children": [{
+            "label": "Bath & Body",
+            "urlId": "bath-body"
+        }, {
+            "label": "Fragrance",
+            "urlId": "perfume"
+        }, {
+            "label": "Hair Accessories",
+            "urlId": "hair-accessories"
+        }, {
+            "label": "Haircare",
+            "urlId": "hair-care"
+        }, {
+            "label": "Makeup",
+            "urlId": "makeup",
+            "children": [{
+                "label": "Body",
+                "urlId": "beauty-body-makeup"
+            }, {
+                "label": "Eyes",
+                "urlId": "eye-makeup"
+            }, {
+                "label": "Face",
+                "urlId": "face-makeup"
+            }, {
+                "label": "Lips",
+                "urlId": "lip-products"
+            }, {
+                "label": "Nails",
+                "urlId": "nail-products"
+            }, {
+                "label": "Sets",
+                "urlId": "makeup-sets"
+            }]
+        }, {
+            "label": "Skin Care",
+            "urlId": "skin-care"
+        }, {
+            "label": "Tools",
+            "urlId": "beauty-tools"
+        }]
+    }, {
+        "label": "Men",
+        "urlId": "mens-clothes",
+        "children": [{
+            "label": "Accessories",
+            "urlId": "mens-accessories",
+            "children": [{
+                "label": "Bags & Luggage",
+                "urlId": "mens-bags-and-luggage"
+            }, {
+                "label": "Belts",
+                "urlId": "mens-belts"
+            }, {
+                "label": "Fragrances",
+                "urlId": "mens-fragrances"
+            }, {
+                "label": "Gloves & Scarves",
+                "urlId": "mens-gloves-and-scarves"
+            }, {
+                "label": "Grooming",
+                "urlId": "mens-grooming"
+            }, {
+                "label": "Hats",
+                "urlId": "mens-hats"
+            }, {
+                "label": "Sunglasses",
+                "urlId": "mens-sunglasses"
+            }, {
+                "label": "Ties",
+                "urlId": "mens-ties"
+            }, {
+                "label": "Wallets",
+                "urlId": "mens-wallets"
+            }, {
+                "label": "Watches & Jewelry",
+                "urlId": "mens-watches-and-jewelry",
+                "children": [{
+                    "label": "Cuff Links",
+                    "urlId": "mens-cuff-links"
+                }, {
+                    "label": "Jewelry",
+                    "urlId": "mens-jewelry"
+                }, {
+                    "label": "Watches",
+                    "urlId": "mens-watches"
+                }]
+            }]
+        }, {
+            "label": "Jeans",
+            "urlId": "mens-jeans"
+        }, {
+            "label": "Outerwear",
+            "urlId": "mens-outerwear",
+            "children": [{
+                "label": "Denim",
+                "urlId": "mens-denim-jackets"
+            }, {
+                "label": "Jackets",
+                "urlId": "mens-jackets"
+            }, {
+                "label": "Leather & Suede",
+                "urlId": "mens-leather-and-suede-coats"
+            }, {
+                "label": "Overcoats/Trenchcoats",
+                "urlId": "mens-overcoats-and-trenchcoats"
+            }, {
+                "label": "Wool",
+                "urlId": "mens-wool-coats"
+            }]
+        }, {
+            "label": "Pants",
+            "urlId": "mens-pants"
+        }, {
+            "label": "Shirts",
+            "urlId": "mens-shirts",
+            "children": [{
+                "label": "Dress",
+                "urlId": "mens-dress-shirts"
+            }, {
+                "label": "Longsleeve",
+                "urlId": "mens-longsleeve-shirts"
+            }, {
+                "label": "Shortsleeve",
+                "urlId": "mens-shortsleeve-shirts"
+            }, {
+                "label": "Polos",
+                "urlId": "mens-polo-shirts"
+            }, {
+                "label": "Tees",
+                "urlId": "mens-tees-and-tshirts"
+            }]
+        }, {
+            "label": "Shoes",
+            "urlId": "mens-shoes",
+            "children": [{
+                "label": "Athletic",
+                "urlId": "mens-shoes-athletic"
+            }, {
+                "label": "Boots",
+                "urlId": "mens-boots"
+            }, {
+                "label": "Casual",
+                "urlId": "mens-casual-shoes"
+            }, {
+                "label": "Dress",
+                "urlId": "mens-dress-shoes"
+            }, {
+                "label": "Sandals",
+                "urlId": "mens-sandals"
+            }]
+        }, {
+            "label": "Shorts",
+            "urlId": "mens-shorts"
+        }, {
+            "label": "Sleepwear",
+            "urlId": "mens-sleepwear"
+        }, {
+            "label": "Sportcoats",
+            "urlId": "mens-blazers-and-sport-coats"
+        }, {
+            "label": "Sportswear",
+            "urlId": "mens-athletic",
+            "children": [{
+                "label": "Jackets",
+                "urlId": "mens-athletic-jackets"
+            }, {
+                "label": "Pants",
+                "urlId": "mens-athletic-pants"
+            }, {
+                "label": "Shirts",
+                "urlId": "mens-athletic-shirts"
+            }, {
+                "label": "Shorts",
+                "urlId": "mens-athletic-shorts"
+            }]
+        }, {
+            "label": "Suits",
+            "urlId": "mens-suits"
+        }, {
+            "label": "Sweaters",
+            "urlId": "mens-sweaters"
+        }, {
+            "label": "Swimwear",
+            "urlId": "mens-swimsuits"
+        }, {
+            "label": "Underwear & Socks",
+            "urlId": "mens-underwear-and-socks"
+        }, {
+            "label": "Big & Tall",
+            "urlId": "mens-big-and-tall",
+            "children": [{
+                "label": "Coats & Jackets",
+                "urlId": "mens-big-and-tall-coats-and-jackets"
+            }, {
+                "label": "Jeans",
+                "urlId": "mens-big-and-tall-jeans"
+            }, {
+                "label": "Pants",
+                "urlId": "mens-big-and-tall-pants"
+            }, {
+                "label": "Shirts",
+                "urlId": "mens-big-and-tall-shirts"
+            }, {
+                "label": "Shorts",
+                "urlId": "mens-big-and-tall-shorts"
+            }, {
+                "label": "Sportcoats",
+                "urlId": "mens-big-and-tall-blazers"
+            }, {
+                "label": "Suits",
+                "urlId": "mens-big-and-tall-suits"
+            }, {
+                "label": "Sweaters",
+                "urlId": "mens-big-and-tall-sweaters"
+            }, {
+                "label": "Underwear & Socks",
+                "urlId": "mens-big-and-tall-underwear-and-socks"
+            }]
+        }, {
+            "label": "Teens",
+            "urlId": "teen-guys-clothes",
+            "children": [{
+                "label": "Jeans",
+                "urlId": "teen-guys-jeans"
+            }, {
+                "label": "Outerwear",
+                "urlId": "teen-guys-outerwear"
+            }, {
+                "label": "Pants",
+                "urlId": "teen-guys-pants"
+            }, {
+                "label": "Shirts",
+                "urlId": "teen-guys-shirts"
+            }, {
+                "label": "Shorts",
+                "urlId": "teen-guys-shorts"
+            }, {
+                "label": "Sportcoats",
+                "urlId": "teen-guys-blazers"
+            }, {
+                "label": "Suits",
+                "urlId": "teen-guys-suits"
+            }, {
+                "label": "Sweaters",
+                "urlId": "teen-guys-sweaters"
+            }, {
+                "label": "Swimwear",
+                "urlId": "teen-guys-swimsuits"
+            }, {
+                "label": "Underwear & Socks",
+                "urlId": "teen-guys-underwear-and-socks"
+            }]
+        }]
+    }, {
+        "label": "Kids & Baby",
+        "urlId": "kids-and-baby",
+        "children": [{
+            "label": "Newborn (0-12m)",
+            "urlId": "kids-and-baby-newborn",
+            "children": [{
+                "label": "Accessories",
+                "urlId": "kids-and-baby-newborn-accessories"
+            }, {
+                "label": "Sleep Sacks",
+                "urlId": "kids-and-baby-sleep-sacks"
+            }, {
+                "label": "Baby Boys",
+                "urlId": "baby-boys-clothes"
+            }, {
+                "label": "Baby Girls",
+                "urlId": "baby-girls-clothes"
+            }, {
+                "label": "Gift Sets",
+                "urlId": "kids-and-baby-baby-gift-sets"
+            }, {
+                "label": "Shoes",
+                "urlId": "kids-and-baby-newborn-shoes"
+            }, {
+                "label": "Unisex",
+                "urlId": "baby-unisex-clothes"
+            }]
+        }, {
+            "label": "Infant Boys (0-24m)",
+            "urlId": "infant-boys",
+            "children": [{
+                "label": "Accessories",
+                "urlId": "infant-boys-accessories"
+            }, {
+                "label": "Beach & Swimwear",
+                "urlId": "infant-boys-swimsuits"
+            }, {
+                "label": "Jeans",
+                "urlId": "infant-boys-jeans"
+            }, {
+                "label": "One Piece",
+                "urlId": "infant-boys-one-piece"
+            }, {
+                "label": "Outerwear",
+                "urlId": "infant-boys-outerwear"
+            }, {
+                "label": "Pants",
+                "urlId": "infant-boys-pants"
+            }, {
+                "label": "Shoes",
+                "urlId": "infant-boys-shoes"
+            }, {
+                "label": "Shorts",
+                "urlId": "infant-boys-shorts"
+            }, {
+                "label": "Sleepwear",
+                "urlId": "infant-boys-sleepwear"
+
+            }, {
+                "label": "Sweaters",
+                "urlId": "infant-boys-sweaters"
+
+            }, {
+                "label": "Tops & Tees",
+                "urlId": "infant-boys-tops-and-tees"
+            }]
+        }, {
+            "label": "Infant Girls (0-24m)",
+            "urlId": "infant-girls",
+            "children": [{
+                "label": "Accessories",
+                "urlId": "infant-girls-accessories"
+            }, {
+                "label": "Beach & Swimwear",
+                "urlId": "infant-girls-swimsuits"
+            }, {
+                "label": "Dresses & Skirts",
+                "urlId": "infant-girls-dresses-and-skirts"
+            }, {
+                "label": "Jeans",
+                "urlId": "infant-baby-girls-jeans"
+            }, {
+                "label": "One Piece",
+                "urlId": "infant-girls-one-piece"
+            }, {
+                "label": "Outerwear",
+                "urlId": "infant-girls-outerwear"
+            }, {
+                "label": "Pants",
+                "urlId": "infant-girls-pants"
+            }, {
+                "label": "Shoes",
+                "urlId": "infant-girls-shoes"
+            }, {
+                "label": "Shorts",
+                "urlId": "infant-girls-shorts"
+            }, {
+                "label": "Sleepwear",
+                "urlId": "infant-girls-sleepwear"
+
+            }, {
+                "label": "Sweaters",
+                "urlId": "infant-girls-sweaters"
+
+            }, {
+                "label": "Tops & Tees",
+                "urlId": "infant-girls-tops-and-tees"
+            }]
+        }, {
+            "label": "Toddler Boys (2T-4T)",
+            "urlId": "toddler-boys",
+            "children": [{
+                "label": "Accessories",
+                "urlId": "toddler-boys-accessories"
+            }, {
+                "label": "Jeans",
+                "urlId": "toddler-boys-jeans"
+            }, {
+                "label": "Outerwear",
+                "urlId": "toddler-boys-outerwear"
+            }, {
+                "label": "Pants",
+                "urlId": "toddler-boys-pants"
+            }, {
+                "label": "Shirts",
+                "urlId": "toddler-boys-shirts"
+            }, {
+                "label": "Shoes",
+                "urlId": "toddler-boys-shoes"
+            }, {
+                "label": "Shorts",
+                "urlId": "toddler-boys-shorts"
+            }, {
+                "label": "Sleepwear",
+                "urlId": "toddler-boys-sleepwear"
+            }, {
+                "label": "Sweaters",
+                "urlId": "toddler-boys-sweaters"
+            }, {
+                "label": "Swimwear",
+                "urlId": "toddler-boys-swimsuits"
+            }, {
+                "label": "Tees",
+                "urlId": "toddler-boys-tees"
+            }, {
+                "label": "Underwear",
+                "urlId": "toddler-boys-underwear-and-socks"
+            }]
+        }, {
+            "label": "Toddler Girls (2T-4T)",
+            "urlId": "toddler-girls",
+            "children": [{
+                "label": "Accessories",
+                "urlId": "toddler-girls-accessories"
+            }, {
+                "label": "Dresses",
+                "urlId": "toddler-girls-dresses"
+            }, {
+                "label": "Jeans",
+                "urlId": "toddler-girls-jeans"
+            }, {
+                "label": "Outerwear",
+                "urlId": "toddler-girls-outerwear"
+            }, {
+                "label": "Pants",
+                "urlId": "toddler-girls-pants"
+            }, {
+                "label": "Shirts & Blouses",
+                "urlId": "toddler-girls-shirts-and-blouses"
+            }, {
+                "label": "Shoes",
+                "urlId": "toddler-girls-shoes"
+            }, {
+                "label": "Shorts",
+                "urlId": "toddler-girls-shorts"
+            }, {
+                "label": "Skirts & Skorts",
+                "urlId": "toddler-girls-skirts-and-skorts"
+            }, {
+                "label": "Sleepwear",
+                "urlId": "toddler-girls-sleepwear"
+            }, {
+                "label": "Sweaters",
+                "urlId": "toddler-girls-sweaters"
+            }, {
+                "label": "Swimwear",
+                "urlId": "toddler-girls-swimsuits"
+            }, {
+                "label": "Tees",
+                "urlId": "toddler-girls-tees-and-tshirts"
+            }, {
+                "label": "Underwear",
+                "urlId": "toddler-girls-underwear"
+            }]
+        }, {
+            "label": "Boys (4-14)",
+            "urlId": "boys",
+            "children": [{
+                "label": "Accessories",
+                "urlId": "boys-accessories"
+            }, {
+                "label": "Jeans",
+                "urlId": "boys-jeans"
+            }, {
+                "label": "Outerwear",
+                "urlId": "boys-outerwear"
+            }, {
+                "label": "Pants",
+                "urlId": "boys-pants"
+            }, {
+                "label": "Shirts",
+                "urlId": "boys-shirts"
+            }, {
+                "label": "Shoes",
+                "urlId": "boys-boys-shoes"
+            }, {
+                "label": "Shorts",
+                "urlId": "boys-shorts"
+            }, {
+                "label": "Sleepwear",
+                "urlId": "boys-sleepwear"
+            }, {
+                "label": "Sweaters",
+                "urlId": "boys-sweaters"
+            }, {
+                "label": "Swimwear",
+                "urlId": "boys-swimsuits"
+            }, {
+                "label": "Tees",
+                "urlId": "boys-tees-and-tshirts"
+            }, {
+                "label": "Underwear",
+                "urlId": "boys-underwear"
+            }]
+        }, {
+            "label": "Girls (4-14)",
+            "urlId": "girls",
+            "children": [{
+                "label": "Accessories",
+                "urlId": "girls-accessories"
+            }, {
+                "label": "Dresses",
+                "urlId": "girls-dresses"
+            }, {
+                "label": "Jeans",
+                "urlId": "girls-jeans"
+            }, {
+                "label": "Outerwear",
+                "urlId": "girls-outerwear"
+            }, {
+                "label": "Pants",
+                "urlId": "girls-pants"
+            }, {
+                "label": "Shirts & Blouses",
+                "urlId": "girls-shirts"
+            }, {
+                "label": "Shoes",
+                "urlId": "girls-girls-shoes"
+            }, {
+                "label": "Shorts",
+                "urlId": "girls-shorts"
+            }, {
+                "label": "Skirts & Skorts",
+                "urlId": "girls-skirts"
+            }, {
+                "label": "Sleepwear",
+                "urlId": "girls-sleepwear"
+            }, {
+                "label": "Sweaters",
+                "urlId": "girls-sweaters"
+            }, {
+                "label": "Swimwear",
+                "urlId": "girls-swimsuits"
+            }, {
+                "label": "Tees",
+                "urlId": "girls-tees-and-tshirts"
+            }, {
+                "label": "Underwear",
+                "urlId": "girls-underwear"
+            }]
+        }, {
+            "label": "Baby Gear",
+            "urlId": "baby-gear",
+            "children": [{
+                "label": "Baby Carriers",
+                "urlId": "baby-carriers"
+            }, {
+                "label": "Bouncers",
+                "urlId": "baby-bouncers"
+            }, {
+                "label": "Car Seats",
+                "urlId": "baby-car-seats"
+            }, {
+                "label": "Diaper Bags",
+                "urlId": "baby-diaper-bags"
+            }, {
+                "label": "Feeding",
+                "urlId": "baby-feeding",
+                "children": [{
+                    "label": "Bibs & Burp Cloths",
+                    "urlId": "bibs-and-burp-cloths"
+                }, {
+                    "label": "Bottle Feeding",
+                    "urlId": "bottle-feeding"
+                }, {
+                    "label": "High Chairs & Boosters",
+                    "urlId": "feeding-chairs-and-seats"
+                }, {
+                    "label": "Tableware",
+                    "urlId": "baby-feeding-tableware"
+                }]
+            }, {
+                "label": "Gyms & Playmats",
+                "urlId": "baby-gyms-and-playmats"
+            }, {
+                "label": "Health & Safety",
+                "urlId": "baby-health-and-safety"
+            }, {
+                "label": "Playards",
+                "urlId": "baby-playards"
+            }, {
+                "label": "Strollers",
+                "urlId": "baby-strollers"
+            }, {
+                "label": "Stroller Accessories",
+                "urlId": "baby-stroller-accessories"
+            }, {
+                "label": "Swings",
+                "urlId": "baby-swings"
+            }, {
+                "label": "Travel Accessories",
+                "urlId": "baby-travel-accessories"
+            }]
+        }, {
+            "label": "Bed & Bath",
+            "urlId": "kids-bed-and-bath",
+            "children": [{
+                "label": "Bath & Body",
+                "urlId": "kids-bath-and-body"
+            }, {
+                "label": "Bath Accessories",
+                "urlId": "kids-bath-accessories"
+            }, {
+                "label": "Robes & Towels",
+                "urlId": "kids-robes-and-towel"
+            }, {
+                "label": "Blankets & Quilts",
+                "urlId": "kids-bedding-blankets-and-quilts"
+            }, {
+                "label": "Boy Bedding",
+                "urlId": "kids-boy-bedding"
+            }, {
+                "label": "Crib Sets",
+                "urlId": "kids-bedding-crib-sets"
+            }, {
+                "label": "Girl Bedding",
+                "urlId": "kids-girl-bedding"
+            }, {
+                "label": "Mattresses & Covers",
+                "urlId": "kids-bedding-mattresses-pads-and-covers"
+            }, {
+                "label": "Pillows",
+                "urlId": "kids-bedding-pillows"
+            }]
+        }, {
+            "label": "Nursery",
+            "urlId": "nursery-kids-and-baby",
+            "children": [{
+                "label": "Bassinets & Cradles",
+                "urlId": "bassinets-and-cradles"
+            }, {
+                "label": "Beds & Mattresses",
+                "urlId": "kids-beds-and-mattresses"
+            }, {
+                "label": "Bookcases",
+                "urlId": "kids-bookcases"
+            }, {
+                "label": "Changing Tables",
+                "urlId": "changing-tables"
+            }, {
+                "label": "Cribs",
+                "urlId": "cribs"
+            }, {
+                "label": "Decor",
+                "urlId": "kids-decor"
+            }, {
+                "label": "Desks & Chairs",
+                "urlId": "kids-desks-charis"
+            }, {
+                "label": "Dressers & Armoires",
+                "urlId": "kids-dressers-and-armoires"
+            }, {
+                "label": "Nightstands",
+                "urlId": "kids-nightstands"
+            }, {
+                "label": "Rockers",
+                "urlId": "kids-rockers"
+            }, {
+                "label": "Storage & Shelving",
+                "urlId": "kids-storage-and-shelving"
+            }, {
+                "label": "Toy Boxes & Benches",
+                "urlId": "toy-boxes-and-benches"
+            }, {
+                "label": "Wall & Media Systems",
+                "urlId": "kids-wall-media-systems"
+            }]
+        }, {
+            "label": "Toys & Activity",
+            "urlId": "kids-toys",
+            "children": [{
+                "label": "Books, Music & DVDs",
+                "urlId": "kids-books-music-and-dvds"
+            }, {
+                "label": "Crib Toys",
+                "urlId": "crib-toys"
+            }, {
+                "label": "Games & Puzzles",
+                "urlId": "kids-games-and-puzzles"
+            }, {
+                "label": "Learning & Activity",
+                "urlId": "learning-and-activity"
+            }, {
+                "label": "Playmats",
+                "urlId": "kids-playmats"
+            }, {
+                "label": "Rattles & Teethers",
+                "urlId": "kids-rattles-and-teethers"
+            }, {
+                "label": "Ride-On & Outdoor",
+                "urlId": "ride-on-and-outdoor-toys"
+            }, {
+                "label": "Soft & Plush",
+                "urlId": "soft-and-plush-toys"
+            }]
+        }]
+    }, {
+        "label": "Home & Living",
+        "urlId": "living",
+        "children": [{
+            "label": "Bed & Bath",
+            "urlId": "bed-bath",
+            "children": [{
+                "label": "Bath Mats",
+                "urlId": "bath-mats"
+            }, {
+                "label": "Shower Curtains",
+                "urlId": "shower-curtains"
+            }, {
+                "label": "Soaps & Gift Sets",
+                "urlId": "soaps-gift-sets"
+            }, {
+                "label": "Towels",
+                "urlId": "towels"
+            }, {
+                "label": "Blankets",
+                "urlId": "blankets"
+            }, {
+                "label": "Comforters & Duvets",
+                "urlId": "comforters-duvets"
+            }, {
+                "label": "Pillows",
+                "urlId": "pillows"
+            }, {
+                "label": "Pillowcases & Shams",
+                "urlId": "pillowcases-shams"
+            }, {
+                "label": "Sheets",
+                "urlId": "sheets"
+            }]
+        }, {
+            "label": "Decor",
+            "urlId": "accents",
+            "children": [{
+                "label": "Artwork",
+                "urlId": "artwork"
+            }, {
+                "label": "Baskets & Boxes",
+                "urlId": "accents-baskets-boxes"
+            }, {
+                "label": "Bowls",
+                "urlId": "accent-bowls"
+            }, {
+                "label": "Candles & Holders",
+                "urlId": "candles-candleholders"
+            }, {
+                "label": "Clocks",
+                "urlId": "clocks"
+            }, {
+                "label": "Decorative Pillows",
+                "urlId": "decorative-pillows"
+            }, {
+                "label": "Frames",
+                "urlId": "frames"
+            }, {
+                "label": "Mirrors",
+                "urlId": "mirrors"
+            }, {
+                "label": "Seasonal",
+                "urlId": "accents-seasonal"
+            }, {
+                "label": "Throws",
+                "urlId": "accents-throws"
+            }, {
+                "label": "Vases",
+                "urlId": "vases"
+            }]
+        }, {
+            "label": "Furniture",
+            "urlId": "furniture",
+            "children": [{
+                "label": "Living Room",
+                "urlId": "living-room-furniture",
+                "children": [{
+                    "label": "Benches",
+                    "urlId": "livingroom-benches"
+                }, {
+                    "label": "Bookcases",
+                    "urlId": "bookcases"
+                }, {
+                    "label": "Chairs",
+                    "urlId": "livingroom-chairs"
+                }, {
+                    "label": "Coffee Tables",
+                    "urlId": "coffee-tables"
+                }, {
+                    "label": "Ottomans",
+                    "urlId": "ottomans"
+                }, {
+                    "label": "Sectionals",
+                    "urlId": "sectionals"
+                }, {
+                    "label": "Side & End Tables",
+                    "urlId": "side-end-tables"
+                }, {
+                    "label": "Sofas",
+                    "urlId": "sofas"
+                }]
+            }, {
+                "label": "Bedroom",
+                "urlId": "bedroom-furniture",
+                "children": [{
+                    "label": "Armoires",
+                    "urlId": "armoires"
+                }, {
+                    "label": "Beds",
+                    "urlId": "beds"
+                }, {
+                    "label": "Dressers",
+                    "urlId": "dressers"
+                }, {
+                    "label": "Headboards",
+                    "urlId": "headboards"
+                }, {
+                    "label": "Nightstands",
+                    "urlId": "nightstands"
+                }, {
+                    "label": "Vanities",
+                    "urlId": "vanities"
+                }]
+            }, {
+                "label": "Dining Room",
+                "urlId": "dining-room-furniture",
+                "children": [{
+                    "label": "Bar Furniture",
+                    "urlId": "bar-furniture"
+                }, {
+                    "label": "Consoles & Buffets",
+                    "urlId": "consoles-buffets"
+                }, {
+                    "label": "Dining Cabinets",
+                    "urlId": "dining-cabinets"
+                }, {
+                    "label": "Dining Chairs",
+                    "urlId": "dining-chairs"
+                }, {
+                    "label": "Dining Tables",
+                    "urlId": "dining-tables"
+                }]
+            }, {
+                "label": "Home Office",
+                "urlId": "home-office-furniture",
+                "children": [{
+                    "label": "Desks",
+                    "urlId": "desks"
+                }, {
+                    "label": "File Cabinets",
+                    "urlId": "file-cabinets"
+                }, {
+                    "label": "Office Chairs",
+                    "urlId": "office-chairs"
+                }, {
+                    "label": "Office Storage",
+                    "urlId": "office-storage"
+                }, {
+                    "label": "Office Tables",
+                    "urlId": "office-tables"
+                }]
+            }, {
+                "label": "Bathroom",
+                "urlId": "bathroom-furniture"
+            }, {
+                "label": "Outdoor",
+                "urlId": "outdoor-furniture",
+                "children": [{
+                    "label": "Chairs",
+                    "urlId": "outdoor-chairs"
+                }, {
+                    "label": "Chaises & Benches",
+                    "urlId": "outdoor-chaises-benches"
+                }, {
+                    "label": "Coffee & Side Tables",
+                    "urlId": "outdoor-coffee-side-tables"
+                }, {
+                    "label": "Hammocks & Swings",
+                    "urlId": "hammocks-swings"
+                }, {
+                    "label": "Furniture Covers",
+                    "urlId": "outdoor-furniture-covers"
+                }, {
+                    "label": "Pillows & Cushions",
+                    "urlId": "outdoor-pillows-cushions"
+                }, {
+                    "label": "Tables",
+                    "urlId": "outdoor-tables"
+                }, {
+                    "label": "Umbrellas",
+                    "urlId": "outdoor-umbrellas"
+                }]
+            }]
+        }, {
+            "label": "Kitchen",
+            "urlId": "kitchen",
+            "children": [{
+                "label": "Appliances",
+                "urlId": "kitchen-appliances",
+                "children": [{
+                    "label": "Blenders & Juicers",
+                    "urlId": "blenders-juicers"
+                }, {
+                    "label": "Food Processors",
+                    "urlId": "food-processors"
+                }, {
+                    "label": "Indoor Grills",
+                    "urlId": "indoor-grills"
+                }, {
+                    "label": "Mixers & Accessories",
+                    "urlId": "mixers-accessories"
+
+                }, {
+                    "label": "Rice/Pressure Cookers",
+                    "urlId": "slow-rice-pressure-cookers"
+
+                }, {
+                    "label": "Toasters & Ovens",
+                    "urlId": "toasters-ovens"
+                }]
+            }, {
+                "label": "Bakeware",
+                "urlId": "bakeware",
+                "children": [{
+                    "label": "Bakeware Sets",
+                    "urlId": "bakeware-sets"
+                }, {
+                    "label": "Cake Pans",
+                    "urlId": "cake-pans"
+                }, {
+                    "label": "Mixing Bowls",
+                    "urlId": "mixing-bowls"
+                }, {
+                    "label": "Muffin Pans & Sheets",
+                    "urlId": "muffin-pans-sheets"
+                }, {
+                    "label": "Pie & Tart Pans",
+                    "urlId": "pie-tart-pans"
+                }]
+            }, {
+                "label": "Cleaning",
+                "urlId": "kitchen-cleaning"
+            }, {
+                "label": "Coffee & Tea",
+                "urlId": "coffee-tea",
+                "children": [{
+                    "label": "Coffee/Tea Accessories",
+                    "urlId": "coffee-tea-accessories"
+                }, {
+                    "label": "Coffee Makers",
+                    "urlId": "coffee-makers"
+                }, {
+                    "label": "Espresso Machines",
+                    "urlId": "espresso-machines"
+                }, {
+                    "label": "Grinders",
+                    "urlId": "coffee-grinders"
+                }, {
+                    "label": "Tea Kettles",
+                    "urlId": "tea-kettles"
+                }]
+            }, {
+                "label": "Cookware",
+                "urlId": "cookware",
+                "children": [{
+                    "label": "Braisers & Roasters",
+                    "urlId": "braisers-roasters"
+                }, {
+                    "label": "Casseroles",
+                    "urlId": "casseroles-dutch-ovens"
+                }, {
+                    "label": "Chef's Pans",
+                    "urlId": "chefs-pans"
+                }, {
+                    "label": "Cookware Sets",
+                    "urlId": "cookware-sets"
+                }, {
+                    "label": "Fry & Saute Pans",
+                    "urlId": "fry-saute-pans"
+                }, {
+                    "label": "Griddles & Grill Pans",
+                    "urlId": "griddles-grill-pans"
+                }, {
+                    "label": "Saucepans",
+                    "urlId": "saucepans"
+                }, {
+                    "label": "Stockpots & Steamers",
+                    "urlId": "stockpots-steamers"
+                }, {
+                    "label": "Strainers & Colanders",
+                    "urlId": "strainers-colanders"
+                }]
+            }, {
+                "label": "Cutlery",
+                "urlId": "kitchen-cutlery"
+            }, {
+                "label": "Cookbooks",
+                "urlId": "cookbooks"
+            }, {
+                "label": "Kitchen Linens",
+                "urlId": "kitchen-linens"
+            }, {
+                "label": "Kitchen Storage",
+                "urlId": "kitchen-storage"
+            }, {
+                "label": "Tools & Gadgets",
+                "urlId": "kitchen-tools-gadgets",
+                "children": [{
+                    "label": "Can Openers",
+                    "urlId": "can-openers"
+                }, {
+                    "label": "Cooking Tools",
+                    "urlId": "cooking-tools"
+                }, {
+                    "label": "Cutting Boards",
+                    "urlId": "cutting-boards"
+                }, {
+                    "label": "Grilling Tools",
+                    "urlId": "grilling-tools"
+                }, {
+                    "label": "Measuring",
+                    "urlId": "kitchen-tools-and-gadgets-measuring"
+                }, {
+                    "label": "Pastry & Baking Tools",
+                    "urlId": "kitchen-pastry-baking-tools"
+                }, {
+                    "label": "Timers",
+                    "urlId": "timers"
+                }]
+            }]
+        }, {
+            "label": "Lighting",
+            "urlId": "accent-lighting",
+            "children": [{
+                "label": "Bathroom Lighting",
+                "urlId": "bathroom-lighting"
+            }, {
+                "label": "Ceiling Fans",
+                "urlId": "ceiling-fans"
+            }, {
+                "label": "Ceiling Lighting",
+                "urlId": "ceiling-lighting"
+            }, {
+                "label": "Desk Lamps",
+                "urlId": "desk-lamps"
+            }, {
+                "label": "Floor Lamps",
+                "urlId": "floor-lamps"
+            }, {
+                "label": "Lamp Shades",
+                "urlId": "lamp-shades"
+            }, {
+                "label": "Outdoor Lighting",
+                "urlId": "outdoor-lighting"
+            }, {
+                "label": "Table Lamps",
+                "urlId": "table-lamps"
+            }, {
+                "label": "Wall Lighting",
+                "urlId": "wall-lighting"
+            }]
+        }, {
+            "label": "Rugs",
+            "urlId": "rugs"
+        }, {
+            "label": "Tabletop",
+            "urlId": "dining",
+            "children": [{
+                "label": "Bar",
+                "urlId": "bar",
+                "children": [{
+                    "label": "Accessories",
+                    "urlId": "bar-accessories"
+                }, {
+                    "label": "Coasters",
+                    "urlId": "coasters"
+                }, {
+                    "label": "Cocktail Shakers",
+                    "urlId": "cocktail-shakers"
+                }, {
+                    "label": "Corkscrews & Openers",
+                    "urlId": "corkscrews-openers"
+                }, {
+                    "label": "Wine Buckets & Coolers",
+                    "urlId": "wine-buckets-coolers"
+                }]
+            }, {
+                "label": "Casual Dining",
+                "urlId": "casual-dining"
+            }, {
+                "label": "Fine China",
+                "urlId": "fine-china"
+            }, {
+                "label": "Drinkware",
+                "urlId": "drinkware",
+                "children": [{
+                    "label": "Beer Glasses",
+                    "urlId": "beer-glasses"
+                }, {
+                    "label": "Brandy Glasses",
+                    "urlId": "brandy-glasses"
+                }, {
+                    "label": "Carafes & Decanters",
+                    "urlId": "carafes-decanters"
+                }, {
+                    "label": "Cups & Mugs",
+                    "urlId": "cups-mugs"
+                }, {
+                    "label": "Flutes",
+                    "urlId": "drinkware-flutes"
+                }, {
+                    "label": "Jugs & Pitchers",
+                    "urlId": "jugs-pitchers"
+                }, {
+                    "label": "Margarita Glasses",
+                    "urlId": "margarita-glasses"
+                }, {
+                    "label": "Martini Glasses",
+                    "urlId": "martini-glasses"
+                }, {
+                    "label": "Tumblers/Water Glasses",
+                    "urlId": "tumblers-water-glasses"
+                }, {
+                    "label": "Wine Glasses",
+                    "urlId": "wine-glasses"
+                }]
+            }, {
+                "label": "Flatware",
+                "urlId": "flatware"
+            }, {
+                "label": "Serving",
+                "urlId": "dining-serving",
+                "children": [{
+                    "label": "Cake, Pie & Dessert",
+                    "urlId": "serving-cake-pie-dessert"
+                }, {
+                    "label": "Cheese Boards & Slicers",
+                    "urlId": "cheese-boards"
+                }, {
+                    "label": "Salt & Pepper Shakers",
+                    "urlId": "salt-pepper"
+                }, {
+                    "label": "Serving Bowls",
+                    "urlId": "serving-bowls"
+                }, {
+                    "label": "Serving Dishes",
+                    "urlId": "serving-dishes"
+                }, {
+                    "label": "Serving Utensils",
+                    "urlId": "serving-utensils"
+                }, {
+                    "label": "Trays & Platters",
+                    "urlId": "trays-platters"
+                }]
+            }, {
+                "label": "Table Linens",
+                "urlId": "table-linens"
+            }]
+        }]
+    }]
+}

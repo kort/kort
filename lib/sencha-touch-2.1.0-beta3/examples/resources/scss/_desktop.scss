@@ -1,0 +1,44 @@
+@mixin desktop {
+    body {
+        overflow: hidden;
+    }
+
+    #wrapper {
+        position: absolute;
+        width: 1024px;
+        height: 710px;
+        top: 50%;
+        left: 50%;
+        margin-top: -384px;
+        margin-left: -512px;
+        @include border-radius;
+        @include box-shadow(0 2px 4px #ddd);
+
+        > header {
+            @include border-top-radius;
+        }
+
+        footer {
+            display: block !important;
+            position: absolute;
+            bottom: -30px;
+            font-size: 12px;
+            color: #aaa;
+            text-shadow: 0 1px 0 #eee;
+        }
+
+        section {
+            position: absolute;
+            top: 44px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: scroll;
+            overflow-x: hidden;
+        }
+    }
+}
+
+@media screen and (min-width: 1025px) and (min-height: 769px) {
+    @include desktop;
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">Ext.define(&quot;Ext.draw.sprite.EllipticalArc&quot;, {
+    extend: &quot;Ext.draw.sprite.Ellipse&quot;,
+    alias: 'sprite.ellipticalArc',
+    type: 'ellipticalArc',
+    inheritableStatics: {
+        def: {
+            processors: {
+                startAngle: &quot;number&quot;,
+                endAngle: &quot;number&quot;,
+                anticlockwise: &quot;bool&quot;
+            },
+            aliases: {
+                from: &quot;startAngle&quot;,
+                to: &quot;endAngle&quot;,
+                start: &quot;startAngle&quot;,
+                end: &quot;endAngle&quot;
+            },
+            defaults: {
+                startAngle: 0,
+                endAngle: Math.PI * 2,
+                anticlockwise: false
+            },
+            dirtyTriggers: {
+                startAngle: 'path',
+                endAngle: 'path',
+                anticlockwise: 'path'
+            }
+        }
+    },
+
+    drawPath: function (path, attr) {
+        path.ellipse(attr.cx, attr.cy, attr.rx, attr.ry, attr.axisRotation, attr.startAngle, attr.endAngle, attr.anticlockwise);
+    }
+});</pre>
+</body>
+</html>
