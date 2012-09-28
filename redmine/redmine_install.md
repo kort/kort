@@ -60,12 +60,20 @@ $ sudo chmod -R 755 files log tmp public/plugin_assets
 11. Test installation
 $ ruby script/rails server webrick -e production
 
-12. Setup a start script to run webrick
-# cp redmine_startscript.sh /etc/init.d/redmine
-# chmod +x /etc/init.d/redmine
-# update-rc.d redmine defaults
+12. Setup a Passenger (mod_rails) to server redmine via Apache
+# gem install passenger
+# /var/lib/gems/1.8/gems/passenger-3.0.17/bin/passenger-install-apache2-module
+# ln -s /home/redmine/redmine-2.1.0 /var/www/redmine
+# Edit /etc/apache2/apache2.conf with output from install script above
+LoadModule passenger_module /var/lib/gems/1.8/gems/passenger-3.0.17/ext/apache2/mod_passenger.so
+PassengerRoot /var/lib/gems/1.8/gems/passenger-3.0.17
+PassengerRuby /usr/bin/ruby1.8
+# Edit /etc/apache2/sites-available/default, add following line
+RailsBaseURI /redmine
 
-13. Setup daily backups
+13. Restart apache
+
+14. Setup daily backups (see redmine_backup.sh)
 # Database
 /usr/bin/mysqldump -u <username> -p<password> <redmine_database> | gzip > /path/to/backup/db/redmine_`date +%y_%m_%d`.gz
 
