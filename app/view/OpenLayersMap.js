@@ -14,7 +14,7 @@
  *
  * @aside example maps
  */
-Ext.define('OpenLayersApp.view.OpenLayers', {
+Ext.define('OpenLayersApp.view.OpenLayersMap', {
 	extend: 'Ext.Container',
 	xtype: 'openlayersmap',
 	requires: ['Ext.util.Geolocation'],
@@ -72,19 +72,32 @@ Ext.define('OpenLayersApp.view.OpenLayers', {
 		autoMapCenter: false,
 		
 		/**
-		 * @cfg {Boolean} autoMapCenter
-		 * Specifies the coordinates transformation function which is applied everytime a new LonLat object is used
+		 * @cfg {Boolean} initialCenter
+		 * Defines if the map initially should center map to current location
 		 * @accessor
 		 */
-		transformLonLatFn: null
+		initialCenter: true,
+		
+		/**
+		 * @cfg {Object} transformProjections
+		 * If set all LonLat-Objects will be transformed to given projection
+		 * @accessor
+		 */
+		transformProjections: null
 	},
 	
 	constructor: function() {
         this.callParent(arguments);
-
+		
         if (!window.OpenLayers) {
             this.setHtml('OpenLayers API is required');
-        }
+        } else {
+			// set default projection
+			this.setTransformProjections({
+				from: new window.OpenLayers.Projection("EPSG:4326"),
+				to: new window.OpenLayers.Projection("EPSG:3857")
+			});
+		}
     },
 	
 	getElementConfig: function() {
@@ -127,7 +140,7 @@ Ext.define('OpenLayersApp.view.OpenLayers', {
 		var me = this;
 		
         me.setGeo(useCurrentLocation);
-        if (!this.getMap() && (!useCurrentLocation || !this.getAutoMapCenter())) {
+        if (!this.getMap() && (!useCurrentLocation || !this.getInitialCenter())) {
 			me.renderMap();
         }
     },
@@ -160,9 +173,9 @@ Ext.define('OpenLayersApp.view.OpenLayers', {
 			map = me.getMap(),
 			mapOptions = me.getMapOptions(),
 			layer = me.getLayer(),
-			events,
-			mapOptionsTmp;
+			events;
 		
+		// if map isn't painted yet -> recall method after a certain time
 		if (!me.isPainted()) {
 			me.un('painted', 'renderMap', this);
 			me.on('painted', 'renderMap', this, { delay: 150, single: true, args: [] });
@@ -174,21 +187,17 @@ Ext.define('OpenLayersApp.view.OpenLayers', {
 				Ext.fly(element.dom.firstChild).destroy();
 			}
 			
-			// This is done separately from the above merge so we don't have to instantiate
-            // a new LatLng if we don't need to
+			// if no center property is given -> use default position
             if (!mapOptions.hasOwnProperty('center') || !(mapOptions.center instanceof ol.LonLat)) {
                 mapOptions.center = new ol.LonLat(8.539183, 47.36865); // default: Zuerich
             }
 			
-			mapOptionsTmp = Ext.clone(mapOptions);
-			if(me.transformLonLatFn) {
-				
-			}
-			if(me.getTransformLonLatFn()) {
-				mapOptionsTmp.center = me.getTransformLonLatFn().call(me, mapOptions.center.clone());
+			// transform LonLat value
+			if(me.getTransformProjections()) {
+				mapOptions.center.transform(me.getTransformProjections().from, me.getTransformProjections().to);
 			}
 			
-			me.setMap(new ol.Map(element.dom, mapOptionsTmp));
+			me.setMap(new ol.Map(element.dom, mapOptions));
 			map = me.getMap();
 			
 			me.setLayer(new ol.Layer.OSM());
@@ -198,6 +207,8 @@ Ext.define('OpenLayersApp.view.OpenLayers', {
 			//Track zoomLevel and mapType changes
 			events = map.events;
 			events.register('zoomend', me, me.onZoomEnd);
+			events.register('movestart', me, me.onMoveStart);
+			events.register('moveend', me, me.onMoveEnd);
 
 			me.fireEvent('maprender', me, map, layer);
 		}
@@ -226,36 +237,36 @@ Ext.define('OpenLayersApp.view.OpenLayers', {
             }
 			
 			coordinates = coordinates || new ol.LonLat(8.539183, 47.36865);
-
-            if (coordinates && !(coordinates instanceof ol.LonLat) && 'longitude' in coordinates) {
-                coordinates = new ol.LatLng(coordinates.longitude, coordinates.latitude);
-            }
 			
-			if(me.getTransformLonLatFn()) {
-				var position = me.getTransformLonLatFn().call(me, coordinates.clone());
-			}
+            if (coordinates && !(coordinates instanceof ol.LonLat) && 'longitude' in coordinates) {
+                coordinates = new ol.LonLat(coordinates.longitude, coordinates.latitude);
+            }
 			
 			if (!map) {
                 me.renderMap();
                 map = me.getMap();
             }
 			
-            if (map) {
-				map.setCenter(position);
-            }
-            else {
-                this.options = Ext.apply(this.getMapOptions(), {
-                    center: position
-                });
-            }
+			if(me.getTransformProjections()) {
+				coordinates.transform(me.getTransformProjections().from, me.getTransformProjections().to);
+			}
+			
+            if (map && coordinates instanceof ol.LonLat) {
+				map.setCenter(coordinates);
+            } else {
+				this.options = Ext.apply(this.getMapOptions(), {
+					center: coordinates
+				});
+			}
         }
     },
 	
 	// @private
     onGeoUpdate: function(geo) {
 		console.log("geoupdate");
-        if (geo && this.getAutoMapCenter()) {
+        if (geo && (this.getAutoMapCenter() || this.getInitialCenter())) {
             this.setMapCenter(new window.OpenLayers.LonLat(geo.getLongitude(), geo.getLatitude()));
+			this.setInitialCenter(false);
         }
     },
 	
@@ -266,6 +277,7 @@ Ext.define('OpenLayersApp.view.OpenLayers', {
     onZoomEnd : function() {
         var mapOptions = this.getMapOptions(),
             map = this.getMap(),
+			layer = this.getLayer(),
             zoom;
 
         zoom = map.getZoom() || 10;
@@ -274,7 +286,21 @@ Ext.define('OpenLayersApp.view.OpenLayers', {
             zoom: zoom
         });
 		
-        this.fireEvent('zoomend', this, map, zoom);
+        this.fireEvent('zoomend', this, map, layer, zoom);
+    },
+	// @private
+    onMoveStart : function() {
+		var map = this.getMap(),
+			layer = this.getLayer();
+		
+        this.fireEvent('movestart', this, map, layer);
+    },
+	// @private
+    onMoveEnd : function() {
+		var map = this.getMap(),
+			layer = this.getLayer();
+		
+        this.fireEvent('moveend', this, map, layer);
     }
 });
    

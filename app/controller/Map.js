@@ -8,7 +8,9 @@ Ext.define('OpenLayersApp.controller.Map', {
 		control: {
 			openlayersmap: {
 				maprender: 'onMapRender',
-				zoomend: 'onZoomEnd'
+				zoomend: 'onZoomEnd',
+				movestart: 'onMoveStart',
+				moveend: 'onMoveEnd'
 			}
 		}
     },
@@ -16,7 +18,13 @@ Ext.define('OpenLayersApp.controller.Map', {
 	onMapRender: function(component, map, layer) {
 		console.log("map render event recieved! :)");
 	},
-	onZoomEnd: function(component, map) {
-		console.log("zoom end");
+	onZoomEnd: function(component, map, layer, zoom) {
+		console.log("zoom end. new zoom: " + zoom);
+	},
+	onMoveStart: function(component, map, layer) {
+		console.log("move start");
+	},
+	onMoveEnd: function(component, map, layer) {
+		console.log("move end");
 	}
 });
