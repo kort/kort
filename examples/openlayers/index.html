@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>OpenLayers Example</title>
+		<meta charset="utf-8">
+		
+		<!-- openlayers -->
+		<script type="text/javascript" src="../../lib/OpenLayers-2.12/OpenLayers.mobile.debug.js"></script>
+		
+		<style type="text/css">
+			html, body, #map_canvas {
+				width: 100%;
+				height: 100%;
+				margin: 0;
+			}
+			
+			 div.olControlAttribution, div.olControlScaleLine {
+				font-family: Arial;
+				font-size: 0.7em;
+				right: 0.5em;
+				bottom: 0.5em;
+			}
+		</style>
+		
+		<script type="text/javascript">
+			// create namespace
+			var example = {};
+			
+			example.map = null;
+			example.layer = null;
+			
+			example.mapOptions = {
+				projection: new OpenLayers.Projection("EPSG:4326"),
+				displayProjection: new OpenLayers.Projection("EPSG:4326"),
+				center: new OpenLayers.LonLat(8, 47)
+			};
+			
+			example.init = function() {
+				example.createOsmLayer();
+				example.map = new OpenLayers.Map('map_canvas', example.mapOptions);
+				example.map.addLayer(example.layer);
+				example.map.zoomToMaxExtent();
+				//example.map.setCenter(new OpenLayers.LonLat(8, 47));
+			};
+			
+			
+			example.createOsmLayer = function() {
+				example.layer = new OpenLayers.Layer.OSM("OpenStreetMap",
+					["http://a.tile.openstreetmap.org/${z}/${x}/${y}.png", "http://b.tile.openstreetmap.org/${z}/${x}/${y}.png", "http://c.tile.openstreetmap.org/${z}/${x}/${y}.png"],
+					{projection: new OpenLayers.Projection("EPSG:4326")}
+				);
+			};
+		</script>
+	</head>
+	<body onload="example.init()">
+		<div id="map_canvas"></div>
+	</body>
+</html>
