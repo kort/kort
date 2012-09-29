@@ -22,15 +22,9 @@ Ext.define('OpenLayersApp.view.Main', {
 						xtype: 'openlayersmap',
 						id: 'openlayersmap',
 						useCurrentLocation: true,
-						autoMapCenter: true,
+						autoMapCenter: false,
 						mapOptions: {
-							zoom: 12
-						},
-						transformLonLatFn: function(lonLatObj) {
-							var ol = window.OpenLayers,
-								fromProjection = new ol.Projection("EPSG:4326"), // Transform from WGS 1984
-								toProjection   = new ol.Projection("EPSG:3857"); // to Spherical Mercator Projection
-							return lonLatObj.transform(fromProjection, toProjection);
+							zoom: 9
 						}
 					}
 				]

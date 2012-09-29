@@ -1,4 +1,9 @@
-#map {
-	width: 100%;
-	height: 100%;
+/* -----------------------
+   OpenLayers
+   ----------------------- */
+div.olControlAttribution, div.olControlScaleLine {
+	font-family: Arial;
+	font-size: 0.6em;
+	right: 0.5em;
+	bottom: 0.5em;
 }
