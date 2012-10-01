@@ -1,4 +1,3 @@
-require('./lib/sencha-touch-2.1.0-beta3/sencha-touch-all-debug.js')
 // enable Ext autoloader
 Ext.Loader.setConfig({
 	enabled: true
