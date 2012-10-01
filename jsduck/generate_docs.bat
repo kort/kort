@@ -1,0 +1,1 @@
+jsduck ../ux --o ../docs --title=Ext.ux.OpenLayersMap

@@ -1,5 +1,6 @@
 /nbproject/private/
 /node_modules/
+/docs/
 /chef/.vagrant
 *.aux
 *.glo
