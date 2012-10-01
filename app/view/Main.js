@@ -25,7 +25,7 @@ Ext.define('OpenLayersApp.view.Main', {
 						useCurrentLocation: true,
 						autoMapCenter: false,
 						mapOptions: {
-							zoom: 9
+							zoom: 15
 						}
 					}
 				]

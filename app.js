@@ -15,6 +15,7 @@ Ext.application({
 	views: [
 		'Main'
 	],
+	
 	controllers: [
 		'Map'
 	],

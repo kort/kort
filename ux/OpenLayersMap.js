@@ -42,7 +42,29 @@ Ext.define('Ext.ux.OpenLayersMap', {
 		map: null,
 
 		/**
-		 * @cfg {OpenLayers.Layer} layer
+		 * @cfg {Object} mapOptions
+		 * MapOptions as specified by the OpenLayers documentation:
+		 * [http://dev.openlayers.org/apidocs/files/OpenLayers/Map-js.html](http://dev.openlayers.org/apidocs/files/OpenLayers/Map-js.html)
+		 * @accessor
+		 */
+		mapOptions: {},
+
+		/**
+		 * @cfg {String} layerKey
+		 * Class-name of the layer which should be displayed. For example 'OSM' generates a OpenLayers.Layer.OSM layer
+		 * @accessor
+		 */
+		layerKey: 'OSM',
+		
+		/**
+		 * @cfg {Object} layerOptions
+		 * Layer options which should be used in the layer
+		 * @accessor
+		 */
+		layerOptions: {},
+
+		/**
+		 * @cfg {OpenLayers.Layer.XYZ} layer
 		 * The wrapped layer.
 		 * @accessor
 		 */
@@ -54,25 +76,18 @@ Ext.define('Ext.ux.OpenLayersMap', {
 		 * @accessor
 		 */
 		geo: null,
-
-		/**
-		 * @cfg {Object} mapOptions
-		 * MapOptions as specified by the OpenLayers documentation:
-		 * [http://dev.openlayers.org/apidocs/files/OpenLayers/Map-js.html](http://dev.openlayers.org/apidocs/files/OpenLayers/Map-js.html)
-		 * @accessor
-		 */
-		mapOptions: {},
 		
 		/**
 		 * @cfg {Boolean} autoMapCenter
 		 * Defines if the map should automatically center itself on a geoupdate event.
+		 * Only applies if {@link Ext.ux.OpenLayersMap#useCurrentLocation} is set to true.
 		 * @accessor
 		 */
 		autoMapCenter: false,
 		
 		/**
 		 * @cfg {Boolean} initialCenter
-		 * Defines if the map initially should center map to current location.
+		 * Defines if the map initially should be centered to the current location.
 		 * @accessor
 		 */
 		initialCenter: true,
@@ -90,16 +105,19 @@ Ext.define('Ext.ux.OpenLayersMap', {
 	constructor: function() {
         this.callParent(arguments);
 		
-        if (!window.OpenLayers) {
+		var ol = window.OpenLayers;
+		
+        if (!ol) {
             this.setHtml('OpenLayers API is required');
         } else {
+			// set default config values
 			if(!this.getTransformProjections()) {
-				// set default projection
 				this.setTransformProjections({
-					from: new window.OpenLayers.Projection("EPSG:4326"),
-					to: new window.OpenLayers.Projection("EPSG:3857")
+					from: new ol.Projection("EPSG:4326"),
+					to: new ol.Projection("EPSG:3857")
 				});
 			}
+			this.setLayer(new ol.Layer[this.getLayerKey()](this.getLayerOptions()));
 		}
 		
 		this.addEvents(
@@ -108,7 +126,7 @@ Ext.define('Ext.ux.OpenLayersMap', {
 		     * Fired when map is initially rendered.
 			 * @param {Ext.ux.OpenLayersMap} this
 			 * @param {OpenLayers.Map} map The rendered OpenLayers.Map instance
-			 * @param {OpenLayers.Layer} layer The rendered OpenLayers.Layer instance
+			 * @param {OpenLayers.Layer.XYZ} layer The rendered OpenLayers.Layer.XYZ instance
 			 */
 			"maprender",
 			
@@ -117,7 +135,7 @@ Ext.define('Ext.ux.OpenLayersMap', {
              * Fired when a map zoom ended.
              * @param {Ext.ux.OpenLayersMap} this
              * @param {OpenLayers.Map} map The rendered OpenLayers.Map instance
-             * @param {OpenLayers.Layer} layer The rendered OpenLayers.Layer instance
+             * @param {OpenLayers.Layer.XYZ} layer The rendered OpenLayers.Layer.XYZ instance
              * @param {Number} zoom The current zoom level of the map
              */
 			"zoomend",
@@ -127,7 +145,7 @@ Ext.define('Ext.ux.OpenLayersMap', {
 			 * Fired when a panning on map starts.
 			 * @param {Ext.ux.OpenLayersMap} this
 			 * @param {OpenLayers.Map} map The rendered OpenLayers.Map instance
-			 * @param {OpenLayers.Layer} layer The rendered OpenLayers.Layer instance
+			 * @param {OpenLayers.Layer.XYZ} layer The rendered OpenLayers.Layer.XYZ instance
 			 */
 			"movestart",
 		
@@ -136,7 +154,7 @@ Ext.define('Ext.ux.OpenLayersMap', {
 			 * Fired when a panning on map ends.
 			 * @param {Ext.ux.OpenLayersMap} this
 			 * @param {OpenLayers.Map} map The rendered OpenLayers.Map instance
-			 * @param {OpenLayers.Layer} layer The rendered OpenLayers.Layer instance
+			 * @param {OpenLayers.Layer.XYZ} layer The rendered OpenLayers.Layer.XYZ instance
 			 */
 			"moveend"
 		);
@@ -166,7 +184,7 @@ Ext.define('Ext.ux.OpenLayersMap', {
             map = this.getMap();
 
         if (window.OpenLayers && map) {
-            map.setOptions(newMapOptions);
+			map.setOptions(newMapOptions);
         }
         if (newMapOptions.center && !me.isPainted()) {
             me.un('painted', 'setMapCenter', this);
@@ -240,12 +258,10 @@ Ext.define('Ext.ux.OpenLayersMap', {
 				mapOptions.center.transform(me.getTransformProjections().from, me.getTransformProjections().to);
 			}
 			
+			mapOptions.layers = [layer];
+			
 			me.setMap(new ol.Map(element.dom, mapOptions));
 			map = me.getMap();
-			
-			me.setLayer(new ol.Layer.OSM());
-			layer = me.getLayer();
-			map.addLayer(layer);
 			
 			// track map events
 			events = map.events;
@@ -295,7 +311,7 @@ Ext.define('Ext.ux.OpenLayersMap', {
 			}
 			
             if (map && coordinates instanceof ol.LonLat) {
-				map.setCenter(coordinates);
+				map.setCenter(coordinates, me.getMapOptions().zoom);
             } else {
 				this.options = Ext.apply(this.getMapOptions(), {
 					center: coordinates
@@ -331,6 +347,7 @@ Ext.define('Ext.ux.OpenLayersMap', {
 		
         this.fireEvent('zoomend', this, map, layer, zoom);
     },
+	
 	// @private
     onMoveStart : function() {
 		var map = this.getMap(),
@@ -338,6 +355,7 @@ Ext.define('Ext.ux.OpenLayersMap', {
 		
         this.fireEvent('movestart', this, map, layer);
     },
+	
 	// @private
     onMoveEnd : function() {
 		var map = this.getMap(),
