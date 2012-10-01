@@ -13,7 +13,6 @@ Ext.application({
 	},
 	
 	views: [
-		'OpenLayersMap',
 		'Main'
 	],
 	controllers: [

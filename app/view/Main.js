@@ -2,6 +2,7 @@ Ext.define('OpenLayersApp.view.Main', {
     extend: 'Ext.tab.Panel',
     xtype: 'main',
 	id: 'mainTabPanel',
+	requires: ['Ext.ux.OpenLayersMap'],
 	
     config: {
 		tabBar: {
