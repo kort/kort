@@ -13,4 +13,5 @@ var app = connect()
     res.end('hello world\n');
   });
 
-http.createServer(app).listen(8080);
+var port = process.env.PORT || 8080;
+http.createServer(app).listen(port);
