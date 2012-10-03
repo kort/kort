@@ -1,0 +1,13 @@
+before_script:
+  - chmod +x build.sh
+
+script: ./build.sh
+
+# heroku part from https://gist.github.com/443c00fe346045522db7
+after_script:
+  - gem install heroku
+  - export HEROKU_API_KEY=<your key here>
+  - yes | ruby travis-deployer.rb
+  - heroku keys:clear
+  - yes | heroku keys:add
+  - git push heroku master # or whatever your heroku push looks like
