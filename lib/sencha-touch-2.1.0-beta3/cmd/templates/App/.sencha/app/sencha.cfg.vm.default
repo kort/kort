@@ -1,3 +1,0 @@
-app.name=${name}
-app.framework=${frameworkName}
-app.classpath=${app.dir}/app.js,${app.dir}/app

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Ext-direct-Transaction'>/**
+</span> * Supporting Class for Ext.Direct (not intended to be used directly).
+ */
+Ext.define('Ext.direct.Transaction', {
+    alias: 'direct.transaction',
+    alternateClassName: 'Ext.Direct.Transaction',
+
+    statics: {
+<span id='Ext-direct-Transaction-property-TRANSACTION_ID'>        TRANSACTION_ID: 0
+</span>    },
+
+    config: {
+<span id='Ext-direct-Transaction-cfg-id'>        id: undefined,
+</span><span id='Ext-direct-Transaction-cfg-provider'>        provider: null,
+</span><span id='Ext-direct-Transaction-cfg-retryCount'>        retryCount: 0,
+</span><span id='Ext-direct-Transaction-cfg-args'>        args: null,
+</span><span id='Ext-direct-Transaction-cfg-action'>        action: null,
+</span><span id='Ext-direct-Transaction-cfg-method'>        method: null,
+</span><span id='Ext-direct-Transaction-cfg-data'>        data: null,
+</span><span id='Ext-direct-Transaction-cfg-callback'>        callback: null,
+</span><span id='Ext-direct-Transaction-cfg-form'>        form: null
+</span>    },
+
+<span id='Ext-direct-Transaction-method-constructor'>    constructor: function(config) {
+</span>        this.initConfig(config);
+    },
+
+<span id='Ext-direct-Transaction-method-applyId'>    applyId: function(id) {
+</span>        if (id === undefined) {
+            id = ++this.self.TRANSACTION_ID;
+        }
+        return id;
+    },
+
+<span id='Ext-direct-Transaction-method-updateId'>    updateId: function(id) {
+</span>        this.id = this.tid = id;
+    },
+
+<span id='Ext-direct-Transaction-method-getTid'>    getTid: function() {
+</span>        return this.tid;
+    },
+
+<span id='Ext-direct-Transaction-method-send'>    send: function(){
+</span>         this.getProvider().queueTransaction(this);
+    },
+
+<span id='Ext-direct-Transaction-method-retry'>    retry: function(){
+</span>        this.setRetryCount(this.getRetryCount() + 1);
+        this.send();
+    }
+});</pre>
+</body>
+</html>
