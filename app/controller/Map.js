@@ -3,28 +3,38 @@ Ext.define('OpenLayersApp.controller.Map', {
 	
     config: {
         refs: {
-			openlayersmap: '#openlayersmap'
+			openLayersMap: '#openlayersmap'
         },
 		control: {
-			openlayersmap: {
-				maprender: 'onMapRender',
-				zoomend: 'onZoomEnd',
-				movestart: 'onMoveStart',
-				moveend: 'onMoveEnd'
+			openLayersMap: {
+				maprender: 'onMapRender'
 			}
-		}
+		},
+		
+		markersLayer: null,
+		markers: []
     },
 	
 	onMapRender: function(component, map, layer) {
-		console.log("map render event recieved! :)");
+		this.createMarkersLayer(map);
+		
+		var size = new OpenLayers.Size(21,25);
+		var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
+		var icon = new OpenLayers.Icon('http://www.openlayers.org/dev/img/marker.png', size, offset);
+		var lonlat = new OpenLayers.LonLat(component.getGeo().getLongitude(), component.getGeo().getLatitude());
+		
+		this.addMarker(lonlat, icon);
 	},
-	onZoomEnd: function(component, map, layer, zoom) {
-		console.log("zoom end. new zoom: " + zoom);
+	
+	createMarkersLayer: function(map) {
+		this.setMarkersLayer(new OpenLayers.Layer.Markers("Markers"));
+		map.addLayer(this.getMarkersLayer());
 	},
-	onMoveStart: function(component, map, layer) {
-		console.log("move start");
-	},
-	onMoveEnd: function(component, map, layer) {
-		console.log("move end");
+	
+	addMarker: function(position, icon) {
+		this.getOpenLayersMap().transformLonLatObject(position);
+		var marker = new OpenLayers.Marker(position, icon);
+		this.getMarkers().push(marker);
+		this.getMarkersLayer().addMarker(marker);
 	}
 });
