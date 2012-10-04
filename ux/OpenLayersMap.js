@@ -322,7 +322,6 @@ Ext.define('Ext.ux.OpenLayersMap', {
 	
 	// @private
     onGeoUpdate: function(geo) {
-		console.log("geoupdate");
         if (geo && (this.getAutoMapCenter() || this.getInitialCenter())) {
             this.setMapCenter(new window.OpenLayers.LonLat(geo.getLongitude(), geo.getLatitude()));
 			this.setInitialCenter(false);
