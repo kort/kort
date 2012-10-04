@@ -7,7 +7,7 @@ File.open(".git/config", "a") do |f|
 EOF
 end
 
-File.open("~/.gitconfig", "a") do |f|
+File.open("~/.gitconfig", "w") do |f|
   f.puts <<-EOF
 [user]
     name = Travis
