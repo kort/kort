@@ -10,11 +10,11 @@ kort is build using [Travis CI](https://travis-ci.org):
 
 The app is deployed on [Heroku](https://www.heroku.com/): http://kort.herokuapp.com
 
-# License
+## License
 
 (The MIT License)
 
-Copyright (c) 2012 Stefan Oderbolz, J?rg Hunziker
+Copyright (c) 2012 Stefan Oderbolz, Jürg Hunziker
 
 Permission is hereby granted, free of charge, to any person obtaining 
 a copy of this software and associated documentation files (the
