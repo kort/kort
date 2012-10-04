@@ -1,0 +1,111 @@
+$base-color: #354F6E;
+$base-gradient: matte;
+$include-default-icons: false;
+
+@import 'sencha-touch/default/all';
+
+@include sencha-panel;
+@include sencha-buttons;
+@include sencha-sheet;
+@include sencha-picker;
+@include sencha-tabs;
+@include sencha-toolbar;
+@include sencha-toolbar-forms;
+@include sencha-indexbar;
+@include sencha-list;
+@include sencha-list-paging;
+@include sencha-list-pullrefresh;
+@include sencha-layout;
+@include sencha-carousel;
+@include sencha-form;
+@include sencha-msgbox;
+@include sencha-loading-spinner;
+
+// @import 'touch-charts/default/all';
+
+@include pictos-iconmask('locate3');
+@include pictos-iconmask('user_list');
+@include pictos-iconmask('locate');
+@include pictos-iconmask('tv');
+@include pictos-iconmask('rss');
+@include pictos-iconmask('maps');
+@include pictos-iconmask('warning_black');
+@include pictos-iconmask('user_business');
+@include pictos-iconmask('calendar2');
+@include pictos-iconmask('bullseye2');
+@include pictos-iconmask('cloud_bolt');
+@include pictos-iconmask('globe2');
+@include pictos-iconmask('nuclear');
+@include pictos-iconmask('team');
+@include pictos-iconmask('user_add');
+@include pictos-iconmask('podcast');
+
+.contact {
+ width: 90%
+}
+            
+.crimereport {
+  margin-left: 5px;
+  padding-bottom: 10px;
+  margin-bottom: 5px;
+  font-size: 12px;
+  margin-top: 5px;
+  border-bottom: 1px solid silver;
+}
+            
+div.crimereport div {
+ padding-left: 5px;
+ padding-top: 5px;
+ padding-bottom: 5px;
+ padding-right: 5px; 
+}
+            
+.crimereportSelected {
+   -webkit-box-shadow: inset 0 0 5px 5px#888;
+   box-shadow: inset 0 0 5px 5px #888;
+}
+
+#loading {
+  height: 100%;
+}
+#loading img {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+}
+
+.phonehomepage .x-button.x-button-plain .x-button-icon,.phonehomepage .x-toolbar .x-button.x-button-plain .x-button-icon {
+-webkit-mask-size: 2.7em;
+width: 2.7em;
+height: 2.7em;
+margin-top: 0.3em;
+
+}
+.phonehomepage img.x-icon-mask{
+  font-size:1.8em;
+  background-image:-webkit-linear-gradient(#004990, #004990 50%, #004990 51%, #004990);
+  background-image:linear-gradient(#004990, #004990 50%, #004990 51%, #004990)
+}
+.phonehomepage .x-button.x-button-plain.x-button-pressing{
+   background-image:-webkit-radial-gradient(#ffa500, rgba(93, 175, 255, 0) 24px)
+}
+.x-button.x-button-plain > *,.x-toolbar .x-button.x-button-plain > *{
+  margin-top:0
+}
+
+.phonehomepage .x-button-label,.homepage .x-hasbadge .x-badge,.x-hasbadge .homepage .x-badge{
+  font-size:0.7em;width:75px;text-align:center;white-space:normal !important
+ }
+ 
+.phonehomepage .x-button.x-button-plain {
+  height:auto !important
+}
+
+.homepage .x-button.x-button-plain.x-button-pressing {
+  background:#007DB1;
+  color:#f59f1d;
+}
+
+.crimescenephoto {
+  background-position:center; 
+}
