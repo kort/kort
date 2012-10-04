@@ -9,13 +9,13 @@ script: ant build
 
 # heroku part from https://gist.github.com/443c00fe346045522db7
 after_script:
+  - yes | ruby travis_deployer.rb
   - git checkout -b travis
   - git rm .gitignore
   - git add .
   - git status
   - git commit -m "Travis CI commit of files added/modified from build"
   - gem install heroku
-  - yes | ruby travis_deployer.rb
   - heroku keys:clear
   - yes | heroku keys:add
   - git push heroku travis
