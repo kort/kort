@@ -1,6 +1,7 @@
 /nbproject/private/
 /node_modules/
 /docs/
+/.sass-cache/
 /chef/.vagrant
 *.aux
 *.glo

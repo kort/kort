@@ -3,9 +3,9 @@ env:
     - secure: "cOmMBP4UyklRC0nfeTZsX/NV4GhMBT+AntUmlWxXS5Rj2yrNcmNc7320gNm5\nCLSVRYyk7/8feyUEMznWrUn/62htZp0tEBAWtXg86dgIZgH4HPy9l2pKuSsH\nxZTHgjUJI7JOuyLG4ID9D5maVLE35UWag/NEtcRVy5QXLZOrs0M="
 
 before_script:
-  - chmod +x build.sh
+  - gem install sass
 
-script: ./build.sh
+script: ant build
 
 # heroku part from https://gist.github.com/443c00fe346045522db7
 after_script:
