@@ -4,7 +4,7 @@ kort is a cross-platform, crowdsourcing app aimed to improve OpenStreetMap.
 
 ## Build
 
-kort is build using [Travis CI](https://travis-ci.org):
+kort is built using [Travis CI](https://travis-ci.org):
 
 [![Build Status](https://secure.travis-ci.org/odi86/kort.png)](http://travis-ci.org/odi86/kort)
 
