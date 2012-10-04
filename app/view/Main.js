@@ -25,7 +25,15 @@ Ext.define('OpenLayersApp.view.Main', {
 						useCurrentLocation: true,
 						autoMapCenter: false,
 						mapOptions: {
-							zoom: 15
+							zoom: 15,
+							controls: [
+								new OpenLayers.Control.TouchNavigation({
+									dragPanOptions: {
+										enableKinetic: true
+									}
+								}),
+								new OpenLayers.Control.Zoom()
+							]
 						}
 					}
 				]
