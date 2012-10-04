@@ -9,14 +9,12 @@ script: ant build
 
 # heroku part from https://gist.github.com/443c00fe346045522db7
 after_script:
-  - git config --global user.name "Travis"
-  - git config --global user.email build@travis-ci.org
   - git rm .gitignore
   - git add .
   - git status
-  - git commit -m "Travis CI commit of files added from the build"
+  - git commit -m "Travis CI commit of files added/modified from build"
   - gem install heroku
   - yes | ruby travis_deployer.rb
   - heroku keys:clear
   - yes | heroku keys:add
-  - git push heroku master # or whatever your heroku push looks like
+  - git push heroku master
