@@ -362,6 +362,18 @@ Ext.define('Ext.ux.OpenLayersMap', {
 			layer = this.getLayer();
 		
         this.fireEvent('moveend', this, map, layer);
+    },
+	
+	// @private
+    destroy: function() {
+        Ext.destroy(this.getGeo());
+        var map = this.getMap();
+
+        if (map) {
+            map.destroy();
+        }
+
+        this.callParent();
     }
 });
    
