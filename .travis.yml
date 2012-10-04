@@ -18,4 +18,4 @@ after_script:
   - gem install heroku
   - heroku keys:clear
   - yes | heroku keys:add
-  - git push heroku travis
+  - git push heroku travis:master
