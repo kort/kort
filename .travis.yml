@@ -1,3 +1,7 @@
+env:
+  global:
+    - secure: "cOmMBP4UyklRC0nfeTZsX/NV4GhMBT+AntUmlWxXS5Rj2yrNcmNc7320gNm5\nCLSVRYyk7/8feyUEMznWrUn/62htZp0tEBAWtXg86dgIZgH4HPy9l2pKuSsH\nxZTHgjUJI7JOuyLG4ID9D5maVLE35UWag/NEtcRVy5QXLZOrs0M="
+
 before_script:
   - chmod +x build.sh
 
@@ -6,7 +10,6 @@ script: ./build.sh
 # heroku part from https://gist.github.com/443c00fe346045522db7
 after_script:
   - gem install heroku
-  - export HEROKU_API_KEY=<your key here>
   - yes | ruby travis-deployer.rb
   - heroku keys:clear
   - yes | heroku keys:add
