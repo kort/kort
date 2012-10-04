@@ -226,53 +226,6 @@ Ext.define('Ext.ux.OpenLayersMap', {
         }
     },
 	
-    // @private
-	renderMap: function() {
-		var me = this,
-			ol = window.OpenLayers,
-			element = me.mapContainer,
-			map = me.getMap(),
-			mapOptions = me.getMapOptions(),
-			layer = me.getLayer(),
-			events;
-		
-		// if map isn't painted yet -> recall method after a certain time
-		if (!me.isPainted()) {
-			me.un('painted', 'renderMap', this);
-			me.on('painted', 'renderMap', this, { delay: 150, single: true, args: [] });
-			return;
-		}
-		
-		if (ol) {
-			if (element.dom.firstChild) {
-				Ext.fly(element.dom.firstChild).destroy();
-			}
-			
-			// if no center property is given -> use default position
-            if (!mapOptions.hasOwnProperty('center') || !(mapOptions.center instanceof ol.LonLat)) {
-                mapOptions.center = new ol.LonLat(8.539183, 47.36865); // default: Zuerich
-            }
-			
-			// transform LonLat value
-			if(me.getTransformProjections()) {
-				mapOptions.center.transform(me.getTransformProjections().from, me.getTransformProjections().to);
-			}
-			
-			mapOptions.layers = [layer];
-			
-			me.setMap(new ol.Map(element.dom, mapOptions));
-			map = me.getMap();
-			
-			// track map events
-			events = map.events;
-			events.register('zoomend', me, me.onZoomEnd);
-			events.register('movestart', me, me.onMoveStart);
-			events.register('moveend', me, me.onMoveEnd);
-
-			me.fireEvent('maprender', me, map, layer);
-		}
-	},
-	
 	/**
      * Moves the map center to the designated coordinates hash of the form:
      *
@@ -306,9 +259,7 @@ Ext.define('Ext.ux.OpenLayersMap', {
                 map = me.getMap();
             }
 			
-			if(me.getTransformProjections()) {
-				coordinates.transform(me.getTransformProjections().from, me.getTransformProjections().to);
-			}
+			me.transformLonLatObject(coordinates);
 			
             if (map && coordinates instanceof ol.LonLat) {
 				map.setCenter(coordinates, me.getMapOptions().zoom);
@@ -319,6 +270,62 @@ Ext.define('Ext.ux.OpenLayersMap', {
 			}
         }
     },
+	
+	/**
+     * Transforms the given LonLat object with the configured transform projections.
+	 * This transformation is in place: if you want a new LonLat object, use .clone() first.
+     *
+     * @param {OpenLayers.LonLat} position Object representing the desired longitude and latitude.
+     */
+	transformLonLatObject: function(position) {
+		if(this.getTransformProjections()) {
+			position.transform(this.getTransformProjections().from, this.getTransformProjections().to);
+		}
+	},
+	
+    // @private
+	renderMap: function() {
+		var me = this,
+			ol = window.OpenLayers,
+			element = me.mapContainer,
+			map = me.getMap(),
+			mapOptions = me.getMapOptions(),
+			layer = me.getLayer(),
+			events;
+		
+		// if map isn't painted yet -> recall method after a certain time
+		if (!me.isPainted()) {
+			me.un('painted', 'renderMap', this);
+			me.on('painted', 'renderMap', this, { delay: 150, single: true, args: [] });
+			return;
+		}
+		
+		if (ol) {
+			if (element.dom.firstChild) {
+				Ext.fly(element.dom.firstChild).destroy();
+			}
+			
+			// if no center property is given -> use default position
+            if (!mapOptions.hasOwnProperty('center') || !(mapOptions.center instanceof ol.LonLat)) {
+                mapOptions.center = new ol.LonLat(8.539183, 47.36865); // default: Zuerich
+            }
+			
+			me.transformLonLatObject(mapOptions.center);
+			
+			mapOptions.layers = [layer];
+			
+			me.setMap(new ol.Map(element.dom, mapOptions));
+			map = me.getMap();
+			
+			// track map events
+			events = map.events;
+			events.register('zoomend', me, me.onZoomEnd);
+			events.register('movestart', me, me.onMoveStart);
+			events.register('moveend', me, me.onMoveEnd);
+
+			me.fireEvent('maprender', me, map, layer);
+		}
+	},
 	
 	// @private
     onGeoUpdate: function(geo) {
@@ -375,4 +382,3 @@ Ext.define('Ext.ux.OpenLayersMap', {
         this.callParent();
     }
 });
-   
