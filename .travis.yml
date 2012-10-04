@@ -9,6 +9,7 @@ script: ant build
 
 # heroku part from https://gist.github.com/443c00fe346045522db7
 after_script:
+  - git checkout -b travis
   - git rm .gitignore
   - git add .
   - git status
@@ -17,4 +18,4 @@ after_script:
   - yes | ruby travis_deployer.rb
   - heroku keys:clear
   - yes | heroku keys:add
-  - git push heroku master
+  - git push heroku travis
