@@ -31,4 +31,5 @@
 *.synctex.gz
 *.tdo
 *.ldb
+_DOCUMENTATION/02_Documentation/kort.pdf
 styles.css

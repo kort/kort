@@ -1,0 +1,111 @@
+\input{settings/preamble}
+\begin{document}
+
+% -----------------------------------------
+% HEAD
+% -----------------------------------------
+% Titelseite
+\title{A Location-Based Crowdsourcing Game App with HTML5 and OpenStreetMap}
+\author{Jürg Hunziker\\jhunzike@hsr.ch
+		\and
+		Stefan Oderbolz\\soderbol@hsr.ch}
+\date{22. Dezember 2012}
+
+\input{head/titlepage.tex}
+
+% Seitennummerierung mit roemischen Zeichen
+\pagenumbering{roman}
+
+% Glossar (muss vor Body inkludiert werden, damit Referenzen funktionieren)
+\input{foot/glossar.tex}
+
+% TODO Liste
+% Titel auch in Kopfzeile anzeigen
+\markboth{Todo list}{Todo list}
+\listoftodos
+
+% Impressum & Aenderungsverlauf
+\input{head/impressum_revision.tex}
+
+% Erklaerung
+\input{head/erklaerung.tex}
+
+% Abstract
+\input{head/abstract.tex}
+
+% Management Summary / Web-Publikation
+\input{head/managementsummary.tex}
+
+% Inhaltsverzeichnis
+\tableofcontents
+
+% -----------------------------------------
+% BODY
+% -----------------------------------------
+% Neue Seite beginnen (um Seitennummerierung zurückzusetzen)
+\cleardoublepage
+
+% Seitennummerierung mit arabischen Zeichen
+\pagenumbering{arabic}
+
+% Einleitung
+% Titel auch in Kopfzeile anzeigen
+\markboth{Teil I. Einleitung}{Teil I. Einleitung}
+\part{Einleitung}
+\input{body/einleitung.tex}
+
+% Neue Seite beginnen
+\cleardoublepage
+
+% Projektdokumentation
+% Titel auch in Kopfzeile anzeigen
+\markboth{Teil II. Projektdokumentation}{Teil II. Projektdokumentation}
+\part{Projektdokumentation}
+\input{body/projektdokumentation.tex}
+
+% Neue Seite beginnen
+\cleardoublepage
+
+% Implementation
+% Titel auch in Kopfzeile anzeigen
+\markboth{Teil III. Implementation}{Teil III. Implementation}
+\part{Implementation}
+\input{body/implementation.tex}
+
+% Neue Seite beginnen
+\cleardoublepage
+
+% Projektmanagement
+% Titel auch in Kopfzeile anzeigen
+\markboth{Teil IV. Projektmanagement und -monitoring}{Teil VI. Projektmanagement und -monitoring}
+\part{Projektmanagement und -monitoring}
+\input{body/projektmanagement_monitoring.tex}
+
+% -----------------------------------------
+% FOOT
+% -----------------------------------------
+% Neue Seite beginnen
+\cleardoublepage
+
+% Anhänge
+% Titel auch in Kopfzeile anzeigen
+\markboth{Teil V. Anhänge}{Teil V. Anhänge}
+\part{Anhänge}
+
+% Inhalt der CD
+\input{foot/cdinhalt.tex}
+
+% Glossar
+\printglossary[style=altlist,title=Glossar,toctitle=Glossar]
+
+% Literaturverzeichnis
+\bibliographystyle{plainurl}
+\bibliography{foot/literatur}
+
+% Abbildungsverzeichnis
+\listoffigures
+
+% Tabellenverzeichnis
+\listoftables
+
+\end{document}
