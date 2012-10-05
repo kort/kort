@@ -11,6 +11,11 @@
 	
 	<target name="test">
 		<echo message="Running tests"/>
+		grunt travis --verbose
+		<exec executable="grunt">
+			<arg value="travis"/>
+			<arg value="--verbose"/>
+		</exec>
 	</target>
 
 	<target name="generate_css">
