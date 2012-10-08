@@ -4,8 +4,15 @@ Ext.Loader.setConfig({
 });
 
 Ext.application({
-    name: 'OpenLayersApp',
+    name: 'Kort',
     
+    icon: './resources/images/kort-icon.png',
+	startupImage: {
+		// Non-retina iPhone, iPod touch, and all Android devices
+		'320x460': './resources/images/kort-startup-320x460.jpg',
+		// Retina iPhone and iPod touch
+		'640x920': './resources/images/kort-startup-640x920.png'
+	},
 	statusBarStyle: 'black',
 	viewport: {
 		// hide navigation bar of browser
@@ -31,6 +38,6 @@ Ext.application({
 			noCache: true
   		});
 
-        Ext.Viewport.add(Ext.create('OpenLayersApp.view.Main'));
+        Ext.Viewport.add(Ext.create('Kort.view.Main'));
 	}
 });
