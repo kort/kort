@@ -41,8 +41,8 @@ Ext.define('OpenLayersApp.controller.Map', {
 		var point1 = new OpenLayers.Geometry.Point(component.getGeo().getLongitude(), component.getGeo().getLatitude());
 		var point2 = new OpenLayers.Geometry.Point(component.getGeo().getLongitude() + 1, component.getGeo().getLatitude() + 1);
 		
-		var lineStyle = { 
-			strokeColor: '#0000ff', 
+		var lineStyle = {
+			strokeColor: '#0000ff',
 			strokeOpacity: 0.5,
 			strokeWidth: 5
 		};
@@ -52,7 +52,7 @@ Ext.define('OpenLayersApp.controller.Map', {
 		// popup
 		var selector = new OpenLayers.Control.SelectFeature(vectorLayer, {
 			autoActivate: true
-		}); 
+		});
     
 		map.addControl(selector);
 	},
