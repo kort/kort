@@ -10,7 +10,7 @@ script: ant build
 
 # heroku part from https://gist.github.com/443c00fe346045522db7
 after_script:
-  - yes | ruby travis_deployer.rb
+  - yes | ruby server/travis_deployer.rb
   - git checkout -b travis
   - git rm .gitignore
   - git add .
