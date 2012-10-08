@@ -1,4 +1,4 @@
-Ext.define('OpenLayersApp.controller.Map', {
+Ext.define('Kort.controller.Map', {
     extend: 'Ext.app.Controller',
 
     config: {

@@ -1,4 +1,4 @@
-Ext.define('OpenLayersApp.view.Main', {
+Ext.define('Kort.view.Main', {
     extend: 'Ext.tab.Panel',
     xtype: 'main',
     id: 'mainTabPanel',
