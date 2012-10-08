@@ -11,7 +11,7 @@
 	
 	<target name="test">
 		<echo message="Running tests"/>
-		<exec executable="grunt">
+		<exec executable="grunt" failonerror="true">
 			<arg value="travis"/>
 			<arg value="--verbose"/>
 		</exec>
