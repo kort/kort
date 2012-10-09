@@ -30,6 +30,7 @@
 	
 	<target name="patch"> 
 		<replace token="-debug" value=""  file="index.html" summary="true" />
+		<replace token="OpenLayers.kort.debug.js" value="OpenLayers.kort.js"  file="index.html" summary="true" />
 	</target>
 
 	<target name="compile_sass">
