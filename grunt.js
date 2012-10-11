@@ -32,12 +32,14 @@ module.exports = function(grunt) {
             },
             globals: {
             Ext: true,
-            OpenLayers: true
+            OpenLayers: true,
+            L: true
             },
             tests: {
                 globals: {
                     Ext: true,
                     OpenLayers: true,
+                    L: true,
                     asyncTest: true,
                     deepEqual: true,
                     equal: true,
