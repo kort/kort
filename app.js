@@ -3,6 +3,27 @@ Ext.Loader.setConfig({
 	enabled: true
 });
 
+Ext.override(Ext.MessageBox, {
+	statics: {
+        YES   : {text: 'Ja',    itemId: 'yes', ui: 'action'},
+        NO    : {text: 'Nein',     itemId: 'no'},
+        CANCEL: {text: 'Abbrechen', itemId: 'cancel'},
+
+        OKCANCEL: [
+            {text: 'Abbrechen', itemId: 'cancel'},
+        ],
+        YESNOCANCEL: [
+            {text: 'Abbrechen', itemId: 'cancel'},
+            {text: 'Nein',     itemId: 'no'},
+            {text: 'Ja',    itemId: 'yes', ui: 'action'}
+        ],
+        YESNO: [
+            {text: 'Ja', itemId: 'yes', ui: 'action'},
+			{text: 'Nein',  itemId: 'no'}
+        ]
+    }
+});
+
 Ext.application({
     name: 'Kort',
     
@@ -29,6 +50,14 @@ Ext.application({
 		'Map'
 	],
     
+    models: [
+		'Bug'
+    ],
+	
+    stores: [
+		'Bugs'
+    ],
+    
 	// launch function is called as soon as app is ready
 	launch: function() {
   		Ext.i18n.Bundle.configure({
@@ -37,6 +66,8 @@ Ext.application({
 			path: 'resources/i18n',
 			noCache: true
   		});
+        
+		Ext.getStore('Bugs').load();
 
         Ext.Viewport.add(Ext.create('Kort.view.Main'));
 	}

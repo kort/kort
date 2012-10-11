@@ -14,7 +14,7 @@ Ext.define('Kort.controller.Map', {
         map: null,
         vectorLayer: null,
         features: [],
-        selectControl: null
+        selectFeatureControl: null
     },
     
     onMapRender: function(component, map, layer) {
@@ -22,9 +22,7 @@ Ext.define('Kort.controller.Map', {
         me.setMap(map);
         var vectorLayer = this.createVectorLayer(map);
 
-        // adding marker to vector layer
-        var markerPoint = new OpenLayers.Geometry.Point(component.getGeo().getLongitude(), component.getGeo().getLatitude());
-
+        // adding markers to vector layer
         var iconWidth = 21;
         var iconHeight = 25;
 
@@ -34,9 +32,12 @@ Ext.define('Kort.controller.Map', {
             graphicHeight: iconHeight,
             graphicYOffset: -(iconHeight)
         };
-
-        me.addMarker(markerPoint, null, iconStyle);
-
+        
+        Ext.getStore('Bugs').each(function (item, index, length) {
+            var markerPoint = new OpenLayers.Geometry.Point(item.get('lon'), item.get('lat'));
+            me.addMarker(markerPoint, null, iconStyle);
+        });
+        
         // adding linestring
         var point1 = new OpenLayers.Geometry.Point(component.getGeo().getLongitude(), component.getGeo().getLatitude());
         var point2 = new OpenLayers.Geometry.Point(component.getGeo().getLongitude() + 1, component.getGeo().getLatitude() + 1);
@@ -50,11 +51,12 @@ Ext.define('Kort.controller.Map', {
         me.addLineString(point1, point2, null, lineStyle);
 
         // popup
-        var selectControl = new OpenLayers.Control.SelectFeature(vectorLayer, {
+        var selectFeatureControl = new OpenLayers.Control.SelectFeature(vectorLayer, {
             autoActivate: true
         });
-        me.setSelectControl(selectControl);
-        map.addControl(selectControl);
+        me.setSelectFeatureControl(selectFeatureControl);
+        
+        map.addControl(selectFeatureControl);
     },
 
     onFeatureSelected: function(scope, event, map) {
@@ -63,12 +65,12 @@ Ext.define('Kort.controller.Map', {
         var pixel = scope.getSelectControl().handlers.feature.evt.xy;
         var location = map.getLonLatFromPixel(pixel);
         */
-
         var feature = event.feature,
             position = feature.geometry.getBounds().getCenterLonLat(),
             content = feature.id;
-        
-        var popup = new OpenLayers.Popup.FramedCloud('popup',
+            
+        var messagebox = Ext.Msg.confirm(feature.id, "Willst du diese Rose haben?", this.confirmMessageHandler, this);
+        /*var popup = new OpenLayers.Popup.FramedCloud('popup',
             position,
             null,
             content,
@@ -80,14 +82,20 @@ Ext.define('Kort.controller.Map', {
         popup.maxSize = new OpenLayers.Size(400,800);
         popup.fixedRelativePosition = true;
         feature.popup = popup;
-        map.addPopup(popup);
+        map.addPopup(popup);*/
     },
 
     onFeatureUnselected: function(scope, event, map) {
-        var feature = event.feature;
+        /*var feature = event.feature;
         map.removePopup(feature.popup);
         feature.popup.destroy();
-        feature.popup = null;
+        feature.popup = null;*/
+    },
+    
+    confirmMessageHandler: function(buttonId, value) {
+        if(buttonId != 'yes') {
+            this.getSelectFeatureControl().unselectAll();
+        }
     },
 
     createVectorLayer: function(map) {
