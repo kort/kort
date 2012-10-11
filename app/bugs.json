@@ -6,7 +6,7 @@
             "description": "Hier fehlt der Strassenname.",
             "lat": 47.223375,
             "lon": 8.817434,
-            "type": "missing_name"
+            "type": "road"
         },
         {
             "id": 2,
@@ -14,7 +14,7 @@
             "description": "Hier ist eine Einbahn.",
             "lat": 47.223375,
             "lon": 8.82434,
-            "type": "wrong_turn"
+            "type": "undefined"
         },
         {
             "id": 3,
@@ -22,7 +22,7 @@
             "description": "Hier fehlt der Strassenname.",
             "lat": 47.227375,
             "lon": 8.813434,
-            "type": "missing_name"
+            "type": "road"
         }
     ]
 }
