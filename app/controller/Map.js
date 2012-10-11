@@ -23,19 +23,17 @@ Ext.define('Kort.controller.Map', {
         var vectorLayer = this.createVectorLayer(map);
 
         // adding markers to vector layer
-        var iconWidth = 21;
-        var iconHeight = 25;
-
-        var iconStyle = {
-            externalGraphic: "http://www.openlayers.org/dev/img/marker.png",
-            graphicWidth: iconWidth,
-            graphicHeight: iconHeight,
-            graphicYOffset: -(iconHeight)
+        var ownPositionMarkerStyle = {
+            externalGraphic: './resources/images/marker_icons/own_position.png',
+            graphicWidth: 20,
+            graphicHeight: 20
         };
+        var ownPositionMarkerPoint = new OpenLayers.Geometry.Point(component.getGeo().getLongitude(), component.getGeo().getLatitude());
+        me.addMarker(ownPositionMarkerPoint, null, ownPositionMarkerStyle);
         
         Ext.getStore('Bugs').each(function (item, index, length) {
             var markerPoint = new OpenLayers.Geometry.Point(item.get('lon'), item.get('lat'));
-            me.addMarker(markerPoint, null, iconStyle);
+            me.addMarker(markerPoint, null, me.getMarkerStyle(item.get('type')));
         });
         
         // adding linestring
@@ -118,9 +116,9 @@ Ext.define('Kort.controller.Map', {
 
     addMarker: function(point, attributes, style) {
         this.getMapCmp().transformLonLatObject(point);
-        var iconFeature = new OpenLayers.Feature.Vector(point, attributes, style);
-        this.getFeatures().push(iconFeature);
-        this.getVectorLayer().addFeatures(iconFeature);
+        var markerFeature = new OpenLayers.Feature.Vector(point, attributes, style);
+        this.getFeatures().push(markerFeature);
+        this.getVectorLayer().addFeatures(markerFeature);
     },
 
     addLineString: function(startPoint, endPoint, attributes, style) {
@@ -130,5 +128,24 @@ Ext.define('Kort.controller.Map', {
         var lineFeature = new OpenLayers.Feature.Vector(lineString, attributes, style);
         this.getFeatures().push(lineFeature);
         this.getVectorLayer().addFeatures(lineFeature);
+    },
+    
+    getMarkerStyle: function(type) {
+        var markerWidth = 32;
+        var markerHeight = 37;
+        var shadowWidth = 51;
+        var shadowHeight = 37;
+        var style = {
+            externalGraphic: './resources/images/marker_icons/' + type + '.png',
+            graphicWidth: markerWidth,
+            graphicHeight: markerHeight,
+            graphicYOffset: -markerHeight,
+            backgroundGraphic: './resources/images/marker_icons/shadow.png',
+            backgroundWidth: shadowWidth,
+            backgroundHeight: shadowHeight,
+            backgroundXOffset: -(markerWidth/2),
+            backgroundYOffset: -shadowHeight
+        };
+        return style;
     }
 });
