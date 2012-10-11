@@ -4,24 +4,24 @@
             "id": 1,
             "title": "Strassenname",
             "description": "Hier fehlt der Strassenname.",
-            "lat": 47.223375,
-            "lon": 8.817434,
+            "latitude": 47.223375,
+            "longitude": 8.817434,
             "type": "road"
         },
         {
             "id": 2,
             "title": "Richtung",
             "description": "Hier ist eine Einbahn.",
-            "lat": 47.223375,
-            "lon": 8.82434,
+            "latitude": 47.223375,
+            "longitude": 8.82434,
             "type": "undefined"
         },
         {
             "id": 3,
             "title": "Strassenname",
             "description": "Hier fehlt der Strassenname.",
-            "lat": 47.227375,
-            "lon": 8.813434,
+            "latitude": 47.227375,
+            "longitude": 8.813434,
             "type": "road"
         }
     ]

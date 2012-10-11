@@ -7,8 +7,8 @@ Ext.define('Kort.model.Bug', {
 			{ name: 'id', type: 'auto' },
 			{ name: 'title', type: 'string' },
 			{ name: 'description', type: 'string' },
-            { name: 'lat', type: 'string' },
-            { name: 'lon', type: 'string' },
+            { name: 'latitude', type: 'string' },
+            { name: 'longitude', type: 'string' },
 			{ name: 'type', type: 'string' }
         ]
     }
