@@ -1,0 +1,28 @@
+{
+    "bugs": [
+        {
+            "id": 1,
+            "title": "Strassenname",
+            "description": "Hier fehlt der Strassenname.",
+            "lat": 47.223375,
+            "lon": 8.817434,
+            "type": "missing_name"
+        },
+        {
+            "id": 2,
+            "title": "Richtung",
+            "description": "Hier ist eine Einbahn.",
+            "lat": 47.223375,
+            "lon": 8.82434,
+            "type": "wrong_turn"
+        },
+        {
+            "id": 3,
+            "title": "Strassenname",
+            "description": "Hier fehlt der Strassenname.",
+            "lat": 47.227375,
+            "lon": 8.813434,
+            "type": "missing_name"
+        }
+    ]
+}
