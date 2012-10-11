@@ -288,8 +288,10 @@ Ext.define('Ext.ux.LeafletMap', {
 	
 	// @private
     onGeoUpdate: function(geo) {
-        if (geo && (this.getAutoMapCenter() || this.getInitialCenter())) {
-            this.setMapCenter(new window.L.LatLng(geo.getLatitude(), geo.getLongitude()));
+        var l = window.L;
+        
+        if (l && geo && (this.getAutoMapCenter() || this.getInitialCenter())) {
+            this.setMapCenter(new l.LatLng(geo.getLatitude(), geo.getLongitude()));
 			this.setInitialCenter(false);
         }
     },
