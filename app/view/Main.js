@@ -2,7 +2,7 @@ Ext.define('Kort.view.Main', {
     extend: 'Ext.tab.Panel',
     xtype: 'main',
     id: 'mainTabPanel',
-    requires: ['Ext.ux.OpenLayersMap'],
+    requires: ['Ext.ux.LeafletMap'],
 
     config: {
         tabBar: {
@@ -20,20 +20,17 @@ Ext.define('Kort.view.Main', {
 
                 items: [
                     {
-                        xtype: 'openlayersmap',
-                        id: 'openlayersmap',
+                        xtype: 'leafletmap',
+                        id: 'leafletmap',
                         useCurrentLocation: true,
                         autoMapCenter: false,
                         mapOptions: {
-                            zoom: 15,
-                            controls: [
-                                new OpenLayers.Control.TouchNavigation({
-                                    dragPanOptions: {
-                                        enableKinetic: true
-                                    }
-                                }),
-                                new OpenLayers.Control.Zoom()
-                            ]
+                            zoom: 15
+                        },
+                        tileLayerUrl: 'http://{s}.tile.cloudmade.com/{apikey}/{styleId}/256/{z}/{x}/{y}.png',
+                        tileLayerOptions: {
+                            apikey: '729242682cb24de8aa825c8aed993cba',
+                            styleId: 997
                         }
                     }
                 ]

@@ -3,7 +3,7 @@ Ext.define('Kort.controller.Map', {
 
     config: {
         refs: {
-            mapCmp: '#openlayersmap'
+            mapCmp: '#leafletmap'
         },
         control: {
             mapCmp: {
@@ -11,141 +11,82 @@ Ext.define('Kort.controller.Map', {
             }
         },
 
-        map: null,
-        vectorLayer: null,
-        features: [],
-        selectFeatureControl: null
+        map: null
     },
     
-    onMapRender: function(component, map, layer) {
+    onMapRender: function(cmp, map, tileLayer) {
         var me = this;
         me.setMap(map);
-        var vectorLayer = this.createVectorLayer(map);
-
-        // adding markers to vector layer
-        var ownPositionMarkerStyle = {
-            externalGraphic: './resources/images/marker_icons/own_position.png',
-            graphicWidth: 20,
-            graphicHeight: 20
-        };
-        var ownPositionMarkerPoint = new OpenLayers.Geometry.Point(component.getGeo().getLongitude(), component.getGeo().getLatitude());
-        me.addMarker(ownPositionMarkerPoint, null, ownPositionMarkerStyle);
+        
+        // adding markers
+        if(cmp.getGeo()) {
+            me.addOwnPositionMarker(cmp, map);
+        }
         
         Ext.getStore('Bugs').each(function (item, index, length) {
-            var markerPoint = new OpenLayers.Geometry.Point(item.get('lon'), item.get('lat'));
-            me.addMarker(markerPoint, null, me.getMarkerStyle(item.get('type')));
+            me.addMarker(map, item.get('latitude'), item.get('longitude'), item.get('type'));
         });
-        
-        // adding linestring
-        var point1 = new OpenLayers.Geometry.Point(component.getGeo().getLongitude(), component.getGeo().getLatitude());
-        var point2 = new OpenLayers.Geometry.Point(component.getGeo().getLongitude() + 1, component.getGeo().getLatitude() + 1);
+    },
+    
+    addOwnPositionMarker: function(cmp, map) {
+        var iconWidth = 20,
+            iconHeight = 20,
+            icon,
+            ownPositionMarker;
 
-        var lineStyle = {
-            strokeColor: '#0000ff',
-            strokeOpacity: 0.5,
-            strokeWidth: 5
-        };
+        icon = L.icon({
+            iconUrl: './resources/images/marker_icons/own_position.png',
+            iconSize: [iconWidth, iconHeight],
+            iconAnchor: [(iconWidth/2), (iconHeight/2)]
 
-        me.addLineString(point1, point2, null, lineStyle);
-
-        // popup
-        var selectFeatureControl = new OpenLayers.Control.SelectFeature(vectorLayer, {
-            autoActivate: true
         });
-        me.setSelectFeatureControl(selectFeatureControl);
+        ownPositionMarker = L.marker([cmp.getGeo().getLatitude(), cmp.getGeo().getLongitude()], {
+            icon: icon,
+            clickable: false
+        });
+        ownPositionMarker.addTo(map);
+    },
+    
+    addMarker: function(map, lat, lng, type) {
+        var icon,
+            marker,
+            me = this;
         
-        map.addControl(selectFeatureControl);
+        icon = me.getIcon(type);
+        marker = L.marker([lat, lng], {
+            icon: icon
+        });
+        marker.on('click', me.onMarkerClick, me);
+        marker.addTo(map);
     },
-
-    onFeatureSelected: function(scope, event, map) {
-        /*
-        // getting click position
-        var pixel = scope.getSelectControl().handlers.feature.evt.xy;
-        var location = map.getLonLatFromPixel(pixel);
-        */
-        var feature = event.feature,
-            position = feature.geometry.getBounds().getCenterLonLat(),
-            content = feature.id;
-            
-        var messagebox = Ext.Msg.confirm(feature.id, "Willst du diese Rose haben?", this.confirmMessageHandler, this);
-        /*var popup = new OpenLayers.Popup.FramedCloud('popup',
-            position,
-            null,
-            content,
-            null,
-            true,
-            null
-        );
-        popup.autoSize = true;
-        popup.maxSize = new OpenLayers.Size(400,800);
-        popup.fixedRelativePosition = true;
-        feature.popup = popup;
-        map.addPopup(popup);*/
+    
+    getIcon: function(type) {
+        var iconWidth = 32,
+            iconHeight = 37,
+            shadowWidth = 51,
+            shadowHeight = 37,
+            icon;
+        
+        icon = L.icon({
+            iconUrl: './resources/images/marker_icons/' + type + '.png',
+            iconSize: [iconWidth, iconHeight],
+            iconAnchor: [(iconWidth/2), iconHeight],
+            shadowUrl: './resources/images/marker_icons/shadow.png',
+            shadowSize: [shadowWidth, shadowHeight],
+            shadowAnchor: [(iconWidth/2), shadowHeight]
+        });
+        return icon;
     },
-
-    onFeatureUnselected: function(scope, event, map) {
-        /*var feature = event.feature;
-        map.removePopup(feature.popup);
-        feature.popup.destroy();
-        feature.popup = null;*/
+    
+    onMarkerClick: function(e) {
+        var messagebox = Ext.Msg.confirm("title", "Willst du diese Rose haben?", this.confirmMessageHandler, this);
     },
     
     confirmMessageHandler: function(buttonId, value) {
-        if(buttonId != 'yes') {
-            this.getSelectFeatureControl().unselectAll();
+        if(buttonId !== 'yes') {
+            console.log('no');
+        } else {
+            console.log('yes');
         }
-    },
-
-    createVectorLayer: function(map) {
-        var me = this;
-        var vectorLayer = new OpenLayers.Layer.Vector("Vector Layer", {
-            eventListeners: {
-                featureselected: function(event) {
-                    me.onFeatureSelected(me, event, map);
-                },
-                featureunselected: function(event) {
-                    me.onFeatureUnselected(me, event, map);
-                }
-            }
-        });
-
-        this.setVectorLayer(vectorLayer);
-        map.addLayer(vectorLayer);
-        return vectorLayer;
-    },
-
-    addMarker: function(point, attributes, style) {
-        this.getMapCmp().transformLonLatObject(point);
-        var markerFeature = new OpenLayers.Feature.Vector(point, attributes, style);
-        this.getFeatures().push(markerFeature);
-        this.getVectorLayer().addFeatures(markerFeature);
-    },
-
-    addLineString: function(startPoint, endPoint, attributes, style) {
-        this.getMapCmp().transformLonLatObject(startPoint);
-        this.getMapCmp().transformLonLatObject(endPoint);
-        var lineString = new OpenLayers.Geometry.LineString([startPoint, endPoint]);
-        var lineFeature = new OpenLayers.Feature.Vector(lineString, attributes, style);
-        this.getFeatures().push(lineFeature);
-        this.getVectorLayer().addFeatures(lineFeature);
-    },
-    
-    getMarkerStyle: function(type) {
-        var markerWidth = 32;
-        var markerHeight = 37;
-        var shadowWidth = 51;
-        var shadowHeight = 37;
-        var style = {
-            externalGraphic: './resources/images/marker_icons/' + type + '.png',
-            graphicWidth: markerWidth,
-            graphicHeight: markerHeight,
-            graphicYOffset: -markerHeight,
-            backgroundGraphic: './resources/images/marker_icons/shadow.png',
-            backgroundWidth: shadowWidth,
-            backgroundHeight: shadowHeight,
-            backgroundXOffset: -(markerWidth/2),
-            backgroundYOffset: -shadowHeight
-        };
-        return style;
     }
 });
