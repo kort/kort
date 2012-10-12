@@ -99,15 +99,20 @@ Ext.define('Kort.controller.Map', {
             shadowUrl: './resources/images/marker_icons/shadow.png',
             shadowSize: [shadowWidth, shadowHeight],
             shadowAnchor: [(iconWidth/2), shadowHeight],
-            popupAnchor: [0, -(iconHeight/2)]
+            popupAnchor: [0, -(2*iconHeight/3)]
         });
         return icon;
     },
     
     init: function() {
         this.setPopupTemplate(new Ext.XTemplate(
-            '<h1>{title}</h1>',
-            '<p>{description}</p>'
+            '<div class="popup-content">',
+                '<h1>{title}</h1>',
+                '<p>{description}</p>',
+                '<p>',
+                    '<a href="#">Accept this job!</a>',
+                '</p>',
+            '</div>'
         ));
     }
 });
