@@ -11,7 +11,8 @@ Ext.define('Kort.controller.Map', {
             }
         },
 
-        map: null
+        map: null,
+        popupTemplate: null
     },
     
     onMapRender: function(cmp, map, tileLayer) {
@@ -24,7 +25,7 @@ Ext.define('Kort.controller.Map', {
         }
         
         Ext.getStore('Bugs').each(function (item, index, length) {
-            me.addMarker(map, item.get('latitude'), item.get('longitude'), item.get('type'));
+            me.addMarker(map, item);
         });
     },
     
@@ -47,16 +48,19 @@ Ext.define('Kort.controller.Map', {
         ownPositionMarker.addTo(map);
     },
     
-    addMarker: function(map, lat, lng, type) {
-        var icon,
+    addMarker: function(map, item) {
+        var me = this,
+            icon,
             marker,
-            me = this;
+            tpl;
         
-        icon = me.getIcon(type);
-        marker = L.marker([lat, lng], {
+        icon = me.getIcon(item.get('type'));
+        marker = L.marker([item.get('latitude'), item.get('longitude')], {
             icon: icon
         });
-        marker.on('click', me.onMarkerClick, me);
+        
+        tpl = this.getPopupTemplate();
+        marker.bindPopup(tpl.apply(item.data));
         marker.addTo(map);
     },
     
@@ -73,20 +77,16 @@ Ext.define('Kort.controller.Map', {
             iconAnchor: [(iconWidth/2), iconHeight],
             shadowUrl: './resources/images/marker_icons/shadow.png',
             shadowSize: [shadowWidth, shadowHeight],
-            shadowAnchor: [(iconWidth/2), shadowHeight]
+            shadowAnchor: [(iconWidth/2), shadowHeight],
+            popupAnchor: [0, -(iconHeight/2)]
         });
         return icon;
     },
     
-    onMarkerClick: function(e) {
-        var messagebox = Ext.Msg.confirm("title", "Willst du diese Rose haben?", this.confirmMessageHandler, this);
-    },
-    
-    confirmMessageHandler: function(buttonId, value) {
-        if(buttonId !== 'yes') {
-            console.log('no');
-        } else {
-            console.log('yes');
-        }
+    init: function() {
+        this.setPopupTemplate(new Ext.XTemplate(
+            '<h1>{title}</h1>',
+            '<p>{description}</p>'
+        ));
     }
 });
