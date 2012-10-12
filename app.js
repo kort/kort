@@ -16,7 +16,7 @@ Ext.override(Ext.MessageBox, {
         CANCEL: {text: 'Abbrechen', itemId: 'cancel'},
 
         OKCANCEL: [
-            {text: 'Abbrechen', itemId: 'cancel'},
+            {text: 'Abbrechen', itemId: 'cancel'}
         ],
         YESNOCANCEL: [
             {text: 'Abbrechen', itemId: 'cancel'},
@@ -75,7 +75,7 @@ Ext.application({
 			language: 'de-CH',
 			path: 'resources/i18n',
 			noCache: true
-  		});
+        });
         
 		Ext.getStore('Bugs').load(function(records, operation, success) {
             Ext.Viewport.add(Ext.create('Kort.view.Main'));

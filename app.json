@@ -44,7 +44,7 @@
             "update": "delta"
         },
 	{
-	    "path": "lib/Leaflet-0.4.4/dist/leaflet-src.js"
+            "path": "lib/Leaflet-0.4.4/dist/leaflet-src.js"
         }
     ],
 
@@ -70,7 +70,7 @@
             "update": "delta"
         },
         {
-	    "path": "lib/Leaflet-0.4.4/dist/leaflet.css"
+            "path": "lib/Leaflet-0.4.4/dist/leaflet.css"
 	}
     ],
 
@@ -111,7 +111,7 @@
      * File / directory name matchers to ignore when copying to the builds, must be valid regular expressions
      */
     "ignore": [
-        "\.svn$"
+        "\\.svn$"
     ],
 
     /**
