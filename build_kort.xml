@@ -5,7 +5,7 @@
 		</classpath>
 	</taskdef>
 
-	<target name="build" depends="test,generate_css,patch">
+	<target name="build" depends="test,generate_css">
 		<echo message="BUILD FINISHED!"/>
 	</target>
 	
@@ -14,6 +14,7 @@
 		<exec executable="grunt" failonerror="true">
 			<arg value="travis"/>
 			<arg value="--verbose"/>
+			<arg value="--force"/>
 		</exec>
 	</target>
 
@@ -28,11 +29,6 @@
 		</foreach>
 	</target>
 	
-	<target name="patch"> 
-		<replace token="-debug" value=""  file="index.html" summary="true" />
-		<replace token="OpenLayers.kort.debug.js" value="OpenLayers.kort.js"  file="index.html" summary="true" />
-	</target>
-
 	<target name="compile_sass">
 		<echo message="Compile sass files in ${dir}"/>
 		<apply executable="sass" dest="${dir}" verbose="true" force="true" failonerror="true">
