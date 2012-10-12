@@ -6,7 +6,7 @@ Ext.define('Kort.store.Bugs', {
 		
 		proxy: {
 			type: "ajax",
-            url : "/kort/app/bugs.json",
+            url : "./app/bugs.json",
             reader: {
                 type: "json",
                 rootProperty: "bugs"
