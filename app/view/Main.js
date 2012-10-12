@@ -30,7 +30,8 @@ Ext.define('Kort.view.Main', {
                         tileLayerUrl: 'http://{s}.tile.cloudmade.com/{apikey}/{styleId}/256/{z}/{x}/{y}.png',
                         tileLayerOptions: {
                             apikey: '729242682cb24de8aa825c8aed993cba',
-                            styleId: 997
+                            styleId: 997,
+                            detectRetina: false
                         }
                     }
                 ]
