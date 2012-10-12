@@ -12,6 +12,7 @@ Ext.define('Kort.controller.Map', {
         },
 
         map: null,
+        ownPositionMarker: null,
         popupTemplate: null
     },
     
@@ -22,6 +23,11 @@ Ext.define('Kort.controller.Map', {
         // adding markers
         if(cmp.getGeo()) {
             me.addOwnPositionMarker(cmp, map);
+            
+            // add listener for locationupdate event of geolocation for setting marker position
+			cmp.getGeo().addListener('locationupdate', function() {
+				me.setOwnPositionMarkerPosition(L.latLng(this.getLatitude(), this.getLongitude()));
+			});
         }
         
         Ext.getStore('Bugs').each(function (item, index, length) {
@@ -45,8 +51,23 @@ Ext.define('Kort.controller.Map', {
             icon: icon,
             clickable: false
         });
+        this.setOwnPositionMarker(ownPositionMarker);
         ownPositionMarker.addTo(map);
     },
+    
+    /**
+	 * Sets position of own position marker 
+	 * 
+	 * @param	latlng		position of marker
+	 * 
+	 * @private
+	 */
+	setOwnPositionMarkerPosition: function(latlng) {
+		var ownPositionMarker = this.getOwnPositionMarker();
+		if(ownPositionMarker) {
+			ownPositionMarker.setLatLng(latlng);
+		}
+	},
     
     addMarker: function(map, item) {
         var me = this,
