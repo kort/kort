@@ -1,7 +1,9 @@
+/.sass-cache/
+/.sencha/
+/docs/
 /nbproject/private/
 /node_modules/
-/docs/
-/.sass-cache/
+_DOCUMENTATION/02_Documentation/kort.pdf
 /chef/.vagrant
 *.aux
 *.glo
@@ -31,5 +33,4 @@
 *.synctex.gz
 *.tdo
 *.ldb
-_DOCUMENTATION/02_Documentation/kort.pdf
 styles.css
