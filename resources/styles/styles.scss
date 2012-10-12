@@ -1,9 +1,14 @@
 /* -----------------------
-   OpenLayers
+   Map
    ----------------------- */
-div.olControlAttribution, div.olControlScaleLine {
-	font-family: Arial;
-	font-size: 0.6em;
-	right: 0.5em;
-	bottom: 0.5em;
+.popup-content {
+    h1 {
+        font-size: 1.4em;
+        font-weight: bold;
+        margin: 0 0 0.3em 0;
+    }
+    
+    p {
+        margin: 0 0 0.5em 0;
+    }
 }
