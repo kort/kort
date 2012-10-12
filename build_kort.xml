@@ -1,0 +1,46 @@
+<project name="kort-build" basedir="." default="build">
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
+		<classpath>
+			<pathelement location="lib/antlibs/ant-contrib-1.0b3.jar"/>
+		</classpath>
+	</taskdef>
+
+	<target name="build" depends="test,generate_css,patch">
+		<echo message="BUILD FINISHED!"/>
+	</target>
+	
+	<target name="test">
+		<echo message="Running tests"/>
+		<exec executable="grunt" failonerror="true">
+			<arg value="travis"/>
+			<arg value="--verbose"/>
+		</exec>
+	</target>
+
+	<target name="generate_css">
+		<echo message="Compile sass files to css"/>
+		<foreach target="compile_sass" param="dir">
+			<path>
+				<dirset dir="${basedir}">
+					<include name="**/styles"/>
+				</dirset>
+			</path>
+		</foreach>
+	</target>
+	
+	<target name="patch"> 
+		<replace token="-debug" value=""  file="index.html" summary="true" />
+		<replace token="OpenLayers.kort.debug.js" value="OpenLayers.kort.js"  file="index.html" summary="true" />
+	</target>
+
+	<target name="compile_sass">
+		<echo message="Compile sass files in ${dir}"/>
+		<apply executable="sass" dest="${dir}" verbose="true" force="true" failonerror="true">
+			<arg value="--unix-newlines" />
+			<srcfile />
+			<targetfile />
+			<fileset dir="${dir}" includes="**/*.scss" />
+			<mapper type="glob" from="*.scss" to="*.css"/>
+		</apply>
+	</target>
+</project>
