@@ -9,6 +9,7 @@ module.exports = function(grunt) {
         lint: {
             src: 'app/**/*.js',
             grunt: 'grunt.js',
+            app: 'app.js*',
             tests: 'test/**/*.js'
         },
         jshint: {
@@ -31,9 +32,9 @@ module.exports = function(grunt) {
                 indent: 4
             },
             globals: {
-            Ext: true,
-            OpenLayers: true,
-            L: true
+                Ext: true,
+                OpenLayers: true,
+                L: true
             },
             tests: {
                 globals: {
