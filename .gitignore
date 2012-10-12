@@ -1,11 +1,10 @@
 .sass-cache/
-archive/
-build/
-docs/
-nbproject/private/
-node_modules/
-_DOCUMENTATION/02_Documentation/kort.pdf
-chef/.vagrant
+/archive/
+/build/
+/nbproject/private/
+/node_modules/
+/_DOCUMENTATION/02_Documentation/kort.pdf
+/chef/.vagrant
 *.aux
 *.glo
 *.idx
