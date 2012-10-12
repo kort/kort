@@ -36,12 +36,18 @@
      */
     "js": [
         {
-            "path": "touch/sencha-touch.js"
+            "path": "touch/sencha-touch-all.js"
         },
         {
             "path": "app.js",
             "bundle": true,  /* Indicates that all class dependencies are concatenated into this file when build */
             "update": "delta"
+        },
+        {
+            "path": "ux/LeafletMap.js",
+        },
+        {
+            "path": "i18n/Bundle.js",
         }
     ],
 

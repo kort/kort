@@ -1,8 +1,12 @@
 //<debug>
+/*
 Ext.Loader.setPath({
     'Ext': 'touch/src',
+    'Ext.i18n': 'i18n',
+    'Ext.ux': 'ux',
     'Kort': 'app'
 });
+*/
 //</debug>
 
 Ext.override(Ext.MessageBox, {
