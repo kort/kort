@@ -7,7 +7,7 @@ before_script:
   - gem install compass
   - sudo npm install -g grunt
 
-script: ant build
+script: ant -f build_kort.xml build
 
 # heroku part from https://gist.github.com/443c00fe346045522db7
 after_script:
