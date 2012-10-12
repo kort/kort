@@ -16,7 +16,7 @@
      * This value is needed when build to resolve your application's dependencies if it requires server-side resources
      * that are not accessible via file system protocol.
      */
-    "url": null,
+    "url": "http://localhost/kort/index.html",
 
     /**
      * List of all JavaScript assets in the right execution order.
@@ -43,11 +43,8 @@
             "bundle": true,  /* Indicates that all class dependencies are concatenated into this file when build */
             "update": "delta"
         },
-        {
-            "path": "ux/LeafletMap.js",
-        },
-        {
-            "path": "i18n/Bundle.js",
+	{
+	    "path": "lib/Leaflet-0.4.4/dist/leaflet-src.js"
         }
     ],
 
@@ -71,7 +68,10 @@
         {
             "path": "resources/css/app.css",
             "update": "delta"
-        }
+        },
+        {
+	    "path": "lib/Leaflet-0.4.4/dist/leaflet.css"
+	}
     ],
 
     /**
@@ -101,8 +101,10 @@
      */
     "resources": [
         "resources/images",
-        "resources/icons",
-        "resources/startup"
+        "resources/styles",
+        "resources/i18n",
+        "resources/stores",
+        "lib/Leaflet-0.4.4/dist/images"
     ],
 
     /**
