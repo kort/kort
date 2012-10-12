@@ -1,5 +1,7 @@
 /.sass-cache/
 /.sencha/
+/archive/
+/build/
 /docs/
 /nbproject/private/
 /node_modules/
