@@ -1,0 +1,227 @@
+
+// Jog With Friends Sass file
+
+$base-color: #6e85b9;
+$font-family: Helvetica, sans-serif;
+
+$list-header-bg-color: #ccc;
+$list-header-color: #777;
+
+$include-default-icons: false;
+
+@import 'sencha-touch/default/all';
+
+@include sencha-panel;
+@include sencha-buttons;
+@include sencha-sheet;
+@include sencha-picker;
+// @include sencha-tabs;
+@include sencha-toolbar;
+// @include sencha-carousel;
+// @include sencha-indexbar;
+@include sencha-list;
+@include sencha-layout;
+@include sencha-form;
+@include sencha-msgbox;
+@include sencha-loading-spinner;
+
+html, body {
+    background-color: #dcdcdc;
+}
+
+.x-title {
+    font-weight: normal;
+}
+
+.x-list {
+    background: transparent;
+}
+
+.x-list .x-list-item {
+    border-top: 2px solid #d3d3d3;
+}
+.x-list .x-list-item .x-list-item-label {
+    padding: 10px;
+}
+.run {
+    min-height: 45px;
+    color: #1d1d1d;
+    font-size: 14px;
+}
+.run b {
+    font-weight: bold;
+}
+.run img {
+    border-radius: 5px;
+    float: left;
+}
+.run .info {
+    margin: 0 0 2px 60px;
+}
+.run .location {
+    margin-left: 60px;
+    font-size: 13px;
+    color: #747474;
+    background: url(../images/loc.png) no-repeat 0 2px;
+    background-size: 7px 12px;
+    padding-left: 10px;
+}
+.run .time {
+    margin-left: 60px;
+    font-size: 12px;
+    padding-top: 3px;
+    color: #666;
+}
+
+.fbLogin {
+    width: 152px;
+    height: 22px;
+    background: url(../images/login.png) no-repeat;
+    display: block;
+    margin: 15px 0;
+}
+
+.x-list-emptytext {
+    padding: 20px;
+    text-align: center; }
+
+#login {
+    font-size: 0.9em;
+    h2 {
+        font-weight: bold; }
+    p {
+        padding-top: 10px; } }
+
+.greyBg {
+    // background: -webkit-gradient(radial, 50% 40%, 20, 50% 40%, 200, from(#f9f9f9), to(#dcdcdc)) !important;
+    background: #dcdcdc;
+}
+
+.jogToolbar.x-toolbar-dark {
+    background: -webkit-gradient( linear, left top, left bottom, from(#738ABA), to(#2C4987) );
+    .x-inner {
+        margin-left: -3px;
+        background: url(../images/header.png) no-repeat 0 50%;
+        background-size: 200px 32px;
+    }
+}
+
+.fbButton {
+    border-color: #2A3349 #2A3A64 #253662 !important;
+    border-radius: 3px !important;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .21), 0 1px 0 rgba(255, 255, 255, .17) !important;
+    background: -webkit-gradient(linear, left top, left bottom, from(#647AAB), to(#2C467E) ) !important;
+    color: white !important;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, .35) !important;
+    &.x-button-pressed, &.x-button-pressing {
+        background: -webkit-gradient(linear, left top, left bottom, from(darken(#647AAB, 10%)), to(darken(#2C467E, 10%)) ) !important;
+    }
+}
+
+#loading {
+    color: #9eb2cd;
+    font-size: 120%;
+    position: absolute;
+    width: 110px;
+    left: 50%;
+    margin: 75% 0 0 -30px;
+    .x-loading-spinner {
+        font-size: 160%;
+        margin: -27px 0 0 -45px;
+    }
+}
+
+body {
+    background: -webkit-gradient(radial, 50% 40%, 20, 50% 40%, 350, from(#6983b2), to(#30508b));
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+#splashLoader {
+    background: url(../images/splashimg.png) no-repeat center 25%;
+    background-size: contain;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+
+
+@include sencha-button-ui('facebook', #e0e0e0, 'matte');
+
+.x-form-fieldset {
+    margin-bottom: 1em;
+}
+.x-form-fieldset .x-field {
+    border-style: solid;
+    border-color: #bebebe;
+    color: #c4bebe;
+    font-size: 80%;
+    padding: 4px 8px;
+    border-width: 1px 1px 0 1px;
+}
+.x-form-fieldset .x-field.x-form-fieldset-item-last {
+    border-bottom: 1px solid #bebebe !important;
+}
+
+.x-button-facebook {
+    border-top: 1px solid #999999 !important;
+    border-bottom: 1px solid #bdbdbd !important;
+    border-left: 1px solid #c5c5c5 !important;
+    border-right: 1px solid #c5c5c5 !important;
+    -webkit-box-shadow: inset 0 1px 1px #ccc !important;
+
+    background: -webkit-gradient( linear, left top, left bottom, from(#e6e6e6), to(#dadada) );
+    border-radius: 3px;
+    .x-button-label {
+        color: #213a66;
+        padding: 2px;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+    }
+
+    &.x-button-pressed, &.x-button-pressing {
+        background-image: -webkit-gradient( linear, left top, left bottom, from(darken(#e6e6e6, 10%)), to(darken(#dadada, 10%)) );
+    }
+}
+
+.addToWall {
+    display: block;
+    color: #454545;
+    font-size: 90%;
+    padding-left: 15px;
+    padding-bottom: 20px;
+    input {
+        margin-right: 10px;
+    }
+}
+
+.noFriends {
+    background: url(../images/no-friends.png) no-repeat center center;
+    background-size: 50%;
+}
+
+.welcomeNoFriends {
+    font-size: 80%;
+    padding: 8px;
+    border-bottom: 2px solid #d3d3d3;
+    -webkit-box-shadow: 0 1px 0 #e7e7e7;
+}
+.welcomeNoFriends img {
+    width: 30px;
+    border-radius: 5px;
+    vertical-align: -10px;
+    margin-right: 10px;
+}
+
+.signoutBtn {
+    background: url(../images/logout.png) no-repeat center center;
+    background-size: 16px 18px;
+    width: 17px !important;
+    height: 20px !important;
+}
+.showFormBtn {
+    background: url(../images/add.png) no-repeat center center;
+    background-size: 15px 15px;
+    width: 17px !important;
+    height: 20px !important;
+}

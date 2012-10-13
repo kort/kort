@@ -1,0 +1,432 @@
+@import 'sencha-touch/default/all';
+
+@include sencha-panel;
+@include sencha-buttons;
+@include sencha-sheet;
+@include sencha-picker;
+@include sencha-tabs;
+@include sencha-toolbar;
+@include sencha-toolbar-forms;
+@include sencha-indexbar;
+@include sencha-list;
+@include sencha-list-paging;
+@include sencha-list-pullrefresh;
+@include sencha-layout;
+@include sencha-carousel;
+@include sencha-form;
+@include sencha-msgbox;
+@include sencha-loading-spinner;
+@include sencha-draw;
+@include sencha-charts;
+
+// Code samples
+
+@include pictos-iconmask('loop2');
+
+code, pre, pre * {
+  font-family: Menlo, Monaco, Courier, monospace;
+}
+
+.x-desktop code, .x-desktop pre {
+  font-size: .95em;
+}
+
+// Buttons
+
+.buttons {
+  background-color: #ccc;
+}
+
+// Launch screen
+
+#launchscreen {
+  background: #d6d6d6 url(../images/noise.gif);
+  @include display-box;
+  @include box-orient(vertical);
+  @include box-align(center);
+  @include box-pack(center);
+
+  .x-innerhtml {
+
+
+    width: 90%;
+
+    .x-landscape & {
+      width: 90%;
+    }
+
+    // Need to see...
+    // .x-phone & {
+    //   width: 95%;
+    // }
+
+    > div {
+      text-align: left;
+      background-color: rgba(#fff, .3);
+      color: #444;
+      padding: 20px;
+      font-size: 15px;
+      line-height: 18px;
+      @include box-shadow(
+        rgba(#000, .3) 0 1px 4px inset,
+        rgba(#000, .3) 0 1px 0 inset,
+        rgba(#fff, .1) 0 1px 0
+        );
+      @include border-radius(5px);
+    }
+  }
+
+  h2, h3 {
+    font-weight: bold;
+  }
+  p {
+    color: #666;
+  }
+
+  h3 {
+    color: #666;
+  }
+
+  .feature {
+    padding-left: 65px;
+    position: relative;
+    margin: 15px;
+    min-height: 60px;
+
+    > img {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  .main {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    min-height: 80px;
+  }
+
+  footer {
+    padding: 10px 0 0;
+    font-size: 14px;
+    color: #888;
+
+    a {
+      font-weight: bold;
+      text-decoration: none;
+      color: #146aa5;
+    }
+  }
+
+  h1 {
+    font-size: 26px;
+    font-weight: bold;
+    color: #000;
+  }
+
+  span {
+    color: #999;
+  }
+}
+
+// Info Cards
+
+.card {
+  background-color: #eee;
+
+  em {
+    color: #657b83;
+  }
+
+  > .x-inner, .x-body > .x-inner, .x-inner:not(.x-toolbar-inner).x-scroll-scroller {
+    @include display-box;
+    @include box-orient(vertical);
+    @include box-align(center);
+    @include box-pack(center);
+  }
+
+  .x-innerhtml {
+    text-align: center;
+    font-size: 18px;
+    line-height: 24px;
+    color: #444;
+    text-shadow: rgba(#fff, .3) 0 1px 0;
+    padding:  10px;
+    width: 75%;
+    margin: 0 auto;
+
+    .x-phone & {
+      width: auto;
+      padding: 20px;
+    }
+  }
+
+  .action {
+    display: inline-block;
+    background-color: rgba(#000, .06);
+    border: 1px solid rgba(#fff, .1);
+    padding: 1px 5px;
+    @include border-radius(4px);
+    color: #657b83;
+  }
+  code {
+    color: #859900;
+  }
+  &.dark {
+    background-color: #222;
+
+    .x-innerhtml {
+      color: #93a1a1;
+      text-shadow: 0 1px 0 #000;
+    }
+  }
+}
+
+
+.cards > .x-component-body h1 {
+  margin-bottom: 18px;
+  font-size: 72px;
+  line-height: 80px;
+}
+
+.cards > .x-component-body p {
+  margin-bottom: 18px;
+}
+
+// Touch Events demo
+
+#touchdemo > .x-panel-body {
+  padding: 20px;
+}
+
+#touchpad {
+  text-align: center;
+  vertical-align: middle;
+  font-size: 48px;
+  padding-top: 30px;
+  @include border-radius(30px);
+  border: 8px dashed #d6d6d6;
+  color: #ccc;
+  font-weight: bold;
+  background-color: rgba(255,255,255,.8);
+
+  .x-phone & {
+    font-size: 21px;
+  }
+
+  .x-tablet & {
+    margin: 20px;
+  }
+}
+
+#touchinfopanel {
+  border-right: 1px solid #000;
+  background-color: #eee;
+
+  .x-toolbar-metal {
+    height: 30px;
+    border-top: 1px solid #666;
+    border-bottom: 1px solid #666;
+
+    .x-toolbar-title {
+      line-height: 30px !important;
+      font-size: 16px;
+      text-shadow: rgba(0,0,0,.5) 0 -1px 0;
+    }
+  }
+}
+
+.x-tablet .x-nested-list,
+.x-desktop .x-nested-list {
+  border-right: 1px solid #000;
+}
+
+.x-tablet #ext-nestedlist-1 .x-list-inner .x-list-item:last-child,
+.x-desktop #ext-nestedlist-1 .x-list-inner .x-list-item:last-child {
+  overflow: visible;
+}
+
+#mainNestedList .x-list-inner .x-list-item:last-child {
+  .x-tablet &, .x-desktop & {
+    overflow: visible;
+
+    &:after {
+      content: "\00a0";
+      position: absolute;
+      bottom: -80px;
+      margin-bottom: 20px;
+      left: 110px;
+      width: 30px;
+      height: 43px;
+      pointer-events: none;
+      background-image: url(../images/sencha_small.png);
+    }
+  }
+}
+
+.overlay .x-panel-body {
+  background-color: #5E99CC;
+  padding: 80px 0 !important;
+  text-align: center;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: bold;
+  color: rgba(0,0,0,.4);
+  text-shadow: rgba(255,255,255,.2) 0 1px 0;
+  background-color: #ccc;
+  padding: 100px 15%;
+}
+
+#showSourceWrap {
+  border-top: 1px solid #ccc;
+  padding: 10px;
+}
+
+#showSourceButton {
+  width: 100%;
+}
+
+.feedflare {
+  display: none !important;
+}
+
+span.loading {
+  display: inline-block;
+  background: rgba(0,0,0,.1);
+  padding-top: 100px;
+  vertical-align: middle;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  color: rgba(0,0,0,.5);
+  text-shadow: rgba(255,255,255,.3);
+  font-size: 32px;
+}
+
+.x-tablet .demo-list > .x-panel-body,
+.demo-picker > .x-panel-body {
+  background-color: #494949;
+}
+
+.x-tablet .demo-list .x-list-outer,
+.demo-picker .x-picker {
+  border: 1px solid #3A3A3A;
+  background-color: #f7f7f7;
+}
+
+.x-simulator-thumb {
+  width: 40px;
+  height: 40px;
+  background: #eee;
+  @include border-radius(20px);
+  @include box-shadow(0 0 4px #555);
+  opacity: 0.6;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 9999999;
+
+  &.pressed {
+    background: #f60;
+  }
+}
+
+
+.x-tablet .x-simulator-popup .x-panel-body { font-size: 120% }
+
+.theme_choice img {
+  vertical-align: middle;
+}
+
+.myAudio-outer {
+  text-align: center;
+  background-color: #6A466F;
+}
+
+.myAudio {
+  position: relative;
+}
+
+.myAudio audio {
+  position: absolute;
+  top: 50%;
+  margin-top: -12px;
+  width: 100%;
+}
+
+.ux-code {
+  background: #fff;
+  padding: 6px;
+  font-size: 18px;
+  line-height: 24px;
+  color: #000;
+}
+
+.ux-code-comment { color: #777; font-style: italic; }
+.ux-code-string { color: #99BD3A; }
+.ux-code-comment > .ux-code-string { color: #777; }
+.ux-code-number { color: #2F88DE; }
+.ux-code-operator { color: #aaa; }
+.ux-code-keyword { color: #dd7522; }
+.ux-code-function { color: #f3c55f; }
+
+// Weather demo
+
+.demo-weather {
+  text-align: center;
+}
+.day {
+  display: inline-block;
+  background-color: #f9f9f9;
+  color: rgba(0, 0, 0, .6);
+  text-shadow: #fff 0 1px 0;
+  width: 8em;
+  text-align: center;
+  @include border-radius(15px);
+  @include box-shadow(inset 0 0 4px #888);
+  box-shadow: inset 0 0 4px #888;
+  padding: 1em;
+  margin: .5em;
+
+  .x-android & {
+    @include box-shadow(none);
+  }
+}
+.date {
+  font-size: .8em;
+}
+.icon img {
+  @include border-radius(10px);
+  margin: .6em;
+  width: 3.5em;
+}
+.temp {
+  margin-top: .2em;
+  display: block;
+  font-size: 2.2em;
+  line-height: .5em;
+}
+.temp_low {
+  display: inline;
+  font-size: .5em;
+  color: rgba(30, 30, 30, .5);
+}
+
+// Blog posts
+
+.blog-post h3 {
+  margin-bottom: .5em;
+
+  a {
+    color: #000;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 1.3em;
+    border-bottom: 1px solid #ddd;
+  }
+}
+
+.x-video-ghost {
+    background-color: white
+}

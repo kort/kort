@@ -1,0 +1,153 @@
+$active-color: #74B446;
+
+$include-default-icons: false;
+
+// This is just a quick example of how to create a custom Sass-based stylesheets
+
+// Note how we are changing the overall style of buttons
+// and also optimizing our the CSS download by removing unused components
+
+// This must be compiled after it is edited, for more information, see
+// http://www.sass-lang.org
+
+@import 'sencha-touch/default/all';
+
+@include sencha-panel;
+@include sencha-buttons;
+@include sencha-toolbar-forms;
+@include sencha-toolbar;
+@include sencha-carousel;
+@include sencha-list;
+@include sencha-layout;
+@include sencha-form;
+@include sencha-loading-spinner;
+
+@include pictos-iconmask('refresh');
+
+@include sencha-toolbar-ui('green', #74B446);
+.x-toolbar-green {
+  border-bottom-color: darken(#4B9123, 15) !important;
+
+  .x-title {
+    color: #fff;
+  }
+}
+
+// gray toolbar
+@include sencha-toolbar-ui('gray', #ddd, 'matte');
+.x-toolbar-gray {
+  border-bottom-color: #555 !important;
+  height: auto;
+}
+
+//loan detail
+//information
+.detail-card {
+  padding: 1.2em;
+  margin: 0;
+
+  h1 {
+    font-size: 22px;
+    line-height: 26px;
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+
+  h2 {
+    font-size: 16px;
+    line-height: 22px;
+    margin-bottom: .2em;
+    color: #999;
+  }
+
+  .payment {
+    overflow: hidden;
+    padding: .3em 0;
+    font-size: 16px;
+    border-bottom: 1px solid #ccc;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    span {
+      display: block;
+      float: right;
+      color: #74B446;
+    }
+  }
+}
+
+.x-toolbar {
+  .x-field {
+    width: 9em;
+  }
+}
+
+.x-dataview-loans {
+  .x-img {
+    margin-right: 1em;
+    background-position: center center;
+//    border: 1px solid $complement;
+
+    width: 60px;
+    height: 60px;
+  }
+
+  .x-list-item {
+    padding: 1em;
+    border-bottom: 1px solid darken(#EEEEEE, 5);
+    -webkit-transition: linear .2s background;
+
+    .name div {
+      font-weight: bold;
+    }
+  }
+
+  .x-item-selected {
+    background: #fff;
+  }
+
+  .completion {
+    @include display-box;
+    @include box-align(center);
+
+    .x-innerhtml {
+      @include display-box;
+      @include box-align(stretch);
+
+      height: 1em;
+      width: 100%;
+      border: 1px solid #bbb;
+      -webkit-box-shadow: inset 0 0 1px #fff;
+      padding: 1px;
+      @include border-radius(1em);
+      @include background-gradient(lighten(#ddd, 2), recessed);
+
+      .bar {
+        min-width: 1em;
+        border: 1px solid darken(#4B9123, 0);
+        @include border-radius(1em);
+        @include background-gradient(#74B446, matte);
+      }
+    }
+  }
+}
+
+// detail view
+.x-sheet-detail {
+//  padding: 1em;
+  background: #fff;
+  @include border-left-radius(.5em);
+
+  .x-button {
+    margin: 1em;
+  }
+}
+
+.x-phone {
+  .x-sheet-detail {
+    @include border-top-right-radius(.5em);
+    @include border-bottom-left-radius(0);
+  }
+}
