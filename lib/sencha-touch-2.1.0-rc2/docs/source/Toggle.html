@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Ext-slider-Toggle'>/**
+</span> * @private
+ */
+Ext.define('Ext.slider.Toggle', {
+    extend: 'Ext.slider.Slider',
+
+    config: {
+<span id='Ext-slider-Toggle-cfg-baseCls'>        /**
+</span>         * @cfg
+         * @inheritdoc
+         */
+        baseCls: 'x-toggle',
+
+<span id='Ext-slider-Toggle-cfg-minValueCls'>        /**
+</span>         * @cfg {String} minValueCls CSS class added to the field when toggled to its minValue
+         * @accessor
+         */
+        minValueCls: 'x-toggle-off',
+
+<span id='Ext-slider-Toggle-cfg-maxValueCls'>        /**
+</span>         * @cfg {String} maxValueCls CSS class added to the field when toggled to its maxValue
+         * @accessor
+         */
+        maxValueCls: 'x-toggle-on'
+    },
+
+<span id='Ext-slider-Toggle-method-initialize'>    initialize: function() {
+</span>        this.callParent();
+
+        this.on({
+            change: 'onChange'
+        });
+    },
+
+<span id='Ext-slider-Toggle-method-applyMinValue'>    applyMinValue: function() {
+</span>        return 0;
+    },
+
+<span id='Ext-slider-Toggle-method-applyMaxValue'>    applyMaxValue: function() {
+</span>        return 1;
+    },
+
+<span id='Ext-slider-Toggle-method-applyIncrement'>    applyIncrement: function() {
+</span>        return 1;
+    },
+
+<span id='Ext-slider-Toggle-method-updateMinValueCls'>    updateMinValueCls: function(newCls, oldCls) {
+</span>        var element = this.element;
+
+        if (oldCls &amp;&amp; element.hasCls(oldCls)) {
+            element.replaceCls(oldCls, newCls);
+        }
+    },
+
+<span id='Ext-slider-Toggle-method-updateMaxValueCls'>    updateMaxValueCls: function(newCls, oldCls) {
+</span>        var element = this.element;
+
+        if (oldCls &amp;&amp; element.hasCls(oldCls)) {
+            element.replaceCls(oldCls, newCls);
+        }
+    },
+
+<span id='Ext-slider-Toggle-method-setValue'>    setValue: function(newValue, oldValue) {
+</span>        this.callParent(arguments);
+        this.onChange(this, this.getThumbs()[0], newValue, oldValue);
+    },
+
+<span id='Ext-slider-Toggle-method-onChange'>    onChange: function(me, thumb, newValue, oldValue) {
+</span>        var isOn = newValue &gt; 0,
+            onCls = me.getMaxValueCls(),
+            offCls = me.getMinValueCls();
+
+        this.element.addCls(isOn ? onCls : offCls);
+        this.element.removeCls(isOn ? offCls : onCls);
+    },
+
+<span id='Ext-slider-Toggle-method-toggle'>    toggle: function() {
+</span>        var value = this.getValue();
+        this.setValue((value == 1) ? 0 : 1);
+
+        return this;
+    },
+
+<span id='Ext-slider-Toggle-method-onTap'>    onTap: function() {
+</span>        if (this.isDisabled() || this.getReadOnly()) {
+            return;
+        }
+
+        var oldValue = this.getValue(),
+            newValue = (oldValue == 1) ? 0 : 1,
+            thumb = this.getThumb(0);
+
+        this.setIndexValue(0, newValue, this.getAnimation());
+        this.refreshThumbConstraints(thumb);
+
+        this.fireEvent('change', this, thumb, newValue, oldValue);
+    }
+});
+</pre>
+</body>
+</html>
