@@ -14,13 +14,11 @@ Ext.application({
         'Ext.MessageBox',
         'Ext.i18n.Bundle'
     ],
-
-   views: [
-		'Main'
-	],
     
     controllers: [
-		'Map'
+        'Main',
+		'Bugmap',
+        'Profile'
 	],
     
     models: [

@@ -7,26 +7,41 @@ Ext.define('Kort.controller.Main', {
         ],
         refs: {
             mainTabPanel: '#mainTabPanel',
-            map: '#leafletMap'
+            bugmap: '#bugmap'
         },
         control: {
             mainTabPanel: {
                 activeitemchange: 'onMainTabPanelActiveItemChange',
                 initialize: 'onMainTabPanelInitialize'
+            },
+            bugmap: {
+                maprender: 'onBugmapRender'
             }
         },
         routes: {
-            'list': 'showList',
-            'map': 'showMap',
-            'map/:lat/:lng': {
-                action: 'showMap',
+            'bugmap': 'showBugmap',
+            'bugmap/:lat/:lng': {
+                action: 'showBugmap',
                 // only allow floating numbers for latitude and longitude
                 conditions: {
                     ':lat': "[0-9]+\.+[0-9]+",
                     ':lng': "[0-9]+\.+[0-9]+"
                 }
-            }
-        }
+            },
+            'bugmap/show/:bugid': 'showBug',
+            'profile': 'showProfile'
+        },
+        
+        initView: null,
+        initLat: null,
+        initLng: null,
+        redirect: true,
+        centerToOwnPosition: true,
+        bugmapRendered: false
+    },
+    
+    onBugmapRender: function() {
+        this.setBugmapRendered(true);
     },
 
     /**
@@ -63,8 +78,8 @@ Ext.define('Kort.controller.Main', {
      * Shows list view
      * @private
      */
-    showList: function() {
-        var viewName = 'list';
+    showProfile: function() {
+        var viewName = 'profile';
         this.saveInitView(viewName);
         this.switchView(viewName);
     },
@@ -77,13 +92,19 @@ Ext.define('Kort.controller.Main', {
      * 
      * @private
      */
-    showMap: function(lat,lng) {
-        var viewName = 'map';
+    showBugmap: function(lat,lng) {
+        var viewName = 'bugmap';
         this.saveInitView(viewName, lat, lng);
         this.centerMap(lat,lng);
         this.switchView(viewName);
     },
 
+    showBug: function(id) {
+        console.log(id);
+        var viewName = 'bugmap';
+        this.switchView(viewName);
+    },
+    
     /**
      * Centers problem map to given position
      * 
@@ -93,14 +114,14 @@ Ext.define('Kort.controller.Main', {
      * @private
      */
     centerMap: function(lat,lng) {
-        if(this.getMap() && lat && lng) {
-            if(!this.getMap().getDisplayed()) {
+        if(this.getBugmap() && lat && lng) {
+            if(!this.getBugmapRendered()) {
                 // Timeout to center map correctly on first call (wait till map is correctly rendered)
                 Ext.defer(function() {
                     this.centerMap(lat,lng);
                 }, 500, this);
             } else {
-                this.getMap().setMapCenter(L.latLng(this.getInitLat(), this.getInitLng()));
+                this.getBugmap().setMapCenter(L.latLng(this.getInitLat(), this.getInitLng()));
 
                 this.setInitLat(null);
                 this.setInitLng(null);
@@ -142,55 +163,12 @@ Ext.define('Kort.controller.Main', {
         }
     },
 
-    // -------------------------------------------------------
-    // Base Class functions
-    // -------------------------------------------------------
-    init: function () {
-        var me = this;
-        me.initView = null;
-        me.initLat = null;
-        me.initLng = null;
-        me.redirect = true;
-        me.centerToOwnPosition = true;
-    },
-
     // returns position of each view in tabpanel
     getViewNr: function(viewName) {
         var views = {
-            'map': 0,
-            'list': 1
+            'bugmap': 0,
+            'profile': 1
         };
         return views[viewName];
-    },
-
-    getInitView: function() {
-        return this.initView;
-    },
-    setInitView: function(initView) {
-        this.initView = initView;
-    },
-    getInitLat: function() {
-        return this.initLat;
-    },
-    setInitLat: function(lat) {
-        this.initLat = lat;
-    },
-    getInitLng: function() {
-        return this.initLng;
-    },
-    setInitLng: function(lng) {
-        this.initLng = lng;
-    },
-    getRedirect: function() {
-        return this.redirect;
-    },
-    setRedirect: function(redirect) {
-        this.redirect = redirect;
-    },
-    getCenterToOwnPosition: function() {
-        return this.centerToOwnPosition;
-    },
-    setCenterToOwnPosition: function(centerToOwnPosition) {
-        this.centerToOwnPosition = centerToOwnPosition;
     }
 });
