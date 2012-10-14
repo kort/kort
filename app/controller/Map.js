@@ -26,7 +26,7 @@ Ext.define('Kort.controller.Map', {
             
             // add listener for locationupdate event of geolocation for setting marker position
 			cmp.getGeo().addListener('locationupdate', function() {
-				me.setOwnPositionMarkerPosition(L.latLng(this.getLatitude(), this.getLongitude()));
+				me.setOwnPositionMarkerPosition(new L.LatLng(this.getLatitude(), this.getLongitude()));
 			});
         }
         
@@ -41,13 +41,13 @@ Ext.define('Kort.controller.Map', {
             icon,
             ownPositionMarker;
 
-        icon = L.icon({
+        icon = new L.Icon({
             iconUrl: './resources/images/marker_icons/own_position.png',
             iconSize: [iconWidth, iconHeight],
             iconAnchor: [(iconWidth/2), (iconHeight/2)]
 
         });
-        ownPositionMarker = L.marker([cmp.getGeo().getLatitude(), cmp.getGeo().getLongitude()], {
+        ownPositionMarker = new L.Marker([cmp.getGeo().getLatitude(), cmp.getGeo().getLongitude()], {
             icon: icon,
             clickable: false
         });
@@ -92,7 +92,7 @@ Ext.define('Kort.controller.Map', {
             shadowHeight = 37,
             icon;
         
-        icon = L.icon({
+        icon = new L.Icon({
             iconUrl: './resources/images/marker_icons/' + type + '.png',
             iconSize: [iconWidth, iconHeight],
             iconAnchor: [(iconWidth/2), iconHeight],
