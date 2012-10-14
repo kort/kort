@@ -23,4 +23,6 @@ after_script:
   - git commit -m "Travis CI commit of files added/modified from build"
   - heroku keys:clear
   - yes | heroku keys:add
+  - heroku apps:destroy kort
+  - heroku apps:create kort
   - git push -f heroku travis:master
