@@ -24,6 +24,6 @@ after_script:
   - gem install heroku
   - heroku keys:clear
   - yes | heroku keys:add
-  - heroku app:destroy --confirm kort
-  - heroku app:create kort
+  - heroku apps:destroy --confirm kort
+  - heroku apps:create kort
   - git push -f heroku travis:master
