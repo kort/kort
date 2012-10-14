@@ -59,10 +59,8 @@ Ext.define('Kort.controller.Bugmap', {
     },
 
     /**
-     * Sets position of own position marker 
-     * 
-     * @param	latlng		position of marker
-     * 
+     * Sets position of own position marker
+     * @param latlng position of marker
      * @private
      */
     setOwnPositionMarkerPosition: function(latlng) {
