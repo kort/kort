@@ -1,8 +1,13 @@
 /**
- *
+ * @class Ext.chart.axis.layout.Layout
+ * 
+ * Interface used by Axis to process its data into a meaningful layout.
  */
 Ext.define("Ext.chart.axis.layout.Layout", {
     config: {
+        /**
+         * @cfg {Ext.chart.axis.Axis} axis The axis that the Layout is bound.
+         */
         axis: null
     },
 

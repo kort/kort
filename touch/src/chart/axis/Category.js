@@ -9,8 +9,7 @@
  *
  * As with other axis you can set the position of the axis and its title. For example:
  *
- * {@img Ext.chart.axis.Category/Ext.chart.axis.Category.png Ext.chart.axis.Category chart axis}
- *
+ *     @example preview
  *     var store = new Ext.data.JsonStore({
  *         fields: ['name', 'data1', 'data2', 'data3', 'data4', 'data5'],
  *         data: [
@@ -22,53 +21,43 @@
  *         ]
  *     });
  *
- *     new Ext.chart.AbstractChart({
- *         renderTo: Ext.getBody(),
- *         width: 500,
- *         height: 300,
+ *     var chart = new Ext.chart.CartesianChart({
+ *         animate: true,
  *         store: store,
  *         axes: [{
- *             type: 'Numeric',
- *             grid: true,
+ *             type: 'numeric',
  *             position: 'left',
- *             fields: ['data1', 'data2', 'data3', 'data4', 'data5'],
- *             title: 'Sample Values',
- *             grid: {
- *                 odd: {
- *                     opacity: 1,
- *                     fill: '#ddd',
- *                     stroke: '#bbb',
- *                     'lineWidth': 1
- *                 }
+ *             fields: ['data1'],
+ *             title: {
+ *                 text: 'Sample Values',
+ *                 fontSize: 15
  *             },
- *             minimum: 0,
- *             adjustMinimumByMajorUnit: false
+ *             grid: true,
+ *             minimum: 0
  *         }, {
- *             type: 'Category',
+ *             type: 'category',
  *             position: 'bottom',
  *             fields: ['name'],
- *             title: 'Sample Metrics',
- *             grid: true,
- *             label: {
- *                 rotate: {
- *                     degrees: 315
- *                 }
+ *             title: {
+ *                 text: 'Sample Values',
+ *                 fontSize: 15
  *             }
  *         }],
  *         series: [{
  *             type: 'area',
- *             highlight: false,
- *             axis: 'left',
+ *             subStyle: {
+ *                 fill: ['blue', 'green', 'red']
+ *             },
  *             xField: 'name',
- *             yField: ['data1', 'data2', 'data3', 'data4', 'data5'],
- *             style: {
- *                 opacity: 0.93
- *             }
+ *             yField: ['data1', 'data2', 'data3']
+ *         
  *         }]
  *     });
+ *     Ext.Viewport.setLayout('fit');
+ *     Ext.Viewport.add(chart);
  *
  * In this example with set the category axis to the bottom of the surface, bound the axis to
- * the `name` property and set as title _Month of the Year_.
+ * the `name` property and set as title "Sample Values".
  */
 
 Ext.define('Ext.chart.axis.Category', {

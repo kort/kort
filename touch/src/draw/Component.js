@@ -269,5 +269,8 @@ Ext.define('Ext.draw.Component', {
 }, function () {
     if (location.search.match('svg')) {
         Ext.draw.Component.prototype.engine = 'Ext.draw.engine.Svg';
+    } else if (Ext.os.is.Android4 && !Ext.browser.is.Chrome && Ext.os.version.getMinor() === 1) {
+        // http://code.google.com/p/android/issues/detail?id=37529
+        Ext.draw.Component.prototype.engine = 'Ext.draw.engine.Svg';
     }
 });

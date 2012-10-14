@@ -18,7 +18,7 @@ $default-gradient: $base-gradient;
 @mixin pictos-iconmask($name) {
   .x-tab .x-button-icon.#{$name},
   .x-button .x-button-icon.x-icon-mask.#{$name} {
-    -webkit-mask-image: theme_image($theme-name, "pictos/" + $name + ".png");
+    -webkit-mask-image: theme_image('default', "pictos/" + $name + ".png");
   }
 }
 

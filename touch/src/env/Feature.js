@@ -161,7 +161,7 @@ Ext.define('Ext.env.Feature', {
          * True if the current device supports touch events (`touchstart`).
          */
         Touch: function() {
-            return this.isEventSupported('touchstart') && !(Ext.os && Ext.os.name.match(/Windows|MacOS|Linux/));
+            return this.isEventSupported('touchstart') && !(Ext.os && Ext.os.name.match(/Windows|MacOS|Linux/) && !Ext.os.is.BlackBerry6);
         },
 
         /**
@@ -318,7 +318,7 @@ Ext.define('Ext.env.Feature', {
 
         /**
          * @member Ext.feature.has
-         * @property {Boolean}ClassList
+         * @property {Boolean} LocalStorage
          * True if LocalStorage is supported and can be written to.
          * False if LocalStorage is not supported or cannot be written to.
          */

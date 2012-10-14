@@ -1,7 +1,9 @@
 /**
+ * @class Ext.draw.modifier.Animation
+ * @extends Ext.draw.modifier.Modifier
+ * 
  * Animation modifier.
  *
- * TODO: Finish documentation
  */
 Ext.define("Ext.draw.modifier.Animation", {
     mixins: {
@@ -381,5 +383,11 @@ Ext.define("Ext.draw.modifier.Animation", {
                 break;
             }
         }
+    },
+
+    destroy: function () {
+        var me = this;
+        me.animatingPool.length = 0;
+        me.animation = false;
     }
 });

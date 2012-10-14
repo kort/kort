@@ -158,9 +158,7 @@ Ext.define('Ext.field.Field', {
         /**
          * @cfg {String} inputCls CSS class to add to the input element of this fields {@link #component}
          */
-        inputCls: null,
-
-        bubbleEvents: ['action']
+        inputCls: null
     },
 
     /**

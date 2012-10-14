@@ -124,7 +124,7 @@ Ext.define('Ext.device.purchases.Sencha', {
                     }
 
                     var store = Ext.create('Ext.data.Store', {
-                        model: 'Ext.device.pPrchases.Purchase',
+                        model: 'Ext.device.Purchases.Purchase',
                         data: array
                     });
 

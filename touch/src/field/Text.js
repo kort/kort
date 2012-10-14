@@ -191,7 +191,9 @@ Ext.define('Ext.field.Text', {
         component: {
             xtype: 'input',
             type : 'text'
-        }
+        },
+
+        bubbleEvents: ['action']
     },
 
     // @private

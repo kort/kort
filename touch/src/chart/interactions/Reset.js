@@ -1,4 +1,7 @@
 /**
+ * @class Ext.chart.interactions.Reset
+ * @extends Ext.chart.interactions.Abstract
+ * 
  * The Reset interaction allows resetting of all previous user interactions with
  * the chart. By default the reset is triggered by a double-tap on the empty chart
  * area; to customize the event use the {@link #event} config.
@@ -18,8 +21,6 @@
  *         }]
  *     });
  *
- * @author Nicolas Garcia Belmonte <nicolas@sencha.com>
- * @docauthor Jason Johnston <jason@sencha.com>
  */
 Ext.define('Ext.chart.interactions.Reset', {
 

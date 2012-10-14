@@ -55,8 +55,7 @@ Ext.define('Ext.dataview.component.ListItem', {
             xtype: 'component',
             cls: 'x-list-header',
             html: ' ',
-            hidden: true,
-            docked: 'top'
+            hidden: true
         },
 
         tpl: null,
@@ -87,7 +86,7 @@ Ext.define('Ext.dataview.component.ListItem', {
 
     updateHeader: function(header, oldHeader) {
         if (header) {
-            this.insert(1, header);
+            this.element.getFirstChild().insertFirst(header.element);
         } else if (oldHeader) {
             oldHeader.destroy();
         }

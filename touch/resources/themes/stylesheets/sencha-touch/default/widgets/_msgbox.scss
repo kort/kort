@@ -26,19 +26,19 @@
     }
 
     .x-msgbox-info {
-      -webkit-mask-image: theme_image($theme-name, "pictos/info.png");
+      -webkit-mask-image: theme_image('default', "pictos/info.png");
     }
 
     .x-msgbox-warning {
-      -webkit-mask-image: theme_image($theme-name, "pictos/warning_black.png");
+      -webkit-mask-image: theme_image('default', "pictos/warning_black.png");
     }
 
     .x-msgbox-question {
-      -webkit-mask-image: theme_image($theme-name, "pictos/help.png");
+      -webkit-mask-image: theme_image('default', "pictos/help.png");
     }
 
     .x-msgbox-error {
-      -webkit-mask-image: theme_image($theme-name, "pictos/minus_black2.png");
+      -webkit-mask-image: theme_image('default', "pictos/minus_black2.png");
     }
 
     .x-title {

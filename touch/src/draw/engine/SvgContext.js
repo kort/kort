@@ -1,5 +1,6 @@
 /**
- * @class
+ * @class Ext.draw.engine.SvgContext
+ *
  * A class that imitates a canvas context but generates svg elements instead.
  */
 Ext.define('Ext.draw.engine.SvgContext', {
@@ -288,7 +289,7 @@ Ext.define('Ext.draw.engine.SvgContext', {
         if (this.strokeStyle) {
             var path,
                 element = this.path.element;
-            if (!element) {
+            if (!element || !this.path.svgString) {
                 path = this.path.toString();
                 element = this.path.element = this.getElement('path');
                 this.surface.setElementAttributes(element, {

@@ -1,5 +1,5 @@
 /**
- * @class
+ * @class Ext.chart.axis.Axis
  *
  * Defines axis for charts. The axis position, type, style can be configured.
  * The axes are defined in an axes array of configuration objects where the type,
@@ -95,6 +95,9 @@ Ext.define('Ext.chart.axis.Axis', {
 
         renderer: null,
 
+        /**
+         * @cfg {Ext.chart.AbstractChart} The Chart that the Axis is bound.
+         */
         chart: null,
 
         steps: 10,
@@ -262,7 +265,7 @@ Ext.define('Ext.chart.axis.Axis', {
             case 'bottom':
                 return "vertical";
             case 'radial':
-                return "angular";
+                return "circular";
             case 'angular':
                 return "radial";
         }
@@ -532,23 +535,32 @@ Ext.define('Ext.chart.axis.Axis', {
     },
 
     updateCenter: function (center) {
-        var sprites = this.getSprites();
-        sprites[0].setAttributes({
-            centerX: center[0],
-            centerY: center[1]
-        });
-        this.gridSpriteEven.getTemplate().setAttributes({
-            translationX: center[0],
-            translationY: center[1],
-            rotationCenterX: center[0],
-            rotationCenterY: center[1]
-        });
-        this.gridSpriteOdd.getTemplate().setAttributes({
-            translationX: center[0],
-            translationY: center[1],
-            rotationCenterX: center[0],
-            rotationCenterY: center[1]
-        });
+        var sprites = this.getSprites(),
+            axisSprite = sprites[0],
+            centerX = center[0],
+            centerY = center[1];
+        if (axisSprite) {
+            axisSprite.setAttributes({
+                centerX: centerX,
+                centerY: centerY
+            });
+        }
+        if (this.gridSpriteEven) {
+            this.gridSpriteEven.getTemplate().setAttributes({
+                translationX: centerX,
+                translationY: centerY,
+                rotationCenterX: centerX,
+                rotationCenterY: centerY
+            });
+        }
+        if (this.gridSpriteOdd) {
+            this.gridSpriteOdd.getTemplate().setAttributes({
+                translationX: centerX,
+                translationY: centerY,
+                rotationCenterX: centerX,
+                rotationCenterY: centerY
+            });
+        }
     },
 
     getSprites: function () {

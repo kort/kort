@@ -1,10 +1,39 @@
 /**
  * Linear gradient.
+ *
+ *     @example preview miniphone
+ *     var component = new Ext.draw.Component({
+ *       items: [{
+ *         type: 'circle',
+ *         cx: 100,
+ *         cy: 100,
+ *         r: 25,
+ *         fillStyle: {
+ *           type: 'linear',
+ *           degrees: 90,
+ *           stops: [
+ *             {
+ *               offset: 0,
+ *               color: 'green'
+ *             },
+ *             {
+ *               offset: 1,
+ *               color: 'blue'
+ *             }
+ *           ]
+ *         }
+ *       }]
+ *     });
+ *     Ext.Viewport.setLayout('fit');
+ *     Ext.Viewport.add(component);
  */
 Ext.define("Ext.draw.gradient.Linear", {
     extend: 'Ext.draw.gradient.Gradient',
     type: 'linear',
     config: {
+        /**
+         * @cfg {Number} The degree of rotation of the gradient.
+         */
         degrees: 0
     },
 

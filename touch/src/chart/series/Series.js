@@ -44,7 +44,7 @@ Ext.define('Ext.chart.series.Series', {
     type: null,
 
     /**
-     * @property {String} type
+     * @property {String} seriesType
      * Default series sprite type.
      */
     seriesType: 'sprite',
@@ -698,7 +698,8 @@ Ext.define('Ext.chart.series.Series', {
             this.getHidden()[index] = value;
             this.updateHidden(this.getHidden());
         } else {
-            this.updateHidden([value]);
+            this.getHidden()[0] = value;
+            this.updateHidden(this.getHidden());
         }
     },
 

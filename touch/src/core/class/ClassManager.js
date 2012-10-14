@@ -1245,6 +1245,7 @@
          * @param {String} name
          * @param {Mixed} args Additional arguments after the name will be passed to the class' constructor.
          * @return {Object} instance
+         * @member Ext
          */
         create: alias(Manager, 'instantiate'),
 

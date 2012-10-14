@@ -1,5 +1,35 @@
 /**
- * TODO: Documention
+ * @class Ext.chart.interactions.Rotate
+ * @extends Ext.chart.interactions.Abstract
+ * 
+ * The Rotate interaction allows the user to rotate a polar chart about its central point.
+ *
+ *     @example preview
+ *     var store = new Ext.data.JsonStore({
+ *         fields: ['name', 'data1', 'data2', 'data3', 'data4', 'data5'],
+ *         data: [
+ *             {'name':'metric one', 'data1':10, 'data2':12, 'data3':14, 'data4':8, 'data5':13},
+ *             {'name':'metric two', 'data1':7, 'data2':8, 'data3':16, 'data4':10, 'data5':3},
+ *             {'name':'metric three', 'data1':5, 'data2':2, 'data3':14, 'data4':12, 'data5':7},
+ *             {'name':'metric four', 'data1':2, 'data2':14, 'data3':6, 'data4':1, 'data5':23},
+ *             {'name':'metric five', 'data1':27, 'data2':38, 'data3':36, 'data4':13, 'data5':33}
+ *         ]
+ *     });
+ *
+ *     var chart = new Ext.chart.PolarChart({
+ *         animate: true,
+ *         interactions: ['rotate'],
+ *         colors: ["#115fa6", "#94ae0a", "#a61120", "#ff8809", "#ffd13e"],
+ *         store: store,
+ *         series: [{
+ *             type: 'pie',
+ *             labelField: 'name',
+ *             xField: 'data3',
+ *             donut: 30
+ *         }]
+ *     });
+ *     Ext.Viewport.setLayout('fit');
+ *     Ext.Viewport.add(chart);
  */
 Ext.define('Ext.chart.interactions.Rotate', {
 

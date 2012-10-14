@@ -1,5 +1,6 @@
 /**
  * A mixin which allows a data component to be sorted
+ * @ignore
  */
 Ext.define('Ext.Sortable', {
     mixins: {

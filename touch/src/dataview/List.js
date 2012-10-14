@@ -827,9 +827,11 @@ Ext.define('Ext.dataview.List', {
     },
 
     updateItemHeights: function() {
-        if (!this.pendingHeightUpdate && !this.isPainted()) {
+        if (!this.isPainted()) {
             this.pendingHeightUpdate = true;
-            this.on('painted', this.updateItemHeights, this, {single: true});
+            if (!this.pendingHeightUpdate) {
+                this.on('painted', this.updateItemHeights, this, {single: true});
+            }
             return;
         }
 
@@ -940,6 +942,7 @@ Ext.define('Ext.dataview.List', {
             store = me.getStore(),
             scrollable = me.container.getScrollable(),
             scroller = scrollable && scrollable.getScroller(),
+            painted = me.isPainted(),
             storeCount = store.getCount();
 
         me.getItemMap().populate(storeCount, this.topItemPosition);
@@ -951,10 +954,12 @@ Ext.define('Ext.dataview.List', {
         // This will refresh the items on the screen with the new data
         if (me.listItems.length) {
             me.setItemsCount(me.listItems.length);
-            me.refreshScroller(scroller);
+            if (painted) {
+                me.refreshScroller(scroller);
+            }
         }
 
-        if (this.getScrollToTopOnRefresh() && scroller && list) {
+        if (painted && this.getScrollToTopOnRefresh() && scroller && list) {
             scroller.scrollToTop();
         }
 

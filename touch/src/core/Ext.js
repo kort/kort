@@ -566,14 +566,14 @@
             (function(){
                 eval(code);
             })();
-        },
+        }
 
         //<feature logger>
         /**
          * @private
          * @property
          */
-        Logger: {
+        ,Logger: {
             log: function(message, priority) {
                 if ('console' in global) {
                     if (!priority || !(priority in global.console)) {

@@ -1,7 +1,4 @@
 /**
- * @class Ext.chart.interactions.ItemInfo
- * @extends Ext.mixin.Observable
- *
  * The ItemInfo interaction allows displaying detailed information about a series data
  * point in a popup panel.
  *
@@ -24,9 +21,6 @@
  *             }
  *         }]
  *     });
-
- * @author Nicolas Garcia Belmonte <nicolas@sencha.com>
- * @docauthor Jason Johnston <jason@sencha.com>
  */
 Ext.define('Ext.chart.interactions.ItemInfo', {
 
@@ -43,7 +37,7 @@ Ext.define('Ext.chart.interactions.ItemInfo', {
         gesture: 'itemtap',
 
         /**
-         * @cfg {Object} infoPanel
+         * @cfg {Object} panel
          * An optional set of configuration overrides for the {@link Ext.Panel} that gets
          * displayed. This object will be merged with the default panel configuration.
          */
@@ -94,6 +88,7 @@ Ext.define('Ext.chart.interactions.ItemInfo', {
             panel = me.getPanel();
         me.item = item;
         me.fireEvent('show', me, item, panel);
+        Ext.Viewport.add(panel);
         panel.show('pop');
         series.setAttributesForItem(item, { highlighted: true });
         me.sync();

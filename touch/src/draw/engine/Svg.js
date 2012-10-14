@@ -1,4 +1,7 @@
 /**
+ * @class Ext.draw.engine.Svg
+ * @extends Ext.draw.Surface
+ * 
  * SVG engine.
  */
 Ext.define('Ext.draw.engine.Svg', {

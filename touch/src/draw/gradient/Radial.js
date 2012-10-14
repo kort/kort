@@ -1,15 +1,56 @@
 /**
  * Radial gradient.
+ * 
+ *     @example preview miniphone
+ *     var component = new Ext.draw.Component({
+ *       items: [{
+ *         type: 'circle',
+ *         cx: 100,
+ *         cy: 100,
+ *         r: 25,
+ *         fillStyle: {
+ *           type: 'radial',
+ *           start: {
+ *             x: 0,
+ *             y: 0,
+ *             r: 0
+ *           },
+ *           end: {
+ *             x: 0,
+ *             y: 0,
+ *             r: 1
+ *           }
+ *           stops: [
+ *             {
+ *               offset: 0,
+ *               color: 'white'
+ *             },
+ *             {
+ *               offset: 1,
+ *               color: 'blue'
+ *             }
+ *           ]
+ *         }
+ *       }]
+ *     });
+ *     Ext.Viewport.setLayout('fit');
+ *     Ext.Viewport.add(component);
  */
 Ext.define("Ext.draw.gradient.Radial", {
     extend: 'Ext.draw.gradient.Gradient',
     type: 'radial',
     config: {
+        /**
+         * @cfg {Object} start The starting circle of the gradient.
+         */
         start: {
             x: 0,
             y: 0,
             r: 0
         },
+        /**
+         * @cfg {Object} end The ending circle of the gradient.
+         */
         end: {
             x: 0,
             y: 0,

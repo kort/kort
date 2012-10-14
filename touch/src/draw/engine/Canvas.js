@@ -1,5 +1,5 @@
 /**
- * @class
+ * @class Ext.draw.engine.Canvas
  * @extends Ext.draw.Surface
  *
  * Provides specific methods to draw with 2D Canvas element.
@@ -7,6 +7,10 @@
 Ext.define('Ext.draw.engine.Canvas', {
     extend: 'Ext.draw.Surface',
     config: {
+        /**
+         * @cfg {Boolean} highPrecision
+         * True to have the canvas use double instead of single precision floating point.
+         */
         highPrecision: false
     },
     requires: ['Ext.draw.Animator'],
@@ -153,6 +157,8 @@ Ext.define('Ext.draw.engine.Canvas', {
 
     /**
      * @private
+     * 
+     * Creates the canvas element.
      */
     createCanvas: function () {
         var canvas = Ext.Element.create({

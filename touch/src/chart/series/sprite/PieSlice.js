@@ -1,3 +1,8 @@
+/**
+ * @class Ext.chart.series.sprite.PieSlice
+ * 
+ * Pie slice sprite.
+ */
 Ext.define("Ext.chart.series.sprite.PieSlice", {
     alias: 'sprite.pieslice',
     mixins: {

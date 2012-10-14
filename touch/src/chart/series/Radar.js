@@ -7,8 +7,7 @@
  * As with all other series, the Radar series must be appended in the *series* Chart array configuration. See the Chart
  * documentation for more information. A typical configuration object for the radar series could be:
  *
- * {@img Ext.chart.series.Radar/Ext.chart.series.Radar.png Ext.chart.series.Radar chart series}
- *
+ *     @example preview
  *     var store = new Ext.data.JsonStore({
  *         fields: ['name', 'data1', 'data2', 'data3', 'data4', 'data5'],
  *         data: [
@@ -20,61 +19,35 @@
  *         ]
  *     });
  *
- *     new Ext.chart.AbstractChart({
- *         renderTo: Ext.getBody(),
- *         width: 500,
- *         height: 300,
+ *     var chart = new Ext.chart.PolarChart({
  *         animate: true,
- *         theme:'Category2',
+ *         interactions: ['rotate'],
  *         store: store,
- *         axes: [{
- *             type: 'Radial',
- *             position: 'radial',
- *             label: {
- *                 display: true
- *             }
- *         }],
  *         series: [{
  *             type: 'radar',
  *             xField: 'name',
- *             yField: 'data3',
- *             showInLegend: true,
- *             marker: {
- *                 radius: 5,
- *                 size: 5
- *             },
+ *             yField: 'data4',
  *             style: {
- *                 'lineWidth': 2,
- *                 fill: 'none'
+ *               fillStyle: 'rgba(0, 0, 255, 0.1)',
+ *               strokeStyle: 'rgba(0, 0, 0, 0.8)',
+ *               lineWidth: 1
  *             }
- *         },{
- *             type: 'radar',
- *             xField: 'name',
- *             yField: 'data2',
- *             showInLegend: true,
- *             marker: {
- *                 radius: 5,
- *                 size: 5
- *             },
- *             style: {
- *                 'lineWidth': 2,
- *                 fill: 'none'
- *             }
- *         },{
- *             type: 'radar',
- *             xField: 'name',
- *             yField: 'data5',
- *             showInLegend: true,
- *             marker: {
- *                 radius: 5,
- *                 size: 5
- *             },
- *             style: {
- *                 'lineWidth': 2,
- *                 fill: 'none'
- *             }
- *         }]
+ *         }],
+ *         axes: [
+ *           {
+ *             type: 'numeric',
+ *             position: 'radial',
+ *             fields: 'data4'
+ *           },
+ *           {
+ *             type: 'category',
+ *             position: 'angular',
+ *             fields: 'name'
+ *           }
+ *         ]
  *     });
+ *     Ext.Viewport.setLayout('fit');
+ *     Ext.Viewport.add(chart);
  *
  *
  */

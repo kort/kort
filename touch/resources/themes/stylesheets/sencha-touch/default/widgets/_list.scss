@@ -8,56 +8,56 @@
  * @var {color} $list-color
  * Text color for list rows.
  */
-$list-color: #000 ! default;
+$list-color: #000 !default;
 
 /**
  * @var {color} $list-bg-color
  * Background-color for list rows.
  */
-$list-bg-color: #f7f7f7 ! default;
+$list-bg-color: #f7f7f7 !default;
 
 /**
  * @var {color} $include-list-highlights
  * Optionally disable all list gradients, text-shadows, and box-shadows. Useful for CSS debugging,
  * non-performant browsers, or minimalist designs.
  */
-$include-list-highlights: $include-highlights ! default;
+$include-list-highlights: $include-highlights !default;
 
 /**
  * @var {boolean} $list-zebrastripe
  * Optionally zebra-stripe the list (alternating background colors).
  */
-$list-zebrastripe: false ! default;
+$list-zebrastripe: false !default;
 
 /**
  * @var {color} $list-pressed-color
  * Background-color for pressed list rows.
  */
-$list-pressed-color: lighten($active-color, 50%) ! default;
+$list-pressed-color: lighten($active-color, 50%) !default;
 
 /**
  * @var {color} $list-active-color
  * Background-color for selected list rows.
  */
-$list-active-color: $active-color ! default;
+$list-active-color: $active-color !default;
 
 /**
  * @var {string} $list-active-gradient
  * Gradient style for selected list rows.
  */
-$list-active-gradient: $base-gradient ! default;
+$list-active-gradient: $base-gradient !default;
 
 /**
  * @var {color} $list-header-bg-color
  * Background-color for list header rows (in grouped lists).
  */
-$list-header-bg-color: lighten(saturate($base-color, 10%), 20%) ! default;
+$list-header-bg-color: lighten(saturate($base-color, 10%), 20%) !default;
 
 /**
  * @var {string} $list-header-gradient
  * Gradient style for list header rows (in grouped lists).
  */
-$list-header-gradient: $base-gradient ! default;
+$list-header-gradient: $base-gradient !default;
 
 /**
  * @var {measurement} $list-disclosure-size
@@ -75,7 +75,7 @@ $list-disclosure-round-size: 1.5em;
  * @var {measurement} $list-round-padding
  * Default padding for lists with a `round` ui.
  */
-$list-round-padding: 13px ! default;
+$list-round-padding: 13px !default;
 
 /**
  * Includes default list styles.
@@ -120,23 +120,15 @@ $list-round-padding: 13px ! default;
       width: 100%;
 
       &.x-item-pressed {
-        > .x-dock-vertical {
-          > .x-dock-body {
-            background: $list-pressed-color none;
-          }
+        .x-dock-horizontal {
+          background: $list-pressed-color none;
         }
       }
 
-      &.x-item-selected {
-        > .x-dock {
-          &.x-dock-vertical {
-            > .x-dock-body {
-              @include background-gradient($list-active-color, $list-active-gradient);
-              @include color-by-background($list-active-color);
-              @include bevel-by-background($list-active-color);
-            }
-          }
-        }
+      &.x-item-selected .x-dock-horizontal {
+        @include background-gradient($list-active-color, $list-active-gradient);
+        @include color-by-background($list-active-color);
+        @include bevel-by-background($list-active-color);
       }
 
       > .x-dock {
@@ -161,7 +153,18 @@ $list-round-padding: 13px ! default;
     @include transform(translate3d(0, 0, 0));
   }
 
+  .x-list-grouped .x-list-header-wrap .x-list-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
   .x-list-normal {
+    &.x-list-grouped .x-list-header-wrap .x-dock-horizontal {
+        padding-top: 26px;
+    }
+
     .x-list-header-wrap .x-item-header,
     .x-list-header {
       @include background-gradient($list-header-bg-color, $list-header-gradient);
@@ -177,25 +180,25 @@ $list-round-padding: 13px ! default;
 
     @if $list-zebrastripe {
       .x-list-item {
-        > .x-dock-vertical > .x-dock-body {
+        .x-dock-horizontal {
           border-top: 1px solid transparent;
         }
 
-        &:nth-child(even) > .x-dock-vertical > .x-dock-body {
+        &:nth-child(even) .x-dock-horizontal {
           background-color: darken($list-bg-color, 5%);
         }
 
-        &.x-list-footer-wrap:nth-child(odd) > .x-dock-vertical > .x-dock-body {
+        &.x-list-footer-wrap:nth-child(odd) .x-dock-horizontal {
           border-bottom: 1px solid darken($list-bg-color, 5%);
         }
       }
     } @else {
       .x-list-item {
-        > .x-dock-vertical > .x-dock-body {
+        .x-dock-horizontal {
           border-top: 1px solid darken($list-bg-color, 10%);
         }
 
-        &.x-list-footer-wrap > .x-dock-vertical > .x-dock-body {
+        &.x-list-footer-wrap .x-dock-horizontal {
           border-bottom: 1px solid darken($list-bg-color, 10%);
         }
       }
@@ -203,12 +206,12 @@ $list-round-padding: 13px ! default;
 
     .x-list-item {
       @if $include-list-highlights {
-        &.x-item-pressed > .x-dock-vertical > .x-dock-body {
+        &.x-item-pressed .x-dock-horizontal {
             border-top-color: $list-pressed-color;
             background-color: $list-pressed-color;
         }
 
-        &.x-item-selected > .x-dock-vertical > .x-dock-body {
+        &.x-item-selected .x-dock-horizontal {
             border-top-color: $list-active-color;
             border-bottom: 1px solid darken($list-active-color, 15%);
         }
@@ -216,18 +219,31 @@ $list-round-padding: 13px ! default;
     }
   }
 
-  .x-list-normal.x-list-grouped .x-list-item.x-list-header-wrap > .x-dock-vertical > .x-dock-body {
+  .x-list-normal.x-list-grouped .x-list-item.x-list-header-wrap .x-dock-horizontal {
     border-top: 0;
   }
 
   .x-list-round {
+    &.x-list-grouped .x-list-header-wrap .x-dock-horizontal {
+      padding-top: 31px;
+    }
+
     .x-scroll-view {
-      background-color: #EEEEEE !important;
+      background-color: #eee !important;
       // @todo No !important plz
     }
 
     .x-list-header-swap {
       padding-right: $list-round-padding;
+    }
+
+    .x-list-inner .x-scroll-container {
+        top: 13px;
+        left: 13px;
+        bottom: 13px;
+        right: 13px;
+        width: auto !important;
+        height: auto !important;
     }
 
     .x-list-disclosure {
@@ -261,14 +277,11 @@ $list-round-padding: 13px ! default;
 
     &.x-list-ungrouped,
     &.x-list-grouped {
-      .x-list-item {
-        > .x-dock-vertical {
-          > .x-dock-body {
-            border: solid #DDDDDD;
-            border-width: 1px 1px 0 1px;
-            background: #fff;
-          }
-        }
+      .x-list-item .x-dock-horizontal {
+        //border: solid #DDDDDD;
+        border: 1px solid darken($list-bg-color, 10%);
+        border-width: 1px 1px 0 1px;
+        background: $list-bg-color;
       }
     }
 
@@ -289,22 +302,28 @@ $list-round-padding: 13px ! default;
 
     &.x-list-grouped {
       .x-list-header-wrap {
-        > .x-dock-vertical {
-          > .x-dock-body {
-            @if $include-border-radius { @include border-top-radius($form-fieldset-radius); }
-          }
+        .x-dock-horizontal {
+          @if $include-border-radius { @include border-top-radius($form-fieldset-radius); }
+        }
+
+        .x-list-header {
+          border: 1px solid darken($list-bg-color, 10%);
+          border-width: 1px 1px 0 1px;
+          @if $include-border-radius { @include border-top-radius($form-fieldset-radius); }
         }
       }
 
       .x-list-footer-wrap {
         background: transparent;
-        border: none;
 
-        > .x-dock-vertical {
+        .x-dock-horizontal {
+          border: none;
+          background: transparent;
           padding-bottom: 13px;
 
           > .x-dock-body {
-            border-width: 1px;
+            border: 1px solid darken($list-bg-color, 10%);
+            background: $list-bg-color;
             @if $include-border-radius { @include border-bottom-radius($form-fieldset-radius); }
           }
         }

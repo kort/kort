@@ -1,9 +1,14 @@
 /**
- *
+ * @class Ext.chart.axis.segmenter.Segmenter
+ * 
+ * Interface for the type of data used in an Axis.
  */
 Ext.define("Ext.chart.axis.segmenter.Segmenter", {
 
     config: {
+        /**
+         * @cfg {Ext.chart.axis.Axis} axis The axis that the Segmenter is bound.
+         */
         axis: null
     },
 
@@ -15,6 +20,13 @@ Ext.define("Ext.chart.axis.segmenter.Segmenter", {
         return value;
     },
 
+    /**
+     * Returns the difference between the min and max value based on the given unit scale.
+     * 
+     * @param min the smaller value
+     * @param max the larger value
+     * @param unit the unit scale
+     */
     diff: function (min, max, unit) {
 
     },

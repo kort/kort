@@ -1,4 +1,6 @@
 /**
+ * @class Ext.draw.modifier.Modifier
+ * 
  * Each sprite has a stack of modifier. The resulting attributes of sprite is
  * the content of the stack top. When setting attributes to a sprite,
  * changes will be pushed-down though the stack of modifiers and pop-back the
@@ -20,7 +22,7 @@ Ext.define("Ext.draw.modifier.Modifier", {
         next: null,
 
         /**
-         * @cfg {Ext.draw.sprite.Sprite} sprite Sprite to bind
+         * @cfg {Ext.draw.sprite.Sprite} sprite The sprite that the modifier is bound.
          */
         sprite: null
     },
@@ -54,7 +56,7 @@ Ext.define("Ext.draw.modifier.Modifier", {
     },
 
     /**
-     * Invoked when the change need to be popped up to the top. 
+     * Invoked when changes need to be popped up to the top. 
      * @param attributes
      * @param changes
      */
@@ -67,7 +69,7 @@ Ext.define("Ext.draw.modifier.Modifier", {
     },
 
     /**
-     * 
+     * Invoked when changes need to pushed down to the sprite.
      * @param attr
      * @param {Object} changes The changes to make. This object might be changed unexpectedly inside the method. 
      * @return {Mixed}

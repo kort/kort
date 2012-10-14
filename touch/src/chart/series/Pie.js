@@ -7,8 +7,7 @@
  * As with all other series, the Pie Series must be appended in the *series* Chart array configuration. See the Chart
  * documentation for more information. A typical configuration object for the pie series could be:
  *
- * {@img Ext.chart.series.Pie/Ext.chart.series.Pie.png Ext.chart.series.Pie chart series}
- *
+ *     @example preview
  *     var store = new Ext.data.JsonStore({
  *         fields: ['name', 'data1', 'data2', 'data3', 'data4', 'data5'],
  *         data: [
@@ -20,41 +19,20 @@
  *         ]
  *     });
  *
- *     new Ext.chart.AbstractChart({
- *         renderTo: Ext.getBody(),
- *         width: 500,
- *         height: 300,
+ *     var chart = new Ext.chart.PolarChart({
  *         animate: true,
+ *         interactions: ['rotate'],
+ *         colors: ["#115fa6", "#94ae0a", "#a61120", "#ff8809", "#ffd13e"],
  *         store: store,
- *         theme: 'Base:gradients',
  *         series: [{
  *             type: 'pie',
- *             angleField: 'data1',
- *             showInLegend: true,
- *             tips: {
- *               trackMouse: true,
- *               width: 140,
- *               height: 28,
- *               renderer: function(storeItem, item) {
- *                 //calculate and display percentage on hover
- *                 var total = 0;
- *                 store.each(function(rec) {
- *                     total += rec.get('data1');
- *                 });
- *                 this.setTitle(storeItem.get('name') + ': ' + Math.round(storeItem.get('data1') / total * 100) + '%');
- *               }
- *             },
- *             highlight: {
- *               margin: 20
- *             },
- *             label: {
- *                 field: 'name',
- *                 display: 'rotate',
- *                 contrast: true,
- *                 font: '18px Arial'
- *             }
+ *             labelField: 'name',
+ *             xField: 'data3',
+ *             donut: 30
  *         }]
  *     });
+ *     Ext.Viewport.setLayout('fit');
+ *     Ext.Viewport.add(chart);
  *
  * In this configuration we set `pie` as the type for the series, set an object with specific style properties for highlighting options
  * (triggered when hovering elements). We also set true to `showInLegend` so all the pie slices can be represented by a legend item.

@@ -3,11 +3,7 @@
  *
  * Defines a common abstract parent class for all interactions.
  *
- * @author Jason Johnston <jason@sencha.com>
- * @docauthor Jason Johnston <jason@sencha.com>
  */
-
-
 Ext.define('Ext.chart.interactions.Abstract', {
 
     xtype: 'interaction',
@@ -24,10 +20,13 @@ Ext.define('Ext.chart.interactions.Abstract', {
         gesture: 'tap',
 
         /**
-         * @cfg {Ext.chart.AbstractChart} chart
+         * @cfg {Ext.chart.AbstractChart} chart The chart that the interaction is bound.
          */
         chart: null,
 
+        /**
+         * @cfg {Boolean} enabled 'true' if the interaction is enabled.
+         */
         enabled: true
     },
 

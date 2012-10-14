@@ -1,5 +1,8 @@
 /**
- *
+ * @class Ext.chart.axis.sprite.Axis
+ * @extends Ext.draw.sprite.Sprite
+ * 
+ * Axis sprite.
  */
 Ext.define("Ext.chart.axis.sprite.Axis", {
     extend: 'Ext.draw.sprite.Sprite',
@@ -482,7 +485,7 @@ Ext.define("Ext.chart.axis.sprite.Axis", {
                 } else if (position === 'radial') {
                     me.iterate(majorTicks, function (position, labelText, i) {
                         anchor = position / attr.max * attr.length;
-                        me.putMarker('angular-' + (i % 2 ? 'odd' : 'even'), {
+                        me.putMarker('circular-' + (i % 2 ? 'odd' : 'even'), {
                             scalingX: anchor,
                             scalingY: anchor
                         }, i, true);

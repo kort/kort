@@ -99,7 +99,8 @@ Ext.define('Ext.draw.sprite.Sprite', {
         'Ext.draw.sprite.AttributeDefinition',
         'Ext.draw.sprite.AttributeParser',
         'Ext.draw.modifier.Target',
-        'Ext.draw.modifier.Animation'
+        'Ext.draw.modifier.Animation',
+        'Ext.draw.modifier.Highlight'
     ],
 
     isSprite: true,
@@ -108,12 +109,12 @@ Ext.define('Ext.draw.sprite.Sprite', {
         def: {
             processors: {
                 /**
-                 * @cfg {Color} strokeStyle The color of the stroke.
+                 * @cfg {String} strokeStyle The color of the stroke (a CSS color value).
                  */
                 strokeStyle: "color",
 
                 /**
-                 * @cfg {Color} fillStyle The color of the shadow.
+                 * @cfg {String} fillStyle The color of the shadow (a CSS color value).
                  */
                 fillStyle: "color",
 
@@ -138,7 +139,7 @@ Ext.define('Ext.draw.sprite.Sprite', {
                 lineCap: "enums(butt,round,square)",
 
                 /**
-                 * @cfg {String} lineCap The style of the line join.
+                 * @cfg {String} lineJoin The style of the line join.
                  */
                 lineJoin: "enums(round,bevel,miter)",
 
@@ -148,7 +149,7 @@ Ext.define('Ext.draw.sprite.Sprite', {
                 miterLimit: "number",
 
                 /**
-                 * @cfg {Color} shadowColor The color of the shadow.
+                 * @cfg {String} shadowColor The color of the shadow (a CSS color value).
                  */
                 shadowColor: "color",
 
@@ -271,7 +272,7 @@ Ext.define('Ext.draw.sprite.Sprite', {
                 shadowOffsetX: 0,
                 shadowOffsetY: 0,
                 shadowBlur: 0,
-                
+
                 globalAlpha: 1,
                 strokeOpacity: 1,
                 fillOpacity: 1,
@@ -706,14 +707,14 @@ Ext.define('Ext.draw.sprite.Sprite', {
      * Removes the sprite and clears all listeners.
      */
     destroy: function () {
-        var me = this, modifier = me.topModifier, curr; 
+        var me = this, modifier = me.topModifier, curr;
         while (modifier) {
             curr = modifier;
             modifier = modifier.getPrevious();
             curr.destroy();
         }
         delete me.attr;
-        
+
         me.destroy = Ext.emptyFn;
         if (me.fireEvent('beforedestroy', me) !== false) {
             me.fireEvent('destroy', me);

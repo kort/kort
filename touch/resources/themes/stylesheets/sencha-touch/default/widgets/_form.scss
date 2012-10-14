@@ -309,7 +309,7 @@ $form-scrollable-fields: '.x-field-slider, .x-field-toggle';
     @include insertion(1.4em, 1.4em, 50%, auto);
     right: ($form-spacing + .5em);
     -webkit-mask-size: 1.4em;
-    -webkit-mask-image: theme_image($theme-name, "pictos/check2.png");
+    -webkit-mask-image: theme_image('default', "pictos/check2.png");
     margin-top: -.7em;
   }
 
@@ -319,7 +319,7 @@ $form-scrollable-fields: '.x-field-slider, .x-field-toggle';
     right: ($form-spacing + .5em);
     margin-top: -0.7em;
     -webkit-mask-size: 1.4em;
-    -webkit-mask-image: theme_image($theme-name, "pictos/circle4.png");
+    -webkit-mask-image: theme_image('default', "pictos/circle4.png");
   }
 
   .x-field-checkbox .x-input-el {
@@ -339,7 +339,7 @@ $form-scrollable-fields: '.x-field-slider, .x-field-toggle';
     }
     &:after {
       @include radiomark($form-light);
-      -webkit-mask-image: theme_image($theme-name, "pictos/circle3.png");
+      -webkit-mask-image: theme_image('default', "pictos/circle3.png");
     }
     &:checked:before {
       background-color: $active-color;
@@ -492,7 +492,7 @@ $form-scrollable-fields: '.x-field-slider, .x-field-toggle';
 
             &:before {
                 @include insertion(.86em, .86em, 50%, .5em);
-                -webkit-mask-image: theme_image($theme-name, "pictos/search.png");
+                -webkit-mask-image: theme_image('default', "pictos/search.png");
                 -webkit-mask-size: .86em;
                 background-color: #ccc;
                 -webkit-mask-repeat: no-repeat;
@@ -510,7 +510,7 @@ $form-scrollable-fields: '.x-field-slider, .x-field-toggle';
   .x-field-input {
     .x-clear-icon {
       display: none;
-      background: theme_image($theme-name, "clear_icon.png") no-repeat;
+      background: theme_image('default', "clear_icon.png") no-repeat;
       background-position: center center;
       background-size: 55% 55%;
       width: $form-clear-size;
@@ -615,7 +615,7 @@ $form-scrollable-fields: '.x-field-slider, .x-field-toggle';
     @include insertion(1em, 1em, 50%, auto);
     right: ($form-spacing + .1em);
     -webkit-mask-size: 1em;
-    -webkit-mask-image: theme_image($theme-name, "pictos/arrow_down.png");
+    -webkit-mask-image: theme_image('default', "pictos/arrow_down.png");
     margin-top: -.5em;
   }
 

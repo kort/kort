@@ -106,6 +106,7 @@ input, textarea {
   }
 
   .x-mask-inner {
+    position: relative;
     background: rgba(0, 0, 0, .25);
     color: #fff;
     text-align: center;
@@ -132,10 +133,22 @@ input, textarea {
   }
 
   .x-mask-message {
+    position: absolute;
+    bottom: 1.7em;
     @include bevel-text;
     -webkit-box-flex: 0 !important;
     max-width: 13em;
     min-width: $min-width;
+  }
+
+  &.x-has-message {
+    .x-mask-inner {
+      padding-bottom: 2em;
+    }
+
+    .x-loading-spinner-outer {
+      height: 7.5em;
+    }
   }
 }
 

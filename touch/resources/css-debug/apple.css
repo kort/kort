@@ -155,7 +155,7 @@ input, textarea, select {
  * The minimum row height for items like toolbars.
  */
 /**
- * @var {measurement} $global-row-height
+ * @var {measurement} $global-list-height
  * The minimum row height for items like toolbars.
  */
 /**
@@ -543,6 +543,7 @@ input, textarea {
 }
 /* line 108, ../themes/stylesheets/sencha-touch/default/core/_core.scss */
 .x-mask .x-mask-inner {
+  position: relative;
   background: rgba(0, 0, 0, 0.25);
   color: #fff;
   text-align: center;
@@ -552,7 +553,7 @@ input, textarea {
   -webkit-border-radius: 0.5em;
   border-radius: 0.5em;
 }
-/* line 118, ../themes/stylesheets/sencha-touch/default/core/_core.scss */
+/* line 119, ../themes/stylesheets/sencha-touch/default/core/_core.scss */
 .x-mask .x-loading-spinner-outer {
   display: -webkit-box;
   display: box;
@@ -566,34 +567,44 @@ input, textarea {
   min-width: 8.5em;
   height: 8.5em;
 }
-/* line 129, ../themes/stylesheets/sencha-touch/default/core/_core.scss */
+/* line 130, ../themes/stylesheets/sencha-touch/default/core/_core.scss */
 .x-mask.x-indicator-hidden .x-loading-spinner-outer {
   display: none;
 }
-/* line 134, ../themes/stylesheets/sencha-touch/default/core/_core.scss */
+/* line 135, ../themes/stylesheets/sencha-touch/default/core/_core.scss */
 .x-mask .x-mask-message {
+  position: absolute;
+  bottom: 1.7em;
   text-shadow: rgba(0, 0, 0, 0.5) 0 -0.08em 0;
   -webkit-box-flex: 0 !important;
   max-width: 13em;
   min-width: 8.5em;
 }
+/* line 145, ../themes/stylesheets/sencha-touch/default/core/_core.scss */
+.x-mask.x-has-message .x-mask-inner {
+  padding-bottom: 2em;
+}
+/* line 149, ../themes/stylesheets/sencha-touch/default/core/_core.scss */
+.x-mask.x-has-message .x-loading-spinner-outer {
+  height: 7.5em;
+}
 
-/* line 142, ../themes/stylesheets/sencha-touch/default/core/_core.scss */
+/* line 155, ../themes/stylesheets/sencha-touch/default/core/_core.scss */
 .x-draggable {
   z-index: 1;
 }
 
-/* line 146, ../themes/stylesheets/sencha-touch/default/core/_core.scss */
+/* line 159, ../themes/stylesheets/sencha-touch/default/core/_core.scss */
 .x-dragging {
   opacity: 0.7;
 }
 
-/* line 150, ../themes/stylesheets/sencha-touch/default/core/_core.scss */
+/* line 163, ../themes/stylesheets/sencha-touch/default/core/_core.scss */
 .x-panel-list {
   background-color: white;
 }
 
-/* line 155, ../themes/stylesheets/sencha-touch/default/core/_core.scss */
+/* line 168, ../themes/stylesheets/sencha-touch/default/core/_core.scss */
 .x-html {
   -webkit-user-select: auto;
   -webkit-touch-callout: inherit;
@@ -798,27 +809,27 @@ input, textarea {
 .x-html .loud {
   color: #111111;
 }
-/* line 165, ../themes/stylesheets/sencha-touch/default/core/_core.scss */
+/* line 178, ../themes/stylesheets/sencha-touch/default/core/_core.scss */
 .x-html ul li {
   list-style-type: circle;
 }
-/* line 168, ../themes/stylesheets/sencha-touch/default/core/_core.scss */
+/* line 181, ../themes/stylesheets/sencha-touch/default/core/_core.scss */
 .x-html ol li {
   list-style-type: decimal;
 }
 
-/* line 174, ../themes/stylesheets/sencha-touch/default/core/_core.scss */
+/* line 187, ../themes/stylesheets/sencha-touch/default/core/_core.scss */
 .x-video {
   background-color: #000;
 }
 
-/* line 178, ../themes/stylesheets/sencha-touch/default/core/_core.scss */
+/* line 191, ../themes/stylesheets/sencha-touch/default/core/_core.scss */
 .x-sortable .x-dragging {
   opacity: 1;
   z-index: 5;
 }
 
-/* line 183, ../themes/stylesheets/sencha-touch/default/core/_core.scss */
+/* line 196, ../themes/stylesheets/sencha-touch/default/core/_core.scss */
 .x-layout-card-item {
   background: #eeeeee;
 }
@@ -928,7 +939,7 @@ input, textarea {
  * The minimum row height for items like toolbars.
  */
 /**
- * @var {measurement} $global-row-height
+ * @var {measurement} $global-list-height
  * The minimum row height for items like toolbars.
  */
 /**
@@ -1284,7 +1295,7 @@ input, textarea {
  * The minimum row height for items like toolbars.
  */
 /**
- * @var {measurement} $global-row-height
+ * @var {measurement} $global-list-height
  * The minimum row height for items like toolbars.
  */
 /**
@@ -1640,7 +1651,7 @@ input, textarea {
  * The minimum row height for items like toolbars.
  */
 /**
- * @var {measurement} $global-row-height
+ * @var {measurement} $global-list-height
  * The minimum row height for items like toolbars.
  */
 /**
@@ -2032,7 +2043,7 @@ input, textarea {
  * The minimum row height for items like toolbars.
  */
 /**
- * @var {measurement} $global-row-height
+ * @var {measurement} $global-list-height
  * The minimum row height for items like toolbars.
  */
 /**
@@ -2430,7 +2441,7 @@ input, textarea {
  * The minimum row height for items like toolbars.
  */
 /**
- * @var {measurement} $global-row-height
+ * @var {measurement} $global-list-height
  * The minimum row height for items like toolbars.
  */
 /**
@@ -2869,7 +2880,7 @@ input, textarea {
  * The minimum row height for items like toolbars.
  */
 /**
- * @var {measurement} $global-row-height
+ * @var {measurement} $global-list-height
  * The minimum row height for items like toolbars.
  */
 /**
@@ -3254,7 +3265,7 @@ input, textarea {
  * The minimum row height for items like toolbars.
  */
 /**
- * @var {measurement} $global-row-height
+ * @var {measurement} $global-list-height
  * The minimum row height for items like toolbars.
  */
 /**
@@ -3628,7 +3639,7 @@ input, textarea {
  * The minimum row height for items like toolbars.
  */
 /**
- * @var {measurement} $global-row-height
+ * @var {measurement} $global-list-height
  * The minimum row height for items like toolbars.
  */
 /**
@@ -4039,7 +4050,7 @@ input, textarea {
  * The minimum row height for items like toolbars.
  */
 /**
- * @var {measurement} $global-row-height
+ * @var {measurement} $global-list-height
  * The minimum row height for items like toolbars.
  */
 /**
@@ -4395,7 +4406,7 @@ input, textarea {
  * The minimum row height for items like toolbars.
  */
 /**
- * @var {measurement} $global-row-height
+ * @var {measurement} $global-list-height
  * The minimum row height for items like toolbars.
  */
 /**
@@ -4828,7 +4839,7 @@ input, textarea {
  * The minimum row height for items like toolbars.
  */
 /**
- * @var {measurement} $global-row-height
+ * @var {measurement} $global-list-height
  * The minimum row height for items like toolbars.
  */
 /**
@@ -5211,7 +5222,7 @@ input, textarea {
  * The minimum row height for items like toolbars.
  */
 /**
- * @var {measurement} $global-row-height
+ * @var {measurement} $global-list-height
  * The minimum row height for items like toolbars.
  */
 /**
@@ -5601,7 +5612,7 @@ input, textarea {
  * The minimum row height for items like toolbars.
  */
 /**
- * @var {measurement} $global-row-height
+ * @var {measurement} $global-list-height
  * The minimum row height for items like toolbars.
  */
 /**
@@ -5957,7 +5968,7 @@ input, textarea {
  * The minimum row height for items like toolbars.
  */
 /**
- * @var {measurement} $global-row-height
+ * @var {measurement} $global-list-height
  * The minimum row height for items like toolbars.
  */
 /**
@@ -6313,7 +6324,7 @@ input, textarea {
  * The minimum row height for items like toolbars.
  */
 /**
- * @var {measurement} $global-row-height
+ * @var {measurement} $global-list-height
  * The minimum row height for items like toolbars.
  */
 /**
@@ -6685,7 +6696,7 @@ input, textarea {
  * The minimum row height for items like toolbars.
  */
 /**
- * @var {measurement} $global-row-height
+ * @var {measurement} $global-list-height
  * The minimum row height for items like toolbars.
  */
 /**
@@ -8774,12 +8785,12 @@ audio {
   color: black;
   width: 100%;
 }
-/* line 124, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
-.x-list .x-list-item.x-item-pressed > .x-dock-vertical > .x-dock-body {
+/* line 123, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+.x-list .x-list-item.x-item-pressed .x-dock-horizontal {
   background: #f8fbfe none;
 }
-/* line 133, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
-.x-list .x-list-item.x-item-selected > .x-dock.x-dock-vertical > .x-dock-body {
+/* line 128, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+.x-list .x-list-item.x-item-selected .x-dock-horizontal {
   background-image: none;
   background-color: #1a70dd;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #5899eb), color-stop(30%, #3985e7), color-stop(65%, #1a70dd), color-stop(100%, #1762c1));
@@ -8788,18 +8799,18 @@ audio {
   color: white;
   text-shadow: rgba(0, 0, 0, 0.5) 0 -0.08em 0;
 }
-/* line 142, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 134, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-list .x-list-item > .x-dock {
   height: auto;
 }
 
-/* line 148, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 140, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-list-item-body {
   min-height: 46px;
   padding: 0.65em 0.8em;
 }
 
-/* line 153, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 145, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-list-header-swap {
   position: absolute;
   left: 0;
@@ -8807,13 +8818,25 @@ audio {
   z-index: 2 !important;
 }
 
-/* line 160, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 152, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-ios .x-list-header-swap {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
 
-/* line 166, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 156, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+.x-list-grouped .x-list-header-wrap .x-list-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+/* line 164, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+.x-list-normal.x-list-grouped .x-list-header-wrap .x-dock-horizontal {
+  padding-top: 26px;
+}
+/* line 169, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-list-normal .x-list-header-wrap .x-item-header, .x-list-normal .x-list-header {
   background-image: none;
   background-color: rgba(113, 145, 185, 0.75);
@@ -8829,39 +8852,52 @@ audio {
   padding: 0.2em 1.02em;
   text-shadow: rgba(255, 255, 255, 0.25) 0 0.08em 0;
 }
-/* line 194, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
-.x-list-normal .x-list-item > .x-dock-vertical > .x-dock-body {
+/* line 197, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+.x-list-normal .x-list-item .x-dock-horizontal {
   border-top: 1px solid #dedede;
 }
-/* line 198, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
-.x-list-normal .x-list-item.x-list-footer-wrap > .x-dock-vertical > .x-dock-body {
+/* line 201, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+.x-list-normal .x-list-item.x-list-footer-wrap .x-dock-horizontal {
   border-bottom: 1px solid #dedede;
 }
-/* line 206, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
-.x-list-normal .x-list-item.x-item-pressed > .x-dock-vertical > .x-dock-body {
+/* line 209, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+.x-list-normal .x-list-item.x-item-pressed .x-dock-horizontal {
   border-top-color: #f8fbfe;
   background-color: #f8fbfe;
 }
-/* line 211, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
-.x-list-normal .x-list-item.x-item-selected > .x-dock-vertical > .x-dock-body {
+/* line 214, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+.x-list-normal .x-list-item.x-item-selected .x-dock-horizontal {
   border-top-color: #1a70dd;
   border-bottom: 1px solid #124d98;
 }
 
-/* line 219, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
-.x-list-normal.x-list-grouped .x-list-item.x-list-header-wrap > .x-dock-vertical > .x-dock-body {
+/* line 222, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+.x-list-normal.x-list-grouped .x-list-item.x-list-header-wrap .x-dock-horizontal {
   border-top: 0;
 }
 
-/* line 224, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
-.x-list-round .x-scroll-view {
-  background-color: #EEEEEE !important;
+/* line 227, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+.x-list-round.x-list-grouped .x-list-header-wrap .x-dock-horizontal {
+  padding-top: 31px;
 }
-/* line 229, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 231, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+.x-list-round .x-scroll-view {
+  background-color: #eee !important;
+}
+/* line 236, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-list-round .x-list-header-swap {
   padding-right: 13px;
 }
-/* line 233, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 240, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+.x-list-round .x-list-inner .x-scroll-container {
+  top: 13px;
+  left: 13px;
+  bottom: 13px;
+  right: 13px;
+  width: auto !important;
+  height: auto !important;
+}
+/* line 249, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-list-round .x-list-disclosure {
   overflow: hidden;
   -webkit-mask: 0 0 url('data:image/png;base64,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') no-repeat;
@@ -8875,7 +8911,7 @@ audio {
   height: 1.5em;
   margin: 0.5em 0.5em 0 0;
 }
-/* line 243, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 259, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-list-round .x-list-header {
   color: #777;
   font-size: 1em;
@@ -8886,29 +8922,29 @@ audio {
   background-image: -webkit-linear-gradient(top, #eeeeee, rgba(238, 238, 238, 0.9) 30%, rgba(238, 238, 238, 0.4));
   background-image: linear-gradient(top, #eeeeee, rgba(238, 238, 238, 0.9) 30%, rgba(238, 238, 238, 0.4));
 }
-/* line 253, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 269, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-list-round .x-list-container {
   padding: 13px 13px 0 13px;
 }
-/* line 256, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 272, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-list-round .x-list-container .x-list-header {
   padding-left: 13px;
   background-image: none;
 }
-/* line 266, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
-.x-list-round.x-list-ungrouped .x-list-item > .x-dock-vertical > .x-dock-body, .x-list-round.x-list-grouped .x-list-item > .x-dock-vertical > .x-dock-body {
-  border: solid #DDDDDD;
+/* line 280, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+.x-list-round.x-list-ungrouped .x-list-item .x-dock-horizontal, .x-list-round.x-list-grouped .x-list-item .x-dock-horizontal {
+  border: 1px solid #dedede;
   border-width: 1px 1px 0 1px;
-  background: #fff;
+  background: #f7f7f7;
 }
-/* line 277, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 290, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-list-round.x-list-ungrouped .x-list-item:first-child {
   -webkit-border-top-left-radius: 0.4em;
   border-top-left-radius: 0.4em;
   -webkit-border-top-right-radius: 0.4em;
   border-top-right-radius: 0.4em;
 }
-/* line 281, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 294, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-list-round.x-list-ungrouped .x-list-item:last-child {
   -webkit-border-bottom-left-radius: 0.4em;
   border-bottom-left-radius: 0.4em;
@@ -8917,65 +8953,76 @@ audio {
   border-width: 1px;
   margin-bottom: 13px;
 }
-/* line 293, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
-.x-list-round.x-list-grouped .x-list-header-wrap > .x-dock-vertical > .x-dock-body {
+/* line 305, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+.x-list-round.x-list-grouped .x-list-header-wrap .x-dock-horizontal {
   -webkit-border-top-left-radius: 0.4em;
   border-top-left-radius: 0.4em;
   -webkit-border-top-right-radius: 0.4em;
   border-top-right-radius: 0.4em;
 }
-/* line 299, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 309, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+.x-list-round.x-list-grouped .x-list-header-wrap .x-list-header {
+  border: 1px solid #dedede;
+  border-width: 1px 1px 0 1px;
+  -webkit-border-top-left-radius: 0.4em;
+  border-top-left-radius: 0.4em;
+  -webkit-border-top-right-radius: 0.4em;
+  border-top-right-radius: 0.4em;
+}
+/* line 316, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-list-round.x-list-grouped .x-list-footer-wrap {
   background: transparent;
-  border: none;
 }
-/* line 303, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
-.x-list-round.x-list-grouped .x-list-footer-wrap > .x-dock-vertical {
+/* line 319, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+.x-list-round.x-list-grouped .x-list-footer-wrap .x-dock-horizontal {
+  border: none;
+  background: transparent;
   padding-bottom: 13px;
 }
-/* line 306, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
-.x-list-round.x-list-grouped .x-list-footer-wrap > .x-dock-vertical > .x-dock-body {
-  border-width: 1px;
+/* line 324, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+.x-list-round.x-list-grouped .x-list-footer-wrap .x-dock-horizontal > .x-dock-body {
+  border: 1px solid #dedede;
+  background: #f7f7f7;
   -webkit-border-bottom-left-radius: 0.4em;
   border-bottom-left-radius: 0.4em;
   -webkit-border-bottom-right-radius: 0.4em;
   border-bottom-right-radius: 0.4em;
 }
 
-/* line 316, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 335, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-dataview-inlineblock .x-dataview-item, .x-dataview-inlineblock .x-data-item {
   display: inline-block !important;
 }
 
-/* line 322, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 341, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-dataview-nowrap .x-dataview-container {
   white-space: nowrap !important;
 }
 
-/* line 328, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 347, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-list-inlineblock .x-list-item {
   display: inline-block !important;
 }
 
-/* line 334, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 353, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-list-nowrap .x-list-inner {
   width: auto;
 }
-/* line 337, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 356, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-list-nowrap .x-list-container {
   white-space: nowrap !important;
 }
 
-/* line 344, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 363, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-list-paging {
   padding: 1em 0;
 }
-/* line 346, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 365, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-list-paging .x-loading-spinner {
   display: none;
   margin: auto;
 }
-/* line 351, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 370, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-list-paging .x-list-paging-msg {
   text-align: center;
   color: #1a70dd;
@@ -8983,20 +9030,20 @@ audio {
   -webkit-border-radius: 6px;
   border-radius: 6px;
 }
-/* line 358, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 377, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-list-paging.x-loading {
   padding: 0.5em;
 }
-/* line 361, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 380, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-list-paging.x-loading .x-loading-spinner {
   display: block;
 }
-/* line 365, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 384, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-list-paging.x-loading .x-list-paging-msg {
   display: none;
 }
 
-/* line 373, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 392, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-list-pullrefresh {
   display: -webkit-box;
   display: box;
@@ -9012,12 +9059,12 @@ audio {
   width: 100%;
   height: 4.5em;
 }
-/* line 384, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 403, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-list-pullrefresh .x-loading-spinner {
   display: none;
 }
 
-/* line 389, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 408, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-list-pullrefresh-arrow {
   width: 2.5em;
   height: 4.5em;
@@ -9029,25 +9076,25 @@ audio {
   transform: rotate(0deg);
 }
 
-/* line 400, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 419, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-android-2 .x-list-pullrefresh-arrow {
   -webkit-transition-property: none;
   -webkit-transition-duration: 0;
 }
 
-/* line 405, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 424, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-list-pullrefresh-release .x-list-pullrefresh-arrow {
   -webkit-transform: rotate(-180deg);
   transform: rotate(-180deg);
 }
 
-/* line 409, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 428, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-list-pullrefresh-wrap {
   width: 20em;
   font-size: 0.7em;
 }
 
-/* line 414, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 433, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-list-pullrefresh-message {
   font-weight: bold;
   font-size: 1.3em;
@@ -9055,21 +9102,21 @@ audio {
   text-align: center;
 }
 
-/* line 421, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 440, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-list-pullrefresh-updated {
   text-align: center;
 }
 
-/* line 426, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 445, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-list-pullrefresh-loading *.x-loading-spinner {
   display: block;
 }
-/* line 430, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 449, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-list-pullrefresh-loading .x-list-pullrefresh-arrow {
   display: none;
 }
 
-/* line 436, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
+/* line 455, ../themes/stylesheets/sencha-touch/default/widgets/_list.scss */
 .x-android-2 .x-list-pullrefresh-loading *.x-loading-spinner {
   display: none;
 }
@@ -10861,7 +10908,7 @@ input[type="search"]::-webkit-search-cancel-button {
 /* line 19, ../themes/stylesheets/sencha-touch/default/widgets/_draw.scss */
 .x-chart-watermark {
   opacity: 0.5;
-  z-index: 100;
+  z-index: 9;
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
@@ -10897,7 +10944,7 @@ input[type="search"]::-webkit-search-cancel-button {
 /* line 19, ../themes/stylesheets/sencha-touch/default/widgets/_draw.scss */
 .x-chart-watermark {
   opacity: 0.5;
-  z-index: 100;
+  z-index: 9;
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);

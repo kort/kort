@@ -1,5 +1,8 @@
 /**
- *
+ * @class Ext.chart.grid.VerticalGrid
+ * @extends Ext.draw.sprite.Sprite
+ * 
+ * Vertical Grid sprite. Used in Cartesian Charts.
  */
 Ext.define("Ext.chart.grid.VerticalGrid", {
     extend: 'Ext.draw.sprite.Sprite',

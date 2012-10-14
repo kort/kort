@@ -1,5 +1,8 @@
 /**
- *
+ * @class Ext.chart.series.sprite.Pie3DPart
+ * @extends Ext.draw.sprite.Path
+ * 
+ * Pie3D series sprite.
  */
 Ext.define("Ext.chart.series.sprite.Pie3DPart", {
     extend: 'Ext.draw.sprite.Path',

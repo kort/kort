@@ -1,30 +1,77 @@
 /**
+ * @class Ext.chart.axis.Time
+ * @extends Ext.chart.axis.Numeric
+ * 
  * A type of axis whose units are measured in time values. Use this axis
  * for listing dates that you will want to group or dynamically change.
  * If you just want to display dates as categories then use the
  * Category class for axis instead.
  *
- * For example:
+ *     @example preview
+ *     var store = new Ext.data.JsonStore({
+ *         fields: ['time', 'open', 'high', 'low', 'close'],
+ *         data: [
+ *             {'time':new Date('Jan 1 2010').getTime(), 'open':600, 'high':614, 'low':578, 'close':590},
+ *             {'time':new Date('Jan 2 2010').getTime(), 'open':590, 'high':609, 'low':580, 'close':580},
+ *             {'time':new Date('Jan 3 2010').getTime(), 'open':580, 'high':602, 'low':578, 'close':602},
+ *             {'time':new Date('Jan 4 2010').getTime(), 'open':602, 'high':614, 'low':586, 'close':586},
+ *             {'time':new Date('Jan 5 2010').getTime(), 'open':586, 'high':602, 'low':565, 'close':565}
+ *         ]
+ *     });
  *
- *     axes: [{
- *         type: 'Time',
- *         position: 'bottom',
- *         fields: 'date',
- *         title: 'Day',
- *         dateFormat: 'M d',
- *
- *         constrain: true,
- *         fromDate: new Date('1/1/11'),
- *         toDate: new Date('1/7/11')
- *     }]
- *
- * In this example we're creating a time axis that has as title *Day*.
- * The field the axis is bound to is `date`.
- * The date format to use to display the text for the axis labels is `M d`
- * which is a three letter month abbreviation followed by the day number.
- * The time axis will show values for dates between `fromDate` and `toDate`.
- * Since `constrain` is set to true all other values for other dates not between
- * the fromDate and toDate will not be displayed.
+ *     var chart = new Ext.chart.CartesianChart({
+ *         animate: true,
+ *         store: store,
+ *         axes: [{
+ *             type: 'numeric',
+ *             position: 'left',
+ *             fields: ['open', 'high', 'low', 'close'],
+ *             title: {
+ *                 text: 'Sample Values',
+ *                 fontSize: 15
+ *             },
+ *             grid: true,
+ *             minimum: 560,
+ *             maximum: 640
+ *         }, {
+ *             type: 'time',
+ *             position: 'bottom',
+ *             fields: ['time'],
+ *             fromDate: new Date('Dec 31 2009'),
+ *             toDate: new Date('Jan 6 2010'),
+ *             title: {
+ *                 text: 'Sample Values',
+ *                 fontSize: 15
+ *             },
+ *             style: {
+ *               axisLine: false
+ *             }
+ *         }],
+ *         series: [{
+ *             type: 'candlestick',
+ *             xField: 'time',
+ *             openField: 'open',
+ *             highField: 'high',
+ *             lowField: 'low',
+ *             closeField: 'close',
+ *             style: {
+ *             ohlcType: 'ohlc',
+ *               dropStyle: {
+ *                 fill: 'rgb(237, 123, 43)',
+ *                 stroke: 'rgb(237, 123, 43)'
+ *               },
+ *               raiseStyle: {
+ *                 fill: 'rgb(55, 153, 19)',
+ *                 stroke: 'rgb(55, 153, 19)'
+ *               }
+ *             },
+ *             aggregator: {
+ *               strategy: 'time'
+ *             }
+ *         }]
+ *     });
+ *     Ext.Viewport.setLayout('fit');
+ *     Ext.Viewport.add(chart);
  */
 Ext.define('Ext.chart.axis.Time', {
     extend: 'Ext.chart.axis.Numeric',

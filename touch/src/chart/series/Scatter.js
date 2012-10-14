@@ -7,8 +7,7 @@
  * As with all other series, the Scatter Series must be appended in the *series* Chart array configuration. See the Chart
  * documentation for more information on creating charts. A typical configuration object for the scatter could be:
  *
- * {@img Ext.chart.series.Scatter/Ext.chart.series.Scatter.png Ext.chart.series.Scatter chart series}
- *
+ *     @example preview
  *     var store = new Ext.data.JsonStore({
  *         fields: ['name', 'data1', 'data2', 'data3', 'data4', 'data5'],
  *         data: [
@@ -20,46 +19,47 @@
  *         ]
  *     });
  *
- *     new Ext.chart.AbstractChart({
- *         renderTo: Ext.getBody(),
- *         width: 500,
- *         height: 300,
+ *     var chart = new Ext.chart.CartesianChart({
  *         animate: true,
- *         theme:'Category2',
  *         store: store,
  *         axes: [{
- *             type: 'Numeric',
- *             position: 'bottom',
- *             fields: ['data1', 'data2', 'data3'],
- *             title: 'Sample Values',
+ *             type: 'numeric',
+ *             position: 'left',
+ *             fields: ['data1'],
+ *             title: {
+ *                 text: 'Sample Values',
+ *                 fontSize: 15
+ *             },
  *             grid: true,
  *             minimum: 0
  *         }, {
- *             type: 'Category',
- *             position: 'left',
+ *             type: 'category',
+ *             position: 'bottom',
  *             fields: ['name'],
- *             title: 'Sample Metrics'
+ *             title: {
+ *                 text: 'Sample Values',
+ *                 fontSize: 15
+ *             }
  *         }],
  *         series: [{
  *             type: 'scatter',
- *             marker: {
- *                 radius: 5,
- *                 size: 5
+ *             highlight: {
+ *                 size: 7,
+ *                 radius: 7
  *             },
- *             axis: 'left',
+ *             fill: true,
  *             xField: 'name',
- *             yField: 'data2'
- *         }, {
- *             type: 'scatter',
+ *             yField: 'data3',
  *             marker: {
- *                 radius: 5,
- *                 size: 5
- *             },
- *             axis: 'left',
- *             xField: 'name',
- *             yField: 'data3'
+ *                 type: 'circle',
+ *                 fillStyle: 'blue',
+ *                 radius: 10,
+ *                 lineWidth: 0
+ *             }
  *         }]
  *     });
+ *     Ext.Viewport.setLayout('fit');
+ *     Ext.Viewport.add(chart);
  *
  * In this configuration we add three different categories of scatter series. Each of them is bound to a different field of the same data store,
  * `data1`, `data2` and `data3` respectively. All x-fields for the series must be the same field, in this case `name`.

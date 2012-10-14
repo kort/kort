@@ -1,5 +1,8 @@
 /**
- * Cartesian sprite.
+ * @class Ext.chart.series.sprite.Radar
+ * @extends Ext.chart.series.sprite.Polar
+ * 
+ * Radar series sprite.
  */
 Ext.define("Ext.chart.series.sprite.Radar", {
     alias: 'sprite.radar',

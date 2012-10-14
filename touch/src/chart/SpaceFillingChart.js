@@ -1,5 +1,9 @@
 /**
- * TODO(zhangbei): Documents
+ * @class Ext.chart.SpaceFillingChart
+ * @extends Ext.chart.AbstractChart
+ * 
+ * Creates a chart that fills the entire area of the chart.
+ * e.g. Treemap
  */
 Ext.define('Ext.chart.SpaceFillingChart', {
 
