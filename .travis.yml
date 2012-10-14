@@ -17,6 +17,11 @@ script: ant -f build_kort.xml build
 after_script:
   - yes | ruby server/travis_deployer.rb
   - git checkout -b travis
+  - git rm -r _*
+  - git rm -r lib/OpenLayers-2.12
+  - git rm -r lib/sencha-touch-2.1.0-rc2/
+  - git rm -r touch/src/
+  - git rm -r touch/sencha-touch-*
   - git rm .gitignore
   - git add .
   - git status
