@@ -1,7 +1,10 @@
 Ext.define('Kort.view.bugmap.Container', {
 	extend: 'Ext.Container',
 	alias: 'widget.bugmapcontainer',
-    requires: ['Ext.ux.LeafletMap'],
+    requires: [
+        'Ext.ux.LeafletMap',
+        'Ext.TitleBar'
+    ],
 	
 	config: {
 		title: 'Bugs',

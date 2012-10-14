@@ -1,6 +1,9 @@
 Ext.define('Kort.view.profile.Container', {
 	extend: 'Ext.Container',
 	alias: 'widget.profilecontainer',
+    requires: [,
+        'Ext.TitleBar'
+    ],
 	
 	config: {
 		title: 'Profil',
