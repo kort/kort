@@ -124,6 +124,11 @@ Ext.define('Ext.picker.Date', {
             delegate: '> slot',
             slotpick: this.onSlotPick
         });
+
+        this.on({
+            scope: this,
+            show: this.onSlotPick
+        });
     },
 
     setValue: function(value, animated) {

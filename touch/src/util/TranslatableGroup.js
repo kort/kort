@@ -1,3 +1,6 @@
+/**
+ * @private
+ */
 Ext.define('Ext.util.TranslatableGroup', {
     extend: 'Ext.util.translatable.Abstract',
 

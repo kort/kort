@@ -274,7 +274,7 @@ Ext.define('Ext.data.TreeStore', {
      * @inheritdoc
      */
     removeAll: function() {
-        this.getRootNode().removeAll(true);
+        this.getRoot().removeAll(true);
         this.callParent(arguments);
     },
 

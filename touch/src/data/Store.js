@@ -1536,25 +1536,28 @@ Ext.define('Ext.data.Store', {
      */
     filter: function(property, value, anyMatch, caseSensitive) {
         var data = this.data,
-            filter = property ? ((Ext.isFunction(property) || Ext.isArray(property) || property.isFilter) ? property : {
-                property     : property,
-                value        : value,
-                anyMatch     : anyMatch,
-                caseSensitive: caseSensitive,
-                // By setting the id we ensure there is only one filter active
-                // at a time for this property.
-                id           : property
-            }) : null;
+            filter = null;
 
-        if (this.getRemoteFilter()) {
-            if (property) {
-                if (Ext.isString(property)) {
-                    data.addFilters(filter);
-                }
-                else if (Ext.isArray(property) || property.isFilter) {
-                    data.addFilters(property);
+        if (property) {
+            if (Ext.isFunction(property)) {
+                filter = {filterFn: property};
+            }
+            else if (Ext.isArray(property) || property.isFilter) {
+                filter = property;
+            }
+            else {
+                filter = {
+                    property     : property,
+                    value        : value,
+                    anyMatch     : anyMatch,
+                    caseSensitive: caseSensitive,
+                    id           : property
                 }
             }
+        }
+
+        if (this.getRemoteFilter()) {
+            data.addFilters(filter);
         } else {
             data.filter(filter);
             this.fireEvent('filter', this, data, data.getFilters());

@@ -1,5 +1,8 @@
 /**
- * Area sprite.
+ * @class Ext.chart.series.sprite.Area
+ * @extends Ext.chart.series.sprite.StackedCartesian
+ * 
+ * Area series sprite.
  */
 Ext.define("Ext.chart.series.sprite.Area", {
     alias: 'sprite.areaSeries',

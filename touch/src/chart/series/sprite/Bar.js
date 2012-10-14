@@ -1,5 +1,8 @@
 /**
- *
+ * @class Ext.chart.series.sprite.Bar
+ * @extends Ext.chart.series.sprite.StackedCartesian
+ * 
+ * Draws a sprite used in the bar series.
  */
 Ext.define("Ext.chart.series.sprite.Bar", {
     alias: 'sprite.barSeries',

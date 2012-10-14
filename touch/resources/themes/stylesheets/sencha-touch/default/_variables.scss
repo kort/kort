@@ -1,4 +1,4 @@
-$theme-name: 'default';
+$theme-name: 'default' !default;
 
 /**
  * @class Global_CSS
@@ -116,7 +116,7 @@ $page-bg-color: #eee !default;
 $global-row-height: 2.6em !default;
 
 /**
- * @var {measurement} $global-row-height
+ * @var {measurement} $global-list-height
  * The minimum row height for items like toolbars.
  */
 $global-list-height: 46px !default;

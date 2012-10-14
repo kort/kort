@@ -1,5 +1,8 @@
 /**
- *
+ * @class Ext.chart.series.sprite.Line
+ * @extends Ext.chart.series.sprite.Aggregative
+ * 
+ * Line series sprite.
  */
 Ext.define("Ext.chart.series.sprite.Line", {
     alias: 'sprite.lineSeries',
@@ -68,7 +71,7 @@ Ext.define("Ext.chart.series.sprite.Line", {
         ctx.beginPath();
         if (smooth) {
             ctx.moveTo(smoothX[start * 3] * xx + dx, smoothY[start * 3] * yy + dy);
-            for (i = 0, j = start * 3 + 1; i < list.length; i += 3, j += 3) {
+            for (i = 0, j = start * 3 + 1; i < list.length - 3; i += 3, j += 3) {
                 ctx.bezierCurveTo(
                     smoothX[j] * xx + dx, smoothY[j] * yy + dy,
                     smoothX[j + 1] * xx + dx, smoothY[j + 1] * yy + dy,

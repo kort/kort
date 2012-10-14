@@ -1,5 +1,8 @@
 /**
- *
+ * @class Ext.chart.interactions.ItemHighlight
+ * @extends Ext.chart.interactions.Abstract
+ * 
+ * The ItemHighlight interaction allows the user to highlight series items in the chart.
  */
 Ext.define('Ext.chart.interactions.ItemHighlight', {
 
@@ -11,7 +14,7 @@ Ext.define('Ext.chart.interactions.ItemHighlight', {
     config: {
         /**
          * @cfg {String} gesture
-         * Defines the gesture type that should trigger the item info panel to be displayed.
+         * Defines the gesture type that should trigger item highlighting.
          */
         gesture: 'tap'
     },

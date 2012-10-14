@@ -279,7 +279,7 @@ Ext.define('Ext.data.Operation', {
     getError: function() {
         return this.error;
     },
-    
+
     /**
      * Returns `true` if the Operation has been started. Note that the Operation may have started AND completed, see
      * {@link #isRunning} to test if the Operation is currently running.
@@ -347,6 +347,7 @@ Ext.define('Ext.data.Operation', {
         }
 
         this.setRecords(processedRecords);
+        resultSet.setRecords(processedRecords);
         return true;
     },
 
@@ -449,7 +450,7 @@ Ext.define('Ext.data.Operation', {
         // We call endEdit with silent: true because the commit below already makes
         // sure any store is notified of the record being updated.
         currentRecord.endEdit(true);
-        
+
         currentRecord.commit();
     }
     // <deprecated product=touch since=2.0>

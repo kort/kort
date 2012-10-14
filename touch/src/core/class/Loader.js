@@ -250,7 +250,7 @@
             else {
                 this.config[name] = (Ext.isObject(value)) ? Ext.merge(this.config[name], value) : value;
             }
-
+            setPathCount += 1;
             return this;
         },
 
@@ -280,7 +280,7 @@
          */
         setPath: flexSetter(function(name, path) {
             this.config.paths[name] = path;
-
+            setPathCount += 1;
             return this;
         }),
 
@@ -1290,3 +1290,34 @@
 
 })(Ext.ClassManager, Ext.Class, Ext.Function.flexSetter, Ext.Function.alias,
    Ext.Function.pass, Ext.Array.from, Ext.Array.erase, Ext.Array.include);
+
+// initalize the default path of the framework
+// trimmed down version of sench-touch-debug-suffix.js
+// with alias / alternates removed, as those are handled separately by
+// compiler-generated metadata
+(function() {
+    var scripts = document.getElementsByTagName('script'),
+        currentScript = scripts[scripts.length - 1],
+        src = currentScript.src,
+        path = src.substring(0, src.lastIndexOf('/') + 1),
+        Loader = Ext.Loader;
+
+    //<debug>
+    // if we're running in dev mode out of the repo src tree, then this
+    // file will potentially be loaded from the touch/src/core/class folder
+    // so we'll need to adjust for that
+    if(src.indexOf("src/core/class/") != -1) {
+        path = path + "../../../";
+    }
+    //</debug>
+    
+
+    Loader.setConfig({
+        enabled: true,
+        disableCaching: !/[?&](cache|breakpoint)/i.test(location.search),
+        paths: {
+            'Ext' : path + 'src'
+        }
+    });
+    
+})();

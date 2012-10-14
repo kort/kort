@@ -1,10 +1,13 @@
 /**
- * TODO(zhangbei): Documents
+ * @class Ext.chart.PolarChart
+ * @extends Ext.chart.AbstractChart
+ * 
+ * Creates a chart that uses polar coordinates.
  */
 Ext.define('Ext.chart.PolarChart', {
 
     requires: [
-        'Ext.chart.grid.AngularGrid',
+        'Ext.chart.grid.CircularGrid',
         'Ext.chart.grid.RadialGrid'
     ],
 

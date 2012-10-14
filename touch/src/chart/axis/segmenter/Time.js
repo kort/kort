@@ -1,5 +1,8 @@
 /**
- *
+ * @class Ext.chart.axis.segmenter.Time
+ * @extends Ext.chart.axis.segmenter.Segmenter
+ * 
+ * Time data type.
  */
 Ext.define("Ext.chart.axis.segmenter.Time", {
     extend: 'Ext.chart.axis.segmenter.Segmenter',

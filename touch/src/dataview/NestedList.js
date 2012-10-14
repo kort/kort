@@ -487,7 +487,15 @@ Ext.define('Ext.dataview.NestedList', {
 
     applyStore: function (store) {
         if (store) {
-            store = Ext.data.StoreManager.lookup(store);
+            if (Ext.isString(store)) {
+                // store id
+                store = Ext.data.StoreManager.get(store);
+            } else {
+                // store instance or store config
+                if (!(store instanceof Ext.data.TreeStore)) {
+                    store = Ext.factory(store, Ext.data.TreeStore, null);
+                }
+            }
 
             // <debug>
             if (!store) {

@@ -1,3 +1,8 @@
+/**
+ * @class Ext.chart.label.Label
+ * @extends Ext.draw.sprite.Text
+ * 
+ */
 Ext.define("Ext.chart.label.Label", {
     extend: "Ext.draw.sprite.Text",
     requires: ['Ext.chart.label.Callout'],
@@ -40,6 +45,9 @@ Ext.define("Ext.chart.label.Label", {
     },
 
     config: {
+        /**
+         * @cfg {Object} fx Animation configuration.
+         */
         fx: {
             customDuration: {
                 callout: 200

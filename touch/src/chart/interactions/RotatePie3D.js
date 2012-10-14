@@ -1,5 +1,8 @@
 /**
- * TODO: Documentation 
+ * @class Ext.chart.interactions.RotatePie3D
+ * @extends Ext.chart.interactions.Rotate
+ *
+ * A special version of the Rotate interaction used by Pie3D Chart.
  */
 Ext.define('Ext.chart.interactions.RotatePie3D', {
 

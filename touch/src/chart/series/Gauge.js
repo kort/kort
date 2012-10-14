@@ -1,7 +1,24 @@
 /**
  * @class Ext.chart.series.Gauge
  * @extends Ext.chart.series.Series
- * TODO: Documentation
+ * 
+ * Creates a Gauge Chart.
+ *
+ *     @example preview
+ *     var chart = new Ext.chart.SpaceFillingChart({
+ *         series: [{
+ *             type: 'gauge',
+ *             minimum: 100,
+ *             maximum: 800,
+ *             value: 400,
+ *             donut: 30,
+ *             subStyle: {
+ *               fillStyle: ["#115fa6", "lightgrey"]
+ *             }
+ *         }]
+ *     });
+ *     Ext.Viewport.setLayout('fit');
+ *     Ext.Viewport.add(chart);
  */
 Ext.define('Ext.chart.series.Gauge', {
     alias: 'series.gauge',
@@ -55,16 +72,19 @@ Ext.define('Ext.chart.series.Gauge', {
 
         /**
          * @cfg {Number} value
+         * Directly sets the displayed value of the gauge.
          */
         value: null,
 
         /**
          * @cfg {Number} minimum
+         * The minimum value of the gauge.
          */
         minimum: 0,
 
         /**
          * @cfg {Number} maximum
+         * The maximum value of the gauge.
          */
         maximum: 100,
 
@@ -79,7 +99,7 @@ Ext.define('Ext.chart.series.Gauge', {
         radius: 0.5,
 
         /**
-         * @cfg {Boolean} Indicates whether to show the whold dist or only the marked part.
+         * @cfg {Boolean} wholeDisk Indicates whether to show the whole disk or only the marked part.
          */
         wholeDisk: false
     },
@@ -204,8 +224,8 @@ Ext.define('Ext.chart.series.Gauge', {
     },
 
     getSprites: function () {
-        var store = this.getStore();
-        if (!store) {
+        //initialize store
+        if(!this.getStore() && !Ext.isNumber(value)) {
             return null;
         }
         var me = this,

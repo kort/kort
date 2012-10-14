@@ -626,10 +626,10 @@ Ext.define('Ext.app.Controller', {
      */
     hasRef: function(ref) {
         return this.references && this.references.indexOf(ref.toLowerCase()) !== -1;
-    },
+    }
 
     // <deprecated product=touch since=2.0>
-    onClassExtended: function(cls, members) {
+    ,onClassExtended: function(cls, members) {
         var prototype = this.prototype,
             defaultConfig = prototype.config,
             config = members.config || {},

@@ -1,5 +1,8 @@
 /**
- *
+ * @class Ext.chart.axis.layout.Continuous
+ * @extends Ext.chart.axis.layout.Layout
+ * 
+ * Processor for axis data that can be interpolated.
  */
 Ext.define("Ext.chart.axis.layout.Continuous", {
     extend: 'Ext.chart.axis.layout.Layout',

@@ -9,41 +9,85 @@
  * the two modes, {@link #modeIndicatorDuration} briefly displaying a graphical indicator
  * showing whether it is in zoom or pan mode.
  *
- * You can attach this interaction to a chart by including an entry in the chart's
- * {@link Ext.chart.AbstractChart#interactions interactions} config with the `panzoom` type:
+ *     @example preview
+ *     var store = new Ext.data.JsonStore({
+ *         fields: ['name', 'data1', 'data2', 'data3', 'data4', 'data5'],
+ *         data: [
+ *             {'name':'metric one', 'data1':10, 'data2':12, 'data3':14, 'data4':8, 'data5':13},
+ *             {'name':'metric two', 'data1':7, 'data2':8, 'data3':16, 'data4':10, 'data5':3},
+ *             {'name':'metric three', 'data1':5, 'data2':2, 'data3':14, 'data4':12, 'data5':7},
+ *             {'name':'metric four', 'data1':2, 'data2':14, 'data3':6, 'data4':1, 'data5':23},
+ *             {'name':'metric five', 'data1':27, 'data2':38, 'data3':36, 'data4':13, 'data5':33}
+ *         ]
+ *     });
  *
- *     new Ext.chart.AbstractChart({
- *         renderTo: Ext.getBody(),
- *         width: 800,
- *         height: 600,
- *         store: store1,
- *         axes: [
- *             // ...some axes options...
- *         ],
- *         series: [
- *             // ...some series options...
- *         ],
- *         interactions: [{
+ *     var lineChart = new Ext.chart.CartesianChart({
+ *          interactions: [{
  *             type: 'panzoom',
- *             axes: {
- *                 left: {
- *                     maxZoom: 5,
- *                     startZoom: 2
- *                 },
- *                 bottom: {
- *                     maxZoom: 2
- *                 }
+ *             zoomOnPanGesture: true
+ *         }],
+ *         animate: true,
+ *         store: store,
+ *         axes: [{
+ *             type: 'numeric',
+ *             position: 'left',
+ *             fields: ['data1'],
+ *             title: {
+ *                 text: 'Sample Values',
+ *                 fontSize: 15
+ *             },
+ *             grid: true,
+ *             minimum: 0
+ *         }, {
+ *             type: 'category',
+ *             position: 'bottom',
+ *             fields: ['name'],
+ *             title: {
+ *                 text: 'Sample Values',
+ *                 fontSize: 15
+ *             }
+ *         }],
+ *         series: [{
+ *             type: 'line',
+ *             highlight: {
+ *                 size: 7,
+ *                 radius: 7
+ *             },
+ *             style: {
+ *                 stroke: 'rgb(143,203,203)'
+ *             },
+ *             xField: 'name',
+ *             yField: 'data1',
+ *             marker: {
+ *                 type: 'path',
+ *                 path: ['M', -2, 0, 0, 2, 2, 0, 0, -2, 'Z'],
+ *                 stroke: 'blue',
+ *                 lineWidth: 0
+ *             }
+ *         }, {
+ *             type: 'line',
+ *             highlight: {
+ *                 size: 7,
+ *                 radius: 7
+ *             },
+ *             fill: true,
+ *             xField: 'name',
+ *             yField: 'data3',
+ *             marker: {
+ *                 type: 'circle',
+ *                 radius: 4,
+ *                 lineWidth: 0
  *             }
  *         }]
  *     });
+ *     Ext.Viewport.setLayout('fit');
+ *     Ext.Viewport.add(lineChart);
  *
  * The configuration object for the `panzoom` interaction type should specify which axes
  * will be made navigable via the `axes` config. See the {@link #axes} config documentation
  * for details on the allowed formats. If the `axes` config is not specified, it will default
  * to making all axes navigable with the default axis options.
  *
- * @author Jason Johnston <jason@sencha.com>
- * @docauthor Jason Johnston <jason@sencha.com>
  */
 Ext.define('Ext.chart.interactions.PanZoom', {
 
@@ -96,8 +140,17 @@ Ext.define('Ext.chart.interactions.PanZoom', {
          * If the `axes` config is not specified, it will default to making all axes navigable with the
          * default axis options.
          */
-        axes: true,
+        axes: {
+            top: {},
+            right: {},
+            bottom: {},
+            left: {}
+        },
 
+        minZoom: 1,
+        
+        maxZoom: 10000,
+        
         /**
          * @cfg {Boolean} showOverflowArrows
          * If `true`, arrows will be conditionally shown at either end of each axis to indicate that the
@@ -129,32 +182,8 @@ Ext.define('Ext.chart.interactions.PanZoom', {
 
     stopAnimationBeforeSync: true,
 
-    applyAxes: function (axesConfig) {
-        var result = {};
-        if (axesConfig === true) {
-            return {
-                top: {},
-                right: {},
-                bottom: {},
-                left: {}
-            };
-        } else if (Ext.isArray(axesConfig)) {
-            // array of axis names - translate to full object form
-            result = {};
-            Ext.each(axesConfig, function (axis) {
-                result[axis] = {};
-            });
-        } else if (Ext.isObject(axesConfig)) {
-            Ext.iterate(axesConfig, function (key, val) {
-                // axis name with `true` value -> translate to object
-                if (val === true) {
-                    result[key] = {};
-                } else if (val !== false) {
-                    result[key] = val;
-                }
-            });
-        }
-        return result;
+    applyAxes: function (axesConfig, oldAxesConfig) {
+        return Ext.merge(oldAxesConfig || {}, axesConfig);
     },
 
     applyZoomOnPanGesture: function (zoomOnPanGesture) {
@@ -389,6 +418,7 @@ Ext.define('Ext.chart.interactions.PanZoom', {
 
     transformAxesBy: function (axes, panX, panY, sx, sy) {
         var region = this.getChart().getInnerRegion(),
+            axesCfg = this.getAxes(), axisCfg,
             oldVisibleRanges = this.oldVisibleRanges;
 
         if (!oldVisibleRanges) {
@@ -402,13 +432,16 @@ Ext.define('Ext.chart.interactions.PanZoom', {
             return;
         }
         for (var i = 0; i < axes.length; i++) {
-            this.transformAxisBy(axes[i], oldVisibleRanges[axes[i].getId()], panX, panY, sx, sy);
+            axisCfg = axesCfg[axes[i].getPosition()];
+            this.transformAxisBy(axes[i], oldVisibleRanges[axes[i].getId()], panX, panY, sx, sy, axisCfg.minZoom, axisCfg.maxZoom);
         }
     },
 
-    transformAxisBy: function (axis, oldVisibleRange, panX, panY, sx, sy) {
+    transformAxisBy: function (axis, oldVisibleRange, panX, panY, sx, sy, minZoom, maxZoom) {
         var me = this,
             visibleLength = oldVisibleRange[1] - oldVisibleRange[0],
+            actualMinZoom = axis.config.minZoom || minZoom || me.getMinZoom(),
+            actualMaxZoom = axis.config.maxZoom || maxZoom || me.getMaxZoom(),
             region = me.getChart().getInnerRegion();
         if (!region) {
             return;
@@ -421,13 +454,13 @@ Ext.define('Ext.chart.interactions.PanZoom', {
         if (visibleLength < 0) {
             visibleLength = -visibleLength;
         }
-
-        if (visibleLength > 1) {
+        
+        if (visibleLength * actualMinZoom > 1) {
             visibleLength = 1;
         }
 
-        if (visibleLength < 1e-5) {
-            visibleLength = 1e-5;
+        if (visibleLength * actualMaxZoom < 1) {
+            visibleLength = 1/actualMaxZoom;
         }
 
         axis.setVisibleRange([

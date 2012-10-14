@@ -4,7 +4,7 @@
  * @singleton
  *
  * Provides searching of Components within {@link Ext.ComponentManager} (globally) or a specific
- * {@link Ext.container.Container} on the document with a similar syntax to a CSS selector.
+ * {@link Ext.Container} on the document with a similar syntax to a CSS selector.
  *
  * Components can be retrieved by using their {@link Ext.Component xtype} with an optional '.' prefix
  *

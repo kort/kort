@@ -72,15 +72,15 @@
   }
 
   .x-legend-button-icon {
-    -webkit-mask-image: theme-image($theme-name, 'pictos/list.png');
+    -webkit-mask-image: theme-image('default', 'pictos/list.png');
   }
 
   .x-panzoom-toggle-icon {
-    -webkit-mask-image: theme-image($theme-name, 'pictos/move.png');
+    -webkit-mask-image: theme-image('default', 'pictos/move.png');
   }
 
   .x-zooming > .x-panzoom-toggle-icon {
-    -webkit-mask-image: theme-image($theme-name, 'pictos/resize.png');
+    -webkit-mask-image: theme-image('default', 'pictos/resize.png');
   }
 
   .x-chart-toolbar {

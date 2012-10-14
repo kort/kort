@@ -90,6 +90,14 @@ Ext.define('Ext.LoadMask', {
      * @private
      */
     updateMessage: function(newMessage) {
+        var cls = Ext.baseCSSPrefix + 'has-message';
+
+        if (newMessage) {
+            this.addCls(cls);
+        } else {
+            this.removeCls(cls);
+        }
+
         this.messageElement.setHtml(newMessage);
     },
 

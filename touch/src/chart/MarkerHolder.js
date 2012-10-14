@@ -1,5 +1,8 @@
 /**
- *
+ * @class Ext.chart.MarkerHolder
+ * @extends Ext.mixin.Mixin
+ * 
+ * 
  */
 Ext.define("Ext.chart.MarkerHolder", {
     extend: 'Ext.mixin.Mixin',

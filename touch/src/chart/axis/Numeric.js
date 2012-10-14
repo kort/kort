@@ -6,29 +6,24 @@
  * opposed to the category axis. You can set minimum and maximum values to the
  * axis so that the values are bound to that. If no values are set, then the
  * scale will auto-adjust to the values.
- *
- * {@img Ext.chart.axis.Numeric/Ext.chart.axis.Numeric.png Ext.chart.axis.Numeric chart axis}
- *
- * For example:
- *
+ * 
+ *     @example preview
  *     var store = new Ext.data.JsonStore({
- *          fields: ['name', 'data1', 'data2', 'data3', 'data4', 'data5'],
- *          data: [
- *              {'name':'metric one', 'data1':10, 'data2':12, 'data3':14, 'data4':8, 'data5':13},
- *              {'name':'metric two', 'data1':7, 'data2':8, 'data3':16, 'data4':10, 'data5':3},
- *              {'name':'metric three', 'data1':5, 'data2':2, 'data3':14, 'data4':12, 'data5':7},
- *              {'name':'metric four', 'data1':2, 'data2':14, 'data3':6, 'data4':1, 'data5':23},
- *              {'name':'metric five', 'data1':27, 'data2':38, 'data3':36, 'data4':13, 'data5':33}
- *          ]
+ *         fields: ['name', 'data1', 'data2', 'data3', 'data4', 'data5'],
+ *         data: [
+ *             {'name':'metric one', 'data1':10, 'data2':12, 'data3':14, 'data4':8, 'data5':13},
+ *             {'name':'metric two', 'data1':7, 'data2':8, 'data3':16, 'data4':10, 'data5':3},
+ *             {'name':'metric three', 'data1':5, 'data2':2, 'data3':14, 'data4':12, 'data5':7},
+ *             {'name':'metric four', 'data1':2, 'data2':14, 'data3':6, 'data4':1, 'data5':23},
+ *             {'name':'metric five', 'data1':27, 'data2':38, 'data3':36, 'data4':13, 'data5':33}
+ *         ]
  *     });
  *
- *     new Ext.chart.AbstractChart({
- *         renderTo: Ext.getBody(),
- *         width: 500,
- *         height: 300,
+ *     var chart = new Ext.chart.CartesianChart({
+ *         animate: true,
  *         store: store,
  *         axes: [{
- *             type: 'Numeric',
+ *             type: 'numeric',
  *             grid: true,
  *             position: 'left',
  *             fields: ['data1', 'data2', 'data3', 'data4', 'data5'],
@@ -44,29 +39,26 @@
  *             minimum: 0,
  *             adjustMinimumByMajorUnit: 0
  *         }, {
- *             type: 'Category',
+ *             type: 'category',
  *             position: 'bottom',
  *             fields: ['name'],
- *             title: 'Sample Metrics',
- *             grid: true,
- *             label: {
- *                 rotate: {
- *                     degrees: 315
- *                 }
+ *             title: {
+ *                 text: 'Sample Values',
+ *                 fontSize: 15
  *             }
  *         }],
  *         series: [{
  *             type: 'area',
- *             highlight: false,
- *             axis: 'left',
+ *             subStyle: {
+ *                 fill: ['blue', 'green', 'red']
+ *             },
  *             xField: 'name',
- *             yField: ['data1', 'data2', 'data3', 'data4', 'data5'],
- *             style: {
- *                 opacity: 0.93
- *             }
+ *             yField: ['data1', 'data2', 'data3']
+ *         
  *         }]
  *     });
- *
+ *     Ext.Viewport.setLayout('fit');
+ *     Ext.Viewport.add(chart);
  * In this example we create an axis of Numeric type. We set a minimum value so that
  * even if all series have values greater than zero, the grid starts at zero. We bind
  * the axis onto the left part of the surface by setting _position_ to _left_.

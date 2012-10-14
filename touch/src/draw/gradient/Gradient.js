@@ -1,5 +1,5 @@
 /**
- * Gradient.
+ * Creates a gradient.
  */
 Ext.define("Ext.draw.gradient.Gradient", {
     requires: ["Ext.draw.LimitedCache"],
@@ -13,6 +13,9 @@ Ext.define("Ext.draw.gradient.Gradient", {
     },
 
     config: {
+        /**
+         * @cfg {Array/Object} Defines the stops of the gradient.
+         */
         stops: []
     },
 

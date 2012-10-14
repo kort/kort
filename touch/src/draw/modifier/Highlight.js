@@ -1,5 +1,8 @@
 /**
- * Highlight modifier is a modifier that will override the attributes
+ * @class Ext.draw.modifier.Highlight
+ * @extends Ext.draw.modifier.Modifier
+ * 
+ * Highlight is a modifier that will override the attributes
  * with its `highlightStyle` attributes when its `highlighted` is true.
  */
 Ext.define("Ext.draw.modifier.Highlight", {

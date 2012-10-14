@@ -1,3 +1,9 @@
+/**
+ * @class Ext.chart.axis.segmenter.Names
+ * @extends Ext.chart.axis.segmenter.Segmenter
+ * 
+ * Names data type.
+ */
 Ext.define("Ext.chart.axis.segmenter.Names", {
     extend: 'Ext.chart.axis.segmenter.Segmenter',
     alias: 'segmenter.names',

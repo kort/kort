@@ -1,4 +1,7 @@
 /**
+ * @class Ext.draw.modifier.Target
+ * @extends Ext.draw.modifier.Modifier
+ * 
  * This is the destination modifier that has to be put at
  * the top of the modifier stack.
  *

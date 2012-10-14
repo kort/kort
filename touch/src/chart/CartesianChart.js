@@ -1,7 +1,9 @@
 /**
  * @class Ext.chart.CartesianChart
- * @extends Ext.draw.Component
- * TODO(zhangbei): Documents
+ * @extends Ext.chart.AbstractChart
+ * 
+ * Creates a chart that uses cartesian coordinates.
+ * 
  * @xtype chart
  */
 

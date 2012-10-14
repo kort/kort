@@ -1,4 +1,7 @@
 /**
+ * @class Ext.chart.series.sprite.Polar
+ * @extends Ext.draw.sprite.Sprite
+ * 
  * Polar sprite.
  */
 Ext.define("Ext.chart.series.sprite.Polar", {

@@ -6,6 +6,10 @@ Ext.define('Ext.chart.series.StackedCartesian', {
     extend: 'Ext.chart.series.Cartesian',
 
     config: {
+        /**
+         * @cfg {Boolean}
+         * 'true' to display the series in its stacked configuration.
+         */
         stacked: true,
 
         hidden: []

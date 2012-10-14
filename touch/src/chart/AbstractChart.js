@@ -283,8 +283,8 @@ Ext.define('Ext.chart.AbstractChart', {
         series: [],
 
         /**
-         * @cfg {Ext.chart.axis.Abstract} axes
-         * Array of {@link Ext.chart.axis.Abstract Axis} instances or config objects. For example:
+         * @cfg {Ext.chart.axis.Axis} axes
+         * Array of {@link Ext.chart.axis.Axis Axis} instances or config objects. For example:
          *
          *     axes: [{
          *         type: 'Numeric',

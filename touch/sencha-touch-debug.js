@@ -13,7 +13,7 @@ Sencha license terms. Public redistribution is prohibited.
 
 For early licensing, please contact us at licensing@sencha.com
 
-Build date: 2012-10-03 10:47:32 (c38447dc05eb368fb96778dfdd7a5a2e43c7d6f1)
+Build date: 2012-10-12 11:45:27 (b94f51d9efb0f248957ae4a843a10cc426897b1d)
 */
 //@tag foundation,core
 //@define Ext
@@ -583,14 +583,14 @@ Build date: 2012-10-03 10:47:32 (c38447dc05eb368fb96778dfdd7a5a2e43c7d6f1)
             (function(){
                 eval(code);
             })();
-        },
+        }
 
         //<feature logger>
         /**
          * @private
          * @property
          */
-        Logger: {
+        ,Logger: {
             log: function(message, priority) {
                 if ('console' in global) {
                     if (!priority || !(priority in global.console)) {
@@ -2444,7 +2444,6 @@ Ext.Number.from('abc', 1); // returns 1
 Ext.num = function() {
     return Ext.Number.from.apply(this, arguments);
 };
-
 //@tag foundation,core
 //@define Ext.Object
 //@require Ext.Number
@@ -3726,6 +3725,13 @@ Ext.Date = {
     }
 };
 
+//<deprecated product=touch since="2.0">
+Ext.merge(Ext, {
+	util: {
+		Date: Ext.Date
+	}
+});
+//</deprecated>
 
 //@tag foundation,core
 //@define Ext.Base
@@ -6014,6 +6020,9 @@ var noArgs = [],
  * @singleton
  */
 (function(Class, alias, arraySlice, arrayFrom, global) {
+    //<if nonBrowser>
+    var isNonBrowser = typeof window == 'undefined';
+    //</if>
     var Manager = Ext.ClassManager = {
 
         /**
@@ -6706,6 +6715,9 @@ var noArgs = [],
             // Still not existing at this point, try to load it via synchronous mode as the last resort
             if (!cls) {
                 //<debug warn>
+                //<if nonBrowser>
+                !isNonBrowser &&
+                //</if>
                 Ext.Logger.warn("[Ext.Loader] Synchronously loading '" + name + "'; consider adding '" +
                     ((possibleName) ? alias : name) + "' explicitly as a require of the corresponding class");
                 //</debug>
@@ -7048,6 +7060,7 @@ var noArgs = [],
          * @param {String} name
          * @param {Mixed} args Additional arguments after the name will be passed to the class' constructor.
          * @return {Object} instance
+         * @member Ext
          */
         create: alias(Manager, 'instantiate'),
 
@@ -7524,6 +7537,11 @@ var noArgs = [],
 (function(Manager, Class, flexSetter, alias, pass, arrayFrom, arrayErase, arrayInclude) {
 
     var
+        //<if nonBrowser>
+        isNonBrowser = typeof window == 'undefined',
+        isNodeJS = isNonBrowser && (typeof require == 'function'),
+        isJsdb = isNonBrowser && typeof system != 'undefined' && system.program.search(/jsdb/) !== -1,
+        //</if>
         dependencyProperties = ['extend', 'mixins', 'requires'],
         Loader,
         setPathCount = 0;;
@@ -7622,7 +7640,7 @@ var noArgs = [],
             else {
                 this.config[name] = (Ext.isObject(value)) ? Ext.merge(this.config[name], value) : value;
             }
-
+            setPathCount += 1;
             return this;
         },
 
@@ -7652,7 +7670,7 @@ var noArgs = [],
          */
         setPath: flexSetter(function(name, path) {
             this.config.paths[name] = path;
-
+            setPathCount += 1;
             return this;
         }),
 
@@ -8412,6 +8430,35 @@ var noArgs = [],
         }
     });
 
+    //<if nonBrowser>
+    if (isNonBrowser) {
+        if (isNodeJS) {
+            Ext.apply(Loader, {
+                syncModeEnabled: true,
+                setPath: flexSetter(function(name, path) {
+                    path = require('fs').realpathSync(path);
+                    this.config.paths[name] = path;
+
+                    return this;
+                }),
+
+                loadScriptFile: function(filePath, onLoad, onError, scope, synchronous) {
+                    require(filePath);
+                    onLoad.call(scope);
+                }
+            });
+        }
+        else if (isJsdb) {
+            Ext.apply(Loader, {
+                syncModeEnabled: true,
+                loadScriptFile: function(filePath, onLoad, onError, scope, synchronous) {
+                    load(filePath);
+                    onLoad.call(scope);
+                }
+            });
+        }
+    }
+    //</if>
     //</feature>
 
     /**
@@ -8634,6 +8681,37 @@ var noArgs = [],
 })(Ext.ClassManager, Ext.Class, Ext.Function.flexSetter, Ext.Function.alias,
    Ext.Function.pass, Ext.Array.from, Ext.Array.erase, Ext.Array.include);
 
+// initalize the default path of the framework
+// trimmed down version of sench-touch-debug-suffix.js
+// with alias / alternates removed, as those are handled separately by
+// compiler-generated metadata
+(function() {
+    var scripts = document.getElementsByTagName('script'),
+        currentScript = scripts[scripts.length - 1],
+        src = currentScript.src,
+        path = src.substring(0, src.lastIndexOf('/') + 1),
+        Loader = Ext.Loader;
+
+    //<debug>
+    // if we're running in dev mode out of the repo src tree, then this
+    // file will potentially be loaded from the touch/src/core/class folder
+    // so we'll need to adjust for that
+    if(src.indexOf("src/core/class/") != -1) {
+        path = path + "../../../";
+    }
+    //</debug>
+    
+
+    Loader.setConfig({
+        enabled: true,
+        disableCaching: !/[?&](cache|breakpoint)/i.test(location.search),
+        paths: {
+            'Ext' : path + 'src'
+        }
+    });
+    
+})();
+
 //@tag dom,core
 //@define Ext.EventManager
 //@define Ext.core.EventManager
@@ -8649,6 +8727,143 @@ var noArgs = [],
  * @private
  */
 
+//<deprecated product=touch since=2.0>
+Ext.ns('Ext.core');
+Ext.core.EventManager =
+Ext.EventManager = {
+    /**
+     * Appends an event handler to an element.  The shorthand version {@link #on} is equivalent.  Typically you will
+     * use {@link Ext.Element#addListener} directly on an Element in favor of calling this version.
+     * @param {String/HTMLElement} el The HTML element or `id` to assign the event handler to.
+     * @param {String} eventName The name of the event to listen for.
+     * @param {Function} handler The handler function the event invokes. This function is passed
+     * the following parameters:
+     * @param {Ext.EventObject} handler.evt The {@link Ext.EventObject EventObject} describing the event.
+     * @param {Ext.Element} handler.t The {@link Ext.Element Element} which was the target of the event.
+     * Note that this may be filtered by using the `delegate` option.
+     * @param {Object} handler.o The options object from the addListener call.
+     * @param {Object} scope (optional) The scope (`this` reference) in which the handler function is executed. __Defaults to the Element__.
+     * @param {Object} options (optional) An object containing handler configuration properties.
+     * This may contain any of the following properties:
+     * @param {Object} [options.scope] The scope (`this` reference) in which the handler function is executed. __Defaults to the Element__.
+     * @param {String} [options.delegate] A simple selector to filter the target or look for a descendant of the target.
+     * @param {Boolean} [options.stopEvent] `true` to stop the event. That is stop propagation, and prevent the default action.
+     * @param {Boolean} [options.preventDefault] `true` to prevent the default action.
+     * @param {Boolean} [options.stopPropagation] `true` to prevent event propagation.
+     * @param {Boolean} [options.normalized] `false` to pass a browser event to the handler function instead of an Ext.EventObject.
+     * @param {Number} [options.delay] The number of milliseconds to delay the invocation of the handler after the event fires.
+     * @param {Boolean} [options.single] `true` to add a handler to handle just the next firing of the event, and then remove itself.
+     * @param {Number} [options.buffer] Causes the handler to be scheduled to run in an {@link Ext.util.DelayedTask} delayed
+     * by the specified number of milliseconds. If the event fires again within that time, the original
+     * handler is _not_ invoked, but the new handler is scheduled in its place.
+     * @param {Ext.Element} [options.target] Only call the handler if the event was fired on the target Element, _not_ if the event was bubbled up from a child node.
+     *
+     * See {@link Ext.Element#addListener} for examples of how to use these options.
+     * @deprecated 2.0.0 Please use {@link Ext.dom.Element#addListener addListener} on an instance of Ext.Element instead.
+     */
+    addListener: function(element, eventName, fn, scope, options) {
+        //<debug warn>
+        Ext.Logger.deprecate("Ext.EventManager.addListener is deprecated, use addListener() directly from an instance of Ext.Element instead", 2);
+        //</debug>
+        element.on(eventName, fn, scope, options);
+    },
+
+    /**
+     * Removes an event handler from an element.  The shorthand version {@link #un} is equivalent.  Typically
+     * you will use {@link Ext.Element#removeListener} directly on an Element in favor of calling this version.
+     * @param {String/HTMLElement} el The id or html element from which to remove the listener.
+     * @param {String} eventName The name of the event.
+     * @param {Function} fn The handler function to remove. __This must be a reference to the function passed into the {@link #addListener} call.__
+     * @param {Object} scope If a scope (`this` reference) was specified when the listener was added,
+     * then this must refer to the same object.
+     * @deprecated 2.0.0 Please use {@link Ext.dom.Element#removeListener removeListener} on an instance of Ext.Element instead.
+     */
+    removeListener: function(element, eventName, fn, scope) {
+        //<debug warn>
+        Ext.Logger.deprecate("Ext.EventManager.removeListener is deprecated, use removeListener() directly from an instance of Ext.Element instead", 2);
+        //</debug>
+        element.un(eventName, fn, scope);
+    },
+
+    /**
+     * Removes all event handers from an element.  Typically you will use {@link Ext.Element#clearListeners}
+     * directly on an Element in favor of calling this version.
+     * @param {String/HTMLElement} el The id or html element from which to remove all event handlers.
+     * @deprecated 2.0.0 Please use {@link Ext.dom.Element#clearListeners clearListeners} on an instance of Ext.Element instead.
+     */
+    removeAll: function(element){
+        //<debug warn>
+        Ext.Logger.deprecate("Ext.EventManager.removeAll is deprecated, use clearListeners() directly from an instance of Ext.Element instead", 3);
+        //</debug>
+        Ext.get(element).clearListeners();
+    },
+
+    /**
+     * Adds a listener to be notified when the document is ready (before `onload` and before images are loaded).
+     * @removed 2.0.0 Please use {@link Ext#onReady onReady}
+     */
+    onDocumentReady: function() {
+        //<debug warn>
+        Ext.Logger.deprecate("Ext.EventManager.onDocumentReady has been removed, please use Ext.onReady instead", 3);
+        //</debug>
+    },
+
+    /**
+     * Adds a listener to be notified when the browser window is resized and provides resize event buffering (50 milliseconds),
+     * passes new viewport width and height to handlers.
+     * @param {Function} fn      The handler function the window resize event invokes.
+     * @param {Object}   scope   The scope (`this` reference) in which the handler function executes. Defaults to the browser window.
+     * @param {Boolean}  options Options object as passed to {@link Ext.Element#addListener}
+     * @deprecated 2.0.0 Please listen to the {@link Ext.Viewport#event-resize resize} on Ext.Viewport instead.
+     */
+    onWindowResize: function(fn, scope, options) {
+        //<debug warn>
+        Ext.Logger.deprecate("Ext.EventManager.onWindowResize is deprecated, attach listener to Ext.Viewport instead, i.e: Ext.Viewport.on('resize', ...)", 2);
+        //</debug>
+        Ext.Viewport.on('resize', fn, scope, options);
+    },
+
+    onOrientationChange: function(fn, scope, options) {
+        //<debug warn>
+        Ext.Logger.deprecate("Ext.EventManager.onOrientationChange is deprecated, attach listener to Ext.Viewport instead, i.e: Ext.Viewport.on('orientationchange', ...)", 2);
+        //</debug>
+        Ext.Viewport.on('orientationchange', fn, scope, options);
+    },
+
+    unOrientationChange: function(fn, scope, options) {
+        //<debug warn>
+        Ext.Logger.deprecate("Ext.EventManager.unOrientationChange is deprecated, remove listener from Ext.Viewport instead, i.e: Ext.Viewport.un('orientationchange', ...)", 2);
+        //</debug>
+        Ext.Viewport.un('orientationchange', fn, scope, options);
+    }
+};
+
+/**
+* Appends an event handler to an element.  Shorthand for {@link #addListener}.
+* @param {String/HTMLElement} el The html element or id to assign the event handler to.
+* @param {String} eventName The name of the event to listen for.
+* @param {Function} handler The handler function the event invokes.
+* @param {Object} scope (optional) (`this` reference) in which the handler function executes. __Defaults to the Element__.
+* @param {Object} options (optional) An object containing standard {@link #addListener} options
+* @member Ext.EventManager
+* @method on
+* @deprecated 2.0.0 Please use {@link Ext.dom.Element#addListener addListener} on an instance of Ext.Element instead.
+*/
+Ext.EventManager.on = Ext.EventManager.addListener;
+
+/**
+ * Removes an event handler from an element.  Shorthand for {@link #removeListener}.
+ * @param {String/HTMLElement} el The id or html element from which to remove the listener.
+ * @param {String} eventName The name of the event.
+ * @param {Function} fn The handler function to remove. __This must be a reference to the function passed into the {@link #on} call.__
+ * @param {Object} scope If a scope (`this` reference) was specified when the listener was added,
+ * then this must refer to the same object.
+ * @member Ext.EventManager
+ * @method un
+ * @deprecated 2.0.0 Please use {@link Ext.dom.Element#removeListener removeListener} on an instance of Ext.Element instead.
+ */
+Ext.EventManager.un = Ext.EventManager.removeListener;
+//</deprecated>
 
 //@tag dom,core
 //@define Ext-more
@@ -8684,7 +8899,7 @@ var noArgs = [],
  *
  * [getting_started]: #!/guide/getting_started
  */
-Ext.setVersion('touch', '2.1.0-rc1');
+Ext.setVersion('touch', '2.1.0-rc2');
 
 Ext.apply(Ext, {
     /**
@@ -9324,6 +9539,31 @@ Ext.apply(Ext, {
             icon = {};
         }
 
+        //<deprecated product=touch since=2.0.1>
+        if ('phoneStartupScreen' in config) {
+            //<debug warn>
+            Ext.Logger.deprecate("[Ext.setup()] 'phoneStartupScreen' config is deprecated, please use 'startupImage' " +
+                "config instead. Refer to the latest API docs for more details");
+            //</debug>
+            config['320x460'] = config.phoneStartupScreen;
+        }
+
+        if ('tabletStartupScreen' in config) {
+            //<debug warn>
+            Ext.Logger.deprecate("[Ext.setup()] 'tabletStartupScreen' config is deprecated, please use 'startupImage' " +
+                "config instead. Refer to the latest API docs for more details");
+            //</debug>
+            config['768x1004'] = config.tabletStartupScreen;
+        }
+
+        if ('glossOnIcon' in config) {
+            //<debug warn>
+            Ext.Logger.deprecate("[Ext.setup()] 'glossOnIcon' config is deprecated, please use 'isIconPrecomposed' " +
+                "config instead. Refer to the latest API docs for more details");
+            //</debug>
+            isIconPrecomposed = Boolean(config.glossOnIcon);
+        }
+        //</deprecated>
 
         if (Ext.os.is.iPad) {
             if (devicePixelRatio >= 2) {
@@ -10013,6 +10253,135 @@ Ext.Object.defineProperty(Ext, 'Msg', {
 });
 //</debug>
 
+//<deprecated product=touch since=2.0>
+Ext.deprecateMethod(Ext, 'getOrientation', function() {
+    return Ext.Viewport.getOrientation();
+}, "Ext.getOrientation() is deprecated, use Ext.Viewport.getOrientation() instead");
+
+Ext.deprecateMethod(Ext, 'log', function(message) {
+    return Ext.Logger.log(message);
+}, "Ext.log() is deprecated, please use Ext.Logger.log() instead");
+
+/**
+ * @member Ext.Function
+ * @method createDelegate
+ * @inheritdoc Ext.Function#bind
+ * @deprecated 2.0.0
+ * Please use {@link Ext.Function#bind bind} instead
+ */
+Ext.deprecateMethod(Ext.Function, 'createDelegate', Ext.Function.bind, "Ext.createDelegate() is deprecated, please use Ext.Function.bind() instead");
+
+/**
+ * @member Ext
+ * @method createInterceptor
+ * @inheritdoc Ext.Function#createInterceptor
+ * @deprecated 2.0.0
+ * Please use {@link Ext.Function#createInterceptor createInterceptor} instead
+ */
+Ext.deprecateMethod(Ext, 'createInterceptor', Ext.Function.createInterceptor, "Ext.createInterceptor() is deprecated, " +
+    "please use Ext.Function.createInterceptor() instead");
+
+/**
+ * @member Ext
+ * @property {Boolean} SSL_SECURE_URL
+ * URL to a blank file used by Ext JS when in secure mode for iframe src and onReady
+ * src to prevent the IE insecure content warning.
+ * @removed 2.0.0
+ */
+Ext.deprecateProperty(Ext, 'SSL_SECURE_URL', null, "Ext.SSL_SECURE_URL has been removed");
+
+/**
+ * @member Ext
+ * @property {Boolean} enableGarbageCollector
+ * `true` to automatically un-cache orphaned Ext.Elements periodically.
+ * @removed 2.0.0
+ */
+Ext.deprecateProperty(Ext, 'enableGarbageCollector', null, "Ext.enableGarbageCollector has been removed");
+
+/**
+ * @member Ext
+ * @property {Boolean} enableListenerCollection
+ * True to automatically purge event listeners during garbageCollection.
+ * @removed 2.0.0
+ */
+Ext.deprecateProperty(Ext, 'enableListenerCollection', null, "Ext.enableListenerCollection has been removed");
+
+/**
+ * @member Ext
+ * @property {Boolean} isSecure
+ * True if the page is running over SSL.
+ * @removed 2.0.0 Please use {@link Ext.env.Browser#isSecure} instead
+ */
+Ext.deprecateProperty(Ext, 'isSecure', null, "Ext.enableListenerCollection has been removed, please use Ext.env.Browser.isSecure instead");
+
+/**
+ * @member Ext
+ * @method dispatch
+ * Dispatches a request to a controller action.
+ * @removed 2.0.0 Please use {@link Ext.app.Application#dispatch} instead
+ */
+Ext.deprecateMethod(Ext, 'dispatch', null, "Ext.dispatch() is deprecated, please use Ext.app.Application.dispatch() instead");
+
+/**
+ * @member Ext
+ * @method getOrientation
+ * Returns the current orientation of the mobile device.
+ * @removed 2.0.0
+ * Please use {@link Ext.Viewport#getOrientation getOrientation} instead
+ */
+Ext.deprecateMethod(Ext, 'getOrientation', null, "Ext.getOrientation() has been removed, " +
+    "please use Ext.Viewport.getOrientation() instead");
+
+/**
+ * @member Ext
+ * @method reg
+ * Registers a new xtype.
+ * @removed 2.0.0
+ */
+Ext.deprecateMethod(Ext, 'reg', null, "Ext.reg() has been removed");
+
+/**
+ * @member Ext
+ * @method preg
+ * Registers a new ptype.
+ * @removed 2.0.0
+ */
+Ext.deprecateMethod(Ext, 'preg', null, "Ext.preg() has been removed");
+
+/**
+ * @member Ext
+ * @method redirect
+ * Dispatches a request to a controller action, adding to the History stack
+ * and updating the page url as necessary.
+ * @removed 2.0.0
+ */
+Ext.deprecateMethod(Ext, 'redirect', null, "Ext.redirect() has been removed");
+
+/**
+ * @member Ext
+ * @method regApplication
+ * Creates a new Application class from the specified config object.
+ * @removed 2.0.0
+ */
+Ext.deprecateMethod(Ext, 'regApplication', null, "Ext.regApplication() has been removed");
+
+/**
+ * @member Ext
+ * @method regController
+ * Creates a new Controller class from the specified config object.
+ * @removed 2.0.0
+ */
+Ext.deprecateMethod(Ext, 'regController', null, "Ext.regController() has been removed");
+
+/**
+ * @member Ext
+ * @method regLayout
+ * Registers new layout type.
+ * @removed 2.0.0
+ */
+Ext.deprecateMethod(Ext, 'regLayout', null, "Ext.regLayout() has been removed");
+
+//</deprecated>
 
 //@tag dom,core
 //@require Ext-more
@@ -10291,6 +10660,11 @@ Ext.define('Ext.env.Browser', {
             this.setFlag('Sencha');
         }
 
+        // Check if running in UIWebView
+        if (/(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)(?!.*FBAN)/i.test(userAgent)) {
+            isWebView = true;
+        }
+
         // Flag to check if it we are in the WebView
         this.setFlag('WebView', isWebView);
 
@@ -10330,6 +10704,26 @@ Ext.define('Ext.env.Browser', {
 }, function() {
     var browserEnv = Ext.browser = new this(Ext.global.navigator.userAgent);
 
+    //<deprecated product=touch since=2.0>
+    var flags = browserEnv.is,
+        name;
+
+    if (!Ext.is) {
+        Ext.is = {};
+    }
+
+    for (name in flags) {
+        if (flags.hasOwnProperty(name)) {
+            Ext.deprecatePropertyValue(Ext.is, name, flags[name], "Ext.is." + name + " is deprecated, " +
+                "please use Ext.browser.is." + name + " instead");
+        }
+    }
+
+    Ext.deprecatePropertyValue(Ext, 'isStrict', browserEnv.isStrict, "Ext.isStrict is deprecated, " +
+        "please use Ext.browser.isStrict instead");
+    Ext.deprecatePropertyValue(Ext, 'userAgent', browserEnv.userAgent, "Ext.userAgent is deprecated, " +
+        "please use Ext.browser.userAgent instead");
+    //</deprecated>
 });
 
 //@tag dom,core
@@ -10536,6 +10930,24 @@ Ext.define('Ext.env.OS', {
         userAgent = navigation.userAgent,
         osEnv, osName, deviceType;
 
+    //<deprecated product=touch since=2.0>
+    this.override('constructor', function() {
+        this.callOverridden(arguments);
+
+        var is = this.is;
+
+        if (is.MacOS) {
+            Ext.deprecatePropertyValue(is, 'Mac', true, "Ext.is.Mac is deprecated, please use Ext.os.is.MacOS instead");
+            Ext.deprecatePropertyValue(is, 'mac', true, "Ext.is.Mac is deprecated, please use Ext.os.is.MacOS instead");
+        }
+
+        if (is.BlackBerry) {
+            Ext.deprecatePropertyValue(is, 'Blackberry', true, "Ext.is.Blackberry is deprecated, please use Ext.os.is.BlackBerry instead");
+        }
+
+        return this;
+    });
+    //</deprecated>
 
     Ext.os = osEnv = new this(userAgent, navigation.platform);
 
@@ -10573,6 +10985,20 @@ Ext.define('Ext.env.OS', {
     osEnv.setFlag(deviceType, true);
     osEnv.deviceType = deviceType;
 
+    //<deprecated product=touch since=2.0>
+    var flags = Ext.os.is,
+        name;
+
+    if (!Ext.is) {
+        Ext.is = {};
+    }
+
+    for (name in flags) {
+        if (flags.hasOwnProperty(name)) {
+            Ext.deprecatePropertyValue(Ext.is, name, flags[name], "Ext.is." + name + " is deprecated, please use Ext.os.is." + name + " instead");
+        }
+    }
+    //</deprecated>
 
     /**
      * @class Ext.is
@@ -10745,7 +11171,7 @@ Ext.define('Ext.env.Feature', {
          * True if the current device supports touch events (`touchstart`).
          */
         Touch: function() {
-            return this.isEventSupported('touchstart') && !(Ext.os && Ext.os.name.match(/Windows|MacOS|Linux/));
+            return this.isEventSupported('touchstart') && !(Ext.os && Ext.os.name.match(/Windows|MacOS|Linux/) && !Ext.os.is.BlackBerry6);
         },
 
         /**
@@ -10902,7 +11328,7 @@ Ext.define('Ext.env.Feature', {
 
         /**
          * @member Ext.feature.has
-         * @property {Boolean}ClassList
+         * @property {Boolean} LocalStorage
          * True if LocalStorage is supported and can be written to.
          * False if LocalStorage is not supported or cannot be written to.
          */
@@ -10923,6 +11349,70 @@ Ext.define('Ext.env.Feature', {
         }
     });
 
+    //<deprecated product=touch since=2.0>
+    /**
+     * @class Ext.supports
+     * Determines information about features are supported in the current environment.
+     * @deprecated 2.0.0
+     * Please use the {@link Ext.env.Browser}, {@link Ext.env.OS} and {@link Ext.feature.has} classes.
+     */
+
+    /**
+     * @member Ext.supports
+     * @property Transitions
+     * @inheritdoc Ext.feature.has#CssTransitions
+     * @deprecated 2.0.0 Please use {@link Ext.feature.has#CssTransitions} instead
+     */
+    Ext.deprecatePropertyValue(has, 'Transitions', has.CssTransitions,
+                          "Ext.supports.Transitions is deprecated, please use Ext.feature.has.CssTransitions instead");
+
+    /**
+     * @member Ext.supports
+     * @property SVG
+     * @inheritdoc Ext.feature.has#Svg
+     * @deprecated 2.0.0 Please use {@link Ext.feature.has#Svg} instead
+     */
+    Ext.deprecatePropertyValue(has, 'SVG', has.Svg,
+                          "Ext.supports.SVG is deprecated, please use Ext.feature.has.Svg instead");
+
+    /**
+     * @member Ext.supports
+     * @property VML
+     * @inheritdoc Ext.feature.has#Vml
+     * @deprecated 2.0.0 Please use {@link Ext.feature.has#Vml} instead
+     */
+    Ext.deprecatePropertyValue(has, 'VML', has.Vml,
+                          "Ext.supports.VML is deprecated, please use Ext.feature.has.Vml instead");
+
+    /**
+     * @member Ext.supports
+     * @property AudioTag
+     * @inheritdoc Ext.feature.has#Audio
+     * @deprecated 2.0.0 Please use {@link Ext.feature.has#Audio} instead
+     */
+    Ext.deprecatePropertyValue(has, 'AudioTag', has.Audio,
+                          "Ext.supports.AudioTag is deprecated, please use Ext.feature.has.Audio instead");
+
+    /**
+     * @member Ext.supports
+     * @property GeoLocation
+     * @inheritdoc Ext.feature.has#Geolocation
+     * @deprecated 2.0.0 Please use {@link Ext.feature.has#Geolocation} instead
+     */
+    Ext.deprecatePropertyValue(has, 'GeoLocation', has.Geolocation,
+                          "Ext.supports.GeoLocation is deprecated, please use Ext.feature.has.Geolocation instead");
+    var name;
+
+    if (!Ext.supports) {
+        Ext.supports = {};
+    }
+
+    for (name in has) {
+        if (has.hasOwnProperty(name)) {
+            Ext.deprecatePropertyValue(Ext.supports, name, has[name], "Ext.supports." + name + " is deprecated, please use Ext.feature.has." + name + " instead");
+        }
+    }
+    //</deprecated>
 });
 
 //@tag dom,core
@@ -11605,7 +12095,7 @@ Ext.define('Ext.mixin.Identifiable', {
  * All instances of this class inherit the methods of Ext.Fx making visual effects easily available to all DOM elements.
  *
  * Note that the events documented in this class are not Ext events, they encapsulate browser events. To access the
- * underlying browser event, see {@link Ext.EventObject.browserEvent}. Some older browsers may not support the full range of
+ * underlying browser event, see {@link Ext.EventObject#browserEvent}. Some older browsers may not support the full range of
  * events. Which events are supported is beyond the control of Sencha Touch.
  *
  * ## Usage
@@ -12151,6 +12641,116 @@ Ext.define('Ext.dom.Element', {
         Element.mixin('observable', Ext.mixin.Observable);
     }, null, 'Ext.mixin.Observable');
 
+    //<deprecated product=touch since=2.0>
+    Ext.deprecateClassMethod(this, {
+        /**
+         * @member Ext.dom.Element
+         * @method remove
+         * @inheritdoc Ext.dom.Element#destroy
+         * @deprecated 2.0.0 Please use {@link #destroy} instead.
+         */
+        remove: 'destroy',
+        /**
+         * @member Ext.dom.Element
+         * @method setHTML
+         * @inheritdoc Ext.dom.Element#setHtml
+         * @deprecated 2.0.0 Please use {@link #setHtml} instead.
+         */
+        setHTML: 'setHtml',
+        /**
+         * @member Ext.dom.Element
+         * @method update
+         * @inheritdoc Ext.dom.Element#setHtml
+         * @deprecated 2.0.0 Please use {@link #setHtml} instead.
+         */
+        update: 'setHtml',
+        /**
+         * @member Ext.dom.Element
+         * @method getHTML
+         * @inheritdoc Ext.dom.Element#getHtml
+         * @deprecated 2.0.0 Please use {@link #getHtml} instead.
+         */
+        getHTML: 'getHtml',
+        /**
+         * @member Ext.dom.Element
+         * @method purgeAllListeners
+         * @inheritdoc Ext.dom.Element#clearListeners
+         * @deprecated 2.0.0 Please use {@link #clearListeners} instead.
+         */
+        purgeAllListeners: 'clearListeners',
+        /**
+         * @member Ext.dom.Element
+         * @method removeAllListeners
+         * @inheritdoc Ext.dom.Element#clearListeners
+         * @deprecated 2.0.0 Please use {@link #clearListeners} instead.
+         */
+        removeAllListeners: 'clearListeners'
+    });
+
+    /**
+     * @member Ext.dom.Element
+     * @method cssTranslate
+     * Translates an element using CSS 3 in 2D.
+     * @removed 2.0.0
+     */
+    Ext.deprecateMethod(Ext.dom.Element, 'cssTranslate', null, "Ext.dom.Element.cssTranslate() has been removed");
+
+    /**
+     * @member Ext.dom.Element
+     * @method getOuterHeight
+     * Retrieves the height of the element account for the top and bottom margins.
+     * @removed 2.0.0
+     */
+    Ext.deprecateMethod(Ext.dom.Element, 'getOuterHeight', null, "Ext.dom.Element.getOuterHeight() has been removed");
+
+    /**
+     * @member Ext.dom.Element
+     * @method getOuterWidth
+     * Retrieves the width of the element accounting for the left and right margins.
+     * @removed 2.0.0
+     */
+    Ext.deprecateMethod(Ext.dom.Element, 'getOuterWidth', null, "Ext.dom.Element.getOuterWidth() has been removed");
+
+    /**
+     * @member Ext.dom.Element
+     * @method getScrollParent
+     * Gets the Scroller instance of the first parent that has one.
+     * @removed 2.0.0
+     */
+    Ext.deprecateMethod(Ext.dom.Element, 'getScrollParent', null, "Ext.dom.Element.getScrollParent() has been removed");
+
+    /**
+     * @member Ext.dom.Element
+     * @method isDescendent
+     * Determines if this element is a descendant of the passed in Element.
+     * @removed 2.0.0
+     */
+    Ext.deprecateMethod(Ext.dom.Element, 'isDescendent', null, "Ext.dom.Element.isDescendent() has been removed");
+
+    /**
+     * @member Ext.dom.Element
+     * @method mask
+     * Puts a mask over this element to disable user interaction.
+     * @removed 2.0.0
+     */
+    Ext.deprecateMethod(Ext.dom.Element, 'mask', null, "Ext.dom.Element.mask() has been removed");
+
+    /**
+     * @member Ext.dom.Element
+     * @method setTopLeft
+     * Sets the element's top and left positions directly using CSS style.
+     * @removed 2.0.0
+     */
+    Ext.deprecateMethod(Ext.dom.Element, 'setTopLeft', null, "Ext.dom.Element.setTopLeft() has been removed");
+
+    /**
+     * @member Ext.dom.Element
+     * @method unmask
+     * Removes a previously applied mask.
+     * @removed 2.0.0
+     */
+    Ext.deprecateMethod(Ext.dom.Element, 'unmask', null, "Ext.dom.Element.unmask() has been removed");
+    //</deprecated>
 
 });
 
@@ -12345,6 +12945,140 @@ Ext.dom.Element.addStatics({
     }
 });
 
+//<deprecated product=touch since=2.0>
+Ext.dom.Element.addStatics({
+    /**
+     * Serializes a DOM form into a url encoded string
+     * @deprecated 2.0.0 Please see {@link Ext.form.Panel#getValues} instead
+     * @param {Object} form The form
+     * @return {String} The url encoded form
+     */
+    serializeForm: function(form) {
+        var fElements = form.elements || (document.forms[form] || Ext.getDom(form)).elements,
+            hasSubmit = false,
+            encoder = encodeURIComponent,
+            name,
+            data = '',
+            type,
+            hasValue;
+
+        Ext.each(fElements, function(element) {
+            name = element.name;
+            type = element.type;
+
+            if (!element.disabled && name) {
+                if (/select-(one|multiple)/i.test(type)) {
+                    Ext.each(element.options, function(opt) {
+                        if (opt.selected) {
+                            hasValue = opt.hasAttribute ? opt.hasAttribute('value') : opt.getAttributeNode('value').specified;
+                            data += Ext.String.format("{0}={1}&", encoder(name), encoder(hasValue ? opt.value : opt.text));
+                        }
+                    });
+                } else if (!(/file|undefined|reset|button/i.test(type))) {
+                    if (!(/radio|checkbox/i.test(type) && !element.checked) && !(type == 'submit' && hasSubmit)) {
+                        data += encoder(name) + '=' + encoder(element.value) + '&';
+                        hasSubmit = /submit/i.test(type);
+                    }
+                }
+            }
+        });
+
+        return data.substr(0, data.length - 1);
+    },
+
+    /**
+     * Retrieves the document height
+     * @deprecated 2.0.0 Please use {@link Ext.Viewport#getWindowHeight} instead
+     * @static
+     * @return {Number} documentHeight
+     */
+    getDocumentHeight: function() {
+        //<debug warn>
+        Ext.Logger.deprecate("Ext.Element.getDocumentHeight() is no longer supported. " +
+            "Please use Ext.Viewport#getWindowHeight() instead", this);
+        //</debug>
+        return Math.max(!Ext.isStrict ? document.body.scrollHeight : document.documentElement.scrollHeight, this.getViewportHeight());
+    },
+
+    /**
+     * Retrieves the document width
+     * @deprecated 2.0.0 Please use {@link Ext.Viewport#getWindowWidth} instead
+     * @static
+     * @return {Number} documentWidth
+     */
+    getDocumentWidth: function() {
+        //<debug warn>
+        Ext.Logger.deprecate("Ext.Element.getDocumentWidth() is no longer supported. " +
+            "Please use Ext.Viewport#getWindowWidth() instead", this);
+        //</debug>
+        return Math.max(!Ext.isStrict ? document.body.scrollWidth : document.documentElement.scrollWidth, this.getViewportWidth());
+    },
+
+    /**
+     * Retrieves the viewport height of the window.
+     * @deprecated 2.0.0 Please use {@link Ext.Viewport#getWindowHeight} instead
+     * @static
+     * @return {Number} viewportHeight
+     */
+    getViewportHeight: function() {
+        //<debug warn>
+        Ext.Logger.deprecate("Ext.Element.getDocumentHeight() is no longer supported. " +
+            "Please use Ext.Viewport#getWindowHeight() instead", this);
+        //</debug>
+        return window.innerHeight;
+    },
+
+    /**
+     * Retrieves the viewport width of the window.
+     * @deprecated 2.0.0 Please use {@link Ext.Viewport#getWindowWidth} instead
+     * @static
+     * @return {Number} viewportWidth
+     */
+    getViewportWidth: function() {
+        //<debug warn>
+        Ext.Logger.deprecate("Ext.Element.getDocumentWidth() is no longer supported. " +
+            "Please use Ext.Viewport#getWindowWidth() instead", this);
+        //</debug>
+        return window.innerWidth;
+    },
+
+    /**
+     * Retrieves the viewport size of the window.
+     * @deprecated 2.0.0 Please use {@link Ext.Viewport#getSize} instead
+     * @static
+     * @return {Object} object containing width and height properties
+     */
+    getViewSize: function() {
+        //<debug warn>
+        Ext.Logger.deprecate("Ext.Element.getViewSize() is no longer supported. " +
+            "Please use Ext.Viewport#getSize() instead", this);
+        //</debug>
+        return {
+            width: window.innerWidth,
+            height: window.innerHeight
+        };
+    },
+
+    /**
+     * Retrieves the current orientation of the window. This is calculated by
+     * determining if the height is greater than the width.
+     * @deprecated 2.0.0 Please use {@link Ext.Viewport#getOrientation} instead
+     * @static
+     * @return {String} Orientation of window: 'portrait' or 'landscape'
+     */
+    getOrientation: function() {
+        //<debug warn>
+        Ext.Logger.deprecate("Ext.Element.getOrientation() is no longer supported. " +
+            "Please use Ext.Viewport#getOrientation() instead", this);
+        //</debug>
+        if (Ext.supports.OrientationChange) {
+            return (window.orientation == 0) ? 'portrait' : 'landscape';
+        }
+
+        return (window.innerHeight > window.innerWidth) ? 'portrait' : 'landscape';
+    }
+});
+//</deprecated>
 
 //@tag dom,core
 //@define Ext.Element-all
@@ -12354,6 +13088,188 @@ Ext.dom.Element.addStatics({
 /**
  * @class Ext.dom.Element
  */
+//<deprecated product=touch since=2.0>
+Ext.dom.Element.addMembers({
+    /**
+     * Gets the x,y coordinates specified by the anchor position on the element.
+     *
+     * @deprecated 2.0.0 This method is no longer available for Ext.Element. Please see {@link Ext.Component#showBy}
+     * to do anchoring at Component level instead.
+     *
+     * @param {String} [anchor=c] (optional) The specified anchor position.
+     * @param {Boolean} local (optional) `true` to get the local (element top/left-relative) anchor position instead
+     * of page coordinates.
+     * @param {Object} size (optional) An object containing the size to use for calculating anchor position.
+     * `{width: (target width), height: (target height)}` (defaults to the element's current size)
+     * @return {Array} [x, y] An array containing the element's x and y coordinates.
+     */
+    getAnchorXY: function(anchor, local, size) {
+        //<debug warn>
+        Ext.Logger.deprecate("getAnchorXY() is no longer available for Ext.Element. Please see Ext.Component#showBy() " +
+            "to do anchoring at Component level instead", this);
+        //</debug>
+
+        //Passing a different size is useful for pre-calculating anchors,
+        //especially for anchored animations that change the el size.
+        anchor = (anchor || "tl").toLowerCase();
+        size = size || {};
+
+        var me = this,
+            vp = me.dom == document.body || me.dom == document,
+            width = size.width || vp ? window.innerWidth: me.getWidth(),
+            height = size.height || vp ? window.innerHeight: me.getHeight(),
+            xy,
+            rnd = Math.round,
+            myXY = me.getXY(),
+            extraX = vp ? 0: !local ? myXY[0] : 0,
+            extraY = vp ? 0: !local ? myXY[1] : 0,
+            hash = {
+                c: [rnd(width * 0.5), rnd(height * 0.5)],
+                t: [rnd(width * 0.5), 0],
+                l: [0, rnd(height * 0.5)],
+                r: [width, rnd(height * 0.5)],
+                b: [rnd(width * 0.5), height],
+                tl: [0, 0],
+                bl: [0, height],
+                br: [width, height],
+                tr: [width, 0]
+            };
+
+        xy = hash[anchor];
+        return [xy[0] + extraX, xy[1] + extraY];
+    },
+
+    alignToRe: /^([a-z]+)-([a-z]+)(\?)?$/,
+
+    /**
+     * Gets the x,y coordinates to align this element with another element.
+     * @param {Mixed} element The element to align to.
+     * @param {String} [position=tl-bl] (optional) The position to align to.
+     * @param {Array} offsets (optional) Offset the positioning by [x, y].
+     * @return {Array} [x, y]
+     */
+    getAlignToXY: function(el, position, offsets, local) {
+        //<debug warn>
+        Ext.Logger.deprecate("getAlignToXY() is no longer available for Ext.Element. Please see Ext.Component#showBy() " +
+            "to do anchoring at Component level instead", this);
+        //</debug>
+
+        local = !!local;
+        el = Ext.get(el);
+
+        //<debug>
+        if (!el || !el.dom) {
+            throw new Error("Element.alignToXY with an element that doesn't exist");
+        }
+        //</debug>
+        offsets = offsets || [0, 0];
+
+        if (!position || position == '?') {
+            position = 'tl-bl?';
+        }
+        else if (! (/-/).test(position) && position !== "") {
+            position = 'tl-' + position;
+        }
+        position = position.toLowerCase();
+
+        var me = this,
+            matches = position.match(this.alignToRe),
+            dw = window.innerWidth,
+            dh = window.innerHeight,
+            p1 = "",
+            p2 = "",
+            a1,
+            a2,
+            x,
+            y,
+            swapX,
+            swapY,
+            p1x,
+            p1y,
+            p2x,
+            p2y,
+            width,
+            height,
+            region,
+            constrain;
+
+        if (!matches) {
+            throw "Element.alignTo with an invalid alignment " + position;
+        }
+
+        p1 = matches[1];
+        p2 = matches[2];
+        constrain = !!matches[3];
+
+        //Subtract the aligned el's internal xy from the target's offset xy
+        //plus custom offset to get the aligned el's new offset xy
+        a1 = me.getAnchorXY(p1, true);
+        a2 = el.getAnchorXY(p2, local);
+
+        x = a2[0] - a1[0] + offsets[0];
+        y = a2[1] - a1[1] + offsets[1];
+
+        if (constrain) {
+            width = me.getWidth();
+            height = me.getHeight();
+
+            region = el.getPageBox();
+
+            //If we are at a viewport boundary and the aligned el is anchored on a target border that is
+            //perpendicular to the vp border, allow the aligned el to slide on that border,
+            //otherwise swap the aligned el to the opposite border of the target.
+            p1y = p1.charAt(0);
+            p1x = p1.charAt(p1.length - 1);
+            p2y = p2.charAt(0);
+            p2x = p2.charAt(p2.length - 1);
+
+            swapY = ((p1y == "t" && p2y == "b") || (p1y == "b" && p2y == "t"));
+            swapX = ((p1x == "r" && p2x == "l") || (p1x == "l" && p2x == "r"));
+
+            if (x + width > dw) {
+                x = swapX ? region.left - width: dw - width;
+            }
+            if (x < 0) {
+                x = swapX ? region.right: 0;
+            }
+            if (y + height > dh) {
+                y = swapY ? region.top - height: dh - height;
+            }
+            if (y < 0) {
+                y = swapY ? region.bottom: 0;
+            }
+        }
+
+        return [x, y];
+    },
+
+    // @private
+    getAnchor: function(){
+        var dom = this.dom;
+            if (!dom) {
+                return;
+            }
+            var anchor = this.self.data.call(this.self, dom, '_anchor');
+
+        if(!anchor){
+            anchor = this.self.data.call(this.self, dom, '_anchor', {});
+        }
+        return anchor;
+    },
+
+    // @private
+    // used outside of core
+    adjustForConstraints: function(xy, parent) {
+        var vector = this.getConstrainVector(parent, xy);
+        if (vector) {
+            xy[0] += vector[0];
+            xy[1] += vector[1];
+        }
+        return xy;
+    }
+
+});
+//</deprecated>
 
 //@tag dom,core
 //@define Ext.Element-all
@@ -13713,6 +14629,99 @@ Ext.dom.Element.addMembers({
     }
 });
 
+//<deprecated product=touch since=2.0>
+Ext.dom.Element.addMembers({
+    /**
+     * Returns the dimensions of the element available to lay content out in.
+     *
+     * If the element (or any ancestor element) has CSS style `display: none`, the dimensions will be zero.
+     *
+     * Example:
+     *
+     *     var vpSize = Ext.getBody().getViewSize();
+     *
+     *     // all Windows created afterwards will have a default value of 90% height and 95% width
+     *     Ext.Window.override({
+     *         width: vpSize.width * 0.9,
+     *         height: vpSize.height * 0.95
+     *     });
+     *     // To handle window resizing you would have to hook onto onWindowResize.
+     *
+     * `getViewSize` utilizes `clientHeight`/`clientWidth` which excludes sizing of scrollbars.
+     * To obtain the size including scrollbars, use {@link #getStyleSize}.
+     *
+     * Sizing of the document body is handled at the adapter level which handles special cases for IE and strict modes, etc.
+     *
+     * @deprecated 2.0.0
+     * @return {Object} Object describing `width` and `height`:
+     * @return {Number} return.width
+     * @return {Number} return.height
+     */
+    getViewSize: function() {
+        //<debug warn>
+        Ext.Logger.deprecate("Ext.dom.Element.getViewSize() is deprecated", this);
+        //</debug>
+
+        var doc = document,
+            dom = this.dom;
+
+        if (dom == doc || dom == doc.body) {
+            return {
+                width: Element.getViewportWidth(),
+                height: Element.getViewportHeight()
+            };
+        }
+        else {
+            return {
+                width: dom.clientWidth,
+                height: dom.clientHeight
+            };
+        }
+    },
+
+    /**
+     * Returns `true` if the value of the given property is visually transparent. This
+     * may be due to a 'transparent' style value or an rgba value with 0 in the alpha
+     * component.
+     * @deprecated 2.0.0
+     * @param {String} prop The style property whose value is to be tested.
+     * @return {Boolean} `true` if the style property is visually transparent.
+     */
+    isTransparent: function(prop) {
+        //<debug warn>
+        Ext.Logger.deprecate("Ext.dom.Element.isTransparent() is deprecated", this);
+        //</debug>
+
+        var value = this.getStyle(prop);
+
+        return value ? this.transparentRe.test(value) : false;
+    },
+
+
+    /**
+     * Adds one or more CSS classes to this element and removes the same class(es) from all siblings.
+     * @deprecated 2.0.0
+     * @param {String/String[]} className The CSS class to add, or an array of classes.
+     * @return {Ext.dom.Element} this
+     */
+    radioCls: function(className) {
+        //<debug warn>
+        Ext.Logger.deprecate("Ext.dom.Element.radioCls() is deprecated", this);
+        //</debug>
+
+        var cn = this.dom.parentNode.childNodes,
+            v;
+        className = Ext.isArray(className) ? className : [className];
+        for (var i = 0, len = cn.length; i < len; i++) {
+            v = cn[i];
+            if (v && v.nodeType == 1) {
+                Ext.fly(v, '_internal').removeCls(className);
+            }
+        }
+        return this.addCls(className);
+    }
+});
+//</deprecated>
 
 //@tag dom,core
 //@define Ext.Element-all
@@ -14329,6 +15338,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.app.Profile": [],
   "Ext.event.recognizer.MultiTouch": [],
   "Ext.fx.Runner": [],
+  "Ext.chart.grid.CircularGrid": [],
   "Ext.mixin.Templatable": [],
   "Ext.event.recognizer.Pinch": [],
   "Ext.util.Format": [],
@@ -14372,7 +15382,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.fx.runner.Css": [],
   "Ext.fx.runner.CssTransition": [],
   "Ext.draw.Group": [],
-  "Ext.data.ProxyMgr": [],
   "Ext.XTemplateCompiler": [],
   "Ext.util.Wrapper": [],
   "Ext.app.Router": [],
@@ -14579,6 +15588,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.device.geolocation.Abstract": [],
   "Ext.ActionSheet": [],
   "Ext.layout.Box": [],
+  "Ext.bb.CrossCut": [],
   "Ext.Video": [],
   "Ext.ux.auth.Session": [],
   "Ext.chart.series.Line": [],
@@ -14684,7 +15694,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.util.Point": [],
   "Ext.chart.series.StackedCartesian": [],
   "Ext.fx.layout.card.Slide": [],
-  "Ext.chart.grid.AngularGrid": [],
+  "Ext.Anim": [],
   "Ext.data.DirectStore": [],
   "Ext.dataview.NestedList": [
     "Ext.NestedList"
@@ -14810,8 +15820,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.device.Device": [],
   "Ext.event.Dispatcher": [],
   "Ext.data.Store": [],
-  "Ext.behavior.Translatable": [],
   "Ext.draw.modifier.Highlight": [],
+  "Ext.behavior.Translatable": [],
   "Ext.direct.Manager": [
     "Ext.Direct"
   ],
@@ -14933,6 +15943,9 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.app.Profile": [],
   "Ext.event.recognizer.MultiTouch": [],
   "Ext.fx.Runner": [],
+  "Ext.chart.grid.CircularGrid": [
+    "grid.circular"
+  ],
   "Ext.mixin.Templatable": [],
   "Ext.event.recognizer.Pinch": [],
   "Ext.util.Format": [],
@@ -14943,20 +15956,12 @@ Ext.ClassManager.addNameAlternateMappings({
     "data.identifier.simple"
   ],
   "Ext.dataview.DataView": [
-    "widget.component",
-    "widget.container",
     "widget.dataview"
   ],
   "Ext.field.Hidden": [
-    "widget.field",
-    "widget.textfield",
-    "widget.component",
     "widget.hiddenfield"
   ],
   "Ext.field.Number": [
-    "widget.field",
-    "widget.textfield",
-    "widget.component",
     "widget.numberfield"
   ],
   "Ext.chart.series.CandleStick": [
@@ -14966,14 +15971,9 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.data.Model": [],
   "Ext.data.reader.Reader": [],
   "Ext.Sheet": [
-    "widget.panel",
-    "widget.component",
-    "widget.container",
     "widget.sheet"
   ],
   "Ext.tab.Tab": [
-    "widget.component",
-    "widget.button",
     "widget.tab"
   ],
   "Ext.chart.series.sprite.StackedCartesian": [],
@@ -14985,7 +15985,6 @@ Ext.ClassManager.addNameAlternateMappings({
   ],
   "Ext.data.NodeInterface": [],
   "Ext.chart.interactions.PanZoom": [
-    "widget.interaction",
     "interaction.panzoom"
   ],
   "Ext.util.PositionMap": [],
@@ -14995,7 +15994,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.fx.runner.Css": [],
   "Ext.fx.runner.CssTransition": [],
   "Ext.draw.Group": [],
-  "Ext.data.ProxyMgr": [],
   "Ext.XTemplateCompiler": [],
   "Ext.util.Wrapper": [],
   "Ext.app.Router": [],
@@ -15013,18 +16011,12 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.util.sizemonitor.OverflowChange": [],
   "Ext.event.publisher.ElementSize": [],
   "Ext.tab.Bar": [
-    "widget.toolbar",
-    "widget.component",
-    "widget.tabbar",
-    "widget.container"
+    "widget.tabbar"
   ],
   "Ext.event.Dom": [],
   "Ext.app.Application": [],
   "Ext.dataview.List": [
-    "widget.component",
-    "widget.container",
-    "widget.list",
-    "widget.dataview"
+    "widget.list"
   ],
   "Ext.util.translatable.Dom": [],
   "Ext.fx.layout.card.Scroll": [
@@ -15033,7 +16025,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.draw.LimitedCache": [],
   "Ext.device.geolocation.Sencha": [],
   "Ext.dataview.ListItemHeader": [
-    "widget.component",
     "widget.listitemheader"
   ],
   "Ext.event.publisher.TouchGesture": [],
@@ -15042,9 +16033,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.device.push.Sencha": [],
   "Ext.fx.animation.WipeOut": [],
   "Ext.slider.Slider": [
-    "widget.slider",
-    "widget.component",
-    "widget.container"
+    "widget.slider"
   ],
   "Ext.Component": [
     "widget.component"
@@ -15064,9 +16053,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.device.device.Simulator": [],
   "Ext.Ajax": [],
   "Ext.dataview.component.ListItem": [
-    "widget.dataitem",
-    "widget.component",
-    "widget.container",
     "widget.listitem"
   ],
   "Ext.util.Filter": [],
@@ -15077,63 +16063,37 @@ Ext.ClassManager.addNameAlternateMappings({
     "association.belongsto"
   ],
   "Ext.draw.Surface": [
-    "widget.surface",
-    "widget.component"
+    "widget.surface"
   ],
-  "Ext.scroll.indicator.ScrollPosition": [
-    "widget.component"
-  ],
+  "Ext.scroll.indicator.ScrollPosition": [],
   "Ext.field.Email": [
-    "widget.field",
-    "widget.textfield",
-    "widget.component",
     "widget.emailfield"
   ],
   "Ext.fx.layout.card.Abstract": [],
   "Ext.event.Controller": [],
-  "Ext.dataview.component.Container": [
-    "widget.component",
-    "widget.container"
-  ],
+  "Ext.dataview.component.Container": [],
   "Ext.log.writer.Remote": [],
   "Ext.fx.layout.card.Style": [],
   "Ext.device.purchases.Sencha": [],
   "Ext.chart.axis.segmenter.Segmenter": [],
-  "Ext.viewport.Android": [
-    "widget.viewport",
-    "widget.component",
-    "widget.container"
-  ],
+  "Ext.viewport.Android": [],
   "Ext.log.formatter.Identity": [],
   "Ext.chart.interactions.ItemHighlight": [
-    "widget.interaction",
     "interaction.itemhighlight"
   ],
   "Ext.picker.Picker": [
-    "widget.panel",
-    "widget.component",
-    "widget.container",
-    "widget.sheet",
     "widget.picker"
   ],
   "Ext.data.Batch": [],
   "Ext.draw.modifier.Animation": [
     "modifier.animation"
   ],
-  "Ext.chart.AbstractChart": [
-    "widget.draw",
-    "widget.component",
-    "widget.container"
-  ],
+  "Ext.chart.AbstractChart": [],
   "Ext.tab.Panel": [
-    "widget.tabpanel",
-    "widget.component",
-    "widget.container"
+    "widget.tabpanel"
   ],
   "Ext.draw.Path": [],
-  "Ext.scroll.indicator.Throttled": [
-    "widget.component"
-  ],
+  "Ext.scroll.indicator.Throttled": [],
   "Ext.fx.animation.SlideOut": [
     "animation.slideOut"
   ],
@@ -15160,14 +16120,10 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.fx.easing.Momentum": [],
   "Ext.fx.easing.Abstract": [],
   "Ext.Title": [
-    "widget.title",
-    "widget.component"
+    "widget.title"
   ],
   "Ext.event.recognizer.Drag": [],
   "Ext.field.TextArea": [
-    "widget.field",
-    "widget.textfield",
-    "widget.component",
     "widget.textareafield"
   ],
   "Ext.fx.Easing": [],
@@ -15178,11 +16134,7 @@ Ext.ClassManager.addNameAlternateMappings({
     "reader.array"
   ],
   "Ext.picker.Date": [
-    "widget.panel",
-    "widget.datepicker",
-    "widget.component",
-    "widget.container",
-    "widget.sheet"
+    "widget.datepicker"
   ],
   "Ext.data.proxy.JsonP": [
     "proxy.jsonp",
@@ -15194,27 +16146,18 @@ Ext.ClassManager.addNameAlternateMappings({
   ],
   "Ext.device.device.PhoneGap": [],
   "Ext.field.Checkbox": [
-    "widget.field",
-    "widget.component",
     "widget.checkboxfield"
   ],
   "Ext.chart.Legend": [
-    "widget.component",
-    "widget.legend",
-    "widget.container",
-    "widget.dataview"
+    "widget.legend"
   ],
   "Ext.Media": [
-    "widget.component",
     "widget.media"
   ],
   "Ext.TitleBar": [
-    "widget.titlebar",
-    "widget.component",
-    "widget.container"
+    "widget.titlebar"
   ],
   "Ext.chart.interactions.RotatePie3D": [
-    "widget.interaction",
     "interaction.rotatePie3d"
   ],
   "Ext.draw.gradient.Linear": [],
@@ -15231,10 +16174,7 @@ Ext.ClassManager.addNameAlternateMappings({
     "association.hasmany"
   ],
   "Ext.draw.TimingFunctions": [],
-  "Ext.draw.engine.Canvas": [
-    "widget.surface",
-    "widget.component"
-  ],
+  "Ext.draw.engine.Canvas": [],
   "Ext.data.proxy.Ajax": [
     "proxy.ajax"
   ],
@@ -15252,8 +16192,6 @@ Ext.ClassManager.addNameAlternateMappings({
   ],
   "Ext.event.recognizer.Recognizer": [],
   "Ext.form.FieldSet": [
-    "widget.component",
-    "widget.container",
     "widget.fieldset"
   ],
   "Ext.scroll.Indicator": [],
@@ -15275,44 +16213,31 @@ Ext.ClassManager.addNameAlternateMappings({
     "sprite.pie3dPart"
   ],
   "Ext.viewport.Default": [
-    "widget.viewport",
-    "widget.component",
-    "widget.container"
+    "widget.viewport"
   ],
   "Ext.layout.HBox": [
     "layout.hbox"
   ],
   "Ext.ux.auth.model.Session": [],
-  "Ext.scroll.indicator.Default": [
-    "widget.component"
-  ],
+  "Ext.scroll.indicator.Default": [],
   "Ext.data.ModelManager": [],
   "Ext.data.Validations": [],
   "Ext.util.translatable.Abstract": [],
-  "Ext.scroll.indicator.Abstract": [
-    "widget.component"
-  ],
+  "Ext.scroll.indicator.Abstract": [],
   "Ext.Button": [
-    "widget.button",
-    "widget.component"
+    "widget.button"
   ],
   "Ext.field.Radio": [
-    "widget.field",
-    "widget.component",
-    "widget.radiofield",
-    "widget.checkboxfield"
+    "widget.radiofield"
   ],
   "Ext.util.HashMap": [],
   "Ext.field.Input": [
-    "widget.input",
-    "widget.component"
+    "widget.input"
   ],
   "Ext.device.Camera": [],
   "Ext.mixin.Filterable": [],
   "Ext.draw.TextMeasurer": [],
-  "Ext.dataview.element.Container": [
-    "widget.component"
-  ],
+  "Ext.dataview.element.Container": [],
   "Ext.chart.series.sprite.PieSlice": [
     "sprite.pieslice"
   ],
@@ -15321,27 +16246,22 @@ Ext.ClassManager.addNameAlternateMappings({
     "direct.exception"
   ],
   "Ext.Panel": [
-    "widget.panel",
-    "widget.component",
-    "widget.container"
+    "widget.panel"
   ],
   "Ext.data.association.HasOne": [
     "association.hasone"
   ],
   "Ext.device.geolocation.Abstract": [],
   "Ext.ActionSheet": [
-    "widget.panel",
-    "widget.component",
-    "widget.container",
-    "widget.sheet",
     "widget.actionsheet"
   ],
   "Ext.layout.Box": [
     "layout.tablebox"
   ],
+  "Ext.bb.CrossCut": [
+    "widget.crosscut"
+  ],
   "Ext.Video": [
-    "widget.component",
-    "widget.media",
     "widget.video"
   ],
   "Ext.ux.auth.Session": [],
@@ -15364,14 +16284,10 @@ Ext.ClassManager.addNameAlternateMappings({
   ],
   "Ext.device.Purchases.Purchase": [],
   "Ext.table.Row": [
-    "widget.component",
-    "widget.tablerow",
-    "widget.container",
-    "widget.tablecell"
+    "widget.tablerow"
   ],
   "Ext.log.formatter.Formatter": [],
   "Ext.Container": [
-    "widget.component",
     "widget.container"
   ],
   "Ext.fx.animation.Pop": [
@@ -15393,15 +16309,12 @@ Ext.ClassManager.addNameAlternateMappings({
   ],
   "Ext.event.publisher.ElementPaint": [],
   "Ext.chart.axis.Category": [
-    "widget.axis",
     "axis.category"
   ],
   "Ext.data.reader.Json": [
     "reader.json"
   ],
-  "Ext.Decorator": [
-    "widget.component"
-  ],
+  "Ext.Decorator": [],
   "Ext.data.TreeStore": [
     "store.tree"
   ],
@@ -15411,15 +16324,11 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.event.recognizer.DoubleTap": [],
   "Ext.log.Logger": [],
   "Ext.picker.Slot": [
-    "widget.component",
-    "widget.container",
-    "widget.pickerslot",
-    "widget.dataview"
+    "widget.pickerslot"
   ],
   "Ext.device.notification.Simulator": [],
   "Ext.field.Field": [
-    "widget.field",
-    "widget.component"
+    "widget.field"
   ],
   "Ext.log.filter.Priority": [],
   "Ext.util.sizemonitor.Abstract": [],
@@ -15427,9 +16336,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.util.paintmonitor.OverflowChange": [],
   "Ext.util.LineSegment": [],
   "Ext.SegmentedButton": [
-    "widget.segmentedbutton",
-    "widget.component",
-    "widget.container"
+    "widget.segmentedbutton"
   ],
   "Ext.Sortable": [],
   "Ext.fx.easing.Linear": [
@@ -15451,8 +16358,6 @@ Ext.ClassManager.addNameAlternateMappings({
     "sprite.path"
   ],
   "Ext.LoadMask": [
-    "widget.component",
-    "widget.mask",
     "widget.loadmask"
   ],
   "Ext.data.association.Association": [],
@@ -15468,8 +16373,6 @@ Ext.ClassManager.addNameAlternateMappings({
   ],
   "Ext.util.Inflector": [],
   "Ext.Map": [
-    "widget.component",
-    "widget.container",
     "widget.map"
   ],
   "Ext.XTemplate": [],
@@ -15478,10 +16381,7 @@ Ext.ClassManager.addNameAlternateMappings({
   ],
   "Ext.draw.sprite.AttributeParser": [],
   "Ext.form.Panel": [
-    "widget.panel",
-    "widget.component",
-    "widget.formpanel",
-    "widget.container"
+    "widget.formpanel"
   ],
   "Ext.chart.series.Series": [],
   "Ext.data.Request": [],
@@ -15492,14 +16392,9 @@ Ext.ClassManager.addNameAlternateMappings({
     "layout.float"
   ],
   "Ext.dataview.component.DataItem": [
-    "widget.dataitem",
-    "widget.component",
-    "widget.container"
+    "widget.dataitem"
   ],
   "Ext.chart.CartesianChart": [
-    "widget.draw",
-    "widget.component",
-    "widget.container",
     "widget.chart",
     "Ext.chart.Chart"
   ],
@@ -15514,36 +16409,24 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.fx.layout.card.Slide": [
     "fx.layout.card.slide"
   ],
-  "Ext.chart.grid.AngularGrid": [
-    "grid.angular"
-  ],
+  "Ext.Anim": [],
   "Ext.data.DirectStore": [
     "store.direct"
   ],
   "Ext.dataview.NestedList": [
-    "widget.component",
-    "widget.container",
     "widget.nestedlist"
   ],
   "Ext.app.Route": [],
   "Ext.device.connection.Simulator": [],
   "Ext.chart.PolarChart": [
-    "widget.polar",
-    "widget.draw",
-    "widget.component",
-    "widget.container"
+    "widget.polar"
   ],
   "Ext.event.publisher.ComponentSize": [],
-  "Ext.slider.Toggle": [
-    "widget.slider",
-    "widget.component",
-    "widget.container"
-  ],
+  "Ext.slider.Toggle": [],
   "Ext.data.identifier.Sequential": [
     "data.identifier.sequential"
   ],
   "Ext.chart.interactions.Reset": [
-    "widget.interaction",
     "interaction.reset"
   ],
   "Ext.Template": [],
@@ -15566,9 +16449,7 @@ Ext.ClassManager.addNameAlternateMappings({
     "easing.ease-out"
   ],
   "Ext.Toolbar": [
-    "widget.toolbar",
-    "widget.component",
-    "widget.container"
+    "widget.toolbar"
   ],
   "Ext.event.recognizer.LongPress": [],
   "Ext.device.notification.Sencha": [],
@@ -15586,15 +16467,12 @@ Ext.ClassManager.addNameAlternateMappings({
     "fx.layout.card.flip"
   ],
   "Ext.chart.interactions.CrossZoom": [
-    "widget.interaction",
     "interaction.crosszoom"
   ],
   "Ext.event.publisher.ComponentPaint": [],
   "Ext.event.recognizer.Rotate": [],
   "Ext.util.TranslatableList": [],
-  "Ext.carousel.Item": [
-    "widget.component"
-  ],
+  "Ext.carousel.Item": [],
   "Ext.event.recognizer.Swipe": [],
   "Ext.util.translatable.ScrollPosition": [],
   "Ext.device.camera.Simulator": [],
@@ -15603,7 +16481,6 @@ Ext.ClassManager.addNameAlternateMappings({
   ],
   "Ext.event.recognizer.Touch": [],
   "Ext.plugin.ListPaging": [
-    "widget.component",
     "plugin.listpaging"
   ],
   "Ext.draw.sprite.Sector": [
@@ -15613,14 +16490,9 @@ Ext.ClassManager.addNameAlternateMappings({
     "segmenter.names"
   ],
   "Ext.mixin.Observable": [],
-  "Ext.carousel.Infinite": [
-    "widget.component",
-    "widget.container",
-    "widget.carousel"
-  ],
+  "Ext.carousel.Infinite": [],
   "Ext.draw.Matrix": [],
   "Ext.Mask": [
-    "widget.component",
     "widget.mask"
   ],
   "Ext.event.publisher.Publisher": [],
@@ -15633,8 +16505,6 @@ Ext.ClassManager.addNameAlternateMappings({
     "axisLayout.continuous"
   ],
   "Ext.table.Cell": [
-    "widget.component",
-    "widget.container",
     "widget.tablecell"
   ],
   "Ext.fx.layout.card.ScrollCover": [
@@ -15674,15 +16544,10 @@ Ext.ClassManager.addNameAlternateMappings({
     "direct.rpc"
   ],
   "Ext.plugin.PullRefresh": [
-    "widget.component",
     "plugin.pullrefresh"
   ],
   "Ext.log.writer.Console": [],
   "Ext.field.Spinner": [
-    "widget.field",
-    "widget.textfield",
-    "widget.component",
-    "widget.numberfield",
     "widget.spinnerfield"
   ],
   "Ext.chart.axis.segmenter.Numeric": [
@@ -15695,17 +16560,11 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.fx.layout.Card": [],
   "Ext.TaskQueue": [],
   "Ext.Label": [
-    "widget.component",
     "widget.label"
   ],
   "Ext.util.translatable.CssTransform": [],
-  "Ext.viewport.Ios": [
-    "widget.viewport",
-    "widget.component",
-    "widget.container"
-  ],
+  "Ext.viewport.Ios": [],
   "Ext.Spacer": [
-    "widget.component",
     "widget.spacer"
   ],
   "Ext.mixin.Selectable": [],
@@ -15716,7 +16575,6 @@ Ext.ClassManager.addNameAlternateMappings({
     "proxy.rest"
   ],
   "Ext.Img": [
-    "widget.component",
     "widget.img",
     "widget.image"
   ],
@@ -15739,14 +16597,9 @@ Ext.ClassManager.addNameAlternateMappings({
     "series.bar"
   ],
   "Ext.field.Slider": [
-    "widget.field",
-    "widget.component",
     "widget.sliderfield"
   ],
   "Ext.field.Search": [
-    "widget.field",
-    "widget.textfield",
-    "widget.component",
     "widget.searchfield"
   ],
   "Ext.chart.series.Scatter": [
@@ -15757,19 +16610,17 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.data.Store": [
     "store.store"
   ],
-  "Ext.behavior.Translatable": [],
   "Ext.draw.modifier.Highlight": [
     "modifier.highlight"
   ],
+  "Ext.behavior.Translatable": [],
   "Ext.direct.Manager": [],
   "Ext.data.proxy.Proxy": [
     "proxy.proxy"
   ],
   "Ext.draw.modifier.Modifier": [],
   "Ext.navigation.View": [
-    "widget.navigationview",
-    "widget.component",
-    "widget.container"
+    "widget.navigationview"
   ],
   "Ext.draw.modifier.Target": [
     "modifier.target"
@@ -15777,45 +16628,29 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.draw.sprite.AttributeDefinition": [],
   "Ext.device.Notification": [],
   "Ext.draw.Component": [
-    "widget.draw",
-    "widget.component",
-    "widget.container"
+    "widget.draw"
   ],
   "Ext.layout.VBox": [
     "layout.vbox"
   ],
   "Ext.slider.Thumb": [
-    "widget.component",
     "widget.thumb"
   ],
-  "Ext.MessageBox": [
-    "widget.panel",
-    "widget.component",
-    "widget.container",
-    "widget.sheet"
-  ],
+  "Ext.MessageBox": [],
   "Ext.ux.Faker": [],
-  "Ext.dataview.IndexBar": [
-    "widget.component"
-  ],
-  "Ext.dataview.element.List": [
-    "widget.component"
-  ],
+  "Ext.dataview.IndexBar": [],
+  "Ext.dataview.element.List": [],
   "Ext.layout.FlexBox": [
     "layout.box"
   ],
   "Ext.field.Url": [
-    "widget.field",
-    "widget.textfield",
-    "widget.urlfield",
-    "widget.component"
+    "widget.urlfield"
   ],
   "Ext.draw.Solver": [],
   "Ext.data.proxy.Memory": [
     "proxy.memory"
   ],
   "Ext.chart.axis.Time": [
-    "widget.axis",
     "axis.time"
   ],
   "Ext.layout.Card": [
@@ -15833,27 +16668,17 @@ Ext.ClassManager.addNameAlternateMappings({
   ],
   "Ext.util.Region": [],
   "Ext.field.Select": [
-    "widget.field",
-    "widget.textfield",
-    "widget.selectfield",
-    "widget.component"
+    "widget.selectfield"
   ],
   "Ext.draw.Draw": [],
   "Ext.ItemCollection": [],
   "Ext.log.formatter.Default": [],
-  "Ext.navigation.Bar": [
-    "widget.component",
-    "widget.titlebar",
-    "widget.container"
-  ],
+  "Ext.navigation.Bar": [],
   "Ext.chart.axis.layout.CombineDuplicate": [
     "axisLayout.combineDuplicate"
   ],
   "Ext.device.Geolocation": [],
   "Ext.chart.SpaceFillingChart": [
-    "widget.draw",
-    "widget.component",
-    "widget.container",
     "widget.spacefilling"
   ],
   "Ext.data.proxy.SessionStorage": [
@@ -15864,10 +16689,7 @@ Ext.ClassManager.addNameAlternateMappings({
   ],
   "Ext.draw.sprite.AnimationParser": [],
   "Ext.field.Password": [
-    "widget.passwordfield",
-    "widget.field",
-    "widget.textfield",
-    "widget.component"
+    "widget.passwordfield"
   ],
   "Ext.device.connection.Abstract": [],
   "Ext.direct.Event": [
@@ -15876,54 +16698,36 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.direct.RemotingMethod": [],
   "Ext.Evented": [],
   "Ext.carousel.Indicator": [
-    "widget.component",
     "widget.carouselindicator"
   ],
   "Ext.util.Collection": [],
   "Ext.chart.interactions.ItemInfo": [
-    "widget.interaction",
     "interaction.iteminfo"
   ],
   "Ext.chart.MarkerHolder": [],
   "Ext.carousel.Carousel": [
-    "widget.component",
-    "widget.container",
     "widget.carousel"
   ],
   "Ext.Audio": [
-    "widget.audio",
-    "widget.component",
-    "widget.media"
+    "widget.audio"
   ],
   "Ext.device.Contacts": [],
   "Ext.table.Table": [
-    "widget.component",
-    "widget.container",
     "widget.table"
   ],
   "Ext.draw.engine.SvgContext.Gradient": [],
   "Ext.chart.axis.layout.Layout": [],
   "Ext.data.Errors": [],
   "Ext.field.Text": [
-    "widget.field",
-    "widget.textfield",
-    "widget.component"
+    "widget.textfield"
   ],
   "Ext.field.TextAreaInput": [
-    "widget.input",
-    "widget.component",
     "widget.textareainput"
   ],
   "Ext.field.DatePicker": [
-    "widget.field",
-    "widget.textfield",
-    "widget.component",
     "widget.datepickerfield"
   ],
-  "Ext.draw.engine.Svg": [
-    "widget.surface",
-    "widget.component"
-  ],
+  "Ext.draw.engine.Svg": [],
   "Ext.event.recognizer.Tap": [],
   "Ext.device.orientation.Abstract": [],
   "Ext.AbstractManager": [],
@@ -15933,9 +16737,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.chart.interactions.Abstract": [
     "widget.interaction"
   ],
-  "Ext.scroll.indicator.CssTransform": [
-    "widget.component"
-  ],
+  "Ext.scroll.indicator.CssTransform": [],
   "Ext.util.PaintMonitor": [],
   "Ext.direct.PollingProvider": [
     "direct.pollingprovider"
@@ -15950,13 +16752,9 @@ Ext.ClassManager.addNameAlternateMappings({
   ],
   "Ext.event.publisher.ComponentDelegation": [],
   "Ext.chart.axis.Numeric": [
-    "widget.axis",
     "axis.numeric"
   ],
   "Ext.field.Toggle": [
-    "widget.field",
-    "widget.component",
-    "widget.sliderfield",
     "widget.togglefield"
   ],
   "Ext.fx.layout.card.ScrollReveal": [
@@ -15965,7 +16763,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.data.Operation": [],
   "Ext.fx.animation.Abstract": [],
   "Ext.chart.interactions.Rotate": [
-    "widget.interaction",
     "interaction.rotate"
   ],
   "Ext.draw.engine.SvgContext": [],

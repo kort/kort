@@ -1,5 +1,8 @@
 /**
- *
+ * @class Ext.chart.Markers
+ * @extends Ext.draw.sprite.Instancing
+ * 
+ * Marker sprite.
  */
 Ext.define("Ext.chart.Markers", {
     extend: 'Ext.draw.sprite.Instancing',

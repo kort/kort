@@ -275,6 +275,11 @@ Ext.define('Ext.env.Browser', {
             this.setFlag('Sencha');
         }
 
+        // Check if running in UIWebView
+        if (/(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)(?!.*FBAN)/i.test(userAgent)) {
+            isWebView = true;
+        }
+
         // Flag to check if it we are in the WebView
         this.setFlag('WebView', isWebView);
 
