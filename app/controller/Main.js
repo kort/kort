@@ -24,14 +24,14 @@ Ext.define('Kort.controller.Main', {
                 action: 'showBugmap',
                 // only allow floating numbers for latitude and longitude
                 conditions: {
-                    ':lat': "[0-9]+\.+[0-9]+",
-                    ':lng': "[0-9]+\.+[0-9]+"
+                    ':lat': "[0-9]+\\.+[0-9]+",
+                    ':lng': "[0-9]+\\.+[0-9]+"
                 }
             },
             'bugmap/show/:bugid': 'showBug',
             'profile': 'showProfile'
         },
-        
+
         initView: null,
         initLat: null,
         initLng: null,
@@ -39,7 +39,7 @@ Ext.define('Kort.controller.Main', {
         centerToOwnPosition: true,
         bugmapRendered: false
     },
-    
+
     onBugmapRender: function() {
         this.setBugmapRendered(true);
     },
@@ -92,19 +92,19 @@ Ext.define('Kort.controller.Main', {
      * 
      * @private
      */
-    showBugmap: function(lat,lng) {
+    showBugmap: function(lat, lng) {
         var viewName = 'bugmap';
         this.saveInitView(viewName, lat, lng);
-        this.centerMap(lat,lng);
+        this.centerMap(lat, lng);
         this.switchView(viewName);
     },
 
     showBug: function(id) {
-        console.log(id);
+        Ext.Logger.log('opening bug detail: ' + id);
         var viewName = 'bugmap';
         this.switchView(viewName);
     },
-    
+
     /**
      * Centers problem map to given position
      * 
@@ -113,12 +113,12 @@ Ext.define('Kort.controller.Main', {
      * 
      * @private
      */
-    centerMap: function(lat,lng) {
+    centerMap: function(lat, lng) {
         if(this.getBugmap() && lat && lng) {
             if(!this.getBugmapRendered()) {
                 // Timeout to center map correctly on first call (wait till map is correctly rendered)
                 Ext.defer(function() {
-                    this.centerMap(lat,lng);
+                    this.centerMap(lat, lng);
                 }, 500, this);
             } else {
                 this.getBugmap().setMapCenter(L.latLng(this.getInitLat(), this.getInitLng()));
