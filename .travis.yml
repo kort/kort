@@ -9,6 +9,7 @@ branches:
 before_script:
   - gem install sass
   - gem install compass
+  - gem install heroku
   - sudo npm install -g grunt >/dev/null 2>&1
 
 script: ant -f build_kort.xml build
@@ -19,11 +20,7 @@ after_script:
   - git checkout -b travis
   - bash heroku_clean.sh
   - git add .
-  - git status
   - git commit -m "Travis CI commit of files added/modified from build"
-  - gem install heroku
   - heroku keys:clear
   - yes | heroku keys:add
-  - heroku apps:destroy --confirm kort
-  - heroku apps:create kort
   - git push -f heroku travis:master
