@@ -1,7 +1,7 @@
 Ext.define('Kort.view.profile.Container', {
 	extend: 'Ext.Container',
 	alias: 'widget.profilecontainer',
-    requires: [,
+    requires: [
         'Ext.TitleBar'
     ],
 	

@@ -86,10 +86,8 @@ Ext.define('Kort.controller.Main', {
 
     /**
      * Shows map view
-     * 
      * @param lat latitude for map center
      * @param lng longitude for map center
-     * 
      * @private
      */
     showBugmap: function(lat, lng) {
@@ -107,10 +105,8 @@ Ext.define('Kort.controller.Main', {
 
     /**
      * Centers problem map to given position
-     * 
      * @param lat latitude for map center
-     * @param lng	longitude for map center
-     * 
+     * @param lng longitude for map center
      * @private
      */
     centerMap: function(lat, lng) {
@@ -131,11 +127,9 @@ Ext.define('Kort.controller.Main', {
 
     /**
      * Saves the init state
-     * 
      * @param viewName name of view to show
      * @param lat latitude for map center
      * @param lng longitude for map center
-     * 
      * @private
      */
     saveInitView: function(viewName, lat, lng) {
@@ -149,9 +143,7 @@ Ext.define('Kort.controller.Main', {
 
     /**
      * Switches view to given viewname
-     * 
      * @param viewName name of view to show
-     * 
      * @private
      */
     switchView: function(viewName) {
