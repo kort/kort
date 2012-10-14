@@ -5,7 +5,7 @@ env:
 before_script:
   - gem install sass
   - gem install compass
-  - sudo npm install -g grunt
+  - sudo npm install -g grunt >/dev/null
 
 script: ant -f build_kort.xml build
 
