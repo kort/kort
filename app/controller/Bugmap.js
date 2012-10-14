@@ -1,9 +1,12 @@
-Ext.define('Kort.controller.Map', {
+Ext.define('Kort.controller.Bugmap', {
     extend: 'Ext.app.Controller',
-
+    
     config: {
+        views: [
+            'bugmap.Container'
+        ],
         refs: {
-            mapCmp: '#leafletmap'
+            mapCmp: '#bugmap'
         },
         control: {
             mapCmp: {
@@ -110,7 +113,7 @@ Ext.define('Kort.controller.Map', {
                 '<h1>{title}</h1>',
                 '<p>{description}</p>',
                 '<p>',
-                    '<a href="#">Accept this job!</a>',
+                    '<a href="#bugmap/show/{id}"><button>Accept this job!</button></a>',
                 '</p>',
             '</div>'
         ));
