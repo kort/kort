@@ -85,16 +85,39 @@
             description="Removes all build output produced by the 'build' target"/>
 
     <!--
+    Build SASS
+    -->
+    <target name="-before-sass"/>
+    <target name="-sass">
+        <x-shell dir="${app.dir}/resources/sass">
+            compass compile --boring --force
+        </x-shell>
+    </target>
+    <target name="-after-sass"/>
+    <target name="sass" depends="init" unless="skip.sass"
+            description="Builds only the SASS files using Compass">
+        <antcall target="-before-sass"/>
+        <antcall target="-sass"/>
+        <antcall target="-after-sass"/>
+    </target>
+    
+    <scriptdef name="x-app-build" language="javascript" src="${framework.config.dir}/app-build.js">
+        <classpath>
+            <pathelement location="${cmd.dir}/lib/ant-contrib-1.0b3.jar"/>
+            <pathelement location="${cmd.dir}/sencha.jar"/>
+        </classpath>
+    </scriptdef>
+
+    <!--
     Build Page
     -->
     <target name="-before-page"/>
     <target name="-page">
-        <property name="args.environment" value=""/>
-        <x-sencha-command>
-            app
-            build
-            ${args.environment}
-        </x-sencha-command>
+        <property name="v2deps" value="false"/>
+        <property name="args.path" location="."/>
+        <property name="args.destination" location="${workspace.build.dir}"/>
+        <property name="args.environment" value="production"/>
+        <x-app-build/>
     </target>
     <target name="-after-page"/>
     <target name="page" depends="init" unless="skip.page"
@@ -108,7 +131,7 @@
     Build
     -->
     <target name="-before-build"/>
-    <target name="-build" depends="page"/>
+    <target name="-build" depends="sass,page"/>
     <target name="-after-build"/>
     <target name="build"
             depends="init,-before-build,-build,-after-build"

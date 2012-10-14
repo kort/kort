@@ -1,34 +1,11 @@
 //<debug>
-/*
 Ext.Loader.setPath({
     'Ext': 'touch/src',
     'Ext.i18n': 'i18n',
     'Ext.ux': 'ux',
     'Kort': 'app'
 });
-*/
 //</debug>
-
-Ext.override(Ext.MessageBox, {
-	statics: {
-        YES   : {text: 'Ja',    itemId: 'yes', ui: 'action'},
-        NO    : {text: 'Nein',     itemId: 'no'},
-        CANCEL: {text: 'Abbrechen', itemId: 'cancel'},
-
-        OKCANCEL: [
-            {text: 'Abbrechen', itemId: 'cancel'}
-        ],
-        YESNOCANCEL: [
-            {text: 'Abbrechen', itemId: 'cancel'},
-            {text: 'Nein',     itemId: 'no'},
-            {text: 'Ja',    itemId: 'yes', ui: 'action'}
-        ],
-        YESNO: [
-            {text: 'Ja', itemId: 'yes', ui: 'action'},
-			{text: 'Nein',  itemId: 'no'}
-        ]
-    }
-});
 
 Ext.application({
     name: 'Kort',
@@ -68,7 +45,7 @@ Ext.application({
 		autoMaximize: true
 	},
 
-// launch function is called as soon as app is ready
+    // launch function is called as soon as app is ready
     launch: function() {
         Ext.i18n.Bundle.configure({
 			bundle: 'Kort',
