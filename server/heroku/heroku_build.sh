@@ -16,6 +16,3 @@ cp -r $CI_HOME/ux $BUILD_DIR/
 cp -r $CI_HOME/i18n $BUILD_DIR
 
 cp -r $CI_HOME/lib/Leaflet-0.4.4/ $BUILD_DIR/lib/
-
-mv $BUILD_DIR ../
-cd ../$BUILD_DIR
