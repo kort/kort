@@ -18,6 +18,6 @@ script: ant -f build_kort.xml build
 after_script:
   - yes | ruby $CI_HOME/server/travis_deployer.rb
   - bash $CI_HOME/server/heroku/heroku_keys.sh
-  - bash $CI_HOME/server/heroku/heroku_build.sh >/dev/null
-  - bash $CI_HOME/server/heroku/heroku_add.sh >/dev/null
+  - bash $CI_HOME/server/heroku/heroku_build.sh
+  - bash $CI_HOME/server/heroku/heroku_add.sh 
   - bash $CI_HOME/server/heroku/heroku_push.sh
