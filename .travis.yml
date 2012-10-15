@@ -17,12 +17,7 @@ script: ant -f build_kort.xml build
 # heroku part from https://gist.github.com/443c00fe346045522db7
 after_script:
   - yes | ruby server/travis_deployer.rb
-  - git checkout -b travis
-  - bash heroku_clean.sh
-  - git add .
-  - git commit -m "Travis CI commit of files added/modified from build"
-  - heroku keys:clear
-  - yes | heroku keys:add
-  - heroku apps:destroy kort
-  - heroku apps:create kort
-  - git push -f heroku travis:master
+  - bash server/heroku/heroku_clean.sh >/dev/null
+  - bash server/heroku/heroku_add.sh >/dev/null
+  - bash server/heroku/heroku_keys.sh
+  - bash server/heroku/heroku_push.sh
