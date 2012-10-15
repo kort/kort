@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Ext-device-device-Sencha'>/**
+</span> * @private
+ */
+Ext.define('Ext.device.device.Sencha', {
+    extend: 'Ext.device.device.Abstract',
+
+<span id='Ext-device-device-Sencha-method-constructor'>    constructor: function() {
+</span>        this.name = device.name;
+        this.uuid = device.uuid;
+        this.platform = device.platformName || Ext.os.name;
+
+        this.initURL();
+    },
+
+<span id='Ext-device-device-Sencha-method-openURL'>    openURL: function(url) {
+</span>        Ext.device.Communicator.send({
+            command: 'OpenURL#open',
+            url: url
+        });
+    },
+
+<span id='Ext-device-device-Sencha-method-initURL'>    /**
+</span>     * @private
+     */
+    initURL: function() {
+        Ext.device.Communicator.send({
+            command: &quot;OpenURL#watch&quot;,
+            callbacks: {
+                callback: this.updateURL
+            },
+            scope: this
+        });
+    },
+
+<span id='Ext-device-device-Sencha-method-updateURL'>    /**
+</span>     * @private
+     */
+    updateURL: function() {
+        this.scheme = device.scheme || false;
+        this.fireEvent('schemeupdate', this, this.scheme);
+    }
+});
+</pre>
+</body>
+</html>

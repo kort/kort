@@ -1,0 +1,314 @@
+$include-button-uis: false;
+$include-default-icons: false;
+
+//import the sencha touch theme
+@import 'sencha-touch/default/all';
+
+@import url(http://fonts.googleapis.com/css?family=Quattrocento+Sans:400,700);
+
+@include sencha-layout;
+@include sencha-carousel;
+@include sencha-loading-spinner;
+
+body,
+.x-fullscreen, .x-layout-fit-item, .x-layout-card-item {
+    background: #000;
+}
+
+.x-toolbar {
+    height: 64px;
+    position: relative;
+    z-index: 10;
+
+    .x-toolbar-inner {
+        background: url(../images/toolbar.png) center;
+        height: 60px;
+    }
+
+    .x-container {
+        height: 60px;
+        padding-left: 12px;
+    }
+
+    .x-title {
+        visibility: hidden;
+    }
+
+    .x-button {
+        height: 33px;
+        padding-left: 40px;
+        background: url(../images/back.png) top left no-repeat;
+
+        .x-button-label {
+            color: #797979;
+            font-family: 'Quattrocento Sans', sans-serif;
+            line-height: 32px;
+            font-weight: 700;
+
+            .x-phone & {
+                visibility: hidden;
+            }
+        }
+
+        > * {
+            display: inline-block;
+        }
+    }
+}
+
+// Categories list
+.categories-list {
+    text-align: center;
+
+    .categories-list-container {
+        max-width: 1024px;
+        margin: 0 auto;
+    }
+
+    .categories-list-item {
+        background: rgba(38, 38, 38, .5);
+        border: 1px solid rgba(67, 67, 67, .5);
+        height: 180px;
+        -webkit-transition: background .2s ease-in, border-color .2s ease-in;
+
+        body.x-phone & {
+            margin: 0 20px;
+            margin-top: 20px;
+            padding: 30px;
+
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+
+        body:not(.x-phone) & {
+            display: inline-block;
+            padding: 30px 50px;
+        }
+
+        .image {
+            background-color: #fff;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 87px;
+            max-width: 212px;
+
+            body.x-phone & {
+                margin: 0 auto;
+            }
+
+            body:not(.x-phone) & {
+                width: 212px;
+            }
+        }
+
+        .name {
+            padding-top: 20px;
+            font-size: 20px;
+            text-shadow: 0 1px 0 #000;
+            color: #fff;
+            font-family: 'Quattrocento Sans', sans-serif;
+        }
+
+        .x-landscape & {
+            margin: 10px;
+        }
+
+        .x-portrait & {
+            margin: 20px;
+        }
+    }
+
+    .x-item-pressed {
+        background: rgba(0, 53, 41, .7);
+        border-color: rgba(0, 53, 41, .8);
+    }
+
+    .categories-list-inner {
+        line-height: 10px;
+
+        .x-landscape & {
+            padding-top: 10px;
+        }
+
+        .x-portrait & {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+    }
+
+    &.root {
+        background-image: url(../images/bg.jpg);
+        background-position: top center;
+        background-repeat: no-repeat;
+
+        body:not(.x-phone).x-landscape & {
+            .categories-list-item {
+                &:first-child {
+                    margin-right: 345px;
+                }
+            }
+        }
+
+        .x-phone & {
+            .categories-list-inner {
+                padding-top: 100px;
+            }
+        }
+
+        body:not(.x-phone).x-portrait & {
+            .categories-list-inner {
+                padding-top: 280px;
+            }
+        }
+    }
+}
+
+// Products
+.products {
+    background: #fff;
+
+    .x-innerhtml {
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+        height: 100%;
+        border: 1px solid #ccc;
+        border-width: 0 1px 1px 0;
+
+        .x-phone & {
+            border-right: 0;
+            border-bottom: 0;
+        }
+    }
+
+    .row {
+        display: table-row;
+
+        > * {
+            display: table-cell;
+        }
+
+        &:last-child .product {
+            border-bottom: 0;
+        }
+    }
+
+    .product {
+        background-size: 80%;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-width: 0 1px 1px 0;
+        border-style: solid;
+        border-color: #ddd;
+        text-align: center;
+
+        .image {
+            height: 160px;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+
+        img {
+            @include border-radius;
+        }
+
+        .name {
+            width: 100%;
+            padding: 20px 10px 5px 10px;
+            color: #014637;
+            font-size: 16px;
+            font-family: 'Quattrocento Sans', sans-serif;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .price {
+            width: 100%;
+            font-size: 12px;
+            color: #aaa;
+            font-family: 'Quattrocento Sans', sans-serif;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    .landscape .product {
+        width: 25%;
+
+        .image {
+            margin-top: 36px;
+        }
+    }
+
+    .portrait .product {
+        width: 33%;
+
+        .image {
+            margin-top: 18px;
+        }
+    }
+}
+
+.product-view {
+    background: #fff;
+    padding: 30px;
+
+    .product-view-inner {
+        .description {
+            padding-left: 15px;
+
+            ul li {
+                list-style: disc outside none;
+                margin-left: 25px;
+            }
+        }
+
+        .name {
+            font-family: 'Quattrocento Sans', sans-serif;
+            line-height: 28px;
+            font-size: 20px;
+            font-weight: 700;
+            color: #014637;
+        }
+
+        .text {
+            font-size:14px;
+            color: #aaa;
+            line-height: 20px;
+        }
+
+        .x-img {
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+    }
+}
+
+.product-view,
+.products {
+    a:link,
+    a:active,
+    a:visited {
+        display: block;
+        @include background-gradient(#028257, glossy);
+        @include border-radius(5px);
+        border: 1px solid darken(#028257, 10);
+        margin: 30px 60px;
+        text-align: center;
+        padding: 10px;
+        font-size: 22px;
+        font-family: 'Quattrocento Sans', sans-serif;
+        font-weight: bold;
+        color: #fff;
+        text-shadow: 0 -1px 0 rgba(0,0,0,.3);
+        text-decoration: none;
+    }
+}
+
+.products a {
+    margin-top: 0;
+}

@@ -1,0 +1,29 @@
+$base-color: #999;
+$list-header-color: #666;
+$list-header-bg-color: #ccc;
+
+$index-bar-bg-color: #ccc;
+$index-bar-color: #666;
+
+
+@import 'sencha-touch/default/all';
+
+
+// You may remove any of the following modules that you
+// do not use in order to create a smaller css file.
+@include sencha-panel;
+@include sencha-buttons;
+@include sencha-sheet;
+@include sencha-picker;
+@include sencha-tabs;
+@include sencha-toolbar;
+@include sencha-toolbar-forms;
+@include sencha-indexbar;
+@include sencha-list;
+@include sencha-layout;
+@include sencha-carousel;
+@include sencha-form;
+@include sencha-msgbox;
+@include sencha-draw;
+@include sencha-charts;
+// Your custom code goes here...

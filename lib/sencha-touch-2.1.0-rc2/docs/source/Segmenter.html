@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Ext-chart-axis-segmenter-Segmenter'>/**
+</span> * @class Ext.chart.axis.segmenter.Segmenter
+ * 
+ * Interface for the type of data used in an Axis.
+ */
+Ext.define(&quot;Ext.chart.axis.segmenter.Segmenter&quot;, {
+
+    config: {
+<span id='Ext-chart-axis-segmenter-Segmenter-cfg-axis'>        /**
+</span>         * @cfg {Ext.chart.axis.Axis} axis The axis that the Segmenter is bound.
+         */
+        axis: null
+    },
+
+<span id='Ext-chart-axis-segmenter-Segmenter-method-constructor'>    constructor: function (config) {
+</span>        this.initConfig(config);
+    },
+
+<span id='Ext-chart-axis-segmenter-Segmenter-method-from'>    from: function (value) {
+</span>        return value;
+    },
+
+<span id='Ext-chart-axis-segmenter-Segmenter-method-diff'>    /**
+</span>     * Returns the difference between the min and max value based on the given unit scale.
+     * 
+     * @param min the smaller value
+     * @param max the larger value
+     * @param unit the unit scale
+     */
+    diff: function (min, max, unit) {
+
+    },
+
+<span id='Ext-chart-axis-segmenter-Segmenter-method-align'>    align: function (value, step, unit) {
+</span>
+    },
+
+
+<span id='Ext-chart-axis-segmenter-Segmenter-method-add'>    add: function (value, step, unit) {
+</span>
+    },
+
+<span id='Ext-chart-axis-segmenter-Segmenter-method-preferredStep'>    preferredStep: function (min, estStepSize) {
+</span>
+    }
+});</pre>
+</body>
+</html>

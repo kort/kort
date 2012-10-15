@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Ext-carousel-Infinite'>/**
+</span> * @class Ext.carousel.Infinite
+ * @author Jacky Nguyen &lt;jacky@sencha.com&gt;
+ * @private
+ *
+ * The true infinite implementation of Carousel, private for now until it's stable to be public
+ */
+Ext.define('Ext.carousel.Infinite', {
+    extend: 'Ext.carousel.Carousel',
+
+    config: {
+<span id='Ext-carousel-Infinite-cfg-indicator'>        indicator: null,
+</span>
+<span id='Ext-carousel-Infinite-cfg-maxItemIndex'>        maxItemIndex: Infinity,
+</span>
+<span id='Ext-carousel-Infinite-cfg-innerItemConfig'>        innerItemConfig: {}
+</span>    },
+
+<span id='Ext-carousel-Infinite-method-applyIndicator'>    applyIndicator: function(indicator) {
+</span>        //&lt;debug error&gt;
+        if (indicator) {
+            Ext.Logger.error(&quot;'indicator' in Infinite Carousel implementation is not currently supported&quot;, this);
+        }
+        //&lt;/debug&gt;
+        return;
+    },
+
+<span id='Ext-carousel-Infinite-method-updateBufferSize'>    updateBufferSize: function(size) {
+</span>        this.callParent(arguments);
+
+        var total = size * 2 + 1,
+            ln = this.innerItems.length,
+            innerItemConfig = this.getInnerItemConfig(),
+            i;
+
+        this.isItemsInitializing = true;
+
+        for (i = ln; i &lt; total; i++) {
+            this.doAdd(this.factoryItem(innerItemConfig));
+        }
+
+        this.isItemsInitializing = false;
+
+        this.rebuildInnerIndexes();
+        this.refreshActiveItem();
+    },
+
+<span id='Ext-carousel-Infinite-method-updateMaxItemIndex'>    updateMaxItemIndex: function(maxIndex, oldMaxIndex) {
+</span>        if (oldMaxIndex !== undefined) {
+            var activeIndex = this.getActiveIndex();
+
+            if (activeIndex &gt; maxIndex) {
+                this.setActiveItem(maxIndex);
+            }
+            else {
+                this.rebuildInnerIndexes(activeIndex);
+                this.refreshActiveItem();
+            }
+
+        }
+    },
+
+<span id='Ext-carousel-Infinite-method-rebuildInnerIndexes'>    rebuildInnerIndexes: function(activeIndex) {
+</span>        var indexToItem = this.innerIndexToItem,
+            idToIndex = this.innerIdToIndex,
+            items = this.innerItems.slice(),
+            ln = items.length,
+            bufferSize = this.getBufferSize(),
+            maxIndex = this.getMaxItemIndex(),
+            changedIndexes = [],
+            i, oldIndex, index, id, item;
+
+
+        if (activeIndex === undefined) {
+            this.innerIndexToItem = indexToItem = {};
+            this.innerIdToIndex = idToIndex = {};
+
+            for (i = 0; i &lt; ln; i++) {
+                item = items[i];
+                id = item.getId();
+                idToIndex[id] = i;
+                indexToItem[i] = item;
+                this.fireEvent('itemindexchange', this, item, i, -1);
+            }
+        }
+        else {
+            for (i = activeIndex - bufferSize; i &lt;= activeIndex + bufferSize; i++) {
+                if (i &gt;= 0 &amp;&amp; i &lt;= maxIndex) {
+                    if (indexToItem.hasOwnProperty(i)) {
+                        Ext.Array.remove(items, indexToItem[i]);
+                        continue;
+                    }
+                    changedIndexes.push(i);
+                }
+            }
+
+            for (i = 0,ln = changedIndexes.length; i &lt; ln; i++) {
+                item = items[i];
+                id = item.getId();
+                index = changedIndexes[i];
+                oldIndex = idToIndex[id];
+
+                delete indexToItem[oldIndex];
+
+                idToIndex[id] = index;
+                indexToItem[index] = item;
+                this.fireEvent('itemindexchange', this, item, index, oldIndex);
+            }
+        }
+    },
+
+<span id='Ext-carousel-Infinite-method-reset'>    reset: function() {
+</span>        this.rebuildInnerIndexes();
+        this.setActiveItem(0);
+    },
+
+<span id='Ext-carousel-Infinite-method-refreshItems'>    refreshItems: function() {
+</span>        var items = this.innerItems,
+            idToIndex = this.innerIdToIndex,
+            index, item, i, ln;
+
+        for (i = 0,ln = items.length; i &lt; ln; i++) {
+            item = items[i];
+            index = idToIndex[item.getId()];
+            this.fireEvent('itemindexchange', this, item, index, -1);
+        }
+    },
+
+<span id='Ext-carousel-Infinite-method-getInnerItemIndex'>    getInnerItemIndex: function(item) {
+</span>        var index = this.innerIdToIndex[item.getId()];
+
+        return (typeof index == 'number') ? index : -1;
+    },
+
+<span id='Ext-carousel-Infinite-method-getInnerItemAt'>    getInnerItemAt: function(index) {
+</span>        return this.innerIndexToItem[index];
+    },
+
+<span id='Ext-carousel-Infinite-method-applyActiveItem'>    applyActiveItem: function(activeItem) {
+</span>        this.getItems();
+        this.getBufferSize();
+
+        var maxIndex = this.getMaxItemIndex(),
+            currentActiveIndex = this.getActiveIndex();
+
+        if (typeof activeItem == 'number') {
+            activeItem = Math.max(0, Math.min(activeItem, maxIndex));
+
+            if (activeItem === currentActiveIndex) {
+                return;
+            }
+
+            this.activeIndex = activeItem;
+
+            this.rebuildInnerIndexes(activeItem);
+
+            activeItem = this.getInnerItemAt(activeItem);
+        }
+
+        if (activeItem) {
+            return this.callParent([activeItem]);
+        }
+    }
+});
+</pre>
+</body>
+</html>
