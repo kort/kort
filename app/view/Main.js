@@ -13,7 +13,7 @@ Ext.define('Kort.view.Main', {
 
         items: [
             {
-                xtype: 'bugmapcontainer'
+                xtype: 'bugmapnavigationview'
             },
             {
                 xtype: 'profilecontainer'

@@ -3,10 +3,12 @@ Ext.define('Kort.controller.Bugmap', {
 
     config: {
         views: [
-            'bugmap.Container'
+            'bugmap.NavigationView',
+            'bugmap.Detail'
         ],
         refs: {
-            mapCmp: '#bugmap'
+            mapCmp: '#bugmap',
+            bugmapNavigationView: '#bugmapNavigationView'
         },
         control: {
             mapCmp: {
@@ -16,7 +18,8 @@ Ext.define('Kort.controller.Bugmap', {
 
         map: null,
         ownPositionMarker: null,
-        popupTemplate: null
+        confirmTemplate: null,
+        activeBug: null
     },
 
     onMapRender: function(cmp, map, tileLayer) {
@@ -81,9 +84,27 @@ Ext.define('Kort.controller.Bugmap', {
             icon: icon
         });
 
-        tpl = this.getPopupTemplate();
-        marker.bindPopup(tpl.apply(item.data));
+        marker.bugdata = item;
+        marker.on('click', me.onMarkerClick, me);
         marker.addTo(map);
+    },
+    
+    onMarkerClick: function(e) {
+        var tpl = this.getConfirmTemplate(),
+            bugdata = e.target.bugdata;
+        
+        this.setActiveBug(bugdata)
+        Ext.Msg.confirm(bugdata.get('title'), tpl.apply(bugdata.data), this.markerConfirmHandler, this);
+    },
+    
+    markerConfirmHandler: function(buttonId, value, opt) {
+        if(buttonId === 'yes') {
+            this.getBugmapNavigationView().push(Ext.create('Kort.view.bugmap.Detail', {
+                bugdata: this.getActiveBug()
+            }));
+        }
+        
+        this.setActiveBug(null);
     },
 
     getIcon: function(type) {
@@ -104,15 +125,11 @@ Ext.define('Kort.controller.Bugmap', {
         });
         return icon;
     },
-
+    
     init: function() {
-        this.setPopupTemplate(new Ext.XTemplate(
-            '<div class="popup-content">',
-                '<h1>{title}</h1>',
+        this.setConfirmTemplate(new Ext.XTemplate(
+            '<div class="confirm-content">',
                 '<p>{description}</p>',
-                '<p>',
-                    '<a href="#bugmap/show/{id}"><button>Accept this job!</button></a>',
-                '</p>',
             '</div>'
         ));
     }
