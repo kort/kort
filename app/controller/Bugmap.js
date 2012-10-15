@@ -93,7 +93,7 @@ Ext.define('Kort.controller.Bugmap', {
         var tpl = this.getConfirmTemplate(),
             bugdata = e.target.bugdata;
         
-        this.setActiveBug(bugdata)
+        this.setActiveBug(bugdata);
         Ext.Msg.confirm(bugdata.get('title'), tpl.apply(bugdata.data), this.markerConfirmHandler, this);
     },
     
