@@ -1,25 +1,21 @@
-Ext.define('Kort.view.bugmap.Container', {
-	extend: 'Ext.Container',
-	alias: 'widget.bugmapcontainer',
+Ext.define('Kort.view.bugmap.NavigationView', {
+	extend: 'Ext.navigation.View',
+	alias: 'widget.bugmapnavigationview',
     requires: [
         'Ext.ux.LeafletMap',
         'Ext.TitleBar'
     ],
 	
 	config: {
-		title: 'Bugs',
+        title: 'Bugs',
 		url: 'bugmap',
-		id: 'bugmapContainer',
+		id: 'bugmapNavigationView',
 		iconCls: 'maps',
-		layout: 'fit',
+        useTitleForBackButtonText: true,
+        
 		items: [
 			{
-				xtype: 'titlebar',
-				cls: 'titlebar',
-				docked: 'top',
-				title: 'Bugs'
-			},
-			{
+                title: 'Bugs',
                 xtype: 'leafletmap',
                 id: 'bugmap',
                 useCurrentLocation: true,

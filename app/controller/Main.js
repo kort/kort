@@ -28,7 +28,6 @@ Ext.define('Kort.controller.Main', {
                     ':lng': "[0-9]+\\.+[0-9]+"
                 }
             },
-            'bugmap/show/:bugid': 'showBug',
             'profile': 'showProfile'
         },
 
@@ -97,12 +96,6 @@ Ext.define('Kort.controller.Main', {
         this.switchView(viewName);
     },
 
-    showBug: function(id) {
-        Ext.Logger.log('opening bug detail: ' + id);
-        var viewName = 'bugmap';
-        this.switchView(viewName);
-    },
-
     /**
      * Centers problem map to given position
      * @param lat latitude for map center
@@ -117,7 +110,7 @@ Ext.define('Kort.controller.Main', {
                     this.centerMap(lat, lng);
                 }, 500, this);
             } else {
-                this.getBugmap().setMapCenter(L.latLng(this.getInitLat(), this.getInitLng()));
+                this.getBugmap().setMapCenter(new L.LatLng(this.getInitLat(), this.getInitLng()));
 
                 this.setInitLat(null);
                 this.setInitLng(null);
