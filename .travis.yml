@@ -1,3 +1,4 @@
+language: php
 env:
   - BUILD_DIR=build_heroku CI_HOME=$HOME/odi86/kort
   - global:
