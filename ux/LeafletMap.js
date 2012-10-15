@@ -290,7 +290,12 @@ Ext.define('Ext.ux.LeafletMap', {
     },
 
     // @private
-    onGeoError: Ext.emptyFn,
+    onGeoError: function (geo) {
+        this.setUseCurrentLocation(false);
+        if(!this.getMap()) {
+            this.renderMap();
+        }
+    },
 
     /**
      * Moves the map center to the designated coordinates hash of the form:
