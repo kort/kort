@@ -1,5 +1,6 @@
 env:
-  global:
+  - BUILD_DIR=build_heroku CI_HOME=`pwd`
+  - global:
     - secure: "cOmMBP4UyklRC0nfeTZsX/NV4GhMBT+AntUmlWxXS5Rj2yrNcmNc7320gNm5\nCLSVRYyk7/8feyUEMznWrUn/62htZp0tEBAWtXg86dgIZgH4HPy9l2pKuSsH\nxZTHgjUJI7JOuyLG4ID9D5maVLE35UWag/NEtcRVy5QXLZOrs0M="
 
 branches:
@@ -16,9 +17,8 @@ script: ant -f build_kort.xml build
 
 # heroku part from https://gist.github.com/443c00fe346045522db7
 after_script:
-  - yes | ruby server/travis_deployer.rb
-  - bash server/heroku/heroku_build.sh >/dev/null
-  - bash server/heroku/heroku_keys.sh
-  - cd ../build-heroku
-  - bash ../kort/server/heroku/heroku_add.sh >/dev/null
-  - bash ../kort/server/heroku/heroku_push.sh
+  - yes | ruby $CI_HOME/server/travis_deployer.rb
+  - bash $CI_HOME/server/heroku/heroku_keys.sh
+  - bash $CI_HOME/server/heroku/heroku_build.sh >/dev/null
+  - bash $CI_HOME/server/heroku/heroku_add.sh >/dev/null
+  - bash $CI_HOME/server/heroku/heroku_push.sh
