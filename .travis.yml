@@ -20,5 +20,5 @@ after_script:
   - bash $CI_HOME/server/heroku/heroku_keys.sh
   - bash $CI_HOME/server/heroku/heroku_build.sh
   - cd $BUILD_DIR
-  - bash $CI_HOME/server/heroku/heroku_add.sh 
+  - bash $CI_HOME/server/heroku/heroku_add.sh >/dev/null
   - bash $CI_HOME/server/heroku/heroku_push.sh
