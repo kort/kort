@@ -1,0 +1,63 @@
+{
+    "name": "StockApp",
+
+    "indexHtmlPath": "index.html",
+
+    "url": null,
+
+    "js": [
+        {
+            "path": "../../sencha-touch-all.js"
+        },
+        {
+            "path": "app.js",
+            "bundle": true,
+            "update": "delta"
+        }
+    ],
+
+    "css": [
+        {
+            "path": "resources/css/app.css",
+            "update": "delta"
+        }
+    ],
+
+    "appCache": {
+        "cache": [
+            "index.html"
+        ],
+        "network": [
+            "*"
+        ],
+        "fallback": []
+    },
+
+    "resources": [
+        "resources/images",
+        "resources/icons",
+        "resources/startup"
+    ],
+
+    "ignore": [
+        "\.svn$"
+    ],
+
+    "archivePath": "archive",
+
+    "buildPaths": {
+        "testing": "build/testing",
+        "production": "build/production",
+        "package": "build/package",
+        "native": "build/native"
+    },
+
+    "buildOptions": {
+        "product": "touch",
+        "minVersion": 3,
+        "debug": false,
+        "logger": "no"
+    },
+
+    "id": "d6a8d5b0-a9d6-11e1-aee6-7b941bd7e12a"
+}

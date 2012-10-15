@@ -1,0 +1,51 @@
+{
+    "name": "Oreilly",
+    "js": [
+        {
+            "path": "../../sencha-touch-all-debug.js"
+        },
+        {
+            "path": "app.js",
+            "update": "delta"
+        }
+    ],
+    "css": [
+        {
+            "path": "resources/css/app.css",
+            "update": "delta"
+        }
+    ],
+    "appCache": {
+        "cache": [
+            "index.html",
+            "data/feed.js",
+            "data/about.html",
+            "data/credits.html",
+            "data/sponsors.html"
+        ],
+        "network": [
+            "*"
+        ],
+        "fallback": []
+    },
+    "extras": [
+        "data",
+        "resources/images",
+        "resources/icons",
+        "resources/loading"
+    ],
+    "archivePath": "archive",
+    "buildPaths": {
+        "testing": "../../deploy/testing/oreilly",
+        "production": "../../deploy/production/oreilly",
+        "package": "../../deploy/package/oreilly",
+        "native": "../../deploy/native/oreilly"
+    },
+    "buildOptions": {
+        "product": "touch",
+        "minVersion": 3,
+        "debug": false,
+        "logger": "no"
+    },
+    "id": "3a867610-670a-11e1-a90e-4318029d18bb"
+}

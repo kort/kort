@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Ext-event-recognizer-DoubleTap'>/**
+</span> * A simple event recognizer which knows when you double tap.
+ *
+ * @private
+ */
+Ext.define('Ext.event.recognizer.DoubleTap', {
+
+    extend: 'Ext.event.recognizer.SingleTouch',
+
+    inheritableStatics: {
+<span id='Ext-event-recognizer-DoubleTap-property-DIFFERENT_TARGET'>        DIFFERENT_TARGET: 0x03
+</span>    },
+
+    config: {
+<span id='Ext-event-recognizer-DoubleTap-cfg-maxDuration'>        maxDuration: 300
+</span>    },
+
+<span id='Ext-event-recognizer-DoubleTap-property-handledEvents'>    handledEvents: ['singletap', 'doubletap'],
+</span>
+<span id='Ext-dom-Element-event-singletap'>    /**
+</span>     * @member Ext.dom.Element
+     * @event singletap
+     * Fires when there is a single tap.
+     * @param {Ext.event.Event} event The {@link Ext.event.Event} event encapsulating the DOM event.
+     * @param {HTMLElement} node The target of the event.
+     * @param {Object} options The options object passed to Ext.mixin.Observable.addListener.
+     */
+
+<span id='Ext-dom-Element-event-doubletap'>    /**
+</span>     * @member Ext.dom.Element
+     * @event doubletap
+     * Fires when there is a double tap.
+     * @param {Ext.event.Event} event The {@link Ext.event.Event} event encapsulating the DOM event.
+     * @param {HTMLElement} node The target of the event.
+     * @param {Object} options The options object passed to Ext.mixin.Observable.addListener.
+     */
+
+    singleTapTimer: null,
+
+<span id='Ext-event-recognizer-DoubleTap-property-startTime'>    startTime: 0,
+</span>
+<span id='Ext-event-recognizer-DoubleTap-property-lastTapTime'>    lastTapTime: 0,
+</span>
+<span id='Ext-event-recognizer-DoubleTap-method-onTouchStart'>    onTouchStart: function(e) {
+</span>        if (this.callParent(arguments) === false) {
+            return false;
+        }
+
+        this.startTime = e.time;
+
+        clearTimeout(this.singleTapTimer);
+    },
+
+<span id='Ext-event-recognizer-DoubleTap-method-onTouchMove'>    onTouchMove: function() {
+</span>        return this.fail(this.self.TOUCH_MOVED);
+    },
+
+<span id='Ext-event-recognizer-DoubleTap-method-onEnd'>    onEnd: function(e) {
+</span>        var me = this,
+            maxDuration = this.getMaxDuration(),
+            touch = e.changedTouches[0],
+            time = e.time,
+            target = e.target,
+            lastTapTime = this.lastTapTime,
+            lastTarget = this.lastTarget,
+            duration;
+
+        this.lastTapTime = time;
+        this.lastTarget = target;
+
+        if (lastTapTime) {
+            duration = time - lastTapTime;
+
+            if (duration &lt;= maxDuration) {
+                if (target !== lastTarget) {
+                    return this.fail(this.self.DIFFERENT_TARGET);
+                }
+
+                this.lastTarget = null;
+                this.lastTapTime = 0;
+
+                this.fire('doubletap', e, [touch], {
+                    touch: touch,
+                    duration: duration
+                });
+
+                return;
+            }
+        }
+
+        if (time - this.startTime &gt; maxDuration) {
+            this.fireSingleTap(e, touch);
+        }
+        else {
+            this.singleTapTimer = setTimeout(function() {
+                me.fireSingleTap(e, touch);
+            }, maxDuration);
+        }
+    },
+
+<span id='Ext-event-recognizer-DoubleTap-method-fireSingleTap'>    fireSingleTap: function(e, touch) {
+</span>        this.fire('singletap', e, [touch], {
+            touch: touch
+        });
+    }
+});
+</pre>
+</body>
+</html>
