@@ -47,6 +47,7 @@ psql -c "alter schema keepright owner to $DB_OWNER;"
 if [ -z $PREVIOUS_DOWNLOAD ] ; then
     wget -O - http://keepright.ipax.at/keepright_errors.txt.bz2 | bzcat | grep -v -f ignore_errors.txt > /tmp/keepright_errors.txt
     echo "Splitting CSV in parts..."
+    rm /tmp/kr_part*
     split -l 200000 /tmp/keepright_errors.txt /tmp/kr_part
     rm /tmp/keepright_errors.txt
 fi
