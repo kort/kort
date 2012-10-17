@@ -4,7 +4,7 @@
  * To use this component you must include an additional JavaScript an a CSS file from Leaflet:
  *
  *     <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.4.4/leaflet.js"></script>
- *     <link rel="stylesheet" type="text/css" href="./lib/Leaflet-0.4.4/dist/leaflet.css">
+ *     <link rel="stylesheet" type="text/css" href="http://cdn.leafletjs.com/leaflet-0.4.4/leaflet.css">
  *
  * ## Example
  * 
