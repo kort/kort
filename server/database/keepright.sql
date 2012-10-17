@@ -1,5 +1,3 @@
-create schema keepright;
-
 create type state as enum('new','reopened','ignore_temporarily','ignore');
 
 create type osm_type as enum('node','way','relation');
