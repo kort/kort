@@ -36,7 +36,7 @@
      */
     "js": [
         {
-            "path": "touch/sencha-touch.js"
+            "path": "touch/sencha-touch-all-debug.js"
         },
         {
             "path": "lib/Leaflet-0.4.4/dist/leaflet-src.js"
