@@ -9,7 +9,7 @@ env:
 before_script:
   - gem install sass
   - gem install compass
-  - gem install heroku
+  - wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
   - sudo npm install -g grunt >/dev/null 2>&1
 
 script: ant -f build_kort.xml build
