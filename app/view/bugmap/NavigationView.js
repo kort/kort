@@ -7,7 +7,7 @@ Ext.define('Kort.view.bugmap.NavigationView', {
     ],
 	
 	config: {
-        title: 'Bugs',
+        title: Ext.i18n.Bundle.message('tab.bugmap'),
 		url: 'bugmap',
 		id: 'bugmapNavigationView',
 		iconCls: 'maps',
@@ -15,7 +15,7 @@ Ext.define('Kort.view.bugmap.NavigationView', {
         
 		items: [
 			{
-                title: 'Bugs',
+                title: Ext.i18n.Bundle.message('bugmap.title'),
                 xtype: 'leafletmap',
                 id: 'bugmap',
                 useCurrentLocation: true,
