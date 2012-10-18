@@ -3,6 +3,7 @@ Ext.define('Kort.controller.Bugmap', {
 
     config: {
         views: [
+            'bugmap.BugMessageBox',
             'bugmap.NavigationView',
             'bugmap.Detail'
         ],
@@ -25,7 +26,7 @@ Ext.define('Kort.controller.Bugmap', {
     onMapRender: function(cmp, map, tileLayer) {
         var me = this;
         me.setMap(map);
-
+        
         // adding markers
         if(cmp.getGeo()) {
             me.addOwnPositionMarker(cmp, map);
@@ -94,7 +95,8 @@ Ext.define('Kort.controller.Bugmap', {
             bugdata = e.target.bugdata;
         
         this.setActiveBug(bugdata);
-        Ext.Msg.confirm(bugdata.get('title'), tpl.apply(bugdata.data), this.markerConfirmHandler, this);
+        var bugMessageBox = new Kort.view.bugmap.BugMessageBox();
+        var msg = bugMessageBox.confirm(bugdata.get('title'), tpl.apply(bugdata.data), this.markerConfirmHandler, this);
     },
     
     markerConfirmHandler: function(buttonId, value, opt) {
