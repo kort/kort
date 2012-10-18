@@ -23,6 +23,14 @@
             "latitude": 47.227375,
             "longitude": 8.813434,
             "type": "road"
+        },
+        {
+            "id": 4,
+            "title": "Krezung",
+            "description": "Komische Kreuzung :S",
+            "latitude": 47.510041,
+            "longitude": 8.72175,
+            "type": "road"
         }
     ]
 }
