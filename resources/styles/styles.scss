@@ -12,3 +12,16 @@
         margin: 0 0 0.5em 0;
     }
 }
+
+.bugMessageBox {
+    border: 0;
+    background-color: white;
+    
+    .x-title {
+        font-weight: normal;
+    }
+    
+    .x-msgbox-text {
+        font-size: 0.8em;
+    }
+}
