@@ -1,0 +1,24 @@
+//
+//entities
+[User|+name]
+[Score|+points]
+[BugType|+name;+threshold;+difficulty]
+[Fix|+picture] 
+//
+//relations
+[User]-[Area]
+[User]-[Privilege]
+[User]-[Achievement]
+[User]-[Review]
+[User]-[Score]
+[User]-[Fix]
+[Privilege]-[Achievement]
+[Achievement]-[Score]
+[Area]-[Score]
+[Review]-[Fix]
+[Fix]-[Bug]
+[Bug]-[BugType]
+//
+//notes
+[Review]-[note: only possible with appropriate privilege]
+[Score]-[note: per type (OSM/Bug) or area]

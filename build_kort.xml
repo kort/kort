@@ -5,7 +5,7 @@
 		</classpath>
 	</taskdef>
 
-	<target name="build" depends="test,generate_css">
+	<target name="build" depends="test,generate_css,generate_uml">
 		<echo message="BUILD FINISHED!"/>
 	</target>
 	
@@ -16,7 +16,17 @@
 			<arg value="--verbose"/>
 			<arg value="--force"/>
 		</exec>
-	</target>
+    </target>
+
+    <target name="generate_uml">
+        <echo message="Generating image from yUML" />
+        <exec executable="yuml">
+            <arg value="-i"/>
+            <arg value="_DOCUMENTATION/03_Model/data_model.yuml"/>
+            <arg value="-o" />
+            <arg value="_DOCUMENTATION/03_Model/data_model.png"/>
+        </exec>
+    </target>
 
 	<target name="generate_css">
 		<echo message="Compile sass files to css"/>

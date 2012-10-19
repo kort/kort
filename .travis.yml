@@ -10,8 +10,9 @@ before_script:
   - gem install sass
   - gem install compass
   - wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh >/dev/null 2>&1
-  - export PATH="$PATH:/usr/local/heroku/bin"
   - sudo npm install -g grunt >/dev/null 2>&1
+  - wget https://raw.github.com/wandernauta/yuml/master/yuml && chmod +x yuml
+  - export PATH="$PATH:$CI_HOME:/usr/local/heroku/bin"
 
 script: ant -f build_kort.xml build
 
