@@ -5,7 +5,8 @@ if [ -z $BUILD_DIR -a -z $CI_HOME ] ; then
 fi
 
 mkdir $BUILD_DIR
-mkdir $BUILD_DIR/lib
+mkdir -p $BUILD_DIR/lib/Leaflet-0.4.4
+mkdir -p $BUILD_DIR/lib/Slim-2.1.0
 mkdir -p $BUILD_DIR/server/webservices
 
 cp $CI_HOME/index.* $BUILD_DIR
@@ -16,6 +17,7 @@ cp -r $CI_HOME/touch $BUILD_DIR/
 cp -r $CI_HOME/ux $BUILD_DIR/
 cp -r $CI_HOME/i18n $BUILD_DIR
 
-cp -r $CI_HOME/lib/Leaflet-0.4.4/ $BUILD_DIR/lib/
+cp -r $CI_HOME/lib/Leaflet-0.4.4/dist/ $BUILD_DIR/lib/Leaflet-0.4.4/
+cp -r $CI_HOME/lib/Slim-2.1.0/Slim/ $BUILD_DIR/lib/Slim-2.1.0/
 
 cp -r $CI_HOME/server/webservices/bug/ $BUILD_DIR/server/webservices/
