@@ -6,7 +6,7 @@ fi
 
 mkdir $BUILD_DIR
 mkdir $BUILD_DIR/lib
-mkdir $BUILD_DIR/server/webservices
+mkdir -p $BUILD_DIR/server/webservices
 
 cp $CI_HOME/index.* $BUILD_DIR
 cp $CI_HOME/app.* $BUILD_DIR/
