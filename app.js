@@ -52,9 +52,7 @@ Ext.application({
 			noCache: true
         });
         
-		Ext.getStore('Bugs').load(function(records, operation, success) {
-            Ext.Viewport.add(Ext.create('Kort.view.Main'));
-        });
+        Ext.Viewport.add(Ext.create('Kort.view.Main'));
     },
 
     onUpdated: function() {
