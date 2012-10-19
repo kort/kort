@@ -9,7 +9,7 @@
     <property name="php.dir" value="server" />
 
 
-	<target name="build" depends="test,generate_css,generate_uml">
+	<target name="build" depends="test,php_lint,generate_css,generate_uml">
 		<echo message="BUILD FINISHED!"/>
 	</target>
 	
