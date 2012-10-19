@@ -4,6 +4,10 @@
 			<pathelement location="lib/antlibs/ant-contrib-1.0b3.jar"/>
 		</classpath>
 	</taskdef>
+    
+    <property name="uml.dir" value="_DOCUMENTATION/03_Model" />
+    <property name="php.dir" value="server" />
+
 
 	<target name="build" depends="test,generate_css,generate_uml">
 		<echo message="BUILD FINISHED!"/>
@@ -16,6 +20,15 @@
 			<arg value="--verbose"/>
 			<arg value="--force"/>
 		</exec>
+    </target>
+
+	<target name="php_lint">
+		<echo message="Linting PHP files"/>
+        <foreach target="phpcs" param="file">
+            <path>
+                <fileset dir="${php.dir}" includes="**/*.php"/>
+            </path>
+        </foreach>
     </target>
 
     <target name="generate_uml">
@@ -48,5 +61,13 @@
 			<fileset dir="${dir}" includes="**/*.scss" />
 			<mapper type="glob" from="*.scss" to="*.css"/>
 		</apply>
-	</target>
+    </target>
+
+    <target name="phpcs">
+        <echo message="Linting PHP file ${file}"/>
+        <exec executable="phpcs">
+            <arg value="--standard=PEAR"/>
+            <arg value="${file}"/>
+        </exec>
+    </target>
 </project>
