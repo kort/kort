@@ -1,7 +1,7 @@
 <?php
 class PsqlHelper {
     protected $dbConn = null;
-    protected $defaultFields = 'error_id AS id, error_name AS title, COALESCE(comment, \'\') AS description, lat AS latitude, lon AS longitude, msgid AS type';
+    protected $defaultFields = 'error_id AS id, error_name AS title, COALESCE(comment, \'\') AS description, (lat/10000000) AS latitude, (lon/10000000) AS longitude, msgid AS type';
     protected $defaultTable = 'keepright.errors';
     
     public function __construct($dbConfig, $defaultFields = '', $defaultTable = '') {
