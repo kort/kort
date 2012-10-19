@@ -34,4 +34,4 @@
 *.tdo
 *.ldb
 styles.css
-/server/bug-webservice/dbConfig.php
+/server/webservices/db/dbConfig.php
