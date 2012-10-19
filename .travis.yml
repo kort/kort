@@ -13,6 +13,7 @@ before_script:
   - sudo npm install -g grunt >/dev/null 2>&1
   - wget https://raw.github.com/wandernauta/yuml/master/yuml && chmod +x yuml
   - pear install PHP_CodeSniffer
+  - which phpcs
   - export PATH="$PATH:$CI_HOME:/usr/local/heroku/bin"
 
 script: ant -f build_kort.xml build
