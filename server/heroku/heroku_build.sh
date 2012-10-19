@@ -6,6 +6,7 @@ fi
 
 mkdir $BUILD_DIR
 mkdir $BUILD_DIR/lib
+mkdir $BUILD_DIR/server/webservices
 
 cp $CI_HOME/index.* $BUILD_DIR
 cp $CI_HOME/app.* $BUILD_DIR/
@@ -16,3 +17,5 @@ cp -r $CI_HOME/ux $BUILD_DIR/
 cp -r $CI_HOME/i18n $BUILD_DIR
 
 cp -r $CI_HOME/lib/Leaflet-0.4.4/ $BUILD_DIR/lib/
+
+cp -r $CI_HOME/server/webservices/bug/ $BUILD_DIR/server/webservices/
