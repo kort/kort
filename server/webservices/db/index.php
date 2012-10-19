@@ -1,7 +1,7 @@
 <?php
 require_once('dbConfig.php');
 require_once('PsqlHelper.php');
-require('../../lib/Slim-2.1.0/Slim/Slim.php');
+require('../../../lib/Slim-2.1.0/Slim/Slim.php');
 
 // Load Slim library
 \Slim\Slim::registerAutoloader();
