@@ -1,7 +1,7 @@
 <?php
 class PsqlHelper {
     protected $dbConn = null;
-    protected $defaultFields = 'error_id AS id, error_name AS title, COALESCE(comment, \'\') AS description, (lat/10000000) AS latitude, (lon/10000000) AS longitude, msgid AS type';
+    protected $defaultFields = 'error_id AS id, error_name AS title, msgid AS description, CAST(lat AS NUMERIC)/10000000 AS latitude, CAST(lon AS NUMERIC)/10000000 AS longitude, error_type AS type, txt1, txt2, txt3, txt4, txt5';
     protected $defaultTable = 'keepright.errors';
     
     public function __construct($dbConfig, $defaultFields = '', $defaultTable = '') {
@@ -38,10 +38,19 @@ class PsqlHelper {
         $result = pg_query($this->dbConn, $queryStr);
         
         $resultArr = array();
+        // TODO ugly way to replace placeholders in description
         while ($row = pg_fetch_assoc($result)) {
+            for($i = 1; $i <= 5; $i++) {
+                $row['description'] = $this->replaceDescriptionPlaceholders($row, $i);
+                unset($row['txt'.$i]);
+            }
             $resultArr[] = $row;
         }
         return $resultArr;
+    }
+    
+    function replaceDescriptionPlaceholders($row, $placeholderNumber) {
+        return str_replace('$'.$placeholderNumber, $row['txt'.$placeholderNumber], $row['description']);
     }
     
     // closes the database connection
