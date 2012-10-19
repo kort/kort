@@ -19,6 +19,7 @@ Ext.define('Kort.controller.Bugmap', {
 
         map: null,
         ownPositionMarker: null,
+        markerLayerGroup: [],
         confirmTemplate: null,
         activeBug: null
     },
@@ -36,10 +37,21 @@ Ext.define('Kort.controller.Bugmap', {
                 me.setOwnPositionMarkerPosition(new L.LatLng(this.getLatitude(), this.getLongitude()));
             });
         }
-
-        Ext.getStore('Bugs').each(function (item, index, length) {
-            me.addMarker(map, item);
+        
+        // TODO load bugs after each geoupdate event
+        var bounds = map.getBounds();
+        var bugsStore = Ext.getStore('Bugs');
+        var url = './server/webservices/bug/bugs/bounds/' + bounds.getNorthEast().lat + ',' + bounds.getNorthEast().lng + '/' + bounds.getSouthWest().lat + ',' + bounds.getSouthWest().lng;
+        bugsStore.getProxy().setUrl(url);
+        
+        // Load bugs store
+		Ext.getStore('Bugs').load(function(records, operation, success) {
+            Ext.each(records, function (item, index, length) {
+                me.addMarker(item);
+            });
         });
+        
+        me.getMarkerLayerGroup().addTo(map);
     },
 
     addOwnPositionMarker: function(cmp, map) {
@@ -74,20 +86,24 @@ Ext.define('Kort.controller.Bugmap', {
         }
     },
 
-    addMarker: function(map, item) {
+    addMarker: function(item) {
         var me = this,
             icon,
             marker,
             tpl;
-
+            
         icon = me.getIcon(item.get('type'));
         marker = L.marker([item.get('latitude'), item.get('longitude')], {
-            icon: icon
+            //icon: icon
         });
 
         marker.bugdata = item;
         marker.on('click', me.onMarkerClick, me);
-        marker.addTo(map);
+        me.getMarkerLayerGroup().addLayer(marker);
+    },
+    
+    removeAllMarkers: function() {
+        this.getMarkerLayerGroup().clearLayers();
     },
     
     onMarkerClick: function(e) {
@@ -134,5 +150,8 @@ Ext.define('Kort.controller.Bugmap', {
                 '<p>{description}</p>',
             '</div>'
         ));
+            
+        // create layer group for bug markers
+        this.setMarkerLayerGroup(L.layerGroup());
     }
 });
