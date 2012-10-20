@@ -1,7 +1,7 @@
 <?php
 namespace Kort\Webservice;
 
-class RelayHandler
+abstract class RelayHandler
 {
     protected $app;
 
@@ -10,15 +10,7 @@ class RelayHandler
         $this->app = $app;
     }
 
-    public function relayHandler($path)
-    {
-        $wsConfig = new DbWebserviceConfig();
-        $fullPath = $wsConfig->url.$this->app->request()->getResourceUri();
-        if (!empty($_SERVER['QUERY_STRING'])) {
-            $fullPath .= "?".$_SERVER['QUERY_STRING'];
-        }
-        echo $this->relayRequest($this->app->request()->getMethod(), $fullPath);
-    }
+    abstract function relayHandler();
 
     public function relayRequest($method, $url, $data = false)
     {
