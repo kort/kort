@@ -22,7 +22,8 @@ Ext.application({
 	],
     
     models: [
-		'Bug'
+		'Bug',
+        'Fix'
     ],
 	
     stores: [
