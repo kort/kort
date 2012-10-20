@@ -28,6 +28,7 @@ Ext.define('Kort.view.bugmap.Detail', {
                     {
                         xtype: 'button',
                         ui: 'confirm',
+                        id: 'fixSubmitButton',
                         text: Ext.i18n.Bundle.message('bugdetail.button.submit')
                     }
                 ]
