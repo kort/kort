@@ -1,36 +1,34 @@
-{
-    "bugs": [
-        {
-            "id": 1,
-            "title": "Strassenname",
-            "description": "Hier fehlt der Strassenname.",
-            "latitude": 47.223375,
-            "longitude": 8.817434,
-            "type": "road"
-        },
-        {
-            "id": 2,
-            "title": "Richtung",
-            "description": "Hier ist eine Einbahn.",
-            "latitude": 47.223375,
-            "longitude": 8.82434,
-            "type": "undefined"
-        },
-        {
-            "id": 3,
-            "title": "Strassenname",
-            "description": "Hier fehlt der Strassenname.",
-            "latitude": 47.227375,
-            "longitude": 8.813434,
-            "type": "road"
-        },
-        {
-            "id": 4,
-            "title": "Krezung",
-            "description": "Komische Kreuzung :S",
-            "latitude": 47.510041,
-            "longitude": 8.72175,
-            "type": "road"
-        }
-    ]
-}
+[
+    {
+        "id": 1,
+        "title": "Strassenname",
+        "description": "Hier fehlt der Strassenname.",
+        "latitude": 47.223375,
+        "longitude": 8.817434,
+        "type": "road"
+    },
+    {
+        "id": 2,
+        "title": "Richtung",
+        "description": "Hier ist eine Einbahn.",
+        "latitude": 47.223375,
+        "longitude": 8.82434,
+        "type": "undefined"
+    },
+    {
+        "id": 3,
+        "title": "Strassenname",
+        "description": "Hier fehlt der Strassenname.",
+        "latitude": 47.227375,
+        "longitude": 8.813434,
+        "type": "road"
+    },
+    {
+        "id": 4,
+        "title": "Krezung",
+        "description": "Komische Kreuzung :S",
+        "latitude": 47.510041,
+        "longitude": 8.72175,
+        "type": "road"
+    }
+]
