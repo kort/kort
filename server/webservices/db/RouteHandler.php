@@ -11,7 +11,6 @@ class RouteHandler
     public static function autoload($className)
     {
         $className = str_replace(__NAMESPACE__.'\\', '', $className);
-        echo $className;
         require_once($className.".php");
     }
 
