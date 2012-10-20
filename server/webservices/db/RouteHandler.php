@@ -53,6 +53,13 @@ class RouteHandler
         echo json_encode($result);
         $this->db->close();
     }
+    
+    public function fixesRouteHandler($postVariables)
+    {
+        // TODO write fix to database
+        echo "writing fix to database<br />";
+        var_dump($postVariables);
+    }
 
     private function convertLatLngValue($value)
     {

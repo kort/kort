@@ -25,10 +25,15 @@ $bugsBoundsHandler = function ($northEastLat, $northEastLng, $southWestLat, $sou
     $handler->bugsBoundsRouteHandler($northEastLat, $northEastLng, $southWestLat, $southWestLng);
 };
 
+$fixesHandler = function () use ($handler, $app) {
+    $handler->fixesRouteHandler($app->request()->post());
+};
+
 // define REST resources
 $app->get('/', $rootHandler);
 $app->get('/bugs/:schema/:id', $bugsIdHandler);
 $app->get('/bugs/bounds/:northeastlat,:northeastlng/:southwestlat,:southwestlng', $bugsBoundsHandler);
+$app->post('/fixes', $fixesHandler);
 
 // start Slim app
 $app->run();
