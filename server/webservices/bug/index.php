@@ -3,6 +3,8 @@ require_once('../../../lib/Slim-2.1.0/Slim/Slim.php');
 require_once('config.php');
 require_once('RelayHandler.php');
 
+use Kort\Webservice\RelayHandler;
+
 // Load Slim library
 \Slim\Slim::registerAutoloader();
 
