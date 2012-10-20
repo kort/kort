@@ -9,11 +9,15 @@ Ext.define('Kort.controller.Bugmap', {
         ],
         refs: {
             mapCmp: '#bugmap',
-            bugmapNavigationView: '#bugmapNavigationView'
+            bugmapNavigationView: '#bugmapNavigationView',
+            fixSubmitButton: '#fixSubmitButton'
         },
         control: {
             mapCmp: {
                 maprender: 'onMapRender'
+            },
+            fixSubmitButton: {
+                tap: 'onFixSubmitButtonTap'
             }
         },
 
@@ -22,6 +26,12 @@ Ext.define('Kort.controller.Bugmap', {
         markerLayerGroup: [],
         confirmTemplate: null,
         activeBug: null
+    },
+
+    onFixSubmitButtonTap: function() {
+        var bugDetailPanel = this.getBugmapNavigationView().getActiveItem();
+        var fix = Ext.create('Kort.model.Fix', { bugid: bugDetailPanel.getBugdata().get('id'), fix: 'fixed'});
+        fix.save();
     },
 
     onMapRender: function(cmp, map, tileLayer) {
@@ -38,11 +48,13 @@ Ext.define('Kort.controller.Bugmap', {
             });
         }
         
+        /*
         // TODO load bugs after each geoupdate event
         var bounds = map.getBounds();
         var bugsStore = Ext.getStore('Bugs');
         var url = './server/webservices/bug/bugs/bounds/' + bounds.getNorthEast().lat + ',' + bounds.getNorthEast().lng + '/' + bounds.getSouthWest().lat + ',' + bounds.getSouthWest().lng;
         bugsStore.getProxy().setUrl(url);
+        */
         
         // Load bugs store
 		Ext.getStore('Bugs').load(function(records, operation, success) {
@@ -98,6 +110,7 @@ Ext.define('Kort.controller.Bugmap', {
         });
 
         marker.bugdata = item;
+        marker.lastClickTimestamp = 0;
         marker.on('click', me.onMarkerClick, me);
         me.getMarkerLayerGroup().addLayer(marker);
     },
@@ -108,11 +121,20 @@ Ext.define('Kort.controller.Bugmap', {
     
     onMarkerClick: function(e) {
         var tpl = this.getConfirmTemplate(),
-            bugdata = e.target.bugdata;
+            marker = e.target,
+            bugdata = marker.bugdata,
+            CLICK_TOLERANCE = 200,
+            timeDifference;
         
-        this.setActiveBug(bugdata);
-        var bugMessageBox = new Kort.view.bugmap.BugMessageBox();
-        var msg = bugMessageBox.confirm(bugdata.get('title'), tpl.apply(bugdata.data), this.markerConfirmHandler, this);
+        timeDifference = e.originalEvent.timeStamp - marker.lastClickTimestamp;
+        
+        // LEAFLET BUGFIX: only execute click if there is a certain time between last click
+        if(timeDifference > CLICK_TOLERANCE) {
+            marker.lastClickTimestamp = e.originalEvent.timeStamp;
+            this.setActiveBug(bugdata);
+            var bugMessageBox = new Kort.view.bugmap.BugMessageBox();
+            var msg = bugMessageBox.confirm(bugdata.get('title'), tpl.apply(bugdata.data), this.markerConfirmHandler, this);
+        }
     },
     
     markerConfirmHandler: function(buttonId, value, opt) {
