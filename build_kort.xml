@@ -23,7 +23,7 @@
     </target>
 
     <target name="php-lint">
-        <echo message="Linting PHP file ${file}"/>
+        <echo message="Linting PHP files"/>
         <exec executable="phpcs">
             <arg value="--standard=PSR2"/>
             <arg value="--report-width=60"/>
