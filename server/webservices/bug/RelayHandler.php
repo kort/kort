@@ -10,7 +10,7 @@ abstract class RelayHandler
         $this->app = $app;
     }
 
-    abstract function relayHandler();
+    abstract public function relayHandler();
 
     public function relayRequest($method, $url, $data = false)
     {
