@@ -9,7 +9,7 @@
     <property name="php.dir" value="server" />
 
 
-	<target name="build" depends="test,php_lint,generate_css,generate_uml">
+	<target name="build" depends="test,php-lint,generate_css,generate_uml">
 		<echo message="BUILD FINISHED!"/>
 	</target>
 	
@@ -22,13 +22,13 @@
 		</exec>
     </target>
 
-	<target name="php_lint">
-		<echo message="Linting PHP files"/>
-        <foreach target="phpcs" param="file">
-            <path>
-                <fileset dir="${php.dir}" includes="**/*.php"/>
-            </path>
-        </foreach>
+    <target name="php-lint">
+        <echo message="Linting PHP file ${file}"/>
+        <exec executable="phpcs">
+            <arg value="--standard=PSR2"/>
+            <arg value="--report-width=60"/>
+            <arg value="${php.dir}"/>
+        </exec>
     </target>
 
     <target name="generate_uml">
@@ -63,11 +63,4 @@
 		</apply>
     </target>
 
-    <target name="phpcs">
-        <echo message="Linting PHP file ${file}"/>
-        <exec executable="phpcs">
-            <arg value="--standard=PSR2"/>
-            <arg value="${file}"/>
-        </exec>
-    </target>
 </project>
