@@ -12,5 +12,4 @@ class RelayHandlerGet extends RelayHandler
         }
         echo $this->relayRequest($this->app->request()->getMethod(), $fullPath);
     }
-
 }
