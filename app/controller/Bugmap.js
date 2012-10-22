@@ -66,13 +66,12 @@ Ext.define('Kort.controller.Bugmap', {
             });
         }
         
-        /*
         // TODO load bugs after each geoupdate event
         var bounds = map.getBounds();
         var bugsStore = Ext.getStore('Bugs');
         var url = './server/webservices/bug/bugs/bounds/' + bounds.getNorthEast().lat + ',' + bounds.getNorthEast().lng + '/' + bounds.getSouthWest().lat + ',' + bounds.getSouthWest().lng;
+        url = './server/webservices/bug/bugs/bounds/47.22962311576733,8.853306770324707/47.21749858511102,8.781208992004395';
         bugsStore.getProxy().setUrl(url);
-        */
         
         // Load bugs store
 		Ext.getStore('Bugs').load(function(records, operation, success) {
