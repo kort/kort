@@ -1,17 +1,25 @@
 <?php
-require_once('../../lib/simpletest/unit_tester.php');
-require_once('KortHTMLReporter.php');
-require_once('KortCliReporter.php');
-/**
- * Description of ReportableUnitTestCase
- *
- * @author odi
- */
 abstract class KortUnitTestCase extends UnitTestCase {
-	protected $jsonKeys;
+    public static function autoload($className)
+    {
+        foreach (static::getClassPaths() as $path) {
+            if (substr($path, - strlen(".php")) === ".php") {
+                require_once($path);
+            } else {
+                 require_once($path."/".$className);
+            }
+        }
+    }
 
-	function __construct($label="Kort - Test Case") {
+    protected static function getClassPaths()
+    {
+        return array();
+    }
+
+	function __construct($label="Kort - Test Case")
+    {
 		parent::__construct($label);
+        spl_autoload_register(__NAMESPACE__ . "\\KortUnitTestCase::autoload");
 	}
 
 	function report()
@@ -20,16 +28,18 @@ abstract class KortUnitTestCase extends UnitTestCase {
 		$test->add($this);
 		if (TextReporter::inCli())
 		{
-			exit ($test->run(new KortCliReporter()) ? 0 : 1);
+			exit ($test->run(new  \KortCliReporter()) ? 0 : 1);
 		}
 		$test->run(new KortHTMLReporter());
 	}
 
-	function setUp() {
+	function setUp()
+    {
 		ob_start();
     }
 
-    function tearDown() {
+    function tearDown()
+    {
         ob_end_flush();
     }
 
@@ -39,4 +49,3 @@ abstract class KortUnitTestCase extends UnitTestCase {
 	}
 }
 
-?>

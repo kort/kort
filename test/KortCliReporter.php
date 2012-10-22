@@ -1,6 +1,4 @@
 <?php
-require_once('../../lib/simpletest/reporter.php');
-
 class KortCliReporter extends SimpleReporter {
     public function __construct()
     {

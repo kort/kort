@@ -1,17 +1,22 @@
 <?php
-require_once('../KortUnitTestCase.php');
-require_once('../../server/webservices/bug/config.php');
+namespace Kort\Tests;
 
-class TestBugWebservice extends KortUnitTestCase
+use Kort\Webservice\DbWebserviceConfig;
+
+class TestBugWebservice extends \KortUnitTestCase
 {
-	function __construct()
-	{
-		parent::__construct("kort - TestBugWebservice");
-	}
+    public function __construct()
+    {
+        parent::__construct("kort - TestBugWebservice");
+    }
+    protected static function getClassPaths()
+    {
+        return array(dirname(__FILE__)."/../../server/webservices/bug/config.php");
+    }
 
-    function testDbWebServiceURL() {
-        $config = new Kort\Webservice\DbWebserviceConfig();
+    public function testDbWebServiceURL()
+    {
+        $config = new DbWebserviceConfig();
         $this->assertEqual($config->url, "http://kort.rdmr.ch/webservices/db");
     }
 }
-?>
