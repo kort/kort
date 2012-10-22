@@ -4,7 +4,7 @@
 			<pathelement location="lib/antlibs/ant-contrib-1.0b3.jar"/>
 		</classpath>
 	</taskdef>
-    
+
     <property name="uml.dir" value="_DOCUMENTATION/03_Model" />
     <property name="php.dir" value="server" />
 
@@ -12,19 +12,33 @@
 	<target name="build" depends="generate_css,generate_uml,lint,test">
 		<echo message="BUILD FINISHED!"/>
 	</target>
-	
-	<target name="test">
+
+     <target name="test">
+        <antcall target="js-test"/>
+        <antcall target="php-test"/>
+    </target>
+
+     <target name="lint">
+        <antcall target="js-lint"/>
+        <antcall target="php-lint"/>
+    </target>
+
+    <target name="php-test">
+		<echo message="Running tests"/>
+		<foreach target="exec_test_php" param="filename">
+			<path>
+				<fileset dir="${php.dir}" includes="**/Test*.php"/>
+			</path>
+		</foreach>
+	</target>
+
+	<target name="js-test">
 		<echo message="Running tests"/>
 		<exec executable="grunt" failonerror="true">
 			<arg value="qunit"/>
 			<arg value="--verbose"/>
 			<arg value="--force"/>
 		</exec>
-    </target>
-
-    <target name="lint">
-        <antcall target="js-lint"/>
-        <antcall target="php-lint"/>
     </target>
 
 	<target name="js-lint">
@@ -65,7 +79,7 @@
 			</path>
 		</foreach>
 	</target>
-	
+
 	<target name="compile_sass">
 		<echo message="Compile sass files in ${dir}"/>
 		<apply executable="sass" dest="${dir}" verbose="true" force="true" failonerror="true">
@@ -76,5 +90,15 @@
 			<mapper type="glob" from="*.scss" to="*.css"/>
 		</apply>
     </target>
+
+    <target name="exec_test_php">
+		<basename file="${filename}" property="basename"/>
+		<echo message="Run ${basename}"/>
+		<exec executable="php" dir="${php.dir}" logError="true">
+			<arg value="-f"/>
+			<arg value="index.php"/>
+			<arg value="${filename}" />
+		</exec>
+	</target>
 
 </project>
