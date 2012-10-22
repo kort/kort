@@ -9,14 +9,28 @@
     <property name="php.dir" value="server" />
 
 
-	<target name="build" depends="test,php-lint,generate_css,generate_uml">
+	<target name="build" depends="generate_css,generate_uml,lint,test">
 		<echo message="BUILD FINISHED!"/>
 	</target>
 	
 	<target name="test">
 		<echo message="Running tests"/>
 		<exec executable="grunt" failonerror="true">
-			<arg value="travis"/>
+			<arg value="qunit"/>
+			<arg value="--verbose"/>
+			<arg value="--force"/>
+		</exec>
+    </target>
+
+    <target name="lint">
+        <antcall target="js-lint"/>
+        <antcall target="php-lint"/>
+    </target>
+
+	<target name="js-lint">
+		<echo message="Linting JavaScript files"/>
+		<exec executable="grunt">
+			<arg value="lint"/>
 			<arg value="--verbose"/>
 			<arg value="--force"/>
 		</exec>
