@@ -30,7 +30,7 @@ Ext.define('Kort.controller.Bugmap', {
 
     onFixSubmitButtonTap: function() {
         var bugDetailPanel = this.getBugmapNavigationView().getActiveItem();
-        var fix = Ext.create('Kort.model.Fix', { bugid: bugDetailPanel.getBugdata().get('id'), fix: 'fixed'});
+        var fix = Ext.create('Kort.model.Fix', { error_id: bugDetailPanel.getBugdata().get('id'), message: 'fixed'});
         fix.save();
     },
 
