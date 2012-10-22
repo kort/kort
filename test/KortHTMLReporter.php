@@ -1,6 +1,4 @@
 <?php
-require_once('../../lib/simpletest/reporter.php');
-
 class KortHTMLReporter extends HtmlReporter {
 
     function paintPass($message)
