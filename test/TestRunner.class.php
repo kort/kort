@@ -1,5 +1,5 @@
 <?php
-require_once('GFTPrototypeUnitTestCase.php');
+require_once('KortUnitTestCase.php');
 
 class TestRunner
 {
@@ -11,12 +11,12 @@ class TestRunner
 		$unitTestCase = $refClass->newInstance();
 		$unitTestCase->report();
 	}
-	
+
 	public static function runTestDirectory($dir,$suite) {
 		$dir_handle = opendir($dir);
-		while (false !== ($file = readdir($dir_handle))) 
+		while (false !== ($file = readdir($dir_handle)))
 		{
-			if (!is_dir($file) && $file != basename(__FILE__) && preg_match("/^Test.*\.php$/",$file)) 
+			if (!is_dir($file) && $file != basename(__FILE__) && preg_match("/^Test.*\.php$/",$file))
 			{
 				$filepath = $dir."/".$file;
 				$suite->addFile($filepath);
