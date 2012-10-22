@@ -76,7 +76,7 @@ class PsqlHelper
         }
         
         $queryStr .= ';';
-        echo $queryStr;
+        
         $result = pg_query($this->dbConn, $queryStr);
 
         $resultArr = array();
