@@ -4,19 +4,44 @@ namespace Kort\Webservice;
 class PsqlHelper
 {
     protected $dbConn = null;
-    protected $defaultFields = 'error_id AS id, error_name AS title, msgid AS description, CAST(lat AS NUMERIC)/10000000 AS latitude, CAST(lon AS NUMERIC)/10000000 AS longitude, error_type AS type, txt1, txt2, txt3, txt4, txt5';
-    protected $defaultTable = 'keepright.errors';
-
-    public function __construct($dbConfig, $defaultFields = '', $defaultTable = '')
+    protected $defaultErrorFields = array(
+        'error_id AS id',
+        'error_name AS title',
+        'msgid AS description',
+        'CAST(lat AS NUMERIC)/10000000 AS latitude',
+        'CAST(lon AS NUMERIC)/10000000 AS longitude',
+        'error_type AS type',
+        'txt1',
+        'txt2',
+        'txt3',
+        'txt4',
+        'txt5'
+    );
+    protected $defaultErrorTable = 'keepright.errors';
+    protected $defaultFixTable = 'kort.fix';
+    protected $defaultFixFields = array(
+        'id',
+        'error_id',
+        'message'
+    );
+    
+    public function __construct($dbConfig, $defaultErrorFields = null, $defaultErrorTable = '', $defaultFixTable = '')
     {
         $conn_string = $this->createConnectionString($dbConfig);
         $this->createDbConnection($conn_string);
-        if ($defaultFields != '') {
-            $this->defaultFields = $defaultFields;
+        if ($defaultErrorFields) {
+            $this->defaultErrorFields = $defaultErrorFields;
         }
-        if ($defaultTable != '') {
-            $this->defaultTable = $defaultTable;
+        if ($defaultErrorTable != '') {
+            $this->defaultErrorTable = $defaultErrorTable;
         }
+        if ($defaultFixTable != '') {
+            $this->defaultFixTable = $defaultFixTable;
+        }
+    }
+    
+    public function __destruct() {
+        $this->close();
     }
 
     protected function createConnectionString($dbConfig)
@@ -36,21 +61,23 @@ class PsqlHelper
         $this->dbConn = $db;
     }
 
-    public function doSelectQuery($where, $fields = "", $form = "")
+    public function doSelectQuery($where, $fields = null, $form = '')
     {
-        if ($fields == '') {
-            $fields = $this->defaultFields;
+        if (!$fields) {
+            $fields = $this->defaultErrorFields;
         }
         if ($form == '') {
-            $form = $this->defaultTable;
+            $form = $this->defaultErrorTable;
         }
 
-        $queryStr = 'SELECT '.$fields.' FROM '.$form;
+        $queryStr = 'SELECT '.implode(',', $fields).' FROM '.$form;
 
         if ($where != '') {
             $queryStr .= ' WHERE '.$where;
         }
-
+        
+        $queryStr .= ';';
+        echo $queryStr;
         $result = pg_query($this->dbConn, $queryStr);
 
         $resultArr = array();
@@ -64,6 +91,31 @@ class PsqlHelper
         }
         return $resultArr;
     }
+    
+    public function doInsertQuery($values, $fields = null) {
+        $insertStr = 'INSERT INTO '.$this->defaultFixTable;
+        
+        if(!$fields) {
+            $fields = $this->defaultFixFields;
+        }
+        
+        $fieldsStr = ' ('.implode(',', $fields).')';
+        
+        foreach($values as $key => $value) {
+            if(!is_numeric($value)) {
+                $values[$key] = '\''.$value.'\'';
+            }
+        }
+        $valuesStr = ' VALUES (nextval(\'serial\'), '.implode(',', $values).')';
+        
+        $insertStr .= $fieldsStr;
+        $insertStr .= $valuesStr;
+        $insertStr .= ';';
+        
+        $result = pg_query($this->dbConn, $insertStr);
+        
+        return $result;
+    }
 
     protected function replaceDescriptionPlaceholders($row, $placeholderNumber)
     {
@@ -71,7 +123,7 @@ class PsqlHelper
     }
 
     // closes the database connection
-    public function close()
+    protected function close()
     {
         pg_close($this->dbConn);
     }
