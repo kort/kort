@@ -22,8 +22,8 @@ Ext.define('Kort.view.bugmap.Detail', {
                 items: [
                     {
                         xtype: 'textfield',
-                        name: 'streetname',
-                        label: Ext.i18n.Bundle.message('bugdetail.field.streetname')
+                        name: 'message',
+                        label: Ext.i18n.Bundle.message('bugdetail.field.message')
                     },
                     {
                         xtype: 'button',

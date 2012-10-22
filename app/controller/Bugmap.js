@@ -10,7 +10,8 @@ Ext.define('Kort.controller.Bugmap', {
         refs: {
             mapCmp: '#bugmap',
             bugmapNavigationView: '#bugmapNavigationView',
-            fixSubmitButton: '#fixSubmitButton'
+            fixSubmitButton: '#fixSubmitButton',
+            messageTextField: 'textfield[name=message]'
         },
         control: {
             mapCmp: {
@@ -29,8 +30,9 @@ Ext.define('Kort.controller.Bugmap', {
     },
 
     onFixSubmitButtonTap: function() {
+        var timestamp = Ext.Date.format(new Date(), 'U');
         var bugDetailPanel = this.getBugmapNavigationView().getActiveItem();
-        var fix = Ext.create('Kort.model.Fix', { error_id: bugDetailPanel.getBugdata().get('id'), message: 'fixed'});
+        var fix = Ext.create('Kort.model.Fix', { error_id: bugDetailPanel.getBugdata().get('id'), message: this.getMessageTextField().getValue()});
         fix.save();
     },
 
