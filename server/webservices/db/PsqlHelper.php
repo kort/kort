@@ -20,7 +20,6 @@ class PsqlHelper
     protected $defaultErrorTable = 'keepright.errors';
     protected $defaultFixTable = 'kort.fix';
     protected $defaultFixFields = array(
-        'id',
         'error_id',
         'message'
     );
@@ -81,7 +80,7 @@ class PsqlHelper
         $result = pg_query($this->dbConn, $queryStr);
 
         $resultArr = array();
-        // TODO ugly way to replace placeholders in description
+        // TODO ugly way to replace placeholders in description (use regex)
         while ($row = pg_fetch_assoc($result)) {
             for ($i = 1; $i <= 5; $i++) {
                 $row['description'] = $this->replaceDescriptionPlaceholders($row, $i);
@@ -95,18 +94,19 @@ class PsqlHelper
     public function doInsertQuery($values, $fields = null) {
         $insertStr = 'INSERT INTO '.$this->defaultFixTable;
         
+        // TODO implement fields/values with map
         if(!$fields) {
             $fields = $this->defaultFixFields;
         }
         
-        $fieldsStr = ' ('.implode(',', $fields).')';
+        $fieldsStr = ' (id, create_date, '.implode(',', $fields).')';
         
         foreach($values as $key => $value) {
             if(!is_numeric($value)) {
                 $values[$key] = '\''.$value.'\'';
             }
         }
-        $valuesStr = ' VALUES (nextval(\'serial\'), '.implode(',', $values).')';
+        $valuesStr = ' VALUES (nextval(\'kort.fix_id\'), now(), '.implode(',', $values).')';
         
         $insertStr .= $fieldsStr;
         $insertStr .= $valuesStr;
