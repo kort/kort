@@ -23,6 +23,7 @@ Ext.define('Kort.view.bugmap.Detail', {
                     {
                         xtype: 'textfield',
                         name: 'message',
+                        requires: true,
                         label: Ext.i18n.Bundle.message('bugdetail.field.message')
                     },
                     {

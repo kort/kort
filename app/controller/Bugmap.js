@@ -30,10 +30,26 @@ Ext.define('Kort.controller.Bugmap', {
     },
 
     onFixSubmitButtonTap: function() {
-        var timestamp = Ext.Date.format(new Date(), 'U');
-        var bugDetailPanel = this.getBugmapNavigationView().getActiveItem();
-        var fix = Ext.create('Kort.model.Fix', { error_id: bugDetailPanel.getBugdata().get('id'), message: this.getMessageTextField().getValue()});
-        fix.save();
+        var me = this,
+            bugDetailPanel = this.getBugmapNavigationView().getActiveItem(),
+            fix;
+            
+        var messageValue = this.getMessageTextField().getValue();
+        
+        if(messageValue !== '') {
+            fix = Ext.create('Kort.model.Fix', { error_id: bugDetailPanel.getBugdata().get('id'), message: this.getMessageTextField().getValue()});
+            fix.save({
+                success: function() {
+                    // remove detail panel
+                    me.getBugmapNavigationView().pop();
+                },
+                failure: function() {
+                    console.log('failure');
+                }
+            });
+        } else {
+            console.log('please fill in all form fields');
+        }
     },
 
     onMapRender: function(cmp, map, tileLayer) {
