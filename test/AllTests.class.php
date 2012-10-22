@@ -1,6 +1,6 @@
 <?php
-require_once(dirname(__FILE__) . '/lib/simpletest/test_case.php');
-require_once('GFTPrototypeHTMLReporter.php');
+require_once('../../lib/simpletest/test_case.php');
+require_once('KortHTMLReporter.php');
 
 /**
  * Description of AllTests
@@ -10,10 +10,10 @@ require_once('GFTPrototypeHTMLReporter.php');
 class AllTests extends TestSuite {
 	protected $reporter;
     function __construct() {
-        parent::__construct("GFTPrototype - All tests");
-		$this->reporter = new HTMLReporter();
+        parent::__construct("kort - All tests");
+		$this->reporter = new KortHTMLReporter();
     }
-	
+
 	function run($reporter=null) {
 		parent::run(($reporter == null) ? $this->reporter : $reporter);
 	}

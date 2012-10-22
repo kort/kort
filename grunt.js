@@ -1,16 +1,16 @@
 /*global module:false*/
 module.exports = function(grunt) {
-    
+
     // Project configuration.
     grunt.initConfig({
         qunit: {
-            files: ['test/index.html']
+            files: ['test/client/index.html']
         },
         lint: {
             src: 'app/**/*.js',
             grunt: 'grunt.js',
             app: 'app.js*',
-            tests: 'test/**/*.js'
+            tests: 'test/client/**/*.js'
         },
         jshint: {
             options: {

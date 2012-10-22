@@ -1,5 +1,5 @@
 <?php
-require_once(dirname(__FILE__) . '/../GFTPrototypeUnitTestCase.php');
+require_once(dirname(__FILE__) . '/../KortUnitTestCase.php');
 require_once(dirname(__FILE__) . '/../TestRunner.class.php');
 require_once(dirname(__FILE__) . '/../AllTests.class.php');
 
@@ -13,7 +13,7 @@ if (isset($argv[1]) || isset($_GET['file']))
 	} else {
 		die("Requested file '".$filename."' does not exist!");
 	}
-	
+
 } else {
 	//run tests in all directories
 	$basedir = dirname(__FILE__);
@@ -21,7 +21,7 @@ if (isset($argv[1]) || isset($_GET['file']))
 	$suite = new AllTests();
 	ob_start();
 	while (($file = readdir($dh)) !== false) {
-		if (is_dir($file) && $file != "..") 
+		if (is_dir($file) && $file != "..")
 		{
 			TestRunner::runTestDirectory($basedir."/".$file, $suite);
 		}

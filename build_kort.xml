@@ -7,6 +7,7 @@
 
     <property name="uml.dir" value="_DOCUMENTATION/03_Model" />
     <property name="php.dir" value="server" />
+    <property name="php.test.dir" value="test/server" />
 
 
 	<target name="build" depends="generate_css,generate_uml,lint,test">
@@ -27,7 +28,7 @@
 		<echo message="Running tests"/>
 		<foreach target="exec_test_php" param="filename">
 			<path>
-				<fileset dir="${php.dir}" includes="**/Test*.php"/>
+				<fileset dir="${php.test.dir}" includes="**/Test*.php"/>
 			</path>
 		</foreach>
 	</target>
@@ -56,6 +57,11 @@
             <arg value="--standard=PSR2"/>
             <arg value="--report-width=60"/>
             <arg value="${php.dir}"/>
+        </exec>
+        <exec executable="phpcs">
+            <arg value="--standard=PSR2"/>
+            <arg value="--report-width=60"/>
+            <arg value="${php.test.dir}"/>
         </exec>
     </target>
 
@@ -94,7 +100,7 @@
     <target name="exec_test_php">
 		<basename file="${filename}" property="basename"/>
 		<echo message="Run ${basename}"/>
-		<exec executable="php" dir="${php.dir}" logError="true">
+		<exec executable="php" dir="${php.test.dir}" logError="true" failonerror="true">
 			<arg value="-f"/>
 			<arg value="index.php"/>
 			<arg value="${filename}" />
