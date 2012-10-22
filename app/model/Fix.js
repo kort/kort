@@ -5,8 +5,8 @@ Ext.define('Kort.model.Fix', {
 		
         fields: [
 			{ name: 'id', type: 'auto' },
-			{ name: 'bugid', type: 'string' },
-			{ name: 'fix', type: 'string' }
+			{ name: 'error_id', type: 'string' },
+			{ name: 'message', type: 'string' }
         ],
         
 		proxy: {
