@@ -19,7 +19,7 @@ class RouteHandler
         spl_autoload_register(__NAMESPACE__ . "\\RouteHandler::autoload");
         $this->db = new PsqlHelper(new DbConfig());
     }
-    
+
     public function rootRouteHandler()
     {
         echo "You're on the rooooot";

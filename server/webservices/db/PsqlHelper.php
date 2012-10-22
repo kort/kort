@@ -23,7 +23,7 @@ class PsqlHelper
         'error_id',
         'message'
     );
-    
+
     public function __construct($dbConfig, $defaultErrorFields = null, $defaultErrorTable = '', $defaultFixTable = '')
     {
         $conn_string = $this->createConnectionString($dbConfig);
@@ -38,8 +38,9 @@ class PsqlHelper
             $this->defaultFixTable = $defaultFixTable;
         }
     }
-    
-    public function __destruct() {
+
+    public function __destruct()
+    {
         $this->close();
     }
 
@@ -74,9 +75,9 @@ class PsqlHelper
         if ($where != '') {
             $queryStr .= ' WHERE '.$where;
         }
-        
+
         $queryStr .= ';';
-        
+
         $result = pg_query($this->dbConn, $queryStr);
 
         $resultArr = array();
@@ -90,30 +91,31 @@ class PsqlHelper
         }
         return $resultArr;
     }
-    
-    public function doInsertQuery($values, $fields = null) {
+
+    public function doInsertQuery($values, $fields = null)
+    {
         $insertStr = 'INSERT INTO '.$this->defaultFixTable;
-        
+
         // TODO implement fields/values with map
-        if(!$fields) {
+        if (!$fields) {
             $fields = $this->defaultFixFields;
         }
-        
+
         $fieldsStr = ' (id, create_date, '.implode(',', $fields).')';
-        
-        foreach($values as $key => $value) {
-            if(!is_numeric($value)) {
+
+        foreach ($values as $key => $value) {
+            if (!is_numeric($value)) {
                 $values[$key] = '\''.$value.'\'';
             }
         }
         $valuesStr = ' VALUES (nextval(\'kort.fix_id\'), now(), '.implode(',', $values).')';
-        
+
         $insertStr .= $fieldsStr;
         $insertStr .= $valuesStr;
         $insertStr .= ';';
-        
+
         $result = pg_query($this->dbConn, $insertStr);
-        
+
         return $result;
     }
 
