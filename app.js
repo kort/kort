@@ -46,20 +46,62 @@ Ext.application({
 
     // launch function is called as soon as app is ready
     launch: function() {
+        this.prepareI18n();
+        this.configureMessageBox();
+        
+        Ext.Viewport.add(Ext.create('Kort.view.Main'));
+    },
+    
+    prepareI18n: function() {
         Ext.i18n.Bundle.configure({
 			bundle: 'Kort',
 			language: 'de-CH',
 			path: 'resources/i18n',
 			noCache: true
         });
-        
-        Ext.Viewport.add(Ext.create('Kort.view.Main'));
+    },
+    
+    configureMessageBox: function() {
+        // Override MessageBox default messages
+        Ext.override(Ext.MessageBox, {
+            statics: {
+                YES   : {text: Ext.i18n.Bundle.message('messagebox.yes'),    itemId: 'yes', ui: 'action'},
+                NO    : {text: Ext.i18n.Bundle.message('messagebox.no'),     itemId: 'no'},
+                CANCEL: {text: Ext.i18n.Bundle.message('messagebox.cancel'), itemId: 'cancel'},
+
+                OKCANCEL: [
+                    {text: Ext.i18n.Bundle.message('messagebox.cancel'), itemId: 'cancel'},
+                ],
+                YESNOCANCEL: [
+                    {text: Ext.i18n.Bundle.message('messagebox.cancel'), itemId: 'cancel'},
+                    {text: Ext.i18n.Bundle.message('messagebox.no'),     itemId: 'no'},
+                    {text: Ext.i18n.Bundle.message('messagebox.yes'),    itemId: 'yes', ui: 'action'}
+                ],
+                YESNO: [
+                    {text: Ext.i18n.Bundle.message('messagebox.yes'), itemId: 'yes', ui: 'action'},
+                    {text: Ext.i18n.Bundle.message('messagebox.no'),  itemId: 'no'}
+                ]
+            }
+        });
     },
 
     onUpdated: function() {
+        // Override MessageBox default messages
+        Ext.override(Ext.MessageBox, {
+            statics: {
+                YES   : { text: 'Ja',   itemId: 'yes', ui: 'action'},
+                NO    : { text: 'Nein', itemId: 'no'},
+                
+                YESNO: [
+                    { text: 'Ja',   itemId: 'yes', ui: 'action'},
+                    { text: 'Nein', itemId: 'no'}
+                ]
+            }
+        });
+        
         Ext.Msg.confirm(
-            "Application Update",
-            "This application has just successfully been updated to the latest version. Reload now?",
+            "Neue App-Version",
+            "Die App wurde auf die neuste Version aktualisiert. App neu laden?",
             function(buttonId) {
                 if (buttonId === 'yes') {
                     window.location.reload();
