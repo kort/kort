@@ -7,7 +7,8 @@
 
     <property name="uml.dir" value="_DOCUMENTATION/03_Model" />
     <property name="php.dir" value="server" />
-    <property name="php.test.dir" value="test/server" />
+    <property name="php.test.dir" value="server/php/Tests" />
+    <property name="test.dir" value="test" />
 
 
 	<target name="build" depends="generate_css,generate_uml,lint,test">
@@ -102,7 +103,7 @@
 		<echo message="Run ${basename}"/>
 		<exec executable="php" dir="${php.test.dir}" logError="true" failonerror="true">
 			<arg value="-f"/>
-			<arg value="index.php"/>
+			<arg value="${basedir}/${test.dir}/index.php"/>
 			<arg value="${filename}" />
 		</exec>
 	</target>
