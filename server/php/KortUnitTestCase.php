@@ -17,11 +17,15 @@ abstract class KortUnitTestCase extends \UnitTestCase
 
     private static function importClass($path, $className)
     {
-        if (substr($path, - strlen(".php")) === ".php") {
+        if (self::endsWith($path, ".php")) {
             require_once($path);
         } else {
                 require_once($path."/".$className);
         }
+    }
+
+    private static function endsWith($haystack, $needle) {
+        return substr($haystack, - strlen($needle)) === $needle;
     }
 
     protected static function getClassPaths()
