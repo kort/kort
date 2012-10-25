@@ -1,8 +1,8 @@
 <?php
-namespace Kort\Webservice;
+namespace Webservice;
 
-use Kort\Webservice\PsqlHelper;
-use Kort\Webservice\DbConfig;
+use Webservice\PsqlHelper;
+use Webservice\DbConfig;
 
 class RouteHandler
 {

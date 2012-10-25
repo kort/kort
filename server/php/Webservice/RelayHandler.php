@@ -1,5 +1,5 @@
 <?php
-namespace Kort\Webservice;
+namespace Webservice;
 
 abstract class RelayHandler
 {

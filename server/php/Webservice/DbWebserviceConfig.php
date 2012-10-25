@@ -1,5 +1,5 @@
 <?php
-namespace Kort\Webservice;
+namespace Webservice;
 
 /**
  * setup the url path to the db webservice
