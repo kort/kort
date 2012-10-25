@@ -10,7 +10,7 @@ class TestBugWebservice extends KortUnitTestCase
 
      protected static function getClassPaths()
     {
-        return "..";
+        return "Webservice/DbWebserviceConfig.php";
     }
 
     public function testDbWebServiceURL()
