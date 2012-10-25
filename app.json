@@ -39,7 +39,14 @@
             "path": "touch/sencha-touch-all-debug.js"
         },
         {
-            "path": "lib/Leaflet-0.4.4/dist/leaflet-src.js"
+            "path": "http://code.jquery.com/jquery-1.8.2.js",
+            "remote": true
+        },
+        {
+            "path": "lib/osm2geo/osm2geo.js"
+        },
+        {
+            "path": "lib/Leaflet-0.4.5/dist/leaflet-src.js"
         },
         {
             "path": "app.js",
@@ -70,7 +77,7 @@
             "update": "delta"
         },
         {
-            "path": "lib/Leaflet-0.4.4/dist/leaflet.css"
+            "path": "lib/Leaflet-0.4.5/dist/leaflet.css"
         },
         {
             "path": "resources/styles/styles.css"
