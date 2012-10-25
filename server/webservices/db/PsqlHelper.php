@@ -6,13 +6,14 @@ class PsqlHelper
     protected $dbConn = null;
     protected $defaultErrorFields = array(
         'error_id AS id',
-        'object_id AS osmId',
-        'object_type AS osmType',
+        'schema',
+        'error_type AS type',
+        'object_id AS osm_id',
+        'object_type AS osm_type',
         'error_name AS title',
         'msgid AS description',
         'CAST(lat AS NUMERIC)/10000000 AS latitude',
         'CAST(lon AS NUMERIC)/10000000 AS longitude',
-        'error_type AS type',
         'txt1',
         'txt2',
         'txt3',
