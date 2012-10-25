@@ -1,11 +1,10 @@
 <?php
-namespace Kort\Webservice;
+namespace Webservice;
 
 /**
  * setup these values and rename file to DbConfig.php
  */
-class DbConfig
-{
+class DbConfig {
     public $host = "localhost";
     public $port = 5432;
     public $dbname = "osm_bugs";

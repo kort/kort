@@ -1,5 +1,7 @@
 <?php
-class KortCliReporter extends SimpleReporter {
+namespace Tests;
+
+class KortCliReporter extends \SimpleReporter {
     public function __construct()
     {
         parent::__construct();

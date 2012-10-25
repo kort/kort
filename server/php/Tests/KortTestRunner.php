@@ -1,5 +1,5 @@
 <?php
-namespace Kort\Tests;
+namespace Tests;
 
 class KortTestRunner
 {

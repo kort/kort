@@ -1,22 +1,21 @@
 <?php
-namespace Kort\Tests;
+namespace Tests;
 
-use Kort\Webservice\DbWebserviceConfig;
-
-class TestBugWebservice extends \KortUnitTestCase
+class TestBugWebservice extends KortUnitTestCase
 {
     public function __construct()
     {
         parent::__construct("kort - TestBugWebservice");
     }
-    protected static function getClassPaths()
+
+     protected static function getClassPaths()
     {
-        return array(dirname(__FILE__)."/../../server/webservices/bug/config.php");
+        return "..";
     }
 
     public function testDbWebServiceURL()
     {
-        $config = new DbWebserviceConfig();
+        $config = new \Webservice\DbWebserviceConfig();
         $this->assertEqual($config->url, "http://kort.rdmr.ch/webservices/db");
     }
 }

@@ -1,8 +1,11 @@
 <?php
-class KortHTMLReporter extends HtmlReporter {
+namespace Tests;
 
-    function paintPass($message)
-	{
+class KortHTMLReporter extends \HtmlReporter
+{
+
+    public function paintPass($message)
+    {
         parent::paintPass($message);
         print "<span class=\"pass\">Pass</span>: ";
         $breadcrumb = $this->getTestList();
@@ -11,10 +14,9 @@ class KortHTMLReporter extends HtmlReporter {
         print "->$message<br />\n";
     }
 
-	function paintHeader($test_name) {
+    public function paintHeader($test_name)
+    {
         print "<h2>$test_name</h2>\n";
         flush();
     }
 }
-
-?>
