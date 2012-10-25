@@ -114,7 +114,9 @@
         "resources/styles",
         "resources/i18n",
         "resources/stores",
-        "lib/Leaflet-0.4.4/dist/images"
+        "lib/Leaflet-0.4.5/dist/images",
+        "lib/Slim-2.1.0/Slim",
+        "server/webservices/bug"
     ],
 
     /**
