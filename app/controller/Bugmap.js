@@ -11,7 +11,8 @@ Ext.define('Kort.controller.Bugmap', {
             mapCmp: '#bugmap',
             bugmapNavigationView: '#bugmapNavigationView',
             fixSubmitButton: '#fixSubmitButton',
-            messageTextField: 'textfield[name=message]'
+            messageTextField: 'textfield[name=message]',
+            refreshMarkersButton: '#refreshMarkersButton'
         },
         control: {
             mapCmp: {
@@ -19,6 +20,9 @@ Ext.define('Kort.controller.Bugmap', {
             },
             fixSubmitButton: {
                 tap: 'onFixSubmitButtonTap'
+            },
+            refreshMarkersButton: {
+                tap: 'onRefreshMarkersButtonTap'
             }
         },
 
@@ -26,7 +30,8 @@ Ext.define('Kort.controller.Bugmap', {
         ownPositionMarker: null,
         markerLayerGroup: [],
         confirmTemplate: null,
-        activeBug: null
+        activeBug: null,
+        bugsStore: null
     },
 
     onFixSubmitButtonTap: function() {
@@ -62,27 +67,63 @@ Ext.define('Kort.controller.Bugmap', {
 
             // add listener for locationupdate event of geolocation for setting marker position
             cmp.getGeo().addListener('locationupdate', function() {
+                // this referes to the geolocation
                 me.setOwnPositionMarkerPosition(new L.LatLng(this.getLatitude(), this.getLongitude()));
             });
         }
         
-        // TODO load bugs after each geoupdate event
-        var bounds = map.getBounds();
-        var bugsStore = Ext.getStore('Bugs');
-        var url = './server/webservices/bug/bugs/bounds/' + bounds.getNorthEast().lat + ',' + bounds.getNorthEast().lng + '/' + bounds.getSouthWest().lat + ',' + bounds.getSouthWest().lng;
-        url = './server/webservices/bug/bugs/bounds/47.22962311576733,8.853306770324707/47.21749858511102,8.781208992004395';
+        // wait till correct position is found
+        Ext.Function.defer(me.refreshBugMarkers, 700, me);
+        
+        me.getMarkerLayerGroup().addTo(map);
+        
+        /*jQuery.ajax('./server/webservices/osm/?type=node&id=639300798', {
+            success: function(data, textStatus, jqXHR) {
+                console.log(osm2geo(data));
+            }
+        });*/
+    },
+    
+    onRefreshMarkersButtonTap: function() {
+        this.refreshBugMarkers();
+    },
+    
+    refreshBugMarkers: function() {
+        var me = this,
+            bounds = me.getMap().getBounds(),
+            bugsStore = me.getBugsStore(),
+            url;
+        
+        url = './server/webservices/bug/bugs/bounds/' + bounds.getNorthEast().lat + ',' + bounds.getNorthEast().lng + '/' + bounds.getSouthWest().lat + ',' + bounds.getSouthWest().lng;
         bugsStore.getProxy().setUrl(url);
         
         // Load bugs store
-		Ext.getStore('Bugs').load(function(records, operation, success) {
-            Ext.each(records, function (item, index, length) {
-                me.addMarker(item);
-            });
+		bugsStore.load(function(records, operation, success) {
+            me.syncProblemMarkers(records);
         });
-        
-        me.getMarkerLayerGroup().addTo(map);
     },
-
+    
+    /**
+	 * Synchronizes problem markers with recieved data from fusiontable
+	 * @private
+	 */
+	syncProblemMarkers: function(bugs) {
+        var me = this,
+            MAX_MARKERS = 40,
+            count = 0;
+        
+        me.removeAllMarkers();
+        
+        // add markers
+        Ext.each(bugs, function (item, index, length) {
+            if(count < MAX_MARKERS) {
+                console.log(item.get('osm_type') + ' / ' + item.get('osm_id'));
+                me.addMarker(item);
+            }
+            count++;
+        });
+	},
+    
     addOwnPositionMarker: function(cmp, map) {
         var iconWidth = 20,
             iconHeight = 20,
@@ -130,6 +171,10 @@ Ext.define('Kort.controller.Bugmap', {
         marker.lastClickTimestamp = 0;
         marker.on('click', me.onMarkerClick, me);
         me.getMarkerLayerGroup().addLayer(marker);
+    },
+    
+    removeMarker: function(marker) {
+        console.log('removing marker id: ' + marker.bugdata.getId());
     },
     
     removeAllMarkers: function() {
@@ -192,5 +237,7 @@ Ext.define('Kort.controller.Bugmap', {
             
         // create layer group for bug markers
         this.setMarkerLayerGroup(L.layerGroup());
+        
+        this.setBugsStore(Ext.getStore('Bugs'));
     }
 });

@@ -13,9 +13,21 @@ Ext.define('Kort.view.bugmap.NavigationView', {
 		iconCls: 'maps',
         useTitleForBackButtonText: true,
         
+        navigationBar: {
+            items: [
+                {
+                    xtype: 'button',
+                    id: 'refreshMarkersButton',
+                    iconCls: 'refresh',
+                    iconMask: true,
+                    align: 'right'
+                }
+            ]
+        },
 		items: [
 			{
                 title: Ext.i18n.Bundle.message('bugmap.title'),
+                
                 xtype: 'leafletmap',
                 id: 'bugmap',
                 useCurrentLocation: true,
