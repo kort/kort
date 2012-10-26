@@ -16,10 +16,12 @@ Ext.application({
     ],
     
     controllers: [
-        'Main',
 		'Bugmap',
+		'Highscore',
+        'Main',
         'Profile',
-        'Task'
+		'Task',
+        'Verify'
 	],
     
     models: [

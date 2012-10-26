@@ -6,7 +6,8 @@ Ext.define('Kort.controller.Main', {
             'Main'
         ],
         refs: {
-            mainTabPanel: '#mainTabPanel'
+            mainTabPanel: '#mainTabPanel',
+            bugmapNavigationView: '#bugmapNavigationView'
         },
         control: {
             mainTabPanel: {
@@ -14,12 +15,15 @@ Ext.define('Kort.controller.Main', {
             }
         }
     },
-
+    
     /**
      * Called when active item of tabpanel changes
      * @private
      */
     onMainTabPanelActiveItemChange: function(container, newCmp, oldCmp, eOpts) {
+        if(oldCmp === this.getBugmapNavigationView()) {
+            console.log('should pop detail view');
+        }
         this.redirectTo(newCmp.getUrl());
     }
 });
