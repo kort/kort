@@ -12,18 +12,17 @@ if (isset($argv[1]) || isset($_GET['file'])) {
 
 } else {
     //run tests in test directory
-    $basedir = dirname(__FILE__).'/../server/php/Tests';
-    $dh = opendir($basedir);
-    $suite = new Tests\KortAllTests();
-    ob_start();
-    while (($file = readdir($dh)) !== false) {
-        if (is_dir($file) && $file != "..") {
-             Tests\KortTestRunner::runTestDirectory($basedir."/".$file, $suite);
+    $suite = new TestHelper\KortAllTests();
+    $traverser = new TestHelper\DirectoryTraverser(function ($path, $dir) use ($suite) {
+        echo $dir;
+        if ($dir === "Test") {
+            TestHelper\KortTestRunner::runTestDirectory($path."/".$dir, $suite);
         }
-    }
+    });
+    ob_start();
+    $traverser->traverse(dirname(__FILE__).'/../server/php');
     $singleTestOutput = ob_get_contents();
     ob_end_clean();
-    closedir($dh);
     $suite->run();
     echo "<h1>Detailed test results:</h1>";
     echo $singleTestOutput;

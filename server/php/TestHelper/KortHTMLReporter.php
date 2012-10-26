@@ -1,5 +1,5 @@
 <?php
-namespace Tests;
+namespace TestHelper;
 
 class KortHTMLReporter extends \HtmlReporter
 {
