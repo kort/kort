@@ -11,11 +11,6 @@ class TestBugWebservice extends KortUnitTestCase
         parent::__construct("kort - TestBugWebservice");
     }
 
-    protected static function getClassPaths()
-    {
-        return dirname(__FILE__)."/../DbWebserviceConfig.php";
-    }
-
     public function testDbWebServiceURL()
     {
         $config = new DbWebserviceConfig();
