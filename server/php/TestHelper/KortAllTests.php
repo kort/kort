@@ -1,5 +1,5 @@
 <?php
-namespace Tests;
+namespace TestHelper;
 
 class KortAllTests extends \TestSuite {
     protected $reporter;

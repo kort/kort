@@ -1,5 +1,5 @@
 <?php
-namespace Tests;
+namespace TestHelper;
 
 abstract class KortUnitTestCase extends \UnitTestCase
 {

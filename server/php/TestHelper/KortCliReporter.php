@@ -1,5 +1,5 @@
 <?php
-namespace Tests;
+namespace TestHelper;
 
 class KortCliReporter extends \SimpleReporter {
     public function __construct()

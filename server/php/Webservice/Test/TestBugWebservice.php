@@ -1,5 +1,5 @@
 <?php
-namespace Tests;
+namespace Webservice\Test;
 
 class TestBugWebservice extends KortUnitTestCase
 {
