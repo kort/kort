@@ -1,8 +1,8 @@
 <?php
 require_once('../../../lib/Slim-2.1.0/Slim/Slim.php');
-require_once('RouteHandler.php');
+require_once('../../php/Webservice/RouteHandler.php');
 
-use Kort\Webservice\RouteHandler;
+use Webservice\RouteHandler;
 
 // Load Slim library
 \Slim\Slim::registerAutoloader();
