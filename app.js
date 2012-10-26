@@ -18,7 +18,8 @@ Ext.application({
     controllers: [
         'Main',
 		'Bugmap',
-        'Profile'
+        'Profile',
+        'Task'
 	],
     
     models: [
