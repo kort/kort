@@ -3,10 +3,11 @@ namespace Kort;
 
 use Helper\StringHelper;
 
-class ClassLoader {
+class ClassLoader
+{
     public static function autoload($className)
     {
-        $classPath = __DIR__."/".str_replace("\\", "/",$className).".php";
+        $classPath = __DIR__."/".str_replace("\\", "/", $className).".php";
         if (\file_exists($classPath)) {
             require_once($classPath);
         }
@@ -32,7 +33,8 @@ class ClassLoader {
         }
     }
 
-    public static function registerAutoLoader() {
+    public static function registerAutoLoader()
+    {
         spl_autoload_register(__CLASS__ . "::autoloadLibrary");
         spl_autoload_register(__CLASS__ . "::autoload");
     }
