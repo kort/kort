@@ -1,7 +1,8 @@
 <?php
 namespace TestHelper;
 
-class KortAllTests extends \TestSuite {
+class KortAllTests extends \TestSuite
+{
     protected $reporter;
 
     public function __construct()

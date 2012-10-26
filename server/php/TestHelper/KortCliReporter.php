@@ -1,11 +1,12 @@
 <?php
 namespace TestHelper;
 
-class KortCliReporter extends \SimpleReporter {
+class KortCliReporter extends \SimpleReporter
+{
     public function __construct()
     {
         parent::__construct();
-		date_default_timezone_set('UTC');
+        date_default_timezone_set('UTC');
     }
 
     public function paintHeader($test_name)
@@ -72,5 +73,3 @@ class KortCliReporter extends \SimpleReporter {
         print "\n\nERROR: " . $message ."\n\n";
     }
 }
-
-?>
