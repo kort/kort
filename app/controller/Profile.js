@@ -4,6 +4,17 @@ Ext.define('Kort.controller.Profile', {
     config: {
         views: [
             'profile.Container'
-        ]
+        ],
+        refs: {
+            mainTabPanel: '#mainTabPanel',
+            profileContainer: '#profileContainer'
+        },
+        routes: {
+            'profile': 'showProfile'
+        }
+    },
+    
+    showProfile: function() {
+        this.getMainTabPanel().setActiveItem(this.getProfileContainer());
     }
 });

@@ -1,12 +1,11 @@
-Ext.define('Kort.view.bugmap.Detail', {
+Ext.define('Kort.view.task.FormContainer', {
 	extend: 'Ext.Container',
-	alias: 'widget.bugdetail',
+	alias: 'widget.taskformcontainer',
     
 	config: {
 		layout: 'vbox',
-        title: '',
+        title: 'Fix',
         fullscreen: true,
-        bugdata: null,
         
         listeners: {
             initialize: 'onInitialize'
@@ -38,7 +37,6 @@ Ext.define('Kort.view.bugmap.Detail', {
 	},
     
     onInitialize: function() {
-        this.setTitle(this.getBugdata().get('title'));
-        this.getItems().items[0].setHtml(this.getBugdata().get('description'));
+        //this.getItems().items[0].setHtml(this.getBugdata().get('description'));
     }
 });
