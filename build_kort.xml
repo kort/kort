@@ -59,11 +59,6 @@
             <arg value="--report-width=60"/>
             <arg value="${php.dir}"/>
         </exec>
-        <exec executable="phpcs">
-            <arg value="--standard=PSR2"/>
-            <arg value="--report-width=60"/>
-            <arg value="${php.dir}"/>
-        </exec>
     </target>
 
     <target name="generate_uml">
