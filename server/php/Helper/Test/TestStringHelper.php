@@ -1,16 +1,13 @@
 <?php
 namespace Helper\Test;
 
-class TestStringHelper extends \TestHelper\KortUnitTestCase
+use TestHelper\KortUnitTestCase;
+
+class TestStringHelper extends KortUnitTestCase
 {
     public function __construct()
     {
         parent::__construct("kort - TestStringHelper");
-    }
-
-    protected static function getClassPaths()
-    {
-        return dirname(__FILE__)."/../StringHelper.php";
     }
 
     public function testEndWith()

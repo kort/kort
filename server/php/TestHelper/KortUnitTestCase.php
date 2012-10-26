@@ -5,36 +5,9 @@ use Helper\StringHelper;
 
 abstract class KortUnitTestCase extends \UnitTestCase
 {
-    public static function autoload($className)
-    {
-        $importPath = static::getClassPaths();
-        if (is_array($importPath)) {
-            foreach (static::getClassPaths() as $path) {
-                self::importClass($path, $className);
-            }
-        } else {
-              self::importClass($importPath, $className);
-        }
-    }
-
-    private static function importClass($path, $className)
-    {
-        if (StringHelper::endsWith($path, ".php")) {
-            require_once($path);
-        } else {
-                require_once($path."/".$className);
-        }
-    }
-
-    protected static function getClassPaths()
-    {
-        return "";
-    }
-
     public function __construct($label = "Kort - Test Case")
     {
         parent::__construct($label);
-        spl_autoload_register(__NAMESPACE__ . "\\KortUnitTestCase::autoload");
     }
 
     public function report()
