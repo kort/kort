@@ -15,11 +15,9 @@ class DirectoryTraverser
 
     public function traverse($dir)
     {
-        echo "traverse(".$dir.")";
         $dh = opendir($dir);
         while (($file = readdir($dh)) !== false) {
-            echo $file;
-            if (is_dir($file) && $file != "." &&  $file != "..") {
+            if (is_dir($dir."/".$file) && $file != "." &&  $file != "..") {
                 \call_user_func($this->block, $dir, $file);
                 $this->traverse($dir."/".$file);
             }

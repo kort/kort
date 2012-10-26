@@ -1,17 +1,16 @@
 <?php
 require_once('../../../lib/Slim-2.1.0/Slim/Slim.php');
-require_once('../../php/Webservice/RouteHandler.php');
-
-use Webservice\RouteHandler;
+require_once('../../../server/php/ClassLoader.php');
 
 // Load Slim library
 \Slim\Slim::registerAutoloader();
+Kort\ClassLoader::registerAutoLoader();
 
-// create Slim app
+
 $app = new \Slim\Slim();
 
 //define route handlers
-$handler = new RouteHandler();
+$handler = new \Webservice\RouteHandler();
 
 $rootHandler = function () use ($handler) {
     $handler->rootRouteHandler();
