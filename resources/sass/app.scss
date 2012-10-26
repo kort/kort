@@ -16,4 +16,8 @@
 @include sencha-form;
 @include sencha-msgbox;
 
+// adding pictors
+@include pictos-iconmask('list');
+@include pictos-iconmask('check_black2');
+
 // Your custom code goes here...
