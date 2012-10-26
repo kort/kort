@@ -7,4 +7,9 @@ class StringHelper
     {
         return substr($haystack, - strlen($needle)) === $needle;
     }
+
+    public function startsWith($haystack, $needle)
+    {
+        return !strncmp($haystack, $needle, strlen($needle));
+    }
 }
