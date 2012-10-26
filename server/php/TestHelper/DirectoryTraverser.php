@@ -8,7 +8,7 @@ class DirectoryTraverser
     public function __construct($block)
     {
         if (!is_callable($block)) {
-            throw Exception("Argument must be callable.");
+            throw new \Exception("Argument must be callable.");
         }
         $this->block = $block;
     }
