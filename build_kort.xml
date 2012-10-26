@@ -7,7 +7,7 @@
 
     <property name="uml.dir" value="_DOCUMENTATION/03_Model" />
     <property name="php.dir" value="server" />
-    <property name="php.test.dir" value="server/php/Tests" />
+    <property name="php.test.dir" value="server/php" />
     <property name="test.dir" value="test" />
 
 
@@ -62,7 +62,7 @@
         <exec executable="phpcs">
             <arg value="--standard=PSR2"/>
             <arg value="--report-width=60"/>
-            <arg value="${php.test.dir}"/>
+            <arg value="${php.dir}"/>
         </exec>
     </target>
 
@@ -101,7 +101,7 @@
     <target name="exec_test_php">
 		<basename file="${filename}" property="basename"/>
 		<echo message="Run ${basename}"/>
-		<exec executable="php" dir="${php.test.dir}" logError="true" failonerror="true">
+		<exec executable="php" dir="${php.dir}" logError="true" failonerror="true">
 			<arg value="-f"/>
 			<arg value="${basedir}/${test.dir}/index.php"/>
 			<arg value="${filename}" />
