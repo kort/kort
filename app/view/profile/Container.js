@@ -6,7 +6,7 @@ Ext.define('Kort.view.profile.Container', {
     ],
 	
 	config: {
-		title: 'Profil',
+		title: Ext.i18n.Bundle.message('tab.profile'),
 		url: 'profile',
 		id: 'profileContainer',
 		iconCls: 'user',
@@ -16,7 +16,7 @@ Ext.define('Kort.view.profile.Container', {
 				xtype: 'titlebar',
 				cls: 'titlebar',
 				docked: 'top',
-				title: 'Profil'
+				title: Ext.i18n.Bundle.message('profil.title')
 			},
 			{
                 html: 'Dies ist dein Profil'
