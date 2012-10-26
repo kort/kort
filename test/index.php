@@ -1,5 +1,6 @@
 <?php
-require_once('KortTests.php');
+require_once('../server/php/ClassLoader.php');
+Kort\ClassLoader::registerAutoLoader();
 
 //run one specific Testfile or all available tests in this directory
 if (isset($argv[1]) || isset($_GET['file'])) {
@@ -14,13 +15,12 @@ if (isset($argv[1]) || isset($_GET['file'])) {
     //run tests in test directory
     $suite = new TestHelper\KortAllTests();
     $traverser = new TestHelper\DirectoryTraverser(function ($path, $dir) use ($suite) {
-        echo $dir;
         if ($dir === "Test") {
             TestHelper\KortTestRunner::runTestDirectory($path."/".$dir, $suite);
         }
     });
     ob_start();
-    $traverser->traverse(dirname(__FILE__).'/../server/php');
+    $traverser->traverse(__DIR__.'/../server/php');
     $singleTestOutput = ob_get_contents();
     ob_end_clean();
     $suite->run();

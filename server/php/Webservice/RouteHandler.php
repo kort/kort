@@ -8,15 +8,8 @@ class RouteHandler
 {
     protected $db;
 
-    public static function autoload($className)
-    {
-        $className = str_replace(__NAMESPACE__.'\\', '', $className);
-        require_once($className.".php");
-    }
-
     public function __construct()
     {
-        spl_autoload_register(__NAMESPACE__ . "\\RouteHandler::autoload");
         $this->db = new PsqlHelper(new DbConfig());
     }
 

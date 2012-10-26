@@ -1,7 +1,10 @@
 <?php
 namespace Webservice\Test;
 
-class TestBugWebservice extends \TestHelper\KortUnitTestCase
+use TestHelper\KortUnitTestCase;
+use Webservice\DbWebserviceConfig;
+
+class TestBugWebservice extends KortUnitTestCase
 {
     public function __construct()
     {
@@ -15,7 +18,7 @@ class TestBugWebservice extends \TestHelper\KortUnitTestCase
 
     public function testDbWebServiceURL()
     {
-        $config = new \Webservice\DbWebserviceConfig();
+        $config = new DbWebserviceConfig();
         $this->assertEqual($config->url, "http://kort.rdmr.ch/webservices/db");
     }
 }
