@@ -8,7 +8,7 @@ class TestBugWebservice extends \TestHelper\KortUnitTestCase
         parent::__construct("kort - TestBugWebservice");
     }
 
-     protected static function getClassPaths()
+    protected static function getClassPaths()
     {
         return dirname(__FILE__)."/../DbWebserviceConfig.php";
     }

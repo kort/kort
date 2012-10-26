@@ -1,6 +1,8 @@
 <?php
 namespace TestHelper;
 
+use Helper\StringHelper;
+
 abstract class KortUnitTestCase extends \UnitTestCase
 {
     public static function autoload($className)
@@ -17,15 +19,11 @@ abstract class KortUnitTestCase extends \UnitTestCase
 
     private static function importClass($path, $className)
     {
-        if (self::endsWith($path, ".php")) {
+        if (StringHelper::endsWith($path, ".php")) {
             require_once($path);
         } else {
                 require_once($path."/".$className);
         }
-    }
-
-    private static function endsWith($haystack, $needle) {
-        return substr($haystack, - strlen($needle)) === $needle;
     }
 
     protected static function getClassPaths()
