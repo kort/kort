@@ -4,26 +4,28 @@ Ext.define('Kort.controller.Bugmap', {
     config: {
         views: [
             'bugmap.BugMessageBox',
-            'bugmap.NavigationView',
-            'bugmap.Detail'
+            'bugmap.NavigationView'
         ],
         refs: {
+            mainTabPanel: '#mainTabPanel',
             mapCmp: '#bugmap',
             bugmapNavigationView: '#bugmapNavigationView',
-            fixSubmitButton: '#fixSubmitButton',
-            messageTextField: 'textfield[name=message]',
             refreshMarkersButton: '#refreshMarkersButton'
         },
         control: {
             mapCmp: {
                 maprender: 'onMapRender'
             },
-            fixSubmitButton: {
-                tap: 'onFixSubmitButtonTap'
-            },
             refreshMarkersButton: {
                 tap: 'onRefreshMarkersButtonTap'
+            },
+            bugmapNavigationView: {
+                pop: 'onBugmapNavigationViewPop'
             }
+        },
+        
+        routes: {
+            'bugmap': 'showBugmap'
         },
 
         map: null,
@@ -34,27 +36,16 @@ Ext.define('Kort.controller.Bugmap', {
         bugsStore: null
     },
 
-    onFixSubmitButtonTap: function() {
-        var me = this,
-            bugDetailPanel = this.getBugmapNavigationView().getActiveItem(),
-            fix;
-            
-        var messageValue = this.getMessageTextField().getValue();
-        
-        if(messageValue !== '') {
-            fix = Ext.create('Kort.model.Fix', { error_id: bugDetailPanel.getBugdata().get('id'), message: this.getMessageTextField().getValue()});
-            fix.save({
-                success: function() {
-                    // remove detail panel
-                    me.getBugmapNavigationView().pop();
-                },
-                failure: function() {
-                    console.log('failure');
-                }
-            });
-        } else {
-            console.log('please fill in all form fields');
-        }
+    /**
+     * Shows map view
+     * @private
+     */
+    showBugmap: function() {
+        this.getMainTabPanel().setActiveItem(this.getBugmapNavigationView());
+    },
+    
+    onBugmapNavigationViewPop: function(cmp, view, opts) {
+        this.redirectTo(cmp.getUrl());
     },
 
     onMapRender: function(cmp, map, tileLayer) {
@@ -77,11 +68,12 @@ Ext.define('Kort.controller.Bugmap', {
         
         me.getMarkerLayerGroup().addTo(map);
         
-        /*jQuery.ajax('./server/webservices/osm/?type=node&id=639300798', {
+        jQuery.ajax('./server/webservices/osm/node/639300798', {
             success: function(data, textStatus, jqXHR) {
+                console.log(data);
                 console.log(osm2geo(data));
             }
-        });*/
+        });
     },
     
     onRefreshMarkersButtonTap: function() {
@@ -116,6 +108,7 @@ Ext.define('Kort.controller.Bugmap', {
         
         // add markers
         Ext.each(bugs, function (item, index, length) {
+            // TODO max_markers logic in database select
             if(count < MAX_MARKERS) {
                 console.log(item.get('osm_type') + ' / ' + item.get('osm_id'));
                 me.addMarker(item);
@@ -161,7 +154,7 @@ Ext.define('Kort.controller.Bugmap', {
             icon,
             marker,
             tpl;
-            
+        
         icon = me.getIcon(item.get('type'));
         marker = L.marker([item.get('latitude'), item.get('longitude')], {
             //icon: icon
@@ -171,10 +164,6 @@ Ext.define('Kort.controller.Bugmap', {
         marker.lastClickTimestamp = 0;
         marker.on('click', me.onMarkerClick, me);
         me.getMarkerLayerGroup().addLayer(marker);
-    },
-    
-    removeMarker: function(marker) {
-        console.log('removing marker id: ' + marker.bugdata.getId());
     },
     
     removeAllMarkers: function() {
@@ -201,9 +190,7 @@ Ext.define('Kort.controller.Bugmap', {
     
     markerConfirmHandler: function(buttonId, value, opt) {
         if(buttonId === 'yes') {
-            this.getBugmapNavigationView().push(Ext.create('Kort.view.bugmap.Detail', {
-                bugdata: this.getActiveBug()
-            }));
+            this.redirectTo(this.getActiveBug().toUrl());
         }
         
         this.setActiveBug(null);
