@@ -5,7 +5,7 @@ require_once('KortTests.php');
 if (isset($argv[1]) || isset($_GET['file'])) {
     $filename = isset($argv[1]) ? $argv[1] : $_GET['file'];
     if (file_exists($filename)) {
-        Tests\KortTestRunner::runTestFile($filename);
+        TestHelper\KortTestRunner::runTestFile($filename);
     } else {
         die("Requested file '".$filename."' does not exist!");
     }

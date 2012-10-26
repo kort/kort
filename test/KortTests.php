@@ -13,3 +13,5 @@ require_once(dirname(__FILE__) . '/../server/php/TestHelper/KortCliReporter.php'
 require_once(dirname(__FILE__) . '/../server/php/TestHelper/KortHTMLReporter.php');
 require_once(dirname(__FILE__) . '/../server/php/TestHelper/KortTestRunner.php');
 require_once(dirname(__FILE__) . '/../server/php/TestHelper/DirectoryTraverser.php');
+
+require_once(dirname(__FILE__) . '/../server/php/Helper/StringHelper.php');

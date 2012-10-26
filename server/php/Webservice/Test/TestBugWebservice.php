@@ -1,7 +1,7 @@
 <?php
 namespace Webservice\Test;
 
-class TestBugWebservice extends KortUnitTestCase
+class TestBugWebservice extends \TestHelper\KortUnitTestCase
 {
     public function __construct()
     {
@@ -10,7 +10,7 @@ class TestBugWebservice extends KortUnitTestCase
 
      protected static function getClassPaths()
     {
-        return "Webservice/DbWebserviceConfig.php";
+        return dirname(__FILE__)."/../DbWebserviceConfig.php";
     }
 
     public function testDbWebServiceURL()
