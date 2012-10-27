@@ -23,13 +23,13 @@ Ext.define('Kort.view.task.FormContainer', {
                         xtype: 'textfield',
                         name: 'message',
                         requires: true,
-                        label: Ext.i18n.Bundle.message('bugdetail.field.message')
+                        label: Ext.i18n.Bundle.message('task.field.message')
                     },
                     {
                         xtype: 'button',
                         ui: 'confirm',
                         id: 'fixSubmitButton',
-                        text: Ext.i18n.Bundle.message('bugdetail.button.submit')
+                        text: Ext.i18n.Bundle.message('task.button.submit')
                     }
                 ]
             }
