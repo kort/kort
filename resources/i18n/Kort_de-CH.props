@@ -27,6 +27,7 @@ highscore.title=Highscore
 profil.title=Profil
 
 # MessageBox
+messagebox.ok=OK
 messagebox.yes=Ja
 messagebox.no=Nein
 messagebox.cancel=Abbrechen

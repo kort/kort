@@ -74,12 +74,13 @@ Ext.application({
                 CANCEL: {text: Ext.i18n.Bundle.message('messagebox.cancel'), itemId: 'cancel'},
 
                 OKCANCEL: [
-                    {text: Ext.i18n.Bundle.message('messagebox.cancel'), itemId: 'cancel'},
+                    {text: Ext.i18n.Bundle.message('messagebox.ok'), itemId: 'ok', ui: 'action'},
+                    {text: Ext.i18n.Bundle.message('messagebox.cancel'), itemId: 'cancel'}
                 ],
                 YESNOCANCEL: [
-                    {text: Ext.i18n.Bundle.message('messagebox.cancel'), itemId: 'cancel'},
+                    {text: Ext.i18n.Bundle.message('messagebox.yes'),    itemId: 'yes', ui: 'action'},
                     {text: Ext.i18n.Bundle.message('messagebox.no'),     itemId: 'no'},
-                    {text: Ext.i18n.Bundle.message('messagebox.yes'),    itemId: 'yes', ui: 'action'}
+                    {text: Ext.i18n.Bundle.message('messagebox.cancel'), itemId: 'cancel'}
                 ],
                 YESNO: [
                     {text: Ext.i18n.Bundle.message('messagebox.yes'), itemId: 'yes', ui: 'action'},

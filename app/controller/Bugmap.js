@@ -23,7 +23,7 @@ Ext.define('Kort.controller.Bugmap', {
                 pop: 'onBugmapNavigationViewPop'
             }
         },
-        
+
         routes: {
             'bugmap': 'showBugmap'
         },
@@ -43,7 +43,7 @@ Ext.define('Kort.controller.Bugmap', {
     showBugmap: function() {
         this.getMainTabPanel().setActiveItem(this.getBugmapNavigationView());
     },
-    
+
     onBugmapNavigationViewPop: function(cmp, view, opts) {
         this.redirectTo(cmp.getUrl());
     },
@@ -51,7 +51,7 @@ Ext.define('Kort.controller.Bugmap', {
     onMapRender: function(cmp, map, tileLayer) {
         var me = this;
         me.setMap(map);
-        
+
         // adding markers
         if(cmp.getGeo()) {
             me.addOwnPositionMarker(cmp, map);
@@ -62,12 +62,12 @@ Ext.define('Kort.controller.Bugmap', {
                 me.setOwnPositionMarkerPosition(new L.LatLng(this.getLatitude(), this.getLongitude()));
             });
         }
-        
+
         // wait till correct position is found
         Ext.Function.defer(me.refreshBugMarkers, 700, me);
-        
+
         me.getMarkerLayerGroup().addTo(map);
-        
+
         jQuery.ajax('./server/webservices/osm/node/639300798', {
             success: function(data, textStatus, jqXHR) {
                 console.log(data);
@@ -75,37 +75,37 @@ Ext.define('Kort.controller.Bugmap', {
             }
         });
     },
-    
+
     onRefreshMarkersButtonTap: function() {
         this.refreshBugMarkers();
     },
-    
+
     refreshBugMarkers: function() {
         var me = this,
             bounds = me.getMap().getBounds(),
             bugsStore = me.getBugsStore(),
             url;
-        
+
         url = './server/webservices/bug/bugs/bounds/' + bounds.getNorthEast().lat + ',' + bounds.getNorthEast().lng + '/' + bounds.getSouthWest().lat + ',' + bounds.getSouthWest().lng;
         bugsStore.getProxy().setUrl(url);
-        
+
         // Load bugs store
 		bugsStore.load(function(records, operation, success) {
             me.syncProblemMarkers(records);
         });
     },
-    
+
     /**
-	 * Synchronizes problem markers with recieved data from fusiontable
-	 * @private
-	 */
+    * Synchronizes problem markers with recieved data from fusiontable
+    * @private
+    */
 	syncProblemMarkers: function(bugs) {
         var me = this,
             MAX_MARKERS = 40,
             count = 0;
-        
+
         me.removeAllMarkers();
-        
+
         // add markers
         Ext.each(bugs, function (item, index, length) {
             // TODO max_markers logic in database select
@@ -116,7 +116,7 @@ Ext.define('Kort.controller.Bugmap', {
             count++;
         });
 	},
-    
+
     addOwnPositionMarker: function(cmp, map) {
         var iconWidth = 20,
             iconHeight = 20,
@@ -154,7 +154,7 @@ Ext.define('Kort.controller.Bugmap', {
             icon,
             marker,
             tpl;
-        
+
         icon = me.getIcon(item.get('type'));
         marker = L.marker([item.get('latitude'), item.get('longitude')], {
             //icon: icon
@@ -165,20 +165,20 @@ Ext.define('Kort.controller.Bugmap', {
         marker.on('click', me.onMarkerClick, me);
         me.getMarkerLayerGroup().addLayer(marker);
     },
-    
+
     removeAllMarkers: function() {
         this.getMarkerLayerGroup().clearLayers();
     },
-    
+
     onMarkerClick: function(e) {
         var tpl = this.getConfirmTemplate(),
             marker = e.target,
             bugdata = marker.bugdata,
             CLICK_TOLERANCE = 200,
             timeDifference;
-        
+
         timeDifference = e.originalEvent.timeStamp - marker.lastClickTimestamp;
-        
+
         // LEAFLET BUGFIX: only execute click if there is a certain time between last click
         if(timeDifference > CLICK_TOLERANCE) {
             marker.lastClickTimestamp = e.originalEvent.timeStamp;
@@ -187,12 +187,12 @@ Ext.define('Kort.controller.Bugmap', {
             var msg = bugMessageBox.confirm(bugdata.get('title'), tpl.apply(bugdata.data), this.markerConfirmHandler, this);
         }
     },
-    
+
     markerConfirmHandler: function(buttonId, value, opt) {
         if(buttonId === 'yes') {
             this.redirectTo(this.getActiveBug().toUrl());
         }
-        
+
         this.setActiveBug(null);
     },
 
@@ -214,17 +214,17 @@ Ext.define('Kort.controller.Bugmap', {
         });
         return icon;
     },
-    
+
     init: function() {
         this.setConfirmTemplate(new Ext.XTemplate(
             '<div class="confirm-content">',
                 '<p>{description}</p>',
             '</div>'
         ));
-            
+
         // create layer group for bug markers
         this.setMarkerLayerGroup(L.layerGroup());
-        
+
         this.setBugsStore(Ext.getStore('Bugs'));
     }
 });
