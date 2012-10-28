@@ -14,34 +14,35 @@ Ext.application({
         'Ext.MessageBox',
         'Ext.i18n.Bundle'
     ],
-    
+
     controllers: [
 		'Bugmap',
 		'Highscore',
         'Main',
         'Profile',
 		'Task',
-        'Verify'
+        'Verify',
+        'Login'
 	],
-    
+
     models: [
 		'Bug',
         'Fix'
     ],
-	
+
     stores: [
 		'Bugs'
     ],
 
     icon: './resources/images/kort-icon.png',
-    
+
     startupImage: {
 		// Non-retina iPhone, iPod touch, and all Android devices
 		'320x460': './resources/images/kort-startup-320x460.jpg',
 		// Retina iPhone and iPod touch
 		'640x920': './resources/images/kort-startup-640x920.png'
 	},
-    
+
     viewport: {
 		// hide navigation bar of browser
 		autoMaximize: true
@@ -51,10 +52,10 @@ Ext.application({
     launch: function() {
         this.prepareI18n();
         this.configureMessageBox();
-        
+
         Ext.Viewport.add(Ext.create('Kort.view.Main'));
     },
-    
+
     prepareI18n: function() {
         Ext.i18n.Bundle.configure({
 			bundle: 'Kort',
@@ -63,7 +64,7 @@ Ext.application({
 			noCache: true
         });
     },
-    
+
     configureMessageBox: function() {
         // Override MessageBox default messages
         Ext.override(Ext.MessageBox, {
@@ -94,14 +95,14 @@ Ext.application({
             statics: {
                 YES   : { text: 'Ja',   itemId: 'yes', ui: 'action'},
                 NO    : { text: 'Nein', itemId: 'no'},
-                
+
                 YESNO: [
                     { text: 'Ja',   itemId: 'yes', ui: 'action'},
                     { text: 'Nein', itemId: 'no'}
                 ]
             }
         });
-        
+
         Ext.Msg.confirm(
             "Neue App-Version",
             "Die App wurde auf die neuste Version aktualisiert. App neu laden?",

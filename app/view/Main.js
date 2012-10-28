@@ -2,7 +2,7 @@ Ext.define('Kort.view.Main', {
     extend: 'Ext.tab.Panel',
     xtype: 'main',
     id: 'mainTabPanel',
-    
+
     config: {
         tabBar: {
             docked: 'bottom',
@@ -12,6 +12,9 @@ Ext.define('Kort.view.Main', {
         },
 
         items: [
+            {
+                xtype: 'logincontainer'
+            },
             {
                 xtype: 'bugmapnavigationview'
             },
