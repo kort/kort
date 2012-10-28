@@ -7,7 +7,7 @@ fi
 mkdir $BUILD_DIR
 mkdir -p $BUILD_DIR/lib/Leaflet-0.4.5
 mkdir -p $BUILD_DIR/lib/Slim-2.1.0
-mkdir -p $BUILD_DIR/server/webservices
+mkdir -p $BUILD_DIR/server
 
 cp $CI_HOME/index.* $BUILD_DIR
 cp $CI_HOME/app.* $BUILD_DIR/
@@ -20,4 +20,5 @@ cp -r $CI_HOME/i18n $BUILD_DIR
 cp -r $CI_HOME/lib/Leaflet-0.4.5/dist/ $BUILD_DIR/lib/Leaflet-0.4.5/
 cp -r $CI_HOME/lib/Slim-2.1.0/Slim/ $BUILD_DIR/lib/Slim-2.1.0/
 
-cp -r $CI_HOME/server/webservices/bug/ $BUILD_DIR/server/webservices/
+cp -r $CI_HOME/server/webservices/ $BUILD_DIR/server/
+cp -r $CI_HOME/server/oauth2callback/ $BUILD_DIR/server/
