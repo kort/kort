@@ -1,10 +1,13 @@
 Ext.define('Kort.view.task.FormContainer', {
 	extend: 'Ext.Container',
 	alias: 'widget.taskformcontainer',
+    requires: [
+        'Ext.ux.field.File'
+    ],
     
 	config: {
 		layout: 'vbox',
-        title: 'Fix',
+        title: Ext.i18n.Bundle.message('task.tab.form.title'),
         fullscreen: true,
         
         listeners: {
@@ -17,13 +20,21 @@ Ext.define('Kort.view.task.FormContainer', {
             },
             {
                 xtype: 'formpanel',
+                id: 'taskform',
                 flex: 1,
                 items: [
                     {
                         xtype: 'textfield',
                         name: 'message',
-                        requires: true,
+                        required: true,
                         label: Ext.i18n.Bundle.message('task.field.message')
+                    },
+                    {
+                        xtype: 'filefield',
+                        id: 'imageFileField',
+                        name: 'image',
+                        required: true,
+                        label: Ext.i18n.Bundle.message('task.field.image')
                     },
                     {
                         xtype: 'button',
