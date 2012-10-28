@@ -9,23 +9,23 @@ Ext.define('Ext.i18n.Bundle', {
 	xtype: 'bundle',
 
 	singleton: true,
-	
+
 	requires: [
 		'Ext.i18n.reader.Property',
 		'Ext.i18n.model.Property'
 	],
-	
+
 	//@private
 	defaultLanguage: 'en-US',
 	//@private
-	resourceExt: '.properties',
+	resourceExt: '.props',
 
 	//@private
 	cExp: /\{([\w\-]+)(?:\:([\w\.]*)(?:\((.*?)?\))?)?\}/g,
-	
+
 	config:{
 		/**
-		 * @cfg bundle {String} bundle name for properties file. Default to message  
+		 * @cfg bundle {String} bundle name for properties file. Default to message
 		 */
 		bundle: 'message',
 
@@ -36,19 +36,19 @@ Ext.define('Ext.i18n.Bundle', {
 
 		/**
 		 * @cfg language {String} Language in the form xx-YY where:
-		 * 		xx: Language code (2 characters lowercase) 
-    	 *      YY: Country code (2 characters upercase). 
+		 * 		xx: Language code (2 characters lowercase)
+    	 *      YY: Country code (2 characters upercase).
 		 * Optional. Default to browser's language. If it cannot be determined default to en-US.
 		 */
 
 		/**
-		 * @cfg noCache {boolean} whether or not to disable Proxy's cache. Optional. Defaults to true. 
+		 * @cfg noCache {boolean} whether or not to disable Proxy's cache. Optional. Defaults to true.
 		 */
 
 
 		model: 'Ext.i18n.model.Property'
 	},
-	
+
 	/**
      * @public
      * @method configure will initialize the bundle with the given configuration
@@ -61,11 +61,11 @@ Ext.define('Ext.i18n.Bundle', {
 		me.setPath(config.path);
 		me.setBundle(config.bundle);
         me.setNoCache(config.noCache);
-        
+
 		me.setLanguage(config.language || me.guessLanguage());
 
 	},
-	
+
 	constructor: function(config){
 		config = config || {};
 
@@ -85,17 +85,17 @@ Ext.define('Ext.i18n.Bundle', {
 
 		me.callParent([config]);
 	},
-	
+
 
 
     setNoCache: function(value){
         var me = this,
             proxy = me.getProxy();
 
-        //avoid sending extra params   
+        //avoid sending extra params
         proxy.getParams = Ext.emptyFn;
 
-        proxy.setNoCache(value); 
+        proxy.setNoCache(value);
     },
 
 	/**
@@ -105,7 +105,7 @@ Ext.define('Ext.i18n.Bundle', {
 		return (navigator.language || navigator.browserLanguage
 				|| navigator.userLanguage || this.defaultLanguage);
 	},
-	
+
     /**
      * @public
      * @method message will create the markup as a placeholder for the message key and paramaters
@@ -116,11 +116,11 @@ Ext.define('Ext.i18n.Bundle', {
 	message: function(key, obj){
 		var cKey = this.getContentKey(key),
 			data = '';
-			
+
 		for(var p in obj){
 			data+=' data-'+p+'="'+obj[p]+'"';
-		}	
-			
+		}
+
 		return '<span class="bundle '+cKey+'"' + data +'></span>';
 	},
 
@@ -132,25 +132,25 @@ Ext.define('Ext.i18n.Bundle', {
 	getLanguage: function(){
 		return this.language;
 	},
-		
+
     /**
      * @public
      * @method setLanguage
      * @param lang {String} in the format:
      *  xx-YY where:
-     *      xx: Language code (2 characters lowercase) 
-     *      YY: Country code (2 characters upercase). 
-     */    
+     *      xx: Language code (2 characters lowercase)
+     *      YY: Country code (2 characters upercase).
+     */
 	setLanguage: function(lang){
 		var me = this,
 			proxy = this.getProxy();
-		
+
 		me.language = lang;
 		proxy.on('exception', me.loadParent, me, {single: true});
 		proxy.setUrl(me.buildURL(me.language));
 		me.load();
 	},
-	
+
 	/**
 	 * @private
 	 */
@@ -170,13 +170,13 @@ Ext.define('Ext.i18n.Bundle', {
 			sId = 'localized-css',//this.proxy.url,
 			head = Ext.getHead(),
 			el;
-		
+
 		el = Ext.get(sId);
 		if(el) el.destroy();
-		
+
 		style.setAttribute('id', sId);
 		style.innerHTML = str;
-		
+
 		head.appendChild(style);
 	},
 
@@ -189,7 +189,7 @@ Ext.define('Ext.i18n.Bundle', {
 			this.callParent(arguments);
 		}
 	},
-	
+
 	/**
 	 * @private
 	 */
@@ -204,15 +204,15 @@ Ext.define('Ext.i18n.Bundle', {
 		url+=this.resourceExt;
 		return url;
 	},
-	
+
 	/**
 	 * @private
 	 */
 	loadParent: function(){
 		this.getProxy().setUrl(this.buildURL());
-		this.load();			
+		this.load();
 	},
-	
+
 	/**
 	 * @private
 	 */
@@ -222,32 +222,32 @@ Ext.define('Ext.i18n.Bundle', {
 		langCodes[1] = (langCodes[1]) ? langCodes[1].toUpperCase() : '';
 		return langCodes.join('-');
 	},
-	
+
 	createContentLine: function(record){
 		var key = record.get('key'),
 			value = record.get('value'),
 			cKey;
-			
+
 		cKey = this.getContentKey(key);
-		cValue = this.getContentValue(value);	
-		
+		cValue = this.getContentValue(value);
+
 		return '.' + cKey + ':after { content:' + cValue + ';}\n';
 	},
-	
+
 	getContentKey: function(k){
 		return 'bundle-'+k.replace(/\./g, '-');
 	},
-	
+
 	getContentValue: function(v){
 		var ret;
 		function fn(m, n){
-			return '\" attr(data-'+n+') \"';	
+			return '\" attr(data-'+n+') \"';
 		}
 		ret = v.replace(this.cExp, fn);
-		
+
 		//ret = escape(ret).replace(/%/g, '\\0000');
-		
+
 		return '\"'+ret+'\"';
 	}
-	
+
 });
