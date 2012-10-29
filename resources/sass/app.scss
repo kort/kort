@@ -1,3 +1,15 @@
+// Let's start with the basics
+$base-color: #7c92ae;
+$base-gradient: 'glossy';
+
+// Lists
+$list-active-gradient: 'bevel';
+$list-header-bg-color: transparentize(saturate($base-color, 10%), .25);
+$list-header-gradient: 'matte';
+
+// Tabs
+$tabs-dark: #111;
+
 @import 'sencha-touch/default/all';
 
 // You may remove any of the following modules that you
@@ -19,5 +31,13 @@
 // adding pictors
 @include pictos-iconmask('list');
 @include pictos-iconmask('check_black2');
+@include pictos-iconmask('nuclear');
 
-// Your custom code goes here...
+.x-toolbar-light .x-title {
+    color: #fff;
+    text-shadow: rgba(0, 0, 0, 0.5) 0 -0.08em 0;
+}
+
+.x-button-back .x-button-label {
+    color: #fff;
+}
