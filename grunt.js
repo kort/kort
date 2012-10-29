@@ -29,6 +29,7 @@ module.exports = function(grunt) {
                 browser: true,
                 devel: true,
                 trailing: true,
+                white:  false,
                 maxcomplexity: 3,
                 indent: 4
             },
