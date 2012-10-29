@@ -35,8 +35,7 @@ module.exports = function(grunt) {
             globals: {
                 Kort: true,
                 Ext: true,
-                L: true,
-                osm2geo: true
+                L: true
             },
             tests: {
                 globals: {
