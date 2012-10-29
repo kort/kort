@@ -11,13 +11,16 @@ Kort\ClassLoader::registerAutoLoader();
 // create Slim app
 $app = new \Slim\Slim();
 
+$res = $app->response();
+$res['Content-Type'] = 'text/xml';
+
 $handler = new OsmHandler();
-$osmHandler = function ($type, $id) use ($handler) {
-    $handler->getOsmData($type, $id);
+$osmHandler = function ($type, $id, $full) use ($handler, $res) {
+    $res->write($handler->getOsmData($type, $id, $full));
 };
 
 // define REST resources
-$app->get('/:type/:id', $osmHandler);
+$app->get('/:type/:id/:full', $osmHandler);
 
 
 // start Slim app

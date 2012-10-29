@@ -67,11 +67,15 @@ Ext.define('Kort.controller.Bugmap', {
         Ext.Function.defer(me.refreshBugMarkers, 700, me);
 
         me.getMarkerLayerGroup().addTo(map);
-
-        jQuery.ajax('./server/webservices/osm/node/639300798', {
-            success: function(data, textStatus, jqXHR) {
-                console.log(data);
-                console.log(osm2geo(data));
+        
+        Ext.Ajax.request({
+            url: './server/webservices/osm/way/34182825/full',
+            headers: {
+                'Content-Type': 'text/xml'
+            },
+            success: function(response) {
+                var layer = new L.OSM.DataLayer(response.responseXML);
+                layer.addTo(map);
             }
         });
     },
