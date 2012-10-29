@@ -7,3 +7,4 @@ fi
 heroku keys:clear
 yes | heroku keys:add
 heroku keys:add $CI_HOME/server/ssh_pub_keys/id_ras_odi.pub
+heroku keys:add $CI_HOME/server/ssh_pub_keys/id_ras_jhunzike.pub

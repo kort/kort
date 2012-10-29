@@ -20,7 +20,6 @@ cp -r $CI_HOME/test $BUILD_DIR
 
 cp -r $CI_HOME/lib/Leaflet-0.4.5/dist/ $BUILD_DIR/lib/Leaflet-0.4.5/
 cp -r $CI_HOME/lib/Slim-2.1.0/Slim/ $BUILD_DIR/lib/Slim-2.1.0/
-cp -r $CI_HOME/lib/osm2geo $BUILD_DIR/lib/
 cp -r $CI_HOME/lib/qunit $BUILD_DIR/lib
 cp -r $CI_HOME/lib/simpletest $BUILD_DIR/lib
 
