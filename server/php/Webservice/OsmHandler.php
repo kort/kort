@@ -3,11 +3,10 @@ namespace Webservice;
 
 class OsmHandler
 {
-
-    public function getOsmData($type, $id)
+    public function getOsmData($type, $id, $full)
     {
         $osmApiUrl = 'http://www.openstreetmap.org/api/0.6';
-        $url = $osmApiUrl . '/' . $type . '/' . $id;
+        $url = $osmApiUrl . '/' . $type . '/' . $id . '/' . $full;
         $curl = curl_init();
 
         curl_setopt($curl, CURLOPT_URL, $url);
