@@ -1,7 +1,7 @@
 <?php
 namespace Webservice\Database;
 
-class PsqlHelper
+class PsqlConnection
 {
     protected $dbConn = null;
     protected $defaultErrorFields = array(

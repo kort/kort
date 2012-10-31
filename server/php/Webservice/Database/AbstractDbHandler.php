@@ -5,8 +5,12 @@ abstract class AbstractDbHandler
 {
     protected $db;
 
-    public function __construct()
+    public function __construct($db = null)
     {
-        $this->db = new PsqlHelper(new DbConfig());
+        if ($db == null) {
+            $this->db = new PsqlConnection(new DbConfig());
+        } else {
+            $this->db = $db;
+        }
     }
 }
