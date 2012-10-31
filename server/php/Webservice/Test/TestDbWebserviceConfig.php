@@ -4,11 +4,11 @@ namespace Webservice\Test;
 use TestHelper\KortUnitTestCase;
 use Webservice\DbWebserviceConfig;
 
-class TestBugWebservice extends KortUnitTestCase
+class TestDbWebserviceConfig extends KortUnitTestCase
 {
     public function __construct()
     {
-        parent::__construct("kort - TestBugWebservice");
+        parent::__construct("kort - TestDbWebserviceConfig");
     }
 
     public function testDbWebServiceURL()

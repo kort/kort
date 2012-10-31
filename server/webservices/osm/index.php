@@ -2,7 +2,7 @@
 require_once('../../../lib/Slim-2.1.0/Slim/Slim.php');
 require_once('../../../server/php/ClassLoader.php');
 
-use Webservice\OsmHandler;
+use Webservice\Osm\OsmHandler;
 
 // Load Slim library
 \Slim\Slim::registerAutoloader();
