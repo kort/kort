@@ -2,6 +2,11 @@
 require_once('../server/php/ClassLoader.php');
 Kort\ClassLoader::registerAutoLoader();
 
+function exception_error_handler($errno, $errstr, $errfile, $errline ) {
+    throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
+}
+set_error_handler("exception_error_handler");
+
 //run one specific Testfile or all available tests in this directory
 if (isset($argv[1]) || isset($_GET['file'])) {
     $filename = isset($argv[1]) ? $argv[1] : $_GET['file'];
