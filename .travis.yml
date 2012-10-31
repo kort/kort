@@ -12,6 +12,9 @@ before_script:
   - wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh >/dev/null 2>&1
   - sudo npm install -g grunt >/dev/null 2>&1
   - wget https://raw.github.com/wandernauta/yuml/master/yuml && chmod +x yuml
+  - sudo pear channel-discover pear.survivethedeepend.com
+  - sudo pear channel-discover hamcrest.googlecode.com/svn/pear
+  - sudo pear install --alldeps deepend/Mockery
   - pear install PHP_CodeSniffer && phpenv rehash
   - export PATH="$PATH:$CI_HOME:/usr/local/heroku/bin"
 
