@@ -19,6 +19,8 @@ class ClassLoader
         require_once(dirname(__FILE__) . '/../../lib/simpletest/reporter.php');
         require_once(dirname(__FILE__) . '/../../lib/simpletest/test_case.php');
         require_once(dirname(__FILE__) . '/../../lib/simpletest/unit_tester.php');
+        require_once 'Mockery/Loader.php';
+        require_once 'Hamcrest/Hamcrest.php';
 
         //Slim
         require_once(dirname(__FILE__) . '/../../lib/Slim-2.1.0/Slim/Slim.php');
@@ -37,5 +39,7 @@ class ClassLoader
     {
         spl_autoload_register(__CLASS__ . "::autoloadLibrary");
         spl_autoload_register(__CLASS__ . "::autoload");
+        $loader = new \Mockery\Loader;
+        $loader->register();
     }
 }
