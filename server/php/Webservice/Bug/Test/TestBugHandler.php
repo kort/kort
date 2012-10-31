@@ -12,11 +12,13 @@ class TestBugHandler extends KortUnitTestCase
         parent::__construct("kort - TestBugHandler");
     }
 
-    public function setUp() {
+    public function setUp()
+    {
         $this->handler = new BugHandler(M::mock('PsqlConnection'));
     }
 
-    public function tearDown() {
+    public function tearDown()
+    {
         M::close();
     }
 
