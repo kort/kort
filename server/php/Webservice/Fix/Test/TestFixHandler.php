@@ -12,11 +12,13 @@ class TestFixHandler extends KortUnitTestCase
         parent::__construct("kort - TestFixHandler");
     }
 
-    public function setUp() {
+    public function setUp()
+    {
         $this->handler = new FixHandler(M::mock('PsqlConnection'));
     }
 
-    public function tearDown() {
+    public function tearDown()
+    {
         M::close();
     }
 
