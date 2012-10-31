@@ -1,5 +1,5 @@
 <?php
-namespace Webservice;
+namespace Webservice\Database;
 
 class PsqlHelper
 {

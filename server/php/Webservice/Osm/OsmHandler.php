@@ -1,5 +1,5 @@
 <?php
-namespace Webservice;
+namespace Webservice\Osm;
 
 class OsmHandler
 {

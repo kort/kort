@@ -8,31 +8,15 @@ Kort\ClassLoader::registerAutoLoader();
 
 
 $app = new \Slim\Slim();
+$res = $app->response();
 
-//define route handlers
-$handler = new \Webservice\RouteHandler();
-
-$rootHandler = function () use ($handler) {
-    $handler->rootRouteHandler();
-};
-
-$bugsIdHandler = function ($schema, $id) use ($handler) {
-    $handler = new RouteHandler();
-};
-
-$bugsBoundsHandler = function ($northEastLat, $northEastLng, $southWestLat, $southWestLng) use ($handler) {
-    $handler->bugsBoundsRouteHandler($northEastLat, $northEastLng, $southWestLat, $southWestLng);
-};
-
-$fixesHandler = function () use ($handler, $app) {
-    $handler->fixesRouteHandler($app->request()->post());
-};
+$bugHandler = new \Webservice\Bug\BugHandler();
+$fixHandler = new \Webservice\Fix\FixHandler();
 
 // define REST resources
-$app->get('/', $rootHandler);
-$app->get('/bugs/:schema/:id', $bugsIdHandler);
-$app->get('/bugs/bounds/:northeastlat,:northeastlng/:southwestlat,:southwestlng', $bugsBoundsHandler);
-$app->post('/fixes', $fixesHandler);
+$app->get('/bugs/:schema/:id', $bugHandler->bugsIdRouteHandler($res));
+$app->get('/bugs/bounds/:northeastlat,:northeastlng/:southwestlat,:southwestlng', $bugHandler->bugsBoundsHandler($res));
+$app->post('/fixes', $fixHandler->fixesRouteHandler($app));
 
 // start Slim app
 $app->run();

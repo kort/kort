@@ -1,5 +1,5 @@
 <?php
-namespace Webservice;
+namespace Webservice\Database;
 
 /**
  * setup these values and rename file to DbConfig.php
