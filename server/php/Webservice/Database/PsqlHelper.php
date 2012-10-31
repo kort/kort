@@ -60,7 +60,7 @@ class PsqlHelper
     // creates database connection
     protected function createDbConnection($conn_string)
     {
-        $db = pg_connect($conn_string) or die('connection failed');
+        $db = pg_connect($conn_string);
         $this->dbConn = $db;
     }
 
