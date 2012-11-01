@@ -3,7 +3,7 @@ namespace TestHelper;
 
 use Helper\StringHelper;
 
-abstract class KortUnitTestCase extends \UnitTestCase
+abstract class AbstractKortUnitTestCase extends \UnitTestCase
 {
     public function __construct($label = "Kort - Test Case")
     {

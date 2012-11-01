@@ -1,10 +1,10 @@
 <?php
 namespace TestHelper\Test;
 
-use TestHelper\KortUnitTestCase;
+use TestHelper\AbstractKortUnitTestCase;
 use TestHelper\KortTestRunner;
 
-class TestKortTestRunner extends KortUnitTestCase
+class TestKortTestRunner extends AbstractKortUnitTestCase
 {
     public function __construct()
     {

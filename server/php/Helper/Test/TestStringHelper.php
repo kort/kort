@@ -1,9 +1,9 @@
 <?php
 namespace Helper\Test;
 
-use TestHelper\KortUnitTestCase;
+use TestHelper\AbstractKortUnitTestCase;
 
-class TestStringHelper extends KortUnitTestCase
+class TestStringHelper extends AbstractKortUnitTestCase
 {
     public function __construct()
     {
