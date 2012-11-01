@@ -8,11 +8,11 @@ Ext.define('Kort.controller.Login', {
         refs: {
             mainTabPanel: '#mainTabPanel',
             loginContainer: '#loginContainer',
-            loginButton: '#loginButton'
+            loginButtonGoogle: '#loginButtonGoogle'
         },
         control: {
-            loginButton: {
-                tap: 'onLoginButtonTap'
+            loginButtonGoogle: {
+                tap: 'onLoginButtonGoogleTap'
             }
         },
         routes: {
@@ -34,8 +34,8 @@ Ext.define('Kort.controller.Login', {
         this.getMainTabPanel().setActiveItem(this.getLoginContainer());
     },
 
-    onLoginButtonTap: function() {
-        console.log('loginButton tapped -> ' + this.buildGoogleUrl(this.getRemote().google));
+    onLoginButtonGoogleTap: function() {
+        console.log('loginButtonGoogle tapped -> ' + this.buildGoogleUrl(this.getRemote().google));
         document.location.href = this.buildGoogleUrl(this.getRemote().google);
     },
 
