@@ -76,6 +76,9 @@
             "path": "lib/Leaflet-0.4.5/dist/leaflet.css"
         },
         {
+            "path": "lib/zocial/css/zocial.css"
+        },
+        {
             "path": "resources/styles/styles.css"
         }
     ],

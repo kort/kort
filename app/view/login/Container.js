@@ -23,8 +23,17 @@ Ext.define('Kort.view.login.Container', {
 			},
             {
                 xtype: 'button',
-                text: 'Login with Google',
-                id: 'loginButton'
+                text: Ext.i18n.Bundle.message('login.button.google'),
+                id: 'loginButtonGoogle',
+                baseCls: Ext.baseCSSPrefix + 'zocial-button',
+                cls: 'zocial google'
+            },
+            {
+                xtype: 'button',
+                text: Ext.i18n.Bundle.message('login.button.twitter'),
+                id: 'loginButtonTwitter',
+                baseCls: Ext.baseCSSPrefix + 'zocial-button',
+                cls: 'zocial twitter'
             }
 		]
 	}
