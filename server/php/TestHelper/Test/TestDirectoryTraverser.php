@@ -1,10 +1,10 @@
 <?php
 namespace TestHelper\Test;
 
-use TestHelper\KortUnitTestCase;
+use TestHelper\AbstractKortUnitTestCase;
 use TestHelper\DirectoryTraverser;
 
-class TestDirectoryTraverser extends KortUnitTestCase
+class TestDirectoryTraverser extends AbstractKortUnitTestCase
 {
     public function __construct()
     {

@@ -1,10 +1,10 @@
 <?php
 namespace Webservice\Test;
 
-use TestHelper\KortUnitTestCase;
+use TestHelper\AbstractKortUnitTestCase;
 use Webservice\DbWebserviceConfig;
 
-class TestDbWebserviceConfig extends KortUnitTestCase
+class TestDbWebserviceConfig extends AbstractKortUnitTestCase
 {
     public function __construct()
     {

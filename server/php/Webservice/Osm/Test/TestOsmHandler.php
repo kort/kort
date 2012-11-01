@@ -1,10 +1,10 @@
 <?php
 namespace Webservice\Osm\Test;
 
-use TestHelper\KortUnitTestCase;
+use TestHelper\AbstractKortUnitTestCase;
 use Webservice\Osm\OsmHandler;
 
-class TestOsmHandler extends KortUnitTestCase
+class TestOsmHandler extends AbstractKortUnitTestCase
 {
     public function __construct()
     {

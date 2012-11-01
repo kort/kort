@@ -1,11 +1,11 @@
 <?php
 namespace Webservice\Fix\Test;
 
-use TestHelper\KortUnitTestCase;
+use TestHelper\AbstractKortUnitTestCase;
 use Webservice\Fix\FixHandler;
 use \Mockery as M;
 
-class TestFixHandler extends KortUnitTestCase
+class TestFixHandler extends AbstractKortUnitTestCase
 {
     public function __construct()
     {

@@ -2,10 +2,10 @@
 
 namespace TestHelper\Test;
 
-use TestHelper\KortUnitTestCase;
+use TestHelper\AbstractKortUnitTestCase;
 use TestHelper\KortCliReporter;
 
-class TestKortCliReporter extends KortUnitTestCase
+class TestKortCliReporter extends AbstractKortUnitTestCase
 {
     public function __construct()
     {
