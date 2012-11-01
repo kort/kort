@@ -1,20 +1,21 @@
 var global = this;
 
-function UrlLib () {
+var UrlLib = function() {
 	if(this === global) { return new UrlLib(); }
 
 	var _this = this;
+    var fullUrl = document.URL;
+    var anchor = window.location.hash;
 
     _this.getCurrentUrl = function() {
-        var url = document.URL;
-        return url.replace(window.location.hash, '');
+        return fullUrl.replace('#' + anchor, '');
     };
 
     _this.getUrlParams = function() {
         var params = {};
-        var urlParts = location.href.match(/\?(.*)$/i);
+        var urlParts = fullUrl.match(/\?(.*)$/i);
         var queryString = urlParts ? urlParts[1] : '';
-        var paramRegex = /([^&=]+)(=([^&]*))?/g;
+        var paramRegex = /([^&=]+)=(([^&]*))?/g;
         var m;
 
         while (m = paramRegex.exec(queryString)) {
@@ -23,5 +24,17 @@ function UrlLib () {
         return params;
     };
 
+    var setFullUrl = function(newUrl) {
+        fullUrl = newUrl;
+    };
+
+    var setAnchor = function(newAnchor) {
+        anchor = newAnchor;
+        fullUrl = _this.getCurrentUrl() + "#" + newAnchor;
+    };
+
+    _this.__setFullUrl = setFullUrl;
+    _this.__setAnchor = setAnchor;
+
     return _this;
-}
+};
