@@ -36,12 +36,14 @@ module.exports = function(grunt) {
             globals: {
                 Kort: true,
                 Ext: true,
-                L: true
+                L: true,
+                UrlLib: true
             },
             tests: {
                 globals: {
                     Ext: true,
                     L: true,
+                    UrlLib: true,
                     asyncTest: true,
                     deepEqual: true,
                     equal: true,
