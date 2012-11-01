@@ -24,6 +24,7 @@ cp -r $CI_HOME/lib/Slim-2.1.0/Slim/ $BUILD_DIR/lib/Slim-2.1.0/
 cp -r $CI_HOME/lib/google-api-php-client/src $BUILD_DIR/lib/google-api-php-client/
 cp -r $CI_HOME/lib/qunit $BUILD_DIR/lib
 cp -r $CI_HOME/lib/simpletest $BUILD_DIR/lib
+cp -r $CI_HOME/lib/zocial $BUILD_DIR/lib
 
 cp -r $CI_HOME/server/php/ $BUILD_DIR/server/
 cp -r $CI_HOME/server/webservices/ $BUILD_DIR/server/
