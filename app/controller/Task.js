@@ -69,17 +69,16 @@ Ext.define('Kort.controller.Task', {
         var messageValue = this.getMessageTextField().getValue();
         
         if(messageValue !== '') {
-            console.log('submit');
-            /*me.getTaskform().submit({
+            /*Ext.Ajax.request({
                 url: './server/webservices/bug/fixes',
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'multipart/form-data; charset=UTF-8'
-                },
-                success: function() {
+                callback: function(options, success, response) {
                     alert('form submitted successfully!');
-                }
+                },
+                scope: me,
+                form: 'taskform',
+                isUpload: true
             });*/
+            
             fix = Ext.create('Kort.model.Fix', { error_id: bugDetailPanel.getBugdata().get('id'), message: this.getMessageTextField().getValue()});
             fix.save({
                 success: function() {
