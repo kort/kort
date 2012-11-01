@@ -13,11 +13,11 @@ login.button.twitter=Login with Twitter
 # Bugmap
 bugmap.title=Bugs in deiner Nähe
 
-# Task
-task.tab.form.title=Fix
-task.field.message=Beschreibung
-task.field.image=Bild
-task.button.submit=Senden
+# Fix
+fix.tab.form.title=Fix
+fix.field.message=Beschreibung
+fix.field.image=Bild
+fix.button.submit=Senden
 
 # Verify
 verify.title=Verifizieren

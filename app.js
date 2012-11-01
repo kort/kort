@@ -17,10 +17,10 @@ Ext.application({
 
     controllers: [
 		'Bugmap',
+		'Fix',
 		'Highscore',
         'Main',
         'Profile',
-		'Task',
         'Verify',
         'Login'
 	],
