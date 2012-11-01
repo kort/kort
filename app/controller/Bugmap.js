@@ -74,7 +74,12 @@ Ext.define('Kort.controller.Bugmap', {
                 'Content-Type': 'text/xml'
             },
             success: function(response) {
-                var layer = new L.OSM.DataLayer(response.responseXML);
+                var layer = new L.OSM.DataLayer(response.responseXML, {
+                    styles: {
+                        way: { clickable: false },
+                        area: { clickable: false }
+                    }
+                });
                 layer.addTo(map);
             }
         });
