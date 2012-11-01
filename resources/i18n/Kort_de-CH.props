@@ -7,6 +7,8 @@ tab.profile=Profil
 # Login
 login.title=Login
 login.introduction=Bitte logge dich ein um kort nutzen zu können!
+login.button.google=Login with Google
+login.button.twitter=Login with Twitter
 
 # Bugmap
 bugmap.title=Bugs in deiner Nähe
