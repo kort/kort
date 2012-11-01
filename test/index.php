@@ -1,6 +1,6 @@
 <?php
 require_once('../server/php/ClassLoader.php');
-Kort\ClassLoader::registerAutoLoader();
+Kort\ClassLoader::registerAutoLoader("test");
 
 function exception_error_handler($errno, $errstr, $errfile, $errline ) {
     throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
