@@ -119,7 +119,7 @@ Ext.define('Kort.controller.Bugmap', {
         Ext.each(bugs, function (item, index, length) {
             // TODO max_markers logic in database select
             if(count < MAX_MARKERS) {
-                console.log(item.get('osm_type') + ' / ' + item.get('osm_id'));
+                console.log(item.get('type') + ' / ' + item.get('osm_id'));
                 me.addMarker(item);
             }
             count++;
