@@ -30,8 +30,8 @@ module.exports = function(grunt) {
                 devel: true,
                 trailing: true,
                 white:  false,
-                maxcomplexity: 3,
-                indent: 4
+                maxcomplexity: 3
+                /*indent: 4  comment out until white/indent options are separated => https://github.com/jshint/jshint/issues/655 */
             },
             globals: {
                 Kort: true,
