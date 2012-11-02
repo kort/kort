@@ -7,7 +7,7 @@ class OsmHandler
     {
         $osmApiUrl = 'http://www.openstreetmap.org/api/0.6';
         $url = $osmApiUrl . '/' . $type . '/' . $id;
-        if($type == 'way' || $type == 'relation') {
+        if ($type == 'way' || $type == 'relation') {
             $url .= '/full';
         }
         $curl = curl_init();

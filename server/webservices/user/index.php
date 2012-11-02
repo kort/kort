@@ -10,6 +10,8 @@ Kort\ClassLoader::registerAutoLoader();
 $app = new \Slim\Slim();
 $res = $app->response();
 
+ \session_start();
+
 $userHandler = new UserHandler();
 
 // define REST resources

@@ -14,8 +14,6 @@ class UserHandler extends AbstractDbHandler
         $this->userData['picUrl'] = "";
         $this->userData['token'] = null;
         $this->userData['loggedIn'] = false;
-
-        \session_start();
     }
 
     public function getUser()
