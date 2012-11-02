@@ -17,16 +17,86 @@
 .x-zocial-button.x-layout-box-item {
     display: list-item !important;
 }
-
-/*.bugMessageBox {
-    border: 0;
-    background-color: white;
+.x-msgbox .x-toolbar {
+    background: auto;
+}
+.bugMessageBox {
+    border-color: #69AAE6;
+    background-color: #D3E0EB;
+    $text-color: #000;
+    padding: 0;
     
-    .x-title {
-        font-weight: normal;
+    .x-toolbar.x-msgbox-title {
+        background: auto;
     }
-    
     .x-msgbox-text {
+        color: $text-color;
+        text-shadow: inherit;
         font-size: 0.8em;
+        text-align: left;
+        padding: 0;
     }
-}*/
+    
+    .confirm-title {
+        font-size: 1.2em;
+        font-weight: bold;
+        border-bottom: .1em solid black;
+        padding: 0.3em;
+        margin-bottom: 0.5em;
+    }
+    
+    .confirm-content {
+        .description {
+            $image-width: 48px;
+            overflow: hidden;
+            
+            .image {
+                float: left;
+
+                .bugtype-image {
+                    width: $image-width;
+                    height: 48px;
+                }
+            }
+            .content {
+                margin-left: $image-width + 10px;
+            }
+        }
+        
+        .koin-image {
+            width: 100px;
+            height: 100px;
+        }
+    }
+}
+
+
+/* Fix Panel */
+.fixTabPanel .x-tabbar.x-docked-top {
+    height: auto;
+    min-height: 1em !important;
+	font-size: 0.9em;
+}
+
+.fixTabPanel .x-tabbar .x-tab {
+	-webkit-border-radius: 0;
+	border-radius: 0;
+	height: auto;
+	margin: 0;
+	padding: 0.6em 0.8em;
+}
+
+#fixFormContainer {
+    padding: 1em;
+    
+    .x-form .x-scroll-container > .x-inner {
+        padding: 0;
+    }
+    .x-form-label span span.bundle {
+        font-size: 1.2em;
+    }
+    
+    #fixSubmitButton {
+        margin-top: 0.7em;
+    }
+}

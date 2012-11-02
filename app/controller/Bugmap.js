@@ -36,10 +36,6 @@ Ext.define('Kort.controller.Bugmap', {
         bugsStore: null
     },
 
-    /**
-     * Shows map view
-     * @private
-     */
     showBugmap: function() {
         this.getMainTabPanel().setActiveItem(this.getBugmapNavigationView());
     },
@@ -67,22 +63,6 @@ Ext.define('Kort.controller.Bugmap', {
         Ext.Function.defer(me.refreshBugMarkers, 700, me);
 
         me.getMarkerLayerGroup().addTo(map);
-        
-        Ext.Ajax.request({
-            url: './server/webservices/osm/way/34182825/full',
-            headers: {
-                'Content-Type': 'text/xml'
-            },
-            success: function(response) {
-                var layer = new L.OSM.DataLayer(response.responseXML, {
-                    styles: {
-                        way: { clickable: false },
-                        area: { clickable: false }
-                    }
-                });
-                layer.addTo(map);
-            }
-        });
     },
 
     onRefreshMarkersButtonTap: function() {
@@ -226,8 +206,17 @@ Ext.define('Kort.controller.Bugmap', {
 
     init: function() {
         this.setConfirmTemplate(new Ext.XTemplate(
+            '<div class="confirm-title">{title}</div>',
             '<div class="confirm-content">',
-                '<p>{description}</p>',
+                '<div class="description">',
+                    '<div class="image">',
+                        '<img class="bugtype-image" src="resources/images/bugtypes/{type}.png" />',
+                    '</div>',
+                    '<div class="content">',
+                        '<p>{description}</p>',
+                    '</div>',
+                '</div>',
+                '<img class="koin-image" src="resources/images/koins/1koin.png" />',
             '</div>'
         ));
 

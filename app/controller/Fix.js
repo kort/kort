@@ -4,17 +4,22 @@ Ext.define('Kort.controller.Fix', {
     config: {
         views: [
             'bugmap.fix.TabPanel',
+            'bugmap.fix.Map',
             'bugmap.fix.FormContainer'
         ],
         refs: {
             mainTabPanel: '#mainTabPanel',
             bugmapNavigationView: '#bugmapNavigationView',
-            fixSubmitButton: '#fixSubmitButton',
-            messageTextField: 'textfield[name=message]'
+            fixSubmitButton: '#fixFormSubmitButton',
+            messageTextField: 'textfield[name=fixmessage]',
+            fixmap: '#fixTabPanel .fixmap'
         },
         control: {
             fixSubmitButton: {
                 tap: 'onFixSubmitButtonTap'
+            },
+            fixmap: {
+                maprender: 'onFixmapMaprender'
             }
         },
 
@@ -22,12 +27,12 @@ Ext.define('Kort.controller.Fix', {
             showBugDetail: 'ensureBugStoreLoad'
         },
         routes: {
-            'bug/:id': {
-                action: 'showBugDetail'
-            }
+            'bug/:id': 'showBugDetail'
         },
         
-        bugsStore: null
+        bugsStore: null,
+        activeBug: null,
+        map: null
     },
     
     init: function() {
@@ -35,28 +40,89 @@ Ext.define('Kort.controller.Fix', {
     },
     
     ensureBugStoreLoad: function(action) {
-        var store = Ext.getStore('Bugs');
+        var store = this.getBugsStore();
 
         if (store.data.all.length) {
             action.resume();
         } else {
-            store.on('load', function() {
+            store.load(function() {
                 action.resume();
-            }, this, {
-                single: true
             });
         }
     },
     
     showBugDetail: function(id) {
-        var bug = this.getBugsStore().getById(id);
+        var me = this,
+            bug = me.getBugsStore().getById(id);
+        
+        if(me.getMainTabPanel().getActiveItem() !== me.getBugmapNavigationView()) {
+            me.getMainTabPanel().on('activeitemchange', function(container, newCmp, oldCmp, eOpts) {
+                me.redirectTo('bug/' + id);
+            }, me, { delay: 1000, single: true });
+            me.getMainTabPanel().setActiveItem(this.getBugmapNavigationView());
+        }
         
         if(bug) {
-            this.getMainTabPanel().setActiveItem(this.getBugmapNavigationView());
-            this.getBugmapNavigationView().push(Ext.create('Kort.view.bugmap.fix.TabPanel', {
+            me.setActiveBug(bug);
+            me.getMainTabPanel().setActiveItem(me.getBugmapNavigationView());
+            me.getBugmapNavigationView().push(Ext.create('Kort.view.bugmap.fix.TabPanel', {
                 bugdata: bug,
                 title: bug.get('title')
             }));
+        }
+    },
+    
+    onFixmapMaprender: function(cmp, map, tileLayer) {
+        this.setMap(map);
+        cmp.setMapCenter(L.latLng(this.getActiveBug().get('latitude'), this.getActiveBug().get('longitude')));
+        this.renderOsmElement(map);
+    },
+    
+    renderOsmElement: function() {
+        var me = this,
+            url = './server/webservices/osm/' + this.getActiveBug().get('osm_type') + '/' + this.getActiveBug().get('osm_id');
+        
+        Ext.Ajax.request({
+            url: url,
+            headers: {
+                'Content-Type': 'text/xml'
+            },
+            success: function(response) {
+                if(response.responseXML) {
+                    me.addFeature(response.responseXML);
+                }
+            }
+        });
+    },
+    
+    addFeature: function(xml) {
+        var layer,
+            bounds;
+            
+        layer = new L.OSM.DataLayer(xml, {
+            styles: {
+                way: {
+                    clickable: false,
+                    color: '#FF0000',
+                    fillColor: '#FF0000'
+                },
+                node: {
+                    clickable: false,
+                    color: '#FF0000',
+                    fillColor: '#FF0000'
+                },
+                area: {
+                    clickable: false,
+                    color: '#FF0000',
+                    fillColor: '#FF0000'
+                }
+            }
+        });
+        layer.addTo(this.getMap());
+        bounds = layer.getBounds();
+        // TODO reading private variables to check if layer has any bounds
+        if(bounds.hasOwnProperty('_northEast') || bounds.hasOwnProperty('_southWest')) {
+            this.getMap().fitBounds(bounds);
         }
     },
     

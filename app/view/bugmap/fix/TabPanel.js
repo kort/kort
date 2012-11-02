@@ -5,11 +5,14 @@ Ext.define('Kort.view.bugmap.fix.TabPanel', {
 	config: {
         title: '',
         fullscreen: true,
-        bugdata: null,
+        id: 'fixTabPanel',
         
         items: [
             {
                 xtype: 'fixformcontainer'
+            },
+            {
+                xtype: 'fixmap'
             }
         ]
 	}
