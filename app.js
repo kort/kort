@@ -28,11 +28,13 @@ Ext.application({
 
     models: [
 		'Bug',
-        'Fix'
+        'Fix',
+        'User'
     ],
 
     stores: [
-		'Bugs'
+		'Bugs',
+        'User'
     ],
 
     icon: './resources/images/kort-icon.png',
@@ -55,6 +57,16 @@ Ext.application({
         this.configureMessageBox();
 
         Ext.Viewport.add(Ext.create('Kort.view.Main'));
+
+        var userStore = Ext.getStore('User');
+        userStore.load(function() {
+            var user = userStore.first();
+            if (!user.get('loggedIn')) {
+                Ext.Viewport.add(Ext.create('Kort.view.login.Sheet'));
+            }
+        });
+
+
     },
 
     prepareI18n: function() {

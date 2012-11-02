@@ -3,24 +3,33 @@ var global = this;
 var UrlLib = function() {
 	if(this === global) { return new UrlLib(); }
 
-	var _this = this,
+	var me = this,
         fullUrl = document.URL,
         anchor = window.location.hash,
         setFullUrl, setAnchor;
 
-    _this.getCurrentUrl = function() {
+    me.getCurrentUrl = function() {
         return fullUrl.replace('#' + anchor, '');
     };
 
-    _this.getUrlParams = function() {
+    me.getAppUrl = function() {
+        var host = window.location.host;
+        var url = 'http://' + host + '/';
+        if (host === 'localhost') {
+            url += 'kort/'
+        }
+        return url;
+    };
+
+    me.getUrlParams = function() {
         var params = {},
             urlParts = fullUrl.match(/\?(.*)$/i),
             queryString = urlParts ? urlParts[1] : '',
-            paramRegex = /([^&=]+)=(([^&]*))?/g,
+            paramRegex = /([^&=]+)(=(([^&]*)))?/g,
             m;
 
         while (m = paramRegex.exec(queryString)) {
-            params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+            params[decodeURIComponent(m[1])] = decodeURIComponent(m[3]);
         }
         return params;
     };
@@ -31,11 +40,11 @@ var UrlLib = function() {
 
     setAnchor = function(newAnchor) {
         anchor = newAnchor;
-        fullUrl = _this.getCurrentUrl() + "#" + newAnchor;
+        fullUrl = me.getCurrentUrl() + "#" + newAnchor;
     };
 
-    _this.__setFullUrl = setFullUrl;
-    _this.__setAnchor = setAnchor;
+    me.__setFullUrl = setFullUrl;
+    me.__setAnchor = setAnchor;
 
-    return _this;
+    return me;
 };

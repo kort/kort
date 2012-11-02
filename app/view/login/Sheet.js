@@ -1,23 +1,12 @@
-Ext.define('Kort.view.login.Container', {
-	extend: 'Ext.Container',
-	alias: 'widget.logincontainer',
-    requires: [
-        'Ext.TitleBar'
-    ],
+Ext.define('Kort.view.login.Sheet', {
+	extend: 'Ext.Sheet',
+	alias: 'widget.loginsheet',
 
 	config: {
-		title: Ext.i18n.Bundle.message('login.title'),
 		url: 'login',
-		id: 'loginContainer',
-		iconCls: 'nuclear',
+		id: 'loginSheet',
 		layout: 'vbox',
 		items: [
-			{
-				xtype: 'titlebar',
-				cls: 'titlebar',
-				docked: 'top',
-				title: Ext.i18n.Bundle.message('login.title')
-			},
 			{
                 html: Ext.i18n.Bundle.message('login.introduction')
 			},

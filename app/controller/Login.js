@@ -3,11 +3,11 @@ Ext.define('Kort.controller.Login', {
 
     config: {
         views: [
-            'login.Container'
+            'login.Sheet'
         ],
         refs: {
             mainTabPanel: '#mainTabPanel',
-            loginContainer: '#loginContainer',
+            loginSheet: '#loginSheet',
             loginButtonGoogle: '#loginButtonGoogle'
         },
         control: {
@@ -35,7 +35,7 @@ Ext.define('Kort.controller.Login', {
     },
 
     showLogin: function() {
-        this.getMainTabPanel().setActiveItem(this.getLoginContainer());
+        this.getMainTabPanel().setActiveItem(this.getLoginSheet());
     },
 
     onLoginButtonGoogleTap: function() {
@@ -45,6 +45,7 @@ Ext.define('Kort.controller.Login', {
 
     buildGoogleUrl: function(oauth) {
         var urlLib = new UrlLib(),
+            params = urlLib.getUrlParams(),
             numScopes = oauth.scopes.length,
             url = oauth.url + '?',
             scopes = '', i;
@@ -57,10 +58,8 @@ Ext.define('Kort.controller.Login', {
         url += 'client_id=' + oauth.client_id + '&';
         url += 'scope=' + scopes + '&';
         url += 'access_type=' + oauth.access_type + '&';
-        url += 'redirect_uri=' + urlLib.getCurrentUrl() + oauth.redirect_path + '&';
-        url += 'approval_prompt=' + urlLib.getUrlParams().force ? 'force' : 'auto';
-
-        console.log(url);
+        url += 'redirect_uri=' + urlLib.getAppUrl() + oauth.redirect_path + '&';
+        url += 'approval_prompt=' + (params.force ? 'force' : 'auto');
 
         return url;
     }
