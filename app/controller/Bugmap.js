@@ -168,7 +168,7 @@ Ext.define('Kort.controller.Bugmap', {
             marker = e.target,
             bugdata = marker.bugdata,
             CLICK_TOLERANCE = 200,
-            timeDifference;
+            timeDifference, bugMessageBox, msg;
 
         timeDifference = e.originalEvent.timeStamp - marker.lastClickTimestamp;
 
@@ -176,8 +176,8 @@ Ext.define('Kort.controller.Bugmap', {
         if(timeDifference > CLICK_TOLERANCE) {
             marker.lastClickTimestamp = e.originalEvent.timeStamp;
             this.setActiveBug(bugdata);
-            var bugMessageBox = new Kort.view.bugmap.BugMessageBox();
-            var msg = bugMessageBox.confirm(bugdata.get('title'), tpl.apply(bugdata.data), this.markerConfirmHandler, this);
+            bugMessageBox = new Kort.view.bugmap.BugMessageBox();
+            msg = bugMessageBox.confirm(bugdata.get('title'), tpl.apply(bugdata.data), this.markerConfirmHandler, this);
         }
     },
 
@@ -188,7 +188,7 @@ Ext.define('Kort.controller.Bugmap', {
 
         this.setActiveBug(null);
     },
-    
+
     showBugDetail: function(bug) {
         this.getBugmapNavigationView().push(Ext.create('Kort.view.bugmap.fix.TabPanel', {
             bugdata: bug,
