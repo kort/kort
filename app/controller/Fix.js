@@ -1,6 +1,6 @@
 Ext.define('Kort.controller.Fix', {
     extend: 'Ext.app.Controller',
-    
+
     config: {
         views: [
             'bugmap.fix.TabPanel',
@@ -23,27 +23,27 @@ Ext.define('Kort.controller.Fix', {
                 maprender: 'onFixmapMaprender'
             }
         },
-        
+
         bugsStore: null,
         map: null
     },
-    
+
     init: function() {
         this.setBugsStore(Ext.getStore('Bugs'));
     },
-    
+
     onFixmapMaprender: function(cmp, map, tileLayer) {
         var bug = this.getFixTabPanel().getBugdata();
-        
+
         this.setMap(map);
         cmp.setMapCenter(L.latLng(bug.get('latitude'), bug.get('longitude')));
         this.renderOsmElement(bug);
     },
-    
+
     renderOsmElement: function(bug) {
         var me = this,
             url = './server/webservices/osm/' + bug.get('osm_type') + '/' + bug.get('osm_id');
-        
+
         Ext.Ajax.request({
             url: url,
             headers: {
@@ -56,11 +56,11 @@ Ext.define('Kort.controller.Fix', {
             }
         });
     },
-    
+
     addFeature: function(xml) {
         var layer,
             bounds;
-            
+
         layer = new L.OSM.DataLayer(xml, {
             styles: {
                 way: {
@@ -87,14 +87,14 @@ Ext.define('Kort.controller.Fix', {
             this.getMap().fitBounds(bounds);
         }
     },
-    
+
     onFixFormSubmitButtonTap: function() {
         var me = this,
             fixTabPanel = this.getFixTabPanel(),
+            messageValue = this.getMessageTextField().getValue(),
             fix;
-            
-        var messageValue = this.getMessageTextField().getValue();
-        if(messageValue !== '') {
+
+        if (messageValue !== '') {
             /*Ext.Ajax.request({
                 url: './server/webservices/bug/fixes',
                 callback: function(options, success, response) {
@@ -104,7 +104,7 @@ Ext.define('Kort.controller.Fix', {
                 form: 'fixform',
                 isUpload: true
             });*/
-            
+
             fix = Ext.create('Kort.model.Fix', { error_id: fixTabPanel.getBugdata().get('id'), message: this.getMessageTextField().getValue()});
             fix.save({
                 success: function() {
