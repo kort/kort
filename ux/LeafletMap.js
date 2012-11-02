@@ -375,10 +375,14 @@ Ext.define('Ext.ux.LeafletMap', {
     // @private
     destroy: function () {
         Ext.destroy(this.getGeo());
-        var map = this.getMap();
+        var map = this.getMap(),
+            layer = this.getTileLayer();
 
         if (map) {
-            map.destroy();
+            map = null;
+        }
+        if (layer) {
+            layer = null;
         }
 
         this.callParent();
