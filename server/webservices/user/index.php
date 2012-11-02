@@ -22,5 +22,13 @@ $app->get(
     }
 );
 
+$app->get(
+    '/destroy',
+    function () use ($res) {
+        \session_destroy();
+        $res->write("Destroyed session");
+    }
+);
+
 // start Slim app
 $app->run();

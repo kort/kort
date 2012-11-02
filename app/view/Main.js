@@ -13,9 +13,6 @@ Ext.define('Kort.view.Main', {
 
         items: [
             {
-                xtype: 'logincontainer'
-            },
-            {
                 xtype: 'bugmapnavigationview'
             },
             {

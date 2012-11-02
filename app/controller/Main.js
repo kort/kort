@@ -15,7 +15,7 @@ Ext.define('Kort.controller.Main', {
             }
         }
     },
-    
+
     /**
      * Called when active item of tabpanel changes
      * @private

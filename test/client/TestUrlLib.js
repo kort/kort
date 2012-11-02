@@ -36,3 +36,20 @@ test("getUrlParams", function() {
 
     strictEqual(this.urlLib.getUrlParams().notexisting, undefined, "Property 'notexisting' should *not* exist");
 });
+
+test("getUrlParams without values", function() {
+    this.urlLib.__setFullUrl(this.generateLocalUrl() + "?force");
+    equal(typeof this.urlLib.getUrlParams(), "object", "Should return GET parameters as object");
+
+    notStrictEqual(this.urlLib.getUrlParams().force, undefined, "Property 'force' should be set");
+    strictEqual(this.urlLib.getUrlParams().force, "undefined", "Property 'force' should have the correct value");
+});
+
+test("getAppUrl", function() {
+    if (window.location.host === 'localhost') {
+        equal(this.urlLib.getAppUrl(), "http://localhost/kort/", "Should return correct app url");
+    } else {
+        equal(this.urlLib.getAppUrl(), "http://" + window.location.host + "/", "Should return correct app url");
+    }
+
+});

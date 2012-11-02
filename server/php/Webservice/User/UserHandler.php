@@ -30,8 +30,8 @@ class UserHandler extends AbstractDbHandler
 
         if (isset($_SESSION['email'])) {
             $this->userData['email'] = $_SESSION['email'];
-            $this->userData['picUrl'] = $this->getGravatarUrl();
         }
+        $this->userData['picUrl'] = $this->getGravatarUrl();
 
         return \json_encode($this->userData);
     }
