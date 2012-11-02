@@ -13,10 +13,10 @@ var UrlLib = function() {
     };
 
     me.getAppUrl = function() {
-        var host = window.location.host;
-        var url = 'http://' + host + '/';
+        var host = window.location.host,
+            url = 'http://' + host + '/';
         if (host === 'localhost') {
-            url += 'kort/'
+            url += 'kort/';
         }
         return url;
     };
