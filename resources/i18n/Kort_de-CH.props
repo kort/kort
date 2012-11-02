@@ -17,6 +17,7 @@ bugmap.title=Bugs in deiner Nähe
 fix.form.title=Fix
 fix.form.field.image=Bild
 fix.form.button.submit=Senden
+fix.submitted.message=Vielen Dank!
 
 fix.map.title=Karte
 

@@ -100,3 +100,23 @@
         margin-top: 0.7em;
     }
 }
+
+// fix submitted popup
+#fixSubmittedPopupPanel {
+	width: 200px;
+	height: 150px;
+	background-color: rgba(0, 0, 0, 0.7);
+	-webkit-border-radius: 0.5em;
+	border-radius: 0.5em;
+	-webkit-box-shadow: none;
+	
+	.x-panel-inner {
+		color: #fff;
+		text-align: center;
+		margin-top: 0.8em;
+		padding-top: 5.2em;
+		background-color: transparent;
+		overflow: hidden;
+		font-weight: bold;
+	}
+}
