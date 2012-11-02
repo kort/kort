@@ -15,12 +15,12 @@ $res = $app->response();
 $res['Content-Type'] = 'text/xml';
 
 $handler = new OsmHandler();
-$osmHandler = function ($type, $id, $full) use ($handler, $res) {
-    $res->write($handler->getOsmData($type, $id, $full));
+$osmHandler = function ($type, $id) use ($handler, $res) {
+    $res->write($handler->getOsmData($type, $id));
 };
 
 // define REST resources
-$app->get('/:type/:id/:full', $osmHandler);
+$app->get('/:type/:id', $osmHandler);
 
 
 // start Slim app
