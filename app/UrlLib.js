@@ -3,20 +3,21 @@ var global = this;
 var UrlLib = function() {
 	if(this === global) { return new UrlLib(); }
 
-	var _this = this;
-    var fullUrl = document.URL;
-    var anchor = window.location.hash;
+	var _this = this,
+        fullUrl = document.URL,
+        anchor = window.location.hash,
+        setFullUrl, setAnchor;
 
     _this.getCurrentUrl = function() {
         return fullUrl.replace('#' + anchor, '');
     };
 
     _this.getUrlParams = function() {
-        var params = {};
-        var urlParts = fullUrl.match(/\?(.*)$/i);
-        var queryString = urlParts ? urlParts[1] : '';
-        var paramRegex = /([^&=]+)=(([^&]*))?/g;
-        var m;
+        var params = {},
+            urlParts = fullUrl.match(/\?(.*)$/i),
+            queryString = urlParts ? urlParts[1] : '',
+            paramRegex = /([^&=]+)=(([^&]*))?/g,
+            m;
 
         while (m = paramRegex.exec(queryString)) {
             params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
@@ -24,11 +25,11 @@ var UrlLib = function() {
         return params;
     };
 
-    var setFullUrl = function(newUrl) {
+    setFullUrl = function(newUrl) {
         fullUrl = newUrl;
     };
 
-    var setAnchor = function(newAnchor) {
+    setAnchor = function(newAnchor) {
         anchor = newAnchor;
         fullUrl = _this.getCurrentUrl() + "#" + newAnchor;
     };
