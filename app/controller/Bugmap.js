@@ -10,16 +10,17 @@ Ext.define('Kort.controller.Bugmap', {
             mainTabPanel: '#mainTabPanel',
             mapCmp: '#bugmap',
             bugmapNavigationView: '#bugmapNavigationView',
-            refreshMarkersButton: '#refreshMarkersButton'
+            refreshBugsButton: '#refreshBugsButton'
         },
         control: {
             mapCmp: {
                 maprender: 'onMapRender'
             },
-            refreshMarkersButton: {
-                tap: 'onRefreshMarkersButtonTap'
+            refreshBugsButton: {
+                tap: 'onRefreshBugsButtonTap'
             },
             bugmapNavigationView: {
+                push: 'onBugmapNavigationViewPush',
                 pop: 'onBugmapNavigationViewPop'
             }
         },
@@ -40,8 +41,11 @@ Ext.define('Kort.controller.Bugmap', {
         this.getMainTabPanel().setActiveItem(this.getBugmapNavigationView());
     },
 
+    onBugmapNavigationViewPush: function(cmp, view, opts) {
+        this.getRefreshBugsButton().hide();
+    },
     onBugmapNavigationViewPop: function(cmp, view, opts) {
-        this.redirectTo(cmp.getUrl());
+        this.getRefreshBugsButton().show();
     },
 
     onMapRender: function(cmp, map, tileLayer) {
@@ -65,7 +69,7 @@ Ext.define('Kort.controller.Bugmap', {
         me.getMarkerLayerGroup().addTo(map);
     },
 
-    onRefreshMarkersButtonTap: function() {
+    onRefreshBugsButtonTap: function() {
         this.refreshBugMarkers();
     },
 
@@ -179,10 +183,17 @@ Ext.define('Kort.controller.Bugmap', {
 
     markerConfirmHandler: function(buttonId, value, opt) {
         if(buttonId === 'yes') {
-            this.redirectTo(this.getActiveBug().toUrl());
+            this.showBugDetail(this.getActiveBug());
         }
 
         this.setActiveBug(null);
+    },
+    
+    showBugDetail: function(bug) {
+        this.getBugmapNavigationView().push(Ext.create('Kort.view.bugmap.fix.TabPanel', {
+            bugdata: bug,
+            title: bug.get('title')
+        }));
     },
 
     getIcon: function(type) {

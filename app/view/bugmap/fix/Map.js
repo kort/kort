@@ -5,12 +5,12 @@ Ext.define('Kort.view.bugmap.fix.Map', {
 	config: {
         title: Ext.i18n.Bundle.message('fix.map.title'),
         mapOptions: {
-            zoom: 15
+            zoom: Kort.util.Config.getLeafletMap().zoom
         },
-        tileLayerUrl: 'http://{s}.tile.cloudmade.com/{apikey}/{styleId}/256/{z}/{x}/{y}.png',
+        tileLayerUrl: Kort.util.Config.getLeafletMap().tileLayerUrl,
         tileLayerOptions: {
-            apikey: '729242682cb24de8aa825c8aed993cba',
-            styleId: 997
+            apikey: Kort.util.Config.getLeafletMap().apiKey,
+            styleId: Kort.util.Config.getLeafletMap().styleId
         }
 	}
 });
