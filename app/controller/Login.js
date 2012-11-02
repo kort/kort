@@ -22,7 +22,10 @@ Ext.define('Kort.controller.Login', {
         remote: {
             google: {
                 url: 'https://accounts.google.com/o/oauth2/auth',
-                scope: 'https://www.googleapis.com/auth/userinfo.profile',
+                scopes: [
+                    'https://www.googleapis.com/auth/userinfo.profile',
+                    'https://www.googleapis.com/auth/userinfo.email'
+                ],
                 redirect_path: 'server/oauth2callback',
                 response_type: 'code',
                 access_type: 'offline',
@@ -41,14 +44,23 @@ Ext.define('Kort.controller.Login', {
     },
 
     buildGoogleUrl: function(oauth) {
-        var urlLib = new UrlLib();
-        var url = oauth.url + '?';
+        var urlLib = new UrlLib(),
+            numScopes = oauth.scopes.length,
+            url = oauth.url + '?',
+            scopes = '', i;
+        for (i = 0; i < numScopes; i++) {
+            scopes += oauth.scopes[i] + '%20';
+        }
+
+        url  = oauth.url + '?';
         url += 'response_type=' + oauth.response_type + '&';
         url += 'client_id=' + oauth.client_id + '&';
-        url += 'scope=' + oauth.scope + '&';
+        url += 'scope=' + scopes + '&';
         url += 'access_type=' + oauth.access_type + '&';
         url += 'redirect_uri=' + urlLib.getCurrentUrl() + oauth.redirect_path + '&';
-        url += 'approval_prompt=' + urlLib.getUrlParams().force;
+        url += 'approval_prompt=' + urlLib.getUrlParams().force ? 'force' : 'auto';
+
+        console.log(url);
 
         return url;
     }
