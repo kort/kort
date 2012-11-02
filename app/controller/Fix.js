@@ -8,8 +8,8 @@ Ext.define('Kort.controller.Fix', {
             'bugmap.fix.FormContainer'
         ],
         refs: {
-            mainTabPanel: '#mainTabPanel',
             bugmapNavigationView: '#bugmapNavigationView',
+            fixTabPanel: '#fixTabPanel',
             fixSubmitButton: '#fixFormSubmitButton',
             messageTextField: 'textfield[name=fixmessage]',
             fixmap: '#fixTabPanel .fixmap'
@@ -22,16 +22,8 @@ Ext.define('Kort.controller.Fix', {
                 maprender: 'onFixmapMaprender'
             }
         },
-
-        before: {
-            showBugDetail: 'ensureBugStoreLoad'
-        },
-        routes: {
-            'bug/:id': 'showBugDetail'
-        },
         
         bugsStore: null,
-        activeBug: null,
         map: null
     },
     
@@ -39,48 +31,17 @@ Ext.define('Kort.controller.Fix', {
         this.setBugsStore(Ext.getStore('Bugs'));
     },
     
-    ensureBugStoreLoad: function(action) {
-        var store = this.getBugsStore();
-
-        if (store.data.all.length) {
-            action.resume();
-        } else {
-            store.load(function() {
-                action.resume();
-            });
-        }
-    },
-    
-    showBugDetail: function(id) {
-        var me = this,
-            bug = me.getBugsStore().getById(id);
-        
-        if(me.getMainTabPanel().getActiveItem() !== me.getBugmapNavigationView()) {
-            me.getMainTabPanel().on('activeitemchange', function(container, newCmp, oldCmp, eOpts) {
-                me.redirectTo('bug/' + id);
-            }, me, { delay: 1000, single: true });
-            me.getMainTabPanel().setActiveItem(this.getBugmapNavigationView());
-        }
-        
-        if(bug) {
-            me.setActiveBug(bug);
-            me.getMainTabPanel().setActiveItem(me.getBugmapNavigationView());
-            me.getBugmapNavigationView().push(Ext.create('Kort.view.bugmap.fix.TabPanel', {
-                bugdata: bug,
-                title: bug.get('title')
-            }));
-        }
-    },
-    
     onFixmapMaprender: function(cmp, map, tileLayer) {
+        var bug = this.getFixTabPanel().getBugdata();
+        
         this.setMap(map);
-        cmp.setMapCenter(L.latLng(this.getActiveBug().get('latitude'), this.getActiveBug().get('longitude')));
-        this.renderOsmElement(map);
+        cmp.setMapCenter(L.latLng(bug.get('latitude'), bug.get('longitude')));
+        this.renderOsmElement(bug);
     },
     
-    renderOsmElement: function() {
+    renderOsmElement: function(bug) {
         var me = this,
-            url = './server/webservices/osm/' + this.getActiveBug().get('osm_type') + '/' + this.getActiveBug().get('osm_id');
+            url = './server/webservices/osm/' + bug.get('osm_type') + '/' + bug.get('osm_id');
         
         Ext.Ajax.request({
             url: url,

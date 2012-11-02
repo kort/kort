@@ -6,6 +6,7 @@ Ext.define('Kort.view.bugmap.fix.TabPanel', {
         title: '',
         fullscreen: true,
         id: 'fixTabPanel',
+        bugdata: null,
         
         items: [
             {
