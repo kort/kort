@@ -5,18 +5,19 @@ Ext.define('Kort.controller.Fix', {
         views: [
             'bugmap.fix.TabPanel',
             'bugmap.fix.Map',
-            'bugmap.fix.FormContainer'
+            'bugmap.fix.FormContainer',
+			'bugmap.fix.SubmittedPopupPanel'
         ],
         refs: {
             bugmapNavigationView: '#bugmapNavigationView',
             fixTabPanel: '#fixTabPanel',
-            fixSubmitButton: '#fixFormSubmitButton',
-            messageTextField: 'textfield[name=fixmessage]',
+            fixFormSubmitButton: '#fixTabPanel .button',
+            messageTextField: '#fixTabPanel .textfield[name=fixmessage]',
             fixmap: '#fixTabPanel .fixmap'
         },
         control: {
-            fixSubmitButton: {
-                tap: 'onFixSubmitButtonTap'
+            fixFormSubmitButton: {
+                tap: 'onFixFormSubmitButtonTap'
             },
             fixmap: {
                 maprender: 'onFixmapMaprender'
@@ -87,13 +88,12 @@ Ext.define('Kort.controller.Fix', {
         }
     },
     
-    onFixSubmitButtonTap: function() {
+    onFixFormSubmitButtonTap: function() {
         var me = this,
-            bugDetailPanel = this.getBugmapNavigationView().getActiveItem(),
+            fixTabPanel = this.getFixTabPanel(),
             fix;
             
         var messageValue = this.getMessageTextField().getValue();
-        
         if(messageValue !== '') {
             /*Ext.Ajax.request({
                 url: './server/webservices/bug/fixes',
@@ -105,11 +105,10 @@ Ext.define('Kort.controller.Fix', {
                 isUpload: true
             });*/
             
-            fix = Ext.create('Kort.model.Fix', { error_id: bugDetailPanel.getBugdata().get('id'), message: this.getMessageTextField().getValue()});
+            fix = Ext.create('Kort.model.Fix', { error_id: fixTabPanel.getBugdata().get('id'), message: this.getMessageTextField().getValue()});
             fix.save({
                 success: function() {
-                    // remove detail panel
-                    me.getBugmapNavigationView().pop();
+                    me.fixSuccessfulSubmittedHandler();
                 },
                 failure: function() {
                     console.log('failure');
@@ -118,5 +117,21 @@ Ext.define('Kort.controller.Fix', {
         } else {
             console.log('please fill in all form fields');
         }
-    }
+    },
+    
+    fixSuccessfulSubmittedHandler: function() {
+        this.showProblemAddedPopupPanel();
+        // remove detail panel
+        this.getBugmapNavigationView().pop();
+    },
+    
+    /**
+	 * Displays the confirmation popup
+	 * @private
+	 */
+	showProblemAddedPopupPanel: function() {
+        var popupPanel = Ext.create('Kort.view.bugmap.fix.SubmittedPopupPanel');
+		Ext.Viewport.add(popupPanel);
+		popupPanel.show();
+	}
 });
