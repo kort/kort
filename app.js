@@ -12,7 +12,8 @@ Ext.application({
 
     requires: [
         'Ext.MessageBox',
-        'Ext.i18n.Bundle'
+        'Ext.i18n.Bundle',
+        'Kort.util.Config'
     ],
 
     controllers: [
