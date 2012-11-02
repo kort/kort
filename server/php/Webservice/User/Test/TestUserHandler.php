@@ -1,29 +1,24 @@
 <?php
-namespace Webservice\Fix\Test;
+namespace Webservice\User\Test;
 
 use TestHelper\AbstractKortUnitTestCase;
-use Webservice\Fix\FixHandler;
-use \Mockery as M;
+use Webservice\User\UserHandler;
 
-class TestFixHandler extends AbstractKortUnitTestCase
+class TestUserHandler extends AbstractKortUnitTestCase
 {
     public function __construct()
     {
-        parent::__construct("kort - TestFixHandler");
+        parent::__construct("kort - TestUserHandler");
     }
 
     public function setUp()
     {
-        $this->handler = new FixHandler(M::mock('PsqlConnection'));
-    }
-
-    public function tearDown()
-    {
-        M::close();
+        parent::setup();
+        $this->handler = new UserHandler();
     }
 
     public function testConstruct()
     {
-        $this->assertIsA($this->handler, "Webservice\\Fix\\FixHandler");
+        $this->assertIsA($this->handler, "Webservice\\User\\UserHandler");
     }
 }
