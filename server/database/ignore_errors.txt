@@ -2,3 +2,9 @@ The URL (.*)
 Content of the URL (.*)
 multiple nodes on the same spot	node
 This node is very close but not connected to way
+deprecated tags way
+missing tags
+fixme-tagged
+floating islands
+wrongly used railway crossing tag
+highway-waterway
