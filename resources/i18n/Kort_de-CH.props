@@ -28,7 +28,9 @@ verify.title=Verifizieren
 highscore.title=Highscore
 
 # Profil
-profil.title=Profil
+profile.title=Profil
+profile.content.name=Name
+profile.content.email=Email
 
 # MessageBox
 messagebox.ok=OK
