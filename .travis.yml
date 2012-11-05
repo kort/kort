@@ -16,9 +16,11 @@ env:
 matrix:
   exclude:
     - php: 5.3
-      env: DEPLOY=true
+      env: 
+        matrix: DEPLOY=true
     - php: 5.4
-      env: DEPLOY=false
+      env: 
+        matrix: DEPLOY=false
 
 before_script:
   - gem install sass
