@@ -3,20 +3,16 @@ Ext.define('Kort.controller.Login', {
 
     config: {
         views: [
-            'login.Sheet'
+            'overlay.login.Panel'
         ],
         refs: {
             mainTabPanel: '#mainTabPanel',
-            loginSheet: '#loginSheet',
             loginButtonGoogle: '#loginButtonGoogle'
         },
         control: {
             loginButtonGoogle: {
                 tap: 'onLoginButtonGoogleTap'
             }
-        },
-        routes: {
-            'login': 'showLogin'
         },
 
         remote: {
@@ -32,10 +28,6 @@ Ext.define('Kort.controller.Login', {
                 client_id: '653755350671.apps.googleusercontent.com'
             }
         }
-    },
-
-    showLogin: function() {
-        this.getMainTabPanel().setActiveItem(this.getLoginSheet());
     },
 
     onLoginButtonGoogleTap: function() {

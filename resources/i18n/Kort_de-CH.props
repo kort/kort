@@ -10,12 +10,18 @@ login.introduction=Bitte logge dich ein um kort nutzen zu können!
 login.button.google=Login with Google
 login.button.twitter=Login with Twitter
 
+# Firststeps
+firststeps.introduction=Willkommen bei kort! Gib dir einen Benutzernamen:
+firststeps.form.username.placeholder=Benutzername
+firststeps.form.button.submit=Spielen!
+
 # Bugmap
 bugmap.title=Bugs in deiner Nähe
 
 # Fix
 fix.form.title=Fix
 fix.form.field.image=Bild
+fix.form.message.placeholder=Deine Antwort...
 fix.form.button.submit=Senden
 fix.submitted.message=Vielen Dank!
 

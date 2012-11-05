@@ -18,6 +18,7 @@ Ext.application({
 
     controllers: [
 		'Bugmap',
+        'Firststeps',
 		'Fix',
 		'Highscore',
         'Main',
@@ -55,18 +56,20 @@ Ext.application({
     launch: function() {
         this.prepareI18n();
         this.configureMessageBox();
-
+        
+        // create main view
         Ext.Viewport.add(Ext.create('Kort.view.Main'));
-
+        
+        // check if user is logged in
         var userStore = Ext.getStore('User');
         userStore.load(function() {
             var user = userStore.first();
             if (!user.get('loggedIn')) {
-                Ext.Viewport.add(Ext.create('Kort.view.login.Sheet'));
+                Ext.create('Kort.view.overlay.login.Panel').show();
+            } else if(!user.get('username')) {
+                Ext.create('Kort.view.overlay.firststeps.Panel').show();
             }
         });
-
-
     },
 
     prepareI18n: function() {

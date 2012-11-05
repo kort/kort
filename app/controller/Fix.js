@@ -5,17 +5,21 @@ Ext.define('Kort.controller.Fix', {
         views: [
             'bugmap.fix.TabPanel',
             'bugmap.fix.Map',
-            'bugmap.fix.FormContainer',
+            'bugmap.fix.Form',
 			'bugmap.fix.SubmittedPopupPanel'
         ],
         refs: {
             bugmapNavigationView: '#bugmapNavigationView',
             fixTabPanel: '#fixTabPanel',
-            fixFormSubmitButton: '#fixTabPanel .button',
+            fixFormSubmitButton: '#fixFormSubmitButton',
             messageTextField: '#fixTabPanel .textfield[name=fixmessage]',
+            fixForm: '#fixTabPanel .fixform',
             fixmap: '#fixTabPanel .fixmap'
         },
         control: {
+            fixForm: {
+                initialize: 'onFixFormInitialize'
+            },
             fixFormSubmitButton: {
                 tap: 'onFixFormSubmitButtonTap'
             },
@@ -30,6 +34,10 @@ Ext.define('Kort.controller.Fix', {
 
     init: function() {
         this.setBugsStore(Ext.getStore('Bugs'));
+    },
+    
+    onFixFormInitialize: function(cmp) {
+        console.log(cmp.getItems());
     },
 
     onFixmapMaprender: function(cmp, map, tileLayer) {
