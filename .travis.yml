@@ -5,8 +5,9 @@ php:
   - 5.3
 
 env:
-  - DEPLOY=true
-  - DEPLOY=false
+  matrix:
+    - DEPLOY=true
+    - DEPLOY=false
   global:
     - BUILD_DIR=`pwd`/build_heroku 
     - CI_HOME=`pwd`/odi86/kort
