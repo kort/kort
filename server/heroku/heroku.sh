@@ -4,7 +4,7 @@ if [ -z $BUILD_DIR -a -z $CI_HOME ] ; then
    exit 1
 fi
 
-if [ $DEPLOY="true" ] ; then
+if [[ $DEPLOY == "true" ]] ; then
     yes | ruby $CI_HOME/server/heroku/heroku_prepare.rb
     bash $CI_HOME/server/heroku/heroku_keys.sh
     bash $CI_HOME/server/heroku/heroku_build.sh
