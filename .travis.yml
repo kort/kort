@@ -1,8 +1,8 @@
 language: php
 
 php:
-  - "5.4"
-  - "5.3"
+  - 5.4
+  - 5.3
 
 env:
   - DEPLOY=true
@@ -14,9 +14,9 @@ env:
 
 matrix:
   exclude:
-    - php: "5.3"
+    - php: 5.3
       env: DEPLOY=true
-    - php: "5.4"
+    - php: 5.4
       env: DEPLOY=false
 
 before_script:
@@ -33,11 +33,5 @@ before_script:
 
 script: ant -f build_kort.xml build
 
-# heroku part from https://gist.github.com/443c00fe346045522db7
 after_script:
-  - yes | ruby $CI_HOME/server/travis_deployer.rb
-  - bash $CI_HOME/server/heroku/heroku_keys.sh
-  - bash $CI_HOME/server/heroku/heroku_build.sh
-  - cd $BUILD_DIR
-  - bash $CI_HOME/server/heroku/heroku_add.sh >/dev/null
-  - bash $CI_HOME/server/heroku/heroku_push.sh
+  - if $DEPLOY ; then bash $CI_HOME/server/heroku/heroku.sh fi
