@@ -1,2 +1,7 @@
 point of interest without name
 places of worship without religion
+missing tracktype
+missing maxspeed
+language unknown
+motorways without ref
+relations without type
