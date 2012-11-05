@@ -45,7 +45,7 @@ class UserHandler extends AbstractDbHandler
     * @return String containing the URL
     * @source http://gravatar.com/site/implement/images/php/
     */
-    private function getGravatarUrl ($s = 120, $d = 'mm', $r = 'r')
+    private function getGravatarUrl ($s = 200, $d = 'mm', $r = 'r')
     {
         $url = 'http://www.gravatar.com/avatar/';
         $url .= \md5(\strtolower(\trim($this->userData['email'])));

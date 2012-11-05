@@ -23,10 +23,10 @@ $app->get(
 );
 
 $app->get(
-    '/destroy',
-    function () use ($res) {
+    '/logout',
+    function () use ($userHandler, $res) {
         \session_destroy();
-        $res->write("Destroyed session");
+        $res->write("Congratulations! You're now officially logouted!");
     }
 );
 
