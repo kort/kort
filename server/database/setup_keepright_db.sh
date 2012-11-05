@@ -54,7 +54,7 @@ psql -d $DB_NAME -c "alter table keepright.errors owner to $DB_OWNER"
 
 # Load keepright data
 if [ -z $PREVIOUS_DOWNLOAD ] ; then
-    wget -O - http://keepright.ipax.at/keepright_errors.txt.bz2 | bzcat | grep -v -f ignore_errors.txt > /tmp/keepright_errors.txt
+    wget -O - http://keepright.ipax.at/keepright_errors.txt.bz2 | bzcat | grep -f whitelist_errors.txt > /tmp/keepright_errors.txt
 else
     cp $PREVIOUS_DOWNLOAD /tmp/keepright_errors.txt
 fi
