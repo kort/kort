@@ -10,7 +10,7 @@ Ext.define('Kort.view.bugmap.fix.TabPanel', {
         
         items: [
             {
-                xtype: 'fixformcontainer'
+                xtype: 'fixform'
             },
             {
                 xtype: 'fixmap'
