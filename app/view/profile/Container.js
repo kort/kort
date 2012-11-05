@@ -11,16 +11,46 @@ Ext.define('Kort.view.profile.Container', {
 		id: 'profileContainer',
 		iconCls: 'user',
 		layout: 'fit',
+        
 		items: [
 			{
 				xtype: 'titlebar',
 				cls: 'titlebar',
 				docked: 'top',
-				title: Ext.i18n.Bundle.message('profil.title')
-			},
-			{
-                html: 'Dies ist dein Profil'
+				title: Ext.i18n.Bundle.message('profile.title'),
+                
+                items: [
+                    {
+                        text: 'Logout',
+                        align: 'right',
+                        ui: 'decline',
+                        id: 'logoutButton'
+                    }
+                ]
 			}
 		]
-	}
+	},
+    initialize: function () {
+        this.callParent(arguments);
+
+        var profileContentContainer = {
+            xtype: 'component',
+            id: 'profileContentContainer',
+            tpl: new Ext.Template(
+                '<div class=class="userprofile">',
+                    '<div class="picture">',
+                        '<img src="{picUrl}" />',
+                    '</div>',
+                    '<dl class="content">',
+                        '<dt>' + Ext.i18n.Bundle.message('profile.content.name') + '</dt>',
+                        '<dd>{name}</dd>',
+                        '<dt>' + Ext.i18n.Bundle.message('profile.content.email') + '</dt>',
+                        '<dd>{email}</dd>',
+                    '</dl>',
+                '</div>'
+                )
+        };
+        
+        this.add(profileContentContainer);
+    }
 });
