@@ -1,5 +1,57 @@
 $panel-padding: 0.5em;
 $dark-grey: #4B4B4B;
+$default-font-size: 0.9em;
+
+/* -----------------------
+   Overlay
+   ----------------------- */
+.overlay-content {
+    $logo-size: 300px;
+    
+    .logo {
+        text-align: center;
+        
+        img {
+            width: $logo-size/2;
+            height: $logo-size/2;
+        }
+    }
+    .introduction {
+        font-size: $default-font-size;
+        margin: 1em 0;
+    }
+}
+
+// Login
+#loginPanel {
+    padding: 1em;
+    
+    .loginButtons {
+        margin: 1em 0;
+        
+        .x-zocial-button {
+            margin: 0.2em 0;
+        }
+        .x-zocial-button.x-layout-box-item {
+            display: list-item !important;
+        }
+    }
+}
+
+// Firststeps
+#firststepsPanel {
+    padding: 1em;
+    
+    #usernameForm {
+        .x-form-inner {
+            margin: 1em 0;
+        }
+
+        .usernameTextfield {
+            margin-bottom: 0.2em;
+        }
+    }
+}
 
 /* -----------------------
    Map
@@ -14,11 +66,6 @@ $dark-grey: #4B4B4B;
     p {
         margin: 0 0 0.5em 0;
     }
-}
-
-/* Login Buttons */
-.x-zocial-button.x-layout-box-item {
-    display: list-item !important;
 }
 
 /* -----------------------
@@ -164,4 +211,12 @@ $dark-grey: #4B4B4B;
             font-size: 0.8em;
         }
     }
+}
+
+/* GLOBAL STYLES */
+.x-form .x-scroll-container > .x-inner {
+    padding: 0;
+}
+.overlayLeafletMap {
+    z-index: 1500;
 }
