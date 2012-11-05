@@ -11,6 +11,7 @@ class UserHandler extends AbstractDbHandler
     {
         $this->userData['name'] = "";
         $this->userData['email'] = "";
+        $this->userData['username'] = "";
         $this->userData['picUrl'] = "";
         $this->userData['token'] = null;
         $this->userData['loggedIn'] = false;
@@ -28,12 +29,23 @@ class UserHandler extends AbstractDbHandler
             $this->userData['name'] = $_SESSION['name'];
         }
 
+        if (isset($_SESSION['username'])) {
+            $this->userData['username'] = $_SESSION['username'];
+        }
+
         if (isset($_SESSION['email'])) {
             $this->userData['email'] = $_SESSION['email'];
         }
         $this->userData['picUrl'] = $this->getGravatarUrl();
 
         return \json_encode($this->userData);
+    }
+
+    public function updateUser($post)
+    {
+        if (isset($_SESSION)) {
+            $_SESSION['username'] = $post['username'];
+        }
     }
 
     /**

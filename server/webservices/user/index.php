@@ -22,6 +22,13 @@ $app->get(
     }
 );
 
+$app->post(
+    '/',
+    function () use ($userHandler, $app) {
+        $userHandler->updateUser($app->request()->post());
+    }
+);
+
 $app->get(
     '/logout',
     function () use ($userHandler, $res) {
