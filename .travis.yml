@@ -31,4 +31,4 @@ before_script:
 script: ant -f build_kort.xml build
 
 after_script:
-  - if $DEPLOY ; then bash $CI_HOME/server/heroku/heroku.sh fi
+  - bash $CI_HOME/server/heroku/heroku.sh
