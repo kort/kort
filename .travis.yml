@@ -2,7 +2,8 @@ language: php
 
 php: 5.3
 
-env: DEPLOY="false"
+env: 
+  - DEPLOY="false" CI_HOME=`pwd`/odi86/kort
 
 matrix:
   include:
