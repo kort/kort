@@ -4,13 +4,13 @@ php:
   - 5.4
   - 5.3
 
+matrix:
+  include:
+    - php: 5.4
+      env: DEPLOY=true
+    - php: 5.3
+      env: DEPLOY=false
 env:
-  matrix:
-    include:
-      - php: 5.4
-        env: DEPLOY=true
-      - php: 5.3
-        env: DEPLOY=false
   global:
     - BUILD_DIR=`pwd`/build_heroku 
     - CI_HOME=`pwd`/odi86/kort
