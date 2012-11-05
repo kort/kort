@@ -6,8 +6,8 @@ php:
 
 env:
   matrix:
-    - DEPLOY=true
-    - DEPLOY=false
+    - DEPLOY="true"
+    - DEPLOY="false"
   global:
     - BUILD_DIR=`pwd`/build_heroku 
     - CI_HOME=`pwd`/odi86/kort
@@ -16,11 +16,9 @@ env:
 matrix:
   exclude:
     - php: 5.3
-      env: 
-        matrix: DEPLOY=true
+      env: DEPLOY="true"
     - php: 5.4
-      env: 
-        matrix: DEPLOY=false
+      env: DEPLOY="false"
 
 before_script:
   - gem install sass
