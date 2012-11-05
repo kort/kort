@@ -1,3 +1,6 @@
+$panel-padding: 0.5em;
+$dark-grey: #4B4B4B;
+
 /* -----------------------
    Map
    ----------------------- */
@@ -17,6 +20,10 @@
 .x-zocial-button.x-layout-box-item {
     display: list-item !important;
 }
+
+/* -----------------------
+   Bug Confirm Message Box
+   ----------------------- */
 .x-msgbox .x-toolbar {
     background: auto;
 }
@@ -70,8 +77,9 @@
     }
 }
 
-
-/* Fix Panel */
+/* -----------------------
+   Fix Panel
+   ----------------------- */
 .fixTabPanel .x-tabbar.x-docked-top {
     height: auto;
     min-height: 1em !important;
@@ -119,4 +127,41 @@
 		overflow: hidden;
 		font-weight: bold;
 	}
+}
+
+
+/* -----------------------
+   Profile
+   ----------------------- */
+#profileContentContainer {
+    padding: $panel-padding;
+    
+    .picture {
+        $profile-picture-size: 100px;
+        
+        border: .1em solid #858585;
+        float: left;
+        width: $profile-picture-size + 2px;
+        height: $profile-picture-size + 2px;
+        margin: 0 0.5em 0.5em 0;
+        
+        img {
+            border: 0.3em solid white;
+            width: $profile-picture-size;
+            height: $profile-picture-size;
+        }
+    }
+    
+    dl.content {
+        dt {
+            font-size: 0.6em;
+            margin-top: 0.5em;
+            margin-bottom: 0.1em;
+            color: $dark-grey;
+            text-transform: uppercase;
+        }
+        dd {
+            font-size: 0.8em;
+        }
+    }
 }
