@@ -4,6 +4,7 @@ Ext.define('Kort.view.bugmap.fix.SubmittedPopupPanel', {
 	
 	config: {
 		id: 'fixSubmittedPopupPanel',
+        cls: 'overlayLeafletMap',
 		centered: true,
 		showAnimation: {
 			type: 'pop',

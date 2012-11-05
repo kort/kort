@@ -1,12 +1,11 @@
-Ext.define('Kort.view.bugmap.fix.FormContainer', {
+Ext.define('Kort.view.bugmap.fix.Form', {
 	extend: 'Ext.Container',
-	alias: 'widget.fixformcontainer',
+	alias: 'widget.fixform',
     
 	config: {
 		layout: 'vbox',
         title: Ext.i18n.Bundle.message('fix.form.title'),
         fullscreen: true,
-        id: 'fixFormContainer',
         bugdata: null,
         
         items: [
@@ -21,7 +20,8 @@ Ext.define('Kort.view.bugmap.fix.FormContainer', {
                     {
                         xtype: 'textfield',
                         name: 'fixmessage',
-                        placeHolder: 'Deine Antwort...'
+                        // TODO i18n bundle doens't work for placeholders
+                        placeHolder: 'Deine Antwort'
                     },
                     {
                         xtype: 'button',
