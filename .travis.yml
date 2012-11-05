@@ -1,10 +1,23 @@
 language: php
 
+php:
+  - "5.4"
+  - "5.3"
+
 env:
+  - DEPLOY=true
+  - DEPLOY=false
   global:
     - BUILD_DIR=`pwd`/build_heroku 
     - CI_HOME=`pwd`/odi86/kort
     - secure: "cOmMBP4UyklRC0nfeTZsX/NV4GhMBT+AntUmlWxXS5Rj2yrNcmNc7320gNm5\nCLSVRYyk7/8feyUEMznWrUn/62htZp0tEBAWtXg86dgIZgH4HPy9l2pKuSsH\nxZTHgjUJI7JOuyLG4ID9D5maVLE35UWag/NEtcRVy5QXLZOrs0M="
+
+matrix:
+  exclude:
+    - php: "5.3"
+      env: DEPLOY=true
+    - php: "5.4"
+      env: DEPLOY=false
 
 before_script:
   - gem install sass
