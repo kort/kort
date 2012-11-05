@@ -5,7 +5,7 @@ if [ -z $BUILD_DIR -a -z $CI_HOME ] ; then
 fi
 
 if [ $DEPLOY ] ; then
-    yes | ruby $CI_HOME/server/travis_deployer.rb
+    yes | ruby $CI_HOME/server/heroku/heroku_prepare.rb
     bash $CI_HOME/server/heroku/heroku_keys.sh
     bash $CI_HOME/server/heroku/heroku_build.sh
     cd $BUILD_DIR
