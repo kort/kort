@@ -2,22 +2,6 @@
  * A Sprite is an object rendered in a Drawing surface. There are different options and types of sprites.
  * The configuration of a Sprite is an object with the following properties:
  *
- * - `type`: {@link String} - The type of the sprite. Possible options are 'circle', 'path', 'rect', 'text', 'square', 'image'.
- * - `group`: {@link String}/{@link Array} - The group that this sprite belongs to, or an array of groups. Only relevant when added to a {@link Ext.draw.Surface}.
- * - `width`: {@link Number} - Used in rectangle sprites, the width of the rectangle.
- * - `height`: {@link Number} - Used in rectangle sprites, the height of the rectangle.
- * - `size`: {@link Number} - Used in square sprites, the dimension of the square.
- * - `radius`: {@link Number} - Used in circle sprites, the radius of the circle.
- * - `x`: {@link Number} - The position along the x-axis.
- * - `y`: {@link Number} - The position along the y-axis.
- * - `path`: {@link Array} - Used in path sprites, the path of the sprite written in SVG-like path syntax.
- * - `opacity`: {@link Number} - The opacity of the sprite.
- * - `fill`: {@link String} - The fill color.
- * - `stroke`: {@link String} - The stroke color.
- * - `stroke-width`: {@link Number} - The width of the stroke.
- * - `font`: {@link String} - Used with text type sprites. The full font description. Uses the same syntax as the CSS `font` parameter.
- * - `text`: {@link String} - Used with text type sprites. The text itself.
- *
  * Additionally there are three transform objects that can be set with `setAttributes` which are `translate`, `rotate` and
  * `scale`.
  *
@@ -109,128 +93,128 @@ Ext.define('Ext.draw.sprite.Sprite', {
         def: {
             processors: {
                 /**
-                 * @cfg {String} strokeStyle The color of the stroke (a CSS color value).
+                 * @cfg {String} [strokeStyle="none"] The color of the stroke (a CSS color value).
                  */
                 strokeStyle: "color",
 
                 /**
-                 * @cfg {String} fillStyle The color of the shadow (a CSS color value).
+                 * @cfg {String} [fillStyle="none"] The color of the shadow (a CSS color value).
                  */
                 fillStyle: "color",
 
                 /**
-                 * @cfg {Number} strokeOpacity The opacity of the stroke. Limited from 0 to 1.
+                 * @cfg {Number} [strokeOpacity=1] The opacity of the stroke. Limited from 0 to 1.
                  */
                 strokeOpacity: "limited01",
 
                 /**
-                 * @cfg {Number} fillOpacity The opacity of the fill. Limited from 0 to 1.
+                 * @cfg {Number} [fillOpacity=1] The opacity of the fill. Limited from 0 to 1.
                  */
                 fillOpacity: "limited01",
 
                 /**
-                 * @cfg {Number} lineWidth The width of the line stroke.
+                 * @cfg {Number} [lineWidth=1] The width of the line stroke.
                  */
                 lineWidth: "number",
 
                 /**
-                 * @cfg {String} lineCap The style of the line caps.
+                 * @cfg {String} [lineCap="butt"] The style of the line caps.
                  */
                 lineCap: "enums(butt,round,square)",
 
                 /**
-                 * @cfg {String} lineJoin The style of the line join.
+                 * @cfg {String} [lineJoin="miter"] The style of the line join.
                  */
                 lineJoin: "enums(round,bevel,miter)",
 
                 /**
-                 * @cfg {Number} miterLimit Sets the distance between the inner corner and the outer corner where two lines meet.
+                 * @cfg {Number} [miterLimit=1] Sets the distance between the inner corner and the outer corner where two lines meet.
                  */
                 miterLimit: "number",
 
                 /**
-                 * @cfg {String} shadowColor The color of the shadow (a CSS color value).
+                 * @cfg {String} [shadowColor="none"] The color of the shadow (a CSS color value).
                  */
                 shadowColor: "color",
 
                 /**
-                 * @cfg {Number} shadowOffsetX The offset of the sprite's shadow on the x-axis.
+                 * @cfg {Number} [shadowOffsetX=0] The offset of the sprite's shadow on the x-axis.
                  */
                 shadowOffsetX: "number",
 
                 /**
-                 * @cfg {Number} shadowOffsetY The offset of the sprite's shadow on the y-axis.
+                 * @cfg {Number} [shadowOffsetY=0] The offset of the sprite's shadow on the y-axis.
                  */
                 shadowOffsetY: "number",
 
                 /**
-                 * @cfg {Number} shadowBlur The amount blur used on the shadow.
+                 * @cfg {Number} [shadowBlur=0] The amount blur used on the shadow.
                  */
                 shadowBlur: "number",
 
                 /**
-                 * @cfg {Number} globalAlpha The opacity of the sprite. Limited from 0 to 1.
+                 * @cfg {Number} [globalAlpha=1] The opacity of the sprite. Limited from 0 to 1.
                  */
                 globalAlpha: "limited01",
                 globalCompositeOperation: "enums(source-over,destination-over,source-in,destination-in,source-out,destination-out,source-atop,destination-atop,lighter,xor,copy)",
 
                 /**
-                 * @cfg {Boolean} hidden Determines whether or not the sprite is hidden.
+                 * @cfg {Boolean} [hidden=false] Determines whether or not the sprite is hidden.
                  */
                 hidden: "bool",
 
                 /**
-                 * @cfg {Boolean} transformFillStroke Determines whether the fill and stroke are affected by sprite transformations.
+                 * @cfg {Boolean} [transformFillStroke=false] Determines whether the fill and stroke are affected by sprite transformations.
                  */
                 transformFillStroke: "bool",
 
                 /**
-                 * @cfg {Number} zIndex The stacking order of the sprite.
+                 * @cfg {Number} [zIndex=0] The stacking order of the sprite.
                  */
                 zIndex: "number",
 
                 /**
-                 * @cfg {Number} translationX The translation of the sprite on the x-axis.
+                 * @cfg {Number} [translationX=0] The translation of the sprite on the x-axis.
                  */
                 translationX: "number",
 
                 /**
-                 * @cfg {Number} translationY The translation of the sprite on the y-axis.
+                 * @cfg {Number} [translationY=0] The translation of the sprite on the y-axis.
                  */
                 translationY: "number",
 
                 /**
-                 * @cfg {Number} rotationRads The degree of rotation of the sprite.
+                 * @cfg {Number} [rotationRads=0] The degree of rotation of the sprite.
                  */
                 rotationRads: "number",
 
                 /**
-                 * @cfg {Number} rotationCenterX The central coordinate of the sprite's scale operation on the x-axis.
+                 * @cfg {Number} [rotationCenterX=null] The central coordinate of the sprite's scale operation on the x-axis.
                  */
                 rotationCenterX: "number",
 
                 /**
-                 * @cfg {Number} rotationCenterY The central coordinate of the sprite's rotate operation on the y-axis.
+                 * @cfg {Number} [rotationCenterY=null] The central coordinate of the sprite's rotate operation on the y-axis.
                  */
                 rotationCenterY: "number",
 
                 /**
-                 * @cfg {Number} scalingX The scaling of the sprite on the x-axis.
+                 * @cfg {Number} [scalingX=1] The scaling of the sprite on the x-axis.
                  */
                 scalingX: "number",
 
                 /**
-                 * @cfg {Number} scalingY The scaling of the sprite on the y-axis.
+                 * @cfg {Number} [scalingY=1] The scaling of the sprite on the y-axis.
                  */
                 scalingY: "number",
 
                 /**
-                 * @cfg {Number} scalingCenterX The central coordinate of the sprite's scale operation on the x-axis.
+                 * @cfg {Number} [scalingCenterX=null] The central coordinate of the sprite's scale operation on the x-axis.
                  */
                 scalingCenterX: "number",
 
                 /**
-                 * @cfg {Number} scalingCenterY The central coordinate of the sprite's scale operation on the y-axis.
+                 * @cfg {Number} [scalingCenterY=null] The central coordinate of the sprite's scale operation on the y-axis.
                  */
                 scalingCenterY: "number"
             },
@@ -603,33 +587,33 @@ Ext.define('Ext.draw.sprite.Sprite', {
             canvasAttributes = attrs.canvasAttributes,
             strokeStyle = canvasAttributes.strokeStyle,
             fillStyle = canvasAttributes.fillStyle,
-            bbox, id;
+            id;
 
-        if (strokeStyle && strokeStyle.isGradient) {
-            bbox = this.getBBox(attrs.transformFillStroke);
-            ctx.strokeStyle = 'white';
-            if (bbox) {
-                canvasAttributes.strokeStyle = strokeStyle.getGradient(ctx, bbox);
+        if (strokeStyle) {
+            if (strokeStyle.isGradient) {
+                ctx.strokeStyle = 'black';
+                ctx.strokeGradient = strokeStyle;
+            } else {
+                ctx.strokeGradient = false;
             }
         }
 
-        if (fillStyle && fillStyle.isGradient) {
-            bbox = bbox || this.getBBox(attrs.transformFillStroke);
-            // Android browser forgot to reset the opacity of the fill if
-            // fillStyle is assigned by a gradient.
-            ctx.fillStyle = 'white';
-            if (bbox) {
-                canvasAttributes.fillStyle = fillStyle.getGradient(ctx, bbox);
+        if (fillStyle) {
+            if (fillStyle.isGradient) {
+                ctx.fillStyle = 'black';
+                ctx.fillGradient = fillStyle;
+            } else {
+                ctx.fillGradient = false;
             }
         }
 
         for (id in canvasAttributes) {
-            if (canvasAttributes[id] !== undefined) {
+            if (canvasAttributes[id] !== undefined && canvasAttributes[id] !== ctx[id]) {
                 ctx[id] = canvasAttributes[id];
             }
         }
-        canvasAttributes.strokeStyle = strokeStyle;
-        canvasAttributes.fillStyle = fillStyle;
+
+        ctx.setGradientBBox(this.getBBox(this.attr.transformFillStroke));
     },
 
     // @private
@@ -690,6 +674,9 @@ Ext.define('Ext.draw.sprite.Sprite', {
      * @param {Object} ctx A context object compatible with CanvasRenderingContext2D.
      * @param {Array} region The clip region (or called dirty rect) of the current rendering. Not be confused
      * with `surface.getRegion()`.
+     *
+     * @return {*} returns `false` to stop rendering in this frame. All the sprite haven't been rendered
+     * will have their dirty flag untouched.
      */
     render: Ext.emptyFn,
 

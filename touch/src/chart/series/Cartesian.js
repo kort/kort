@@ -1,4 +1,5 @@
 /**
+ * @abstract
  * @class Ext.chart.series.Cartesian
  * @extends Ext.chart.series.Series
  *
@@ -25,7 +26,14 @@ Ext.define('Ext.chart.series.Cartesian', {
          */
         yField: null,
 
+        /**
+         * @cfg {Ext.chart.axis.Axis} xAxis The chart axis bound to the series on the x-axis.
+         */
         xAxis: null,
+
+        /**
+         * @cfg {Ext.chart.axis.Axis} yAxis The chart axis bound to the series on the y-axis.
+         */
         yAxis: null
     },
 
@@ -117,7 +125,7 @@ Ext.define('Ext.chart.series.Cartesian', {
     provideLegendInfo: function (target) {
         var style = this.getStyle();
         target.push({
-            name: this.getTitle() || this.getId(),
+            name: this.getTitle() || this.getYField() || this.getId(),
             mark: style.fillStyle || style.strokeStyle || 'black',
             disabled: false,
             series: this.getId(),

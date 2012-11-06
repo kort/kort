@@ -1,4 +1,6 @@
 /**
+ * @class Ext.draw.gradient.Gradient
+ * 
  * Creates a gradient.
  */
 Ext.define("Ext.draw.gradient.Gradient", {
@@ -59,9 +61,9 @@ Ext.define("Ext.draw.gradient.Gradient", {
 
     /**
      * @protected
-     * Generate a linear gradient according to the.
-     * @param ctx
-     * @param bbox
+     * Generates the gradient for the given context.
+     * @param ctx The context.
+     * @param bbox 
      * @return {Object}
      */
     generateGradient: Ext.emptyFn,

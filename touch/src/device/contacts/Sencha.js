@@ -4,14 +4,6 @@
 Ext.define('Ext.device.contacts.Sencha', {
     extend: 'Ext.device.contacts.Abstract',
 
-    config: {
-        /**
-         * @cfg {Boolean} includeImages
-         * True to include images when you get the contacts store. Please beware that this can be very slow.
-         */
-        includeImages: false
-    },
-
     getContacts: function(config) {
         var includeImages = this.getIncludeImages();
         if (typeof config.includeImages != "undefined") {

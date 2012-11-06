@@ -5,7 +5,6 @@
  * This is the destination modifier that has to be put at
  * the top of the modifier stack.
  *
- * Performance critical
  */
 Ext.define("Ext.draw.modifier.Target", {
     extend: "Ext.draw.modifier.Modifier",
@@ -14,7 +13,9 @@ Ext.define("Ext.draw.modifier.Target", {
         uniqueId: 0
     },
 
-    // Inherited
+    /**
+     * @inheritdoc
+     */
     prepareAttributes: function (attr) {
         if (this._previous) {
             this._previous.prepareAttributes(attr);
@@ -36,8 +37,9 @@ Ext.define("Ext.draw.modifier.Target", {
 
     /**
      * @private
-     * @param attr
-     * @param changes
+     * Applies the appropriate dirty flags from the modifier changes.
+     * @param attr The source attributes.
+     * @param changes The modifier changes.
      */
     setDirtyFlags: function (attr, changes) {
         Ext.apply(attr, changes);
@@ -88,14 +90,18 @@ Ext.define("Ext.draw.modifier.Target", {
 
         sprite.setDirty(true);
     },
-    
-    // Inherited
+
+    /**
+     * @inheritdoc
+     */
     popUp: function (attributes, changes) {
         this.setDirtyFlags(attributes, changes);
         this._sprite.updateDirtyFlags(attributes);
     },
-    
-    // Inherited
+
+    /**
+     * @inheritdoc
+     */
     pushDown: function (attr, changes) {
         if (this._previous) {
             changes = this._previous.pushDown(attr, changes);

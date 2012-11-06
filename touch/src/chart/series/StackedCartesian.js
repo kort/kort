@@ -1,5 +1,8 @@
 /**
+ * @abstract
  * @extends Ext.chart.series.Cartesian
+ * Abstract class for all the stacked cartesian series including area series
+ * and bar series.
  */
 Ext.define('Ext.chart.series.StackedCartesian', {
 
@@ -12,6 +15,9 @@ Ext.define('Ext.chart.series.StackedCartesian', {
          */
         stacked: true,
 
+        /**
+         * @cfg {Array} hidden
+         */
         hidden: []
     },
 
@@ -121,10 +127,11 @@ Ext.define('Ext.chart.series.StackedCartesian', {
     provideLegendInfo: function (target) {
         var sprites = this.getSprites(),
             title = this.getTitle(),
+            field = this.getYField(),
             hidden = this.getHidden();
         for (var i = 0; i < sprites.length; i++) {
             target.push({
-                name: this.getTitle() ? this.getTitle()[i] : this.getId(),
+                name: this.getTitle() ? this.getTitle()[i] : (field && field[i]) || this.getId(),
                 mark: this.getStyleByIndex(i).fillStyle || this.getStyleByIndex(i).strokeStyle || 'black',
                 disabled: hidden[i],
                 series: this.getId(),

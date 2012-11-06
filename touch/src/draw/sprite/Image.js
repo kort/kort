@@ -16,7 +16,7 @@ Ext.define("Ext.draw.sprite.Image", {
         def: {
             processors: {
                 /**
-                 * @cfg {String} src The image source of the sprite.
+                 * @cfg {String} [src=''] The image source of the sprite.
                  */
                 src: 'string'
             },

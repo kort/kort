@@ -2,22 +2,11 @@
 //@require Ext.env.Browser
 
 /**
- * @aside guide environment_package
+ * Provides information about operating system environment.
  *
- * Provide useful information about the current operating system environment. Access the global instance stored in
- * `Ext.os`. Example:
- *
- *     if (Ext.os.is.Windows) {
- *         // Windows specific code here
- *     }
- *
- *     if (Ext.os.is.iOS) {
- *         // iPad, iPod, iPhone, etc.
- *     }
- *
- *     console.log("Version " + Ext.os.version);
- *
- * For a full list of supported values, refer to: {@link Ext.env.OS#is}
+ * Should not be manually instantiated unless for unit-testing.
+ * Access the global instance stored in {@link Ext.os} instead.
+ * @private
  */
 Ext.define('Ext.env.OS', {
 
@@ -168,7 +157,7 @@ Ext.define('Ext.env.OS', {
         this.version = version;
 
         if (platform) {
-            this.setFlag(platform);
+            this.setFlag(platform.replace(/ simulator$/i, ''));
         }
 
         this.setFlag(name);
@@ -221,6 +210,28 @@ Ext.define('Ext.env.OS', {
     });
     //</deprecated>
 
+    /**
+     * @class Ext.os
+     * @extends Ext.env.OS
+     * @singleton
+     * Provides useful information about the current operating system environment.
+     *
+     * Example:
+     *
+     *     if (Ext.os.is.Windows) {
+     *         // Windows specific code here
+     *     }
+     *
+     *     if (Ext.os.is.iOS) {
+     *         // iPad, iPod, iPhone, etc.
+     *     }
+     *
+     *     console.log("Version " + Ext.os.version);
+     *
+     * For a full list of supported values, refer to the {@link #is} property/method.
+     *
+     * @aside guide environment_package
+     */
     Ext.os = osEnv = new this(userAgent, navigation.platform);
 
     osName = osEnv.name;
@@ -254,6 +265,22 @@ Ext.define('Ext.env.OS', {
         }
     }
 
+    /**
+     * @property {String} deviceType
+     * The generic type of the current device.
+     *
+     * Possible values:
+     *
+     * - Phone
+     * - Tablet
+     * - Desktop
+     *
+     * For testing purposes the deviceType can be overridden by adding
+     * a deviceType parameter to the URL of the page, like so:
+     *
+     *     http://localhost/mypage.html?deviceType=Tablet
+     *
+     */
     osEnv.setFlag(deviceType, true);
     osEnv.deviceType = deviceType;
 
@@ -276,6 +303,6 @@ Ext.define('Ext.env.OS', {
      * @class Ext.is
      * Used to detect if the current browser supports a certain feature, and the type of the current browser.
      * @deprecated 2.0.0
-     * Please refer to the {@link Ext.env.Browser}, {@link Ext.env.OS} and {@link Ext.feature.has} classes instead.
+     * Please refer to the {@link Ext.browser}, {@link Ext.os} and {@link Ext.feature} classes instead.
      */
 });

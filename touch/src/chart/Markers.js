@@ -2,7 +2,8 @@
  * @class Ext.chart.Markers
  * @extends Ext.draw.sprite.Instancing
  * 
- * Marker sprite.
+ * Marker sprite. A specialized version of instancing sprite that groups instances.
+ * Putting a marker is grouped by its category id. Clearing removes that category.
  */
 Ext.define("Ext.chart.Markers", {
     extend: 'Ext.draw.sprite.Instancing',
@@ -14,6 +15,10 @@ Ext.define("Ext.chart.Markers", {
         this.revisions = {};
     },
 
+    /**
+     * Clear the markers in the category
+     * @param {String} category
+     */
     clear: function (category) {
         category = category || 'default';
         if (!(category in this.revisions)) {
@@ -23,6 +28,15 @@ Ext.define("Ext.chart.Markers", {
         }
     },
 
+    /**
+     * Put a marker in the category with additional
+     * attributes.
+     * @param {String} category
+     * @param {Object} markerAttr
+     * @param {String|Number} index
+     * @param {Boolean} [canonical]
+     * @param {Boolean} [keepRevision]
+     */
     putMarkerFor: function (category, markerAttr, index, canonical, keepRevision) {
         category = category || 'default';
 

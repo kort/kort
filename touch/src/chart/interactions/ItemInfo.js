@@ -29,6 +29,14 @@ Ext.define('Ext.chart.interactions.ItemInfo', {
     type: 'iteminfo',
     alias: 'interaction.iteminfo',
 
+    /**
+     * @event show
+     * Fires when the info panel is shown.
+     * @param {Ext.chart.interactions.ItemInfo} this The interaction instance
+     * @param {Object} item The item whose info is being displayed
+     * @param {Ext.Panel} panel The panel for displaying the info
+     */
+
     config: {
         /**
          * @cfg {String} gesture
@@ -62,24 +70,16 @@ Ext.define('Ext.chart.interactions.ItemInfo', {
         }
     },
 
-    /**
-     * @event show
-     * Fires when the info panel is shown.
-     * @param {Ext.chart.interactions.ItemInfo} this The interaction instance
-     * @param {Object} item The item whose info is being displayed
-     * @param {Ext.Panel} panel The panel for displaying the info
-     */
-
     applyPanel: function (panel, oldPanel) {
         return Ext.factory(panel, 'Ext.Panel', oldPanel);
     },
 
     updatePanel: function (panel, oldPanel) {
         if (panel) {
-            panel.on('hide', this.reset, this);
+            panel.on('hide', "reset", this);
         }
         if (oldPanel) {
-            oldPanel.un('hide', this.reset, this);
+            oldPanel.un('hide', "reset", this);
         }
     },
 

@@ -231,9 +231,14 @@ $form-scrollable-fields: '.x-field-slider, .x-field-toggle';
     }
   }
 
+  .x-label-align-left,
+  .x-label-align-right {
+    @include box-orient(horizontal !important);
+  }
+
   .x-label-align-top,
   .x-label-align-bottom {
-    @include box-orient(vertical);
+    @include box-orient(vertical !important);
     .x-form-label {
 
     }

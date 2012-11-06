@@ -1,7 +1,7 @@
 /**
  * @class Ext.draw.modifier.Modifier
  * 
- * Each sprite has a stack of modifier. The resulting attributes of sprite is
+ * Each sprite has a stack of modifiers. The resulting attributes of sprite is
  * the content of the stack top. When setting attributes to a sprite,
  * changes will be pushed-down though the stack of modifiers and pop-back the
  * additive changes; When modifier is triggered to change the attribute of a
@@ -57,8 +57,8 @@ Ext.define("Ext.draw.modifier.Modifier", {
 
     /**
      * Invoked when changes need to be popped up to the top. 
-     * @param attributes
-     * @param changes
+     * @param attributes The source attributes.
+     * @param changes The changes to be popped up.
      */
     popUp: function (attributes, changes) {
         if (this._next) {
@@ -70,7 +70,7 @@ Ext.define("Ext.draw.modifier.Modifier", {
 
     /**
      * Invoked when changes need to pushed down to the sprite.
-     * @param attr
+     * @param attr The source attributes.
      * @param {Object} changes The changes to make. This object might be changed unexpectedly inside the method. 
      * @return {Mixed}
      */

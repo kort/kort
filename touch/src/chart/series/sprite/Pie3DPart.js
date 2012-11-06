@@ -14,17 +14,64 @@ Ext.define("Ext.chart.series.sprite.Pie3DPart", {
     inheritableStatics: {
         def: {
             processors: {
+                /**
+                 * @cfg {Number} [centerX=0] The central point of the series on the x-axis.
+                 */
                 centerX: "number",
+
+                /**
+                 * @cfg {Number} [centerY=0] The central point of the series on the x-axis.
+                 */
                 centerY: "number",
+
+                /**
+                 * @cfg {Number} [startAngle=0] The starting angle of the polar series.
+                 */
                 startAngle: "number",
+
+                /**
+                 * @cfg {Number} [endAngle=Math.PI] The ending angle of the polar series.
+                 */
                 endAngle: "number",
+
+                /**
+                 * @cfg {Number} [startRho=0] The starting radius of the polar series.
+                 */
                 startRho: "number",
+
+                /**
+                 * @cfg {Number} [endRho=150] The ending radius of the polar series.
+                 */
                 endRho: "number",
+
+                /**
+                 * @cfg {Number} [margin=0] Margin from the center of the pie. Used for donut.
+                 */
                 margin: "number",
+
+                /**
+                 * @cfg {Number} [thickness=0] The thickness of the 3D pie part.
+                 */
                 thickness: "number",
+
+                /**
+                 * @cfg {Number} [thickness=0] The distortion of the 3D pie part.
+                 */
                 distortion: "number",
+
+                /**
+                 * @cfg {Object} [baseColor='white'] The color of the 3D pie part before adding the 3D effect.
+                 */
                 baseColor: "color",
+
+                /**
+                 * @cfg {Number} [baseRotation=0] The starting rotation of the polar series.
+                 */
                 baseRotation: "number",
+
+                /**
+                 * @cfg {String} [part=0] The part of the 3D Pie represented by the sprite.
+                 */
                 part: "enums(top,start,end,inner,outer)"
             },
             aliases: {

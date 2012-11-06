@@ -2,22 +2,11 @@
 //@require Ext-more
 
 /**
- * @aside guide environment_package
+ * Provides information about browser.
  *
- * Provides useful information about the current browser. Should not be manually instantiated unless for unit-testing;
- * access the global instance stored in `Ext.browser` instead. Example:
- *
- *     if (Ext.browser.is.IE) {
- *         // IE specific code here
- *     }
- *
- *     if (Ext.browser.is.WebKit) {
- *         // WebKit specific code here
- *     }
- *
- *     console.log("Version " + Ext.browser.version);
- *
- * For a full list of supported values, refer to: {@link Ext.env.Browser#is}.
+ * Should not be manually instantiated unless for unit-testing.
+ * Access the global instance stored in {@link Ext.browser} instead.
+ * @private
  */
 Ext.define('Ext.env.Browser', {
     requires: ['Ext.Version'],
@@ -317,6 +306,28 @@ Ext.define('Ext.env.Browser', {
     }
 
 }, function() {
+    /**
+     * @class Ext.browser
+     * @extends Ext.env.Browser
+     * @singleton
+     * Provides useful information about the current browser.
+     *
+     * Example:
+     *
+     *     if (Ext.browser.is.IE) {
+     *         // IE specific code here
+     *     }
+     *
+     *     if (Ext.browser.is.WebKit) {
+     *         // WebKit specific code here
+     *     }
+     *
+     *     console.log("Version " + Ext.browser.version);
+     *
+     * For a full list of supported values, refer to {@link #is} property/method.
+     *
+     * @aside guide environment_package
+     */
     var browserEnv = Ext.browser = new this(Ext.global.navigator.userAgent);
 
     //<deprecated product=touch since=2.0>

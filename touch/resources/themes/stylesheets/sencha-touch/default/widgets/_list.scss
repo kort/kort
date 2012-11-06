@@ -153,11 +153,16 @@ $list-round-padding: 13px !default;
     @include transform(translate3d(0, 0, 0));
   }
 
+  .x-list-item .x-list-header {
+    display: none;
+  }
+
   .x-list-grouped .x-list-header-wrap .x-list-header {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
+    display: block;
   }
 
   .x-list-normal {
@@ -238,10 +243,10 @@ $list-round-padding: 13px !default;
     }
 
     .x-list-inner .x-scroll-container {
-        top: 13px;
-        left: 13px;
-        bottom: 13px;
-        right: 13px;
+        top: $list-round-padding;
+        left: $list-round-padding;
+        bottom: $list-round-padding;
+        right: $list-round-padding;
         width: auto !important;
         height: auto !important;
     }
@@ -295,7 +300,7 @@ $list-round-padding: 13px !default;
           @if $include-border-radius { @include border-bottom-radius($form-fieldset-radius); }
           border-width: 1px;
 
-          margin-bottom: 13px;
+          margin-bottom: $list-round-padding;
         }
       }
     }
@@ -319,7 +324,7 @@ $list-round-padding: 13px !default;
         .x-dock-horizontal {
           border: none;
           background: transparent;
-          padding-bottom: 13px;
+          padding-bottom: $list-round-padding;
 
           > .x-dock-body {
             border: 1px solid darken($list-bg-color, 10%);

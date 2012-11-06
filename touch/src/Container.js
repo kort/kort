@@ -377,7 +377,7 @@ Ext.define('Ext.Container', {
 
         if (currentMask) {
             this.add(currentMask);
-            currentMask.setVisibility(isVisible);
+            currentMask.setHidden(!isVisible);
         }
 
         return currentMask;
@@ -666,7 +666,7 @@ Ext.define('Ext.Container', {
      *
      *     myContainer.add([myPanel]);
      *
-     * @param {Array} newItems The new items to add to the Container.
+     * @param {Object/Object[]/Ext.Component/Ext.Component[]} newItems The new items to add to the Container.
      * @return {Ext.Component} The last item added to the Container from the `newItems` array.
      */
     add: function(newItems) {

@@ -13,8 +13,19 @@ Ext.define("Ext.chart.series.sprite.PieSlice", {
     inheritableStatics: {
         def: {
             processors: {
+                /**
+                 * @cfg {Boolean} [doCallout=true] 'true' if the pie series uses label callouts.
+                 */
                 doCallout: 'bool',
+
+                /**
+                 * @cfg {String} [label=''] Label associated with the Pie sprite.
+                 */
                 label: 'string',
+
+                /**
+                 * @cfg {Number} [labelOverflowPadding=10] Padding around labels to determine overlap. 
+                 */
                 labelOverflowPadding: 'number'
             },
             defaults: {

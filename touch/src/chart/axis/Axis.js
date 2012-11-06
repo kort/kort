@@ -1,17 +1,34 @@
 /**
  * @class Ext.chart.axis.Axis
  *
- * Defines axis for charts. The axis position, type, style can be configured.
- * The axes are defined in an axes array of configuration objects where the type,
- * field, grid and other configuration options can be set. To know more about how
- * to create a Chart please check the Chart class documentation. Here's an example for the axes part:
+ * Defines axis for charts.
+ *
+ * Using the current model, the type of axis can be easily extended. By default, Sencha Touch provides three different
+ * type of axis:
+ *
+ *  * **Numeric**: the data attached with this axes are considered to be numeric and continuous.
+ *  * **Time**: the data attached with this axes are considered (or get converted into) date/time and they are continuous.
+ *  * **Category**: the data attached with this axes conforms a finite set. They be evenly placed on the axis and displayed in the same form they were provided.
+ *
+ * The behavior of axis can be easily changed by setting different types of axis layout and axis segmenter to the axis.
+ *
+ * Axis layout defines how the data points are places. Using continuous layout, the data points will be distributed by
+ * there numeric value. Using discrete layout the data points will be spaced evenly, Furthermore, if you want to combine
+ * the data points with the duplicate values in a discrete layout, you should use combinedDuplicate layout.
+ *
+ * Segmenter defines the way to segment data range. For example, if you have a Date-type data range from Jan 1, 1997 to
+ * Jan 1, 2017, the segmenter will segement the data range into years, months or days based on the current zooming
+ * level.
+ *
+ * It is possible to write custom axis layouts and segmenters to extends this behavior by simply implement interfaces
+ * {@link Ext.chart.axis.layout.Layout} and {@link Ext.chart.axis.segmenter.Segmenter}.
+ *
+ * Here's an example for the axes part of a chart definition:
  * An example of axis for a series (in this case for an area chart that has multiple layers of yFields) could be:
  *
  *     axes: [{
  *         type: 'Numeric',
- *         grid: true,
  *         position: 'left',
- *         fields: ['data1', 'data2', 'data3'],
  *         title: 'Number of Hits',
  *         grid: {
  *             odd: {
@@ -25,7 +42,6 @@
  *     }, {
  *         type: 'Category',
  *         position: 'bottom',
- *         fields: ['name'],
  *         title: 'Month of the Year',
  *         grid: true,
  *         label: {
@@ -63,6 +79,7 @@ Ext.define('Ext.chart.axis.Axis', {
         /**
          * @cfg {Array} fields
          * An array containing the names of the record fields which should be mapped along the axis.
+         * This is optional if the binding between series and fields is clear.
          */
         fields: [],
 
@@ -70,7 +87,7 @@ Ext.define('Ext.chart.axis.Axis', {
          * @cfg {Object} label
          *
          * The label configuration object for the Axis. This object may include style attributes
-         * like `spacing`, `padding`, `font`, and a `renderer` function that receives a string or number and
+         * like `spacing`, `padding`, `font` that receives a string or number and
          * returns a new string with the modified values.
          */
         label: { x: 0, y: 0, textBaseline: 'middle', textAlign: 'center', fontSize: 12, fontFamily: 'Helvetica' },
@@ -93,19 +110,34 @@ Ext.define('Ext.chart.axis.Axis', {
          */
         grid: false,
 
+        /**
+         * @cfg {Function} renderer Allows direct customisation of rendered axis sprites.
+         */
         renderer: null,
 
         /**
-         * @cfg {Ext.chart.AbstractChart} The Chart that the Axis is bound.
+         * @protected
+         * @cfg {Ext.chart.AbstractChart} chart The Chart that the Axis is bound.
          */
         chart: null,
 
-        steps: 10,
-
+        /**
+         * @cfg {Object} style
+         * The style for the axis line and ticks.
+         * Refer to the {@link Ext.chart.axis.sprite.Axis}
+         */
         style: null,
 
-        labelMargin: 4,
+        /**
+         * @cfg {Number} titleMargin
+         * The margin between axis title and axis.
+         */
+        titleMargin: 4,
 
+        /**
+         * @cfg {Object} background
+         * The background config for the axis surface.
+         */
         background: null,
 
         /**
@@ -122,38 +154,77 @@ Ext.define('Ext.chart.axis.Axis', {
          */
         maximum: NaN,
 
+        /**
+         * @cfg {Number} minZoom
+         * The minimum zooming level for axis.
+         */
+        minZoom: 1,
+
+        /**
+         * @cfg {Number} maxZoom
+         * The maximum zooming level for axis
+         */
+        maxZoom: 10000,
+
+        /**
+         * @cfg {Object|Ext.chart.axis.layout.Layout} layout
+         * The axis layout config. See {@link Ext.chart.axis.layout.Layout}
+         */
         layout: 'continuous',
 
+        /**
+         * @cfg {Object|Ext.chart.axis.segmenter.Segmenter} segmenter
+         * The segmenter config. See {@link Ext.chart.axis.segmenter.Segmenter}
+         */
         segmenter: 'numeric',
 
+        /**
+         * @cfg {Boolean} hidden
+         * Indicate whether to hide the axis.
+         * If the axis is hidden, one of the axis line, ticks, labels or the title will be shown and
+         * no margin will be taken.
+         * The coordination mechanism works fine no matter if the axis is hidden.
+         */
         hidden: false,
 
         /**
+         * @private
          * @cfg {Number} majorTickSteps
+         * Will be supported soon.
          * If `minimum` and `maximum` are specified it forces the number of major ticks to the specified value.
          */
         majorTickSteps: false,
+
         /**
+         * @private
          * @cfg {Number} [minorTickSteps=0]
+         * Will be supported soon.
          * The number of small ticks between two major ticks.
          */
         minorTickSteps: false,
 
         /**
-         * @cfg {String} title
-         * The title for the Axis
+         * @private
+         * @cfg {Boolean} adjustMaximumByMajorUnit
+         * Will be supported soon.
          */
-        title: { fontSize: 18, fontFamily: 'Helvetica'},
-
-        /**
-         * @cfg {Number} dashSize
-         * The size of the dash marker.
-         */
-        dashSize: 3,
-
         adjustMaximumByMajorUnit: false,
 
+        /**
+         * @private
+         * @cfg {Boolean} adjustMinimumByMajorUnit
+         * Will be supported soon.
+         *
+         */
         adjustMinimumByMajorUnit: false,
+
+        /**
+         * @cfg {String|Object} title
+         * The title for the Axis.
+         * If given a String, the text style of the title sprite will be set,
+         * otherwise the style will be set.
+         */
+        title: { fontSize: 18, fontFamily: 'Helvetica'},
 
         /**
          * @cfg {Number} increment
@@ -161,14 +232,39 @@ Ext.define('Ext.chart.axis.Axis', {
          * automatically or by manually setting `minimum` and `maximum`) tick marks will be added
          * on each `increment` from the minimum value to the maximum one.
          */
-        increment: null,
+        increment: 0.5,
 
         /**
+         * @private
          * @cfg {Number} length
-         *
          * Length of the axis position. Equals to the size of inner region on the docking side of this axis.
+         * WARNING: Meant to be set automatically by chart. Do not set it manually.
          */
         length: 0,
+
+        /**
+         * @private
+         * @cfg {Array} center
+         * Center of the polar axis.
+         * WARNING: Meant to be set automatically by chart. Do not set it manually.
+         */
+        center: null,
+
+        /**
+         * @private
+         * @cfg {Number} radius
+         * Radius of the polar axis.
+         * WARNING: Meant to be set automatically by chart. Do not set it manually.
+         */
+        radius: null,
+
+        /**
+         * @private
+         * @cfg {Number} rotation
+         * Rotation of the polar axis.
+         * WARNING: Meant to be set automatically by chart. Do not set it manually.
+         */
+        rotation: null,
 
         /**
          * @cfg {Boolean} [labelInSpan]
@@ -176,18 +272,44 @@ Ext.define('Ext.chart.axis.Axis', {
          */
         labelInSpan: null,
 
+        /**
+         * @cfg {Array} visibleRange
+         * Specify the proportion of the axis to be rendered. The series bound to
+         * this axis will be synchronized and transformed.
+         */
         visibleRange: [0, 1],
 
-        center: null,
-
-        radius: null,
-
-        rotation: null
+        /**
+         * @private
+         * @cfg {Boolean} needHighPrecision
+         */
+        needHighPrecision: false
     },
 
     observableType: 'component',
 
     titleOffset: 0,
+
+    animating: 0,
+
+    prevMin: 0,
+
+    prevMax: 1,
+
+    boundSeries: [],
+
+    sprites: null,
+
+    /**
+     * @private
+     * @property {Array} The full data range of the axis. Should not be set directly, clear it to `null` and use
+     * `getRange` to update.
+     */
+    range: null,
+
+    xValues: [],
+
+    yValues: [],
 
     applyRotation: function (rotation) {
         var twoPie = Math.PI * 2;
@@ -222,15 +344,6 @@ Ext.define('Ext.chart.axis.Axis', {
         return oldTitle;
     },
 
-    needHighPrecision: false,
-    prevMin: 0,
-    prevMax: 1,
-    boundSeries: [],
-    sprites: null,
-    range: null,
-    xValues: [],
-    yValues: [],
-
     constructor: function (config) {
         var me = this;
         me.sprites = [];
@@ -241,6 +354,10 @@ Ext.define('Ext.chart.axis.Axis', {
         Ext.ComponentManager.register(me);
     },
 
+    /**
+     * @private
+     * @return {String}
+     */
     getAlignment: function () {
         switch (this.getPosition()) {
             case 'left':
@@ -256,6 +373,10 @@ Ext.define('Ext.chart.axis.Axis', {
         }
     },
 
+    /**
+     * @private
+     * @return {String}
+     */
     getGridAlignment: function () {
         switch (this.getPosition()) {
             case 'left':
@@ -272,7 +393,8 @@ Ext.define('Ext.chart.axis.Axis', {
     },
 
     /**
-     * @private get the surface for drawing the series sprites
+     * @private
+     * Get the surface for drawing the series sprites
      */
     getSurface: function () {
         if (!this.surface) {
@@ -314,6 +436,20 @@ Ext.define('Ext.chart.axis.Axis', {
             }
         }
         return this.surface;
+    },
+
+    /**
+     *
+     * Mapping data value into coordinate.
+     *
+     * @param {*} value
+     * @param {String} field
+     * @param {Number} [idx]
+     * @param {Ext.util.MixedCollection} [items]
+     * @return {Number}
+     */
+    getCoordFor: function (value, field, idx, items) {
+        return this.getLayout().getCoordFor(value, field, idx, items);
     },
 
     applyPosition: function (pos) {
@@ -361,7 +497,9 @@ Ext.define('Ext.chart.axis.Axis', {
     },
 
     /**
-     * @private Reset the axis to its original state, before any user interaction.
+     * @private
+     * Reset the axis to its original state, before any user interaction.
+     *
      */
     reset: function () {
         // TODO: finish this
@@ -396,6 +534,10 @@ Ext.define('Ext.chart.axis.Axis', {
         return rect.def.normalize(background);
     },
 
+    /**
+     * @protected
+     * Invoked when data has changed.
+     */
     processData: function () {
         this.getLayout().processData();
         this.range = null;
@@ -422,7 +564,19 @@ Ext.define('Ext.chart.axis.Axis', {
     },
 
     applyVisibleRange: function (visibleRange, oldVisibleRange) {
-        if (visibleRange[0] < 0) {
+        // If it is in reversed order swap them
+        if (visibleRange[0] > visibleRange[1]) {
+            var temp = visibleRange[0];
+            visibleRange[0] = visibleRange[1];
+            visibleRange[0] = temp;
+        }
+        if (visibleRange[1] === visibleRange[0]) {
+            visibleRange[1] += 1 / this.getMaxZoom();
+        }
+        if (visibleRange[1] > visibleRange[0] + 1) {
+            visibleRange[0] = 0;
+            visibleRange[1] = 1;
+        } else if (visibleRange[0] < 0) {
             visibleRange[1] -= visibleRange[0];
             visibleRange[0] = 0;
         } else if (visibleRange[1] > 1) {
@@ -467,6 +621,10 @@ Ext.define('Ext.chart.axis.Axis', {
         }
     },
 
+    /**
+     * Get the range derived from all the bound series.
+     * @return {Array}
+     */
     getRange: function () {
         var me = this,
             getRangeMethod = 'get' + me.getDirection() + 'Range';
@@ -506,8 +664,8 @@ Ext.define('Ext.chart.axis.Axis', {
         }
 
         if (this.getLabelInSpan()) {
-            max += 0.5;
-            min -= 0.5;
+            max += this.getIncrement();
+            min -= this.getIncrement();
         }
 
         if (!isNaN(me.getMinimum())) {
@@ -603,6 +761,8 @@ Ext.define('Ext.chart.axis.Axis', {
                 baseSprite.fx.setCustomDuration({
                     baseRotation: 0
                 });
+                baseSprite.fx.on("animationstart", "onAnimationStart", me);
+                baseSprite.fx.on("animationend", "onAnimationEnd", me);
                 me.sprites.push(baseSprite);
                 me.updateTitleSprite();
             } else {
@@ -631,7 +791,7 @@ Ext.define('Ext.chart.axis.Axis', {
             surface = me.getSurface(),
             title = this.getTitle(),
             position = me.getPosition(),
-            labelMargin = me.getLabelMargin(),
+            titleMargin = me.getTitleMargin(),
             length = me.getLength(),
             anchor = surface.roundPixel(length / 2);
 
@@ -640,39 +800,39 @@ Ext.define('Ext.chart.axis.Axis', {
                 case 'top':
                     title.setAttributes({
                         x: anchor,
-                        y: labelMargin / 2,
+                        y: titleMargin / 2,
                         textBaseline: 'top',
                         textAlign: 'center'
                     }, true, true);
                     title.applyTransformations();
-                    me.titleOffset = title.getBBox().height + labelMargin;
+                    me.titleOffset = title.getBBox().height + titleMargin;
                     break;
                 case 'bottom':
                     title.setAttributes({
                         x: anchor,
-                        y: thickness + labelMargin,
+                        y: thickness + titleMargin,
                         textBaseline: 'top',
                         textAlign: 'center'
                     }, true, true);
                     title.applyTransformations();
-                    me.titleOffset = title.getBBox().height + labelMargin;
+                    me.titleOffset = title.getBBox().height + titleMargin;
                     break;
                 case 'left':
                     title.setAttributes({
-                        x: labelMargin / 2,
+                        x: titleMargin / 2,
                         y: anchor,
                         textBaseline: 'top',
                         textAlign: 'center',
-                        rotationCenterX: labelMargin / 2,
+                        rotationCenterX: titleMargin / 2,
                         rotationCenterY: anchor,
                         rotationRads: -Math.PI / 2
                     }, true, true);
                     title.applyTransformations();
-                    me.titleOffset = title.getBBox().width + labelMargin;
+                    me.titleOffset = title.getBBox().width + titleMargin;
                     break;
                 case 'right':
                     title.setAttributes({
-                        x: thickness - labelMargin / 2,
+                        x: thickness - titleMargin / 2,
                         y: anchor,
                         textBaseline: 'bottom',
                         textAlign: 'center',
@@ -681,14 +841,10 @@ Ext.define('Ext.chart.axis.Axis', {
                         rotationRads: Math.PI / 2
                     }, true, true);
                     title.applyTransformations();
-                    me.titleOffset = title.getBBox().width + labelMargin;
+                    me.titleOffset = title.getBBox().width + titleMargin;
                     break;
             }
         }
-    },
-
-    getCoordFor: function (value, field, idx, items) {
-        return this.getLayout().getCoordFor(value, field, idx, items);
     },
 
     onThicknessChanged: function () {
@@ -703,9 +859,21 @@ Ext.define('Ext.chart.axis.Axis', {
         return (this.sprites[0] && this.sprites[0].thickness || 1) + this.titleOffset;
     },
 
-    // Methods used in ComponentQuery and controller
+    onAnimationStart: function () {
+        this.animating++;
+        if (this.animating === 1) {
+            this.fireEvent("animationstart");
+        }
+    },
 
-    //
+    onAnimationEnd: function () {
+        this.animating--;
+        if (this.animating === 0) {
+            this.fireEvent("animationend");
+        }
+    },
+
+    // Methods used in ComponentQuery and controller
     getItemId: function () {
         return this.getId();
     },

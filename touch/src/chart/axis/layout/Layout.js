@@ -1,4 +1,5 @@
 /**
+ * @abstract
  * @class Ext.chart.axis.layout.Layout
  * 
  * Interface used by Axis to process its data into a meaningful layout.
@@ -15,6 +16,10 @@ Ext.define("Ext.chart.axis.layout.Layout", {
         this.initConfig();
     },
 
+    /**
+     * Processes the data of the series bound to the axis.
+     * @param series The bound series.
+     */
     processData: function (series) {
         var me = this,
             axis = me.getAxis(),
@@ -33,14 +38,17 @@ Ext.define("Ext.chart.axis.layout.Layout", {
         }
     },
 
+    /**
+     * Calculates the position of major ticks for the axis.
+     * @param context
+     */
     calculateMajorTicks: function (context) {
         var me = this,
             attr = context.attr,
-            visibleRange = attr.visibleRange,
             range = attr.max - attr.min,
-            zoom = range / attr.length * (visibleRange[1] - visibleRange[0]),
-            viewMin = attr.min + range * visibleRange[0],
-            viewMax = attr.min + range * visibleRange[1],
+            zoom = range / attr.length * (attr.visibleMax - attr.visibleMin),
+            viewMin = attr.min + range * attr.visibleMin,
+            viewMax = attr.min + range * attr.visibleMax,
             estStepSize = attr.estStepSize * zoom,
             out = me.snapEnds(context, attr.min, attr.max, estStepSize);
         if (out) {
@@ -49,10 +57,19 @@ Ext.define("Ext.chart.axis.layout.Layout", {
         }
     },
 
+    /**
+     * Calculates the position of sub ticks for the axis.
+     * @param context
+     */
     calculateMinorTicks: function (context) {
         // TODO: Finish Minor ticks.
     },
 
+    /**
+     * Calculates the position of tick marks for the axis.
+     * @param context
+     * @return {*}
+     */
     calculateLayout: function (context) {
         var me = this,
             attr = context.attr,
@@ -71,7 +88,7 @@ Ext.define("Ext.chart.axis.layout.Layout", {
     },
 
     /**
-     *
+     * Snaps the data bound to the axis to meaningful tick marks.
      * @param context
      * @param min
      * @param max
@@ -80,7 +97,7 @@ Ext.define("Ext.chart.axis.layout.Layout", {
     snapEnds: Ext.emptyFn,
 
     /**
-     *
+     * Trims the layout of the axis by the defined minimum and maximum.
      * @param context
      * @param out
      * @param trimMin

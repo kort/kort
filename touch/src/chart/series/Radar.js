@@ -1,6 +1,6 @@
 /**
  * @class Ext.chart.series.Radar
- * @extends Ext.chart.series.Series
+ * @extends Ext.chart.series.Polar
  *
  * Creates a Radar Chart. A Radar Chart is a useful visualization technique for comparing different quantitative values for
  * a constrained number of categories.
@@ -8,21 +8,19 @@
  * documentation for more information. A typical configuration object for the radar series could be:
  *
  *     @example preview
- *     var store = new Ext.data.JsonStore({
- *         fields: ['name', 'data1', 'data2', 'data3', 'data4', 'data5'],
- *         data: [
- *             {'name':'metric one', 'data1':10, 'data2':12, 'data3':14, 'data4':8, 'data5':13},
- *             {'name':'metric two', 'data1':7, 'data2':8, 'data3':16, 'data4':10, 'data5':3},
- *             {'name':'metric three', 'data1':5, 'data2':2, 'data3':14, 'data4':12, 'data5':7},
- *             {'name':'metric four', 'data1':2, 'data2':14, 'data3':6, 'data4':1, 'data5':23},
- *             {'name':'metric five', 'data1':27, 'data2':38, 'data3':36, 'data4':13, 'data5':33}
- *         ]
- *     });
- *
  *     var chart = new Ext.chart.PolarChart({
  *         animate: true,
  *         interactions: ['rotate'],
- *         store: store,
+ *         store: {
+ *           fields: ['name', 'data1', 'data2', 'data3', 'data4', 'data5'],
+ *           data: [
+ *               {'name':'metric one', 'data1':10, 'data2':12, 'data3':14, 'data4':8, 'data5':13},
+ *               {'name':'metric two', 'data1':7, 'data2':8, 'data3':16, 'data4':10, 'data5':3},
+ *               {'name':'metric three', 'data1':5, 'data2':2, 'data3':14, 'data4':12, 'data5':7},
+ *               {'name':'metric four', 'data1':2, 'data2':14, 'data3':6, 'data4':1, 'data5':23},
+ *               {'name':'metric five', 'data1':27, 'data2':38, 'data3':36, 'data4':13, 'data5':33}
+ *           ]
+ *         },
  *         series: [{
  *             type: 'radar',
  *             xField: 'name',
@@ -37,12 +35,20 @@
  *           {
  *             type: 'numeric',
  *             position: 'radial',
- *             fields: 'data4'
+ *             fields: 'data4',
+ *             style: {
+ *                 estStepSize: 10
+ *             },
+ *             grid: true
  *           },
  *           {
  *             type: 'category',
  *             position: 'angular',
- *             fields: 'name'
+ *             fields: 'name',
+ *             style: {
+ *                 estStepSize: 1
+ *             },
+ *             grid: true
  *           }
  *         ]
  *     });
@@ -116,10 +122,9 @@ Ext.define('Ext.chart.series.Radar', {
             dataY = attr.dataY,
             centerX = attr.centerX,
             centerY = attr.centerY,
-            dataRange = attr.dataRange,
-            minX = dataRange[0],
-            maxX = dataRange[2],
-            maxY = dataRange[3],
+            minX = attr.dataMinX,
+            maxX = attr.dataMaxX,
+            maxY = attr.dataMaxY,
             endRho = attr.endRho,
             startRho = attr.startRho,
             baseRotation = attr.baseRotation,

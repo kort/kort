@@ -77,7 +77,7 @@
     -->
     <target name="-before-clean"/>
     <target name="-clean">
-        <delete dir="${build.dr}"/>
+        <delete dir="${build.dir}"/>
     </target>
     <target name="-after-clean"/>
     <target name="clean"
@@ -127,11 +127,40 @@
         <antcall target="-after-page"/>
     </target>
 
+    <target name="-before-run"/>
+    <target name="-run">
+        <x-sencha-command>
+            package
+            run
+            ${app.dir}/packager.temp.json
+        </x-sencha-command>
+    </target>
+    <target name="-after-run"/>
+    <target name="run" depends="init" unless="skip.run"
+            description="Runs an application package using the native packager">
+        
+        <property name="args.autorun" value="false"/>
+        <if>
+            <and>
+                <equals arg1="${args.autorun}" arg2="true"/>
+                <or>
+                    <equals arg1="${args.environment}" arg2="native"/>
+                    <equals arg1="${args.environment}" arg2="package"/>
+                </or>
+            </and>
+            <then>
+                <antcall target="-before-run"/>
+                <antcall target="-run"/>
+                <antcall target="-after-run"/>
+            </then>
+        </if>
+    </target>
+
     <!--
     Build
     -->
     <target name="-before-build"/>
-    <target name="-build" depends="sass,page"/>
+    <target name="-build" depends="sass,page,run"/>
     <target name="-after-build"/>
     <target name="build"
             depends="init,-before-build,-build,-after-build"

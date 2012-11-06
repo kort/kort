@@ -1,27 +1,25 @@
 /**
  * @class Ext.chart.axis.Time
  * @extends Ext.chart.axis.Numeric
- * 
+ *
  * A type of axis whose units are measured in time values. Use this axis
  * for listing dates that you will want to group or dynamically change.
  * If you just want to display dates as categories then use the
  * Category class for axis instead.
  *
  *     @example preview
- *     var store = new Ext.data.JsonStore({
- *         fields: ['time', 'open', 'high', 'low', 'close'],
- *         data: [
+ *     var chart = new Ext.chart.CartesianChart({
+ *         animate: true,
+ *         store: {
+ *           fields: ['time', 'open', 'high', 'low', 'close'],
+ *           data: [
  *             {'time':new Date('Jan 1 2010').getTime(), 'open':600, 'high':614, 'low':578, 'close':590},
  *             {'time':new Date('Jan 2 2010').getTime(), 'open':590, 'high':609, 'low':580, 'close':580},
  *             {'time':new Date('Jan 3 2010').getTime(), 'open':580, 'high':602, 'low':578, 'close':602},
  *             {'time':new Date('Jan 4 2010').getTime(), 'open':602, 'high':614, 'low':586, 'close':586},
  *             {'time':new Date('Jan 5 2010').getTime(), 'open':586, 'high':602, 'low':565, 'close':565}
- *         ]
- *     });
- *
- *     var chart = new Ext.chart.CartesianChart({
- *         animate: true,
- *         store: store,
+ *           ]
+ *         },
  *         axes: [{
  *             type: 'numeric',
  *             position: 'left',
@@ -105,21 +103,12 @@ Ext.define('Ext.chart.axis.Time', {
 
         /**
          * @cfg {Array} [step=[Ext.Date.DAY, 1]] An array with two components:
-         * 
+         *
          * - The unit of the step (Ext.Date.DAY, Ext.Date.MONTH, etc).
          * - The number of units for the step (1, 2, etc).
-         * 
-         * If this is specified, {@link #steps} config is omitted.
+         *
          */
         step: [Ext.Date.DAY, 1],
-
-        /**
-         * @cfg {Boolean} [constrain=false]
-         *
-         * If `true`, the values of the chart will be rendered only if they belong between fromDate and toDate.
-         * If `false`, the time axis will adapt to the new values by adding/removing steps.
-         */
-        constrain: false,
 
         layout: 'continuous',
 
@@ -128,14 +117,12 @@ Ext.define('Ext.chart.axis.Time', {
         aggregator: 'time'
     },
 
-    needHighPrecision: false,
-
     updateDateFormat: function (format) {
         this.setRenderer(function (date) {
             return Ext.Date.format(new Date(date), format);
         });
     },
-    
+
     updateFromDate: function (date) {
         this.setMinimum(+date);
     },

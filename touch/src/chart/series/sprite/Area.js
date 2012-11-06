@@ -1,7 +1,7 @@
 /**
  * @class Ext.chart.series.sprite.Area
  * @extends Ext.chart.series.sprite.StackedCartesian
- * 
+ *
  * Area series sprite.
  */
 Ext.define("Ext.chart.series.sprite.Area", {
@@ -11,11 +11,13 @@ Ext.define("Ext.chart.series.sprite.Area", {
     inheritableStatics: {
         def: {
             processors: {
+                /**
+                 * @cfg {Boolean} [step=false] 'true' if the area is represented with steps instead of lines.
+                 */
                 step: 'bool'
             },
             defaults: {
-                step: false,
-                transformFillStroke: true
+                step: false
             }
         }
     },
@@ -77,8 +79,13 @@ Ext.define("Ext.chart.series.sprite.Area", {
             ctx.lineTo(dataX[start] * xx + dx, dy);
             ctx.lineTo(dataX[start] * xx + dx, dataY[i] * yy + dy);
         }
+        if (attr.transformFillStroke) {
+            attr.matrix.toContext(ctx);
+        }
         ctx.fill();
-
+        if (attr.transformFillStroke) {
+            attr.inverseMatrix.toContext(ctx);
+        }
         ctx.beginPath();
         if (attr.step) {
             for (i = start; i <= end; i++) {
@@ -99,6 +106,10 @@ Ext.define("Ext.chart.series.sprite.Area", {
                 markerCfg.translationY = surfaceMatrix.y(x, y);
                 me.putMarker("markers", markerCfg, i, !attr.renderer);
             }
+        }
+
+        if (attr.transformFillStroke) {
+            attr.matrix.toContext(ctx);
         }
         ctx.stroke();
     }

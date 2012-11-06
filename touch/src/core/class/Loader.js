@@ -274,7 +274,7 @@
          *     Ext.Loader.setPath('Ext', '.');
          *
          * @param {String/Object} name See {@link Ext.Function#flexSetter flexSetter}
-         * @param {String} path See {@link Ext.Function#flexSetter flexSetter}
+         * @param {String} [path] See {@link Ext.Function#flexSetter flexSetter}
          * @return {Ext.Loader} this
          * @method
          */

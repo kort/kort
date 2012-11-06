@@ -10,31 +10,23 @@
  * As with other axis you can set the position of the axis and its title. For example:
  *
  *     @example preview
- *     var store = new Ext.data.JsonStore({
- *         fields: ['name', 'data1', 'data2', 'data3', 'data4', 'data5'],
- *         data: [
- *             {'name':'metric one', 'data1':10, 'data2':12, 'data3':14, 'data4':8, 'data5':13},
- *             {'name':'metric two', 'data1':7, 'data2':8, 'data3':16, 'data4':10, 'data5':3},
- *             {'name':'metric three', 'data1':5, 'data2':2, 'data3':14, 'data4':12, 'data5':7},
- *             {'name':'metric four', 'data1':2, 'data2':14, 'data3':6, 'data4':1, 'data5':23},
- *             {'name':'metric five', 'data1':27, 'data2':38, 'data3':36, 'data4':13, 'data5':33}
- *         ]
- *     });
- *
  *     var chart = new Ext.chart.CartesianChart({
  *         animate: true,
- *         store: store,
+ *         innerPadding: { 
+ *             left: 40,
+ *             right: 40,
+ *         },
+ *         store: {
+ *             fields: ['name', 'data1', 'data2', 'data3', 'data4', 'data5'],
+ *             data: [
+ *                 {'name':'metric one', 'data1':10, 'data2':12, 'data3':14, 'data4':8, 'data5':13},
+ *                 {'name':'metric two', 'data1':7, 'data2':8, 'data3':16, 'data4':10, 'data5':3},
+ *                 {'name':'metric three', 'data1':5, 'data2':2, 'data3':14, 'data4':12, 'data5':7},
+ *                 {'name':'metric four', 'data1':2, 'data2':14, 'data3':6, 'data4':1, 'data5':23},
+ *                 {'name':'metric five', 'data1':27, 'data2':38, 'data3':36, 'data4':13, 'data5':33}
+ *             ]
+ *         },
  *         axes: [{
- *             type: 'numeric',
- *             position: 'left',
- *             fields: ['data1'],
- *             title: {
- *                 text: 'Sample Values',
- *                 fontSize: 15
- *             },
- *             grid: true,
- *             minimum: 0
- *         }, {
  *             type: 'category',
  *             position: 'bottom',
  *             fields: ['name'],
@@ -70,21 +62,6 @@ Ext.define('Ext.chart.axis.Category', {
     type: 'category',
 
     config: {
-        /**
-         * @cfg {Array} categoryNames
-         * A list of category names to display along this axis.
-         */
-        categoryNames: null,
-
-        /**
-         * @cfg {Boolean} calculateCategoryCount
-         * Indicates whether or not to calculate the number of categories (ticks and
-         * labels) when there is not enough room to display all labels on the axis.
-         * If set to `true`, the axis will determine the number of categories to plot.
-         * If not, all categories will be plotted.
-         */
-        calculateCategoryCount: false,
-
         layout: 'combineDuplicate',
 
         segmenter: 'names'

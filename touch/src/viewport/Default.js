@@ -165,7 +165,7 @@ Ext.define('Ext.viewport.Default', {
         this.callParent([config]);
 
         // Android is handled separately
-        if (!Ext.os.is.Android) {
+        if (!Ext.os.is.Android || Ext.browser.name == 'ChromeMobile') {
             if (this.supportsOrientation()) {
                 this.addWindowListener('orientationchange', bind(this.onOrientationChange, this));
             }

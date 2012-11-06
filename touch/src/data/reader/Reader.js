@@ -691,13 +691,20 @@ Ext.define('Ext.data.reader.Reader', {
     /**
      * @private
      * Used internally by `readAssociated`. Given a data object (which could be json, xml etc) for a specific
-     * record, this should return the relevant part of that data for the given association name. This is only really
-     * needed to support the XML Reader, which has to do a query to get the associated data object
+     * record, this should return the relevant part of that data for the given association name. If a complex
+     * mapping, this will traverse arrays and objects to resolve the data.
      * @param {Object} data The raw data object
      * @param {String} associationName The name of the association to get data for (uses associationKey if present)
      * @return {Object} The root
      */
     getAssociatedDataRoot: function(data, associationName) {
+        var re = /[\[\.]/,
+            i  = String(associationName).search(re);
+
+        if (i >= 0) {
+            return Ext.functionFactory('obj', 'return obj' + (i > 0 ? '.' : '') + associationName)(data);
+        }
+
         return data[associationName];
     },
 

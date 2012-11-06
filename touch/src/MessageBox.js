@@ -576,7 +576,7 @@ Ext.define('Ext.MessageBox', {
      * @param {String} fn.buttonId The `itemId` of the button pressed, one of: 'ok', 'yes', 'no', 'cancel'.
      * @param {String} fn.value Value of the input field if either `prompt` or `multiLine` option is `true`.
      * @param {Object} fn.opt The config object passed to show.
-     * @param {Object} scope The scope (`this` reference) in which the callback is executed.
+     * @param {Object} [scope] The scope (`this` reference) in which the callback is executed.
      *
      * Defaults to: the browser window
      *

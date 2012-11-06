@@ -173,7 +173,7 @@ Ext.define('Ext.chart.interactions.Abstract', {
     },
 
     isMultiTouch: function () {
-        return !(Ext.os.is.MultiTouch === false || (Ext.os.is.Android && !Ext.browser.is.Chrome) || Ext.os.is.Desktop);
+        return !(Ext.os.is.MultiTouch === false || (Ext.os.is.Android3 || Ext.os.is.Android2) || Ext.os.is.Desktop);
     },
 
     initializeDefaults: Ext.emptyFn,

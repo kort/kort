@@ -11,7 +11,7 @@ Ext.define("Ext.draw.sprite.Instancing", {
     config: {
         
         /**
-         * @cfg {Object} template The sprite template used by all instances.
+         * @cfg {Object} [template=null] The sprite template used by all instances.
          */
         template: null
     },
