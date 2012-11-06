@@ -14,7 +14,7 @@ Ext.define('Kort.view.bugmap.fix.Form', {
             },
             {
                 xtype: 'formpanel',
-                id: 'taskform',
+                id: 'fixform',
                 flex: 1,
                 items: [
                     {
