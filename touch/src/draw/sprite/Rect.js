@@ -26,27 +26,27 @@ Ext.define("Ext.draw.sprite.Rect", {
         def: {
             processors: {
                 /**
-                 * @cfg {Number} x The position of the sprite on the x-axis.
+                 * @cfg {Number} [x=0] The position of the sprite on the x-axis.
                  */
                 x: 'number',
 
                 /**
-                 * @cfg {Number} y The position of the sprite on the y-axis.
+                 * @cfg {Number} [y=0] The position of the sprite on the y-axis.
                  */
                 y: 'number',
 
                 /**
-                 * @cfg {Number} width The width of the sprite.
+                 * @cfg {Number} [width=1] The width of the sprite.
                  */
                 width: 'number',
 
                 /**
-                 * @cfg {Number} height The height of the sprite.
+                 * @cfg {Number} [height=1] The height of the sprite.
                  */
                 height: 'number',
 
                 /**
-                 * @cfg {Number} radius The radius of the rounded corners.
+                 * @cfg {Number} [radius=0] The radius of the rounded corners.
                  */
                 radius: 'number'
             },

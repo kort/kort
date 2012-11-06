@@ -1,7 +1,7 @@
 /**
  * @class Ext.draw.engine.Svg
  * @extends Ext.draw.Surface
- * 
+ *
  * SVG engine.
  */
 Ext.define('Ext.draw.engine.Svg', {
@@ -51,6 +51,11 @@ Ext.define('Ext.draw.engine.Svg', {
         me.ctx = new Ext.draw.engine.SvgContext(me);
     },
 
+    /**
+     * Creates a DOM element under the SVG namespace of the given type.
+     * @param type The type of the SVG DOM element.
+     * @return {*} The created element.
+     */
     createSvgNode: function (type) {
         var node = document.createElementNS("http://www.w3.org/2000/svg", type);
         return Ext.get(node);
@@ -58,10 +63,12 @@ Ext.define('Ext.draw.engine.Svg', {
 
     /**
      * @private
-     * @param group
-     * @param tag
-     * @param position
-     * @return {Ext.dom.Element}
+     * Returns the SVG DOM element at the given position. If it does not already exist or is a different element tag
+     * it will be created and inserted into the DOM.
+     * @param group The parent DOM element.
+     * @param tag The SVG element tag.
+     * @param position The position of the element in the DOM.
+     * @return {Ext.dom.Element} The SVG element.
      */
     getSvgElement: function (group, tag, position) {
         var element;
@@ -86,8 +93,9 @@ Ext.define('Ext.draw.engine.Svg', {
 
     /**
      * @private
-     * @param element
-     * @param attributes
+     * Applies attributes to the given element.
+     * @param element The DOM element to be applied.
+     * @param attributes The attributes to apply to the element.
      */
     setElementAttributes: function (element, attributes) {
         var dom = element.dom,
@@ -104,26 +112,33 @@ Ext.define('Ext.draw.engine.Svg', {
 
     /**
      * @private
-     * @param tagName
-     * @return {Ext.dom.Element}
+     * Gets the next reference element under the SVG 'defs' tag.
+     * @param tagName The type of reference element.
+     * @return {Ext.dom.Element} The reference element.
      */
     getNextDef: function (tagName) {
         return this.getSvgElement(this.defElement, tagName, this.defPosition++);
     },
 
-    // Inherited
+    /**
+     * @inheritdoc
+     */
     clearTransform: function () {
         var me = this;
         me.mainGroup.set({transform: me.matrix.toSvg()});
     },
 
-    // Inherited
+    /**
+     * @inheritdoc
+     */
     clear: function () {
         this.ctx.clear();
         this.defPosition = 0;
     },
 
-    // Inherited
+    /**
+     * @inheritdoc
+     */
     renderSprite: function (sprite) {
         var me = this,
             region = me.getRegion(),
@@ -133,13 +148,18 @@ Ext.define('Ext.draw.engine.Svg', {
             ctx.restore();
             return;
         }
-        ctx.save();
-        sprite.preRender(this);
-        sprite.applyTransformations();
-        sprite.useAttributes(ctx);
-        sprite.render(this, ctx, [0, 0, region[2], region[3]]);
-        sprite.setDirty(false);
-        ctx.restore();
+        try {
+            ctx.save();
+            sprite.preRender(this);
+            sprite.applyTransformations();
+            sprite.useAttributes(ctx);
+            if (false === sprite.render(this, ctx, [0, 0, region[2], region[3]])) {
+                return false;
+            }
+            sprite.setDirty(false);
+        } finally {
+            ctx.restore();
+        }
     },
 
     /**

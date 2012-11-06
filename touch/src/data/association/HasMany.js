@@ -389,6 +389,7 @@ Ext.define('Ext.data.association.HasMany', {
 }, function() {
     /**
      * @cfg {Object} storeConfig
+     * @deprecated 2.0.0 Use `store` instead.
      */
     Ext.deprecateProperty(this, 'storeConfig', 'store');
     // </deprecated>

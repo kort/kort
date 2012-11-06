@@ -1,32 +1,34 @@
 /**
  * Linear gradient.
  *
- *     @example preview miniphone
- *     var component = new Ext.draw.Component({
- *       items: [{
- *         type: 'circle',
- *         cx: 100,
- *         cy: 100,
- *         r: 25,
- *         fillStyle: {
- *           type: 'linear',
- *           degrees: 90,
- *           stops: [
- *             {
- *               offset: 0,
- *               color: 'green'
- *             },
- *             {
- *               offset: 1,
- *               color: 'blue'
- *             }
- *           ]
- *         }
- *       }]
- *     });
- *     Ext.Viewport.setLayout('fit');
- *     Ext.Viewport.add(component);
- */
+ *      @example preview miniphone
+ *  new Ext.draw.Component({
+ *      fullscreen: true,
+ *      items: [
+ *          {
+ *              type: 'circle',
+ *              cx: 100,
+ *              cy: 100,
+ *              r: 25,
+ *              fillStyle: {
+ *                  type: 'linear',
+ *                  degrees: 90,
+ *                  stops: [
+ *                      {
+ *                          offset: 0,
+ *                          color: 'green'
+ *                      },
+ *                      {
+ *                          offset: 1,
+ *                          color: 'blue'
+ *                      }
+ *                  ]
+ *              }
+ *          }
+ *      ]
+ *  });
+*/
+
 Ext.define("Ext.draw.gradient.Linear", {
     extend: 'Ext.draw.gradient.Gradient',
     type: 'linear',
@@ -49,7 +51,9 @@ Ext.define("Ext.draw.gradient.Linear", {
         this.clearCache();
     },
 
-    // Inherited
+    /**
+     * @inheritdoc
+     */
     generateGradient: function (ctx, bbox) {
         var angle = Ext.draw.Draw.rad(this.getDegrees()),
             cos = Math.cos(angle),

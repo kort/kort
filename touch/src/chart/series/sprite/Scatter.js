@@ -20,10 +20,10 @@ Ext.define("Ext.chart.series.sprite.Scatter", {
             dx = matrix.getDX(),
             dy = matrix.getDY(),
             markerCfg = {},
-            left = clipRegion[0],
-            right = clipRegion[0] + clipRegion[2],
-            top = clipRegion[1],
-            bottom = clipRegion[1] + clipRegion[3],
+            left = clipRegion[0] - xx,
+            right = clipRegion[0] + clipRegion[2] + xx,
+            top = clipRegion[1] - yy,
+            bottom = clipRegion[1] + clipRegion[3] + yy,
             x, y;
         for (var i = 0; i < dataX.length; i++) {
             x = dataX[i];

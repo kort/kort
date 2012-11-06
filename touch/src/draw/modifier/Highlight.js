@@ -3,14 +3,22 @@
  * @extends Ext.draw.modifier.Modifier
  * 
  * Highlight is a modifier that will override the attributes
- * with its `highlightStyle` attributes when its `highlighted` is true.
+ * with its `highlightStyle` attributes when `highlighted` is true.
  */
 Ext.define("Ext.draw.modifier.Highlight", {
     extend: 'Ext.draw.modifier.Modifier',
     alias: 'modifier.highlight',
 
     config: {
+        
+        /**
+         * @cfg {Boolean} enabled 'true' if the highlight is applied.
+         */
         enabled: false,
+
+        /**
+         * @cfg {Object} highlightStyle The style attributes of the highlight modifier.
+         */
         highlightStyle: null
     },
 
@@ -26,7 +34,9 @@ Ext.define("Ext.draw.modifier.Highlight", {
         return oldStyle;
     },
 
-    // Inherited
+    /**
+     * @inheritdoc
+     */
     prepareAttributes: function (attr) {
         if (!attr.hasOwnProperty('highlightOriginal')) {
             attr.highlighted = false;
@@ -75,6 +85,12 @@ Ext.define("Ext.draw.modifier.Highlight", {
         });
     },
 
+    /**
+     * Filter modifier changes if overriding source attributes.
+     * @param attr The source attributes.
+     * @param changes The modifier changes.
+     * @return {*} The filtered changes.
+     */
     filterChanges: function (attr, changes) {
         var me = this,
             name,
@@ -102,7 +118,9 @@ Ext.define("Ext.draw.modifier.Highlight", {
         return changes;
     },
 
-    // Inherited
+    /**
+     * @inheritdoc
+     */
     pushDown: function (attr, changes) {
         var style = this.getHighlightStyle(),
             original = attr.highlightOriginal,
@@ -154,7 +172,9 @@ Ext.define("Ext.draw.modifier.Highlight", {
         return changes;
     },
 
-    // Inherited
+    /**
+     * @inheritdoc
+     */
     popUp: function (attr, changes) {
         changes = this.filterChanges(attr, changes);
         Ext.draw.modifier.Modifier.prototype.popUp.call(this, attr, changes);

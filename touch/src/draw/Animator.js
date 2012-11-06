@@ -1,5 +1,7 @@
 /**
- *
+ * @class Ext.draw.Animator
+ * 
+ * Singleton class that manages the animation pool.
  */
 Ext.define('Ext.draw.Animator', {
     uses: ['Ext.draw.Draw'],
@@ -48,6 +50,9 @@ Ext.define('Ext.draw.Animator', {
         for (; i < l; ++i) {
             if (animations[i] === animation) {
                 animations.splice(i, 1);
+                if ('fireEvent' in animation) {
+                    animation.fireEvent('animationend', animation);
+                }
                 return;
             }
         }
@@ -89,9 +94,11 @@ Ext.define('Ext.draw.Animator', {
             animation.step(frameTime);
             if (animation.animating) {
                 animations[j++] = animation;
-            } else if (animation.fireEvent) {
+            } else {
                 me.animations.splice(j, 1);
-                animation.fireEvent('animationend');
+                if (animation.fireEvent) {
+                    animation.fireEvent('animationend');
+                }
             }
         }
     },

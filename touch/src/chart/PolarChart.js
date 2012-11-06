@@ -15,7 +15,15 @@ Ext.define('Ext.chart.PolarChart', {
     xtype: 'polar',
 
     config: {
+        /**
+         * @cfg {Array} center Determines the center of the polar chart.
+         * Updated when the chart performs layout.
+         */
         center: [0, 0],
+        /**
+         * @cfg {Number} radius Determines the radius of the polar chart.
+         * Updated when the chart performs layout.
+         */
         radius: 0
     },
 

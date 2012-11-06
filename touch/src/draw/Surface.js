@@ -91,7 +91,7 @@ Ext.define('Ext.draw.Surface', {
     defaultIdPrefix: 'ext-surface-',
 
     /**
-     *
+     * The reported device pixel density.
      */
     devicePixelRatio: window.devicePixelRatio,
 
@@ -173,9 +173,9 @@ Ext.define('Ext.draw.Surface', {
     },
 
     /**
-     * Round the number to align the pixels on device.
-     * @param num
-     * @return {Number}
+     * Round the number to align to the pixels on device.
+     * @param num The number to align.
+     * @return {Number} The resultant alignment.
      */
     roundPixel: function (num) {
         return Math.round(this.devicePixelRatio * num) / this.devicePixelRatio;
@@ -183,7 +183,7 @@ Ext.define('Ext.draw.Surface', {
 
     /**
      * Mark the surface to render after another surface is updated.
-     * @param surface
+     * @param surface The surface to wait for.
      */
     waitFor: function (surface) {
         var me = this,
@@ -318,6 +318,9 @@ Ext.define('Ext.draw.Surface', {
         results = [];
         for (i = 0, ln = items.length; i < ln; i++) {
             sprite = items[i];
+            if (!items[i]) {
+                continue;
+            }
             sprite = me.prepareItems(args[0])[0];
             groups = sprite.group;
             if (groups.length) {
@@ -407,6 +410,7 @@ Ext.define('Ext.draw.Surface', {
 
     /**
      * @private
+     * Initialize and apply defaults to surface items.
      */
     prepareItems: function (items) {
         items = [].concat(items);
@@ -557,6 +561,10 @@ Ext.define('Ext.draw.Surface', {
                 Ext.draw.Surface.stableSort(items);
                 this.setDirty(true);
             }
+
+            for (i = 0, ln = items.length; i < ln; i++) {
+                items[i].attr.dirtyZIndex = false;
+            }
         }
     },
 
@@ -607,8 +615,9 @@ Ext.define('Ext.draw.Surface', {
             for (i = 0, ln = items.length; i < ln; i++) {
                 item = items[i];
                 item.applyTransformations();
-                item.attr.dirtyZIndex = false;
-                me.renderSprite(item);
+                if (false === me.renderSprite(item)) {
+                    return;
+                }
                 item.attr.textPositionCount = me.textPosition;
             }
 
@@ -622,9 +631,20 @@ Ext.define('Ext.draw.Surface', {
      * Do not call it from outside `renderFrame` method.
      *
      * @param {Ext.draw.sprite.Sprite} sprite The Sprite to be rendered.
+     * @return {Boolean} returns `false` to stop the rendering to continue.
      */
     renderSprite: Ext.emptyFn,
 
+    /**
+     * @private
+     * Clears the current transformation state on the surface.
+     */
+    clearTransform: Ext.emptyFn,
+
+    /**
+     * Returns 'true' if the surface is dirty.
+     * @return {Boolean} 'true' if the surface is dirty
+     */
     getDirty: function () {
         return this._dirty;
     },

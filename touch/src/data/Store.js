@@ -401,7 +401,7 @@ Ext.define('Ext.data.Store', {
      * Fires whenever records have been loaded into the store. Note that you should not listen
      * for this event in order to refresh the data view. Use the {@link #refresh} event for this instead.
      * @param {Ext.data.Store} this
-     * @param {Ext.util.Grouper[]} records An array of records
+     * @param {Ext.data.Model[]} records An array of records
      * @param {Boolean} successful `true` if the operation was successful.
      * @param {Ext.data.Operation} operation The associated operation.
      */
@@ -2103,9 +2103,7 @@ Ext.define('Ext.data.Store', {
         var records = operation.getRecords(),
             me = this,
             destroyRemovedRecords = me.getDestroyRemovedRecords(),
-            syncRemovedRecords = me.getSyncRemovedRecords(),
             currentRecords = data.all.slice(),
-            removed = me.removed,
             ln = currentRecords.length,
             ln2 = records.length,
             ids = {},
@@ -2121,13 +2119,8 @@ Ext.define('Ext.data.Store', {
 
                 // If the record we are removing is not part of the records we are about to add to the store then handle
                 // the destroying or removing of the record to avoid memory leaks.
-                if (ids[record.id] !== true) {
-                    if (syncRemovedRecords && record.phantom !== true) {
-                        removed.push(record);
-                    }
-                    else if (destroyRemovedRecords && !syncRemovedRecords && !record.stores.length) {
-                        record.destroy();
-                    }
+                if (ids[record.id] !== true && destroyRemovedRecords && !record.stores.length) {
+                    record.destroy();
                 }
             }
 

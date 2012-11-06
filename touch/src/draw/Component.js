@@ -143,7 +143,8 @@ Ext.define('Ext.draw.Component', {
                         {
                             reference: 'watermarkElement',
                             cls: 'x-chart-watermark',
-                            html: Ext.draw.Component.WATERMARK
+                            html: Ext.draw.Component.WATERMARK,
+                            style: Ext.draw.Component.WATERMARK ? '': 'display: none'
                         }
                     ]
                 }
@@ -159,6 +160,7 @@ Ext.define('Ext.draw.Component', {
 
     /**
      * @protected
+     * Place water mark after resize.
      */
     onPlaceWatermark: function () {
         // Do nothing

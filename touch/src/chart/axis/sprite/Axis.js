@@ -1,8 +1,10 @@
 /**
+ * @private
  * @class Ext.chart.axis.sprite.Axis
  * @extends Ext.draw.sprite.Sprite
- * 
- * Axis sprite.
+ *
+ * The axis sprite. Currently all types of the axis will be rendered with this sprite.
+ * TODO(touch-2.2): Split different types of axis into different sprite classes.
  */
 Ext.define("Ext.chart.axis.sprite.Axis", {
     extend: 'Ext.draw.sprite.Sprite',
@@ -15,28 +17,141 @@ Ext.define("Ext.chart.axis.sprite.Axis", {
     inheritableStatics: {
         def: {
             processors: {
+                /**
+                 * @cfg {Boolean} grid 'true' if the axis has a grid.
+                 */
                 grid: 'bool',
+                
+                /**
+                 * @cfg {Boolean} axisLine 'true' if the main line of the axis is drawn.
+                 */
                 axisLine: 'bool',
+                
+                /**
+                 * @cfg {Boolean} minorTricks 'true' if the axis has sub ticks.
+                 */
                 minorTicks: 'bool',
+
+                /**
+                 * @cfg {Number} minorTickSize The length of the minor ticks.
+                 */
                 minorTickSize: 'number',
+
+                /**
+                 * @cfg {Boolean} majorTicks 'true' if the axis has major ticks.
+                 */
                 majorTicks: 'bool',
+
+                /**
+                 * @cfg {Number} majorTickSize The length of the major ticks.
+                 */
                 majorTickSize: 'number',
+
+                /**
+                 * @cfg {Number} length The total length of the axis.
+                 */
                 length: 'number',
+
+                /**
+                 * @private
+                 * @cfg {Number} startGap Axis start determined by the chart inset padding.
+                 */
                 startGap: 'number',
+
+                /**
+                 * @private
+                 * @cfg {Number} endGap Axis end determined by the chart inset padding.
+                 */
                 endGap: 'number',
-                visibleRange: 'data',
+
+                /**
+                 * @cfg {Number} dataMin The minimum value of the axis data.
+                 */
+                dataMin: 'number',
+
+                /**
+                 * @cfg {Number} dataMax The maximum value of the axis data.
+                 */
+                dataMax: 'number',
+
+                /**
+                 * @cfg {Number} visibleMin The minimum value that is displayed.
+                 */
+                visibleMin: 'number',
+
+                /**
+                 * @cfg {Number} visibleMax The maximum value that is displayed.
+                 */
+                visibleMax: 'number',
+
+                /**
+                 * @cfg {String} position The position of the axis on the chart.
+                 */
                 position: 'enums(left,right,top,bottom,angular,radial)',
+
+                /**
+                 * @cfg {Number} minStepSize The minimum step size between ticks.
+                 */
                 minStepSize: 'number',
+
+                /**
+                 * @private
+                 * @cfg {Number} estStepSize The estimated step size between ticks.
+                 */
                 estStepSize: 'number',
+
+                /**
+                 * @private
+                 * Unused.
+                 */
                 titleOffset: 'number',
+
+                /**
+                 * @cfg {Number} textPadding The padding around axis labels to determine collision.
+                 */
                 textPadding: 'number',
+
+                /**
+                 * @cfg {Number} min The minimum value of the axis.
+                 */
                 min: 'number',
+
+                /**
+                 * @cfg {Number} max The maximum value of the axis.
+                 */
                 max: 'number',
+
+                /**
+                 * @cfg {Number} centerX The central point of the angular axis on the x-axis.
+                 */
                 centerX: 'number',
+
+                /**
+                 * @cfg {Number} centerX The central point of the angular axis on the y-axis.
+                 */
                 centerY: 'number',
+
+                /**
+                 * @private
+                 * @cfg {Number} radius
+                 * Unused.
+                 */
                 radius: 'number',
+
+                /**
+                 * @cfg {Number} The starting rotation of the angular axis.
+                 */
                 baseRotation: 'number',
+
+                /**
+                 * @private
+                 * Unused.
+                 */
                 data: 'default',
+                
+                /**
+                 * @cfg {Boolean} 'true' if the estimated step size is adjusted by text size.
+                 */
                 enlargeEstStepSizeByText: 'bool'
             },
 
@@ -50,7 +165,10 @@ Ext.define("Ext.chart.axis.sprite.Axis", {
                 length: 0,
                 startGap: 0,
                 endGap: 0,
-                visibleRange: [0, 1],
+                visibleMin: 0,
+                visibleMax: 1,
+                dataMin: 0,
+                dataMax: 1,
                 position: '',
                 minStepSize: 0,
                 estStepSize: 42,
@@ -63,6 +181,8 @@ Ext.define("Ext.chart.axis.sprite.Axis", {
                 data: null,
                 titleOffset: 0,
                 textPadding: 5,
+                scalingCenterY: 0,
+                scalingCenterX: 0,
                 // Override default
                 strokeStyle: 'black',
                 enlargeEstStepSizeByText: false
@@ -79,7 +199,10 @@ Ext.define("Ext.chart.axis.sprite.Axis", {
                 minStepSize: 'layout',
                 estStepSize: 'layout',
                 data: 'layout',
-                visibleRange: 'layout',
+                dataMin: 'layout',
+                dataMax: 'layout',
+                visibleMin: 'layout',
+                visibleMax: 'layout',
                 enlargeEstStepSizeByText: 'layout'
             },
             updaters: {
@@ -92,16 +215,39 @@ Ext.define("Ext.chart.axis.sprite.Axis", {
 
     config: {
 
+        /**
+         * @cfg {Object} label
+         *
+         * The label configuration object for the Axis. This object may include style attributes
+         * like `spacing`, `padding`, `font` that receives a string or number and
+         * returns a new string with the modified values.
+         */
         label: null,
 
+        /**
+         * @cfg {Object|Ext.chart.axis.layout.Layout} layout The layout configuration used by the axis.
+         */
         layout: null,
 
+        /**
+         * @cfg {Object|Ext.chart.axis.segmenter.Segmenter} segmenter The method of segmenter used by the axis.
+         */
         segmenter: null,
 
+        /**
+         * @cfg {Function} renderer Allows direct customisation of rendered axis sprites.
+         */
         renderer: null,
 
+        /**
+         * @private
+         * @cfg {Object} layoutContext Stores the context after calculating layout.
+         */
         layoutContext: null,
 
+        /**
+         * @cfg {Ext.chart.axis.Axis} axis The axis represented by the this sprite.
+         */
         axis: null
     },
 
@@ -115,10 +261,31 @@ Ext.define("Ext.chart.axis.sprite.Axis", {
         var me = this,
             attr = me.attr,
             layout = me.getLayout(),
+            min = attr.dataMin + (attr.dataMax - attr.dataMin) * attr.visibleMin,
+            max = attr.dataMin + (attr.dataMax - attr.dataMin) * attr.visibleMax,
             context = {
                 attr: attr,
                 segmenter: me.getSegmenter()
             };
+
+        if (attr.position === 'left' || attr.position === 'right') {
+            attr.translationX = 0;
+            attr.translationY = max * attr.length / (max - min);
+            attr.scalingX = 1;
+            attr.scalingY = -attr.length / (max - min);
+            attr.scalingCenterY = 0;
+            attr.scalingCenterX = 0;
+            me.applyTransformations(true);
+        } else if (attr.position === 'top' || attr.position === 'bottom') {
+            attr.translationX = -min * attr.length / (max - min);
+            attr.translationY = 0;
+            attr.scalingX = attr.length / (max - min);
+            attr.scalingY = 1;
+            attr.scalingCenterY = 0;
+            attr.scalingCenterX = 0;
+            me.applyTransformations(true);
+        }
+
         if (layout) {
             layout.calculateLayout(context);
             me.setLayoutContext(context);
@@ -402,6 +569,7 @@ Ext.define("Ext.chart.axis.sprite.Axis", {
                 attr.bbox.plain.dirty = true;
                 attr.bbox.transform.dirty = true;
                 me.doThicknessChanged();
+                return false;
             }
         }
     },
@@ -519,12 +687,14 @@ Ext.define("Ext.chart.axis.sprite.Axis", {
         var me = this,
             layout = me.getLayoutContext();
         if (layout) {
+            if (false === me.renderLabels(surface, ctx, layout, clipRegion)) {
+                return false;
+            }
             ctx.beginPath();
             me.renderTicks(surface, ctx, layout, clipRegion);
             me.renderAxisLine(surface, ctx, layout, clipRegion);
             me.renderGridLines(surface, ctx, layout, clipRegion);
             ctx.stroke();
-            me.renderLabels(surface, ctx, layout, clipRegion);
         }
     }
 });

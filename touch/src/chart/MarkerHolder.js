@@ -2,7 +2,7 @@
  * @class Ext.chart.MarkerHolder
  * @extends Ext.mixin.Mixin
  * 
- * 
+ * Mixin that provides the functionality to place markers.
  */
 Ext.define("Ext.chart.MarkerHolder", {
     extend: 'Ext.mixin.Mixin',

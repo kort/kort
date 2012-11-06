@@ -1,6 +1,6 @@
 /**
  * @class Ext.chart.series.Pie
- * @extends Ext.chart.series.Series
+ * @extends Ext.chart.series.Polar
  *
  * Creates a Pie Chart. A Pie Chart is a useful visualization technique to display quantitative information for different
  * categories that also have a meaning as a whole.
@@ -8,22 +8,20 @@
  * documentation for more information. A typical configuration object for the pie series could be:
  *
  *     @example preview
- *     var store = new Ext.data.JsonStore({
- *         fields: ['name', 'data1', 'data2', 'data3', 'data4', 'data5'],
- *         data: [
- *             {'name':'metric one', 'data1':10, 'data2':12, 'data3':14, 'data4':8, 'data5':13},
- *             {'name':'metric two', 'data1':7, 'data2':8, 'data3':16, 'data4':10, 'data5':3},
- *             {'name':'metric three', 'data1':5, 'data2':2, 'data3':14, 'data4':12, 'data5':7},
- *             {'name':'metric four', 'data1':2, 'data2':14, 'data3':6, 'data4':1, 'data5':23},
- *             {'name':'metric five', 'data1':27, 'data2':38, 'data3':36, 'data4':13, 'data5':33}
- *         ]
- *     });
- *
  *     var chart = new Ext.chart.PolarChart({
  *         animate: true,
  *         interactions: ['rotate'],
  *         colors: ["#115fa6", "#94ae0a", "#a61120", "#ff8809", "#ffd13e"],
- *         store: store,
+ *         store: {
+ *           fields: ['name', 'data1', 'data2', 'data3', 'data4', 'data5'],
+ *           data: [
+ *               {'name':'metric one', 'data1':10, 'data2':12, 'data3':14, 'data4':8, 'data5':13},
+ *               {'name':'metric two', 'data1':7, 'data2':8, 'data3':16, 'data4':10, 'data5':3},
+ *               {'name':'metric three', 'data1':5, 'data2':2, 'data3':14, 'data4':12, 'data5':7},
+ *               {'name':'metric four', 'data1':2, 'data2':14, 'data3':6, 'data4':1, 'data5':23},
+ *               {'name':'metric five', 'data1':27, 'data2':38, 'data3':36, 'data4':13, 'data5':33}
+ *           ]
+ *         },
  *         series: [{
  *             type: 'pie',
  *             labelField: 'name',
@@ -70,10 +68,19 @@ Ext.define('Ext.chart.series.Pie', {
          */
         field: null,
 
+        /**
+         * @cfg {Number} rotation The starting angle of the pie slices.
+         */
         rotation: 0,
 
+        /**
+         * @cfg {Number} [totalAngle=2*PI] The total angle of the pie series.
+         */
         totalAngle: Math.PI * 2,
 
+        /**
+         * @cfg {Array} hidden Determines which pie slices are hidden.
+         */
         hidden: [],
 
         style: {
@@ -221,9 +228,7 @@ Ext.define('Ext.chart.series.Pie', {
                     sprite.addModifier('highlight', true);
                 }
                 if (me.getLabelField()) {
-                    me.getLabel().setAttributes({
-                        translationX: center[0] + offsetX,
-                        translationY: center[1] + offsetY,
+                    me.getLabel().getTemplate().setAttributes({
                         labelOverflowPadding: this.getLabelOverflowPadding()
                     });
                     me.getLabel().getTemplate().fx.setCustomDuration({'callout': 200});
@@ -293,10 +298,11 @@ Ext.define('Ext.chart.series.Pie', {
         if (store) {
             var items = store.getData().items,
                 labelField = this.getLabelField(),
+                field = this.getField(),
                 hidden = this.getHidden();
             for (var i = 0; i < items.length; i++) {
                 target.push({
-                    name: labelField ? String(items[i].get(labelField)) : this.getId(),
+                    name: labelField ? String(items[i].get(labelField))  : (field && field[i]) || this.getId(),
                     mark: this.getStyleByIndex(i).fillStyle || this.getStyleByIndex(i).strokeStyle || 'black',
                     disabled: hidden[i],
                     series: this.getId(),

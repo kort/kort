@@ -310,13 +310,13 @@ Ext.define('Ext.Component', {
         cls: null,
 
         /**
-         * @cfg {String} floatingCls The CSS class to add to this component when it is floatable.
+         * @cfg {String} [floatingCls="x-floating"] The CSS class to add to this component when it is floatable.
          * @accessor
          */
-        floatingCls: 'x-floating',
+        floatingCls: clsPrefix + 'floating',
 
         /**
-         * @cfg {String} hiddenCls The CSS class to add to the component when it is hidden
+         * @cfg {String} [hiddenCls="x-item-hidden"] The CSS class to add to the component when it is hidden
          * @accessor
          */
         hiddenCls: clsPrefix + 'item-hidden',
@@ -384,7 +384,7 @@ Ext.define('Ext.Component', {
         border: null,
 
         /**
-         * @cfg {String} styleHtmlCls
+         * @cfg {String} [styleHtmlCls="x-html"]
          * The class that is added to the content target when you set `styleHtmlContent` to `true`.
          * @accessor
          */
@@ -677,7 +677,7 @@ Ext.define('Ext.Component', {
         data: null,
 
         /**
-         * @cfg {String} disabledCls The CSS class to add to the component when it is disabled
+         * @cfg {String} [disabledCls="x-item-disabled"] The CSS class to add to the component when it is disabled
          * @accessor
          */
         disabledCls: clsPrefix + 'item-disabled',

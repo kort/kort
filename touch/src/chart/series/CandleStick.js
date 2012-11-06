@@ -5,20 +5,18 @@
  * Creates a candlestick or OHLC Chart.
  *
  *     @example preview
- *     var store = new Ext.data.JsonStore({
- *         fields: ['time', 'open', 'high', 'low', 'close'],
- *         data: [
+ *     var chart = new Ext.chart.CartesianChart({
+ *         animate: true,
+ *         store: {
+ *           fields: ['time', 'open', 'high', 'low', 'close'],
+ *           data: [
  *             {'time':new Date('Jan 1 2010').getTime(), 'open':600, 'high':614, 'low':578, 'close':590},
  *             {'time':new Date('Jan 2 2010').getTime(), 'open':590, 'high':609, 'low':580, 'close':580},
  *             {'time':new Date('Jan 3 2010').getTime(), 'open':580, 'high':602, 'low':578, 'close':602},
  *             {'time':new Date('Jan 4 2010').getTime(), 'open':602, 'high':614, 'low':586, 'close':586},
  *             {'time':new Date('Jan 5 2010').getTime(), 'open':586, 'high':602, 'low':565, 'close':565}
- *         ]
- *     });
- *
- *     var chart = new Ext.chart.CartesianChart({
- *         animate: true,
- *         store: store,
+ *           ]
+ *         },
  *         axes: [{
  *             type: 'numeric',
  *             position: 'left',

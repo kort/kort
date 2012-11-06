@@ -19,7 +19,7 @@
  *             x: 0,
  *             y: 0,
  *             r: 1
- *           }
+ *           },
  *           stops: [
  *             {
  *               offset: 0,
@@ -118,7 +118,9 @@ Ext.define("Ext.draw.gradient.Radial", {
         return circle;
     },
 
-    // Inherited
+    /**
+     * @inheritdoc
+     */
     generateGradient: function (ctx, bbox) {
         var start = this.getStart(),
             end = this.getEnd(),

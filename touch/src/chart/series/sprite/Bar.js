@@ -1,7 +1,7 @@
 /**
  * @class Ext.chart.series.sprite.Bar
  * @extends Ext.chart.series.sprite.StackedCartesian
- * 
+ *
  * Draws a sprite used in the bar series.
  */
 Ext.define("Ext.chart.series.sprite.Bar", {
@@ -11,20 +11,38 @@ Ext.define("Ext.chart.series.sprite.Bar", {
     inheritableStatics: {
         def: {
             processors: {
+                /**
+                 * @cfg {Number} [minBarWidth=2] The minimum bar width.
+                 */
                 minBarWidth: 'number',
+
+                /**
+                 * @cfg {Number} [maxBarWidth=100] The maximum bar width.
+                 */
                 maxBarWidth: 'number',
+
+                /**
+                 * @cfg {Number} [minGapWidth=5] The minimum gap between bars.
+                 */
                 minGapWidth: 'number',
+
+                /**
+                 * @cfg {Number} [radius=0] The degree of rounding for rounded bars.
+                 */
                 radius: 'number',
+
+                /**
+                 * @cfg {Number} [inGroupGapWidth=3] The gap between grouped bars.
+                 */
                 inGroupGapWidth: 'number',
                 renderer: 'default'
             },
             defaults: {
                 minBarWidth: 2,
-                maxBarWidth: Infinity,
+                maxBarWidth: 100,
                 minGapWidth: 5,
                 inGroupGapWidth: 3,
                 radius: 0,
-                transformFillStroke: true,
                 renderer: null
             }
         }
@@ -94,6 +112,7 @@ Ext.define("Ext.chart.series.sprite.Bar", {
         this.putMarker("items", itemCfg, index, !this.attr.renderer);
     },
 
+    //@inheritdoc
     renderClipped: function (surface, ctx, clip) {
         if (this.cleanRedraw) {
             return;
@@ -110,8 +129,7 @@ Ext.define("Ext.chart.series.sprite.Bar", {
             yLow, yHi,
             lineWidth = ctx.lineWidth,
             matrix = attr.matrix,
-            count = (dataX[dataX.length - 1] - dataX[0]) / (dataX.length - 1) || 1,
-            maxBarWidth = count * matrix.getXX() - attr.minGapWidth,
+            maxBarWidth = matrix.getXX() - attr.minGapWidth,
             barWidth = surface.roundPixel(Math.max(attr.minBarWidth, (Math.min(maxBarWidth, attr.maxBarWidth) - inGroupGapWidth * (groupCount - 1)) / groupCount)),
             surfaceMatrix = this.surfaceMatrix,
             left, right, bottom, top, i, center,

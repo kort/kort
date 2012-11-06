@@ -3,31 +3,27 @@
  * axes by panning and/or zooming. Navigation can be limited to particular axes. Zooming is
  * performed by pinching on the chart or axis area; panning is performed by single-touch dragging.
  *
- * For devices which do not support multiple-touch events, zooming can not be done via pinch
- * gestures; in this case the interaction will allow the user to perform both zooming and
- * panning using the same single-touch drag gesture. Tapping the chart will switch between
- * the two modes, {@link #modeIndicatorDuration} briefly displaying a graphical indicator
- * showing whether it is in zoom or pan mode.
+ * For devices which do not support multiple-touch events, zooming can not be done via pinch gestures; in this case the
+ * interaction will allow the user to perform both zooming and panning using the same single-touch drag gesture.
+ * {@link #modeToggleButton} provides a button to indicate and toggle between two modes.
  *
  *     @example preview
- *     var store = new Ext.data.JsonStore({
- *         fields: ['name', 'data1', 'data2', 'data3', 'data4', 'data5'],
- *         data: [
- *             {'name':'metric one', 'data1':10, 'data2':12, 'data3':14, 'data4':8, 'data5':13},
- *             {'name':'metric two', 'data1':7, 'data2':8, 'data3':16, 'data4':10, 'data5':3},
- *             {'name':'metric three', 'data1':5, 'data2':2, 'data3':14, 'data4':12, 'data5':7},
- *             {'name':'metric four', 'data1':2, 'data2':14, 'data3':6, 'data4':1, 'data5':23},
- *             {'name':'metric five', 'data1':27, 'data2':38, 'data3':36, 'data4':13, 'data5':33}
- *         ]
- *     });
- *
  *     var lineChart = new Ext.chart.CartesianChart({
  *          interactions: [{
  *             type: 'panzoom',
  *             zoomOnPanGesture: true
  *         }],
  *         animate: true,
- *         store: store,
+ *         store: {
+ *           fields: ['name', 'data1', 'data2', 'data3', 'data4', 'data5'],
+ *           data: [
+ *               {'name':'metric one', 'data1':10, 'data2':12, 'data3':14, 'data4':8, 'data5':13},
+ *               {'name':'metric two', 'data1':7, 'data2':8, 'data3':16, 'data4':10, 'data5':3},
+ *               {'name':'metric three', 'data1':5, 'data2':2, 'data3':14, 'data4':12, 'data5':7},
+ *               {'name':'metric four', 'data1':2, 'data2':14, 'data3':6, 'data4':1, 'data5':23},
+ *               {'name':'metric five', 'data1':27, 'data2':38, 'data3':36, 'data4':13, 'data5':33}
+ *           ]
+ *         },
  *         axes: [{
  *             type: 'numeric',
  *             position: 'left',
@@ -148,9 +144,9 @@ Ext.define('Ext.chart.interactions.PanZoom', {
         },
 
         minZoom: 1,
-        
+
         maxZoom: 10000,
-        
+
         /**
          * @cfg {Boolean} showOverflowArrows
          * If `true`, arrows will be conditionally shown at either end of each axis to indicate that the
@@ -256,6 +252,7 @@ Ext.define('Ext.chart.interactions.PanZoom', {
             me.startY = e.pageY - xy[1] - region[1];
             me.oldVisibleRanges = null;
             me.hideLabels();
+            me.getChart().suspendThicknessChanged();
         }
     },
 
@@ -275,6 +272,7 @@ Ext.define('Ext.chart.interactions.PanZoom', {
 
     onPanGestureEnd: function (e) {
         var me = this;
+        me.getChart().resumeThicknessChanged();
         me.showLabels();
         me.sync();
     },
@@ -289,7 +287,7 @@ Ext.define('Ext.chart.interactions.PanZoom', {
                 newPoints = [e.touches[0].point.x - x, e.touches[0].point.y - y, e.touches[1].point.x - x, e.touches[1].point.y - y],
                 xDistance = Math.max(44, Math.abs(newPoints[2] - newPoints[0])),
                 yDistance = Math.max(44, Math.abs(newPoints[3] - newPoints[1]));
-
+            me.getChart().suspendThicknessChanged();
             me.lastZoomDistances = [xDistance, yDistance];
             me.lastPoints = newPoints;
             me.oldVisibleRanges = null;
@@ -356,11 +354,12 @@ Ext.define('Ext.chart.interactions.PanZoom', {
         var me = this,
             axisConfigs = me.getAxes(),
             axes = me.getChart().getAxes(),
+            i, ln = axes.length,
             result = [], isEventOnAxis = false,
             config;
 
         if (e) {
-            for (var i = 0; i < axes.length; i++) {
+            for (i = 0; i < ln; i++) {
                 if (this.isEventOnAxis(e, axes[i])) {
                     isEventOnAxis = true;
                     break;
@@ -368,7 +367,7 @@ Ext.define('Ext.chart.interactions.PanZoom', {
             }
         }
 
-        for (var i = 0; i < axes.length; i++) {
+        for (i = 0; i < ln; i++) {
             config = axisConfigs[axes[i].getPosition()];
             if (config && config.allowPan !== false && (!isEventOnAxis || this.isEventOnAxis(e, axes[i]))) {
                 result.push(axes[i]);
@@ -382,10 +381,11 @@ Ext.define('Ext.chart.interactions.PanZoom', {
             axisConfigs = me.getAxes(),
             axes = me.getChart().getAxes(),
             result = [],
+            i, ln = axes.length, axis,
             isEventOnAxis = false, config;
 
         if (e) {
-            for (var i = 0; i < axes.length; i++) {
+            for (i = 0; i < ln; i++) {
                 if (this.isEventOnAxis(e, axes[i])) {
                     isEventOnAxis = true;
                     break;
@@ -393,8 +393,8 @@ Ext.define('Ext.chart.interactions.PanZoom', {
             }
         }
 
-        for (var i = 0; i < axes.length; i++) {
-            var axis = axes[i];
+        for (i = 0; i < ln; i++) {
+            axis = axes[i];
             config = axisConfigs[axis.getPosition()];
             if (config && config.allowZoom !== false && (!isEventOnAxis || this.isEventOnAxis(e, axis))) {
                 result.push(axis);
@@ -454,13 +454,13 @@ Ext.define('Ext.chart.interactions.PanZoom', {
         if (visibleLength < 0) {
             visibleLength = -visibleLength;
         }
-        
+
         if (visibleLength * actualMinZoom > 1) {
             visibleLength = 1;
         }
 
         if (visibleLength * actualMaxZoom < 1) {
-            visibleLength = 1/actualMaxZoom;
+            visibleLength = 1 / actualMaxZoom;
         }
 
         axis.setVisibleRange([

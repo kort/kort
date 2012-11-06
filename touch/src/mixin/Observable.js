@@ -516,7 +516,7 @@ Ext.define('Ext.mixin.Observable', {
      *
      * See the [Events Guide](#!/guide/events) for more.
      *
-     * @param {String} eventName The name of the event to listen for. May also be an object who's property names are
+     * @param {String/String[]/Object} eventName The name of the event to listen for. May also be an object who's property names are
      * event names.
      * @param {Function} fn The method the event invokes.  Will be called with arguments given to
      * {@link #fireEvent} plus the `options` parameter described below.
@@ -594,7 +594,7 @@ Ext.define('Ext.mixin.Observable', {
      *
      * Same as {@link #addListener} with `order` set to `'before'`.
      *
-     * @param {String} eventName The name of the event to listen for.
+     * @param {String/String[]/Object} eventName The name of the event to listen for.
      * @param {Function} fn The method the event invokes.
      * @param {Object} [scope] The scope for `fn`.
      * @param {Object} [options] An object containing handler configuration.
@@ -608,7 +608,7 @@ Ext.define('Ext.mixin.Observable', {
      *
      * Same as {@link #addListener} with `order` set to `'after'`.
      *
-     * @param {String} eventName The name of the event to listen for.
+     * @param {String/String[]/Object} eventName The name of the event to listen for.
      * @param {Function} fn The method the event invokes.
      * @param {Object} [scope] The scope for `fn`.
      * @param {Object} [options] An object containing handler configuration.
@@ -620,7 +620,7 @@ Ext.define('Ext.mixin.Observable', {
     /**
      * Removes an event handler.
      *
-     * @param {String} eventName The type of event the handler was associated with.
+     * @param {String/String[]/Object} eventName The type of event the handler was associated with.
      * @param {Function} fn The handler to remove. **This must be a reference to the function passed into the
      * {@link #addListener} call.**
      * @param {Object} [scope] The scope originally specified for the handler. It must be the same as the
@@ -638,7 +638,7 @@ Ext.define('Ext.mixin.Observable', {
      *
      * Same as {@link #removeListener} with `order` set to `'before'`.
      *
-     * @param {String} eventName The name of the event the handler was associated with.
+     * @param {String/String[]/Object} eventName The name of the event the handler was associated with.
      * @param {Function} fn The handler to remove.
      * @param {Object} [scope] The scope originally specified for `fn`.
      * @param {Object} [options] Extra options object.
@@ -652,7 +652,7 @@ Ext.define('Ext.mixin.Observable', {
      *
      * Same as {@link #removeListener} with `order` set to `'after'`.
      *
-     * @param {String} eventName The name of the event the handler was associated with.
+     * @param {String/String[]/Object} eventName The name of the event the handler was associated with.
      * @param {Function} fn The handler to remove.
      * @param {Object} [scope] The scope originally specified for `fn`.
      * @param {Object} [options] Extra options object.

@@ -8,36 +8,36 @@ Ext.define('Ext.chart.series.Polar', {
     config: {
         /**
          * @cfg {Number} rotation
-         * The angle in degrees at which the first pie slice should start.
+         * The angle in degrees at which the first polar series item should start.
          */
         rotation: 0,
 
         /**
          * @cfg {Number} radius
-         * The radius of the Pie chart. Set to `null` will fit the Pie chart to the boundary.
+         * The radius of the polar series. Set to `null` will fit the polar series to the boundary.
          */
         radius: null,
 
         /**
-         * @cfg {Array} Center for the pie chart.
+         * @cfg {Array} center for the polar series.
          */
         center: [0, 0],
 
         /**
          * @cfg {Number} offsetX
-         * The x-offset of center of the slices related to the center of the boundary.
+         * The x-offset of center of the polar series related to the center of the boundary.
          */
         offsetX: 0,
 
         /**
          * @cfg {Number} offsetY
-         * The y-offset of center of the slices related to the center of the boundary.
+         * The y-offset of center of the polar series related to the center of the boundary.
          */
         offsetY: 0,
 
         /**
          * @cfg {Boolean} showInLegend
-         * Whether to add the pie chart elements as legend items.
+         * Whether to add the series elements as legend items.
          */
         showInLegend: true,
 
@@ -48,7 +48,7 @@ Ext.define('Ext.chart.series.Polar', {
         xField: null,
 
         /**
-         * @cfg {Object} yField
+         * @cfg {String} yField
          * The store record field name for the deflection of the graph in the radar series.
          */
         yField: null,

@@ -83,13 +83,14 @@ Ext.define('Ext.field.Select', {
         displayField: 'text',
 
         /**
-         * @cfg {Ext.data.Store} store (Optional) store instance used to provide selection options data.
+         * @cfg {Ext.data.Store/Object/String} store The store to provide selection options data.
+         * Either a Store instance, configuration object or store ID.
          * @accessor
          */
         store: null,
 
         /**
-         * @cfg {Array} options (Optional) An array of select options.
+         * @cfg {Array} options An array of select options.
          *
          *     [
          *         {text: 'First Option',  value: 'first'},

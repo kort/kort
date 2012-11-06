@@ -1,5 +1,5 @@
 /**
- * @deprecated 2.2 
+ * @deprecated
  * A collection of sprites that delegates sprite functions to its elements.
  * 
  * Avoid using this multiple groups in a surface as it is error prone.

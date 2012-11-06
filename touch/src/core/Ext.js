@@ -76,6 +76,7 @@
 
     Ext.apply(Ext, {
         /**
+         * @property {Function}
          * A reusable empty function
          */
         emptyFn: emptyFn,

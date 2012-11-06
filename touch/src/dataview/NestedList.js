@@ -208,7 +208,7 @@ Ext.define('Ext.dataview.NestedList', {
         },
 
         /**
-         * @cfg {Ext.data.TreeStore} store The tree store to be used for this nested list.
+         * @cfg {Ext.data.TreeStore/String} store The tree store to be used for this nested list.
          */
         store: null,
 
@@ -665,7 +665,10 @@ Ext.define('Ext.dataview.NestedList', {
             if (animation) {
                 animation.setReverse(true);
             }
-            me.setActiveItem(me.getLastActiveList());
+            list = me.getLastActiveList();
+            list.getStore().setNode(node);
+            node.expand();
+            me.setActiveItem(list);
         }
         else {
             if (firstList && secondList) {

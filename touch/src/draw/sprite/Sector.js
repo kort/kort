@@ -12,37 +12,37 @@ Ext.define("Ext.draw.sprite.Sector", {
         def: {
             processors: {
                 /**
-                 * @cfg {Number} centerX The center coordinate of the sprite on the x-axis.
+                 * @cfg {Number} [centerX=0] The center coordinate of the sprite on the x-axis.
                  */
                 centerX: "number",
 
                 /**
-                 * @cfg {Number} centerY The center coordinate of the sprite on the y-axis.
+                 * @cfg {Number} [centerY=0] The center coordinate of the sprite on the y-axis.
                  */
                 centerY: "number",
 
                 /**
-                 * @cfg {Number} startAngle The starting angle of the sprite.
+                 * @cfg {Number} [startAngle=0] The starting angle of the sprite.
                  */
                 startAngle: "number",
 
                 /**
-                 * @cfg {Number} endAngle The ending angle of the sprite.
+                 * @cfg {Number} [endAngle=0] The ending angle of the sprite.
                  */
                 endAngle: "number",
 
                 /**
-                 * @cfg {Number} startRho The starting point of the radius of the sprite.
+                 * @cfg {Number} [startRho=0] The starting point of the radius of the sprite.
                  */
                 startRho: "number",
 
                 /**
-                 * @cfg {Number} endRho The ending point of the radius of the sprite.
+                 * @cfg {Number} [endRho=150] The ending point of the radius of the sprite.
                  */
                 endRho: "number",
 
                 /**
-                 * @cfg {Number} margin The margin of the sprite from the center of pie.
+                 * @cfg {Number} [margin=0] The margin of the sprite from the center of pie.
                  */
                 margin: "number"
             },

@@ -7,11 +7,25 @@ Ext.define("Ext.chart.series.sprite.Aggregative", {
     inheritableStatics: {
         def: {
             processors: {
+                /**
+                 * @cfg {Object} [dataHigh=null] Data items representing the high values of the aggregated data.
+                 */
                 dataHigh: 'data',
+
+                /**
+                 * @cfg {Object} [dataLow=null] Data items representing the low values of the aggregated data.
+                 */
                 dataLow: 'data',
+
+                /**
+                 * @cfg {Object} [dataClose=null] Data items representing the closing values of the aggregated data.
+                 */
                 dataClose: 'data'
             },
             aliases: {
+                /**
+                 * @cfg {Object} [dataOpen=null] Data items representing the opening values of the aggregated data.
+                 */
                 dataOpen: 'dataY'
             },
             defaults: {

@@ -413,6 +413,10 @@ Ext.define('Ext.dataview.List', {
             me.removeCls(cls);
             me.updatePinHeaders(null);
         }
+
+        if (me.isPainted() && me.listItems.length) {
+            me.setItemsCount(me.listItems.length);
+        }
     },
 
     updatePinHeaders: function(pinnedHeaders) {
@@ -860,9 +864,7 @@ Ext.define('Ext.dataview.List', {
                     this.headerHeight = parseInt(item.getHeader().element.getHeight(), 10);
                 }
 
-                if (height > minimumHeight) {
-                    itemMap.setItemHeight(itemIndex, height);
-                }
+                itemMap.setItemHeight(itemIndex, height);
             }
         }
 
@@ -1000,7 +1002,7 @@ Ext.define('Ext.dataview.List', {
         return headerIndices;
     },
 
-// Handling adds and removes like this is fine for now. It should not perform much slower then a dedicated solution
+    // Handling adds and removes like this is fine for now. It should not perform much slower then a dedicated solution
     onStoreAdd: function() {
         this.doRefresh();
     },
@@ -1011,7 +1013,8 @@ Ext.define('Ext.dataview.List', {
 
     onStoreUpdate: function(store, record, newIndex, oldIndex) {
         var me = this,
-            scroller = me.container.getScrollable().getScroller();
+            scroller = me.container.getScrollable().getScroller(),
+            item;
 
         oldIndex = (typeof oldIndex === 'undefined') ? newIndex : oldIndex;
 
@@ -1021,9 +1024,14 @@ Ext.define('Ext.dataview.List', {
         }
         else {
             if (newIndex >= me.topItemIndex && newIndex < me.topItemIndex + me.listItems.length) {
+                item = me.getItemAt(newIndex);
+                me.doUpdateListItem(item, newIndex, me.getListItemInfo());
+
                 // Bypassing setter because sometimes we pass the same record (different data)
                 //me.updateListItem(me.getItemAt(newIndex), newIndex, me.getListItemInfo());
                 if (me.getVariableHeights() && me.getRefreshHeightOnUpdate()) {
+                    me.updatedItems.push(item);
+                    me.updateItemHeights();
                     me.refreshScroller(scroller);
                 }
             }
@@ -1039,7 +1047,6 @@ Ext.define('Ext.dataview.List', {
         if (!scroller) {
             scroller = this.container.getScrollable().getScroller()
         }
-//        this.onTranslate(0, -scroller.position.y, [0, -scroller.position.y]);
         scroller.scrollTo(0, scroller.position.y + 1);
         scroller.scrollTo(0, scroller.position.y - 1);
     },

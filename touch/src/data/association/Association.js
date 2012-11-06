@@ -55,19 +55,21 @@
  *                 "parent_id": null,
  *                 "name": "Parent Group"
  *             },
- *             "child_groups": [{
- *                 "id": 2,
- *                 "parent_id": 10,
- *                 "name": "Child Group 1"
- *             },{
- *                 "id": 3,
- *                 "parent_id": 10,
- *                 "name": "Child Group 2"
- *             },{
- *                 "id": 4,
- *                 "parent_id": 10,
- *                 "name": "Child Group 3"
- *             }]
+ *             "nested" : {
+ *                 "child_groups": [{
+ *                     "id": 2,
+ *                     "parent_id": 10,
+ *                     "name": "Child Group 1"
+ *                 },{
+ *                     "id": 3,
+ *                     "parent_id": 10,
+ *                     "name": "Child Group 2"
+ *                 },{
+ *                     "id": 4,
+ *                     "parent_id": 10,
+ *                     "name": "Child Group 3"
+ *                 }]
+ *             }
  *         }
  *     }
  *
@@ -90,7 +92,7 @@
  *                 primaryKey: 'id',
  *                 foreignKey: 'parent_id',
  *                 autoLoad: true,
- *                 associationKey: 'child_groups' // read child data from child_groups
+ *                 associationKey: 'nested.child_groups' // read child data from nested.child_groups
  *             }, {
  *                 type: 'belongsTo',
  *                 model: 'MyApp.model.Group',

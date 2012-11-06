@@ -2,6 +2,7 @@
  * @class Ext.chart.label.Label
  * @extends Ext.draw.sprite.Text
  * 
+ * Sprite used to represent labels in series.
  */
 Ext.define("Ext.chart.label.Label", {
     extend: "Ext.draw.sprite.Text",

@@ -225,7 +225,7 @@ Ext.define('Ext.chart.series.Gauge', {
 
     getSprites: function () {
         //initialize store
-        if(!this.getStore() && !Ext.isNumber(value)) {
+        if(!this.getStore() && !Ext.isNumber(this.getValue())) {
             return null;
         }
         var me = this,

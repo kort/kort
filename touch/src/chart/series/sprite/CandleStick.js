@@ -16,8 +16,20 @@ Ext.define("Ext.chart.series.sprite.CandleStick", {
                 dropStyle: function (n, o) {
                     return Ext.merge({}, o || {}, n);
                 },
+
+                /**
+                 * @cfg {Number} [barWidth=15] The bar width of the candles.
+                 */
                 barWidth: 'number',
+
+                /**
+                 * @cfg {Number} [padding=3] The amount of padding between candles.
+                 */
                 padding: 'number',
+
+                /**
+                 * @cfg {String} [ohlcType='candlestick'] Determines whether candlestick or ohlc is used.
+                 */
                 ohlcType: 'enums(candlestick,ohlc)'
             },
             defaults: {

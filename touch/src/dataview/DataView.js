@@ -416,7 +416,7 @@ Ext.define('Ext.dataview.DataView', {
         defaultType: 'dataitem',
 
         /**
-         * @cfg {String} scrollToTopOnRefresh
+         * @cfg {Boolean} scrollToTopOnRefresh
          * Scroll the DataView to the top when the DataView is refreshed.
          * @accessor
          */

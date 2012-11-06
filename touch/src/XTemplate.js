@@ -272,6 +272,7 @@ Ext.define('Ext.XTemplate', {
      * @cfg {Boolean} compiled
      * Only applies to {@link Ext.Template}, XTemplates are compiled automatically on the
      * first call to {@link #apply} or {@link #applyOut}.
+     * @hide
      */
 
     apply: function(values) {
