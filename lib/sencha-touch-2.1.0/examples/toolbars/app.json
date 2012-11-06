@@ -1,0 +1,45 @@
+{
+    "name": "Toolbars",
+    "js": [
+        {
+            "path": "../../sencha-touch-all-debug.js"
+        },
+        {
+            "path": "app.js",
+            "update": "delta"
+        }
+    ],
+    "css": [
+        {
+            "path": "../../resources/css/sencha-touch.css",
+            "update": "delta"
+        }
+    ],
+    "appCache": {
+        "cache": [
+            "index.html"
+        ],
+        "network": [
+            "*"
+        ],
+        "fallback": []
+    },
+    "extras": [
+        "resources/icons",
+        "resources/loading"
+    ],
+    "archivePath": "archive",
+    "buildPaths": {
+        "testing": "../../deploy/testing/toolbars",
+        "production": "../../deploy/production/toolbars",
+        "package": "../../deploy/package/toolbars",
+        "native": "../../deploy/native/toolbars"
+    },
+    "buildOptions": {
+        "product": "touch",
+        "minVersion": 3,
+        "debug": false,
+        "logger": "no"
+    },
+    "id": "3a867610-670a-11e1-a90e-4318029d18bb"
+}

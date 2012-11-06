@@ -1,0 +1,188 @@
+<div class="wiki-content">
+           <!-- wiki content -->
+            <p><b><ins>Sencha Touch 2 Native Packaging for iOS on Mac&nbsp;</ins></b>
+<br class="atl-forced-newline"></p>
+
+<p><b>Requirements</b></p>
+
+<p><b>Software</b></p>
+<ul>
+	<li>Mac OS X 10.6+</li>
+	<li>Xcode (required for for iOS Simulator)&nbsp;
+<br class="atl-forced-newline"></li>
+</ul>
+
+
+<p><b>Apple iOS provisioning</b></p>
+<ul>
+	<li>Complete iOS provisioning on the <a href="https://developer.apple.com/ios/manage/overview/index.action" class="external-link" rel="nofollow">Apple iOS provisioning portal</a> and have the certificates and devices setup through the provisioning portal and Xcode.&nbsp;</li>
+	<li>Create an App ID and finish provisioning your application. Please refer to the How-To section in the <a href="https://developer.apple.com/ios/manage/overview/index.action" class="external-link" rel="nofollow">Apple iOS provisioning portal</a> for help.
+<br class="atl-forced-newline"></li>
+</ul>
+
+
+<p>Note: You will need to know your App ID and App Name to complete the packaging process.
+<br class="atl-forced-newline">
+<br class="atl-forced-newline"></p>
+
+<p><b>Steps to package your application for iOS on Mac</b></p>
+<ol>
+	<li>Prerequisite: Complete iOS provisioning on <a href="https://developer.apple.com/ios/manage/overview/index.action" class="external-link" rel="nofollow">Apple iOS provisioning portal</a>.</li>
+	<li>Install the packager (NKBuild.pkg), part of SenchaSDKTools 2.0</li>
+	<li>Create a packaging configuration file to be use with the native packager (nkbuild).</li>
+	<li>Run the packager (nkbuild) to create a packaged &lt;application&gt;.app.
+<br class="atl-forced-newline"></li>
+</ol>
+
+
+<p><b>Step 1:</b> Complete iOS provisioning on Apple iOS provisioning portal for the application</p>
+
+<p>Please use the <a href="https://developer.apple.com/ios/manage/overview/index.action" class="external-link" rel="nofollow">Apple iOS provisioning portal</a> to setup the appropriate development and distribution certifications and profiles. &nbsp;</p>
+
+<p><b>Step 2:</b> Install the packager.</p>
+<ul>
+	<li>Run the Sencha SDK installation: SenchaSDKTools (SenchaSDKTools-2.0.0-Beta)<b>&nbsp;</b></li>
+	<li>*&nbsp;<b>The sencha command that includes the package option will be installed to the specified location during installation (default: Applications/SenchaSDKTools-2.0.0-Beta/command).</b></li>
+</ul>
+
+
+<p><b>Step 3:</b> Create a packaging configuration file to be use with the native packager.
+<br class="atl-forced-newline"></p>
+
+<p>The configuration file has the following format:</p>
+
+<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div><div id="highlighter_849883" class="syntaxhighlighter nogutter  java"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container" title="Hint: double-click to select code"><div class="line number1 index0 alt2"><code class="java plain">{</code></div><div class="line number2 index1 alt1">&nbsp;</div><div class="line number3 index2 alt2">&nbsp;</div><div class="line number4 index3 alt1"><code class="java string">"applicationName"</code><code class="java plain">:</code><code class="java string">"&lt;AppName&gt;"</code><code class="java plain">,</code></div><div class="line number5 index4 alt2">&nbsp;</div><div class="line number6 index5 alt1"><code class="java string">"applicationId"</code><code class="java plain">:</code><code class="java string">"&lt;AppID&gt;"</code><code class="java plain">,</code></div><div class="line number7 index6 alt2">&nbsp;</div><div class="line number8 index7 alt1"><code class="java string">"outputPath"</code><code class="java plain">:</code><code class="java string">"&lt;AppPackageOutputPath&gt;"</code><code class="java plain">,</code></div><div class="line number9 index8 alt2">&nbsp;</div><div class="line number10 index9 alt1"><code class="java string">"iconName"</code><code class="java plain">:</code><code class="java string">"&lt;AppIconName&gt;"</code><code class="java plain">,</code></div><div class="line number11 index10 alt2">&nbsp;</div><div class="line number12 index11 alt1"><code class="java string">"versionString"</code><code class="java plain">:</code><code class="java string">"&lt;AppVersion&gt;"</code><code class="java plain">,</code></div><div class="line number13 index12 alt2">&nbsp;</div><div class="line number14 index13 alt1"><code class="java string">"webAppPath"</code><code class="java plain">:</code><code class="java string">"&lt;PathToWebApp&gt;"</code><code class="java plain">,</code></div><div class="line number15 index14 alt2">&nbsp;</div><div class="line number16 index15 alt1"><code class="java string">"configuration"</code><code class="java plain">:</code><code class="java string">"&lt;Release | Debug&gt;"</code><code class="java plain">,</code></div><div class="line number17 index16 alt2">&nbsp;</div><div class="line number18 index17 alt1"><code class="java string">"platform"</code><code class="java plain">:</code><code class="java string">"&lt;iOSSimulator | iOS&gt;"</code><code class="java plain">,</code></div><div class="line number19 index18 alt2">&nbsp;</div><div class="line number20 index19 alt1"><code class="java string">"deviceType"</code><code class="java plain">:</code><code class="java string">"&lt;iPhone | iPad | Universal&gt;"</code><code class="java plain">,</code></div><div class="line number21 index20 alt2">&nbsp;</div><div class="line number22 index21 alt1"><code class="java string">"certificateAlias"</code><code class="java plain">:</code><code class="java string">"&lt;(Optional)CertificateAlias&gt;"</code><code class="java plain">,</code></div><div class="line number23 index22 alt2">&nbsp;</div><div class="line number24 index23 alt1"><code class="java string">"orientations"</code><code class="java plain">: [</code><code class="java string">"portrait"</code><code class="java plain">,</code></div><div class="line number25 index24 alt2">&nbsp;</div><div class="line number26 index25 alt1"><code class="java string">"landscapeLeft"</code><code class="java plain">,</code></div><div class="line number27 index26 alt2">&nbsp;</div><div class="line number28 index27 alt1"><code class="java string">"landscapeRight"</code><code class="java plain">,</code></div><div class="line number29 index28 alt2">&nbsp;</div><div class="line number30 index29 alt1"><code class="java string">"portraitUpsideDown"</code></div><div class="line number31 index30 alt2">&nbsp;</div><div class="line number32 index31 alt1"><code class="java plain">]</code></div><div class="line number33 index32 alt2">&nbsp;</div><div class="line number34 index33 alt1"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div>
+</div></div>
+
+<p>Note: A configuration file template can be created by running the following command in the Terminal:</p>
+<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div><div id="highlighter_617005" class="syntaxhighlighter nogutter  java"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container" title="Hint: double-click to select code"><div class="line number1 index0 alt2"><code class="java plain">sencha </code><code class="java keyword">package</code> <code class="java plain">-g -c &lt;config.template&gt;</code></div></div></td></tr></tbody></table></div></div>
+</div></div>
+<p>&lt;config.template&gt; is the name of the configuration file.
+<br class="atl-forced-newline"></p>
+
+<p>The following parameters are applicable to iOS packaging:</p>
+<div class="table-wrap">
+<table class="confluenceTable"><tbody>
+<tr>
+<td class="confluenceTd"> <b>Parameters</b> </td>
+<td class="confluenceTd"> <b>Details</b> </td>
+</tr>
+<tr>
+<td class="confluenceTd"> "applicationName":"&lt;AppName&gt;" </td>
+<td class="confluenceTd"> Both AppName and AppID can be found on the <a href="https://developer.apple.com/ios/manage/overview/index.action" class="external-link" rel="nofollow">iOS provisioning portal</a> on the App IDs section. !Screen Shot 2011-09-21 at 5.40.23 PM.png!E.g. from above,&nbsp;
+<ul>
+	<li>AppName is “Sencha Touch 2 Packaging”</li>
+	<li>AppID is “com.Sencha.Touch2Packaging” <br class="atl-forced-newline">  <br class="atl-forced-newline">
+Note: the App ID is the same as the one you put in the Identifier field in Xcode. </li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="confluenceTd"> "applicationId":"&lt;AppID&gt;" </td>
+</tr>
+<tr>
+<td class="confluenceTd"> "outputPath":"&lt;AppPackageOutputPath&gt;" </td>
+<td class="confluenceTd"> The output location of the packaged application, &lt;application.app&gt;. </td>
+</tr>
+<tr>
+<td class="confluenceTd"> "iconName":"&lt;AppIconName&gt;" </td>
+<td class="confluenceTd"> The icon file to be used for your application. <br class="atl-forced-newline">  <br class="atl-forced-newline">
+Note: Retina icon should be specified with @2x at the end of the icon name. For example icon.png (regular) and icon@2x.png (retina). If a retina icon with the &lt;Icon Name&gt;@2x.png exists, the packager will include the retina icon. <br class="atl-forced-newline">  <br class="atl-forced-newline">
+Note: Please refer to the <a href="http://developer.apple.com/library/ios/%23documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/BuildTimeConfiguration/BuildTimeConfiguration.html%23//apple_ref/doc/uid/TP40007072-CH7-SW1" class="external-link" rel="nofollow">iOS icon guideline</a> for further information on icon file specifications. </td>
+</tr>
+<tr>
+<td class="confluenceTd"> "versionString":"&lt;AppVersion&gt;", </td>
+<td class="confluenceTd"> The version of the application. </td>
+</tr>
+<tr>
+<td class="confluenceTd"> "webAppPath":"&lt;PathToWebApp&gt;" </td>
+<td class="confluenceTd"> The path of the web application to be packaged. </td>
+</tr>
+<tr>
+<td class="confluenceTd"> "configuration":"&lt;Release | Debug&gt;" </td>
+<td class="confluenceTd"> Specify build type: Release or Debug. </td>
+</tr>
+<tr>
+<td class="confluenceTd"> "platform":"&lt;Simulator | iOS&gt;" </td>
+<td class="confluenceTd"> Specify if the build is for the iOS simulator (iOSSimulator) or for the device (iOS). <br class="atl-forced-newline">  <br class="atl-forced-newline">
+Note: the iOS simulator cannot run a signed build. A signed build can only be run on the device. </td>
+</tr>
+<tr>
+<td class="confluenceTd"> "deviceType":"&lt;iPhone | iPad | Universal&gt;" </td>
+<td class="confluenceTd"> Specify device type. <br class="atl-forced-newline">  <br class="atl-forced-newline">
+Available options: <br class="atl-forced-newline">
+- iPhone: for iPhone applications <br class="atl-forced-newline">
+- iPad: for iPad applications <br class="atl-forced-newline">
+- Universal: for both iPhone and iPad applications </td>
+</tr>
+<tr>
+<td class="confluenceTd"> "certificateAlias":"&lt;(Optional)CertificateAlias&gt;" </td>
+<td class="confluenceTd"> This is an optional configuration. You can specify a specific Certificate Alias to use for signing your application.&nbsp; <br class="atl-forced-newline">  <br class="atl-forced-newline">
+Note: If omitted, the default certificate used is the one you setup in iOS Provisioning Portal. </td>
+</tr>
+<tr>
+<td class="confluenceTd"> "orientations": ["portrait", "landscapeLeft", "landscapeRight", "portraitUpsideDown" </td>
+<td class="confluenceTd"> Specify the orientations of the application. <br class="atl-forced-newline">  <br class="atl-forced-newline">
+&nbsp;Available options: “portrait”, “landscapeLeft”, “landscapeRight” and “portraitUpsideDown” <br class="atl-forced-newline">
+<br class="atl-forced-newline"> </td>
+</tr>
+</tbody></table>
+</div>
+
+<p><b>Sample debug configuration file</b></p>
+
+
+<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div><div id="highlighter_909784" class="syntaxhighlighter nogutter  java"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container" title="Hint: double-click to select code"><div class="line number1 index0 alt2"><code class="java plain">{</code></div><div class="line number2 index1 alt1">&nbsp;</div><div class="line number3 index2 alt2"><code class="java string">"applicationName"</code><code class="java plain">:</code><code class="java string">"Sencha Touch 2 Packaging"</code><code class="java plain">,</code></div><div class="line number4 index3 alt1">&nbsp;</div><div class="line number5 index4 alt2"><code class="java string">"applicationId"</code><code class="java plain">:</code><code class="java string">"com.sencha.touch2packaing"</code><code class="java plain">,</code></div><div class="line number6 index5 alt1">&nbsp;</div><div class="line number7 index6 alt2"><code class="java string">"iconName"</code><code class="java plain">:</code><code class="java string">"icon.png"</code><code class="java plain">,</code></div><div class="line number8 index7 alt1">&nbsp;</div><div class="line number9 index8 alt2"><code class="java string">"versionString"</code><code class="java plain">:</code><code class="java string">"1.0"</code><code class="java plain">,</code></div><div class="line number10 index9 alt1">&nbsp;</div><div class="line number11 index10 alt2"><code class="java string">"outputPath"</code><code class="java plain">:</code><code class="java string">"~/Desktop/nkBuild-iOS"</code><code class="java plain">,</code></div><div class="line number12 index11 alt1">&nbsp;</div><div class="line number13 index12 alt2"><code class="java string">"webAppPath"</code><code class="java plain">:</code><code class="java string">"~/Desktop/www/"</code><code class="java plain">,</code></div><div class="line number14 index13 alt1">&nbsp;</div><div class="line number15 index14 alt2"><code class="java string">"configuration"</code><code class="java plain">:</code><code class="java string">"Debug"</code><code class="java plain">,</code></div><div class="line number16 index15 alt1">&nbsp;</div><div class="line number17 index16 alt2"><code class="java string">"platform"</code><code class="java plain">:</code><code class="java string">"iOSSimulator"</code><code class="java plain">,</code></div><div class="line number18 index17 alt1">&nbsp;</div><div class="line number19 index18 alt2"><code class="java string">"deviceType"</code><code class="java plain">:</code><code class="java string">"iPhone"</code><code class="java plain">,</code></div><div class="line number20 index19 alt1">&nbsp;</div><div class="line number21 index20 alt2"><code class="java string">"orientations"</code><code class="java plain">: [</code><code class="java string">"portrait"</code><code class="java plain">,</code></div><div class="line number22 index21 alt1">&nbsp;</div><div class="line number23 index22 alt2"><code class="java string">"landscapeLeft"</code><code class="java plain">,</code></div><div class="line number24 index23 alt1">&nbsp;</div><div class="line number25 index24 alt2"><code class="java string">"landscapeRight"</code><code class="java plain">,</code></div><div class="line number26 index25 alt1">&nbsp;</div><div class="line number27 index26 alt2"><code class="java string">"portraitUpsideDown"</code></div><div class="line number28 index27 alt1">&nbsp;</div><div class="line number29 index28 alt2"><code class="java plain">]</code></div><div class="line number30 index29 alt1">&nbsp;</div><div class="line number31 index30 alt2"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div>
+</div></div>
+<p><b>Sample release configuration file</b></p>
+
+
+<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div><div id="highlighter_760711" class="syntaxhighlighter nogutter  java"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container" title="Hint: double-click to select code"><div class="line number1 index0 alt2"><code class="java plain">{</code></div><div class="line number2 index1 alt1">&nbsp;</div><div class="line number3 index2 alt2"><code class="java string">"applicationName"</code><code class="java plain">:</code><code class="java string">"Sencha Touch 2 Packaging"</code><code class="java plain">,</code></div><div class="line number4 index3 alt1">&nbsp;</div><div class="line number5 index4 alt2"><code class="java string">"applicationId"</code><code class="java plain">:</code><code class="java string">"com.sencha.touch2packaing"</code><code class="java plain">,</code></div><div class="line number6 index5 alt1">&nbsp;</div><div class="line number7 index6 alt2"><code class="java string">"iconName"</code><code class="java plain">:</code><code class="java string">"icon.png"</code><code class="java plain">,</code></div><div class="line number8 index7 alt1">&nbsp;</div><div class="line number9 index8 alt2"><code class="java string">"versionString"</code><code class="java plain">:</code><code class="java string">"1.0"</code><code class="java plain">,</code></div><div class="line number10 index9 alt1">&nbsp;</div><div class="line number11 index10 alt2"><code class="java string">"outputPath"</code><code class="java plain">:</code><code class="java string">"~/Desktop/nkBuild-iOS"</code><code class="java plain">,</code></div><div class="line number12 index11 alt1">&nbsp;</div><div class="line number13 index12 alt2"><code class="java string">"webAppPath"</code><code class="java plain">:</code><code class="java string">"~/Desktop/www/"</code><code class="java plain">,</code></div><div class="line number14 index13 alt1">&nbsp;</div><div class="line number15 index14 alt2"><code class="java string">"configuration"</code><code class="java plain">:</code><code class="java string">"Release"</code><code class="java plain">,</code></div><div class="line number16 index15 alt1">&nbsp;</div><div class="line number17 index16 alt2"><code class="java string">"platform"</code><code class="java plain">:</code><code class="java string">"iOS"</code><code class="java plain">,</code></div><div class="line number18 index17 alt1">&nbsp;</div><div class="line number19 index18 alt2"><code class="java string">"deviceType"</code><code class="java plain">:</code><code class="java string">"iPhone"</code><code class="java plain">,</code></div><div class="line number20 index19 alt1">&nbsp;</div><div class="line number21 index20 alt2"><code class="java string">"orientations"</code><code class="java plain">: [</code><code class="java string">"portrait"</code><code class="java plain">,</code></div><div class="line number22 index21 alt1">&nbsp;</div><div class="line number23 index22 alt2"><code class="java string">"landscapeLeft"</code><code class="java plain">,</code></div><div class="line number24 index23 alt1">&nbsp;</div><div class="line number25 index24 alt2"><code class="java string">"landscapeRight"</code><code class="java plain">,</code></div><div class="line number26 index25 alt1">&nbsp;</div><div class="line number27 index26 alt2"><code class="java string">"portraitUpsideDown"</code></div><div class="line number28 index27 alt1">&nbsp;</div><div class="line number29 index28 alt2"><code class="java plain">]</code></div><div class="line number30 index29 alt1">&nbsp;</div><div class="line number31 index30 alt2"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div>
+</div></div>
+<p><b>Step 4</b>: Run the packager (nkbuild) to create a packaged &lt;application&gt;.app.<b>&nbsp;</b></p>
+
+<p><b>Packaging a debug application and run it on the iOS simulator</b></p>
+
+<p>Prerequisite*:* The Platform and Configuration setting needs to be set in the config file.
+<br class="atl-forced-newline"></p>
+
+<p>Example:</p>
+
+<p>"platform":"iOSSimulator"</p>
+
+<p>"configuration":"Debug"
+<br class="atl-forced-newline"></p>
+
+<p>Note: if the Platform and Configuration settings are not provisioned, &nbsp;iOS will not run the application correctly.</p>
+
+
+<p>To package a debug/unsigned application to run on the iOS simulator, issue the following command in Terminal:</p>
+<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div><div id="highlighter_709205" class="syntaxhighlighter nogutter  java"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container" title="Hint: double-click to select code"><div class="line number1 index0 alt2"><code class="java plain">sencha </code><code class="java keyword">package</code> <code class="java plain">-r -c &lt;configFile&gt;</code></div></div></td></tr></tbody></table></div></div>
+</div></div>
+<p>The iOS simulator with the application running will launch after successful executing this command.&nbsp;
+<br class="atl-forced-newline"></p>
+
+<p>Note: the “deviceType” identifier will trigger the appropriate simulator: iPhone or iPad.
+<br class="atl-forced-newline"></p>
+
+<p><b>Packaging the application to deploy on the iOS device</b></p>
+
+<p>To package a signed application to run on the device, issue the following command in Terminal:</p>
+<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div><div id="highlighter_259778" class="syntaxhighlighter nogutter  java"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container" title="Hint: double-click to select code"><div class="line number1 index0 alt2"><code class="java plain">sencha </code><code class="java keyword">package</code> <code class="java plain">-c &lt;configFile&gt;</code></div></div></td></tr></tbody></table></div></div>
+</div></div>
+<p>Note: an &lt;AppName.app&gt; is created in the specified output location. This is the application that you can use to deploy to the iOS device.
+<br class="atl-forced-newline">
+<br class="atl-forced-newline"></p>
+
+<p><b>See Also</b></p>
+<ol>
+	<li><a href="https://developer.apple.com/ios/manage/overview/index.action" class="external-link" rel="nofollow">Apple iOS provisioning portal</a></li>
+	<li><a href="http://developer.apple.com/library/ios/%23documentation/userexperience/conceptual/mobilehig/IconsImages/IconsImages.html" class="external-link" rel="nofollow">iOS Icon guideline</a></li>
+</ol>
+        </div>

@@ -1,0 +1,165 @@
+@import 'sencha-touch/default/all';
+
+@include sencha-panel;
+@include sencha-buttons;
+@include sencha-tabs;
+@include sencha-toolbar;
+@include sencha-list;
+@include sencha-layout;
+@include sencha-form;
+@include sencha-msgbox;
+@include sencha-loading-spinner;
+
+//custom icons
+@include pictos-iconmask('photo1');
+@include pictos-iconmask('photos2');
+@include pictos-iconmask('photo_black2');
+@include pictos-iconmask('mail');
+@include pictos-iconmask('wifi3');
+@include pictos-iconmask('maps');
+@include pictos-iconmask('compass1');
+@include pictos-iconmask('refresh');
+@include pictos-iconmask('address_book');
+
+//information
+.information {
+    .device-information {
+        text-shadow: 0 1px 0 #fff;
+        margin-top: 1.2em;
+        padding: .6em;
+        background: darken(#EEEEEE, 5);
+        border: 1px solid darken(#EEEEEE, 15);
+        @include border-radius(10px);
+        @include box-shadow(inset 0 1px 3px #ccc);
+    }
+
+    .url-button {
+        margin-top: 1.2em;
+    }
+}
+
+//camera
+.imageList {
+    .x-dataview-item {
+        display: inline-block;
+
+        .x-img {
+            width: 60px;
+            height: 60px;
+            background-color: #fff;
+            @include border-radius(3px);
+            background-size: contain;
+            background-position: center;
+            margin: 5px 0 0 5px;
+        }
+    }
+}
+
+.image-view {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+//push
+.logger .x-inner .x-inner {
+    border-bottom: 1px solid #ccc;
+    padding: 5px;
+}
+
+//orientation
+#cube {
+    -webkit-transform-style: preserve-3d;
+    width: 200px;
+    height: 200px;
+    overflow: visible;
+    opacity: .3;
+}
+
+#cube .x-innerhtml {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+#cube .x-innerhtml > div {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    position: absolute;
+    border: 1px solid #FFF;
+}
+
+#cube .x-innerhtml > div:first-child {
+    -webkit-transform: rotateX(90deg) translateZ(100px);
+    background-color: red;
+}
+
+#cube .x-innerhtml > div:nth-child(2) {
+    -webkit-transform: translateZ(100px);
+    background-color: green;
+}
+
+#cube .x-innerhtml > div:nth-child(3) {
+    -webkit-transform: rotateY(90deg) translateZ(100px);
+    background-color: blue;
+}
+
+#cube .x-innerhtml > div:nth-child(4) {
+    -webkit-transform: rotateY(180deg) translateZ(100px);
+    background-color: orange;
+}
+
+#cube .x-innerhtml > div:nth-child(5) {
+    -webkit-transform: rotateY(-90deg) translateZ(100px);
+    background-color: cyan;
+}
+
+#cube .x-innerhtml > div:nth-child(6) {
+    -webkit-transform: rotateX(-90deg) rotate(180deg) translateZ(100px);
+}
+
+//contacts
+.person {
+    padding: 10px;
+    text-shadow: 0 1px 0 #fff;
+
+    .thumbnail {
+        float: left;
+        width: 80px;
+        height: 80px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin-right: 5px;
+    }
+
+    .name {
+        font-weight: bold;
+    }
+    .company {
+        color: rgba(0,0,0,.5);
+        font-size: 90%;
+    }
+
+    ul {
+        font-size: 90%;
+        padding: 5px;
+        margin: 10px 0;
+        background: rgba(255,255,255,.5);
+        border: 1px solid #ccc;
+        border-radius: 10px;
+
+        table {
+            width: 100%;
+
+            span {
+                color: #617888;
+                display: block;
+                margin-right: 10px;
+                white-space: nowrap;
+            }
+        }
+    }
+    
+}

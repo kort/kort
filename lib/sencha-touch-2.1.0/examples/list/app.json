@@ -1,0 +1,47 @@
+{
+    "name": "List",
+    "js": [
+        {
+            "path": "../../sencha-touch-all-debug.js"
+        },
+        {
+            "path": "app.js",
+            "update": "delta"
+        }
+    ],
+    "css": [
+        {
+            "path": "../../resources/css/sencha-touch.css",
+            "update": "delta"
+        }
+    ],
+    "appCache": {
+        "cache": [
+            "index.html",
+            "contacts.json"
+        ],
+        "network": [
+            "*"
+        ],
+        "fallback": []
+    },
+    "extras": [
+        "contacts.json",
+        "resources/icons",
+        "resources/loading"
+    ],
+    "archivePath": "archive",
+    "buildPaths": {
+        "testing": "../../deploy/testing/list",
+        "production": "../../deploy/production/list",
+        "package": "../../deploy/package/list",
+        "native": "../../deploy/native/list"
+    },
+    "buildOptions": {
+        "product": "touch",
+        "minVersion": 3,
+        "debug": false,
+        "logger": "no"
+    },
+    "id": "3a867610-670a-11e1-a90e-4318029d18bb"
+}
