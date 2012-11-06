@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Ext-viewport-Default'>/**
+</span> * @private
+ * Base class for iOS and Android viewports.
+ */
+Ext.define('Ext.viewport.Default', {
+    extend: 'Ext.Container',
+
+    xtype: 'viewport',
+
+<span id='Ext-viewport-Default-property-PORTRAIT'>    PORTRAIT: 'portrait',
+</span>
+<span id='Ext-viewport-Default-property-LANDSCAPE'>    LANDSCAPE: 'landscape',
+</span>
+    requires: [
+        'Ext.LoadMask',
+        'Ext.layout.Card'
+    ],
+
+<span id='Ext-viewport-Default-event-ready'>    /**
+</span>     * @event ready
+     * Fires when the Viewport is in the DOM and ready.
+     * @param {Ext.Viewport} this
+     */
+
+<span id='Ext-viewport-Default-event-maximize'>    /**
+</span>     * @event maximize
+     * Fires when the Viewport is maximized.
+     * @param {Ext.Viewport} this
+     */
+
+<span id='Ext-viewport-Default-event-orientationchange'>    /**
+</span>     * @event orientationchange
+     * Fires when the Viewport orientation has changed.
+     * @param {Ext.Viewport} this
+     * @param {String} newOrientation The new orientation.
+     * @param {Number} width The width of the Viewport.
+     * @param {Number} height The height of the Viewport.
+     */
+
+    config: {
+<span id='Ext-viewport-Default-cfg-autoMaximize'>        /**
+</span>         * @cfg {Boolean} autoMaximize
+         * Whether or not to always automatically maximize the viewport on first load and all subsequent orientation changes.
+         *
+         * This is set to `false` by default for a number of reasons:
+         *
+         * - Orientation change performance is drastically reduced when this is enabled, on all devices.
+         * - On some devices (mostly Android) this can sometimes cause issues when the default browser zoom setting is changed.
+         * - When wrapping your phone in a native shell, you may get a blank screen.
+         * - When bookmarked to the homescreen (iOS), you may get a blank screen.
+         *
+         * @accessor
+         */
+        autoMaximize: false,
+
+<span id='Ext-viewport-Default-cfg-autoBlurInput'>        /**
+</span>         * @private
+         */
+        autoBlurInput: true,
+
+<span id='Ext-viewport-Default-cfg-preventPanning'>        /**
+</span>         * @cfg {Boolean} preventPanning
+         * Whether or not to always prevent default panning behavior of the
+         * browser's viewport.
+         * @accessor
+         */
+        preventPanning: true,
+
+<span id='Ext-viewport-Default-cfg-preventZooming'>        /**
+</span>         * @cfg {Boolean} preventZooming
+         * `true` to attempt to stop zooming when you double tap on the screen on mobile devices,
+         * typically HTC devices with HTC Sense UI.
+         * @accessor
+         */
+        preventZooming: false,
+
+<span id='Ext-viewport-Default-cfg-autoRender'>        /**
+</span>         * @cfg
+         * @private
+         */
+        autoRender: true,
+
+<span id='Ext-viewport-Default-cfg-layout'>        /**
+</span>         * @cfg {Object/String} layout Configuration for this Container's layout. Example:
+         *
+         *     Ext.create('Ext.Container', {
+         *         layout: {
+         *             type: 'hbox',
+         *             align: 'middle'
+         *         },
+         *         items: [
+         *             {
+         *                 xtype: 'panel',
+         *                 flex: 1,
+         *                 style: 'background-color: red;'
+         *             },
+         *             {
+         *                 xtype: 'panel',
+         *                 flex: 2,
+         *                 style: 'background-color: green'
+         *             }
+         *         ]
+         *     });
+         *
+         * See the [layouts guide](#!/guides/layouts) for more information.
+         *
+         * @accessor
+         */
+        layout: 'card',
+
+<span id='Ext-viewport-Default-cfg-width'>        /**
+</span>         * @cfg
+         * @private
+         */
+        width: '100%',
+
+<span id='Ext-viewport-Default-cfg-height'>        /**
+</span>         * @cfg
+         * @private
+         */
+        height: '100%',
+
+<span id='Ext-viewport-Default-cfg-useBodyElement'>        useBodyElement: true
+</span>    },
+
+<span id='Ext-viewport-Default-property-isReady'>    /**
+</span>     * @property {Boolean} isReady
+     * `true` if the DOM is ready.
+     */
+    isReady: false,
+
+<span id='Ext-viewport-Default-property-isViewport'>    isViewport: true,
+</span>
+<span id='Ext-viewport-Default-property-isMaximizing'>    isMaximizing: false,
+</span>
+<span id='Ext-viewport-Default-property-id'>    id: 'ext-viewport',
+</span>
+<span id='Ext-viewport-Default-property-isInputRegex'>    isInputRegex: /^(input|textarea|select|a)$/i,
+</span>
+<span id='Ext-viewport-Default-property-focusedElement'>    focusedElement: null,
+</span>
+<span id='Ext-viewport-Default-property-fullscreenItemCls'>    /**
+</span>     * @private
+     */
+    fullscreenItemCls: Ext.baseCSSPrefix + 'fullscreen',
+
+<span id='Ext-viewport-Default-method-constructor'>    constructor: function(config) {
+</span>        var bind = Ext.Function.bind;
+
+        this.doPreventPanning = bind(this.doPreventPanning, this);
+        this.doPreventZooming = bind(this.doPreventZooming, this);
+        this.doBlurInput = bind(this.doBlurInput, this);
+
+        this.maximizeOnEvents = ['ready', 'orientationchange'];
+
+        this.orientation = this.determineOrientation();
+        this.windowWidth = this.getWindowWidth();
+        this.windowHeight = this.getWindowHeight();
+        this.windowOuterHeight = this.getWindowOuterHeight();
+
+        if (!this.stretchHeights) {
+            this.stretchHeights = {};
+        }
+
+        this.callParent([config]);
+
+        // Android is handled separately
+        if (!Ext.os.is.Android || Ext.browser.name == 'ChromeMobile') {
+            if (this.supportsOrientation()) {
+                this.addWindowListener('orientationchange', bind(this.onOrientationChange, this));
+            }
+            else {
+                this.addWindowListener('resize', bind(this.onResize, this));
+            }
+        }
+
+        document.addEventListener('focus', bind(this.onElementFocus, this), true);
+        document.addEventListener('blur', bind(this.onElementBlur, this), true);
+
+        Ext.onDocumentReady(this.onDomReady, this);
+
+        this.on('ready', this.onReady, this, {single: true});
+
+        this.getEventDispatcher().addListener('component', '*', 'fullscreen', 'onItemFullscreenChange', this);
+
+        return this;
+    },
+
+<span id='Ext-viewport-Default-method-onDomReady'>    onDomReady: function() {
+</span>        this.isReady = true;
+        this.updateSize();
+        this.fireEvent('ready', this);
+    },
+
+<span id='Ext-viewport-Default-method-onReady'>    onReady: function() {
+</span>        if (this.getAutoRender()) {
+            this.render();
+        }
+    },
+
+<span id='Ext-viewport-Default-method-onElementFocus'>    onElementFocus: function(e) {
+</span>        this.focusedElement = e.target;
+    },
+
+<span id='Ext-viewport-Default-method-onElementBlur'>    onElementBlur: function() {
+</span>        this.focusedElement = null;
+    },
+
+<span id='Ext-viewport-Default-method-render'>    render: function() {
+</span>        if (!this.rendered) {
+            var body = Ext.getBody(),
+                clsPrefix = Ext.baseCSSPrefix,
+                classList = [],
+                osEnv = Ext.os,
+                osName = osEnv.name.toLowerCase(),
+                browserName = Ext.browser.name.toLowerCase(),
+                osMajorVersion = osEnv.version.getMajor(),
+                orientation = this.getOrientation();
+
+            this.renderTo(body);
+
+            classList.push(clsPrefix + osEnv.deviceType.toLowerCase());
+
+            if (osEnv.is.iPad) {
+                classList.push(clsPrefix + 'ipad');
+            }
+
+            classList.push(clsPrefix + osName);
+            classList.push(clsPrefix + browserName);
+
+            if (osMajorVersion) {
+                classList.push(clsPrefix + osName + '-' + osMajorVersion);
+            }
+
+            if (osEnv.is.BlackBerry) {
+                classList.push(clsPrefix + 'bb');
+            }
+
+            if (Ext.browser.is.Standalone) {
+                classList.push(clsPrefix + 'standalone');
+            }
+
+            classList.push(clsPrefix + orientation);
+
+            body.addCls(classList);
+        }
+    },
+
+<span id='Ext-viewport-Default-method-applyAutoBlurInput'>    applyAutoBlurInput: function(autoBlurInput) {
+</span>        var touchstart = (Ext.feature.has.Touch) ? 'touchstart' : 'mousedown';
+
+        if (autoBlurInput) {
+            this.addWindowListener(touchstart, this.doBlurInput, false);
+        }
+        else {
+            this.removeWindowListener(touchstart, this.doBlurInput, false);
+        }
+
+        return autoBlurInput;
+    },
+
+<span id='Ext-viewport-Default-method-applyAutoMaximize'>    applyAutoMaximize: function(autoMaximize) {
+</span>        if (Ext.browser.is.WebView) {
+            autoMaximize = false;
+        }
+        if (autoMaximize) {
+            this.on('ready', 'doAutoMaximizeOnReady', this, { single: true });
+            this.on('orientationchange', 'doAutoMaximizeOnOrientationChange', this);
+        }
+        else {
+            this.un('ready', 'doAutoMaximizeOnReady', this);
+            this.un('orientationchange', 'doAutoMaximizeOnOrientationChange', this);
+        }
+
+        return autoMaximize;
+    },
+
+<span id='Ext-viewport-Default-method-applyPreventPanning'>    applyPreventPanning: function(preventPanning) {
+</span>        if (preventPanning) {
+            this.addWindowListener('touchmove', this.doPreventPanning, false);
+        }
+        else {
+            this.removeWindowListener('touchmove', this.doPreventPanning, false);
+        }
+
+        return preventPanning;
+    },
+
+<span id='Ext-viewport-Default-method-applyPreventZooming'>    applyPreventZooming: function(preventZooming) {
+</span>        var touchstart = (Ext.feature.has.Touch) ? 'touchstart' : 'mousedown';
+
+        if (preventZooming) {
+            this.addWindowListener(touchstart, this.doPreventZooming, false);
+        }
+        else {
+            this.removeWindowListener(touchstart, this.doPreventZooming, false);
+        }
+
+        return preventZooming;
+    },
+
+<span id='Ext-viewport-Default-method-doAutoMaximizeOnReady'>    doAutoMaximizeOnReady: function() {
+</span>        var controller = arguments[arguments.length - 1];
+
+        controller.pause();
+
+        this.isMaximizing = true;
+
+        this.on('maximize', function() {
+            this.isMaximizing = false;
+
+            this.updateSize();
+
+            controller.resume();
+
+            this.fireEvent('ready', this);
+        }, this, { single: true });
+
+        this.maximize();
+    },
+
+<span id='Ext-viewport-Default-method-doAutoMaximizeOnOrientationChange'>    doAutoMaximizeOnOrientationChange: function() {
+</span>        var controller = arguments[arguments.length - 1],
+            firingArguments = controller.firingArguments;
+
+        controller.pause();
+
+        this.isMaximizing = true;
+
+        this.on('maximize', function() {
+            this.isMaximizing = false;
+
+            this.updateSize();
+
+            firingArguments[2] = this.windowWidth;
+            firingArguments[3] = this.windowHeight;
+
+            controller.resume();
+        }, this, { single: true });
+
+        this.maximize();
+    },
+
+<span id='Ext-viewport-Default-method-doBlurInput'>    doBlurInput: function(e) {
+</span>        var target = e.target,
+            focusedElement = this.focusedElement;
+
+        if (focusedElement &amp;&amp; !this.isInputRegex.test(target.tagName)) {
+            delete this.focusedElement;
+            focusedElement.blur();
+        }
+    },
+
+<span id='Ext-viewport-Default-method-doPreventPanning'>    doPreventPanning: function(e) {
+</span>        e.preventDefault();
+    },
+
+<span id='Ext-viewport-Default-method-doPreventZooming'>    doPreventZooming: function(e) {
+</span>        // Don't prevent right mouse event
+        if ('button' in e &amp;&amp; e.button !== 0) {
+            return;
+        }
+
+        var target = e.target;
+
+        if (target &amp;&amp; target.nodeType === 1 &amp;&amp; !this.isInputRegex.test(target.tagName)) {
+            e.preventDefault();
+        }
+    },
+
+<span id='Ext-viewport-Default-method-addWindowListener'>    addWindowListener: function(eventName, fn, capturing) {
+</span>        window.addEventListener(eventName, fn, Boolean(capturing));
+    },
+
+<span id='Ext-viewport-Default-method-removeWindowListener'>    removeWindowListener: function(eventName, fn, capturing) {
+</span>        window.removeEventListener(eventName, fn, Boolean(capturing));
+    },
+
+<span id='Ext-viewport-Default-method-doAddListener'>    doAddListener: function(eventName, fn, scope, options) {
+</span>        if (eventName === 'ready' &amp;&amp; this.isReady &amp;&amp; !this.isMaximizing) {
+            fn.call(scope);
+            return this;
+        }
+
+        return this.callSuper(arguments);
+    },
+
+<span id='Ext-viewport-Default-method-supportsOrientation'>    supportsOrientation: function() {
+</span>        return Ext.feature.has.Orientation;
+    },
+
+<span id='Ext-viewport-Default-method-onResize'>    onResize: function() {
+</span>        var oldWidth = this.windowWidth,
+            oldHeight = this.windowHeight,
+            width = this.getWindowWidth(),
+            height = this.getWindowHeight(),
+            currentOrientation = this.getOrientation(),
+            newOrientation = this.determineOrientation();
+
+        // Determine orientation change via resize. BOTH width AND height much change, otherwise
+        // this is a keyboard popping up.
+        if ((oldWidth !== width &amp;&amp; oldHeight !== height) &amp;&amp; currentOrientation !== newOrientation) {
+            this.fireOrientationChangeEvent(newOrientation, currentOrientation);
+        }
+    },
+
+<span id='Ext-viewport-Default-method-onOrientationChange'>    onOrientationChange: function() {
+</span>        var currentOrientation = this.getOrientation(),
+            newOrientation = this.determineOrientation();
+
+        if (newOrientation !== currentOrientation) {
+            this.fireOrientationChangeEvent(newOrientation, currentOrientation);
+        }
+    },
+
+<span id='Ext-viewport-Default-method-fireOrientationChangeEvent'>    fireOrientationChangeEvent: function(newOrientation, oldOrientation) {
+</span>        var clsPrefix = Ext.baseCSSPrefix;
+        Ext.getBody().replaceCls(clsPrefix + oldOrientation, clsPrefix + newOrientation);
+
+        this.orientation = newOrientation;
+
+        this.updateSize();
+        this.fireEvent('orientationchange', this, newOrientation, this.windowWidth, this.windowHeight);
+    },
+
+<span id='Ext-viewport-Default-method-updateSize'>    updateSize: function(width, height) {
+</span>        this.windowWidth = width !== undefined ? width : this.getWindowWidth();
+        this.windowHeight = height !== undefined ? height : this.getWindowHeight();
+
+        return this;
+    },
+
+<span id='Ext-viewport-Default-method-waitUntil'>    waitUntil: function(condition, onSatisfied, onTimeout, delay, timeoutDuration) {
+</span>        if (!delay) {
+            delay = 50;
+        }
+
+        if (!timeoutDuration) {
+            timeoutDuration = 2000;
+        }
+
+        var scope = this,
+            elapse = 0;
+
+        setTimeout(function repeat() {
+            elapse += delay;
+
+            if (condition.call(scope) === true) {
+                if (onSatisfied) {
+                    onSatisfied.call(scope);
+                }
+            }
+            else {
+                if (elapse &gt;= timeoutDuration) {
+                    if (onTimeout) {
+                        onTimeout.call(scope);
+                    }
+                }
+                else {
+                    setTimeout(repeat, delay);
+                }
+            }
+        }, delay);
+    },
+
+<span id='Ext-viewport-Default-method-maximize'>    maximize: function() {
+</span>        this.fireMaximizeEvent();
+    },
+
+<span id='Ext-viewport-Default-method-fireMaximizeEvent'>    fireMaximizeEvent: function() {
+</span>        this.updateSize();
+        this.fireEvent('maximize', this);
+    },
+
+<span id='Ext-viewport-Default-method-doSetHeight'>    doSetHeight: function(height) {
+</span>        Ext.getBody().setHeight(height);
+
+        this.callParent(arguments);
+    },
+
+<span id='Ext-viewport-Default-method-doSetWidth'>    doSetWidth: function(width) {
+</span>        Ext.getBody().setWidth(width);
+
+        this.callParent(arguments);
+    },
+
+<span id='Ext-viewport-Default-method-scrollToTop'>    scrollToTop: function() {
+</span>        window.scrollTo(0, -1);
+    },
+
+<span id='Ext-viewport-Default-method-getWindowWidth'>    /**
+</span>     * Retrieves the document width.
+     * @return {Number} width in pixels.
+     */
+    getWindowWidth: function() {
+        return window.innerWidth;
+    },
+
+<span id='Ext-viewport-Default-method-getWindowHeight'>    /**
+</span>     * Retrieves the document height.
+     * @return {Number} height in pixels.
+     */
+    getWindowHeight: function() {
+        return window.innerHeight;
+    },
+
+<span id='Ext-viewport-Default-method-getWindowOuterHeight'>    getWindowOuterHeight: function() {
+</span>        return window.outerHeight;
+    },
+
+<span id='Ext-viewport-Default-method-getWindowOrientation'>    getWindowOrientation: function() {
+</span>        return window.orientation;
+    },
+
+<span id='Ext-viewport-Default-method-getOrientation'>    /**
+</span>     * Returns the current orientation.
+     * @return {String} `portrait` or `landscape`
+     */
+    getOrientation: function() {
+        return this.orientation;
+    },
+
+<span id='Ext-viewport-Default-method-getSize'>    getSize: function() {
+</span>        return {
+            width: this.windowWidth,
+            height: this.windowHeight
+        };
+    },
+
+<span id='Ext-viewport-Default-method-determineOrientation'>    determineOrientation: function() {
+</span>        var portrait = this.PORTRAIT,
+            landscape = this.LANDSCAPE;
+
+        if (this.supportsOrientation()) {
+            if (this.getWindowOrientation() % 180 === 0) {
+                return portrait;
+            }
+
+            return landscape;
+        }
+        else {
+            if (this.getWindowHeight() &gt;= this.getWindowWidth()) {
+                return portrait;
+            }
+
+            return landscape;
+        }
+    },
+
+<span id='Ext-viewport-Default-method-onItemFullscreenChange'>    onItemFullscreenChange: function(item) {
+</span>        item.addCls(this.fullscreenItemCls);
+        this.add(item);
+    }
+});
+</pre>
+</body>
+</html>

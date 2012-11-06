@@ -1,0 +1,166 @@
+
+// GeoCongress Sass file
+
+$base-color: #386AA9;
+$color-light: #444;
+$complement: #777;
+
+$list-header-bg-color: #ccc;
+$list-header-color: #777;
+
+$include-default-icons: false;
+
+@import 'sencha-touch/default/all';
+
+@include sencha-panel;
+@include sencha-buttons;
+@include sencha-sheet;
+@include sencha-picker;
+// @include sencha-tabs; // We create a custom tab style below
+@include sencha-toolbar;
+// @include sencha-carousel;
+// @include sencha-indexbar;
+@include sencha-list;
+@include sencha-layout;
+@include sencha-form;
+@include sencha-msgbox;
+@include sencha-loading-spinner;
+
+@include pictos-iconmask('settings');
+@include pictos-iconmask('refresh');
+
+
+#splashScreen {
+  background: #092542 inline_image("bg.png") center top no-repeat;
+}
+#splashToolbar {
+  margin-top: 115px;
+}
+
+#legislatorList {
+  .x-list:after {
+    position: absolute;
+    left: 0;
+    right: 0;
+    display:block;
+    margin-top: 20px;
+    content: "Data provided by SunlightLabs.com";
+    font-weight: bold;
+    text-align: center;
+    color: #aaa;
+    font-size: 0.8em;
+    text-shadow: rgba(255,255,255,.2) 0 1px 0;
+  }
+}
+
+.legislator-list-item {
+  padding: 7px 10px;
+
+  font-weight: bold;
+  @include bevel-text('light');
+  @include ellipsis;
+
+  &.x-view-selected {
+    background: #315d94 none !important;
+    color: lighten(#315d94, 50%) !important;
+  }
+}
+
+.legislator-pic {
+  display: inline-block;
+  vertical-align: -17px;
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+  background-position: center center;
+  -webkit-border-radius: 5px;
+  -webkit-box-shadow: #ccc 0 1px 2px;
+}
+
+
+.x-tabbar {
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #666;
+  @include display-box;
+  @include box-orient(horizontal);
+
+  .x-tab {
+    border: 1px;
+    @include box-flex(1);
+    padding: .4em;
+    border: 1px solid #eee;
+    border-bottom-color: #ddd;
+    text-align: center;
+    @include background-gradient(#bbb);
+    @include bevel-text('light');
+    span {
+      font-weight: bold;
+      font-size: .9em;
+    }
+    &:first-child {
+      border-right: 1px solid #ccc;
+    }
+    &:last-child {
+      border-left: 1px solid #ccc;
+    }
+    &.x-tab-active {
+      @include background-gradient(#999, 'recessed');
+      border: 1px solid  #777;
+      border-bottom-color: #999;
+    }
+  }
+}
+
+#legislatorBio {
+
+  .legislator-pic {
+    margin: 10px;
+  }
+  .legislator-info {
+    padding: 10px;
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .legislator-name {
+    display: inline-block;
+    padding: 0 5px;
+
+    .title {
+      font-weight: bold;
+      font-size: 0.9em;
+    }
+    .district {
+      font-size: 0.8em;
+    }
+  }
+}
+
+#voteList {
+  .vote {
+    font-size: 13px;
+    line-height: 16px;
+    .results {
+      color: #999;
+    }
+  }
+}
+
+.start-screen {
+  background-color: #ccc;
+}
+
+.x-title {
+  font-weight: normal;
+  display: inline-block;
+}
+
+.x-list-emptytext {
+  margin-top: 25px;
+  text-align: center;
+}
+
+#billSummary .x-dock-body .x-innerhtml {
+  padding: 20px;
+  font-size: 80%;
+}

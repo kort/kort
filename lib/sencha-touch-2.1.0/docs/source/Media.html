@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Ext-Media'>/**
+</span> * Provides a base class for audio/visual controls. Should not be used directly.
+ *
+ * Please see the {@link Ext.Audio} and {@link Ext.Video} classes for more information.
+ * @private
+ */
+Ext.define('Ext.Media', {
+    extend: 'Ext.Component',
+    xtype: 'media',
+
+<span id='Ext-Media-event-play'>    /**
+</span>     * @event play
+     * Fires whenever the media is played.
+     * @param {Ext.Media} this
+     */
+
+<span id='Ext-Media-event-pause'>    /**
+</span>     * @event pause
+     * Fires whenever the media is paused.
+     * @param {Ext.Media} this
+     * @param {Number} time The time at which the media was paused at in seconds.
+     */
+
+<span id='Ext-Media-event-ended'>    /**
+</span>     * @event ended
+     * Fires whenever the media playback has ended.
+     * @param {Ext.Media} this
+     * @param {Number} time The time at which the media ended at in seconds.
+     */
+
+<span id='Ext-Media-event-stop'>    /**
+</span>     * @event stop
+     * Fires whenever the media is stopped.
+     * The `pause` event will also fire after the `stop` event if the media is currently playing.
+     * The `timeupdate` event will also fire after the `stop` event regardless of playing status.
+     * @param {Ext.Media} this
+     */
+
+<span id='Ext-Media-event-volumechange'>    /**
+</span>     * @event volumechange
+     * Fires whenever the volume is changed.
+     * @param {Ext.Media} this
+     * @param {Number} volume The volume level from 0 to 1.
+     */
+
+<span id='Ext-Media-event-mutedchange'>    /**
+</span>     * @event mutedchange
+     * Fires whenever the muted status is changed.
+     * The volumechange event will also fire after the `mutedchange` event fires.
+     * @param {Ext.Media} this
+     * @param {Boolean} muted The muted status.
+     */
+
+<span id='Ext-Media-event-timeupdate'>    /**
+</span>     * @event timeupdate
+     * Fires when the media is playing every 15 to 250ms.
+     * @param {Ext.Media} this
+     * @param {Number} time The current time in seconds.
+     */
+
+    config: {
+<span id='Ext-Media-cfg-url'>        /**
+</span>         * @cfg {String} url
+         * Location of the media to play.
+         * @accessor
+         */
+        url: '',
+
+<span id='Ext-Media-cfg-enableControls'>        /**
+</span>         * @cfg {Boolean} enableControls
+         * Set this to `false` to turn off the native media controls.
+         * Defaults to `false` when you are on Android, as it doesn't support controls.
+         * @accessor
+         */
+        enableControls: Ext.os.is.Android ? false : true,
+
+<span id='Ext-Media-cfg-autoResume'>        /**
+</span>         * @cfg {Boolean} autoResume
+         * Will automatically start playing the media when the container is activated.
+         * @accessor
+         */
+        autoResume: false,
+
+<span id='Ext-Media-cfg-autoPause'>        /**
+</span>         * @cfg {Boolean} autoPause
+         * Will automatically pause the media when the container is deactivated.
+         * @accessor
+         */
+        autoPause: true,
+
+<span id='Ext-Media-cfg-preload'>        /**
+</span>         * @cfg {Boolean} preload
+         * Will begin preloading the media immediately.
+         * @accessor
+         */
+        preload: true,
+
+<span id='Ext-Media-cfg-loop'>        /**
+</span>         * @cfg {Boolean} loop
+         * Will loop the media forever.
+         * @accessor
+         */
+        loop: false,
+
+<span id='Ext-Media-cfg-media'>        /**
+</span>         * @cfg {Ext.Element} media
+         * A reference to the underlying audio/video element.
+         * @accessor
+         */
+        media: null,
+
+<span id='Ext-Media-cfg-volume'>        /**
+</span>         * @cfg {Number} volume
+         * The volume of the media from 0.0 to 1.0.
+         * @accessor
+         */
+        volume: 1,
+
+<span id='Ext-Media-cfg-muted'>        /**
+</span>         * @cfg {Boolean} muted
+         * Whether or not the media is muted. This will also set the volume to zero.
+         * @accessor
+         */
+        muted: false
+    },
+
+<span id='Ext-Media-method-constructor'>    constructor: function() {
+</span>        this.mediaEvents = {};
+        this.callSuper(arguments);
+    },
+
+<span id='Ext-Media-method-initialize'>    initialize: function() {
+</span>        var me = this;
+        me.callParent();
+
+        me.on({
+            scope: me,
+
+            activate  : me.onActivate,
+            deactivate: me.onDeactivate
+        });
+
+        me.addMediaListener({
+            canplay: 'onCanPlay',
+            play: 'onPlay',
+            pause: 'onPause',
+            ended: 'onEnd',
+            volumechange: 'onVolumeChange',
+            timeupdate: 'onTimeUpdate'
+        });
+    },
+
+<span id='Ext-Media-method-addMediaListener'>    addMediaListener: function(event, fn) {
+</span>        var me = this,
+            dom = me.media.dom,
+            bind = Ext.Function.bind;
+
+        Ext.Object.each(event, function(e, fn) {
+            fn = bind(me[fn], me);
+            me.mediaEvents[e] = fn;
+            dom.addEventListener(e, fn);
+        });
+    },
+
+<span id='Ext-Media-method-onPlay'>    onPlay: function() {
+</span>        this.fireEvent('play', this);
+    },
+
+<span id='Ext-Media-method-onCanPlay'>    onCanPlay: function() {
+</span>        this.fireEvent('canplay', this);
+    },
+
+<span id='Ext-Media-method-onPause'>    onPause: function() {
+</span>        this.fireEvent('pause', this, this.getCurrentTime());
+    },
+
+<span id='Ext-Media-method-onEnd'>    onEnd: function() {
+</span>        this.fireEvent('ended', this, this.getCurrentTime());
+    },
+
+<span id='Ext-Media-method-onVolumeChange'>    onVolumeChange: function() {
+</span>        this.fireEvent('volumechange', this, this.media.dom.volume);
+    },
+
+<span id='Ext-Media-method-onTimeUpdate'>    onTimeUpdate: function() {
+</span>        this.fireEvent('timeupdate', this, this.getCurrentTime());
+    },
+
+<span id='Ext-Media-method-isPlaying'>    /**
+</span>     * Returns if the media is currently playing.
+     * @return {Boolean} playing `true` if the media is playing.
+     */
+    isPlaying: function() {
+        return !Boolean(this.media.dom.paused);
+    },
+
+<span id='Ext-Media-method-onActivate'>    // @private
+</span>    onActivate: function() {
+        var me = this;
+
+        if (me.getAutoResume() &amp;&amp; !me.isPlaying()) {
+            me.play();
+        }
+    },
+
+<span id='Ext-Media-method-onDeactivate'>    // @private
+</span>    onDeactivate: function() {
+        var me = this;
+
+        if (me.getAutoPause() &amp;&amp; me.isPlaying()) {
+            me.pause();
+        }
+    },
+
+<span id='Ext-Media-method-updateUrl'>    /**
+</span>     * Sets the URL of the media element. If the media element already exists, it is update the src attribute of the
+     * element. If it is currently playing, it will start the new video.
+     */
+    updateUrl: function(newUrl) {
+        var dom = this.media.dom;
+
+        //when changing the src, we must call load:
+        //http://developer.apple.com/library/safari/#documentation/AudioVideo/Conceptual/Using_HTML5_Audio_Video/ControllingMediaWithJavaScript/ControllingMediaWithJavaScript.html
+
+        dom.src = newUrl;
+
+        if ('load' in dom) {
+            dom.load();
+        }
+
+        if (this.isPlaying()) {
+            this.play();
+        }
+    },
+
+<span id='Ext-Media-method-updateEnableControls'>    /**
+</span>     * Updates the controls of the video element.
+     */
+    updateEnableControls: function(enableControls) {
+        this.media.dom.controls = enableControls ? 'controls' : false;
+    },
+
+<span id='Ext-Media-method-updateLoop'>    /**
+</span>     * Updates the loop setting of the media element.
+     */
+    updateLoop: function(loop) {
+        this.media.dom.loop = loop ? 'loop' : false;
+    },
+
+<span id='Ext-Media-method-play'>    /**
+</span>     * Starts or resumes media playback.
+     */
+    play: function() {
+        var dom = this.media.dom;
+
+        if ('play' in dom) {
+            dom.play();
+            setTimeout(function() {
+                dom.play();
+            }, 10);
+        }
+    },
+
+<span id='Ext-Media-method-pause'>    /**
+</span>     * Pauses media playback.
+     */
+    pause: function() {
+        var dom = this.media.dom;
+
+        if ('pause' in dom) {
+            dom.pause();
+        }
+    },
+
+<span id='Ext-Media-method-toggle'>    /**
+</span>     * Toggles the media playback state.
+     */
+    toggle: function() {
+        if (this.isPlaying()) {
+            this.pause();
+        } else {
+            this.play();
+        }
+    },
+
+<span id='Ext-Media-method-stop'>    /**
+</span>     * Stops media playback and returns to the beginning.
+     */
+    stop: function() {
+        var me = this;
+
+        me.setCurrentTime(0);
+        me.fireEvent('stop', me);
+        me.pause();
+    },
+
+<span id='Ext-Media-method-updateVolume'>    //@private
+</span>    updateVolume: function(volume) {
+        this.media.dom.volume = volume;
+    },
+
+<span id='Ext-Media-method-updateMuted'>    //@private
+</span>    updateMuted: function(muted) {
+        this.fireEvent('mutedchange', this, muted);
+
+        this.media.dom.muted = muted;
+    },
+
+<span id='Ext-Media-method-getCurrentTime'>    /**
+</span>     * Returns the current time of the media, in seconds.
+     * @return {Number}
+     */
+    getCurrentTime: function() {
+        return this.media.dom.currentTime;
+    },
+
+<span id='Ext-Media-method-setCurrentTime'>    /*
+</span>     * Set the current time of the media.
+     * @param {Number} time The time, in seconds.
+     * @return {Number}
+     */
+    setCurrentTime: function(time) {
+        this.media.dom.currentTime = time;
+
+        return time;
+    },
+
+<span id='Ext-Media-method-getDuration'>    /**
+</span>     * Returns the duration of the media, in seconds.
+     * @return {Number}
+     */
+    getDuration: function() {
+        return this.media.dom.duration;
+    },
+
+<span id='Ext-Media-method-destroy'>    destroy: function() {
+</span>        var me = this,
+            dom  = me.media.dom,
+            mediaEvents = me.mediaEvents;
+
+        Ext.Object.each(mediaEvents, function(event, fn) {
+            dom.removeEventListener(event, fn);
+        });
+
+        this.callSuper();
+    }
+});
+</pre>
+</body>
+</html>

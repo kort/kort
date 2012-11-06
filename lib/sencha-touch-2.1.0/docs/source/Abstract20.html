@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Ext-device-contacts-Abstract'>/**
+</span> * @private
+ */
+Ext.define('Ext.device.contacts.Abstract', {
+    extend: 'Ext.Evented',
+
+    config: {
+<span id='Ext-device-contacts-Abstract-cfg-includeImages'>        /**
+</span>         * @cfg {Boolean} includeImages
+         * True to include images when you get the contacts store. Please beware that this can be very slow.
+         */
+        includeImages: false
+    },
+
+<span id='Ext-device-contacts-Abstract-method-getContacts'>    /**
+</span>     * Returns an Array of contact objects.
+     * @return {Object[]} An array of contact objects.
+     */
+    getContacts: function(config) {
+        if (!this._store) {
+            this._store = [
+                {
+                    first: 'Robert',
+                    last: 'Dougan',
+                    emails: {
+                        work: 'rob@sencha.com'
+                    }
+                },
+                {
+                    first: 'Jamie',
+                    last: 'Avins',
+                    emails: {
+                        work: 'jamie@sencha.com'
+                    }
+                }
+            ];
+        }
+
+        config.success.call(config.scope || this, this._store);
+    },
+
+<span id='Ext-device-contacts-Abstract-method-getThumbnail'>     /**
+</span>     * Returns base64 encoded image thumbnail for a contact specified in config.id
+     * @return {String} base64 string
+     */
+
+    getThumbnail: function(config) {
+        config.callback.call(config.scope || this, &quot;&quot;);
+    },
+
+
+<span id='Ext-device-contacts-Abstract-method-getLocalizedLabel'>     /**
+</span>     * Returns localized, user readable label for a contact field (i.e. &quot;Mobile&quot;, &quot;Home&quot;)
+     * @return {String} user readable string
+     */
+    getLocalizedLabel: function(config) {
+        config.callback.call(config.scope || this, config.label.toUpperCase(), config.label);
+    }
+});
+</pre>
+</body>
+</html>

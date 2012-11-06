@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Ext-draw-sprite-Text'>/**
+</span> * @class Ext.draw.sprite.Text
+ * @extends Ext.draw.sprite.Sprite
+ *
+ * A sprite that represents text.
+ *
+ *     @example preview miniphone
+ *     var component = new Ext.draw.Component({
+ *       items: [{
+ *         type: 'text',
+ *         x: 50,
+ *         y: 50,
+ *         text: 'Sencha',
+ *         fontSize: 18,
+ *         fillStyle: 'blue'
+ *       }]
+ *     });
+ *     Ext.Viewport.setLayout('fit');
+ *     Ext.Viewport.add(component);
+ */
+Ext.define(&quot;Ext.draw.sprite.Text&quot;, {
+    extend: &quot;Ext.draw.sprite.Sprite&quot;,
+    requires: ['Ext.draw.TextMeasurer'],
+    alias: 'sprite.text',
+<span id='Ext-draw-sprite-Text-property-type'>    type: 'text',
+</span><span id='Ext-draw-sprite-Text-property-lineBreakRe'>    lineBreakRe: /\n/g,
+</span>    inheritableStatics: {
+<span id='Ext-draw-sprite-Text-property-shortHand1Re'>        shortHand1Re: /'(.*)'/g,
+</span><span id='Ext-draw-sprite-Text-property-shortHand2Re'>        shortHand2Re: / /g,
+</span><span id='Ext-draw-sprite-Text-property-shortHand3Re'>        shortHand3Re: /\s*,\s*/g,
+</span><span id='Ext-draw-sprite-Text-property-shortHand4Re'>        shortHand4Re: /\$\$\$\$/g,
+</span><span id='Ext-draw-sprite-Text-property-def'>        def: {
+</span>            processors: {
+<span id='Ext-draw-sprite-Text-cfg-x'>                /**
+</span>                 * @cfg {Number} [x=0] The position of the sprite on the x-axis.
+                 */
+                x: &quot;number&quot;,
+
+<span id='Ext-draw-sprite-Text-cfg-y'>                /**
+</span>                 * @cfg {Number} [y=0] The position of the sprite on the y-axis.
+                 */
+                y: &quot;number&quot;,
+
+<span id='Ext-draw-sprite-Text-cfg-text'>                /**
+</span>                 * @cfg {String} [text=''] The text represented in the sprite.
+                 */
+                text: &quot;string&quot;,
+
+<span id='Ext-draw-sprite-Text-cfg-fontSize'>                /**
+</span>                 * @cfg {String/Number} [fontSize='10px'] The size of the font displayed.
+                 */
+                fontSize: function (n) {
+                    if (!isNaN(n)) {
+                        return +n + 'px';
+                    } else if (n.match(Ext.dom.Element.unitRe)) {
+                        return n;
+                    }
+                },
+
+<span id='Ext-draw-sprite-Text-cfg-fontStyle'>                /**
+</span>                 * @cfg {String} [fontStyle=''] The style of the font displayed. {normal, italic, oblique}
+                 */
+                fontStyle: &quot;enums(,italic,oblique)&quot;,
+
+<span id='Ext-draw-sprite-Text-cfg-fontVariant'>                /**
+</span>                 * @cfg {String} [fontVariant=''] The variant of the font displayed. {normal, small-caps}
+                 */
+                fontVariant: &quot;enums(,small-caps)&quot;,
+
+<span id='Ext-draw-sprite-Text-cfg-fontWeight'>                /**
+</span>                 * @cfg {String} [fontWeight=''] The weight of the font displayed. {normal, bold, bolder, lighter}
+                 */
+                fontWeight: (function (fontWeights) {
+                    return function (n) {
+                        if (!n) {
+                            return &quot;&quot;;
+                        } else if (n === 'normal') {
+                            return '';
+                        } else if (!isNaN(n)) {
+                            n = +n;
+                            if (100 &lt;= n &amp;&amp; n &lt;= 900) {
+                                return n;
+                            }
+                        } else if (n in fontWeights) {
+                            return n;
+                        }
+                    };
+                })({&quot;normal&quot;: true, &quot;bold&quot;: true, &quot;bolder&quot;: true, &quot;lighter&quot;: true}),
+
+<span id='Ext-draw-sprite-Text-cfg-fontFamily'>                /**
+</span>                 * @cfg {String} [fontFamily='sans-serif'] The family of the font displayed.
+                 */
+                fontFamily: &quot;string&quot;,
+
+<span id='Ext-draw-sprite-Text-cfg-textAlign'>                /**
+</span>                 * @cfg {String} [textAlign='start'] The alignment of the text displayed. {left, right, center, start, end}
+                 */
+                textAlign: (function (textAligns) {
+                    return function (n) {
+                        if (n === 'middle') {
+                            return 'center';
+                        } else if (!n) {
+                            return &quot;center&quot;;
+                        } else if (!Ext.isString(n)) {
+                            return undefined;
+                        } else if (n in textAligns) {
+                            return n;
+                        }
+                    };
+                })({&quot;left&quot;: true, &quot;right&quot;: true, &quot;center&quot;: true, &quot;start&quot;: true, &quot;end&quot;: true}),
+
+<span id='Ext-draw-sprite-Text-cfg-textBaseline'>                /**
+</span>                 * @cfg {String} [textBaseline=&quot;alphabetic&quot;] The baseline of the text displayed. {top, hanging, middle, alphabetic, ideographic, bottom}
+                 */
+                textBaseline: (function (textBaselines) {
+                    return function (n) {
+                        if (n === false) {
+                            return &quot;alphabetic&quot;;
+                        } else if (n in textBaselines) {
+                            return n;
+                        } else if (n === 'center') {
+                            return 'middle';
+                        }
+                    };
+                })({&quot;top&quot;: true, &quot;hanging&quot;: true, &quot;middle&quot;: true, &quot;alphabetic&quot;: true, &quot;ideographic&quot;: true, &quot;bottom&quot;: true}),
+
+<span id='Ext-draw-sprite-Text-cfg-font'>                /**
+</span>                 * @cfg {String} [font='10px sans-serif'] The font displayed.
+                 */
+                font: &quot;string&quot;
+            },
+            aliases: {
+                &quot;font-size&quot;: &quot;fontSize&quot;,
+                &quot;font-family&quot;: &quot;fontFamily&quot;,
+                &quot;font-weight&quot;: &quot;fontWeight&quot;,
+                &quot;font-variant&quot;: &quot;fontVariant&quot;,
+                &quot;text-anchor&quot;: &quot;textAlign&quot;
+            },
+            defaults: {
+                fontStyle: '',
+                fontVariant: '',
+                fontWeight: '',
+                fontSize: '10px',
+                fontFamily: 'sans-serif',
+                font: '10px sans-serif',
+                textBaseline: &quot;alphabetic&quot;,
+                textAlign: &quot;start&quot;,
+                strokeStyle: 'none',
+                divBased: true,
+                fillStyle: '#000',
+                x: 0,
+                y: 0,
+                text: ''
+            },
+            dirtyTriggers: {
+                fontStyle: 'font,bbox',
+                fontVariant: 'font,bbox',
+                fontWeight: 'font,bbox',
+                fontSize: 'font,bbox',
+                fontFamily: 'font,bbox',
+                font: 'font-short-hand,bbox,canvas',
+                textBaseline: 'bbox',
+                textAlign: 'bbox',
+                x: &quot;bbox&quot;,
+                y: &quot;bbox&quot;,
+                text: &quot;bbox&quot;
+            },
+            updaters: {
+                &quot;font-short-hand&quot;: (function (dispatcher) {
+                    return function (attrs) {
+                        // TODO: Do this according to http://www.w3.org/TR/CSS21/fonts.html#font-shorthand
+                        var value = attrs.font,
+                            parts, part, i, ln, dispKey;
+                        value = value.replace(Ext.draw.sprite.Text.shortHand1Re, function (a, arg1) {
+                            return arg1.replace(Ext.draw.sprite.Text.shortHand2Re, '$$$$');
+                        });
+                        value = value.replace(Ext.draw.sprite.Text.shortHand3Re, ',');
+                        parts = value.split(' ');
+
+                        attrs = {};
+                        for (i = 0, ln = parts.length; i &lt; ln; i++) {
+                            part = parts[i];
+                            dispKey = dispatcher[part];
+                            if (dispKey) {
+                                attrs[dispKey] = part;
+                            } else if (part.match(Ext.dom.Element.unitRe)) {
+                                attrs.fontSize = part;
+                            } else {
+                                attrs.fontFamily = part.replace(Ext.draw.sprite.Text.shortHand4Re, ' ');
+                            }
+                        }
+                        this.setAttributesBypassingNormalization(attrs);
+                    };
+                })({
+                    &quot;italic&quot;: &quot;fontStyles&quot;,
+                    &quot;oblique&quot;: &quot;fontStyles&quot;,
+                    &quot;bold&quot;: &quot;fontWeights&quot;,
+                    &quot;bolder&quot;: &quot;fontWeights&quot;,
+                    &quot;lighter&quot;: &quot;fontWeights&quot;,
+                    &quot;100&quot;: &quot;fontWeights&quot;,
+                    &quot;200&quot;: &quot;fontWeights&quot;,
+                    &quot;300&quot;: &quot;fontWeights&quot;,
+                    &quot;400&quot;: &quot;fontWeights&quot;,
+                    &quot;500&quot;: &quot;fontWeights&quot;,
+                    &quot;600&quot;: &quot;fontWeights&quot;,
+                    &quot;700&quot;: &quot;fontWeights&quot;,
+                    &quot;800&quot;: &quot;fontWeights&quot;,
+                    &quot;900&quot;: &quot;fontWeights&quot;,
+                    &quot;small-caps&quot;: &quot;fontVariant&quot;
+                }),
+                &quot;font&quot;: function (attrs) {
+                    var font = '';
+                    if (attrs.fontWeight) {
+                        font += attrs.fontWeight + ' ';
+                    }
+                    if (attrs.fontVariant) {
+                        font += attrs.fontVariant + ' ';
+                    }
+                    if (attrs.fontSize) {
+                        font += attrs.fontSize + ' ';
+                    }
+                    if (attrs.fontFamily) {
+                        font += attrs.fontFamily + ' ';
+                    }
+                    this.setAttributesBypassingNormalization({
+                        font: font.substr(0, font.length - 1)
+                    });
+                }
+            }
+        }
+    },
+
+<span id='Ext-draw-sprite-Text-method-constructor'>    constructor: function (config) {
+</span>        Ext.draw.sprite.Sprite.prototype.constructor.call(this, config);
+    },
+
+<span id='Ext-draw-sprite-Text-method-updatePlainBBox'>    updatePlainBBox: function (plain) {
+</span>        var me = this,
+            attr = me.attr,
+            x = attr.x,
+            y = attr.y,
+            font = attr.font,
+            text = attr.text,
+            baseline = attr.textBaseline,
+            alignment = attr.textAlign,
+            size = Ext.draw.TextMeasurer.measureText(text, font),
+            height = size.height,
+            width = size.width;
+
+        switch (baseline) {
+            case 'hanging' :
+            case 'top':
+                break;
+            case 'ideographic' :
+            case 'bottom' :
+                y -= height;
+                break;
+            case 'alphabetic' :
+                y -= height * 0.8;
+                break;
+            case 'middle' :
+            case 'center' :
+                y -= height * 0.5;
+                break;
+        }
+        switch (alignment) {
+            case 'end' :
+            case 'right' :
+                x -= width;
+                break;
+            case 'middle' :
+            case 'center' :
+                x -= width * 0.5;
+                break;
+        }
+
+        plain.x = x;
+        plain.y = y;
+        plain.width = width;
+        plain.height = height;
+    },
+
+<span id='Ext-draw-sprite-Text-method-setText'>    setText: function (text) {
+</span>        this.setAttributesBypassingNormalization({text: text});
+    },
+
+<span id='Ext-draw-sprite-Text-method-setElementStyles'>    setElementStyles: function (element, styles) {
+</span>        var stylesCache = element.stylesCache || (element.stylesCache = {}),
+            style = element.dom.style,
+            name;
+        for (name in styles) {
+            if (stylesCache[name] !== styles[name]) {
+                stylesCache[name] = style[name] = styles[name];
+            }
+        }
+    },
+
+<span id='Ext-draw-sprite-Text-method-render'>    render: function (surface, ctx) {
+</span>        var attr = this.attr,
+            mat = Ext.draw.Matrix.fly(attr.matrix.elements.slice(0)),
+            bbox = this.getBBox(true),
+            x, y, i, lines;
+        if (attr.text.length === 0) {
+            return;
+        }
+
+        lines = attr.text.split('\n');
+        // Simulate textBaseline and textAlign.
+        x = attr.bbox.plain.x;
+        y = attr.bbox.plain.y;
+        mat.toContext(ctx);
+        for (i = 0; i &lt; lines.length; i++) {
+            if (ctx.fillStyle !== 'rgba(0, 0, 0, 0)') {
+                ctx.fillText(lines[i], x, y + bbox.height / lines.length * i);
+            }
+            if (ctx.strokeStyle !== 'rgba(0, 0, 0, 0)') {
+                ctx.strokeText(lines[i], x, y + bbox.height / lines.length * i);
+            }
+        }
+    }
+});</pre>
+</body>
+</html>

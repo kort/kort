@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">//@tag dom,core
+
+<span id='Ext-env-Feature'>/**
+</span> * Provides information about browser.
+ * 
+ * Should not be manually instantiated unless for unit-testing.
+ * Access the global instance stored in {@link Ext.browser} instead.
+ * @private
+ */
+Ext.define('Ext.env.Feature', {
+
+    requires: ['Ext.env.Browser', 'Ext.env.OS'],
+
+<span id='Ext-env-Feature-method-constructor'>    constructor: function() {
+</span>        this.testElements = {};
+
+        this.has = function(name) {
+            return !!this.has[name];
+        };
+
+        return this;
+    },
+
+<span id='Ext-env-Feature-method-getTestElement'>    getTestElement: function(tag, createNew) {
+</span>        if (tag === undefined) {
+            tag = 'div';
+        }
+        else if (typeof tag !== 'string') {
+            return tag;
+        }
+
+        if (createNew) {
+            return document.createElement(tag);
+        }
+
+        if (!this.testElements[tag]) {
+            this.testElements[tag] = document.createElement(tag);
+        }
+
+        return this.testElements[tag];
+    },
+
+<span id='Ext-env-Feature-method-isStyleSupported'>    isStyleSupported: function(name, tag) {
+</span>        var elementStyle = this.getTestElement(tag).style,
+            cName = Ext.String.capitalize(name);
+
+        if (typeof elementStyle[name] !== 'undefined'
+            || typeof elementStyle[Ext.browser.getStylePrefix(name) + cName] !== 'undefined') {
+            return true;
+        }
+
+        return false;
+    },
+
+<span id='Ext-env-Feature-method-isEventSupported'>    isEventSupported: function(name, tag) {
+</span>        if (tag === undefined) {
+            tag = window;
+        }
+
+        var element = this.getTestElement(tag),
+            eventName = 'on' + name.toLowerCase(),
+            isSupported = (eventName in element);
+
+        if (!isSupported) {
+            if (element.setAttribute &amp;&amp; element.removeAttribute) {
+                element.setAttribute(eventName, '');
+                isSupported = typeof element[eventName] === 'function';
+
+                if (typeof element[eventName] !== 'undefined') {
+                    element[eventName] = undefined;
+                }
+
+                element.removeAttribute(eventName);
+            }
+        }
+
+        return isSupported;
+    },
+
+<span id='Ext-env-Feature-method-getSupportedPropertyName'>    getSupportedPropertyName: function(object, name) {
+</span>        var vendorName = Ext.browser.getVendorProperyName(name);
+
+        if (vendorName in object) {
+            return vendorName;
+        }
+        else if (name in object) {
+            return name;
+        }
+
+        return null;
+    },
+
+<span id='Ext-env-Feature-property-registerTest'>    registerTest: Ext.Function.flexSetter(function(name, fn) {
+</span>        this.has[name] = fn.call(this);
+
+        return this;
+    })
+
+}, function() {
+
+<span id='Ext-feature'>    /**
+</span>     * @class Ext.feature
+     * @extend Ext.env.Feature
+     * @singleton
+     *
+     * A simple class to verify if a browser feature exists or not on the current device.
+     *
+     *     if (Ext.feature.has.Canvas) {
+     *         // do some cool things with canvas here
+     *     }
+     *
+     * See the {@link #has} property/method for details of the features that can be detected.
+     * 
+     * @aside guide environment_package
+     */
+    Ext.feature = new this;
+
+    var has = Ext.feature.has;
+
+<span id='Ext-feature-method-has'>    /**
+</span>     * @method has
+     * @member Ext.feature
+     * Verifies if a browser feature exists or not on the current device.
+     * 
+     * A &quot;hybrid&quot; property, can be either accessed as a method call, i.e:
+     *
+     *     if (Ext.feature.has('Canvas')) {
+     *         // ...
+     *     }
+     *
+     * or as an object with boolean properties, i.e:
+     *
+     *     if (Ext.feature.has.Canvas) {
+     *         // ...
+     *     }
+     * 
+     * Possible properties/parameter values:
+     *
+     * - Canvas
+     * - Svg
+     * - Vml
+     * - Touch - supports touch events (`touchstart`).
+     * - Orientation - supports different orientations.
+     * - OrientationChange - supports the `orientationchange` event.
+     * - DeviceMotion - supports the `devicemotion` event.
+     * - Geolocation
+     * - SqlDatabase
+     * - WebSockets
+     * - Range - supports [DOM document fragments.][1]
+     * - CreateContextualFragment - supports HTML fragment parsing using [range.createContextualFragment()][2].
+     * - History - supports history management with [history.pushState()][3].
+     * - CssTransforms
+     * - Css3dTransforms
+     * - CssAnimations
+     * - CssTransitions
+     * - Audio - supports the `&lt;audio&gt;` tag.
+     * - Video - supports the `&lt;video&gt;` tag.
+     * - ClassList - supports the HTML5 classList API.
+     * - LocalStorage - LocalStorage is supported and can be written to.
+     * 
+     * [1]: https://developer.mozilla.org/en/DOM/range
+     * [2]: https://developer.mozilla.org/en/DOM/range.createContextualFragment
+     * [3]: https://developer.mozilla.org/en/DOM/Manipulating_the_browser_history#The_pushState().C2.A0method
+     *
+     * @param {String} value The feature name to check.
+     * @return {Boolean}
+     */
+    Ext.feature.registerTest({
+        Canvas: function() {
+            var element = this.getTestElement('canvas');
+            return !!(element &amp;&amp; element.getContext &amp;&amp; element.getContext('2d'));
+        },
+
+        Svg: function() {
+            var doc = document;
+
+            return !!(doc.createElementNS &amp;&amp; !!doc.createElementNS(&quot;http:/&quot; + &quot;/www.w3.org/2000/svg&quot;, &quot;svg&quot;).createSVGRect);
+        },
+
+        Vml: function() {
+            var element = this.getTestElement(),
+                ret = false;
+
+            element.innerHTML = &quot;&lt;!--[if vml]&gt;&lt;br&gt;&lt;![endif]--&gt;&quot;;
+            ret = (element.childNodes.length === 1);
+            element.innerHTML = &quot;&quot;;
+
+            return ret;
+        },
+
+        Touch: function() {
+            return this.isEventSupported('touchstart') &amp;&amp; !(Ext.os &amp;&amp; Ext.os.name.match(/Windows|MacOS|Linux/) &amp;&amp; !Ext.os.is.BlackBerry6);
+        },
+
+        Orientation: function() {
+            return ('orientation' in window) &amp;&amp; this.isEventSupported('orientationchange');
+        },
+
+        OrientationChange: function() {
+            return this.isEventSupported('orientationchange');
+        },
+
+        DeviceMotion: function() {
+            return this.isEventSupported('devicemotion');
+        },
+
+        Geolocation: function() {
+            return 'geolocation' in window.navigator;
+        },
+
+        SqlDatabase: function() {
+            return 'openDatabase' in window;
+        },
+
+        WebSockets: function() {
+            return 'WebSocket' in window;
+        },
+
+        Range: function() {
+            return !!document.createRange;
+        },
+
+        CreateContextualFragment: function() {
+            var range = !!document.createRange ? document.createRange() : false;
+            return range &amp;&amp; !!range.createContextualFragment;
+        },
+
+        History: function() {
+            return ('history' in window &amp;&amp; 'pushState' in window.history);
+        },
+
+        CssTransforms: function() {
+            return this.isStyleSupported('transform');
+        },
+
+        Css3dTransforms: function() {
+            // See https://sencha.jira.com/browse/TOUCH-1544
+            return this.has('CssTransforms') &amp;&amp; this.isStyleSupported('perspective') &amp;&amp; !Ext.os.is.Android2;
+        },
+
+        CssAnimations: function() {
+            return this.isStyleSupported('animationName');
+        },
+
+        CssTransitions: function() {
+            return this.isStyleSupported('transitionProperty');
+        },
+
+        Audio: function() {
+            return !!this.getTestElement('audio').canPlayType;
+        },
+
+        Video: function() {
+            return !!this.getTestElement('video').canPlayType;
+        },
+
+        ClassList: function() {
+            return &quot;classList&quot; in this.getTestElement();
+        },
+
+        LocalStorage : function() {
+            var supported = false;
+
+            try {
+                if ('localStorage' in window &amp;&amp; window['localStorage'] !== null) {
+                    //this should throw an error in private browsing mode in iOS
+                    localStorage.setItem('sencha-localstorage-test', 'test success');
+                    //clean up if setItem worked
+                    localStorage.removeItem('sencha-localstorage-test');
+                    supported = true;
+                }
+            } catch ( e ) {}
+
+            return supported;
+        }
+    });
+
+    //&lt;deprecated product=touch since=2.0&gt;
+<span id='Ext-supports'>    /**
+</span>     * @class Ext.supports
+     * Determines information about features are supported in the current environment.
+     * @deprecated 2.0.0
+     * Please use the {@link Ext.browser}, {@link Ext.os} and {@link Ext.feature} classes.
+     */
+
+<span id='Ext-supports-property-Transitions'>    /**
+</span>     * @member Ext.supports
+     * @property Transitions
+     * True if current device supports CSS transitions.
+     * @deprecated 2.0.0 Please use {@link Ext.feature#has}.CssTransitions instead
+     */
+    Ext.deprecatePropertyValue(has, 'Transitions', has.CssTransitions,
+                          &quot;Ext.supports.Transitions is deprecated, please use Ext.feature.has.CssTransitions instead&quot;);
+
+<span id='Ext-supports-property-SVG'>    /**
+</span>     * @member Ext.supports
+     * @property SVG
+     * True if current device supports SVG.
+     * @deprecated 2.0.0 Please use {@link Ext.feature#has}.Svg instead
+     */
+    Ext.deprecatePropertyValue(has, 'SVG', has.Svg,
+                          &quot;Ext.supports.SVG is deprecated, please use Ext.feature.has.Svg instead&quot;);
+
+<span id='Ext-supports-property-VML'>    /**
+</span>     * @member Ext.supports
+     * @property VML
+     * True if current device supports VML.
+     * @deprecated 2.0.0 Please use {@link Ext.feature#has}.Vml instead
+     */
+    Ext.deprecatePropertyValue(has, 'VML', has.Vml,
+                          &quot;Ext.supports.VML is deprecated, please use Ext.feature.has.Vml instead&quot;);
+
+<span id='Ext-supports-property-AudioTag'>    /**
+</span>     * @member Ext.supports
+     * @property AudioTag
+     * True if current device supports `&lt;audio&gt;` tag.
+     * @deprecated 2.0.0 Please use {@link Ext.feature#has}.Audio instead
+     */
+    Ext.deprecatePropertyValue(has, 'AudioTag', has.Audio,
+                          &quot;Ext.supports.AudioTag is deprecated, please use Ext.feature.has.Audio instead&quot;);
+
+<span id='Ext-supports-property-GeoLocation'>    /**
+</span>     * @member Ext.supports
+     * @property GeoLocation
+     * True if current device supports geolocation.
+     * @deprecated 2.0.0 Please use {@link Ext.feature#has}.Geolocation instead
+     */
+    Ext.deprecatePropertyValue(has, 'GeoLocation', has.Geolocation,
+                          &quot;Ext.supports.GeoLocation is deprecated, please use Ext.feature.has.Geolocation instead&quot;);
+    var name;
+
+    if (!Ext.supports) {
+        Ext.supports = {};
+    }
+
+    for (name in has) {
+        if (has.hasOwnProperty(name)) {
+            Ext.deprecatePropertyValue(Ext.supports, name, has[name], &quot;Ext.supports.&quot; + name + &quot; is deprecated, please use Ext.feature.has.&quot; + name + &quot; instead&quot;);
+        }
+    }1
+    //&lt;/deprecated&gt;
+});
+</pre>
+</body>
+</html>

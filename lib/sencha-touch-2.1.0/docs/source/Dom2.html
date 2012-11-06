@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Ext-event-publisher-Dom'>/**
+</span> * @private
+ */
+Ext.define('Ext.event.publisher.Dom', {
+    extend: 'Ext.event.publisher.Publisher',
+
+    requires: [
+        'Ext.env.Browser',
+        'Ext.Element',
+        'Ext.event.Dom'
+    ],
+
+<span id='Ext-event-publisher-Dom-property-targetType'>    targetType: 'element',
+</span>
+<span id='Ext-event-publisher-Dom-property-idOrClassSelectorRegex'>    idOrClassSelectorRegex: /^([#|\.])([\w\-]+)$/,
+</span>
+<span id='Ext-event-publisher-Dom-property-handledEvents'>    handledEvents: ['click', 'focus', 'blur', 'paste', 'input',
+</span>                    'mousemove', 'mousedown', 'mouseup', 'mouseover', 'mouseout',
+                    'keyup', 'keydown', 'keypress', 'submit',
+                    'transitionend', 'animationstart', 'animationend'],
+
+<span id='Ext-event-publisher-Dom-property-classNameSplitRegex'>    classNameSplitRegex: /\s+/,
+</span>
+<span id='Ext-event-publisher-Dom-property-SELECTOR_ALL'>    SELECTOR_ALL: '*',
+</span>
+<span id='Ext-event-publisher-Dom-method-constructor'>    constructor: function() {
+</span>        var eventNames = this.getHandledEvents(),
+            eventNameMap = {},
+            i, ln, eventName, vendorEventName;
+
+        this.doBubbleEventsMap = {
+            'click': true,
+            'submit': true,
+            'mousedown': true,
+            'mousemove': true,
+            'mouseup': true,
+            'mouseover': true,
+            'mouseout': true,
+            'transitionend': true
+        };
+
+        this.onEvent = Ext.Function.bind(this.onEvent, this);
+
+        for (i = 0,ln = eventNames.length; i &lt; ln; i++) {
+            eventName = eventNames[i];
+            vendorEventName = this.getVendorEventName(eventName);
+            eventNameMap[vendorEventName] = eventName;
+
+            this.attachListener(vendorEventName);
+        }
+
+        this.eventNameMap = eventNameMap;
+
+        return this.callParent();
+    },
+
+<span id='Ext-event-publisher-Dom-method-getSubscribers'>    getSubscribers: function(eventName) {
+</span>        var subscribers = this.subscribers,
+            eventSubscribers = subscribers[eventName];
+
+        if (!eventSubscribers) {
+            eventSubscribers = subscribers[eventName] = {
+                id: {
+                    $length: 0
+                },
+                className: {
+                    $length: 0
+                },
+                selector: [],
+                all: 0,
+                $length: 0
+            }
+        }
+
+        return eventSubscribers;
+    },
+
+<span id='Ext-event-publisher-Dom-method-getVendorEventName'>    getVendorEventName: function(eventName) {
+</span>        if (eventName === 'transitionend') {
+            eventName = Ext.browser.getVendorProperyName('transitionEnd');
+        }
+        else if (eventName === 'animationstart') {
+            eventName = Ext.browser.getVendorProperyName('animationStart');
+        }
+        else if (eventName === 'animationend') {
+            eventName = Ext.browser.getVendorProperyName('animationEnd');
+        }
+
+        return eventName;
+    },
+
+<span id='Ext-event-publisher-Dom-method-attachListener'>    attachListener: function(eventName) {
+</span>        document.addEventListener(eventName, this.onEvent, !this.doesEventBubble(eventName));
+
+        return this;
+    },
+
+<span id='Ext-event-publisher-Dom-method-removeListener'>    removeListener: function(eventName) {
+</span>        document.removeEventListener(eventName, this.onEvent, !this.doesEventBubble(eventName));
+
+        return this;
+    },
+
+<span id='Ext-event-publisher-Dom-method-doesEventBubble'>    doesEventBubble: function(eventName) {
+</span>        return !!this.doBubbleEventsMap[eventName];
+    },
+
+<span id='Ext-event-publisher-Dom-method-subscribe'>    subscribe: function(target, eventName) {
+</span>        if (!this.handles(eventName)) {
+            return false;
+        }
+
+        var idOrClassSelectorMatch = target.match(this.idOrClassSelectorRegex),
+            subscribers = this.getSubscribers(eventName),
+            idSubscribers = subscribers.id,
+            classNameSubscribers = subscribers.className,
+            selectorSubscribers = subscribers.selector,
+            type, value;
+
+        if (idOrClassSelectorMatch !== null) {
+            type = idOrClassSelectorMatch[1];
+            value = idOrClassSelectorMatch[2];
+
+            if (type === '#') {
+                if (idSubscribers.hasOwnProperty(value)) {
+                    idSubscribers[value]++;
+                    return true;
+                }
+
+                idSubscribers[value] = 1;
+                idSubscribers.$length++;
+            }
+            else {
+                if (classNameSubscribers.hasOwnProperty(value)) {
+                    classNameSubscribers[value]++;
+                    return true;
+                }
+
+                classNameSubscribers[value] = 1;
+                classNameSubscribers.$length++;
+            }
+        }
+        else {
+            if (target === this.SELECTOR_ALL) {
+                subscribers.all++;
+            }
+            else {
+                if (selectorSubscribers.hasOwnProperty(target)) {
+                    selectorSubscribers[target]++;
+                    return true;
+                }
+
+                selectorSubscribers[target] = 1;
+                selectorSubscribers.push(target);
+            }
+        }
+
+        subscribers.$length++;
+
+        return true;
+    },
+
+<span id='Ext-event-publisher-Dom-method-unsubscribe'>    unsubscribe: function(target, eventName, all) {
+</span>        if (!this.handles(eventName)) {
+            return false;
+        }
+
+        var idOrClassSelectorMatch = target.match(this.idOrClassSelectorRegex),
+            subscribers = this.getSubscribers(eventName),
+            idSubscribers = subscribers.id,
+            classNameSubscribers = subscribers.className,
+            selectorSubscribers = subscribers.selector,
+            type, value;
+
+        all = Boolean(all);
+
+        if (idOrClassSelectorMatch !== null) {
+            type = idOrClassSelectorMatch[1];
+            value = idOrClassSelectorMatch[2];
+
+            if (type === '#') {
+                if (!idSubscribers.hasOwnProperty(value) || (!all &amp;&amp; --idSubscribers[value] &gt; 0)) {
+                    return true;
+                }
+
+                delete idSubscribers[value];
+                idSubscribers.$length--;
+            }
+            else {
+                if (!classNameSubscribers.hasOwnProperty(value) || (!all &amp;&amp; --classNameSubscribers[value] &gt; 0)) {
+                    return true;
+                }
+
+                delete classNameSubscribers[value];
+                classNameSubscribers.$length--;
+            }
+        }
+        else {
+            if (target === this.SELECTOR_ALL) {
+                if (all) {
+                    subscribers.all = 0;
+                }
+                else {
+                    subscribers.all--;
+                }
+            }
+            else {
+                if (!selectorSubscribers.hasOwnProperty(target) || (!all &amp;&amp; --selectorSubscribers[target] &gt; 0)) {
+                    return true;
+                }
+
+                delete selectorSubscribers[target];
+                Ext.Array.remove(selectorSubscribers, target);
+            }
+        }
+
+        subscribers.$length--;
+
+        return true;
+    },
+
+<span id='Ext-event-publisher-Dom-method-getElementTarget'>    getElementTarget: function(target) {
+</span>        if (target.nodeType !== 1) {
+            target = target.parentNode;
+
+            if (!target || target.nodeType !== 1) {
+                return null;
+            }
+        }
+
+        return target;
+    },
+
+<span id='Ext-event-publisher-Dom-method-getBubblingTargets'>    getBubblingTargets: function(target) {
+</span>        var targets = [];
+
+        if (!target) {
+            return targets;
+        }
+
+        do {
+            targets[targets.length] = target;
+
+            target = target.parentNode;
+        } while (target &amp;&amp; target.nodeType === 1);
+
+        return targets;
+    },
+
+<span id='Ext-event-publisher-Dom-method-dispatch'>    dispatch: function(target, eventName, args) {
+</span>        args.push(args[0].target);
+        this.callParent(arguments);
+    },
+
+<span id='Ext-event-publisher-Dom-method-publish'>    publish: function(eventName, targets, event) {
+</span>        var subscribers = this.getSubscribers(eventName),
+            wildcardSubscribers;
+
+        if (subscribers.$length === 0 || !this.doPublish(subscribers, eventName, targets, event)) {
+            wildcardSubscribers = this.getSubscribers('*');
+
+            if (wildcardSubscribers.$length &gt; 0) {
+                this.doPublish(wildcardSubscribers, eventName, targets, event);
+            }
+        }
+
+        return this;
+    },
+
+<span id='Ext-event-publisher-Dom-method-doPublish'>    doPublish: function(subscribers, eventName, targets, event) {
+</span>        var idSubscribers = subscribers.id,
+            classNameSubscribers = subscribers.className,
+            selectorSubscribers = subscribers.selector,
+            hasIdSubscribers = idSubscribers.$length &gt; 0,
+            hasClassNameSubscribers = classNameSubscribers.$length &gt; 0,
+            hasSelectorSubscribers = selectorSubscribers.length &gt; 0,
+            hasAllSubscribers = subscribers.all &gt; 0,
+            isClassNameHandled = {},
+            args = [event],
+            hasDispatched = false,
+            classNameSplitRegex = this.classNameSplitRegex,
+            i, ln, j, subLn, target, id, className, classNames, selector;
+
+        for (i = 0,ln = targets.length; i &lt; ln; i++) {
+            target = targets[i];
+            event.setDelegatedTarget(target);
+
+            if (hasIdSubscribers) {
+                id = target.id;
+
+                if (id) {
+                    if (idSubscribers.hasOwnProperty(id)) {
+                        hasDispatched = true;
+                        this.dispatch('#' + id, eventName, args);
+                    }
+                }
+            }
+
+            if (hasClassNameSubscribers) {
+                className = target.className;
+
+                if (className) {
+                    classNames = className.split(classNameSplitRegex);
+
+                    for (j = 0,subLn = classNames.length; j &lt; subLn; j++) {
+                        className = classNames[j];
+
+                        if (!isClassNameHandled[className]) {
+                            isClassNameHandled[className] = true;
+
+                            if (classNameSubscribers.hasOwnProperty(className)) {
+                                hasDispatched = true;
+                                this.dispatch('.' + className, eventName, args);
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Stop propagation
+            if (event.isStopped) {
+                return hasDispatched;
+            }
+        }
+
+        if (hasAllSubscribers &amp;&amp; !hasDispatched) {
+            event.setDelegatedTarget(event.browserEvent.target);
+            hasDispatched = true;
+            this.dispatch(this.SELECTOR_ALL, eventName, args);
+            if (event.isStopped) {
+                return hasDispatched;
+            }
+        }
+
+        if (hasSelectorSubscribers) {
+            for (j = 0,subLn = targets.length; j &lt; subLn; j++) {
+                target = targets[j];
+
+                for (i = 0,ln = selectorSubscribers.length; i &lt; ln; i++) {
+                    selector = selectorSubscribers[i];
+
+                    if (this.matchesSelector(target, selector)) {
+                        event.setDelegatedTarget(target);
+                        hasDispatched = true;
+                        this.dispatch(selector, eventName, args);
+                    }
+
+                    if (event.isStopped) {
+                        return hasDispatched;
+                    }
+                }
+            }
+        }
+
+        return hasDispatched;
+    },
+
+<span id='Ext-event-publisher-Dom-method-matchesSelector'>    matchesSelector: function(element, selector) {
+</span>        if ('webkitMatchesSelector' in element) {
+            return element.webkitMatchesSelector(selector);
+        }
+
+        return Ext.DomQuery.is(element, selector);
+    },
+
+<span id='Ext-event-publisher-Dom-method-onEvent'>    onEvent: function(e) {
+</span>        var eventName = this.eventNameMap[e.type];
+
+        // Set the current frame start time to be the timestamp of the event.
+        Ext.frameStartTime = e.timeStamp;
+
+        if (!eventName || this.getSubscribersCount(eventName) === 0) {
+            return;
+        }
+
+        var target = this.getElementTarget(e.target),
+            targets;
+
+        if (!target) {
+            return;
+        }
+
+        if (this.doesEventBubble(eventName)) {
+            targets = this.getBubblingTargets(target);
+        }
+        else {
+            targets = [target];
+        }
+
+        this.publish(eventName, targets, new Ext.event.Dom(e));
+    },
+
+<span id='Ext-event-publisher-Dom-method-hasSubscriber'>    //&lt;debug&gt;
+</span>    hasSubscriber: function(target, eventName) {
+        if (!this.handles(eventName)) {
+            return false;
+        }
+
+        var match = target.match(this.idOrClassSelectorRegex),
+            subscribers = this.getSubscribers(eventName),
+            type, value;
+
+        if (match !== null) {
+            type = match[1];
+            value = match[2];
+
+            if (type === '#') {
+                return subscribers.id.hasOwnProperty(value);
+            }
+            else {
+                return subscribers.className.hasOwnProperty(value);
+            }
+        }
+        else {
+            return (subscribers.selector.hasOwnProperty(target) &amp;&amp; Ext.Array.indexOf(subscribers.selector, target) !== -1);
+        }
+
+        return false;
+    },
+<span id='Ext-event-publisher-Dom-method-getSubscribersCount'>    //&lt;/debug&gt;
+</span>
+    getSubscribersCount: function(eventName) {
+        if (!this.handles(eventName)) {
+            return 0;
+        }
+
+        return this.getSubscribers(eventName).$length + this.getSubscribers('*').$length;
+    }
+
+});
+</pre>
+</body>
+</html>
