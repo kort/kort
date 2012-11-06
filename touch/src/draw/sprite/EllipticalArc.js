@@ -29,17 +29,17 @@ Ext.define("Ext.draw.sprite.EllipticalArc", {
         def: {
             processors: {
                 /**
-                 * @cfg {Number} startAngle The beginning angle of the arc.
+                 * @cfg {Number} [startAngle=0] The beginning angle of the arc.
                  */
                 startAngle: "number",
 
                 /**
-                 * @cfg {Number} endAngle The ending angle of the arc.
+                 * @cfg {Number} [endAngle=Math.PI*2] The ending angle of the arc.
                  */
                 endAngle: "number",
 
                 /**
-                 * @cfg {Boolean} anticlockwise Determines whether or not the arc is drawn clockwise.
+                 * @cfg {Boolean} [anticlockwise=false] Determines whether or not the arc is drawn clockwise.
                  */
                 anticlockwise: "bool"
             },

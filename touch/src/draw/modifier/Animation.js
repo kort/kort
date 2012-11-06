@@ -1,8 +1,17 @@
 /**
  * @class Ext.draw.modifier.Animation
  * @extends Ext.draw.modifier.Modifier
+ *
+ * The Animation modifier.
  * 
- * Animation modifier.
+ * Sencha Touch allows users to use transitional animation on sprites. Simply set the duration
+ * and easing in the animation modifier, then all the changes to the sprites will be animated.
+ * 
+ * Also, you can use different durations and easing functions on different attributes by using
+ * {@link customDuration} and {@link customEasings}.
+ * 
+ * By default, an animation modifier will be created during the initialization of a sprite.
+ * You can get the modifier of `sprite` by `sprite.fx`.
  *
  */
 Ext.define("Ext.draw.modifier.Animation", {
@@ -30,7 +39,15 @@ Ext.define("Ext.draw.modifier.Animation", {
          * Default duration time (ms).
          */
         duration: 0,
+
+        /**
+         * @cfg {Object} customEasings Overrides the default easing function for defined attributes.
+         */
         customEasings: {},
+
+        /**
+         * @cfg {Object} customDuration Overrides the default duration for defined attributes.
+         */
         customDuration: {}
     },
 
@@ -42,7 +59,9 @@ Ext.define("Ext.draw.modifier.Animation", {
         this.callSuper(arguments);
     },
 
-    // Inherited
+    /**
+     * @inheritdoc
+     */
     prepareAttributes: function (attr) {
         if (!attr.hasOwnProperty('timers')) {
             attr.animating = false;
@@ -55,12 +74,11 @@ Ext.define("Ext.draw.modifier.Animation", {
         }
     },
 
-
     updateSprite: function (sprite) {
         // Apply the config that was configured in the sprite.
         this.setConfig(sprite.config.fx);
     },
-    
+
     updateDuration: function (duration) {
         this.anyAnimation = duration > 0;
     },
@@ -92,8 +110,8 @@ Ext.define("Ext.draw.modifier.Animation", {
 
     /**
      * Set special easings on the given attributes.
-     * @param attrs
-     * @param easing
+     * @param attrs The source attributes.
+     * @param easing The special easings.
      */
     setEasingOn: function (attrs, easing) {
         attrs = Ext.Array.from(attrs).slice();
@@ -109,7 +127,7 @@ Ext.define("Ext.draw.modifier.Animation", {
 
     /**
      * Remove special easings on the given attributes.
-     * @param attrs
+     * @param attrs The source attributes.
      */
     clearEasingOn: function (attrs) {
         attrs = Ext.Array.from(attrs, true);
@@ -138,8 +156,8 @@ Ext.define("Ext.draw.modifier.Animation", {
 
     /**
      * Set special duration on the given attributes.
-     * @param attrs
-     * @param duration
+     * @param attrs The source attributes.
+     * @param duration The special duration.
      */
     setDurationOn: function (attrs, duration) {
         attrs = Ext.Array.from(attrs).slice();
@@ -155,7 +173,7 @@ Ext.define("Ext.draw.modifier.Animation", {
 
     /**
      * Remove special easings on the given attributes.
-     * @param attrs
+     * @param attrs The source attributes.
      */
     clearDurationOn: function (attrs) {
         attrs = Ext.Array.from(attrs, true);
@@ -168,8 +186,9 @@ Ext.define("Ext.draw.modifier.Animation", {
 
     /**
      * @private
-     * @param attributes
-     * @param animating
+     * Initializes Animator for the animation.
+     * @param attributes The source attributes.
+     * @param animating The animating flag.
      */
     setAnimating: function (attributes, animating) {
         var me = this,
@@ -304,7 +323,7 @@ Ext.define("Ext.draw.modifier.Animation", {
      * Update attributes to current value according to current animation time.
      * This method will not effect the values of lower layers, but may delete a
      * value from it.
-     * @param attr
+     * @param attr The source attributes.
      * @return {Object} the changes to popup.
      */
     updateAttributes: function (attr) {
@@ -345,13 +364,17 @@ Ext.define("Ext.draw.modifier.Animation", {
         return changes;
     },
 
-    // Inherited
+    /**
+     * @inheritdoc
+     */
     pushDown: function (attr, changes) {
         changes = Ext.draw.modifier.Modifier.prototype.pushDown.call(this, attr.animationOriginal, changes);
         return this.setAttrs(attr, changes);
     },
 
-    // Inherited
+    /**
+     * @inheritdoc
+     */
     popUp: function (attr, changes) {
         attr = attr.upperLevel;
         changes = this.setAttrs(attr, changes);
@@ -385,9 +408,27 @@ Ext.define("Ext.draw.modifier.Animation", {
         }
     },
 
+    /**
+     * Stop all animations effected by this modifier
+     */
+    stop: function () {
+        this.step();
+
+        var me = this,
+            pool = me.animatingPool,
+            i, ln;
+
+        for (i = 0, ln = pool.length; i < ln; i++) {
+            pool[i].animating = false;
+        }
+        me.animatingPool.length = 0;
+        me.animating = 0;
+        Ext.draw.Animator.remove(me);
+    },
+
     destroy: function () {
         var me = this;
         me.animatingPool.length = 0;
-        me.animation = false;
+        me.animating = 0;
     }
 });

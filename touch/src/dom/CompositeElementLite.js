@@ -19,11 +19,27 @@
  *     els.hide(true); // all elements fade out and hide
  *     // or
  *     els.setWidth(100).hide(true);
+ *
+ * @mixins Ext.dom.Element
  */
 Ext.define('Ext.dom.CompositeElementLite', {
     alternateClassName: ['Ext.CompositeElementLite', 'Ext.CompositeElement'],
 
     requires: ['Ext.dom.Element'],
+    
+    // We use the @mixins tag above to document that CompositeElement has
+    // all the same methods as Element, but the @mixins tag also pulls in
+    // configs and properties which we don't want, so hide them explicitly:
+    /** @cfg bubbleEvents @hide */
+    /** @cfg listeners @hide */
+    /** @property DISPLAY @hide */
+    /** @property OFFSETS @hide */
+    /** @property VISIBILITY @hide */
+    /** @property defaultUnit @hide */
+    /** @property dom @hide */
+    /** @property id @hide */
+    // Also hide the static #get method that also gets inherited
+    /** @method get @static @hide */
 
     statics: {
         /**

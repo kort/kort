@@ -6,22 +6,20 @@
  * opposed to the category axis. You can set minimum and maximum values to the
  * axis so that the values are bound to that. If no values are set, then the
  * scale will auto-adjust to the values.
- * 
- *     @example preview
- *     var store = new Ext.data.JsonStore({
- *         fields: ['name', 'data1', 'data2', 'data3', 'data4', 'data5'],
- *         data: [
- *             {'name':'metric one', 'data1':10, 'data2':12, 'data3':14, 'data4':8, 'data5':13},
- *             {'name':'metric two', 'data1':7, 'data2':8, 'data3':16, 'data4':10, 'data5':3},
- *             {'name':'metric three', 'data1':5, 'data2':2, 'data3':14, 'data4':12, 'data5':7},
- *             {'name':'metric four', 'data1':2, 'data2':14, 'data3':6, 'data4':1, 'data5':23},
- *             {'name':'metric five', 'data1':27, 'data2':38, 'data3':36, 'data4':13, 'data5':33}
- *         ]
- *     });
  *
+ *     @example preview
  *     var chart = new Ext.chart.CartesianChart({
  *         animate: true,
- *         store: store,
+ *         store: {
+ *           fields: ['name', 'data1', 'data2', 'data3', 'data4', 'data5'],
+ *           data: [
+ *               {'name':1, 'data1':10, 'data2':12, 'data3':14, 'data4':8, 'data5':13},
+ *               {'name':2, 'data1':7, 'data2':8, 'data3':16, 'data4':10, 'data5':3},
+ *               {'name':3, 'data1':5, 'data2':2, 'data3':14, 'data4':12, 'data5':7},
+ *               {'name':4, 'data1':2, 'data2':14, 'data3':6, 'data4':1, 'data5':23},
+ *               {'name':5, 'data1':27, 'data2':38, 'data3':36, 'data4':13, 'data5':33}
+ *           ]
+ *         },
  *         axes: [{
  *             type: 'numeric',
  *             grid: true,
@@ -38,14 +36,6 @@
  *             },
  *             minimum: 0,
  *             adjustMinimumByMajorUnit: 0
- *         }, {
- *             type: 'category',
- *             position: 'bottom',
- *             fields: ['name'],
- *             title: {
- *                 text: 'Sample Values',
- *                 fontSize: 15
- *             }
  *         }],
  *         series: [{
  *             type: 'area',
@@ -67,7 +57,6 @@
  * We use a _grid_ configuration to set odd background rows to a certain style and even rows
  * to be transparent/ignored.
  *
- * @constructor
  */
 Ext.define('Ext.chart.axis.Numeric', {
     extend: 'Ext.chart.axis.Axis',
@@ -75,51 +64,10 @@ Ext.define('Ext.chart.axis.Numeric', {
     type: 'numeric',
     requires: ['Ext.chart.axis.layout.Continuous', 'Ext.chart.axis.segmenter.Numeric'],
     config: {
-
-        /**
-         * @cfg {Boolean} roundToDecimal
-         * Whether to round the result to the given decimals.
-         * If `true` then the decimals config will determine the number of decimals to round the
-         * number to.
-         */
-        roundToDecimal: false,
-
-        /**
-         * @cfg {Number} decimals
-         * The number of decimals to round the value to.
-         */
-        decimals: 2,
-
-        /**
-         * @cfg {String} scale
-         * The scaling algorithm to use on this axis. May be "linear" or
-         * "logarithmic".
-         */
-        scale: "linear",
-
-        /**
-         * @cfg {String} position
-         */
-        position: 'left',
-
-        /**
-         * @cfg {Boolean} adjustMaximumByMajorUnit
-         * Indicates whether to extend maximum beyond data's maximum to the nearest
-         * `majorUnit`.
-         */
-        adjustMaximumByMajorUnit: false,
-
-        /**
-         * @cfg {Boolean} adjustMinimumByMajorUnit
-         * Indicates whether to extend the minimum beyond data's minimum to the
-         * nearest `majorUnit`.
-         */
-        adjustMinimumByMajorUnit: false,
-
         layout: 'continuous',
 
         segmenter: 'numeric',
-        
+
         aggregator: 'double'
     }
 });

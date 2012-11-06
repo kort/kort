@@ -2,8 +2,12 @@
  * Utility class to calculate [affine transformation](http://en.wikipedia.org/wiki/Affine_transformation) matrix.
  *
  * This class is compatible with SVGMatrix except:
- *   1. Ext.draw.Matrix operations are not read only.
+ * 
+ *   1. Ext.draw.Matrix is not read only.
  *   2. Using Number as its components rather than floats.
+ *   
+ * Using this class to reduce the severe numeric problem with HTML Canvas and SVG transformation.
+ * 
  */
 Ext.define('Ext.draw.Matrix', {
 

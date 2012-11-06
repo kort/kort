@@ -265,14 +265,14 @@ Ext.define('Ext.data.proxy.SQL', {
         if (!Ext.isObject(params)) {
             sql += filterStatement + idProperty + ' = ' + params;
         } else {
-            ln = params.filters.length;
+            ln = params.filters && params.filters.length;
             if (ln) {
                 for (i = 0; i < ln; i++) {
                     filter = params.filters[i];
                     property = filter.getProperty();
                     value = filter.getValue();
                     if (property !== null) {
-                        sql += filterStatement + property + ' ' + (filter.anyMatch ? ('LIKE \'%' + value + '%\'') : ('= \'' + value + '\''));
+                        sql += filterStatement + property + ' ' + (filter.getAnyMatch() ? ('LIKE \'%' + value + '%\'') : ('= \'' + value + '\''));
                         filterStatement = ' AND ';
                     }
                 }

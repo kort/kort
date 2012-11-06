@@ -1,9 +1,18 @@
 /**
  * @class Ext.chart.CartesianChart
  * @extends Ext.chart.AbstractChart
- * 
- * Creates a chart that uses cartesian coordinates.
- * 
+ *
+ * Represents a chart that uses cartesian coordinates.
+ * A cartesian chart have two directions, X direction and Y direction.
+ * The series and axes are coordinated along these directions.
+ * By default the x direction is horizontal and y direction is vertical,
+ * You can swap the by setting {@link #flipXY} config to `true`.
+ *
+ * Cartesian series often treats x direction an y direction differently.
+ * In most cases, data on x direction are assumed to be monotonically increasing.
+ * Based on this property, cartesian series can be trimmed and summarized properly
+ * to gain a better performance.
+ *
  * @xtype chart
  */
 
@@ -46,6 +55,7 @@ Ext.define('Ext.chart.CartesianChart', {
     performLayout: function () {
         try {
             this.resizing++;
+            this.suspendThicknessChanged();
             var me = this,
                 axes = me.getAxes(), axis,
                 serieses = me.getSeries(), series,
@@ -161,6 +171,7 @@ Ext.define('Ext.chart.CartesianChart', {
             me.onPlaceWatermark();
         } finally {
             this.resizing--;
+            this.resumeThicknessChanged();
         }
     },
 
@@ -172,8 +183,8 @@ Ext.define('Ext.chart.CartesianChart', {
             innerWidth, innerHeight,
             innerPadding = me.getInnerPadding(),
             left, right, top, bottom, i, j,
-            sprites, range, xRange, yRange, isSide, attr,
-            axisX, axisY, visibleRange,
+            sprites, xRange, yRange, isSide, attr,
+            axisX, axisY, range, visibleRange,
             flipXY = me.getFlipXY();
 
         if (!region) {
@@ -204,30 +215,19 @@ Ext.define('Ext.chart.CartesianChart', {
             top = yRange[0];
             bottom = yRange[1];
 
-            if (flipXY) {
-                attr = {
-                    translationX: -left * innerHeight / (right - left),
-                    translationY: -top * innerWidth / (bottom - top),
-                    scalingX: innerHeight / (right - left),
-                    scalingY: innerWidth / (bottom - top),
-                    scalingCenterX: 0,
-                    scalingCenterY: 0,
-                    flipXY: flipXY
-                };
-            } else {
-                attr = {
-                    translationX: -left * innerWidth / (right - left),
-                    translationY: -top * innerHeight / (bottom - top),
-                    scalingX: innerWidth / (right - left),
-                    scalingY: innerHeight / (bottom - top),
-                    scalingCenterX: 0,
-                    scalingCenterY: 0,
-                    flipXY: flipXY
-                };
-            }
+            attr = {
+                visibleMinX: xRange[0],
+                visibleMaxX: xRange[1],
+                visibleMinY: yRange[0],
+                visibleMaxY: yRange[1],
+                innerWidth: innerWidth,
+                innerHeight: innerHeight,
+                flipXY: flipXY
+            };
+
             sprites = series[i].getSprites();
             for (j = 0; j < sprites.length; j++) {
-                sprites[j].setAttributes(attr);
+                sprites[j].setAttributes(attr, true);
             }
         }
 
@@ -236,40 +236,23 @@ Ext.define('Ext.chart.CartesianChart', {
             sprites = axes[i].getSprites();
             range = axes[i].getRange();
             visibleRange = axes[i].getVisibleRange();
-            range = [range[0] + (range[1] - range[0]) * visibleRange[0], range[0] + (range[1] - range[0]) * visibleRange[1]];
-            left = range[0];
-            right = range[1];
-            top = range[0];
-            bottom = range[1];
+            attr = {
+                dataMin: range[0],
+                dataMax: range[1],
+                visibleMin: visibleRange[0],
+                visibleMax: visibleRange[1]
+            };
             if (isSide) {
-                attr = {
-                    translationX: 0,
-                    translationY: top * innerHeight / (bottom - top) + innerHeight,
-                    scalingX: 1,
-                    scalingY: -innerHeight / (bottom - top),
-                    scalingCenterY: 0,
-                    scalingCenterX: 0,
-                    visibleRange: visibleRange,
-                    length: region[3] - innerPadding.bottom - innerPadding.top,
-                    startGap: innerPadding.bottom,
-                    endGap: innerPadding.top
-                };
+                attr.length = innerHeight;
+                attr.startGap = innerPadding.bottom;
+                attr.endGap = innerPadding.top;
             } else {
-                attr = {
-                    translationX: -left * innerWidth / (right - left),
-                    translationY: 0,
-                    scalingX: innerWidth / (right - left),
-                    scalingY: 1,
-                    scalingCenterY: 0,
-                    scalingCenterX: 0,
-                    visibleRange: visibleRange,
-                    length: region[2] - innerPadding.left - innerPadding.right,
-                    startGap: innerPadding.left,
-                    endGap: innerPadding.right
-                };
+                attr.length = innerWidth;
+                attr.startGap = innerPadding.left;
+                attr.endGap = innerPadding.right;
             }
             for (j = 0; j < sprites.length; j++) {
-                sprites[j].setAttributes(attr);
+                sprites[j].setAttributes(attr, true);
             }
         }
         me.renderFrame();

@@ -9,6 +9,10 @@ Ext.define("Ext.chart.axis.segmenter.Time", {
     alias: 'segmenter.time',
 
     config: {
+        /**
+         * @cfg {Object} step
+         * If specified, the will override the result of {@link #preferredStep}.
+         */
         step: null
     },
 

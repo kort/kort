@@ -412,7 +412,7 @@ Ext.define('Ext.app.Application', {
 
         /**
          * @private
-         * @cfg {Boolean} requires An array of extra dependencies, to be required after this application's {@link #name} config
+         * @cfg {String[]} requires An array of extra dependencies, to be required after this application's {@link #name} config
          * has been processed properly, but before anything else to ensure overrides get executed first.
          * @accessor
          */
@@ -549,7 +549,6 @@ Ext.define('Ext.app.Application', {
     },
 
     /**
-     * @private
      * Returns the Controller instance for the given controller name.
      * @param {String} name The name of the Controller.
      * @param {String} [profileName] Optional profile name. If passed, this is the same as calling

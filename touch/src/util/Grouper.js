@@ -10,24 +10,24 @@ Ext.define('Ext.util.Grouper', {
     isGrouper: true,
     
     config: {
+        /**
+         * @cfg {Function} groupFn This function will be called for each item in the collection to
+         * determine the group to which it belongs.
+         * @cfg {Object} groupFn.item The current item from the collection
+         * @cfg {String} groupFn.return The group identifier for the item
+         */
         groupFn: null,
 
         /**
          * @cfg {String} sortProperty You can define this configuration if you want the groups to be sorted
          * on something other then the group string returned by the `groupFn`.
-         * @param item1
-         * @param item2
          */
         sortProperty: null,
 
         /**
-         * @cfg
+         * @cfg {Function} sorterFn
          * Grouper has a custom sorterFn that cannot be overridden by the user. If a property has been defined
          * on this grouper, we use the default `sorterFn`, else we sort based on the returned group string.
-         * @param item1
-         * @param item2
-         * @private
-         * @hide
          */
         sorterFn: function(item1, item2) {
             var property = this.getSortProperty(),

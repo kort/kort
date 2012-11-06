@@ -105,15 +105,17 @@ Ext.define('Ext.dataview.component.DataItem', {
             component = this[componentName]();
             if (component) {
                 for (setterName in setterMap) {
-                    if (component[setterName]) {
+                    if (data && component[setterName] && data[setterMap[setterName]]) {
                         component[setterName](data[setterMap[setterName]]);
                     }
                 }
             }
         }
 
-        // Bypassing setter because sometimes we pass the same object (different properties)
-        item.updateData(data);
+        if (item) {
+            // Bypassing setter because sometimes we pass the same object (different properties)
+            item.updateData(data);
+        }
     },
 
     /**

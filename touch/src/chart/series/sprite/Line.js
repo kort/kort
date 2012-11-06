@@ -1,7 +1,7 @@
 /**
  * @class Ext.chart.series.sprite.Line
  * @extends Ext.chart.series.sprite.Aggregative
- * 
+ *
  * Line series sprite.
  */
 Ext.define("Ext.chart.series.sprite.Line", {
@@ -11,15 +11,25 @@ Ext.define("Ext.chart.series.sprite.Line", {
     inheritableStatics: {
         def: {
             processors: {
+                /**
+                 * @cfg {Boolean} [smooth=false] 'true' if the sprite uses line smoothing.
+                 */
                 smooth: 'bool',
+
+                /**
+                 * @cfg {Boolean} [step=false] 'true' if the line uses step.
+                 */
                 step: 'bool',
+                
+                /**
+                 * @cfg {Boolean} [preciseStroke=false] 'true' if the line uses precise stroke.
+                 */
                 preciseStroke: 'bool'
             },
 
             defaults: {
                 smooth: false,
                 step: false,
-                transformFillStroke: true,
                 preciseStroke: false
             },
 
@@ -46,12 +56,12 @@ Ext.define("Ext.chart.series.sprite.Line", {
     list: null,
 
     updatePlainBBox: function (plain) {
-        var dataRange = this.attr.dataRange,
-            ymin = Math.min(0, dataRange[1]),
-            ymax = Math.max(0, dataRange[3]);
-        plain.x = dataRange[0];
+        var attr = this.attr,
+            ymin = Math.min(0, attr.dataMinY),
+            ymax = Math.max(0, attr.dataMaxY);
+        plain.x = attr.dataMinX;
         plain.y = ymin;
-        plain.width = dataRange[2] - dataRange[0];
+        plain.width = attr.dataMaxX - attr.dataMinX;
         plain.height = ymax - ymin;
     },
 
@@ -112,10 +122,6 @@ Ext.define("Ext.chart.series.sprite.Line", {
             minYs = aggregates.minY,
             maxYs = aggregates.maxY,
             idx = aggregates.startIdx,
-            left = region[0],
-            right = region[0] + region[2],
-            top = region[1],
-            bottom = region[1] + region[3],
             surfaceMatrix = surface.matrix;
 
         list.length = 0;
@@ -150,16 +156,26 @@ Ext.define("Ext.chart.series.sprite.Line", {
             }
             me.drawStroke(surface, ctx, list);
             ctx.lineTo(dataX[dataX.length - 1] * xx + dx + pixel, dataY[dataY.length - 1] * yy + dy);
-            ctx.lineTo(dataX[dataX.length - 1] * xx + dx + pixel, dy - pixel);
-            ctx.lineTo(dataX[0] * xx + dx - pixel, dy - pixel);
+            ctx.lineTo(dataX[dataX.length - 1] * xx + dx + pixel, region[1] - pixel);
+            ctx.lineTo(dataX[0] * xx + dx - pixel, region[1] - pixel);
             ctx.lineTo(dataX[0] * xx + dx - pixel, dataY[0] * yy + dy);
             ctx.closePath();
+            if (attr.transformFillStroke) {
+                attr.matrix.toContext(ctx);
+            }
             if (attr.preciseStroke) {
                 ctx.fill();
+                if (attr.transformFillStroke) {
+                    attr.inverseMatrix.toContext(ctx);
+                }
                 me.drawStroke(surface, ctx, list);
+                if (attr.transformFillStroke) {
+                    attr.matrix.toContext(ctx);
+                }
                 ctx.stroke();
             } else {
-                ctx.fillStroke(attr);
+                // Prevent the reverse transform to fix floating point err.
+                ctx.fillStroke(attr, true);
             }
         }
     }

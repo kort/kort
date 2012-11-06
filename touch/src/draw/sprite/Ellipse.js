@@ -26,27 +26,27 @@ Ext.define("Ext.draw.sprite.Ellipse", {
         def: {
             processors: {
                 /**
-                 * @cfg {Number} cx The center coordinate of the sprite on the x-axis.
+                 * @cfg {Number} [cx=0] The center coordinate of the sprite on the x-axis.
                  */
                 cx: "number",
                 
                 /**
-                 * @cfg {Number} cy The center coordinate of the sprite on the y-axis.
+                 * @cfg {Number} [cy=0] The center coordinate of the sprite on the y-axis.
                  */
                 cy: "number",
                 
                 /**
-                 * @cfg {Number} rx The radius of the sprite on the x-axis.
+                 * @cfg {Number} [rx=1] The radius of the sprite on the x-axis.
                  */
                 rx: "number",
 
                 /**
-                 * @cfg {Number} ry The radius of the sprite on the y-axis.
+                 * @cfg {Number} [ry=1] The radius of the sprite on the y-axis.
                  */
                 ry: "number",
 
                 /**
-                 * @cfg {Number} axisRotation The rotation of the sprite about its axis.
+                 * @cfg {Number} [axisRotation=0] The rotation of the sprite about its axis.
                  */
                 axisRotation: "number"
             },

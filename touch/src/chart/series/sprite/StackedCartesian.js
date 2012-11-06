@@ -9,15 +9,28 @@ Ext.define("Ext.chart.series.sprite.StackedCartesian", {
     inheritableStatics: {
         def: {
             processors: {
+                /**
+                 * @private
+                 * @cfg {Number} [groupCount=1] The number of groups in the series.
+                 */
                 groupCount: 'number',
+
+                /**
+                 * @private
+                 * @cfg {Number} [groupOffset=0] The group index of the series sprite.
+                 */
                 groupOffset: 'number',
+
+                /**
+                 * @private
+                 * @cfg {Object} [dataStartY=null] The starting point of the data used in the series.
+                 */
                 dataStartY: 'data'
             },
             defaults: {
                 groupCount: 1,
                 groupOffset: 0,
-                dataStartY: null,
-                transformFillStroke: true
+                dataStartY: null
             },
             dirtyTriggers: {
                 dataStartY: 'dataY,bbox'
@@ -25,12 +38,7 @@ Ext.define("Ext.chart.series.sprite.StackedCartesian", {
         }
     },
 
-    /**
-     * Get the nearest item index from point (x, y). -1 as not found.
-     * @param {Number} x
-     * @param {Number} y
-     * @return {Number} The index
-     */
+    //@inheritdoc
     getIndexNearPoint: function (x, y) {
         var sprite = this,
             mat = sprite.attr.matrix,

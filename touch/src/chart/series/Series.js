@@ -54,6 +54,10 @@ Ext.define('Ext.chart.series.Series', {
     observableType: 'series',
 
     config: {
+        /**
+         * @private
+         * @cfg {Object} chart The chart that the series is bound.
+         */
         chart: null,
 
         /**
@@ -66,6 +70,13 @@ Ext.define('Ext.chart.series.Series', {
          * @cfg {Function} renderer
          * A function that can be overridden to set custom styling properties to each rendered element.
          * Passes in (sprite, record, attributes, index, store) to the function.
+         * 
+         * @param sprite The sprite affected by the renderer.
+         * @param record The store record associated with the sprite.
+         * @param attributes The list of attributes to be applied to the sprite.
+         * @param index The index of the sprite.
+         * @param store The store used by the series.
+         * @return {*} The resultant attributes.
          */
         renderer: function (sprite, record, attributes, index, store) {
             return attributes;
@@ -80,12 +91,19 @@ Ext.define('Ext.chart.series.Series', {
         //@private triggerdrawlistener flag
         triggerAfterDraw: false,
 
+        /**
+         * @private
+         * Not supported.
+         */
         themeStyle: {},
 
+        /**
+         * @cfg {Object} style Custom style configuration for the sprite used in the series.
+         */
         style: {},
 
         /**
-         * This is cyclic used if series have multiple sprites.
+         * @cfg {Object} subStyle This is the cyclic used if the series has multiple sprites.
          */
         subStyle: {},
 
@@ -96,7 +114,8 @@ Ext.define('Ext.chart.series.Series', {
         colors: null,
 
         /**
-         *
+         * @protected
+         * @cfg {Object} store The store of values used in the series.
          */
         store: null,
 
@@ -112,22 +131,50 @@ Ext.define('Ext.chart.series.Series', {
          */
         labelOverflowPadding: 5,
 
+        /**
+         * @cfg {String} labelField
+         * The store record field name to be used for the series labels.
+         */
         labelField: null,
 
+        /**
+         * @cfg {Object} marker
+         * The sprite template used by marker instances on the series.
+         */
         marker: null,
 
+        /**
+         * @cfg {Object} markerSubStyle
+         * This is cyclic used if series have multiple marker sprites.
+         */
         markerSubStyle: null,
 
+        /**
+         * @protected
+         * @cfg {Object} itemInstancing The sprite template used to create sprite instances in the series.
+         */
         itemInstancing: null,
 
+        /**
+         * @cfg {Object} background Sets the background of the surface the series is attached.
+         */
         background: null,
 
+        /**
+         * @cfg {Object} highlightItem The item currently highlighted in the series.
+         */
         highlightItem: null,
 
+        /**
+         * @protected
+         * @cfg {Object} surface The surface that the series is attached.
+         */
         surface: null,
 
-        itemSurface: null,
-
+        /**
+         * @protected
+         * @cfg {Object} overlaySurface The surface that series markers are attached.
+         */
         overlaySurface: null,
 
         /**
@@ -135,6 +182,9 @@ Ext.define('Ext.chart.series.Series', {
          */
         hidden: false,
 
+        /**
+         * @cfg {Object} highlightCfg The sprite configuration used when highlighting items in the series.
+         */
         highlightCfg: null
     },
 
@@ -200,25 +250,6 @@ Ext.define('Ext.chart.series.Series', {
         this.setAttributesForItem(oldHighlightItem, {highlighted: false});
         this.setAttributesForItem(newHighlightItem, {highlighted: true});
     },
-
-    /**
-     * @event titlechange
-     * Fires when the series title is changed via `{@link #setFieldTitle}`.
-     * @param {String} title The new title value.
-     * @param {Number} index The index in the collection of titles.
-     */
-
-    /**
-     * @event beforedraw
-     */
-
-    /**
-     * @event draw
-     */
-
-    /**
-     * @event afterdraw
-     */
 
     constructor: function (config) {
         var me = this;
@@ -313,7 +344,8 @@ Ext.define('Ext.chart.series.Series', {
             me.dataRange[directionOffset] = range.min;
             me.dataRange[directionOffset + directionCount] = range.max;
             style = {};
-            style.dataRange = me.dataRange;
+            style['dataMin' + direction] = range.min;
+            style['dataMax' + direction] = range.max;
             for (i = 0; i < sprites.length; i++) {
                 sprites[i].setAttributes(style);
             }
@@ -339,7 +371,8 @@ Ext.define('Ext.chart.series.Series', {
             }
             me.dataRange[directionOffset] = range.min;
             me.dataRange[directionOffset + directionCount] = range.max;
-            style.dataRange = me.dataRange;
+            style['dataMin' + direction] = range.min;
+            style['dataMax' + direction] = range.max;
             for (i = 0; i < sprites.length; i++) {
                 sprites[i].setAttributes(style);
             }
@@ -698,8 +731,7 @@ Ext.define('Ext.chart.series.Series', {
             this.getHidden()[index] = value;
             this.updateHidden(this.getHidden());
         } else {
-            this.getHidden()[0] = value;
-            this.updateHidden(this.getHidden());
+            this.setHidden(value);
         }
     },
 

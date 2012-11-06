@@ -112,18 +112,32 @@ Ext.define('Ext.dataview.component.ListItem', {
     },
 
     updateRecord: function(record) {
-        this.callParent(arguments);
+        var me = this,
+            dataview = me.dataview || this.getDataview(),
+            data = record && dataview.prepareData(record.getData(true), dataview.getStore().indexOf(record), record),
+            dataMap = me.getDataMap(),
+            body = this.getBody(),
+            disclosure = this.getDisclosure();
 
-        var body = this.getBody(),
-            currentRecord = body.getRecord();
+        me._record = record;
 
-        if (currentRecord !== record) {
-            body.setRecord(record);
+        if (dataMap) {
+            me.doMapData(dataMap, data, body);
+        } else if (body) {
+            body.updateData(data || null);
         }
 
-        if (record && this.dataview.getOnItemDisclosure()) {
-            var disclosureProperty = this.dataview.getDisclosureProperty();
-            this.getDisclosure()[(record.data.hasOwnProperty(disclosureProperty) && record.data[disclosureProperty] === false) ? 'hide' : 'show']();
+        if (disclosure && record && dataview.getOnItemDisclosure()) {
+            var disclosureProperty = dataview.getDisclosureProperty();
+            disclosure[(data.hasOwnProperty(disclosureProperty) && data[disclosureProperty] === false) ? 'hide' : 'show']();
         }
+
+        /**
+         * @event updatedata
+         * Fires whenever the data of the DataItem is updated.
+         * @param {Ext.dataview.component.DataItem} this The DataItem instance.
+         * @param {Object} newData The new data.
+         */
+        me.fireEvent('updatedata', me, data);
     }
 });

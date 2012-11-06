@@ -5,7 +5,8 @@
  * A sprite that represents a circle.
  *
  *     @example preview miniphone
- *     var component = new Ext.draw.Component({
+ *     new Ext.draw.Component({
+ *       fullscreen: true,
  *       items: [{
  *         type: 'circle',
  *         cx: 100,
@@ -14,8 +15,7 @@
  *         fillStyle: 'blue'
  *       }]
  *     });
- *     Ext.Viewport.setLayout('fit');
- *     Ext.Viewport.add(component);
+ *
  */
 Ext.define("Ext.draw.sprite.Circle", {
     extend: "Ext.draw.sprite.Path",
@@ -25,17 +25,17 @@ Ext.define("Ext.draw.sprite.Circle", {
         def: {
             processors: {
                 /**
-                 * @cfg {Number} cx The center coordinate of the sprite on the x-axis.
+                 * @cfg {Number} [cx=0] The center coordinate of the sprite on the x-axis.
                  */
                 cx: "number",
 
                 /**
-                 * @cfg {Number} cy The center coordinate of the sprite on the y-axis.
+                 * @cfg {Number} [cy=0] The center coordinate of the sprite on the y-axis.
                  */
                 cy: "number",
 
                 /**
-                 * @cfg {Number} r The radius of the sprite.
+                 * @cfg {Number} [r=0] The radius of the sprite.
                  */
                 r: "number"
             },

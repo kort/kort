@@ -93,6 +93,10 @@ Ext.define('Ext.carousel.Carousel', {
          * @private
          */
 
+        /**
+         * @cfg
+         * @inheritdoc
+         */
         baseCls: 'x-carousel',
 
         /**

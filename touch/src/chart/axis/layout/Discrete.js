@@ -24,20 +24,21 @@ Ext.define("Ext.chart.axis.layout.Discrete", {
         }
     },
 
+    // @inheritdoc
     calculateLayout: function (context) {
         context.data = this.labels;
         this.callSuper([context]);
     },
 
+    //@inheritdoc
     calculateMajorTicks: function (context) {
         var me = this,
             attr = context.attr,
             data = context.data,
-            visibleRange = attr.visibleRange,
             range = attr.max - attr.min,
-            zoom = range / attr.length * (visibleRange[1] - visibleRange[0]),
-            viewMin = attr.min + range * visibleRange[0],
-            viewMax = attr.min + range * visibleRange[1],
+            zoom = range / attr.length * (attr.visibleMax - attr.visibleMin),
+            viewMin = attr.min + range * attr.visibleMin,
+            viewMax = attr.min + range * attr.visibleMax,
             estStepSize = attr.estStepSize * zoom;
         
         var out = me.snapEnds(context, Math.max(0, attr.min), Math.min(attr.max, data.length - 1), estStepSize);
@@ -47,6 +48,7 @@ Ext.define("Ext.chart.axis.layout.Discrete", {
         }
     },
 
+    // @inheritdoc
     snapEnds: function (context, min, max, estStepSize) {
         estStepSize = Math.ceil(estStepSize);
         var steps = Math.floor((max - min) / estStepSize),

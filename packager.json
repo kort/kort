@@ -110,8 +110,18 @@
 	 *
 	 * When using a certificatePath on Windows, you do not need to specify this.
 	 */
-	"certificateAlias":"",
-    
+	"certificatePassword":"",
+	/**
+	 * @cfg {String} certificatePassword
+	 * The password which was specified during certificate export
+	 */
+	"provisionProfile":"",
+	/**
+	 * @cfg {String} provisionProfile
+	 * The path to the provision profile (APP_NAME.mobileprovision) which you can create and then download from Apple's provisioning portal
+	 */
+	"sdkPath":"/path/to/android-sdk",
+
 	/**
 	 * @cfg {String} sdkPath
 	 * This is the path to the Android SDK, if you are developing an Android application.

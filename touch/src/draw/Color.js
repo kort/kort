@@ -1,6 +1,6 @@
 (function () {
     /**
-     * Represents an RGB color and provides helper functions to get
+     * Represents an RGB color and provides helper functions on it e.g. to get
      * color components in HSL color space.
      */
     Ext.define('Ext.draw.Color', {
@@ -299,6 +299,19 @@
 
         // TODO(zhangbei): do we have a better way to convert color names to rgb?
         this.addStatics({
+            /**
+             * Returns a flyweight instance of Ext.draw.Color.
+             *
+             * Can be called with either a CSS color string or with separate
+             * arguments for red, green, blue, alpha.
+             * 
+             * @param {Number/String} red Red component (0..255) or CSS color string.
+             * @param {Number} [green] Green component (0..255)
+             * @param {Number} [blue] Blue component (0..255)
+             * @param {Number} [alpha=1] Alpha component (0..1)
+             * @return {Ext.draw.Color}
+             * @static
+             */
             fly: function (r, g, b, a) {
                 switch (arguments.length) {
                     case 1:
@@ -341,12 +354,62 @@
                 "yellow": "#ffff00", "yellowgreen": "#9acd32"
             },
 
+            /**
+             * Create a new color based on the specified HSL values.
+             *
+             * @param {Number} h Hue component (0..359)
+             * @param {Number} s Saturation component (0..1)
+             * @param {Number} l Lightness component (0..1)
+             * @return {Ext.draw.Color}
+             * @static
+             */
             fromHSL: function (h, s, l) {
                 return (new this(0, 0, 0, 0)).setHSL(h, s, l);
             },
+
+            /**
+             * Parse the string and create a new color.
+             *
+             * Supported formats: '#rrggbb', '#rgb', and 'rgb(r,g,b)'.
+             *
+             * If the string is not recognized, an undefined will be returned instead.
+             *
+             * @param {String} string Color in string.
+             * @returns {Ext.draw.Color}
+             * @static
+             */
             fromString: function (string) {
                 return (new this(0, 0, 0, 0)).setFromString(string);
             },
+
+            /**
+             * Convenience method for creating a color.
+             * 
+             * Can be called with several different combinations of arguments:
+             * 
+             *     // Ext.draw.Color is returned unchanged.
+             *     Ext.draw.Color.create(new Ext.draw.color(255, 0, 0, 0));
+             * 
+             *     // CSS color string.
+             *     Ext.draw.Color.create("red");
+             * 
+             *     // Array of red, green, blue, alpha
+             *     Ext.draw.Color.create([255, 0, 0, 0]);
+             * 
+             *     // Separate arguments of red, green, blue, alpha
+             *     Ext.draw.Color.create(255, 0, 0, 0);
+             * 
+             *     // Returns black when no arguments given.
+             *     Ext.draw.Color.create();
+             * 
+             * @param {Ext.draw.Color/String/Number[]/Number} [red] Red component (0..255),
+             * CSS color string or array of all components.
+             * @param {Number} [green] Green component (0..255)
+             * @param {Number} [blue] Blue component (0..255)
+             * @param {Number} [alpha=1] Alpha component (0..1)
+             * @return {Ext.draw.Color}
+             * @static
+             */
             create: function (arg) {
                 if (arg instanceof this) {
                     return arg;

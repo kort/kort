@@ -1,7 +1,7 @@
 /**
  * @class Ext.chart.series.sprite.Cartesian
  * @extends Ext.draw.sprite.Sprite
- * 
+ *
  * Cartesian sprite.
  */
 Ext.define("Ext.chart.series.sprite.Cartesian", {
@@ -14,27 +14,93 @@ Ext.define("Ext.chart.series.sprite.Cartesian", {
     inheritableStatics: {
         def: {
             processors: {
-                dataRange: 'data',
+                /**
+                 * @cfg {Number} [dataMinX=0] Data minimum on the x-axis.
+                 */
+                dataMinX: 'number',
+
+                /**
+                 * @cfg {Number} [dataMaxX=1] Data maximum on the x-axis.
+                 */
+                dataMaxX: 'number',
+
+                /**
+                 * @cfg {Number} [dataMinY=0] Data minimum on the y-axis.
+                 */
+                dataMinY: 'number',
+
+                /**
+                 * @cfg {Number} [dataMaxY=2] Data maximum on the y-axis.
+                 */
+                dataMaxY: 'number',
+
+                /**
+                 * @cfg {Object} [dataY=null] Data items on the y-axis.
+                 */
                 dataY: 'data',
+
+                /**
+                 * @cfg {Object} [dataX=null] Data items on the x-axis.
+                 */
                 dataX: 'data',
+
+                /**
+                 * @cfg {Object} [labels=null] Labels used in the series.
+                 */
                 labels: 'default',
+
+                /**
+                 * @cfg {Number} [labelOverflowPadding=10] Padding around labels to determine overlap.
+                 */
                 labelOverflowPadding: 'number',
+
+                /**
+                 * @cfg {Boolean} [flipXY=true] 'true' if the series is flipped
+                 */
                 flipXY: 'bool',
-                renderer: 'default'
+                renderer: 'default',
+
+                // PanZoom information
+                visibleMinX: 'number',
+                visibleMinY: 'number',
+                visibleMaxX: 'number',
+                visibleMaxY: 'number',
+                innerWidth: 'number',
+                innerHeight: 'number'
             },
             defaults: {
                 dataY: null,
                 dataX: null,
-                dataRange: [0, 0, 1, 1],
+                dataMinX: 0,
+                dataMaxX: 1,
+                dataMinY: 0,
+                dataMaxY: 1,
                 labels: null,
                 labelOverflowPadding: 10,
                 flipXY: false,
-                renderer: null
+                renderer: null,
+                transformFillStroke: false,
+
+                visibleMinX: 0,
+                visibleMinY: 0,
+                visibleMaxX: 1,
+                visibleMaxY: 1,
+                innerWidth: 1,
+                innerHeight: 1
             },
             dirtyTriggers: {
                 dataX: 'dataX,bbox',
                 dataY: 'dataY,bbox',
-                dataRange: 'bbox'
+                dataMinX: 'bbox',
+                dataMaxX: 'bbox',
+                dataMinY: 'bbox',
+                dataMaxY: 'bbox',
+                visibleMinX: 'panzoom',
+                visibleMinY: 'panzoom',
+                visibleMaxX: 'panzoom',
+                visibleMaxY: 'panzoom',
+                innerWidth: 'panzoom',
+                innerHeight: 'panzoom'
             },
             updaters: {
                 'dataX': function (attrs) {
@@ -44,16 +110,43 @@ Ext.define("Ext.chart.series.sprite.Cartesian", {
                     }
                     attrs.dirtyFlags.dataY.push('dataY');
                 },
+
                 'dataY': function () {
                     this.processDataY();
+                },
+
+                'panzoom': function (attrs) {
+                    var dx = attrs.visibleMaxX - attrs.visibleMinX,
+                        dy = attrs.visibleMaxY - attrs.visibleMinY,
+                        innerWidth = attrs.flipXY ? attrs.innerHeight : attrs.innerWidth,
+                        innerHeight = !attrs.flipXY ? attrs.innerHeight : attrs.innerWidth;
+                    attrs.translationX = -attrs.visibleMinX * innerWidth / dx;
+                    attrs.translationY = -attrs.visibleMinY * innerHeight / dy;
+                    attrs.scalingX = innerWidth / dx;
+                    attrs.scalingY = innerHeight / dy;
+                    attrs.scalingCenterX = 0;
+                    attrs.scalingCenterY = 0;
+                    this.applyTransformations(true);
                 }
             }
         }
     },
 
     config: {
+        /**
+         * @cfg {Boolean} flipXY 'true' if the series is flipped
+         */
         flipXY: false,
+
+        /**
+         * @private
+         * @cfg {Object} dataItems Store items that are passed to the renderer.
+         */
         dataItems: null,
+
+        /**
+         * @cfg {String} field The store field used by the series.
+         */
         field: null
     },
 
@@ -62,20 +155,18 @@ Ext.define("Ext.chart.series.sprite.Cartesian", {
     processDataX: Ext.emptyFn,
 
     updatePlainBBox: function (plain) {
-        var dataRange = this.attr.dataRange;
-        if (dataRange) {
-            plain.x = dataRange[0];
-            plain.y = dataRange[1];
-            plain.width = dataRange[2] - dataRange[0];
-            plain.height = dataRange[3] - dataRange[1];
-        } else {
-            plain.x = 0;
-            plain.y = 0;
-            plain.width = 1;
-            plain.height = 1;
-        }
+        var attr = this.attr;
+        plain.x = attr.dataMinX;
+        plain.y = attr.dataMinY;
+        plain.width = attr.dataMaxX - attr.dataMinX;
+        plain.height = attr.dataMaxY - attr.dataMinY;
     },
 
+    /**
+     * Does a binary search of the data on the x-axis using the given key.
+     * @param key
+     * @return {*}
+     */
     binarySearch: function (key) {
         var dx = this.attr.dataX,
             start = 0,
@@ -120,7 +211,6 @@ Ext.define("Ext.chart.series.sprite.Cartesian", {
             return;
         }
 
-
         var clip = inverseMatrix.transformList([
             [region[0] - 1, region[3] + 1],
             [region[0] + region[2] + 1, -1]
@@ -137,7 +227,7 @@ Ext.define("Ext.chart.series.sprite.Cartesian", {
     },
 
     /**
-     *
+     * Render the given visible clip range.
      * @param surface
      * @param ctx
      * @param clip

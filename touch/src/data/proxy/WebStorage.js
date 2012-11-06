@@ -19,7 +19,15 @@ Ext.define('Ext.data.proxy.WebStorage', {
         id: undefined,
 
         // WebStorage proxies dont use readers and writers
+        /**
+         * @cfg
+         * @hide
+         */
         reader: null,
+        /**
+         * @cfg
+         * @hide
+         */
         writer: null,
 
         /**

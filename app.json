@@ -48,6 +48,9 @@
             "path": "app.js",
             "bundle": true,  /* Indicates that all class dependencies are concatenated into this file when build */
             "update": "delta"
+        },
+        {
+            "path": "app/UrlLib.js"
         }
     ],
 
@@ -115,7 +118,8 @@
         "resources/stores",
         "lib/Leaflet-0.4.5/dist/images",
         "lib/Slim-2.1.0/Slim",
-        "server/webservices/bug"
+        "server/webservices",
+        "server/php"
     ],
 
     /**
@@ -155,5 +159,5 @@
      * Uniquely generated id for this application, used as prefix for localStorage keys.
      * Normally you should never change this value.
      */
-    "id": "776239a3-fb73-4a42-9462-3dcf1d0fca6c"
+    "id": "d6069029-dcbb-4cf2-b20b-cefd12012a6c"
 }
