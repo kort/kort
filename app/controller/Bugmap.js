@@ -101,12 +101,14 @@ Ext.define('Kort.controller.Bugmap', {
 
         // add markers
         Ext.each(bugs, function (item, index, length) {
-            // TODO max_markers logic in database select
-            if(count < MAX_MARKERS) {
-                console.log(item.get('type') + ' / ' + item.get('osm_id'));
-                me.addMarker(item);
+            if(item.get('longitude') && item.get('longitude')) {
+                // TODO max_markers logic in database select
+                if(count < MAX_MARKERS) {
+                    console.log(item.get('type') + ' / ' + item.get('osm_id'));
+                    me.addMarker(item);
+                }
+                count++;
             }
-            count++;
         });
 	},
 
