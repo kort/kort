@@ -41,11 +41,17 @@ class UserHandler extends AbstractDbHandler
         return \json_encode($this->userData);
     }
 
-    public function updateUser($post)
+    public function updateUser($id, $data)
     {
+        $dataArr = json_decode($data, true);
         if (isset($_SESSION)) {
-            $_SESSION['username'] = $post['username'];
+            $_SESSION['username'] = $dataArr['username'];
         }
+    }
+
+    public function insertUser($data)
+    {
+        // TODO implement insertUser
     }
 
     /**
