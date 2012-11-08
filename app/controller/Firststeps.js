@@ -34,6 +34,7 @@ Ext.define('Kort.controller.Firststeps', {
     updateRecordHandler: function(store, record, newIndex, oldIndex, modifiedFieldNames, modifiedValues) {
         if(modifiedFieldNames[0] === 'username') {
             this.getFirststepsPanel().hide();
+            // TODO destroy panel after hide event
             //this.getFirststepsPanel().destroy();
         }
     }
