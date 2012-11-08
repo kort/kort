@@ -1,5 +1,5 @@
 # Main View (TabPanel)
-tab.bugmap=Bugs
+tab.bugmap=Aufträge
 tab.verify=Verifizieren
 tab.highscore=Highscore
 tab.profile=Profil
@@ -11,12 +11,12 @@ login.button.google=Login with Google
 login.button.twitter=Login with Twitter
 
 # Firststeps
-firststeps.introduction=Willkommen bei kort! Gib dir einen Benutzernamen:
+firststeps.introduction=Willkommen bei kort! Wähle einen Benutzernamen:
 firststeps.form.username.placeholder=Benutzername
 firststeps.form.button.submit=Spielen!
 
 # Bugmap
-bugmap.title=Bugs in deiner Nähe
+bugmap.title=Aufträge in deiner Nähe
 
 # Fix
 fix.form.title=Fix
