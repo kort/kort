@@ -60,7 +60,8 @@ Ext.application({
         this.configureMessageBox();
         
         // create main view
-        Ext.Viewport.add(Ext.create('Kort.view.Main'));
+        var mainPanel = Ext.create('Kort.view.Main');
+        Ext.Viewport.add(mainPanel);
         
         // check if user is logged in
         userStore.load(function() {
@@ -69,6 +70,7 @@ Ext.application({
                 firststepsPanel;
             if (!user.get('loggedIn')) {
                 console.log('user not logged in -> show login panel');
+                mainPanel.hide();
                 loginPanel = Ext.create('Kort.view.overlay.login.Panel');
                 Ext.Viewport.add(loginPanel);
                 loginPanel.show();
