@@ -69,7 +69,6 @@ else
 fi
 
 echo "Splitting CSV in parts..."
-rm /tmp/kr_part*
 split -l 200000 /tmp/keepright_errors.txt /tmp/kr_part
 rm /tmp/keepright_errors.txt
 
