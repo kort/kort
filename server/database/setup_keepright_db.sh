@@ -78,3 +78,9 @@ do
     psql -d $DB_NAME -c "copy $DB_SCHEMA.errors from '$part_file' DELIMITER '	' null '\N' CSV HEADER;"
 done
 echo "End."
+echo "Creating indices"
+psql -d $DB_NAME -f keepright_index.sql
+
+echo "Cleanup data"
+psql -d $DB_NAME -f keepright_cleanup.sql
+
