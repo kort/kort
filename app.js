@@ -54,13 +54,14 @@ Ext.application({
 
     // launch function is called as soon as app is ready
     launch: function() {
-        var userStore = Ext.getStore('User');
+        var userStore = Ext.getStore('User'),
+            mainPanel;
         
         this.prepareI18n();
         this.configureMessageBox();
         
         // create main view
-        var mainPanel = Ext.create('Kort.view.Main');
+        mainPanel = Ext.create('Kort.view.Main');
         Ext.Viewport.add(mainPanel);
         
         // check if user is logged in
