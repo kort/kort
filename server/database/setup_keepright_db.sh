@@ -89,4 +89,4 @@ echo "Cleanup data"
 psql -d $DB_NAME -f $DIR/keepright_cleanup.sql
 
 echo "Install PostGIS"
-$DIR/setup_postgis.sh -d $DB_NAME -t $DB_SCHEMA.errors
+$DIR/setup_postgis.sh -d $DB_NAME -s $DB_SCHEMA -t errors
