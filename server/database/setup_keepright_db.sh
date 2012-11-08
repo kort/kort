@@ -49,7 +49,7 @@ if [[ $DROP_DB ]] ; then
     psql -c "drop database if exists $DB_NAME;"
 else
     echo "Dropping schema $DB_SCHEMA"
-    psql -c "drop schema $DB_SCHEMA if exists cascade;"
+    psql -c "drop schema if exists $DB_SCHEMA cascade;"
 fi
 
 # Create database
