@@ -54,6 +54,8 @@ Ext.application({
 
     // launch function is called as soon as app is ready
     launch: function() {
+        var userStore = Ext.getStore('User');
+        
         this.prepareI18n();
         this.configureMessageBox();
         
@@ -61,13 +63,20 @@ Ext.application({
         Ext.Viewport.add(Ext.create('Kort.view.Main'));
         
         // check if user is logged in
-        var userStore = Ext.getStore('User');
         userStore.load(function() {
-            var user = userStore.first();
+            var user = userStore.first(),
+                loginPanel,
+                firststepsPanel;
             if (!user.get('loggedIn')) {
-                Ext.create('Kort.view.overlay.login.Panel').show();
+                console.log('user not logged in -> show login panel');
+                loginPanel = Ext.create('Kort.view.overlay.login.Panel');
+                Ext.Viewport.add(loginPanel);
+                loginPanel.show();
             } else if(!user.get('username')) {
-                Ext.create('Kort.view.overlay.firststeps.Panel').show();
+                console.log('no username given -> show first steps panel');
+                firststepsPanel = Ext.create('Kort.view.overlay.firststeps.Panel');
+                Ext.Viewport.add(firststepsPanel);
+                firststepsPanel.show();
             }
         });
     },
