@@ -7,7 +7,9 @@ Ext.define('Kort.util.Config', {
 			tileLayerUrl: 'http://{s}.tile.cloudmade.com/{apikey}/{styleId}/256/{z}/{x}/{y}.png',
 			apiKey: '729242682cb24de8aa825c8aed993cba',
             styleId: 997
-		}
+		},
+        // default timeout for load tasks in ms
+        timeout: 10000
 	},
 	
 	constructor: function(config) {
