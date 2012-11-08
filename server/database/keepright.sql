@@ -1,6 +1,6 @@
-create type state as enum('new','reopened','ignore_temporarily','ignore');
+create type keepright.state as enum('new','reopened','ignore_temporarily','ignore');
 
-create type osm_type as enum('node','way','relation');
+create type keepright.osm_type as enum('node','way','relation');
 
 create table keepright.errors (
   schema varchar(6) not null default '',
