@@ -44,7 +44,7 @@ psql -d $DB_NAME -f /usr/share/postgresql/9.1/contrib/postgis-1.5/spatial_ref_sy
 psql -d $DB_NAME -c "select AddGeometryColumn ('$SCHEMA_NAME','$TABLE_NAME','geom',4326,'POINT',2);"
 
 # update table
-psql -d $DB_NAME -c "update $SCHEMA_NAME.$TABLE_NAME set geom = ST_SetSRID(ST_MakePoint(lon/10000000,lat/10000000),4326);"
+psql -d $DB_NAME -c "update $SCHEMA_NAME.$TABLE_NAME set geom = ST_SetSRID(ST_MakePoint(lon/10000000.0,lat/10000000.0),4326);"
 
 # create spatial index
 psql -d $DB_NAME -c "create index geom_idx on $SCHEMA_NAME.$TABLE_NAME using gist(geom);"
