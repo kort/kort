@@ -8,6 +8,14 @@ Ext.define('Kort.view.overlay.firststeps.Panel', {
 		layout: 'vbox',
         modal: true,
         cls: 'overlayLeafletMap',
+        showAnimation: {
+            type: 'slideIn',
+            direction: 'down'
+        },
+        hideAnimation: {
+            type: 'slideOut',
+            direction: 'up'
+        },
 		items: [
 			{
                 html:   '<div class="overlay-content">' +
