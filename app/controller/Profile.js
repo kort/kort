@@ -47,8 +47,7 @@ Ext.define('Kort.controller.Profile', {
         Ext.Ajax.request({
             url: './server/webservices/user/logout',
             success: function(response){
-                // TODO Reset user instance here
-                console.log(response);
+                window.location.reload();
             }
         });
     },
