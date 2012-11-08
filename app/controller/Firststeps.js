@@ -19,26 +19,22 @@ Ext.define('Kort.controller.Firststeps', {
     
     onFirststepsFormSubmitButtonTap: function() {
         var me = this,
-            user = Ext.getStore('User').first(),
+            userStore = Ext.getStore('User'),
+            user = userStore.first(),
             usernameValue = this.getUsernameTextfield().getValue();
         
         if(usernameValue !== '') {
+            userStore.on('updaterecord', me.updateRecordHandler, this, { single: true });
             user.set('username', usernameValue);
-            user.save({
-                success: function() {
-                    me.usernameSuccessfulSubmittedHandler();
-                },
-                failure: function() {
-                    console.log('failure');
-                }
-            });
         } else {
             console.log('please fill in a username');
         }
     },
     
-    usernameSuccessfulSubmittedHandler: function() {
-        this.getFirststepsPanel().hide();
-        this.getFirststepsPanel().destroy();
+    updateRecordHandler: function(store, record, newIndex, oldIndex, modifiedFieldNames, modifiedValues) {
+        if(modifiedFieldNames[0] === 'username') {
+            this.getFirststepsPanel().hide();
+            //this.getFirststepsPanel().destroy();
+        }
     }
 });
