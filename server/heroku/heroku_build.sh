@@ -10,7 +10,7 @@ mkdir -p $BUILD_DIR/lib/Slim-2.1.0
 mkdir -p $BUILD_DIR/lib/google-api-php-client
 mkdir -p $BUILD_DIR/server
 
-cp $CI_HOME/index.* $BUILD_DIR
+cp $CI_HOME/index*.* $BUILD_DIR
 cp $CI_HOME/app.* $BUILD_DIR/
 cp -r $CI_HOME/app $BUILD_DIR/
 cp -r $CI_HOME/resources $BUILD_DIR/
