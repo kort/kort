@@ -12,4 +12,6 @@ CREATE INDEX "state#idx"
    ON keepright.errors (state ASC NULLS LAST);
 CREATE INDEX "error_type#idx"
    ON keepright.errors (error_type ASC NULLS LAST);
+CREATE INDEX "error_name#idx"
+   ON keepright.errors (error_name ASC NULLS LAST);
 
