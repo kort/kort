@@ -31,7 +31,7 @@ if [ -z $DB_NAME ] ; then
 fi
 
 if [ -z $DB_SCHEMA ] ; then
-    DB_NAME="keepright"
+    DB_SCHEMA="keepright"
 fi
 
 if [ -z $DB_OWNER ] ; then
@@ -47,16 +47,17 @@ fi
 if [[ $DROP_DB ]] ; then
     echo "Dropping database $DB_NAME"
     psql -c "drop database if exists $DB_NAME;"
+
+    echo "Create database $DB_NAME (Owner: $DB_OWNER)"
+    createdb -E UTF8 -O $DB_OWNER $DB_NAME
 else
     echo "Dropping schema $DB_SCHEMA"
     psql -d $DB_NAME -c "drop schema if exists $DB_SCHEMA cascade;"
 fi
 
-# Create database
-echo "Create database $DB_NAME (Owner: $DB_OWNER)"
-createdb -E UTF8 -O $DB_OWNER $DB_NAME
+# Create schema
 psql -d $DB_NAME -c "create schema $DB_SCHEMA authorization $DB_OWNER"
-psql -d $DB_NAME -f -d $DB_NAME ./keepright.sql
+psql -d $DB_NAME -f ./keepright.sql
 psql -d $DB_NAME -c "alter table $DB_SCHEMA.errors owner to $DB_OWNER"
 
 # Load keepright data
