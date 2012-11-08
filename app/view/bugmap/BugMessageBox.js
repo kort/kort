@@ -3,6 +3,7 @@ Ext.define('Kort.view.bugmap.BugMessageBox', {
 	alias: 'widget.bugmessagebox',
     
     config: {
-        cls: 'bugMessageBox'
+        cls: 'bugMessageBox',
+        zIndex: '1500'
     }
 });
