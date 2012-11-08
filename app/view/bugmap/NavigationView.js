@@ -11,7 +11,7 @@ Ext.define('Kort.view.bugmap.NavigationView', {
 		url: 'bugmap',
 		id: 'bugmapNavigationView',
 		iconCls: 'maps',
-        useTitleForBackButtonText: true,
+        defaultBackButtonText: Ext.i18n.Bundle.message('button.back'),
         
         navigationBar: {
             items: [
