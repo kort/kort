@@ -44,12 +44,28 @@ Ext.define('Kort.controller.Profile', {
     
     onLogoutButtonTap: function() {
         var me = this;
+        me.showLoadMask();
         Ext.Ajax.request({
             url: './server/webservices/user/logout',
             success: function(response){
+                // reload current page
                 window.location.reload();
             }
         });
+    },
+    
+    showLoadMask: function() {
+        Ext.Viewport.setMasked({
+            xtype: 'loadmask',
+            message: Ext.i18n.Bundle.message('profile.logout.loadmask.message')
+        });
+        
+        Ext.defer(this.hideLoadMask, Kort.util.Config.getTimeout(), this);
+    },
+    
+    hideLoadMask: function() {
+        Ext.Viewport.setMasked(false);
+        console.log('something went wrong');
     },
     
     init: function() {
