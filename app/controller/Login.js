@@ -44,7 +44,7 @@ Ext.define('Kort.controller.Login', {
             message: Ext.i18n.Bundle.message('login.loadmask.message')
         });
         
-        Ext.defer(this.hideLoadMask, 10000, this);
+        Ext.defer(this.hideLoadMask, Kort.util.Config.getTimeout(), this);
     },
     
     hideLoadMask: function() {
