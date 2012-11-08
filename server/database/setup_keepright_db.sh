@@ -49,19 +49,19 @@ if [[ $DROP_DB ]] ; then
     psql -c "drop database if exists $DB_NAME;"
 else
     echo "Dropping schema $DB_SCHEMA"
-    psql -c "drop schema if exists $DB_SCHEMA cascade;"
+    psql -d $DB_NAME -c "drop schema if exists $DB_SCHEMA cascade;"
 fi
 
 # Create database
 echo "Create database $DB_NAME (Owner: $DB_OWNER)"
 createdb -E UTF8 -O $DB_OWNER $DB_NAME
 psql -d $DB_NAME -c "create schema $DB_SCHEMA authorization $DB_OWNER"
-psql -d $DB_NAME -f keepright.sql
+psql -d $DB_NAME -f -d $DB_NAME ./keepright.sql
 psql -d $DB_NAME -c "alter table $DB_SCHEMA.errors owner to $DB_OWNER"
 
 # Load keepright data
 if [ -z $PREVIOUS_DOWNLOAD ] ; then
-    wget -O - http://keepright.ipax.at/keepright_errors.txt.bz2 | bzcat | grep -f whitelist_errors.txt > /tmp/keepright_errors.txt
+    wget -O - http://keepright.ipax.at/keepright_errors.txt.bz2 | bzcat | grep -f ./whitelist_errors.txt > /tmp/keepright_errors.txt
 else
     cp $PREVIOUS_DOWNLOAD /tmp/keepright_errors.txt
 fi
@@ -82,8 +82,8 @@ echo "End."
 cat /tmp/kr_part* >> /tmp/keepright_errors.txt
 rm /tmp/kr_part*
 echo "Creating indices"
-psql -d $DB_NAME -f keepright_index.sql
+psql -d $DB_NAME -f ./keepright_index.sql
 
 echo "Cleanup data"
-psql -d $DB_NAME -f keepright_cleanup.sql
+psql -d $DB_NAME -f ./keepright_cleanup.sql
 
