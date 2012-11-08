@@ -38,6 +38,7 @@ highscore.title=Highscore
 profile.title=Profil
 profile.content.username=Benutzername
 profile.content.email=Email
+profile.logout.loadmask.message=Logout...
 
 # MessageBox
 messagebox.ok=OK
