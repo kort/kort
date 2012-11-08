@@ -70,13 +70,14 @@ fi
 
 echo "Splitting CSV in parts..."
 split -l 200000 /tmp/keepright_errors.txt /tmp/kr_part
+sed 1d /tmp/kr_partaa > /tmp/kr_partaa_wo && mv /tmp/kr_partaa_wo /tmp/kr_partaa
 rm /tmp/keepright_errors.txt
 
 echo "Start loading data"
 for part_file in /tmp/kr_part*
 do
     echo $part_file
-    psql -d $DB_NAME -c "copy $DB_SCHEMA.errors from '$part_file' DELIMITER '	' null '\N' CSV HEADER;"
+    psql -d $DB_NAME -c "copy $DB_SCHEMA.errors from '$part_file' DELIMITER '	' null '\N' CSV;"
 done
 echo "End."
 cat /tmp/kr_part* >> /tmp/keepright_errors.txt
