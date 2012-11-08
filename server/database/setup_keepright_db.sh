@@ -76,8 +76,11 @@ for part_file in /tmp/kr_part*
 do
     echo $part_file
     psql -d $DB_NAME -c "copy $DB_SCHEMA.errors from '$part_file' DELIMITER '	' null '\N' CSV HEADER;"
+    rm $part_file
 done
 echo "End."
+cat /tmp/kr_part* >> /tmp/keepright_errors.txt
+rm /tmp/kr_part*
 echo "Creating indices"
 psql -d $DB_NAME -f keepright_index.sql
 
