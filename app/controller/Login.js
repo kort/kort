@@ -6,6 +6,7 @@ Ext.define('Kort.controller.Login', {
             'overlay.login.Panel'
         ],
         refs: {
+            loginPanel: '#loginPanel',
             mainTabPanel: '#mainTabPanel',
             loginButtonGoogle: '#loginButtonGoogle'
         },
@@ -32,9 +33,25 @@ Ext.define('Kort.controller.Login', {
 
     onLoginButtonGoogleTap: function() {
         console.log('loginButtonGoogle tapped -> ' + this.buildGoogleUrl(this.getRemote().google));
+        this.showLoadMask();
+        // redirect to google login page
         document.location.href = this.buildGoogleUrl(this.getRemote().google);
     },
-
+    
+    showLoadMask: function() {
+        this.getLoginPanel().setMasked({
+            xtype: 'loadmask',
+            message: Ext.i18n.Bundle.message('login.loadmask.message')
+        });
+        
+        Ext.defer(this.hideLoadMask, 10000, this);
+    },
+    
+    hideLoadMask: function() {
+        this.getLoginPanel().setMasked(false);
+        console.log('something went wrong');
+    },
+    
     buildGoogleUrl: function(oauth) {
         var urlLib = new UrlLib(),
             params = urlLib.getUrlParams(),

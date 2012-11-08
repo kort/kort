@@ -24,7 +24,9 @@ $default-font-size: 0.9em;
 
 // Login
 #loginPanel {
-    padding: 1em;
+    .x-panel-inner {
+        padding: 1em;
+    }
     
     .loginButtons {
         margin: 1em 0;
@@ -40,7 +42,9 @@ $default-font-size: 0.9em;
 
 // Firststeps
 #firststepsPanel {
-    padding: 1em;
+    .x-panel-inner {
+        padding: 1em;
+    }
     
     #usernameForm {
         .x-form-inner {

@@ -10,6 +10,7 @@ login.title=Login
 login.introduction=Bitte logge dich ein um kort nutzen zu können!
 login.button.google=Login with Google
 login.button.twitter=Login with Twitter
+login.loadmask.message=Weiterleitung...
 
 # Firststeps
 firststeps.introduction=Willkommen bei kort! Wähle einen Benutzernamen:
