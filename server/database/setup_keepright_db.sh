@@ -20,7 +20,7 @@ while getopts ":o:n:s:dp:" opt; do
             ;&
         :)  
             echo "USAGE: `basename $0` [-o <db owner>] [-n <database name>] [-s <schema name>] [-d drop database if exists] [-p path to previously downloaded error csv]" >&2
-            echo "Example: `basename $0` -o `whoami` -n osm_bugs -d -p /tmp/keepright_errors.txt" >&2
+            echo "Example: `basename $0` -o `whoami` -n osm_bugs -s keepright -p /tmp/keepright_errors.txt" >&2
             exit 1
             ;;
     esac
