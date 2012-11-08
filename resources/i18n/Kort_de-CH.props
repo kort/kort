@@ -24,9 +24,8 @@ fix.form.title=Fix
 fix.form.field.image=Bild
 fix.form.message.placeholder=Deine Antwort...
 fix.form.button.submit=Senden
-fix.submitted.message=Vielen Dank!
-
 fix.map.title=Karte
+fix.submitted.message=Vielen Dank!
 
 # Verify
 verify.title=Verifizieren
@@ -36,7 +35,7 @@ highscore.title=Highscore
 
 # Profil
 profile.title=Profil
-profile.content.name=Name
+profile.content.username=Benutzername
 profile.content.email=Email
 
 # MessageBox
