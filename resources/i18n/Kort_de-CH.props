@@ -3,6 +3,7 @@ tab.bugmap=Aufträge
 tab.verify=Verifizieren
 tab.highscore=Highscore
 tab.profile=Profil
+button.back=Zurück
 
 # Login
 login.title=Login
