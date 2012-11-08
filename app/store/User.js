@@ -3,9 +3,9 @@ Ext.define('Kort.store.User', {
 
 	config: {
 		model: 'Kort.model.User',
-
+        
 		proxy: {
-			type: "ajax",
+			type: "rest",
             url : "./server/webservices/user",
             reader: {
                 type: "json"
