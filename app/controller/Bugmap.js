@@ -185,6 +185,7 @@ Ext.define('Kort.controller.Bugmap', {
 
     markerConfirmHandler: function(buttonId, value, opt) {
         if(buttonId === 'yes') {
+            console.log('Open bug detail (id: ' + this.getActiveBug().data.id + ')');
             this.showBugDetail(this.getActiveBug());
         }
 
