@@ -11,14 +11,6 @@ Ext.define('Kort.model.User', {
             { name: 'picUrl', type: 'string' },
 			{ name: 'loggedIn', type: 'boolean' },
 			{ name: 'token', type: 'string' }
-        ],
-        
-        proxy: {
-			type: "rest",
-            url : "./server/webservices/user",
-            reader: {
-                type: "json"
-            }
-		}
+        ]
     }
 });
