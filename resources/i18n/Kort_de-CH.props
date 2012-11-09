@@ -40,9 +40,9 @@ profile.content.username=Benutzername
 profile.content.email=Email
 profile.content.fixes=Anzahl erledigte Aufträge
 profile.content.verifications=Anzahl Verifikationen
-profile.content.korts.header=Korts
+profile.content.koins.header=Koins
+profile.content.koins.introduction=Deine gesammelten koins:
 profile.content.badges.header=Badges
-profile.content.korts.introduction=Deine gesammelten korts:
 profile.logout.loadmask.message=Logout...
 
 # MessageBox
