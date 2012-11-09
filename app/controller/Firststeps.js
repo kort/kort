@@ -24,18 +24,16 @@ Ext.define('Kort.controller.Firststeps', {
             usernameValue = this.getUsernameTextfield().getValue();
         
         if(usernameValue !== '') {
-            userStore.on('updaterecord', me.updateRecordHandler, this, { single: true });
+            userStore.on('write', me.storeWriteHandler, this, { single: true });
             user.set('username', usernameValue);
         } else {
             console.log('please fill in a username');
         }
     },
     
-    updateRecordHandler: function(store, record, newIndex, oldIndex, modifiedFieldNames, modifiedValues) {
-        if(modifiedFieldNames[0] === 'username') {
-            this.getFirststepsPanel().hide();
-            // TODO destroy panel after hide event
-            //this.getFirststepsPanel().destroy();
-        }
+    storeWriteHandler: function(store, operation) {
+        this.getFirststepsPanel().hide();
+        // TODO destroy panel after hide event
+        //this.getFirststepsPanel().destroy();
     }
 });
