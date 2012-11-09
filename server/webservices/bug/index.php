@@ -11,21 +11,21 @@ Kort\ClassLoader::registerAutoLoader();
 
 // create Slim app
 $app = new \Slim\Slim();
+$res = $app->response();
 
-// define REST resources
+$relayGet = new RelayHandlerGet($app);
 $app->get(
     '/:path+',
-    function ($path) use ($app) {
-        $relay = new RelayHandlerGet($app);
-        $relay->relayHandler($path);
+    function ($path) use ($relayGet, $res) {
+        $res->write($relayGet->relayHandler($path));
     }
 );
 
+$relayPost = new RelayHandlerGet($app);
 $app->post(
     '/:path+',
-    function ($path) use ($app) {
-        $relay = new RelayHandlerPost($app);
-        $relay->relayHandler($path);
+    function ($path) use ($relayPost, $res) {
+        $res->write($relayPost->relayHandler($path));
     }
 );
 
