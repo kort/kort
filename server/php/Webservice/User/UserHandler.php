@@ -37,13 +37,13 @@ class UserHandler extends AbstractDbHandler
             $this->userData['email'] = $_SESSION['email'];
         }
         $this->userData['picUrl'] = $this->getGravatarUrl();
-        
+
         $this->userData['fixCount'] = 0;
         $this->userData['verificationCount'] = 0;
         $this->userData['koinCount'] = 0;
-        
+
         $this->userData['badges'] = $this->getUserBadges();
-        
+
         return \json_encode($this->userData);
     }
 
@@ -76,8 +76,9 @@ class UserHandler extends AbstractDbHandler
         $url .= "?s=$s&d=$d&r=$r";
         return $url;
     }
-    
-    private function getUserBadges() {
+
+    private function getUserBadges()
+    {
         // TODO implement badges query
         return array(
             array(
