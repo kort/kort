@@ -10,3 +10,5 @@ select error_id AS id,
         CAST(lon AS NUMERIC)/10000000 AS longitude,
         geom
 from    keepright.errors;
+
+alter table kort.errors owner to osm;
