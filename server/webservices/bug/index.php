@@ -21,7 +21,7 @@ $app->get(
     }
 );
 
-$relayPost = new RelayHandlerGet($app);
+$relayPost = new RelayHandlerPost($app);
 $app->post(
     '/:path+',
     function ($path) use ($relayPost, $res) {
