@@ -52,7 +52,7 @@ $default-font-size: 0.9em;
         }
 
         .usernameTextfield {
-            margin-bottom: 0.2em;
+            margin-bottom: 0.4em;
         }
     }
 }
@@ -185,35 +185,71 @@ $default-font-size: 0.9em;
    Profile
    ----------------------- */
 #profileContentContainer {
-    padding: $panel-padding;
     
-    .picture {
-        $profile-picture-size: 100px;
-        
-        border: .1em solid #858585;
-        float: left;
-        width: $profile-picture-size + 2px;
-        height: $profile-picture-size + 2px;
-        margin: 0 0.5em 0.5em 0;
-        
-        img {
-            border: 0.3em solid white;
-            width: $profile-picture-size;
-            height: $profile-picture-size;
+    .info {
+        padding: $panel-padding;
+        overflow: hidden;
+    
+        .picture {
+            $profile-picture-size: 100px;
+
+            border: .1em solid #858585;
+            float: left;
+            width: $profile-picture-size + 2px;
+            height: $profile-picture-size + 2px;
+            margin: 0.3em 0.5em 0.5em 0;
+
+            img {
+                border: 0.3em solid white;
+                width: $profile-picture-size;
+                height: $profile-picture-size;
+            }
+        }
+    
+        dl.text {
+            float: left;
+            dt {
+                font-size: 0.6em;
+                margin-top: 0.6em;
+                margin-bottom: 0.1em;
+                color: $dark-grey;
+                text-transform: uppercase;
+            }
+            dd {
+                font-size: 0.8em;
+            }
         }
     }
     
-    dl.content {
-        dt {
-            font-size: 0.6em;
-            margin-top: 0.5em;
-            margin-bottom: 0.1em;
-            color: $dark-grey;
-            text-transform: uppercase;
+    .profile-header {
+        font-size: 0.9em;
+        margin: 0.5em 0;
+        text-transform: uppercase;
+        
+        .x-list-header {
+            text-shadow: rgba(0, 0, 0, 0.25) 0 0.08em 0;
+            color: #fff;
         }
-        dd {
+    }
+    .korts {
+        padding: $panel-padding;
+        clear: both;
+        
+        .korts-introduction {
             font-size: 0.8em;
         }
+        .korts-number {
+            margin-left: 0.5em;
+            background-color: #46578D;
+            padding: 0.2em 0.5em;
+            font-weight: bold;
+            color: white;
+            border-radius: 1em;
+            text-shadow: rgba(0, 0, 0, 0.25) 0 0.08em 0;
+        }
+    }
+    .badges {
+        padding: $panel-padding;
     }
 }
 
