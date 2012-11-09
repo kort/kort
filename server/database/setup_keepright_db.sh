@@ -60,6 +60,7 @@ fi
 psql -d $DB_NAME -c "create schema $DB_SCHEMA authorization $DB_OWNER"
 psql -d $DB_NAME -f $DIR/keepright/keepright.sql
 psql -d $DB_NAME -c "alter table $DB_SCHEMA.errors owner to $DB_OWNER"
+psql -d $DB_NAME -c "alter table $DB_SCHEMA.error_type owner to $DB_OWNER"
 
 # Load keepright data
 if [ -z $PREVIOUS_DOWNLOAD ] ; then
@@ -93,3 +94,4 @@ $DIR/setup_postgis.sh -d $DB_NAME -s $DB_SCHEMA -t errors
 
 echo "Create views for kort"
 psql -d $DB_NAME -f $DIR/kort/kort_views.sql
+psql -d $DB_NAME -c "alter table kort.errors owner to $DB_OWNER"
