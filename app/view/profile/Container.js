@@ -9,9 +9,12 @@ Ext.define('Kort.view.profile.Container', {
 		title: Ext.i18n.Bundle.message('tab.profile'),
 		url: 'profile',
 		id: 'profileContainer',
-        scrollable: true,
+        scrollable: {
+            direction: 'vertical',
+            directionLock: true
+        },
 		iconCls: 'user',
-		layout: 'fit',
+		layout: 'vbox',
         
 		items: [
 			{
@@ -76,6 +79,5 @@ Ext.define('Kort.view.profile.Container', {
         };
         
         this.add(profileContentContainer);
-        this.getScrollable().getScroller().refresh();
     }
 });
