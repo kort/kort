@@ -9,7 +9,10 @@ Ext.define('Kort.util.Config', {
             styleId: 997
 		},
         // default timeout for load tasks in ms
-        timeout: 10000
+        timeout: 10000,
+        bugs: {
+            radius: 5000
+        }
 	},
 	
 	constructor: function(config) {

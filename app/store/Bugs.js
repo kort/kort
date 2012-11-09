@@ -7,6 +7,9 @@ Ext.define('Kort.store.Bugs', {
 		proxy: {
 			type: "ajax",
             url : "./resources/stores/bugs.json",
+            extraParams: {
+                'radius': Kort.util.Config.getBugs().radius
+            },
             reader: {
                 type: "json"
             }
