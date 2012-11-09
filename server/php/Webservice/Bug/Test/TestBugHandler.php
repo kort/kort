@@ -28,22 +28,12 @@ class TestBugHandler extends AbstractKortUnitTestCase
         $this->assertIsA($this->handler, "Webservice\\Bug\\BugHandler");
     }
 
-    public function testGetBugsById()
-    {
-        $this->dbConn
-                ->shouldReceive('doSelectQuery')
-                ->once()
-                ->with("schema = '95' and id = 123")
-                ->andReturn(array(array("test" => "value")));
-        $this->assertEqual("{\"test\":\"value\"}", $this->handler->getBugsById(95, 123));
-    }
-
     public function testGetBugsByOwnPosition()
     {
         $this->dbConn
                 ->shouldReceive('doSelectQuery')
                 ->once()
-                ->with(typeOf('string'), "ST_Distance(ST_SetSRID(ST_Point(8,47),4326),geom)", typeOf('integer'))
+                ->with(typeOf('array'), typeOf('string'), typeOf('string'), "ST_Distance(ST_SetSRID(ST_Point(8,47),4326),geom)", 50)
                 ->andReturn(array("test" => "value"));
         $this->assertEqual("{\"test\":\"value\"}", $this->handler->getBugsByOwnPosition(47, 8, 50));
     }
