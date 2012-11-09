@@ -39,6 +39,9 @@ fi
 psql -d $DB_NAME -f /usr/share/postgresql/9.1/contrib/postgis-1.5/postgis.sql
 psql -d $DB_NAME -f /usr/share/postgresql/9.1/contrib/postgis-1.5/spatial_ref_sys.sql
 
+psql -d $DB_NAME -c "GRANT ALL ON geometry_columns TO PUBLIC;"
+psql -d $DB_NAME -c "GRANT ALL ON spatial_ref_sys TO PUBLIC;"
+psql -d $DB_NAME -c "GRANT ALL ON geography_columns TO PUBLIC;"
 
 # add geometry to table
 psql -d $DB_NAME -c "select AddGeometryColumn ('$SCHEMA_NAME','$TABLE_NAME','geom',4326,'POINT',2);"
