@@ -14,9 +14,28 @@ $bugHandler = new \Webservice\Bug\BugHandler();
 $fixHandler = new \Webservice\Fix\FixHandler();
 
 // define REST resources
-$app->get('/bugs/:schema/:id', $bugHandler->bugsIdRouteHandler($res));
-$app->get('/bugs/bounds/:northeastlat,:northeastlng/:southwestlat,:southwestlng', $bugHandler->bugsBoundsHandler($res));
-$app->post('/fixes', $fixHandler->fixesRouteHandler($app));
+$app->get(
+    '/bugs/:schema/:id',
+    function ($schema, $id) use ($bugHandler, $res) {
+        $res->write($bugHandler->getBugsById($schema, $id));
+    }
+);
+$app->get(
+    '/position/:lat,:lng',
+    function ($lat, $lng) use ($bugHandler, $res) {
+        $limit = 20;
+        if (isset($_GET['limit'])) {
+            $limit = $_GET['limit'];
+        }
+        $res->write($bugHandler->getBugsByOwnPosition($lat, $lng, $limit));
+    }
+);
+$app->post(
+    '/fixes',
+    function () use ($fixHandler, $app) {
+        $fixHandler->insertFix($app->request()->post());
+    }
+);
 
 // start Slim app
 $app->run();
