@@ -58,7 +58,7 @@ fi
 
 # Create schema
 psql -d $DB_NAME -c "create schema $DB_SCHEMA authorization $DB_OWNER"
-psql -d $DB_NAME -f $DIR/keepright.sql
+psql -d $DB_NAME -f $DIR/keepright/keepright.sql
 psql -d $DB_NAME -c "alter table $DB_SCHEMA.errors owner to $DB_OWNER"
 
 # Load keepright data
@@ -83,10 +83,13 @@ echo "End."
 cat /tmp/kr_part* >> /tmp/keepright_errors.txt
 rm /tmp/kr_part*
 echo "Creating indices"
-psql -d $DB_NAME -f $DIR/keepright_index.sql
+psql -d $DB_NAME -f $DIR/keepright/keepright_index.sql
 
 echo "Cleanup data"
-psql -d $DB_NAME -f $DIR/keepright_cleanup.sql
+psql -d $DB_NAME -f $DIR/keepright/keepright_cleanup.sql
 
 echo "Install PostGIS"
 $DIR/setup_postgis.sh -d $DB_NAME -s $DB_SCHEMA -t errors
+
+echo "Create views for kort"
+psql -d $DB_NAME -s $DIR/kort/kort_views.sql
