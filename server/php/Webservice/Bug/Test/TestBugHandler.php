@@ -35,7 +35,7 @@ class TestBugHandler extends AbstractKortUnitTestCase
                 ->once()
                 ->with("schema = '95' and id = 123")
                 ->andReturn(array(array("test" => "value")));
-        $this->assertEqual("{\"test\":\"value\"}", $this->handler->getBugsByid(95, 123));
+        $this->assertEqual("{\"test\":\"value\"}", $this->handler->getBugsById(95, 123));
     }
 
     public function testGetBugsByOwnPosition()
