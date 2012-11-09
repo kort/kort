@@ -34,7 +34,7 @@ Ext.define('Kort.view.overlay.firststeps.Panel', {
                 xtype: 'formpanel',
                 id: 'usernameForm',
                 scrollable: false,
-                flex: 1,
+                layout: 'vbox',
                 items: [
                     {
                         xtype: 'textfield',
