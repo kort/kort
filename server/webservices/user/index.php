@@ -39,7 +39,7 @@ $app->get(
     '/logout',
     function () use ($userHandler, $res) {
         \session_destroy();
-        $res->write("Congratulations! You're now officially logouted!");
+        $res->write("Congratulations! You've now officially logged out!");
     }
 );
 
