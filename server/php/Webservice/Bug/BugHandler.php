@@ -6,24 +6,23 @@ use Helper\PostGisSqlHelper;
 
 class BugHandler extends AbstractDbHandler
 {
-    public function getBugsById($schema, $id)
-    {
-        //refactor to generic validate method
-        if (is_numeric($schema) && is_numeric($id)) {
-            $result = $this->db->doSelectQuery('schema = \'' . $schema . '\' and id = ' . $id);
-
-            // only return first row (error_id not unique)
-            if (count($result) > 0) {
-                return json_encode($result[0]);
-            }
-        }
-        return "";
-    }
+    protected $bugTable = 'kort.errors';
+    protected $bugFields = array(
+        'id',
+        'schema',
+        'type',
+        'osm_id',
+        'osm_type',
+        'title',
+        'description',
+        'latitude',
+        'longitude'
+    );
 
     public function getBugsByOwnPosition($lat, $lng, $limit)
     {
         $orderBy = "ST_Distance(".PostGisSqlHelper::getLatLngGeom($lat, $lng).",geom)";
-        $result = $this->db->doSelectQuery("1=1", $orderBy, $limit);
+        $result = $this->db->doSelectQuery($this->bugFields, $this->bugTable, '', $orderBy, $limit);
         return json_encode($result);
     }
 }
