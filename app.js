@@ -49,6 +49,7 @@ Ext.application({
 
     viewport: {
 		// hide navigation bar of browser
+        // TODO reenable autoMaximize (deactivated for iPhone simulator)
 		autoMaximize: false
 	},
 
