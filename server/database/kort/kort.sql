@@ -9,3 +9,10 @@ create table kort.fix (
 );
 
 create sequence kort.fix_id;
+
+create table kort.badge (
+    id integer primary key,
+    name varchar(100) not null,
+    description varchar(500) not null,
+    sorting integer not null
+);
