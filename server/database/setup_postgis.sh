@@ -1,6 +1,6 @@
 #!/bin/bash
 DIR="$( cd "$( dirname "$0" )" && pwd )"
-while getopts ":d:t:" opt; do
+while getopts ":d:s:t:" opt; do
     case $opt in
         d)
             DB_NAME="$OPTARG"
