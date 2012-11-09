@@ -56,11 +56,11 @@ Ext.define('Kort.view.profile.Container', {
                     '</div>',
                     // TODO small hack to recieve sencha list header styling
                     '<div class="profile-header x-list-normal">',
-                        '<div class="x-list-header">' + Ext.i18n.Bundle.message('profile.content.korts.header') + '</div>',
+                        '<div class="x-list-header">' + Ext.i18n.Bundle.message('profile.content.koins.header') + '</div>',
                     '</div>',
-                    '<div class="korts">',
-                        '<span class="korts-introduction">' + Ext.i18n.Bundle.message('profile.content.korts.introduction') + '</span>',
-                        '<span class="korts-number">{kortsCount}</span>',
+                    '<div class="koins">',
+                        '<span class="koins-introduction">' + Ext.i18n.Bundle.message('profile.content.koins.introduction') + '</span>',
+                        '<span class="koins-number">{koinsCount}</span>',
                     '</div>',
                     // TODO small hack to recieve sencha list header styling
                     '<div class="profile-header x-list-normal">',
