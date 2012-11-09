@@ -15,12 +15,6 @@ $fixHandler = new \Webservice\Fix\FixHandler();
 
 // define REST resources
 $app->get(
-    '/bugs/:schema/:id',
-    function ($schema, $id) use ($bugHandler, $res) {
-        $res->write($bugHandler->getBugsById($schema, $id));
-    }
-);
-$app->get(
     '/position/:lat,:lng',
     function ($lat, $lng) use ($bugHandler, $res) {
         $limit = 20;
