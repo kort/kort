@@ -23,7 +23,7 @@ class BugHandler extends AbstractDbHandler
     public function getBugsByOwnPosition($lat, $lng, $limit)
     {
         $orderBy = "ST_Distance(".PostGisSqlHelper::getLatLngGeom($lat, $lng).",geom)";
-        $result = $this->db->doSelectQuery("1=1",$orderBy,$limit);
+        $result = $this->db->doSelectQuery("1=1", $orderBy, $limit);
         return json_encode($result);
     }
 }

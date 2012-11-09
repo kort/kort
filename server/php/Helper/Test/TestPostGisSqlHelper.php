@@ -13,6 +13,6 @@ class TestPostGisSqlHelper extends AbstractKortUnitTestCase
     public function testGetLatLngGeom()
     {
         $helper = new \Helper\PostGisSqlHelper();
-        $this->assertEqual("ST_SetSRID(ST_Point(8,47),4326)",$helper->getLatLngGeom(47, 8));
+        $this->assertEqual("ST_SetSRID(ST_Point(8,47),4326)", $helper->getLatLngGeom(47, 8));
     }
 }
