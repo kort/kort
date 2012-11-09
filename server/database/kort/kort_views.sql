@@ -12,5 +12,3 @@ select  e.error_id AS id,
 from    keepright.errors e,
         keepright.error_type t
 where   e.error_type_id = t.error_type_id;
-
-alter table kort.errors owner to osm;
