@@ -10,7 +10,7 @@ login.title=Login
 login.introduction=Bitte logge dich ein um kort nutzen zu können!
 login.button.google=Login with Google
 login.button.twitter=Login with Twitter
-login.loadmask.message=Weiterleitung...
+login.loadmask.message=Login...
 
 # Firststeps
 firststeps.introduction=Willkommen bei kort! Wähle einen Benutzernamen:
@@ -38,6 +38,11 @@ highscore.title=Highscore
 profile.title=Profil
 profile.content.username=Benutzername
 profile.content.email=Email
+profile.content.fixes=Anzahl erledigte Aufträge
+profile.content.verifications=Anzahl Verifikationen
+profile.content.korts.header=Korts
+profile.content.badges.header=Badges
+profile.content.korts.introduction=Deine gesammelten korts:
 profile.logout.loadmask.message=Logout...
 
 # MessageBox
