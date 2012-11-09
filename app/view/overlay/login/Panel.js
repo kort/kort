@@ -7,6 +7,7 @@ Ext.define('Kort.view.overlay.login.Panel', {
 		id: 'loginPanel',
 		layout: 'vbox',
         modal: true,
+        scrollable: true,
         cls: 'overlayLeafletMap',
 		items: [
 			{
@@ -22,6 +23,7 @@ Ext.define('Kort.view.overlay.login.Panel', {
             {
                 xtype: 'container',
                 layout: 'vbox',
+                scrollable: false,
                 cls: 'loginButtons',
                 items: [
                     {
