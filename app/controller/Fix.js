@@ -12,7 +12,7 @@ Ext.define('Kort.controller.Fix', {
             bugmapNavigationView: '#bugmapNavigationView',
             fixTabPanel: '#fixTabPanel',
             fixFormSubmitButton: '#fixFormSubmitButton',
-            messageTextField: '#fixTabPanel .textfield[name=fixmessage]',
+            fixMessageTextField: '#fixTabPanel .textfield[name=fixmessage]',
             fixForm: '#fixTabPanel .fixform',
             fixmap: '#fixTabPanel .fixmap'
         },
@@ -22,6 +22,9 @@ Ext.define('Kort.controller.Fix', {
             },
             fixFormSubmitButton: {
                 tap: 'onFixFormSubmitButtonTap'
+            },
+            fixMessageTextField: {
+                keyup: 'onFixMessageTextfieldKeyUp'
             },
             fixmap: {
                 maprender: 'onFixmapMaprender'
@@ -99,7 +102,7 @@ Ext.define('Kort.controller.Fix', {
     onFixFormSubmitButtonTap: function() {
         var me = this,
             fixTabPanel = this.getFixTabPanel(),
-            messageValue = this.getMessageTextField().getValue(),
+            messageValue = this.getFixMessageTextField().getValue(),
             fix;
 
         if (messageValue !== '') {
@@ -113,7 +116,7 @@ Ext.define('Kort.controller.Fix', {
                 isUpload: true
             });*/
 
-            fix = Ext.create('Kort.model.Fix', { error_id: fixTabPanel.getBugdata().get('id'), message: this.getMessageTextField().getValue()});
+            fix = Ext.create('Kort.model.Fix', { error_id: fixTabPanel.getBugdata().get('id'), message: this.getFixMessageTextField().getValue()});
             fix.save({
                 success: function() {
                     me.fixSuccessfulSubmittedHandler();
@@ -124,6 +127,13 @@ Ext.define('Kort.controller.Fix', {
             });
         } else {
             console.log('please fill in all form fields');
+        }
+    },
+    
+    onFixMessageTextfieldKeyUp: function(field, e) {
+        // submit form if return key was pressed
+        if (e.event.keyCode == 13){
+            this.onFixFormSubmitButtonTap();
         }
     },
     

@@ -145,8 +145,8 @@ $default-font-size: 0.9em;
 	padding: 0.6em 0.8em;
 }
 
-#fixFormContainer {
-    padding: 1em;
+#fixform {
+    margin: $panel-padding;
     
     .x-form .x-scroll-container > .x-inner {
         padding: 0;
@@ -155,8 +155,8 @@ $default-font-size: 0.9em;
         font-size: 1.2em;
     }
     
-    #fixSubmitButton {
-        margin-top: 0.7em;
+    .fixmessageTextField {
+        margin-bottom: 0.4em;
     }
 }
 
