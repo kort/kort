@@ -17,11 +17,10 @@ $fixHandler = new \Webservice\Fix\FixHandler();
 $app->get(
     '/position/:lat,:lng',
     function ($lat, $lng) use ($bugHandler, $res) {
-        $limit = 20;
-        if (isset($_GET['limit'])) {
-            $limit = $_GET['limit'];
-        }
-        $res->write($bugHandler->getBugsByOwnPosition($lat, $lng, $limit));
+        $limit = (isset($_GET['limit'])) ? $_GET['limit'] : 20;
+        $radius = (isset($_GET['radius'])) ? $_GET['radius'] : 5000;
+        
+        $res->write($bugHandler->getBugsByOwnPosition($lat, $lng, $limit,$radius));
     }
 );
 $app->post(
