@@ -60,19 +60,22 @@ Ext.define('Kort.view.profile.Container', {
                     '</div>',
                     '<div class="koins">',
                         '<span class="koins-introduction">' + Ext.i18n.Bundle.message('profile.content.koins.introduction') + '</span>',
-                        '<span class="koins-number">{koinsCount}</span>',
+                        '<span class="koins-number">{koinCount}</span>',
                     '</div>',
                     // TODO small hack to recieve sencha list header styling
                     '<div class="profile-header x-list-normal">',
                         '<div class="x-list-header">' + Ext.i18n.Bundle.message('profile.content.badges.header') + '</div>',
                     '</div>',
                     '<div class="badges">',
-                        'Hier kommen deine Badges!',
+                        '<tpl for="badges">',
+                            '<img src="./resources/images/badges/{name}<tpl if="won">-act</tpl>.png" />',
+                        '</tpl>',
                     '</div>',
                 '</div>'
                 )
         };
         
         this.add(profileContentContainer);
+        this.getScrollable().getScroller().refresh();
     }
 });

@@ -248,7 +248,13 @@ $default-font-size: 0.9em;
         }
     }
     .badges {
+        $badge-image-size: 250px;
         padding: $panel-padding;
+        
+        img {
+            width: $badge-image-size/2;
+            height: $badge-image-size/2;
+        }
     }
 }
 
