@@ -92,4 +92,4 @@ echo "Install PostGIS"
 $DIR/setup_postgis.sh -d $DB_NAME -s $DB_SCHEMA -t errors
 
 echo "Create views for kort"
-psql -d $DB_NAME -s $DIR/kort/kort_views.sql
+psql -d $DB_NAME -f $DIR/kort/kort_views.sql
