@@ -33,8 +33,8 @@ class TestBugHandler extends AbstractKortUnitTestCase
         $this->dbConn
                 ->shouldReceive('doSelectQuery')
                 ->once()
-                ->with(typeOf('array'), typeOf('string'), typeOf('string'), "ST_Distance(ST_SetSRID(ST_Point(8,47),4326),geom)", 50)
+                ->with(typeOf('array'), typeOf('string'), typeOf('string'), '/8,47/', 50)
                 ->andReturn(array("test" => "value"));
-        $this->assertEqual("{\"test\":\"value\"}", $this->handler->getBugsByOwnPosition(47, 8, 50));
+        $this->assertEqual("{\"test\":\"value\"}", $this->handler->getBugsByOwnPosition(47, 8, 50, 5000));
     }
 }
