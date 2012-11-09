@@ -9,6 +9,7 @@ Ext.define('Kort.view.profile.Container', {
 		title: Ext.i18n.Bundle.message('tab.profile'),
 		url: 'profile',
 		id: 'profileContainer',
+        scrollable: true,
 		iconCls: 'user',
 		layout: 'fit',
         
@@ -36,17 +37,38 @@ Ext.define('Kort.view.profile.Container', {
         var profileContentContainer = {
             xtype: 'component',
             id: 'profileContentContainer',
-            tpl: new Ext.Template(
-                '<div class=class="userprofile">',
-                    '<div class="picture">',
-                        '<img src="{picUrl}" />',
+            tpl: new Ext.XTemplate(
+                '<div class="profile-content">',
+                    '<div class="info">',
+                        '<div class="picture">',
+                            '<img src="{picUrl}" />',
+                        '</div>',
+                        '<dl class="text">',
+                            '<dt>' + Ext.i18n.Bundle.message('profile.content.username') + '</dt>',
+                            '<dd>{username}</dd>',
+                            '<dt>' + Ext.i18n.Bundle.message('profile.content.email') + '</dt>',
+                            '<dd>{email}</dd>',
+                            '<dt>' + Ext.i18n.Bundle.message('profile.content.fixes') + '</dt>',
+                            '<dd>{fixCount}</dd>',
+                            '<dt>' + Ext.i18n.Bundle.message('profile.content.verifications') + '</dt>',
+                            '<dd>{verificationCount}</dd>',
+                        '</dl>',
                     '</div>',
-                    '<dl class="content">',
-                        '<dt>' + Ext.i18n.Bundle.message('profile.content.username') + '</dt>',
-                        '<dd>{username}</dd>',
-                        '<dt>' + Ext.i18n.Bundle.message('profile.content.email') + '</dt>',
-                        '<dd>{email}</dd>',
-                    '</dl>',
+                    // TODO small hack to recieve sencha list header styling
+                    '<div class="profile-header x-list-normal">',
+                        '<div class="x-list-header">' + Ext.i18n.Bundle.message('profile.content.korts.header') + '</div>',
+                    '</div>',
+                    '<div class="korts">',
+                        '<span class="korts-introduction">' + Ext.i18n.Bundle.message('profile.content.korts.introduction') + '</span>',
+                        '<span class="korts-number">{kortsCount}</span>',
+                    '</div>',
+                    // TODO small hack to recieve sencha list header styling
+                    '<div class="profile-header x-list-normal">',
+                        '<div class="x-list-header">' + Ext.i18n.Bundle.message('profile.content.badges.header') + '</div>',
+                    '</div>',
+                    '<div class="badges">',
+                        'Hier kommen deine Badges!',
+                    '</div>',
                 '</div>'
                 )
         };
