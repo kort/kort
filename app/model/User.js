@@ -14,6 +14,8 @@ Ext.define('Kort.model.User', {
 			{ name: 'fixCount', type: 'int' },
 			{ name: 'verificationCount', type: 'int' },
 			{ name: 'kortsCount', type: 'int' }
-        ]
+        ],
+        
+        hasMany: { model: 'Badge', name: 'badges' }
     }
 });

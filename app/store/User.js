@@ -3,6 +3,7 @@ Ext.define('Kort.store.User', {
 
 	config: {
 		model: 'Kort.model.User',
+        autoSync: true,
         
 		proxy: {
 			type: "rest",
