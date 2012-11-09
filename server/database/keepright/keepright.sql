@@ -4,7 +4,7 @@ create type keepright.osm_type as enum('node','way','relation');
 
 create table keepright.errors (
   schema varchar(6) not null default '',
-  error_id integer not null,
+  error_type_id integer not null,
   error_type integer not null,
   error_name varchar(100) not null,
   object_type osm_type not null,
@@ -23,5 +23,15 @@ create table keepright.errors (
   txt2 text,
   txt3 text,
   txt4 text,
-  txt5 text
+  txt5 text,
+  PRIMARY KEY(schema, error_id, object_id)
 );
+
+create table keepright.error_type (
+       error_type_id integer not null,
+       name character varying(20) not null, 
+       description character varying(100), 
+       PRIMARY KEY (error_type_id)
+);
+
+

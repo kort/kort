@@ -1,4 +1,3 @@
-ALTER TABLE keepright.errors ADD CONSTRAINT errors_pkey PRIMARY KEY(schema , error_id , object_id );
 CREATE INDEX error_id_idx ON keepright.errors (error_id ASC NULLS LAST);
 CREATE INDEX lat_idx ON keepright.errors (lat ASC NULLS LAST);
 CREATE INDEX lon_idx ON keepright.errors (lon ASC NULLS LAST);
