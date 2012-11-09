@@ -19,6 +19,7 @@ Ext.define('Kort.view.bugmap.fix.Form', {
                 items: [
                     {
                         xtype: 'textfield',
+                        cls: 'fixmessageTextField',
                         name: 'fixmessage',
                         // TODO i18n bundle doens't work for placeholders
                         placeHolder: 'Deine Antwort'
