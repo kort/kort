@@ -56,14 +56,14 @@ Ext.application({
     launch: function() {
         var userStore = Ext.getStore('User'),
             mainPanel;
-        
+
         this.prepareI18n();
         this.configureMessageBox();
-        
+
         // create main view
         mainPanel = Ext.create('Kort.view.Main');
         Ext.Viewport.add(mainPanel);
-        
+
         // check if user is logged in
         userStore.load(function() {
             var user = userStore.first(),
