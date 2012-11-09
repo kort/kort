@@ -75,11 +75,12 @@ Ext.define('Kort.controller.Bugmap', {
 
     refreshBugMarkers: function() {
         var me = this,
-            bounds = me.getMap().getBounds(),
+            lat = me.getOwnPositionMarker().getLatLng().lat,
+            lng = me.getOwnPositionMarker().getLatLng().lng,
             bugsStore = me.getBugsStore(),
             url;
 
-        url = './server/webservices/bug/bugs/bounds/' + bounds.getNorthEast().lat + ',' + bounds.getNorthEast().lng + '/' + bounds.getSouthWest().lat + ',' + bounds.getSouthWest().lng;
+        url = './server/webservices/bug/position/' + lat + ',' + lng;
         bugsStore.getProxy().setUrl(url);
 
         // Load bugs store
