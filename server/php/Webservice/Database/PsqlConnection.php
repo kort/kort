@@ -4,41 +4,36 @@ namespace Webservice\Database;
 class PsqlConnection
 {
     protected $dbConn = null;
-    protected $defaultErrorFields = array(
-        'error_id AS id',
+    protected $errorTable = 'kort.errors';
+    protected $errorFields = array(
+        'id',
         'schema',
-        'error_type AS type',
-        'object_id AS osm_id',
-        'object_type AS osm_type',
-        'error_name AS title',
-        'msgid AS description',
-        'CAST(lat AS NUMERIC)/10000000 AS latitude',
-        'CAST(lon AS NUMERIC)/10000000 AS longitude',
-        'txt1',
-        'txt2',
-        'txt3',
-        'txt4',
-        'txt5'
+        'type',
+        'osm_id',
+        'osm_type',
+        'title',
+        'description',
+        'latitude',
+        'longitude'
     );
-    protected $defaultErrorTable = 'keepright.errors';
-    protected $defaultFixTable = 'kort.fix';
-    protected $defaultFixFields = array(
+    protected $fixTable = 'kort.fix';
+    protected $fixFields = array(
         'error_id',
         'message'
     );
 
-    public function __construct($dbConfig, $defaultErrorFields = null, $defaultErrorTable = '', $defaultFixTable = '')
+    public function __construct($dbConfig, $errorFields = null, $errorTable = '', $fixTable = '')
     {
         $conn_string = $this->createConnectionString($dbConfig);
         $this->createDbConnection($conn_string);
-        if ($defaultErrorFields) {
-            $this->defaultErrorFields = $defaultErrorFields;
+        if ($errorFields) {
+            $this->errorFields = $errorFields;
         }
-        if ($defaultErrorTable != '') {
-            $this->defaultErrorTable = $defaultErrorTable;
+        if ($errorTable != '') {
+            $this->errorTable = $errorTable;
         }
-        if ($defaultFixTable != '') {
-            $this->defaultFixTable = $defaultFixTable;
+        if ($fixTable != '') {
+            $this->fixTable = $fixTable;
         }
     }
 
@@ -64,47 +59,36 @@ class PsqlConnection
         $this->dbConn = $db;
     }
 
-    public function doSelectQuery($where, $fields = null, $form = '')
+    public function doSelectQuery($where, $orderBy = '', $limit = null)
     {
-        if (!$fields) {
-            $fields = $this->defaultErrorFields;
-        }
-        if ($form == '') {
-            $form = $this->defaultErrorTable;
-        }
-
-        $queryStr = 'SELECT '.implode(',', $fields).' FROM '.$form;
+        $queryStr = 'SELECT '.implode(',', $this->errorFields).' FROM '.$this->errorTable;
 
         if ($where != '') {
             $queryStr .= ' WHERE '.$where;
         }
 
-        $queryStr .= ';';
+        if ($orderBy != '') {
+            $queryStr .= ' ORDER BY '.$orderBy;
+        }
 
+        if ($limit) {
+            $queryStr .= ' LIMIT '.$limit;
+        }
+
+        $queryStr .= ';';
         $result = pg_query($this->dbConn, $queryStr);
 
         $resultArr = array();
-        // TODO ugly way to replace placeholders in description (use regex)
         while ($row = pg_fetch_assoc($result)) {
-            for ($i = 1; $i <= 5; $i++) {
-                $row['description'] = $this->replaceDescriptionPlaceholders($row, $i);
-                unset($row['txt'.$i]);
-            }
             $resultArr[] = $row;
         }
         return $resultArr;
     }
 
-    public function doInsertQuery($values, $fields = null)
+    public function doInsertQuery($values)
     {
-        $insertStr = 'INSERT INTO '.$this->defaultFixTable;
-
-        // TODO implement fields/values with map
-        if (!$fields) {
-            $fields = $this->defaultFixFields;
-        }
-
-        $fieldsStr = ' (id, create_date, '.implode(',', $fields).')';
+        $insertStr = 'INSERT INTO '.$this->fixTable;
+        $fieldsStr = ' (id, create_date, '.implode(',', $this->fixFields).')';
 
         foreach ($values as $key => $value) {
             if (!is_numeric($value)) {
@@ -122,12 +106,6 @@ class PsqlConnection
         return $result;
     }
 
-    protected function replaceDescriptionPlaceholders($row, $placeholderNumber)
-    {
-        return str_replace('$'.$placeholderNumber, $row['txt'.$placeholderNumber], $row['description']);
-    }
-
-    // closes the database connection
     protected function close()
     {
         pg_close($this->dbConn);

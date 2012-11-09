@@ -10,6 +10,6 @@ class RelayHandlerGet extends RelayHandler
         if (!empty($_SERVER['QUERY_STRING'])) {
             $fullPath .= "?".$_SERVER['QUERY_STRING'];
         }
-        echo $this->relayRequest($this->app->request()->getMethod(), $fullPath);
+        return $this->relayRequest($this->app->request()->getMethod(), $fullPath);
     }
 }
