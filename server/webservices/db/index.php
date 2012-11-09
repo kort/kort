@@ -19,8 +19,8 @@ $app->get(
     function ($lat, $lng) use ($bugHandler, $res) {
         $limit = (isset($_GET['limit'])) ? $_GET['limit'] : 20;
         $radius = (isset($_GET['radius'])) ? $_GET['radius'] : 5000;
-        
-        $res->write($bugHandler->getBugsByOwnPosition($lat, $lng, $limit,$radius));
+
+        $res->write($bugHandler->getBugsByOwnPosition($lat, $lng, $limit, $radius));
     }
 );
 $app->post(

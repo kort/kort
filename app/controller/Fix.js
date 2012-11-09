@@ -38,7 +38,7 @@ Ext.define('Kort.controller.Fix', {
     init: function() {
         this.setBugsStore(Ext.getStore('Bugs'));
     },
-    
+
     onFixFormInitialize: function(cmp) {
         console.log(cmp.getItems());
     },
@@ -129,20 +129,20 @@ Ext.define('Kort.controller.Fix', {
             console.log('please fill in all form fields');
         }
     },
-    
+
     onFixMessageTextfieldKeyUp: function(field, e) {
         // submit form if return key was pressed
-        if (e.event.keyCode == 13){
+        if (e.event.keyCode === 13){
             this.onFixFormSubmitButtonTap();
         }
     },
-    
+
     fixSuccessfulSubmittedHandler: function() {
         this.showProblemAddedPopupPanel();
         // remove detail panel
         this.getBugmapNavigationView().pop();
     },
-    
+
     /**
 	 * Displays the confirmation popup
 	 * @private

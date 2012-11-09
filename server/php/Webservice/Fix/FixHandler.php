@@ -12,7 +12,7 @@ class FixHandler extends AbstractDbHandler
         'error_id',
         'message'
     );
-    
+
     public function insertFix($postVariables)
     {
         $data = array();
@@ -23,7 +23,7 @@ class FixHandler extends AbstractDbHandler
         }
         $data['id'] = "nextval('kort.fix_id')";
         $data['create_date'] = "now()";
-        
+
         $this->db->doInsertQuery($data, $this->fixTable);
     }
 }
