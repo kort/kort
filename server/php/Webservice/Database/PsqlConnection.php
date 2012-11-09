@@ -4,37 +4,11 @@ namespace Webservice\Database;
 class PsqlConnection
 {
     protected $dbConn = null;
-    protected $errorTable = 'kort.errors';
-    protected $errorFields = array(
-        'id',
-        'schema',
-        'type',
-        'osm_id',
-        'osm_type',
-        'title',
-        'description',
-        'latitude',
-        'longitude'
-    );
-    protected $fixTable = 'kort.fix';
-    protected $fixFields = array(
-        'error_id',
-        'message'
-    );
-
-    public function __construct($dbConfig, $errorFields = null, $errorTable = '', $fixTable = '')
+    
+    public function __construct($dbConfig)
     {
         $conn_string = $this->createConnectionString($dbConfig);
         $this->createDbConnection($conn_string);
-        if ($errorFields) {
-            $this->errorFields = $errorFields;
-        }
-        if ($errorTable != '') {
-            $this->errorTable = $errorTable;
-        }
-        if ($fixTable != '') {
-            $this->fixTable = $fixTable;
-        }
     }
 
     public function __destruct()
@@ -59,12 +33,12 @@ class PsqlConnection
         $this->dbConn = $db;
     }
 
-    public function doSelectQuery($where, $orderBy = '', $limit = null)
+    public function doSelectQuery($fieldsArr, $table, $condition, $orderBy = '', $limit = null)
     {
-        $queryStr = 'SELECT '.implode(',', $this->errorFields).' FROM '.$this->errorTable;
+        $queryStr = 'SELECT '.implode(',', $fieldsArr).' FROM '.$table;
 
-        if ($where != '') {
-            $queryStr .= ' WHERE '.$where;
+        if ($condition != '') {
+            $queryStr .= ' WHERE '.$condition;
         }
 
         if ($orderBy != '') {
@@ -85,27 +59,25 @@ class PsqlConnection
         return $resultArr;
     }
 
-    public function doInsertQuery($values)
+    public function doInsertQuery($dataArr, $table)
     {
-        $insertStr = 'INSERT INTO '.$this->fixTable;
-        $fieldsStr = ' (id, create_date, '.implode(',', $this->fixFields).')';
-
-        foreach ($values as $key => $value) {
-            if (!is_numeric($value)) {
-                $values[$key] = '\''.$value.'\'';
-            }
-        }
-        $valuesStr = ' VALUES (nextval(\'kort.fix_id\'), now(), '.implode(',', $values).')';
-
-        $insertStr .= $fieldsStr;
-        $insertStr .= $valuesStr;
+        $insertStr = 'INSERT INTO '.$table;
+        $insertStr .= ' (' . implode(',', array_keys($dataArr)) . ')';
+        $insertStr .= ' VALUES (' . implode(',', array_values($dataArr)) . ')';
         $insertStr .= ';';
-
+        
         $result = pg_query($this->dbConn, $insertStr);
 
         return $result;
     }
-
+    
+    public function escapeLitereal($value) {
+        if($value && !is_numeric($value)) {
+            return "'" . $value . "'";
+        }
+        return $value;
+    }
+    
     protected function close()
     {
         pg_close($this->dbConn);
