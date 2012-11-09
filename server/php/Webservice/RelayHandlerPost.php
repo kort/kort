@@ -13,6 +13,6 @@ class RelayHandlerPost extends RelayHandler
          */
         $requestBody = $this->app->request()->getBody();  // <- getBody() of http request
         $json_a = json_decode($requestBody, true);
-        echo $this->relayRequest($this->app->request()->getMethod(), $fullPath, $json_a);
+        return $this->relayRequest($this->app->request()->getMethod(), $fullPath, $json_a);
     }
 }
