@@ -13,6 +13,9 @@ Ext.define('Kort.controller.Firststeps', {
         control: {
             firststepsFormSubmitButton: {
                 tap: 'onFirststepsFormSubmitButtonTap'
+            },
+            usernameTextfield: {
+                keyup: 'onUsernameTextfieldKeyUp'
             }
         }
     },
@@ -35,5 +38,12 @@ Ext.define('Kort.controller.Firststeps', {
         this.getFirststepsPanel().hide();
         // TODO destroy panel after hide event
         //this.getFirststepsPanel().destroy();
+    },
+    
+    onUsernameTextfieldKeyUp: function(field, e) {
+        // submit form if return key was pressed
+        if (e.event.keyCode == 13){
+            this.onFirststepsFormSubmitButtonTap();
+        }
     }
 });
