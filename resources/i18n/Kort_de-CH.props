@@ -8,8 +8,8 @@ button.back=Zurück
 # Login
 login.title=Login
 login.introduction=Bitte logge dich ein um kort nutzen zu können!
-login.button.google=Login with Google
-login.button.twitter=Login with Twitter
+login.button.google=Login mit Google
+login.button.twitter=Login mit Twitter
 login.loadmask.message=Login...
 
 # Firststeps
