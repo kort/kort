@@ -4,7 +4,7 @@ namespace Webservice\Database;
 class PsqlConnection
 {
     protected $dbConn = null;
-    
+
     public function __construct($dbConfig)
     {
         $conn_string = $this->createConnectionString($dbConfig);
@@ -65,19 +65,20 @@ class PsqlConnection
         $insertStr .= ' (' . implode(',', array_keys($dataArr)) . ')';
         $insertStr .= ' VALUES (' . implode(',', array_values($dataArr)) . ')';
         $insertStr .= ';';
-        
+
         $result = pg_query($this->dbConn, $insertStr);
 
         return $result;
     }
-    
-    public function escapeLitereal($value) {
-        if($value && !is_numeric($value)) {
+
+    public function escapeLitereal($value)
+    {
+        if ($value && !is_numeric($value)) {
             return "'" . $value . "'";
         }
         return $value;
     }
-    
+
     protected function close()
     {
         pg_close($this->dbConn);
