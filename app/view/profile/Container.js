@@ -71,7 +71,10 @@ Ext.define('Kort.view.profile.Container', {
                     '</div>',
                     '<div class="badges">',
                         '<tpl for="badges">',
-                            '<img src="./resources/images/badges/{name}<tpl if="won">-act</tpl>.png" />',
+                            '<div class="badge">',
+                                '<img src="./resources/images/badges/{name}<tpl if="won">-act</tpl>.png" />',
+                                '<p class="badge-title">{name}</p>',
+                            '</div>',
                         '</tpl>',
                     '</div>',
                 '</div>'
