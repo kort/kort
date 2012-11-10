@@ -249,11 +249,23 @@ $default-font-size: 0.9em;
     }
     .badges {
         $badge-image-size: 150px;
-        padding: $panel-padding;
+        padding: 0 $panel-padding $panel-padding $panel-padding;
+        overflow: hidden;
         
-        img {
-            width: $badge-image-size/2;
-            height: $badge-image-size/2;
+        .badge {
+            float: left;
+            width: 90px;
+            padding: 0.2em 0.5em;
+            text-align: center;
+            overflow: hidden;
+            
+            .badge-title {
+                font-size: 0.6em;
+            }
+            img {
+                width: $badge-image-size/2;
+                height: $badge-image-size/2;
+            }
         }
     }
 }
