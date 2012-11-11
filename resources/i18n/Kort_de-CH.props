@@ -21,7 +21,7 @@ firststeps.form.button.submit=Spielen!
 bugmap.title=Aufträge in deiner Nähe
 
 # Fix
-fix.form.title=Fix
+fix.form.title=Auftrag
 fix.form.field.image=Bild
 fix.form.message.placeholder=Deine Antwort...
 fix.form.button.submit=Senden
