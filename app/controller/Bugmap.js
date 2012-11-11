@@ -63,7 +63,7 @@ Ext.define('Kort.controller.Bugmap', {
             });
         }
 
-        // wait till correct position is found
+        // wait until correct position is found
         Ext.Function.defer(me.refreshBugMarkers, 700, me);
 
         me.getMarkerLayerGroup().addTo(map);
@@ -75,8 +75,8 @@ Ext.define('Kort.controller.Bugmap', {
 
     refreshBugMarkers: function() {
         var me = this,
-            lat = me.getOwnPositionMarker().getLatLng().lat,
-            lng = me.getOwnPositionMarker().getLatLng().lng,
+            lat = me.getMapCmp().getGeo().getLatitude(),
+            lng = me.getMapCmp().getGeo().getLongitude(),
             bugsStore = me.getBugsStore(),
             url;
 
