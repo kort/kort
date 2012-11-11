@@ -80,7 +80,7 @@ Ext.define('Kort.controller.Bugmap', {
             url;
 
         url = './server/webservices/bug/position/' + lat + ',' + lng;
-        //bugsStore.getProxy().setUrl(url);
+        bugsStore.getProxy().setUrl(url);
 
         // Load bugs store
 		bugsStore.load(function(records, operation, success) {
