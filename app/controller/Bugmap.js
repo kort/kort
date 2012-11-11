@@ -32,7 +32,6 @@ Ext.define('Kort.controller.Bugmap', {
         map: null,
         ownPositionMarker: null,
         markerLayerGroup: [],
-        confirmTemplate: null,
         activeBug: null,
         bugsStore: null
     },
@@ -81,7 +80,7 @@ Ext.define('Kort.controller.Bugmap', {
             url;
 
         url = './server/webservices/bug/position/' + lat + ',' + lng;
-        bugsStore.getProxy().setUrl(url);
+        //bugsStore.getProxy().setUrl(url);
 
         // Load bugs store
 		bugsStore.load(function(records, operation, success) {
@@ -167,11 +166,10 @@ Ext.define('Kort.controller.Bugmap', {
     },
 
     onMarkerClick: function(e) {
-        var tpl = this.getConfirmTemplate(),
-            marker = e.target,
+        var marker = e.target,
             bugdata = marker.bugdata,
             CLICK_TOLERANCE = 200,
-            timeDifference, bugMessageBox, msg;
+            timeDifference, bugMessageBox;
 
         timeDifference = e.originalEvent.timeStamp - marker.lastClickTimestamp;
 
@@ -179,8 +177,10 @@ Ext.define('Kort.controller.Bugmap', {
         if(timeDifference > CLICK_TOLERANCE) {
             marker.lastClickTimestamp = e.originalEvent.timeStamp;
             this.setActiveBug(bugdata);
-            bugMessageBox = new Kort.view.bugmap.BugMessageBox();
-            msg = bugMessageBox.confirm(bugdata.get('title'), tpl.apply(bugdata.data), this.markerConfirmHandler, this);
+            bugMessageBox = Ext.create('Kort.view.bugmap.BugMessageBox', {
+                record: bugdata
+            });
+            bugMessageBox.confirm(bugdata.get('title'), '', this.markerConfirmHandler, this);
         }
     },
 
@@ -194,10 +194,11 @@ Ext.define('Kort.controller.Bugmap', {
     },
 
     showBugDetail: function(bug) {
-        this.getBugmapNavigationView().push(Ext.create('Kort.view.bugmap.fix.TabPanel', {
-            bugdata: bug,
+        var fixTabPanel = Ext.create('Kort.view.bugmap.fix.TabPanel', {
+            record: bug,
             title: bug.get('title')
-        }));
+        });
+        this.getBugmapNavigationView().push(fixTabPanel);
     },
 
     getIcon: function(type) {
@@ -220,21 +221,6 @@ Ext.define('Kort.controller.Bugmap', {
     },
 
     init: function() {
-        this.setConfirmTemplate(new Ext.XTemplate(
-            '<div class="confirm-title">{title}</div>',
-            '<div class="confirm-content">',
-                '<div class="description">',
-                    '<div class="image">',
-                        '<img class="bugtype-image" src="resources/images/bugtypes/{type}.png" />',
-                    '</div>',
-                    '<div class="content">',
-                        '<p>{description}</p>',
-                    '</div>',
-                '</div>',
-                '<img class="koin-image" src="resources/images/koins/1koin.png" />',
-            '</div>'
-        ));
-
         // create layer group for bug markers
         this.setMarkerLayerGroup(L.layerGroup());
 

@@ -17,9 +17,6 @@ Ext.define('Kort.controller.Fix', {
             fixmap: '#fixTabPanel .fixmap'
         },
         control: {
-            fixForm: {
-                initialize: 'onFixFormInitialize'
-            },
             fixFormSubmitButton: {
                 tap: 'onFixFormSubmitButtonTap'
             },
@@ -39,12 +36,8 @@ Ext.define('Kort.controller.Fix', {
         this.setBugsStore(Ext.getStore('Bugs'));
     },
 
-    onFixFormInitialize: function(cmp) {
-        console.log(cmp.getItems());
-    },
-
     onFixmapMaprender: function(cmp, map, tileLayer) {
-        var bug = this.getFixTabPanel().getBugdata();
+        var bug = this.getFixTabPanel().getRecord();
 
         this.setMap(map);
         cmp.setMapCenter(L.latLng(bug.get('latitude'), bug.get('longitude')));

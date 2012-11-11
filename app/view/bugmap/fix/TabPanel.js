@@ -6,15 +6,22 @@ Ext.define('Kort.view.bugmap.fix.TabPanel', {
         title: '',
         fullscreen: true,
         id: 'fixTabPanel',
-        bugdata: null,
+        tabBar: {
+            minHeight: '1em'
+        }
+	},
+    
+    initialize: function () {
+        this.callParent(arguments);
+
+        var fixForm = {
+            xtype: 'fixform',
+            record: this.getRecord()
+        };
+        var fixMap = {
+            xtype: 'fixmap'
+        };
         
-        items: [
-            {
-                xtype: 'fixform'
-            },
-            {
-                xtype: 'fixmap'
-            }
-        ]
-	}
+        this.add([fixForm, fixMap]);
+    }
 });

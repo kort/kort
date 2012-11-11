@@ -75,11 +75,11 @@ $default-font-size: 0.9em;
 /* -----------------------
    Bug Confirm Message Box
    ----------------------- */
-.x-msgbox .x-toolbar {
+/*.x-msgbox .x-toolbar {
     background: auto;
-}
+}*/
 .bugMessageBox {
-    border-color: #69AAE6;
+    /*border-color: #69AAE6;
     background-color: #D3E0EB;
     $text-color: #000;
     padding: 0;
@@ -101,7 +101,7 @@ $default-font-size: 0.9em;
         border-bottom: .1em solid black;
         padding: 0.3em;
         margin-bottom: 0.5em;
-    }
+    }*/
     
     .confirm-content {
         .description {
@@ -131,32 +131,39 @@ $default-font-size: 0.9em;
 /* -----------------------
    Fix Panel
    ----------------------- */
-.fixTabPanel .x-tabbar.x-docked-top {
-    height: auto;
-    min-height: 1em !important;
-	font-size: 0.9em;
-}
-
-.fixTabPanel .x-tabbar .x-tab {
-	-webkit-border-radius: 0;
-	border-radius: 0;
-	height: auto;
-	margin: 0;
-	padding: 0.6em 0.8em;
-}
-
-#fixform {
-    margin: $panel-padding;
-    
-    .x-form .x-scroll-container > .x-inner {
-        padding: 0;
+#fixTabPanel {
+    // tabBar style
+    .x-tabbar.x-docked-top {
+        height: auto;
+        min-height: 1.6em !important;
+        font-size: 0.9em;
     }
-    .x-form-label span span.bundle {
-        font-size: 1.2em;
+    .x-tabbar .x-tab {
+        -webkit-border-radius: 0;
+        border-radius: 0;
+        height: auto;
+        margin: 0;
+        padding: 0.6em 0.8em;
     }
-    
-    .fixmessageTextField {
-        margin-bottom: 0.4em;
+
+    #fixContentComponent {
+        padding: $panel-padding;
+        font-size: $default-font-size;
+    }
+
+    #fixform {
+        margin: $panel-padding;
+
+        .x-form .x-scroll-container > .x-inner {
+            padding: 0;
+        }
+        .x-form-label span span.bundle {
+            font-size: 1.2em;
+        }
+
+        .fixmessageTextField {
+            margin-bottom: 0.4em;
+        }
     }
 }
 
