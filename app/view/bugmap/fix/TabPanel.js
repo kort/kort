@@ -12,13 +12,16 @@ Ext.define('Kort.view.bugmap.fix.TabPanel', {
 	},
     
     initialize: function () {
+        var fixForm,
+            fixMap;
+
         this.callParent(arguments);
 
-        var fixForm = {
+        fixForm = {
             xtype: 'fixform',
             record: this.getRecord()
         };
-        var fixMap = {
+        fixMap = {
             xtype: 'fixmap'
         };
         
