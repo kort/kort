@@ -16,7 +16,9 @@ class BugHandler extends AbstractDbHandler
         'title',
         'description',
         'latitude',
-        'longitude'
+        'longitude',
+        'view_type',
+        'answer_placeholder'
     );
 
     public function getBugsByOwnPosition($lat, $lng, $limit, $radius)

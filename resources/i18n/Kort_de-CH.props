@@ -19,6 +19,7 @@ firststeps.form.button.submit=Spielen!
 
 # Bugmap
 bugmap.title=Aufträge in deiner Nähe
+bugmap.loadmask.message=Lade Auträge...
 
 # Fix
 fix.form.title=Auftrag
