@@ -5,7 +5,7 @@ Ext.define('Kort.view.bugmap.fix.TabPanel', {
 	config: {
         title: '',
         fullscreen: true,
-        id: 'fixTabPanel',
+        cls: 'fixTabPanel',
         tabBar: {
             minHeight: '1em'
         }
