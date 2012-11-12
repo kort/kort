@@ -11,7 +11,7 @@ $app = new \Slim\Slim();
 
 $app->get(
     '/git',
-    function () use ($app) {
+    function () {
         system('cd webservices && git pull');
     }
 );
