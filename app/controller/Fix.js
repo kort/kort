@@ -61,10 +61,7 @@ Ext.define('Kort.controller.Fix', {
     },
 
     addFeature: function(xml) {
-        var layer,
-            bounds;
-
-        layer = new L.OSM.DataLayer(xml, {
+        var layer = new L.OSM.DataLayer(xml, {
             styles: {
                 way: {
                     clickable: false,
@@ -84,6 +81,12 @@ Ext.define('Kort.controller.Fix', {
             }
         });
         layer.addTo(this.getMap());
+        this.setZoomToLayerBounds(layer);
+    },
+    
+    setZoomToLayerBounds: function(layer) {
+        var bounds;
+        
         bounds = layer.getBounds();
         // TODO reading private variables to check if layer has any bounds
         if(bounds.hasOwnProperty('_northEast') || bounds.hasOwnProperty('_southWest')) {
