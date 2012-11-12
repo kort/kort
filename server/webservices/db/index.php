@@ -23,6 +23,12 @@ $app->get(
         $res->write($bugHandler->getBugsByOwnPosition($lat, $lng, $limit, $radius));
     }
 );
+$app->get(
+    '/tracktypes',
+    function () use ($bugHandler, $res) {
+        $res->write($bugHandler->getTracktypes());
+    }
+);
 $app->post(
     '/fixes',
     function () use ($fixHandler, $app) {

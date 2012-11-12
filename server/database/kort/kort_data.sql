@@ -17,3 +17,10 @@ insert into kort.badge (id, name, description, sorting) VALUES (15, 'bugtype_rel
 insert into kort.badge (id, name, description, sorting) VALUES (16, 'bugtype_missing_maxspeed', 'Einen Auftrag vom Typ fehlendes Geschwindikeitslimit erledigt', 550);
 insert into kort.badge (id, name, description, sorting) VALUES (17, 'bugtype_language_unknown', 'Einen Auftrag vom Typ unbekannte Sprache erledigt', 560);
 insert into kort.badge (id, name, description, sorting) VALUES (18, 'bugtype_missing_track_type', 'Einen Auftrag vom Typ Strassentyp erledigt', 570);
+
+-- Insert tracktypes
+insert into kort.tracktype (id, type_key, title, sorting) VALUES (1, 'grade1', 'Asphalt, Beton oder Pflastersteine', 110);
+insert into kort.tracktype (id, type_key, title, sorting) VALUES (2, 'grade2', 'Schotter', 120);
+insert into kort.tracktype (id, type_key, title, sorting) VALUES (3, 'grade3', 'Feinschotter-, Sand- oder Erdweg', 130);
+insert into kort.tracktype (id, type_key, title, sorting) VALUES (4, 'grade4', 'Weg mit Pflanzenwuchs entlang der Spurmitte', 140);
+insert into kort.tracktype (id, type_key, title, sorting) VALUES (5, 'grade5', 'Unbefestigter Weg', 150);
