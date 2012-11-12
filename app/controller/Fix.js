@@ -109,7 +109,7 @@ Ext.define('Kort.controller.Fix', {
                 isUpload: true
             });*/
 
-            fix = Ext.create('Kort.model.Fix', { error_id: fixTabPanel.getBugdata().get('id'), message: this.getFixMessageTextField().getValue()});
+            fix = Ext.create('Kort.model.Fix', { error_id: fixTabPanel.getRecord().get('id'), message: this.getFixMessageTextField().getValue()});
             fix.save({
                 success: function() {
                     me.fixSuccessfulSubmittedHandler();
