@@ -73,37 +73,31 @@ $default-font-size: 0.9em;
 }
 
 /* -----------------------
-   Bug Confirm Message Box
+   Bug Confirm Message Box / Fix Panel
    ----------------------- */
-.bugMessageBox {
-    .confirm-content {
-        .description {
-            $image-width: 48px;
-            overflow: hidden;
-            
-            .image {
-                float: left;
+.bugMessageBox .confirm-content,
+.fixContentComponent .fix-content {
+    .description {
+        overflow: hidden;
+        text-align: left;
 
-                .bugtype-image {
-                    width: $image-width;
-                    height: 48px;
-                }
-            }
-            .content {
-                font-size: $default-font-size;
+        .image {
+            $image-width: 64px;
+            $image-height: 74px;
+            float: left;
+            margin: 0 1em 0.5em 0.5em;
+
+            .bugtype-image {
+                width: $image-width/2;
+                height: $image-height/2;
             }
         }
-        
-        .koin-image {
-            width: 100px;
-            height: 100px;
+        .content {
+            font-size: $default-font-size;
         }
     }
 }
 
-/* -----------------------
-   Fix Panel
-   ----------------------- */
 .fixTabPanel {
     // tabBar style
     .x-tabbar.x-docked-top {
@@ -117,11 +111,6 @@ $default-font-size: 0.9em;
         height: auto;
         margin: 0;
         padding: 0.6em 0.8em;
-    }
-
-    .fixContentComponent {
-        padding: $panel-padding;
-        font-size: $default-font-size;
     }
 
     .fixform {

@@ -242,7 +242,7 @@ Ext.define('Kort.controller.Bugmap', {
                 '<div class="confirm-content">',
                     '<div class="description">',
                         '<div class="image">',
-                            //'<img class="bugtype-image" src="resources/images/bugtypes/{type}.png" />',
+                            '<img class="bugtype-image" src="./resources/images/marker_icons/{type}.png" />',
                         '</div>',
                         '<div class="content">',
                             '<p>{description}</p>',
