@@ -22,7 +22,16 @@ Ext.define('Kort.view.bugmap.fix.Form', {
             cls: 'fixContentComponent',
             record: this.getRecord(),
             tpl:    new Ext.Template(
-                        '{description}'
+                        '<div class="fix-content">',
+                            '<div class="description">',
+                                '<div class="image">',
+                                    '<img class="bugtype-image" src="./resources/images/marker_icons/{type}.png" />',
+                                '</div>',
+                                '<div class="content">',
+                                    '<p>{description}</p>',
+                                '</div>',
+                            '</div>',
+                        '</div>'
                     )
         };
         
