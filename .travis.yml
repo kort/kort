@@ -29,4 +29,5 @@ before_script:
 script: ant -f build_kort.xml build
 
 after_script:
+  - curl http://kort.rdmr.ch/webservices/update/git
   - bash $CI_HOME/server/heroku/heroku.sh
