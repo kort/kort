@@ -93,21 +93,15 @@ Ext.define('Kort.controller.Bugmap', {
     * @private
     */
 	syncProblemMarkers: function(bugs) {
-        var me = this,
-            MAX_MARKERS = 40,
-            count = 0;
+        var me = this;
 
         me.removeAllMarkers();
 
         // add markers
         Ext.each(bugs, function (item, index, length) {
             if(item.get('longitude') && item.get('longitude')) {
-                // TODO max_markers logic in database select
-                if(count < MAX_MARKERS) {
-                    console.log(item.get('type') + ' / ' + item.get('osm_id'));
-                    me.addMarker(item);
-                }
-                count++;
+                console.log(item.get('type') + ' / ' + item.get('osm_id'));
+                me.addMarker(item);
             }
         });
 	},
