@@ -32,3 +32,10 @@ create table kort.user_badge (
     create_date timestamp not null,
     primary key (user_id, badge_id)
 );
+
+create table kort.tracktype (
+    id integer primary key,
+    type_key varchar(100) unique not null,
+    title varchar(100) not null,
+    sorting integer not null
+);
