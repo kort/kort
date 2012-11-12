@@ -18,13 +18,12 @@ Ext.define('Kort.view.bugmap.BugMessageBox', {
                         '<div class="confirm-content">',
                             '<div class="description">',
                                 '<div class="image">',
-                                    '<img class="bugtype-image" src="resources/images/bugtypes/{type}.png" />',
+                                    //'<img class="bugtype-image" src="resources/images/bugtypes/{type}.png" />',
                                 '</div>',
                                 '<div class="content">',
                                     '<p>{description}</p>',
                                 '</div>',
                             '</div>',
-                            '<img class="koin-image" src="resources/images/koins/1koin.png" />',
                         '</div>'
                     )
         };

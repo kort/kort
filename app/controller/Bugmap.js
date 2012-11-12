@@ -58,7 +58,7 @@ Ext.define('Kort.controller.Bugmap', {
             // add listener for locationupdate event of geolocation for setting marker position
             cmp.getGeo().addListener('locationupdate', function() {
                 // this referes to the geolocation
-                me.setOwnPositionMarkerPosition(new L.LatLng(this.getLatitude(), this.getLongitude()));
+                me.setOwnPositionMarkerPosition(L.latLng(this.getLatitude(), this.getLongitude()));
             });
         }
 
@@ -115,13 +115,12 @@ Ext.define('Kort.controller.Bugmap', {
             icon,
             ownPositionMarker;
 
-        icon = new L.Icon({
+        icon = L.icon({
             iconUrl: './resources/images/marker_icons/own_position.png',
             iconSize: [iconWidth, iconHeight],
             iconAnchor: [(iconWidth/2), (iconHeight/2)]
-
         });
-        ownPositionMarker = new L.Marker([cmp.getGeo().getLatitude(), cmp.getGeo().getLongitude()], {
+        ownPositionMarker = L.marker([cmp.getGeo().getLatitude(), cmp.getGeo().getLongitude()], {
             icon: icon,
             clickable: false
         });
@@ -149,7 +148,7 @@ Ext.define('Kort.controller.Bugmap', {
 
         icon = me.getIcon(item.get('type'));
         marker = L.marker([item.get('latitude'), item.get('longitude')], {
-            //icon: icon
+            icon: icon
         });
 
         marker.bugdata = item;
@@ -205,7 +204,7 @@ Ext.define('Kort.controller.Bugmap', {
             shadowHeight = 37,
             icon;
 
-        icon = new L.Icon({
+        icon = L.icon({
             iconUrl: './resources/images/marker_icons/' + type + '.png',
             iconSize: [iconWidth, iconHeight],
             iconAnchor: [(iconWidth/2), iconHeight],
