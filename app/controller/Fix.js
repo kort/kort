@@ -10,18 +10,17 @@ Ext.define('Kort.controller.Fix', {
         ],
         refs: {
             bugmapNavigationView: '#bugmapNavigationView',
-            fixTabPanel: '#fixTabPanel',
-            fixFormSubmitButton: '#fixFormSubmitButton',
-            fixMessageTextField: '#fixfield',
-            fixForm: '#fixTabPanel .fixform',
-            fixmap: '#fixTabPanel .fixmap'
+            fixTabPanel: '.fixtabpanel',
+            fixFormSubmitButton: '.fixtabpanel .formpanel .button',
+            fixField: '.fixtabpanel .formpanel .field',
+            fixmap: '.fixtabpanel .fixmap'
         },
         control: {
             fixFormSubmitButton: {
                 tap: 'onFixFormSubmitButtonTap'
             },
-            fixMessageTextField: {
-                keyup: 'onFixMessageTextfieldKeyUp'
+            fixField: {
+                keyup: 'onFixFieldKeyUp'
             },
             fixmap: {
                 maprender: 'onFixmapMaprender'
@@ -95,10 +94,10 @@ Ext.define('Kort.controller.Fix', {
     onFixFormSubmitButtonTap: function() {
         var me = this,
             fixTabPanel = this.getFixTabPanel(),
-            messageValue = this.getFixMessageTextField().getValue(),
+            fixFieldValue = this.getFixField().getValue(),
             fix;
 
-        if (messageValue !== '') {
+        if (fixFieldValue !== '') {
             /*Ext.Ajax.request({
                 url: './server/webservices/bug/fixes',
                 callback: function(options, success, response) {
@@ -109,7 +108,7 @@ Ext.define('Kort.controller.Fix', {
                 isUpload: true
             });*/
 
-            fix = Ext.create('Kort.model.Fix', { error_id: fixTabPanel.getRecord().get('id'), message: this.getFixMessageTextField().getValue()});
+            fix = Ext.create('Kort.model.Fix', { error_id: fixTabPanel.getRecord().get('id'), message: fixFieldValue });
             fix.save({
                 success: function() {
                     me.fixSuccessfulSubmittedHandler();
@@ -123,7 +122,7 @@ Ext.define('Kort.controller.Fix', {
         }
     },
 
-    onFixMessageTextfieldKeyUp: function(field, e) {
+    onFixFieldKeyUp: function(field, e) {
         // submit form if return key was pressed
         if (e.event.keyCode === 13){
             this.onFixFormSubmitButtonTap();

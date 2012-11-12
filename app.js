@@ -30,11 +30,13 @@ Ext.application({
     models: [
 		'Bug',
         'Fix',
+        'Tracktype',
         'User'
     ],
 
     stores: [
 		'Bugs',
+		'Tracktypes',
         'User'
     ],
 
@@ -56,6 +58,7 @@ Ext.application({
     // launch function is called as soon as app is ready
     launch: function() {
         var userStore = Ext.getStore('User'),
+            tracktypesStore = Ext.getStore('Tracktypes'),
             mainPanel;
 
         this.prepareI18n();
@@ -65,6 +68,8 @@ Ext.application({
         mainPanel = Ext.create('Kort.view.Main');
         Ext.Viewport.add(mainPanel);
 
+        tracktypesStore.load();
+        
         // check if user is logged in
         userStore.load(function() {
             var user = userStore.first(),
