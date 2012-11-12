@@ -51,3 +51,7 @@ messagebox.ok=OK
 messagebox.yes=Ja
 messagebox.no=Nein
 messagebox.cancel=Abbrechen
+
+# Picker
+picker.done=Fertig
+picker.cancel=Abbrechen

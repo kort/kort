@@ -3,9 +3,9 @@ Ext.define('Kort.view.bugmap.fix.SubmittedPopupPanel', {
 	alias: 'widget.fixsubmittedpopuppanel',
 	
 	config: {
-		id: 'fixSubmittedPopupPanel',
-        cls: 'overlayLeafletMap',
+        cls: 'fixSubmittedPopupPanel',
 		centered: true,
+        zIndex: Kort.util.Config.getOverlayLeafletMapZIndex(),
 		showAnimation: {
 			type: 'pop',
 			duration: 150

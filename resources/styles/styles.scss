@@ -131,7 +131,7 @@ $default-font-size: 0.9em;
 /* -----------------------
    Fix Panel
    ----------------------- */
-#fixTabPanel {
+.fixTabPanel {
     // tabBar style
     .x-tabbar.x-docked-top {
         height: auto;
@@ -146,12 +146,12 @@ $default-font-size: 0.9em;
         padding: 0.6em 0.8em;
     }
 
-    #fixContentComponent {
+    .fixContentComponent {
         padding: $panel-padding;
         font-size: $default-font-size;
     }
 
-    #fixform {
+    .fixform {
         margin: $panel-padding;
 
         .x-form .x-scroll-container > .x-inner {
@@ -161,14 +161,14 @@ $default-font-size: 0.9em;
             font-size: 1.2em;
         }
 
-        .fixmessageTextField {
+        .fixfield {
             margin-bottom: 0.4em;
         }
     }
 }
 
 // fix submitted popup
-#fixSubmittedPopupPanel {
+.fixSubmittedPopupPanel.x-panel.x-floating {
 	width: 200px;
 	height: 150px;
 	background-color: rgba(0, 0, 0, 0.7);

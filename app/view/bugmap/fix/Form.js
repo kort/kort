@@ -4,6 +4,7 @@ Ext.define('Kort.view.bugmap.fix.Form', {
     
 	config: {
 		layout: 'vbox',
+        cls: 'fixform',
         scrollable: true,
         title: Ext.i18n.Bundle.message('fix.form.title'),
         fullscreen: true
@@ -11,14 +12,14 @@ Ext.define('Kort.view.bugmap.fix.Form', {
     
     initialize: function () {
         var fixContentComponent,
-            fixForm,
+            fixFormPanel,
             fixField;
         
         this.callParent(arguments);
         
         fixContentComponent = {
             xtype: 'component',
-            id: 'fixContentComponent',
+            cls: 'fixContentComponent',
             record: this.getRecord(),
             tpl:    new Ext.Template(
                         '{description}'
@@ -27,9 +28,8 @@ Ext.define('Kort.view.bugmap.fix.Form', {
         
         fixField = this.createFixField(this.getRecord());
         
-        fixForm = {
+        fixFormPanel = {
             xtype: 'formpanel',
-            id: 'fixform',
             scrollable: false,
             flex: 1,
             items: [
@@ -43,17 +43,35 @@ Ext.define('Kort.view.bugmap.fix.Form', {
             ]
         };
         
-        this.add([fixContentComponent, fixForm]);
+        this.add([fixContentComponent, fixFormPanel]);
     },
     
     createFixField: function(bug) {
         var fixField,
             fieldConfig = {
-                id: 'fixfield',
-                name: 'fixfield'
-            };
+                name: 'fixfield',
+                cls: 'fixfield'
+            },
+            tracktypesStore;
         
         if(bug.get('view_type') === 'select') {
+            tracktypesStore = Ext.getStore('Tracktypes');
+            fieldConfig = Ext.merge(fieldConfig, {
+                store: tracktypesStore,
+                // always use Ext.picker.Picker
+                usePicker: true,
+                valueField: 'type_key',
+                displayField: 'title',
+                defaultPhonePickerConfig: {
+                    cancelButton: Ext.i18n.Bundle.message('picker.cancel'),
+                    doneButton: Ext.i18n.Bundle.message('picker.done')
+                },
+                defaultTabletPickerConfig: {
+                    cancelButton: Ext.i18n.Bundle.message('picker.cancel'),
+                    doneButton: Ext.i18n.Bundle.message('picker.done')
+                }
+            });
+            
             fixField = Ext.create('Ext.field.Select', fieldConfig);
         } else if(bug.get('view_type') === 'number') {
             fixField = Ext.create('Ext.field.Number', fieldConfig);
