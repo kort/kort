@@ -6,13 +6,11 @@ require_once('../../../server/php/ClassLoader.php');
 \Slim\Slim::registerAutoloader();
 Kort\ClassLoader::registerAutoLoader();
 
-
 $app = new \Slim\Slim();
-
 $app->get(
     '/git',
     function () {
-        system('cd webservices && git pull');
+        system('git pull');
     }
 );
 
