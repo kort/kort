@@ -6,7 +6,7 @@ select  e.error_id AS id,
         e.object_type AS osm_type,
         t.description AS title,
         t.view_type,
-        t.answer_placeholder
+        t.answer_placeholder,
         e.msgid AS description,
         CAST(e.lat AS NUMERIC)/10000000 AS latitude,
         CAST(e.lon AS NUMERIC)/10000000 AS longitude,
