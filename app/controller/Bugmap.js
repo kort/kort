@@ -33,7 +33,8 @@ Ext.define('Kort.controller.Bugmap', {
         ownPositionMarker: null,
         markerLayerGroup: [],
         activeBug: null,
-        bugsStore: null
+        bugsStore: null,
+        messageBoxTemplate: null
     },
 
     showBugmap: function() {
@@ -151,7 +152,7 @@ Ext.define('Kort.controller.Bugmap', {
             icon: icon
         });
 
-        marker.bugdata = item;
+        marker.bug = item;
         marker.lastClickTimestamp = 0;
         marker.on('click', me.onMarkerClick, me);
         me.getMarkerLayerGroup().addLayer(marker);
@@ -162,8 +163,9 @@ Ext.define('Kort.controller.Bugmap', {
     },
 
     onMarkerClick: function(e) {
-        var marker = e.target,
-            bugdata = marker.bugdata,
+        var tpl,
+            marker = e.target,
+            bug = marker.bug,
             CLICK_TOLERANCE = 200,
             timeDifference, bugMessageBox;
 
@@ -171,12 +173,13 @@ Ext.define('Kort.controller.Bugmap', {
 
         // LEAFLET BUGFIX: only execute click if there is a certain time between last click
         if(timeDifference > CLICK_TOLERANCE) {
+            tpl = this.getMessageBoxTemplate();
             marker.lastClickTimestamp = e.originalEvent.timeStamp;
-            this.setActiveBug(bugdata);
+            this.setActiveBug(bug);
             bugMessageBox = Ext.create('Kort.view.bugmap.BugMessageBox', {
-                record: bugdata
+                record: bug
             });
-            bugMessageBox.confirm(bugdata.get('title'), '', this.markerConfirmHandler, this);
+            bugMessageBox.confirm(bug.get('title'), tpl.apply(bug.data), this.markerConfirmHandler, this);
         }
     },
 
@@ -233,5 +236,20 @@ Ext.define('Kort.controller.Bugmap', {
         this.setMarkerLayerGroup(L.layerGroup());
 
         this.setBugsStore(Ext.getStore('Bugs'));
+        
+        this.setMessageBoxTemplate(
+            new Ext.Template(
+                '<div class="confirm-content">',
+                    '<div class="description">',
+                        '<div class="image">',
+                            //'<img class="bugtype-image" src="resources/images/bugtypes/{type}.png" />',
+                        '</div>',
+                        '<div class="content">',
+                            '<p>{description}</p>',
+                        '</div>',
+                    '</div>',
+                '</div>'
+            )
+        );
     }
 });
