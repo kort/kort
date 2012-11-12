@@ -20,6 +20,6 @@ insert into keepright.error_type (error_type_id, type, description, view_type, a
 insert into keepright.error_type (error_type_id, type, description, view_type, answer_placeholder) values (300, 'missing_maxspeed', 'Fehlendes Tempolimit', 'number', 'Tempolimit');
 insert into keepright.error_type (error_type_id, type, description, view_type, answer_placeholder) values (360, 'language_unknown', 'Sprache unbekannt', 'select', 'Sprache');
 insert into keepright.error_type (error_type_id, type, description, view_type, answer_placeholder) values (390, 'missing_track_type', 'Strassentyp unbekannt', 'select', 'Typ');
-insert into keepright.error_type (error_type_id, type, description, view_type, answer_placeholder) values (400, 'missing_tags', 'Fehlende Information', 'text', 'Information');
+insert into keepright.error_type (error_type_id, type, description, view_type, answer_placeholder) values (71, 'way_wo_tags', 'Strasse ohne Namen', 'text', 'Strassenname');
 
 ALTER TABLE keepright.errors DROP COLUMN error_name;
