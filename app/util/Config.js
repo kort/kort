@@ -12,7 +12,8 @@ Ext.define('Kort.util.Config', {
         timeout: 10000,
         bugs: {
             radius: 5000
-        }
+        },
+        overlayLeafletMapZIndex: 1500
 	},
 	
 	constructor: function(config) {

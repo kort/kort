@@ -81,7 +81,9 @@ Ext.define('Kort.controller.Bugmap', {
 
         url = './server/webservices/bug/position/' + lat + ',' + lng;
         bugsStore.getProxy().setUrl(url);
-
+        
+        me.showLoadMask();
+        
         // Load bugs store
 		bugsStore.load(function(records, operation, success) {
             me.syncProblemMarkers(records);
@@ -100,10 +102,11 @@ Ext.define('Kort.controller.Bugmap', {
         // add markers
         Ext.each(bugs, function (item, index, length) {
             if(item.get('longitude') && item.get('longitude')) {
-                console.log(item.get('type') + ' / ' + item.get('osm_id'));
+                console.log(item.get('type') + ' / ' + item.get('osm_id') + ' / ' + item.get('view_type'));
                 me.addMarker(item);
             }
         });
+        me.hideLoadMask();
 	},
 
     addOwnPositionMarker: function(cmp, map) {
@@ -212,6 +215,18 @@ Ext.define('Kort.controller.Bugmap', {
             popupAnchor: [0, -(2*iconHeight/3)]
         });
         return icon;
+    },
+    
+    showLoadMask: function() {
+        this.getMainTabPanel().setMasked({
+            xtype: 'loadmask',
+            message: Ext.i18n.Bundle.message('bugmap.loadmask.message'),
+            zIndex: Kort.util.Config.getOverlayLeafletMapZIndex()
+        });
+    },
+    
+    hideLoadMask: function() {
+        this.getMainTabPanel().setMasked(false);
     },
 
     init: function() {
