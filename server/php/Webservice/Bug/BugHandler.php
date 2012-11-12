@@ -28,4 +28,15 @@ class BugHandler extends AbstractDbHandler
         $result = $this->db->doSelectQuery($this->bugFields, $this->bugTable, $where, $orderBy, $limit);
         return json_encode($result);
     }
+
+    public function getTracktypes()
+    {
+        $fields = array('id', 'type_key', 'title', 'sorting');
+        $table = 'kort.tracktype';
+        $where = '';
+        $orderBy = 'sorting';
+        $limit = '';
+        $result = $this->db->doSelectQuery($fields, $table, $where, $orderBy, $limit);
+        return json_encode($result);
+    }
 }
