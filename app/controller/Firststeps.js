@@ -24,13 +24,14 @@ Ext.define('Kort.controller.Firststeps', {
         var me = this,
             userStore = Ext.getStore('User'),
             user = userStore.first(),
-            usernameValue = this.getUsernameTextfield().getValue();
+            usernameValue = this.getUsernameTextfield().getValue(),
+            messageBox;
 
         if(usernameValue !== '') {
             userStore.on('write', me.storeWriteHandler, this, { single: true });
             user.set('username', usernameValue);
         } else {
-            var messageBox = Ext.create('Kort.view.NotificationMessageBox');
+            messageBox = Ext.create('Kort.view.NotificationMessageBox');
             messageBox.alert(Ext.i18n.Bundle.message('firststeps.alert.username.empty.title'), Ext.i18n.Bundle.message('firststeps.alert.username.empty.message'), Ext.emptyFn);
         }
     },
