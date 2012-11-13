@@ -16,7 +16,11 @@ Ext.define('Kort.util.Config', {
         zIndex: {
             overlayLeafletMap: 1500,
             overlayOverlayPanel: 1600
-        } 
+        },
+        fixMap: {
+            featureColor: '#FF0000',
+            featureFillColor: '#FF0000'
+        }
 	},
 	
 	constructor: function(config) {
