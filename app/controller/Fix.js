@@ -100,7 +100,8 @@ Ext.define('Kort.controller.Fix', {
         var me = this,
             fixTabPanel = this.getFixTabPanel(),
             fixFieldValue = this.getFixField().getValue(),
-            fix;
+            fix,
+            messageBox;
 
         if (fixFieldValue !== '') {
             /*Ext.Ajax.request({
@@ -124,7 +125,7 @@ Ext.define('Kort.controller.Fix', {
                 }
             });
         } else {
-            var messageBox = Ext.create('Kort.view.NotificationMessageBox');
+            messageBox = Ext.create('Kort.view.NotificationMessageBox');
             messageBox.alert(Ext.i18n.Bundle.message('fix.alert.fixfield.empty.title'), Ext.i18n.Bundle.message('fix.alert.fixfield.empty.message'), Ext.emptyFn);
         }
     },
