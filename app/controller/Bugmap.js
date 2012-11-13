@@ -101,10 +101,10 @@ Ext.define('Kort.controller.Bugmap', {
         me.removeAllMarkers();
 
         // add markers
-        Ext.each(bugs, function (item, index, length) {
-            if(item.get('longitude') && item.get('longitude')) {
-                console.log(item.get('type') + ' / ' + item.get('osm_id') + ' / ' + item.get('view_type'));
-                me.addMarker(item);
+        Ext.each(bugs, function (bug, index, length) {
+            if(bug.get('longitude') && bug.get('longitude')) {
+                console.log(bug.get('type') + ' / ' + bug.get('osm_id') + ' / ' + bug.get('view_type'));
+                me.addMarker(bug);
             }
         });
         me.hideLoadMask();
@@ -141,18 +141,18 @@ Ext.define('Kort.controller.Bugmap', {
         }
     },
 
-    addMarker: function(item) {
+    addMarker: function(bug) {
         var me = this,
             icon,
             marker,
             tpl;
 
-        icon = me.getIcon(item.get('type'));
-        marker = L.marker([item.get('latitude'), item.get('longitude')], {
+        icon = Kort.util.Config.getMarkerIcon(bug.get('type'));
+        marker = L.marker([bug.get('latitude'), bug.get('longitude')], {
             icon: icon
         });
 
-        marker.bug = item;
+        marker.bug = bug;
         marker.lastClickTimestamp = 0;
         marker.on('click', me.onMarkerClick, me);
         me.getMarkerLayerGroup().addLayer(marker);
@@ -200,25 +200,6 @@ Ext.define('Kort.controller.Bugmap', {
         this.getBugmapNavigationView().push(fixTabPanel);
     },
 
-    getIcon: function(type) {
-        var iconWidth = 32,
-            iconHeight = 37,
-            shadowWidth = 51,
-            shadowHeight = 37,
-            icon;
-
-        icon = L.icon({
-            iconUrl: './resources/images/marker_icons/' + type + '.png',
-            iconSize: [iconWidth, iconHeight],
-            iconAnchor: [(iconWidth/2), iconHeight],
-            shadowUrl: './resources/images/marker_icons/shadow.png',
-            shadowSize: [shadowWidth, shadowHeight],
-            shadowAnchor: [(iconWidth/2), shadowHeight],
-            popupAnchor: [0, -(2*iconHeight/3)]
-        });
-        return icon;
-    },
-    
     showLoadMask: function() {
         this.getMainTabPanel().setMasked({
             xtype: 'loadmask',
