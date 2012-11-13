@@ -22,5 +22,24 @@ Ext.define('Kort.util.Config', {
 	constructor: function(config) {
 		this.initConfig(config);
 		return this;
-	}
+	},
+    
+    getMarkerIcon: function(type) {
+        var iconWidth = 32,
+            iconHeight = 37,
+            shadowWidth = 51,
+            shadowHeight = 37,
+            icon;
+
+        icon = L.icon({
+            iconUrl: './resources/images/marker_icons/' + type + '.png',
+            iconSize: [iconWidth, iconHeight],
+            iconAnchor: [(iconWidth/2), iconHeight],
+            shadowUrl: './resources/images/marker_icons/shadow.png',
+            shadowSize: [shadowWidth, shadowHeight],
+            shadowAnchor: [(iconWidth/2), shadowHeight],
+            popupAnchor: [0, -(2*iconHeight/3)]
+        });
+        return icon;
+    }
 });

@@ -54,14 +54,17 @@ Ext.define('Kort.controller.Fix', {
             },
             success: function(response) {
                 if(response.responseXML) {
-                    me.addFeature(response.responseXML);
+                    me.addFeature(response.responseXML, bug);
                 }
             }
         });
     },
 
-    addFeature: function(xml) {
-        var layer = new L.OSM.DataLayer(xml, {
+    addFeature: function(xml, bug) {
+        var icon = Kort.util.Config.getMarkerIcon(bug.get('type')),
+            layer;
+
+            layer = new L.OSM.DataLayer(xml, {
             styles: {
                 way: {
                     clickable: false,
@@ -70,8 +73,7 @@ Ext.define('Kort.controller.Fix', {
                 },
                 node: {
                     clickable: false,
-                    color: '#FF0000',
-                    fillColor: '#FF0000'
+                    icon: icon
                 },
                 area: {
                     clickable: false,
