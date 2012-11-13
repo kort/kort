@@ -64,21 +64,21 @@ Ext.define('Kort.controller.Fix', {
         var icon = Kort.util.Config.getMarkerIcon(bug.get('type')),
             layer;
 
-            layer = new L.OSM.DataLayer(xml, {
+        layer = new L.OSM.DataLayer(xml, {
             styles: {
-                way: {
-                    clickable: false,
-                    color: '#FF0000',
-                    fillColor: '#FF0000'
-                },
                 node: {
                     clickable: false,
                     icon: icon
                 },
+                way: {
+                    clickable: false,
+                    color: Kort.util.Config.getFixMap().featureColor,
+                    fillColor: Kort.util.Config.getFixMap().featureFillColor
+                },
                 area: {
                     clickable: false,
-                    color: '#FF0000',
-                    fillColor: '#FF0000'
+                    color: Kort.util.Config.getFixMap().featureColor,
+                    fillColor: Kort.util.Config.getFixMap().featureFillColor
                 }
             }
         });
