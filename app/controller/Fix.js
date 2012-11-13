@@ -117,11 +117,13 @@ Ext.define('Kort.controller.Fix', {
                     me.fixSuccessfulSubmittedHandler();
                 },
                 failure: function() {
-                    console.log('failure');
+                    var messageBox = Ext.create('Kort.view.NotificationMessageBox');
+                    messageBox.alert(Ext.i18n.Bundle.message('fix.alert.submit.failure.title'), Ext.i18n.Bundle.message('fix.alert.submit.failure.message'), Ext.emptyFn);
                 }
             });
         } else {
-            console.log('please fill in all form fields');
+            var messageBox = Ext.create('Kort.view.NotificationMessageBox');
+            messageBox.alert(Ext.i18n.Bundle.message('fix.alert.fixfield.empty.title'), Ext.i18n.Bundle.message('fix.alert.fixfield.empty.message'), Ext.emptyFn);
         }
     },
 

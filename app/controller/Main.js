@@ -3,7 +3,8 @@ Ext.define('Kort.controller.Main', {
 
     config: {
         views: [
-            'Main'
+            'Main',
+            'NotificationMessageBox'
         ],
         refs: {
             mainTabPanel: '#mainTabPanel',

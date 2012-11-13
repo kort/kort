@@ -223,7 +223,7 @@ Ext.define('Kort.controller.Bugmap', {
         this.getMainTabPanel().setMasked({
             xtype: 'loadmask',
             message: Ext.i18n.Bundle.message('bugmap.loadmask.message'),
-            zIndex: Kort.util.Config.getOverlayLeafletMapZIndex()
+            zIndex: Kort.util.Config.getZIndex().overlayLeafletMap
         });
     },
     
