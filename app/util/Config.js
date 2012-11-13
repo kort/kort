@@ -13,7 +13,10 @@ Ext.define('Kort.util.Config', {
         bugs: {
             radius: 5000
         },
-        overlayLeafletMapZIndex: 1500
+        zIndex: {
+            overlayLeafletMap: 1500,
+            overlayOverlayPanel: 1600
+        } 
 	},
 	
 	constructor: function(config) {

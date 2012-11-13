@@ -4,6 +4,6 @@ Ext.define('Kort.view.bugmap.BugMessageBox', {
     
     config: {
         cls: 'bugMessageBox',
-        zIndex: Kort.util.Config.getOverlayLeafletMapZIndex()
+        zIndex: Kort.util.Config.getZIndex().overlayLeafletMap
     }
 });

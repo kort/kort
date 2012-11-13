@@ -30,7 +30,8 @@ Ext.define('Kort.controller.Firststeps', {
             userStore.on('write', me.storeWriteHandler, this, { single: true });
             user.set('username', usernameValue);
         } else {
-            console.log('please fill in a username');
+            var messageBox = Ext.create('Kort.view.NotificationMessageBox');
+            messageBox.alert(Ext.i18n.Bundle.message('firststeps.alert.username.empty.title'), Ext.i18n.Bundle.message('firststeps.alert.username.empty.message'), Ext.emptyFn);
         }
     },
 

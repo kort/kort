@@ -16,6 +16,8 @@ login.loadmask.message=Login...
 firststeps.introduction=Willkommen bei kort! Wähle einen Benutzernamen:
 firststeps.form.username.placeholder=Benutzername
 firststeps.form.button.submit=Spielen!
+firststeps.alert.username.empty.title=Benutzernamen eingeben
+firststeps.alert.username.empty.message=Bitte gib einen Benutzernamen ein.
 
 # Bugmap
 bugmap.title=Aufträge in deiner Nähe
@@ -28,6 +30,10 @@ fix.form.message.placeholder=Deine Antwort...
 fix.form.button.submit=Senden
 fix.map.title=Karte
 fix.submitted.message=Vielen Dank!
+fix.alert.fixfield.empty.title=Felder ausfüllen
+fix.alert.fixfield.empty.message=Bitte alle Felder ausfüllen.
+fix.alert.submit.failure.title=Fehler beim Senden
+fix.alert.submit.failure.message=Beim übertragen des Formulars ist etwas schief gelaufen. Bitte versuche es später noch einmal.
 
 # Verify
 verify.title=Verifizieren
