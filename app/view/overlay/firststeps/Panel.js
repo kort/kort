@@ -1,6 +1,11 @@
 Ext.define('Kort.view.overlay.firststeps.Panel', {
 	extend: 'Ext.Panel',
 	alias: 'widget.firststepspanel',
+    requires: [
+        'Ext.form.Panel',
+        'Ext.Button',
+        'Ext.field.Text'
+    ],
 
 	config: {
 		url: 'firststeps',
