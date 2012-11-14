@@ -1,6 +1,9 @@
 Ext.define('Kort.view.overlay.login.Panel', {
 	extend: 'Ext.Panel',
 	alias: 'widget.loginpanel',
+    requires: [
+        'Ext.Button'
+    ],
 
 	config: {
 		url: 'login',

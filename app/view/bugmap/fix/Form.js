@@ -1,6 +1,13 @@
 Ext.define('Kort.view.bugmap.fix.Form', {
 	extend: 'Ext.Container',
 	alias: 'widget.fixform',
+    requires: [
+        'Ext.form.Panel',
+        'Ext.Button',
+        'Ext.field.Select',
+        'Ext.field.Number',
+        'Ext.field.Text'
+    ],
     
 	config: {
 		layout: 'vbox',

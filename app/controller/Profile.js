@@ -1,5 +1,8 @@
 Ext.define('Kort.controller.Profile', {
     extend: 'Ext.app.Controller',
+    requires: [
+        'Ext.LoadMask'
+    ],
     
     config: {
         views: [

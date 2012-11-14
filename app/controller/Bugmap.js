@@ -1,5 +1,8 @@
 Ext.define('Kort.controller.Bugmap', {
     extend: 'Ext.app.Controller',
+    requires: [
+        'Ext.LoadMask'
+    ],
 
     config: {
         views: [
