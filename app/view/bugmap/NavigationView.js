@@ -3,7 +3,7 @@ Ext.define('Kort.view.bugmap.NavigationView', {
 	alias: 'widget.bugmapnavigationview',
     requires: [
         'Ext.ux.LeafletMap',
-        'Ext.TitleBar'
+        'Ext.Button'
     ],
 	
 	config: {

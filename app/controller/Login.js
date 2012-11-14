@@ -1,6 +1,9 @@
 Ext.define('Kort.controller.Login', {
     extend: 'Ext.app.Controller',
-
+    requires: [
+        'Ext.LoadMask'
+    ],
+    
     config: {
         views: [
             'overlay.login.Panel'
