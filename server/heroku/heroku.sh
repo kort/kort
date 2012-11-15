@@ -5,7 +5,7 @@ if [[ $DEPLOY == "true" ]] ; then
        exit 1
     fi
     
-    SOURCE_DIR=$CI_HOME
+    export SOURCE_DIR=$CI_HOME
     if [[ $TARGET_ENV == "prod" ]] ; then
         SOURCE_DIR="$CI_HOME/build/Kort/testing"
     fi

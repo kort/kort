@@ -7,8 +7,10 @@ fi
 mkdir $BUILD_DIR
 
 if [[ $TARGET_ENV == "prod" ]] ; then
+    echo "Production build... copying files from $SOURCE_DIR to $BUILD_DIR"
     cp $SOURCE_DIR/* $BUILD_DIR
 else
+    echo "Development build... copying files from $SOURCE_DIR to $BUILD_DIR"
     mkdir -p $BUILD_DIR/lib/Leaflet-0.4.5
     mkdir -p $BUILD_DIR/lib/Slim-2.1.0
     mkdir -p $BUILD_DIR/lib/google-api-php-client
