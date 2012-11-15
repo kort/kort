@@ -3,7 +3,7 @@ Ext.define('Kort.store.Validations', {
 	
 	config: {
 		model: 'Kort.model.Validation',
-        autoLoad: true,
+        
 		grouper: {
             groupFn: function(record) {
                 var validationsLeft = record.get('requiredValidations') - record.get('upratings') + record.get('downratings');
@@ -28,6 +28,19 @@ Ext.define('Kort.store.Validations', {
             reader: {
                 type: "json"
             }
+		}
+	},
+    
+    /**
+     * Update distances of trails in store
+     */
+	updateDistances: function(geo) {
+		if(!this.isLoading()) {
+			this.each(function(record, index, length) {
+				record.set('distance', geo.getDistance(record.get('latitude'), record.get('longitude')));
+				record.set('formattedDistance', geo.getFormattedDistance(record.get('distance')));
+			});
+			this.sort();
 		}
 	}
 });
