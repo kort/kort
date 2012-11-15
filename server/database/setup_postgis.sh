@@ -44,10 +44,10 @@ psql -d $DB_NAME -c "GRANT ALL ON spatial_ref_sys TO PUBLIC;"
 psql -d $DB_NAME -c "GRANT ALL ON geography_columns TO PUBLIC;"
 
 # add geometry to table
-psql -d $DB_NAME -c "select AddGeometryColumn ('$SCHEMA_NAME','$TABLE_NAME','geom', 900913,'POINT',2);"
+psql -d $DB_NAME -c "select AddGeometryColumn ('$SCHEMA_NAME','$TABLE_NAME','geom', 4326,'POINT',2);"
 
 # update table
-psql -d $DB_NAME -c "update $SCHEMA_NAME.$TABLE_NAME set geom = ST_Transform(ST_SetSRID(ST_Point(lon/10000000.0,lat/10000000.0),4326),900913);"
+psql -d $DB_NAME -c "update $SCHEMA_NAME.$TABLE_NAME set geom = ST_SetSRID(ST_Point(lon/10000000.0,lat/10000000.0),4326);"
 
 # create spatial index
 psql -d $DB_NAME -c "create index geom_idx on $SCHEMA_NAME.$TABLE_NAME using gist(geom);"

@@ -10,9 +10,6 @@ Ext.define('Kort.util.Config', {
 		},
         // default timeout for load tasks in ms
         timeout: 10000,
-        bugs: {
-            radius: 5000
-        },
         zIndex: {
             overlayLeafletMap: 1500,
             overlayOverlayPanel: 1600
@@ -22,12 +19,12 @@ Ext.define('Kort.util.Config', {
             featureOpacity: 0.7
         }
 	},
-	
+
 	constructor: function(config) {
 		this.initConfig(config);
 		return this;
 	},
-    
+
     getMarkerIcon: function(type) {
         var iconWidth = 32,
             iconHeight = 37,
