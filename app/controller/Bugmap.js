@@ -45,10 +45,10 @@ Ext.define('Kort.controller.Bugmap', {
     },
 
     onBugmapNavigationViewPush: function(cmp, view, opts) {
-        this.getRefreshBugsButton().hide();
+        //this.getRefreshBugsButton().hide();
     },
     onBugmapNavigationViewPop: function(cmp, view, opts) {
-        this.getRefreshBugsButton().show();
+        //this.getRefreshBugsButton().show();
     },
 
     onMapRender: function(cmp, map, tileLayer) {
