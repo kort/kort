@@ -21,23 +21,25 @@ Ext.application({
         'Firststeps',
 		'Fix',
 		'Highscore',
+        'Login',
         'Main',
         'Profile',
-        'Validation',
-        'Login'
+        'Validation'
 	],
 
     models: [
 		'Bug',
         'Fix',
         'Tracktype',
-        'User'
+        'User',
+        'Validation'
     ],
 
     stores: [
 		'Bugs',
 		'Tracktypes',
-        'User'
+        'User',
+        'Validations'
     ],
 
     icon: './resources/images/kort-icon.png',

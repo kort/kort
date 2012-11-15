@@ -37,6 +37,9 @@ fix.alert.submit.failure.message=Beim übertragen des Formulars ist etwas schief
 
 # Validation
 validation.title=Validieren
+validation.loadmask.message=Lade Validierungen...
+validation.emptytext=Keine Validierungen vorhanden.
+validation.list.header=Validierungen übrig
 
 # Highscore
 highscore.title=Highscore

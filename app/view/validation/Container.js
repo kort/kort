@@ -19,7 +19,7 @@ Ext.define('Kort.view.validation.Container', {
 				title: Ext.i18n.Bundle.message('validation.title')
 			},
 			{
-                html: 'Hier kommt eine Liste'
+                xtype: 'validationlist'
 			}
 		]
 	}
