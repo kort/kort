@@ -11,7 +11,7 @@
     <property name="test.dir" value="test" />
 
 
-	<target name="build" depends="generate_css,generate_uml,lint,test">
+	<target name="build" depends="generate_css,lint,test">
 		<echo message="BUILD FINISHED!"/>
 	</target>
 
@@ -58,16 +58,6 @@
             <arg value="--standard=PSR2"/>
             <arg value="--report-width=60"/>
             <arg value="${php.dir}"/>
-        </exec>
-    </target>
-
-    <target name="generate_uml">
-        <echo message="Generating image from yUML" />
-        <exec executable="yuml">
-            <arg value="-i"/>
-            <arg value="_DOCUMENTATION/03_Model/data_model.yuml"/>
-            <arg value="-o" />
-            <arg value="_DOCUMENTATION/03_Model/data_model.png"/>
         </exec>
     </target>
 
