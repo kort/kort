@@ -4,12 +4,12 @@ if [ -z $TARGET_ENV ] ; then
     exit 1
 fi
 
-APP_NAME = "kort"
+APP_NAME="kort"
 if [[ $TARGET_ENV == "dev" ]] ; then
     APP_NAME="kort-dev"
 fi
 
-echo $APP_NAME | heroku apps:destroy kort
+echo $APP_NAME | heroku apps:destroy $APP_NAME
 heroku apps:create $APP_NAME
 
 git push -f heroku master
