@@ -73,12 +73,12 @@ Ext.define('Kort.controller.Fix', {
                 way: {
                     clickable: false,
                     color: Kort.util.Config.getFixMap().featureColor,
-                    fillColor: Kort.util.Config.getFixMap().featureFillColor
+                    opacity: Kort.util.Config.getFixMap().featureOpacity
                 },
                 area: {
                     clickable: false,
                     color: Kort.util.Config.getFixMap().featureColor,
-                    fillColor: Kort.util.Config.getFixMap().featureFillColor
+                    opacity: Kort.util.Config.getFixMap().featureOpacity
                 }
             }
         });

@@ -19,7 +19,7 @@ Ext.define('Kort.util.Config', {
         },
         fixMap: {
             featureColor: '#FF0000',
-            featureFillColor: '#FF0000'
+            featureOpacity: 0.7
         }
 	},
 	
