@@ -16,7 +16,7 @@ Ext.define('Kort.view.Main', {
                 xtype: 'bugmapnavigationview'
             },
             {
-                xtype: 'verifycontainer'
+                xtype: 'validationcontainer'
             },
             {
                 xtype: 'highscorecontainer'

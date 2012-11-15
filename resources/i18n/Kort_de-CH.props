@@ -1,6 +1,6 @@
 # Main View (TabPanel)
 tab.bugmap=Aufträge
-tab.verify=Verifizieren
+tab.validation=Validieren
 tab.highscore=Highscore
 tab.profile=Profil
 button.back=Zurück
@@ -35,8 +35,8 @@ fix.alert.fixfield.empty.message=Bitte alle Felder ausfüllen.
 fix.alert.submit.failure.title=Fehler beim Senden
 fix.alert.submit.failure.message=Beim übertragen des Formulars ist etwas schief gelaufen. Bitte versuche es später noch einmal.
 
-# Verify
-verify.title=Verifizieren
+# Validation
+validation.title=Validieren
 
 # Highscore
 highscore.title=Highscore
@@ -46,7 +46,7 @@ profile.title=Profil
 profile.content.username=Benutzername
 profile.content.email=Email
 profile.content.fixes=Anzahl erledigte Aufträge
-profile.content.verifications=Anzahl Verifikationen
+profile.content.validations=Anzahl Validierungen
 profile.content.koins.header=Koins
 profile.content.koins.introduction=Deine gesammelten koins:
 profile.content.badges.header=Badges

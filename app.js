@@ -23,7 +23,7 @@ Ext.application({
 		'Highscore',
         'Main',
         'Profile',
-        'Verify',
+        'Validation',
         'Login'
 	],
 
