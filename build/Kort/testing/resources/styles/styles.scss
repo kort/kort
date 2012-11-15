@@ -1,0 +1,248 @@
+$panel-padding: 0.5em;
+$dark-grey: #4B4B4B;
+$default-font-size: 0.9em;
+
+/* -----------------------
+   Overlay
+   ----------------------- */
+.overlay-content {
+    $logo-size: 300px;
+    
+    .logo {
+        text-align: center;
+        
+        img {
+            width: $logo-size/2;
+            height: $logo-size/2;
+        }
+    }
+    .introduction {
+        font-size: $default-font-size;
+        margin: 1em 0;
+    }
+}
+
+// Login
+#loginPanel {
+    .x-panel-inner {
+        padding: 1em;
+    }
+    
+    .loginButtons {
+        margin: 1em 0;
+        
+        .x-zocial-button {
+            margin: 0.2em 0;
+        }
+        .x-zocial-button.x-layout-box-item {
+            display: list-item !important;
+        }
+    }
+}
+
+// Firststeps
+#firststepsPanel {
+    .x-panel-inner {
+        padding: 1em;
+    }
+    
+    #usernameForm {
+        .x-form-inner {
+            margin: 1em 0;
+        }
+
+        .usernameTextfield {
+            margin-bottom: 0.4em;
+        }
+    }
+}
+
+/* -----------------------
+   Map
+   ----------------------- */
+.popup-content {
+    h1 {
+        font-size: 1.4em;
+        font-weight: bold;
+        margin: 0 0 0.3em 0;
+    }
+    
+    p {
+        margin: 0 0 0.5em 0;
+    }
+}
+
+/* -----------------------
+   Bug Confirm Message Box / Fix Panel
+   ----------------------- */
+.bugMessageBox .confirm-content,
+.fixContentComponent .fix-content {
+    .description {
+        overflow: hidden;
+        text-align: left;
+
+        .image {
+            $image-width: 64px;
+            $image-height: 74px;
+            float: left;
+            margin: 0 1em 0.5em 0.5em;
+
+            .bugtype-image {
+                width: $image-width/2;
+                height: $image-height/2;
+            }
+        }
+        .content {
+            font-size: $default-font-size;
+        }
+    }
+}
+
+.fixTabPanel {
+    // tabBar style
+    .x-tabbar.x-docked-top {
+        height: auto;
+        min-height: 1.6em !important;
+        font-size: 0.9em;
+    }
+    .x-tabbar .x-tab {
+        -webkit-border-radius: 0;
+        border-radius: 0;
+        height: auto;
+        margin: 0;
+        padding: 0.6em 0.8em;
+    }
+
+    .fixform {
+        margin: $panel-padding;
+
+        .x-form .x-scroll-container > .x-inner {
+            padding: 0;
+        }
+        .x-form-label span span.bundle {
+            font-size: 1.2em;
+        }
+
+        .fixfield {
+            margin-bottom: 0.4em;
+        }
+    }
+}
+
+// fix submitted popup
+.fixSubmittedPopupPanel.x-panel.x-floating {
+	width: 200px;
+	height: 150px;
+	background-color: rgba(0, 0, 0, 0.7);
+	-webkit-border-radius: 0.5em;
+	border-radius: 0.5em;
+	-webkit-box-shadow: none;
+	
+	.x-panel-inner {
+		color: #fff;
+		text-align: center;
+		margin-top: 0.8em;
+		padding-top: 5.2em;
+		background-color: transparent;
+		overflow: hidden;
+		font-weight: bold;
+	}
+}
+
+
+/* -----------------------
+   Profile
+   ----------------------- */
+#profileContentContainer {
+    .info {
+        padding: $panel-padding;
+        overflow: hidden;
+    
+        .picture {
+            $profile-picture-size: 100px;
+
+            border: .1em solid #858585;
+            float: left;
+            width: $profile-picture-size + 2px;
+            height: $profile-picture-size + 2px;
+            margin: 0.3em 0.5em 0.5em 0;
+
+            img {
+                border: 0.3em solid white;
+                width: $profile-picture-size;
+                height: $profile-picture-size;
+            }
+        }
+    
+        dl.text {
+            float: left;
+            dt {
+                font-size: 0.6em;
+                margin-top: 0.6em;
+                margin-bottom: 0.1em;
+                color: $dark-grey;
+                text-transform: uppercase;
+            }
+            dd {
+                font-size: 0.8em;
+            }
+        }
+    }
+    
+    .profile-header {
+        font-size: 0.9em;
+        margin: 0.5em 0;
+        text-transform: uppercase;
+        
+        .x-list-header {
+            text-shadow: rgba(0, 0, 0, 0.25) 0 0.08em 0;
+            color: #fff;
+        }
+    }
+    .koins {
+        padding: $panel-padding;
+        clear: both;
+        
+        .koins-introduction {
+            font-size: 0.8em;
+        }
+        .koins-number {
+            margin-left: 0.5em;
+            background-color: #46578D;
+            padding: 0.2em 0.5em;
+            font-weight: bold;
+            color: white;
+            border-radius: 1em;
+            text-shadow: rgba(0, 0, 0, 0.25) 0 0.08em 0;
+        }
+    }
+    .badges {
+        $badge-image-size: 150px;
+        padding: 0 $panel-padding $panel-padding $panel-padding;
+        overflow: hidden;
+        
+        .badge {
+            float: left;
+            width: 90px;
+            padding: 0.2em 0.5em;
+            text-align: center;
+            overflow: hidden;
+            
+            .badge-title {
+                font-size: 0.6em;
+            }
+            img {
+                width: $badge-image-size/2;
+                height: $badge-image-size/2;
+            }
+        }
+    }
+}
+
+/* GLOBAL STYLES */
+.x-form .x-scroll-container > .x-inner {
+    padding: 0;
+}
+.overlayLeafletMap {
+    z-index: 1500;
+}
