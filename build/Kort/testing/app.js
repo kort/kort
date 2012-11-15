@@ -68412,7 +68412,7 @@ Ext.define('Kort.controller.Bugmap', {
         // add markers
         Ext.each(bugs, function (bug, index, length) {
             if(bug.get('longitude') && bug.get('longitude')) {
-                console.log(bug.get('type') + ' / ' + bug.get('osm_id') + ' / ' + bug.get('view_type'));
+                console.log(bug.get('osm_type') + ' / ' + bug.get('osm_id') + ' / ' + bug.get('view_type') + ' / ' + bug.get('latitude') + ' / ' + bug.get('longitude'));
                 me.addMarker(bug);
             }
         });
@@ -68510,7 +68510,7 @@ Ext.define('Kort.controller.Bugmap', {
     },
 
     showLoadMask: function() {
-        this.getMainTabPanel().setMasked({
+        this.getBugmapNavigationView().setMasked({
             xtype: 'loadmask',
             message: Ext.i18n.Bundle.message('bugmap.loadmask.message'),
             zIndex: Kort.util.Config.getZIndex().overlayLeafletMap
@@ -68518,7 +68518,7 @@ Ext.define('Kort.controller.Bugmap', {
     },
     
     hideLoadMask: function() {
-        this.getMainTabPanel().setMasked(false);
+        this.getBugmapNavigationView().setMasked(false);
     },
 
     init: function() {
@@ -69049,6 +69049,150 @@ Ext.define('Kort.controller.Highscore', {
     }
 });
 
+Ext.define('Kort.view.overlay.login.Panel', {
+	extend: 'Ext.Panel',
+	alias: 'widget.loginpanel',
+    requires: [
+        'Ext.Button'
+    ],
+
+	config: {
+		url: 'login',
+		id: 'loginPanel',
+		layout: 'vbox',
+        modal: true,
+        scrollable: true,
+        cls: 'overlayLeafletMap',
+		items: [
+			{
+                html:   '<div class="overlay-content">' +
+                            '<div class="logo">' +
+                                '<img src="./resources/images/kort-logo.png" />' +
+                            '</div>' +
+                            '<div class="introduction">' +
+                                Ext.i18n.Bundle.message('login.introduction') +
+                            '</div>' +
+                        '</div>'
+			},
+            {
+                xtype: 'container',
+                layout: 'vbox',
+                scrollable: false,
+                cls: 'loginButtons',
+                items: [
+                    {
+                        xtype: 'button',
+                        text: Ext.i18n.Bundle.message('login.button.google'),
+                        id: 'loginButtonGoogle',
+                        baseCls: Ext.baseCSSPrefix + 'zocial-button',
+                        cls: 'zocial google'
+                    },
+                    {
+                        xtype: 'button',
+                        text: Ext.i18n.Bundle.message('login.button.twitter'),
+                        id: 'loginButtonTwitter',
+                        baseCls: Ext.baseCSSPrefix + 'zocial-button',
+                        cls: 'zocial twitter'
+                    }
+                ]
+            }
+		]
+	}
+});
+
+Ext.define('Kort.controller.Login', {
+    extend: 'Ext.app.Controller',
+    requires: [
+        'Ext.LoadMask'
+    ],
+    
+    config: {
+        views: [
+            'overlay.login.Panel'
+        ],
+        refs: {
+            loginPanel: '#loginPanel',
+            mainTabPanel: '#mainTabPanel',
+            loginButtonGoogle: '#loginButtonGoogle'
+        },
+        control: {
+            loginButtonGoogle: {
+                tap: 'onLoginButtonGoogleTap'
+            }
+        },
+
+        remote: {
+            google: {
+                url: 'https://accounts.google.com/o/oauth2/auth',
+                scopes: [
+                    'https://www.googleapis.com/auth/userinfo.profile',
+                    'https://www.googleapis.com/auth/userinfo.email'
+                ],
+                redirect_path: 'server/oauth2callback',
+                response_type: 'code',
+                access_type: 'offline',
+                client_id: '653755350671.apps.googleusercontent.com'
+            }
+        }
+    },
+
+    onLoginButtonGoogleTap: function() {
+        console.log('loginButtonGoogle tapped -> ' + this.buildGoogleUrl(this.getRemote().google));
+        this.showLoadMask();
+        // redirect to google login page
+        document.location.href = this.buildGoogleUrl(this.getRemote().google);
+    },
+    
+    showLoadMask: function() {
+        this.getLoginPanel().setMasked({
+            xtype: 'loadmask',
+            message: Ext.i18n.Bundle.message('login.loadmask.message')
+        });
+        
+        Ext.defer(this.hideLoadMask, Kort.util.Config.getTimeout(), this);
+    },
+    
+    hideLoadMask: function() {
+        this.getLoginPanel().setMasked(false);
+        console.log('something went wrong');
+    },
+    
+    buildGoogleUrl: function(oauth) {
+        var urlLib = new UrlLib(),
+            params = urlLib.getUrlParams(),
+            numScopes = oauth.scopes.length,
+            url = oauth.url + '?',
+            scopes = '', i;
+        for (i = 0; i < numScopes; i++) {
+            scopes += oauth.scopes[i] + '%20';
+        }
+
+        url  = oauth.url + '?';
+        url += 'response_type=' + oauth.response_type + '&';
+        url += 'client_id=' + oauth.client_id + '&';
+        url += 'scope=' + scopes + '&';
+        url += 'access_type=' + oauth.access_type + '&';
+        url += 'redirect_uri=' + urlLib.getAppUrl() + oauth.redirect_path + '&';
+        url += 'approval_prompt=' + (params.force ? 'force' : 'auto');
+
+        return url;
+    }
+});
+
+Ext.define('Kort.view.validation.List', {
+	extend: 'Ext.List',
+	alias: 'widget.validationlist',
+    
+	config: {
+		layout: 'fit',
+		store: 'Validations',
+        grouped: true,
+        loadingText: Ext.i18n.Bundle.message('validation.loadmask.message'),
+        emptyText: Ext.i18n.Bundle.message('validation.emptytext'),
+        itemTpl: '<div>{title} / {formattedDistance}</div>'
+	}
+});
+
 Ext.define('Kort.view.validation.Container', {
 	extend: 'Ext.Container',
 	alias: 'widget.validationcontainer',
@@ -69070,7 +69214,7 @@ Ext.define('Kort.view.validation.Container', {
 				title: Ext.i18n.Bundle.message('validation.title')
 			},
 			{
-                html: 'Hier kommt eine Liste'
+                xtype: 'validationlist'
 			}
 		]
 	}
@@ -69315,7 +69459,8 @@ Ext.define('Kort.controller.Validation', {
     
     config: {
         views: [
-            'validation.Container'
+            'validation.Container',
+            'validation.List'
         ],
         refs: {
             mainTabPanel: '#mainTabPanel',
@@ -69328,136 +69473,6 @@ Ext.define('Kort.controller.Validation', {
     
     showValidation: function() {
         this.getMainTabPanel().setActiveItem(this.getValidationContainer());
-    }
-});
-
-Ext.define('Kort.view.overlay.login.Panel', {
-	extend: 'Ext.Panel',
-	alias: 'widget.loginpanel',
-    requires: [
-        'Ext.Button'
-    ],
-
-	config: {
-		url: 'login',
-		id: 'loginPanel',
-		layout: 'vbox',
-        modal: true,
-        scrollable: true,
-        cls: 'overlayLeafletMap',
-		items: [
-			{
-                html:   '<div class="overlay-content">' +
-                            '<div class="logo">' +
-                                '<img src="./resources/images/kort-logo.png" />' +
-                            '</div>' +
-                            '<div class="introduction">' +
-                                Ext.i18n.Bundle.message('login.introduction') +
-                            '</div>' +
-                        '</div>'
-			},
-            {
-                xtype: 'container',
-                layout: 'vbox',
-                scrollable: false,
-                cls: 'loginButtons',
-                items: [
-                    {
-                        xtype: 'button',
-                        text: Ext.i18n.Bundle.message('login.button.google'),
-                        id: 'loginButtonGoogle',
-                        baseCls: Ext.baseCSSPrefix + 'zocial-button',
-                        cls: 'zocial google'
-                    },
-                    {
-                        xtype: 'button',
-                        text: Ext.i18n.Bundle.message('login.button.twitter'),
-                        id: 'loginButtonTwitter',
-                        baseCls: Ext.baseCSSPrefix + 'zocial-button',
-                        cls: 'zocial twitter'
-                    }
-                ]
-            }
-		]
-	}
-});
-
-Ext.define('Kort.controller.Login', {
-    extend: 'Ext.app.Controller',
-    requires: [
-        'Ext.LoadMask'
-    ],
-    
-    config: {
-        views: [
-            'overlay.login.Panel'
-        ],
-        refs: {
-            loginPanel: '#loginPanel',
-            mainTabPanel: '#mainTabPanel',
-            loginButtonGoogle: '#loginButtonGoogle'
-        },
-        control: {
-            loginButtonGoogle: {
-                tap: 'onLoginButtonGoogleTap'
-            }
-        },
-
-        remote: {
-            google: {
-                url: 'https://accounts.google.com/o/oauth2/auth',
-                scopes: [
-                    'https://www.googleapis.com/auth/userinfo.profile',
-                    'https://www.googleapis.com/auth/userinfo.email'
-                ],
-                redirect_path: 'server/oauth2callback',
-                response_type: 'code',
-                access_type: 'offline',
-                client_id: '653755350671.apps.googleusercontent.com'
-            }
-        }
-    },
-
-    onLoginButtonGoogleTap: function() {
-        console.log('loginButtonGoogle tapped -> ' + this.buildGoogleUrl(this.getRemote().google));
-        this.showLoadMask();
-        // redirect to google login page
-        document.location.href = this.buildGoogleUrl(this.getRemote().google);
-    },
-    
-    showLoadMask: function() {
-        this.getLoginPanel().setMasked({
-            xtype: 'loadmask',
-            message: Ext.i18n.Bundle.message('login.loadmask.message')
-        });
-        
-        Ext.defer(this.hideLoadMask, Kort.util.Config.getTimeout(), this);
-    },
-    
-    hideLoadMask: function() {
-        this.getLoginPanel().setMasked(false);
-        console.log('something went wrong');
-    },
-    
-    buildGoogleUrl: function(oauth) {
-        var urlLib = new UrlLib(),
-            params = urlLib.getUrlParams(),
-            numScopes = oauth.scopes.length,
-            url = oauth.url + '?',
-            scopes = '', i;
-        for (i = 0; i < numScopes; i++) {
-            scopes += oauth.scopes[i] + '%20';
-        }
-
-        url  = oauth.url + '?';
-        url += 'response_type=' + oauth.response_type + '&';
-        url += 'client_id=' + oauth.client_id + '&';
-        url += 'scope=' + scopes + '&';
-        url += 'access_type=' + oauth.access_type + '&';
-        url += 'redirect_uri=' + urlLib.getAppUrl() + oauth.redirect_path + '&';
-        url += 'approval_prompt=' + (params.force ? 'force' : 'auto');
-
-        return url;
     }
 });
 
@@ -69540,6 +69555,29 @@ Ext.define('Kort.model.User', {
     }
 });
 
+Ext.define('Kort.model.Validation', {
+    extend: 'Ext.data.Model',
+    config: {
+		idProperty: 'id',
+		
+        fields: [
+			{ name: 'id', type: 'auto' },
+			{ name: 'osm_id', type: 'int' },
+			{ name: 'osm_type', type: 'string' },
+			{ name: 'title', type: 'string' },
+			{ name: 'description', type: 'string' },
+			{ name: 'fixmessage', type: 'string' },
+            { name: 'upratings', type: 'int' },
+            { name: 'downratings', type: 'int' },
+            { name: 'requiredValidations', type: 'int' },
+            { name: 'latitude', type: 'string' },
+            { name: 'longitude', type: 'string' },
+            { name: 'distance', type: 'int' },
+            { name: 'formattedDistance', type: 'string' }
+        ]
+    }
+});
+
 Ext.define('Kort.store.Bugs', {
     extend: 'Ext.data.Store',
 	
@@ -69593,6 +69631,40 @@ Ext.define('Kort.store.User', {
 	}
 });
 
+Ext.define('Kort.store.Validations', {
+    extend: 'Ext.data.Store',
+	
+	config: {
+		model: 'Kort.model.Validation',
+        autoLoad: true,
+		grouper: {
+            groupFn: function(record) {
+                var validationsLeft = record.get('requiredValidations') - record.get('upratings') + record.get('downratings');
+                return validationsLeft + ' ' + Ext.i18n.Bundle.message('validation.list.header');
+            }
+        },
+        sorters: [
+            {
+                // Sort by distance
+                sorterFn: function(record1, record2) {
+                    var distance1 = record1.get('distance'),
+                        distance2 = record2.get('distance');
+                    return distance1 > distance2 ? 1 : (distance1 === distance2 ? 0 : -1);
+                },
+                direction: 'ASC'
+            }
+        ],
+        
+		proxy: {
+			type: "ajax",
+            url : "./resources/stores/validations.json",
+            reader: {
+                type: "json"
+            }
+		}
+	}
+});
+
 
 Ext.application({
     name: 'Kort',
@@ -69608,23 +69680,25 @@ Ext.application({
         'Firststeps',
 		'Fix',
 		'Highscore',
+        'Login',
         'Main',
         'Profile',
-        'Validation',
-        'Login'
+        'Validation'
 	],
 
     models: [
 		'Bug',
         'Fix',
         'Tracktype',
-        'User'
+        'User',
+        'Validation'
     ],
 
     stores: [
 		'Bugs',
 		'Tracktypes',
-        'User'
+        'User',
+        'Validations'
     ],
 
     icon: './resources/images/kort-icon.png',
