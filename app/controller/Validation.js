@@ -3,7 +3,8 @@ Ext.define('Kort.controller.Validation', {
     
     config: {
         views: [
-            'validation.Container'
+            'validation.Container',
+            'validation.List'
         ],
         refs: {
             mainTabPanel: '#mainTabPanel',
