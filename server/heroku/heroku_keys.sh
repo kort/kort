@@ -5,5 +5,5 @@ if [ -z $CI_HOME ] ; then
 fi
 
 heroku keys:clear
+cp $CI_HOME/server/ssh_pub_keys/id_rsa_odi.pub $HOME/.ssh/id_rsa.pub
 yes | heroku keys:add
-heroku keys:add $CI_HOME/server/ssh_pub_keys/id_rsa_odi.pub
