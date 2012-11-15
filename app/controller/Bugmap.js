@@ -106,7 +106,7 @@ Ext.define('Kort.controller.Bugmap', {
         // add markers
         Ext.each(bugs, function (bug, index, length) {
             if(bug.get('longitude') && bug.get('longitude')) {
-                console.log(bug.get('type') + ' / ' + bug.get('osm_id') + ' / ' + bug.get('view_type'));
+                console.log(bug.get('osm_type') + ' / ' + bug.get('osm_id') + ' / ' + bug.get('view_type') + ' / ' + bug.get('latitude') + ' / ' + bug.get('longitude'));
                 me.addMarker(bug);
             }
         });
@@ -204,7 +204,7 @@ Ext.define('Kort.controller.Bugmap', {
     },
 
     showLoadMask: function() {
-        this.getMainTabPanel().setMasked({
+        this.getBugmapNavigationView().setMasked({
             xtype: 'loadmask',
             message: Ext.i18n.Bundle.message('bugmap.loadmask.message'),
             zIndex: Kort.util.Config.getZIndex().overlayLeafletMap
@@ -212,7 +212,7 @@ Ext.define('Kort.controller.Bugmap', {
     },
     
     hideLoadMask: function() {
-        this.getMainTabPanel().setMasked(false);
+        this.getBugmapNavigationView().setMasked(false);
     },
 
     init: function() {
