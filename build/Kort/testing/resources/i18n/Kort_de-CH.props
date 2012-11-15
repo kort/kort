@@ -1,0 +1,63 @@
+# Main View (TabPanel)
+tab.bugmap=Aufträge
+tab.validation=Validieren
+tab.highscore=Highscore
+tab.profile=Profil
+button.back=Zurück
+
+# Login
+login.title=Login
+login.introduction=Bitte logge dich ein um kort nutzen zu können!
+login.button.google=Login mit Google
+login.button.twitter=Login mit Twitter
+login.loadmask.message=Login...
+
+# Firststeps
+firststeps.introduction=Willkommen bei kort! Wähle einen Benutzernamen:
+firststeps.form.username.placeholder=Benutzername
+firststeps.form.button.submit=Spielen!
+firststeps.alert.username.empty.title=Benutzernamen eingeben
+firststeps.alert.username.empty.message=Bitte gib einen Benutzernamen ein.
+
+# Bugmap
+bugmap.title=Aufträge in deiner Nähe
+bugmap.loadmask.message=Lade Auträge...
+
+# Fix
+fix.form.title=Auftrag
+fix.form.field.image=Bild
+fix.form.message.placeholder=Deine Antwort...
+fix.form.button.submit=Senden
+fix.map.title=Karte
+fix.submitted.message=Vielen Dank!
+fix.alert.fixfield.empty.title=Felder ausfüllen
+fix.alert.fixfield.empty.message=Bitte alle Felder ausfüllen.
+fix.alert.submit.failure.title=Fehler beim Senden
+fix.alert.submit.failure.message=Beim übertragen des Formulars ist etwas schief gelaufen. Bitte versuche es später noch einmal.
+
+# Validation
+validation.title=Validieren
+
+# Highscore
+highscore.title=Highscore
+
+# Profil
+profile.title=Profil
+profile.content.username=Benutzername
+profile.content.email=Email
+profile.content.fixes=Anzahl erledigte Aufträge
+profile.content.validations=Anzahl Validierungen
+profile.content.koins.header=Koins
+profile.content.koins.introduction=Deine gesammelten koins:
+profile.content.badges.header=Badges
+profile.logout.loadmask.message=Logout...
+
+# MessageBox
+messagebox.ok=OK
+messagebox.yes=Ja
+messagebox.no=Nein
+messagebox.cancel=Abbrechen
+
+# Picker
+picker.done=Fertig
+picker.cancel=Abbrechen

@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "schema": 90,
+        "title": "Strassenname",
+        "description": "Hier fehlt der Strassenname.",
+        "latitude": 47.223375,
+        "longitude": 8.817434,
+        "type": "road"
+    },
+    {
+        "id": 2,
+        "schema": 90,
+        "title": "Geschwindigkiet",
+        "description": "Hier fehlt das Geschwindigkeitslimit.",
+        "latitude": 47.223375,
+        "longitude": 8.82434,
+        "type": "speedlimit"
+    },
+    {
+        "id": 3,
+        "schema": 90,
+        "title": "Strassenname",
+        "description": "Hier fehlt der Strassenname.",
+        "latitude": 47.227375,
+        "longitude": 8.813434,
+        "type": "road"
+    },
+    {
+        "id": 4,
+        "schema": 90,
+        "title": "Krezung",
+        "description": "Komische Kreuzung :S",
+        "latitude": 47.510041,
+        "longitude": 8.72175,
+        "type": "road"
+    }
+]
