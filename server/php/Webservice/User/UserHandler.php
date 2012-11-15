@@ -39,7 +39,7 @@ class UserHandler extends AbstractDbHandler
         $this->userData['picUrl'] = $this->getGravatarUrl();
 
         $this->userData['fixCount'] = 0;
-        $this->userData['verificationCount'] = 0;
+        $this->userData['validationCount'] = 0;
         $this->userData['koinCount'] = 0;
 
         $this->userData['badges'] = $this->getUserBadges();
