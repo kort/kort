@@ -13,7 +13,8 @@ Ext.application({
     requires: [
         'Ext.MessageBox',
         'Ext.i18n.Bundle',
-        'Kort.util.Config'
+        'Kort.util.Config',
+        'Kort.util.Geolocation'
     ],
 
     controllers: [
@@ -61,6 +62,7 @@ Ext.application({
     launch: function() {
         var userStore = Ext.getStore('User'),
             tracktypesStore = Ext.getStore('Tracktypes'),
+            validationsStore = Ext.getStore('Validations'),
             mainPanel;
 
         this.prepareI18n();
@@ -71,6 +73,16 @@ Ext.application({
         Ext.Viewport.add(mainPanel);
 
         tracktypesStore.load();
+        
+        Kort.geolocation = Ext.create('Kort.util.Geolocation');
+        Kort.geolocation.updateLocation(function (geo) {
+            // add locationupdate listener after store load
+            validationsStore.on('load', function(store) {
+                geo.on('locationupdate', store.updateDistances(geo), store);
+            }, this, { single: true });
+            validationsStore.load();
+            geo.setAutoUpdate(true);
+        });
         
         // check if user is logged in
         userStore.load(function() {
