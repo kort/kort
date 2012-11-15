@@ -112,6 +112,8 @@
      * Extra resources to be copied along when build
      */
     "resources": [
+        ".htaccess",
+        "index.php",
         "resources/images",
         "resources/styles",
         "resources/i18n",
