@@ -21,11 +21,10 @@ class BugHandler extends AbstractDbHandler
         'answer_placeholder'
     );
 
-    public function getBugsByOwnPosition($lat, $lng, $limit)
+    public function getBugsByOwnPosition($lat, $lng, $limit, $radius)
     {
-        $where = "";
-        //$where = "ST_DWithin(geom,ST_Buffer(" . PostGisSqlHelper::getLatLngGeom($lat, $lng) . "," . $radius . "))";
-        $orderBy = "geom <-> " . PostGisSqlHelper::getLatLngGeom($lat, $lng);
+        $where = "ST_Within(geom,ST_Buffer(" . PostGisSqlHelper::getLatLngGeom($lat, $lng) . "," . $radius . "))";
+        $orderBy = "ST_Distance(geom," . PostGisSqlHelper::getLatLngGeom($lat, $lng) . ")";
         $result = $this->db->doSelectQuery($this->bugFields, $this->bugTable, $where, $orderBy, $limit);
         return json_encode($result);
     }
