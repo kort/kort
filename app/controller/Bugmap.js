@@ -88,6 +88,9 @@ Ext.define('Kort.controller.Bugmap', {
         
         me.showLoadMask();
         
+        // centering map to current position
+        me.getMapCmp().setMapCenter(L.latLng(lat, lng));
+        
         // Load bugs store
 		bugsStore.load(function(records, operation, success) {
             me.syncProblemMarkers(records);
