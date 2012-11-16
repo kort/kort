@@ -11,6 +11,8 @@ Ext.define('Kort.view.validation.List', {
         grouped: true,
         loadingText: Ext.i18n.Bundle.message('validation.loadmask.message'),
         emptyText: Ext.i18n.Bundle.message('validation.emptytext'),
+        disableSelection: true,
+        
         itemTpl:    '<div class="validation-item">' +
                         '<div class="image">' +
                             '<img class="bugtype-image" src="./resources/images/marker_icons/{type}.png" />' +
