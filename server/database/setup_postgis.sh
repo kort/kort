@@ -36,8 +36,8 @@ fi
 # install postgis using apt-get: apt-get install postgresql-9.1-postgis
 
 # install extension
-psql -d $DB_NAME -f /usr/share/postgresql/9.1/contrib/postgis-1.5/postgis.sql
-psql -d $DB_NAME -f /usr/share/postgresql/9.1/contrib/postgis-1.5/spatial_ref_sys.sql
+psql -d $DB_NAME -f /usr/share/postgresql/9.1/contrib/postgis-2.1/postgis.sql
+psql -d $DB_NAME -f /usr/share/postgresql/9.1/contrib/postgis-2.1/spatial_ref_sys.sql
 
 psql -d $DB_NAME -c "GRANT ALL ON geometry_columns TO PUBLIC;"
 psql -d $DB_NAME -c "GRANT ALL ON spatial_ref_sys TO PUBLIC;"
