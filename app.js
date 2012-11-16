@@ -24,8 +24,10 @@ Ext.application({
 		'Highscore',
         'Login',
         'Main',
+        'OsmMap',
         'Profile',
-        'Validation'
+        'Validation',
+        'Vote'
 	],
 
     models: [

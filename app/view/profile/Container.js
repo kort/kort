@@ -38,9 +38,9 @@ Ext.define('Kort.view.profile.Container', {
     initialize: function () {
         this.callParent(arguments);
 
-        var profileContentContainer = {
+        var profileContentComponent = {
             xtype: 'component',
-            id: 'profileContentContainer',
+            id: 'profileContentComponent',
             tpl: new Ext.XTemplate(
                 '<div class="profile-content">',
                     '<div class="info">',
@@ -82,6 +82,6 @@ Ext.define('Kort.view.profile.Container', {
                 )
         };
         
-        this.add(profileContentContainer);
+        this.add(profileContentComponent);
     }
 });

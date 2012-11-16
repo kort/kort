@@ -101,20 +101,6 @@ $label-background-color: #46578D;
 }
 
 .fixTabPanel {
-    // tabBar style
-    .x-tabbar.x-docked-top {
-        height: auto;
-        min-height: 1.6em !important;
-        font-size: 0.9em;
-    }
-    .x-tabbar .x-tab {
-        -webkit-border-radius: 0;
-        border-radius: 0;
-        height: auto;
-        margin: 0;
-        padding: 0.6em 0.8em;
-    }
-
     .fixform {
         margin: $panel-padding;
 
@@ -131,8 +117,8 @@ $label-background-color: #46578D;
     }
 }
 
-// fix submitted popup
-.fixSubmittedPopupPanel.x-panel.x-floating {
+// submitted popup
+.submittedPopupPanel.x-panel.x-floating {
 	width: 200px;
 	height: 150px;
 	background-color: rgba(0, 0, 0, 0.7);
@@ -155,59 +141,70 @@ $label-background-color: #46578D;
 /* -----------------------
    Validation
    ----------------------- */
-#validationContainer {
-    .x-list-item-body {
-        padding: 0.4em 0.6em;
-    }
-    
-    .validation-item {
-        overflow: hidden;
-        
-        .image {
-            $image-width: 64px;
-            $image-height: 74px;
-            float: left;
-            margin-right: 0.8em;
-
-            .bugtype-image {
-                width: $image-width/2;
-                height: $image-height/2;
-            }
-        }
-        .content {
-            float: left;
-            
-            .title {
-                font-size: 0.8em;
-                margin-bottom: 0.4em;
-            }
-            .ratings {
-                font-size: 0.7em;
-                
-                img.thumb {
-                    $thumb-width: 20px;
-                    $thumb-height: 25px;
-                    
-                    width: $thumb-width/2;
-                    height: $thumb-height/2;
-                    margin-left: 0.3em;
-                }
-                
-                .upratings,
-                .downratings {
-                    margin: 0 0.3em;
-                }
-            }
-        } 
-        .distance {
-            float: right;
-            font-size: 0.7em;
-            font-weight: bold;
-            background-color: $label-background-color;
+#validationNavigationView {
+    .x-list-item {
+        .x-list-item-body {
             padding: 0.4em 0.6em;
-            color: white;
-            border-radius: 1em;
-            text-shadow: rgba(0, 0, 0, 0.25) 0 0.08em 0;
+        }
+
+		&.x-item-pressed .x-list-item-body {
+			background: #D8E3EE none;
+			border-top: 1px solid #aaaaaa;
+			box-shadow: inset 0 0 10px #abccee;
+			-webkit-box-shadow: inset 0 0 10px #abccee;
+			-moz-box-shadow: inset 0 0 10px #abccee;
+			box-shadow: inset 0 0 10px #abccee;
+		}
+        
+        .validation-item {
+            overflow: hidden;
+
+            .image {
+                $image-width: 64px;
+                $image-height: 74px;
+                float: left;
+                margin-right: 0.8em;
+
+                .bugtype-image {
+                    width: $image-width/2;
+                    height: $image-height/2;
+                }
+            }
+            .content {
+                float: left;
+
+                .title {
+                    font-size: 0.8em;
+                    margin-bottom: 0.4em;
+                }
+                .ratings {
+                    font-size: 0.7em;
+
+                    img.thumb {
+                        $thumb-width: 20px;
+                        $thumb-height: 25px;
+
+                        width: $thumb-width/2;
+                        height: $thumb-height/2;
+                        margin-left: 0.3em;
+                    }
+
+                    .upratings,
+                    .downratings {
+                        margin: 0 0.3em;
+                    }
+                }
+            } 
+            .distance {
+                float: right;
+                font-size: 0.7em;
+                font-weight: bold;
+                background-color: $label-background-color;
+                padding: 0.4em 0.6em;
+                color: white;
+                border-radius: 1em;
+                text-shadow: rgba(0, 0, 0, 0.25) 0 0.08em 0;
+            }
         }
     }
 }
@@ -240,7 +237,7 @@ $label-background-color: #46578D;
 /* -----------------------
    Profile
    ----------------------- */
-#profileContentContainer {
+#profileContentComponent {
     .info {
         padding: $panel-padding;
         overflow: hidden;
@@ -332,4 +329,21 @@ $label-background-color: #46578D;
 }
 .overlayLeafletMap {
     z-index: 1500;
+}
+
+// TabPanel tabBar
+.fixTabPanel,
+.voteTabPanel {
+    .x-tabbar.x-docked-top {
+        height: auto;
+        min-height: 1.6em !important;
+        font-size: 0.9em;
+    }
+    .x-tabbar .x-tab {
+        -webkit-border-radius: 0;
+        border-radius: 0;
+        height: auto;
+        margin: 0;
+        padding: 0.6em 0.8em;
+    }
 }

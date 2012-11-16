@@ -11,12 +11,12 @@ Ext.define('Kort.controller.Profile', {
         refs: {
             mainTabPanel: '#mainTabPanel',
             profileContainer: '#profileContainer',
-            profileContentContainer: '#profileContentContainer',
+            profileContentComponent: '#profileContentComponent',
             logoutButton: '#logoutButton'
         },
         control: {
-            profileContentContainer: {
-                initialize: 'onProfileContentContrainerInitialize'
+            profileContentComponent: {
+                initialize: 'onProfileContentComponentInitialize'
             },
             logoutButton: {
                 tap: 'onLogoutButtonTap'
@@ -33,15 +33,15 @@ Ext.define('Kort.controller.Profile', {
         this.getMainTabPanel().setActiveItem(this.getProfileContainer());
     },
     
-    onProfileContentContrainerInitialize: function() {
+    onProfileContentComponentInitialize: function() {
         var store = this.getUserStore(),
             user;
             
         if(!store.isLoaded()) {
-            Ext.defer(this.onProfileContentContrainerInitialize, 500, this);
+            Ext.defer(this.onProfileContentComponentInitialize, 500, this);
         } else {
             user = this.getUserStore().first();
-            this.getProfileContentContainer().setRecord(user);
+            this.getProfileContentComponent().setRecord(user);
         }
     },
     
