@@ -3,19 +3,33 @@ Ext.define('Kort.controller.Validation', {
     
     config: {
         views: [
-            'validation.Container',
+            'validation.NavigationView',
             'validation.List'
         ],
         refs: {
             mainTabPanel: '#mainTabPanel',
-            validationContainer: '#validationContainer'
+            validationNavigationView: '#validationNavigationView',
+            validationList: '.validationlist'
+        },
+        control: {
+            validationList: {
+                itemtap: 'onValidationListItemTap'
+            }
         },
         routes: {
             'validation': 'showValidation'
         }
     },
     
+    onValidationListItemTap: function(list, index, target, record, e) {
+        var validationDetail = Ext.create('Ext.Container', {
+            fullscreen: true,
+            html: 'asdfasdf'
+        });
+        this.getValidationNavigationView().push(validationDetail);
+    },
+    
     showValidation: function() {
-        this.getMainTabPanel().setActiveItem(this.getValidationContainer());
+        this.getMainTabPanel().setActiveItem(this.getValidationNavigationView());
     }
 });
