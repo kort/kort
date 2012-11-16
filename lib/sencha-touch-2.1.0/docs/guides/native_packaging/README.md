@@ -1,6 +1,6 @@
 # Native Packaging for iOS and Android
 
-This guide describes how to package a Sencha Touch app to run natively on iOS or Android devices using the Sencha Touch Native Packager tool.  
+This guide describes how to package a Sencha Touch app to run natively on iOS or Android devices using the Sencha Touch Native Packager tool.
 
 ## Native app packaging general procedures
 
@@ -12,7 +12,7 @@ Here are the basic steps for app packaging:
  - 2 **Installation.** Install the packager, part of [Sencha SDK Tools 2.0](http://www.sencha.com/products/sdk-tools/)
  - 3 **Create config file.** Create a packaging configuration file to be used with the Native Packager.
  - 4 **Create package.** Run the packager to create a packaged `\<application\>.app` file for iOS or an `.apk` file for Android.
-	
+
 Each of these steps is detailed further in this guide, with special care given to detailing the differences between iOS and Android packaging procedures.
 
 ### Required software
@@ -38,7 +38,7 @@ See the Android developers guide [Signing Your Applications](http://developer.an
 ## Step 2: Install the packager
 
   - Run the [Sencha SDK Tools][5] installation: SenchaSDKTools (SenchaSDKTools-2.0.0-Beta)
-  - The `sencha` command that includes the package option will be installed to the specified location during installation (default: Applications/SenchaSDKTools-2.0.0-Beta/command). 
+  - The `sencha` command that includes the package option will be installed to the specified location during installation (default: Applications/SenchaSDKTools-2.0.0-Beta/command).
 
 ## Step 3: Create a packaging configuration file
 
@@ -78,7 +78,7 @@ The rest of this section provides details about each parameter, noting environme
 
 ### `applicationName`
 
-The name of your application, which a device displays to the user after the app is installed. 
+The name of your application, which a device displays to the user after the app is installed.
 
 **iOS:** The application name should match the name provided in the [iOS Provisioning Portal][1], in the App IDs section. Here's an example iOS App ID, showing both the name and the ID:
 
@@ -94,15 +94,15 @@ This example uses the following:
 **Android:** The output file will have the name \<AppName\>.apk.
 
 ### `applicationId`
-	
+
 The ID for your app. It's suggested that you use a nameSpace for your app, such as `com.sencha.Touch2Package`, as shown in the example above. For iOS, this can also be found in the provisioning portal.
 
 ### `bundleSeedId` (iOS only)
-	
+
 This is the ten character string in front of the iOS application ID obtained from the [iOS Provisioning Portal][1]. In the example shown above under `applicationName`, it's `H8A8ADYR7H`.
 
 ### `versionString`
-	
+
 This is the version number of your application. Usually it takes a string such as `1.0`.
 
 ### `versionCode` (Android only)
@@ -167,7 +167,7 @@ This is the location of your certificate. This is required when you are developi
 
 ### `certificateAlias` (Optional)
 
-Indicates the name of your certificate. It this is not specified when developing on OSX, the packaging tool automatically tries to find the certificate using the applicationId. 
+Indicates the name of your certificate. It this is not specified when developing on OSX, the packaging tool automatically tries to find the certificate using the applicationId.
 
 Can be just a simple matcher. For example, if your certificate name is "iPhone Developer: Robert Dougan (ABCDEFGHIJ)", you can just enter `iPhone Developer`.
 
@@ -188,11 +188,11 @@ Indicates the path to the Android SDK.
 
 ### `androidAPILevel` (Android only)
 
-Indicates the Android API level, the version of Android SDK to use. For more information, see [What is API Level](http://developer.android.com/guide/appendix/api-levels.html) in the Android SDK documentation. Be sure to install the corresponding platform API in the Android SDK manager (*android_sdk/tools/android*). 
+Indicates the Android API level, the version of Android SDK to use. For more information, see [What is API Level](http://developer.android.com/guide/appendix/api-levels.html) in the Android SDK documentation. Be sure to install the corresponding platform API in the Android SDK manager (*android_sdk/tools/android*).
 
 ### `minOSVersion` (iOS only)
 
-Indicates number of lowest iOS version required for app to run. 
+Indicates number of lowest iOS version required for app to run.
 
 ### `orientations`
 
@@ -285,7 +285,7 @@ The following is an example Android config file.
 
 After creating the config file, the next step is to package the app. Here are the procedures for packaging both debug and release versions of an app for both iOS and Android.
 
-### iOS: Package a debug application 
+### iOS: Package a debug application
 
 The appropriate `platform` and `configuration` settings need to be made in the config file, for example:
 
@@ -300,7 +300,7 @@ With these configs set properly, issue the following command in Terminal:
 
 In this example, which targets the iOS Simulator in the `platform` config parameter, successful completion of the `package` command launches the iOS simulator with the application running natively. Note that the `deviceType` identifier  -- `iPhone` or `iPad` -- has to be set properly to trigger the appropriate simulator.
 
-### iOS: Package a release application 
+### iOS: Package a release application
 
 To package a signed application to run on the device, issue the following command in the terminal:
 
@@ -318,7 +318,7 @@ The appropriate `platform` and `configuration` settings need to be made in the c
 If `platform` and `configuration` are not set, the packaged app will not run correctly.
 
 With these configs set properly, start the Android Emulator and issue the following command:
-    
+
     sencha package run <configFile.json>
 
 In this example, which targets the Android Emulator in the `platform` config parameter, successful completion of the `package` command launches the app in the already running emulator. If `package` is successful, an `.apk` is available in the application output location for you to manually test on an Android Emulator or a device.
