@@ -1,11 +1,3 @@
--- delete all records that are not in Switzerland
-delete from keepright.errors where schema not in ('95','96');
-
--- maybe we need to delete 'missing tags' error from nodes (ways are more interessting)
-
-reindex table keepright.errors;
-
-
 -- translate description
 
 -- replace text in description
