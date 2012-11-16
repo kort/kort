@@ -86,12 +86,12 @@ Ext.define('Kort.controller.Bugmap', {
 
         url = './server/webservices/bug/position/' + lat + ',' + lng;
         bugsStore.getProxy().setUrl(url);
-        
+
         me.showLoadMask();
-        
+
         // centering map to current position
         me.getMapCmp().setMapCenter(L.latLng(lat, lng));
-        
+
         // Load bugs store
 		bugsStore.load(function(records, operation, success) {
             me.syncProblemMarkers(records);
@@ -172,7 +172,7 @@ Ext.define('Kort.controller.Bugmap', {
         var tpl,
             marker = e.target,
             bug = marker.bug,
-            CLICK_TOLERANCE = 200,
+            CLICK_TOLERANCE = 400,
             timeDifference, bugMessageBox;
 
         timeDifference = e.originalEvent.timeStamp - marker.lastClickTimestamp;
@@ -213,7 +213,7 @@ Ext.define('Kort.controller.Bugmap', {
             zIndex: Kort.util.Config.getZIndex().overlayLeafletMap
         });
     },
-    
+
     hideLoadMask: function() {
         this.getBugmapNavigationView().setMasked(false);
     },
@@ -223,7 +223,7 @@ Ext.define('Kort.controller.Bugmap', {
         this.setMarkerLayerGroup(L.layerGroup());
 
         this.setBugsStore(Ext.getStore('Bugs'));
-        
+
         this.setMessageBoxTemplate(
             new Ext.Template(
                 '<div class="confirm-content">',
