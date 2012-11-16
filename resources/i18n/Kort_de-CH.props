@@ -41,6 +41,12 @@ validation.loadmask.message=Lade Validierungen...
 validation.emptytext=Keine Validierungen vorhanden.
 validation.list.header=Validierungen übrig
 
+# PullRefresh Plugin
+pullrefresh.pullrefresh=Zum Aktualisieren herunterziehen
+pullrefresh.releaserefresh=Zum Aktualisieren loslassen...
+pullrefresh.loading=wird aktualisiert...
+pullrefresh.lastupdated=Zuletzt aktualisiert:
+
 # Highscore
 highscore.title=Highscore
 
