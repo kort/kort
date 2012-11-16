@@ -33,7 +33,11 @@ if [ -z $TABLE_NAME ] ; then
     DB_NAME="errors"
 fi
 
-# install postgis using apt-get: apt-get install postgresql-9.1-postgis
+# Install postgis 2.1 using apt-get: apt-get install postgresql-9.1-postgis
+# See here to get latest release: http://linfiniti.com/2012/05/installing-postgis-2-0-on-ubuntu/
+
+# uninstall extension (in case it was already installed)
+psql -d $DB_NAME -f /usr/share/postgresql/9.1/contrib/postgis-2.1/uninstall_postgis.sql 
 
 # install extension
 psql -d $DB_NAME -f /usr/share/postgresql/9.1/contrib/postgis-2.1/postgis.sql
