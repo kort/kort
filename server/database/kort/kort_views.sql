@@ -28,3 +28,10 @@ select a.answer_id language_id,
        a.title,
        a.sorting
 where  a.type = 'language';
+
+create or replace view kort.relationtype as
+select a.answer_id relationtype_id,
+       a.value type_key,
+       a.title,
+       a.sorting
+where  a.type = 'relationtype';
