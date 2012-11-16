@@ -1,9 +1,9 @@
-Ext.define('Kort.view.bugmap.fix.SubmittedPopupPanel', {
+Ext.define('Kort.view.SubmittedPopupPanel', {
 	extend: 'Ext.Panel',
-	alias: 'widget.fixsubmittedpopuppanel',
+	alias: 'widget.submittedpopuppanel',
 	
 	config: {
-        cls: 'fixSubmittedPopupPanel',
+        cls: 'submittedPopupPanel',
 		centered: true,
         zIndex: Kort.util.Config.getZIndex().overlayLeafletMap,
 		showAnimation: {
@@ -16,7 +16,7 @@ Ext.define('Kort.view.bugmap.fix.SubmittedPopupPanel', {
 		},
 		
 		html:	'<div class="content">' +
-					'<p>' + Ext.i18n.Bundle.message('fix.submitted.message') + '</p>' +
+					'<p>' + Ext.i18n.Bundle.message('submitted.message') + '</p>' +
 				'</div>',
 		
 		listeners: {
