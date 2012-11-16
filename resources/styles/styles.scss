@@ -1,6 +1,7 @@
 $panel-padding: 0.5em;
 $dark-grey: #4B4B4B;
 $default-font-size: 0.9em;
+$label-background-color: #46578D;
 
 /* -----------------------
    Overlay
@@ -71,6 +72,7 @@ $default-font-size: 0.9em;
         margin: 0 0 0.5em 0;
     }
 }
+
 
 /* -----------------------
    Bug Confirm Message Box / Fix Panel
@@ -151,6 +153,91 @@ $default-font-size: 0.9em;
 
 
 /* -----------------------
+   Validation
+   ----------------------- */
+#validationContainer {
+    .x-list-item-body {
+        padding: 0.4em 0.6em;
+    }
+    
+    .validation-item {
+        overflow: hidden;
+        
+        .image {
+            $image-width: 64px;
+            $image-height: 74px;
+            float: left;
+            margin-right: 0.8em;
+
+            .bugtype-image {
+                width: $image-width/2;
+                height: $image-height/2;
+            }
+        }
+        .content {
+            float: left;
+            
+            .title {
+                font-size: 0.8em;
+                margin-bottom: 0.4em;
+            }
+            .ratings {
+                font-size: 0.7em;
+                
+                img.thumb {
+                    $thumb-width: 20px;
+                    $thumb-height: 25px;
+                    
+                    width: $thumb-width/2;
+                    height: $thumb-height/2;
+                    margin-left: 0.3em;
+                }
+                
+                .upratings,
+                .downratings {
+                    margin: 0 0.3em;
+                }
+            }
+        } 
+        .distance {
+            float: right;
+            font-size: 0.7em;
+            font-weight: bold;
+            background-color: $label-background-color;
+            padding: 0.4em 0.6em;
+            color: white;
+            border-radius: 1em;
+            text-shadow: rgba(0, 0, 0, 0.25) 0 0.08em 0;
+        }
+    }
+}
+
+// PullRefresh Plugin
+
+.x-list-pullrefresh-arrow {
+    $arrow-width: 34px;
+    $arrow-height: 94px;
+
+    background: center center url('../images/arrow_black.png') no-repeat;
+    background-size: $arrow-width/2 $arrow-height/2;
+    -webkit-transition-property: -webkit-transform;
+    -webkit-transition-duration: 200ms;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+.x-list-pullrefresh {
+    top: -4.5em;
+    
+    .x-list-pullrefresh-message {
+        font-size: 1.2em;
+        margin-bottom: 0.2em;
+    }
+    .x-list-pullrefresh-updated {
+        font-size: 0.9em;
+    }
+}
+
+/* -----------------------
    Profile
    ----------------------- */
 #profileContentContainer {
@@ -208,7 +295,7 @@ $default-font-size: 0.9em;
         }
         .koins-number {
             margin-left: 0.5em;
-            background-color: #46578D;
+            background-color: $label-background-color;
             padding: 0.2em 0.5em;
             font-weight: bold;
             color: white;
