@@ -1,16 +1,16 @@
 Ext.define('Kort.controller.Fix', {
-    extend: 'Ext.app.Controller',
+    extend: 'Kort.controller.OsmMap',
 
     config: {
         views: [
             'bugmap.fix.TabPanel',
             'bugmap.fix.Map',
             'bugmap.fix.Form',
-			'bugmap.fix.SubmittedPopupPanel'
+			'SubmittedPopupPanel'
         ],
         refs: {
             bugmapNavigationView: '#bugmapNavigationView',
-            fixTabPanel: '.fixtabpanel',
+            detailTabPanel: '.fixtabpanel',
             fixFormSubmitButton: '.fixtabpanel .formpanel .button',
             fixField: '.fixtabpanel .formpanel .field',
             fixmap: '.fixtabpanel .fixmap'
@@ -23,82 +23,20 @@ Ext.define('Kort.controller.Fix', {
                 keyup: 'onFixFieldKeyUp'
             },
             fixmap: {
-                maprender: 'onFixmapMaprender'
+                maprender: 'onMaprender'
             }
         },
 
-        bugsStore: null,
-        map: null
+        bugsStore: null
     },
 
     init: function() {
         this.setBugsStore(Ext.getStore('Bugs'));
     },
 
-    onFixmapMaprender: function(cmp, map, tileLayer) {
-        var bug = this.getFixTabPanel().getRecord();
-
-        this.setMap(map);
-        cmp.setMapCenter(L.latLng(bug.get('latitude'), bug.get('longitude')));
-        this.renderOsmElement(bug);
-    },
-
-    renderOsmElement: function(bug) {
-        var me = this,
-            url = './server/webservices/osm/' + bug.get('osm_type') + '/' + bug.get('osm_id');
-
-        Ext.Ajax.request({
-            url: url,
-            headers: {
-                'Content-Type': 'text/xml'
-            },
-            success: function(response) {
-                if(response.responseXML) {
-                    me.addFeature(response.responseXML, bug);
-                }
-            }
-        });
-    },
-
-    addFeature: function(xml, bug) {
-        var icon = Kort.util.Config.getMarkerIcon(bug.get('type')),
-            layer;
-
-        layer = new L.OSM.DataLayer(xml, {
-            styles: {
-                node: {
-                    clickable: false,
-                    icon: icon
-                },
-                way: {
-                    clickable: false,
-                    color: Kort.util.Config.getFixMap().featureColor,
-                    opacity: Kort.util.Config.getFixMap().featureOpacity
-                },
-                area: {
-                    clickable: false,
-                    color: Kort.util.Config.getFixMap().featureColor,
-                    opacity: Kort.util.Config.getFixMap().featureOpacity
-                }
-            }
-        });
-        layer.addTo(this.getMap());
-        this.setZoomToLayerBounds(layer);
-    },
-    
-    setZoomToLayerBounds: function(layer) {
-        var bounds;
-        
-        bounds = layer.getBounds();
-        // TODO reading private variables to check if layer has any bounds
-        if(bounds.hasOwnProperty('_northEast') || bounds.hasOwnProperty('_southWest')) {
-            this.getMap().fitBounds(bounds);
-        }
-    },
-
     onFixFormSubmitButtonTap: function() {
         var me = this,
-            fixTabPanel = this.getFixTabPanel(),
+            detailTabPanel = this.getDetailTabPanel(),
             fixFieldValue = this.getFixField().getValue(),
             fix,
             messageBox;
@@ -114,7 +52,7 @@ Ext.define('Kort.controller.Fix', {
                 isUpload: true
             });*/
 
-            fix = Ext.create('Kort.model.Fix', { error_id: fixTabPanel.getRecord().get('id'), message: fixFieldValue });
+            fix = Ext.create('Kort.model.Fix', { error_id: detailTabPanel.getRecord().get('id'), message: fixFieldValue });
             fix.save({
                 success: function() {
                     me.fixSuccessfulSubmittedHandler();
@@ -138,7 +76,7 @@ Ext.define('Kort.controller.Fix', {
     },
 
     fixSuccessfulSubmittedHandler: function() {
-        this.showProblemAddedPopupPanel();
+        this.showSubmittedPopupPanel();
         // remove detail panel
         this.getBugmapNavigationView().pop();
     },
@@ -147,8 +85,8 @@ Ext.define('Kort.controller.Fix', {
 	 * Displays the confirmation popup
 	 * @private
 	 */
-	showProblemAddedPopupPanel: function() {
-        var popupPanel = Ext.create('Kort.view.bugmap.fix.SubmittedPopupPanel');
+	showSubmittedPopupPanel: function() {
+        var popupPanel = Ext.create('Kort.view.SubmittedPopupPanel');
 		Ext.Viewport.add(popupPanel);
 		popupPanel.show();
 	}

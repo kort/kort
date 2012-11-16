@@ -7,7 +7,8 @@ Ext.define('Kort.controller.Bugmap', {
     config: {
         views: [
             'bugmap.BugMessageBox',
-            'bugmap.NavigationView'
+            'bugmap.NavigationView',
+            'bugmap.fix.TabPanel'
         ],
         refs: {
             mainTabPanel: '#mainTabPanel',
@@ -150,8 +151,7 @@ Ext.define('Kort.controller.Bugmap', {
     addMarker: function(bug) {
         var me = this,
             icon,
-            marker,
-            tpl;
+            marker;
 
         icon = Kort.util.Config.getMarkerIcon(bug.get('type'));
         marker = L.marker([bug.get('latitude'), bug.get('longitude')], {
@@ -191,14 +191,14 @@ Ext.define('Kort.controller.Bugmap', {
 
     markerConfirmHandler: function(buttonId, value, opt) {
         if(buttonId === 'yes') {
-            console.log('Open bug detail (id: ' + this.getActiveBug().data.id + ')');
-            this.showBugDetail(this.getActiveBug());
+            console.log('Open fix (id: ' + this.getActiveBug().data.id + ')');
+            this.showFix(this.getActiveBug());
         }
 
         this.setActiveBug(null);
     },
 
-    showBugDetail: function(bug) {
+    showFix: function(bug) {
         var fixTabPanel = Ext.create('Kort.view.bugmap.fix.TabPanel', {
             record: bug,
             title: bug.get('title')

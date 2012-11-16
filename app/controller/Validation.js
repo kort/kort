@@ -4,7 +4,8 @@ Ext.define('Kort.controller.Validation', {
     config: {
         views: [
             'validation.NavigationView',
-            'validation.List'
+            'validation.List',
+            'validation.vote.TabPanel'
         ],
         refs: {
             mainTabPanel: '#mainTabPanel',
@@ -22,11 +23,11 @@ Ext.define('Kort.controller.Validation', {
     },
     
     onValidationListItemTap: function(list, index, target, record, e) {
-        var validationDetail = Ext.create('Ext.Container', {
-            fullscreen: true,
-            html: 'asdfasdf'
+        var voteTabPanel = Ext.create('Kort.view.validation.vote.TabPanel', {
+            record: record,
+            title: record.get('title')
         });
-        this.getValidationNavigationView().push(validationDetail);
+        this.getValidationNavigationView().push(voteTabPanel);
     },
     
     showValidation: function() {

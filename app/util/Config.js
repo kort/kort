@@ -17,7 +17,7 @@ Ext.define('Kort.util.Config', {
             overlayLeafletMap: 1500,
             overlayOverlayPanel: 1600
         },
-        fixMap: {
+        osmMap: {
             featureColor: '#FF0000',
             featureOpacity: 0.7
         }
