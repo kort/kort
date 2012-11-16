@@ -2,7 +2,7 @@ drop schema kort cascade;
 create schema kort;
 
 create table kort.fix (
-    id integer primary key,
+    fix_id integer primary key,
     create_date timestamp not null,
     error_id integer not null,
     message text
@@ -11,7 +11,7 @@ create table kort.fix (
 create sequence kort.fix_id;
 
 create table kort.user (
-    id integer primary key,
+    user_id integer primary key,
     name varchar(100) not null,
     username varchar(100),
     email varchar(100),
@@ -20,7 +20,7 @@ create table kort.user (
 );
 
 create table kort.badge (
-    id integer primary key,
+    bagde_id integer primary key,
     name varchar(100) not null,
     description varchar(500) not null,
     sorting integer not null
@@ -33,9 +33,11 @@ create table kort.user_badge (
     primary key (user_id, badge_id)
 );
 
-create table kort.tracktype (
-    id integer primary key,
-    type_key varchar(100) unique not null,
+create table kort.answer (
+    answer_id integer primary key,
+    type string,
+    value varchar(100) unique not null,
     title varchar(100) not null,
     sorting integer not null
 );
+
