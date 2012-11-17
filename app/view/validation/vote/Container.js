@@ -2,7 +2,8 @@ Ext.define('Kort.view.validation.vote.Container', {
 	extend: 'Ext.Container',
 	alias: 'widget.votecontainer',
     requires: [
-        'Ext.Button'
+        'Ext.Button',
+        'Kort.view.validation.vote.ButtonContainer'
     ],
 	
 	config: {
@@ -11,14 +12,20 @@ Ext.define('Kort.view.validation.vote.Container', {
             direction: 'vertical',
             directionLock: true
         },
-        fullscreen: true,
+        layout: {
+            type: 'vbox',
+            align: 'stretch'
+        },
         title: Ext.i18n.Bundle.message('vote.container.title')
 	},
     
     initialize: function () {
+        var voteContentContainer,
+            buttonContainer;
+
         this.callParent(arguments);
         
-        var voteContentContainer = {
+        voteContentContainer = {
             xtype: 'component',
             cls: 'voteContent',
             record: this.getRecord(),
@@ -34,6 +41,10 @@ Ext.define('Kort.view.validation.vote.Container', {
                     )
         };
         
-        this.add(voteContentContainer);
+        buttonContainer = {
+            xtype: 'votebuttoncontainer'
+        };
+        
+        this.add([voteContentContainer, buttonContainer]);
     }
 });

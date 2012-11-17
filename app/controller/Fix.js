@@ -3,6 +3,7 @@ Ext.define('Kort.controller.Fix', {
 
     config: {
         views: [
+            'bugmap.NavigationView',
             'bugmap.fix.TabPanel',
             'bugmap.fix.Map',
             'bugmap.fix.Form',
@@ -42,16 +43,6 @@ Ext.define('Kort.controller.Fix', {
             messageBox;
 
         if (fixFieldValue !== '') {
-            /*Ext.Ajax.request({
-                url: './server/webservices/bug/fixes',
-                callback: function(options, success, response) {
-                    alert('form submitted successfully!');
-                },
-                scope: me,
-                form: 'fixform',
-                isUpload: true
-            });*/
-
             fix = Ext.create('Kort.model.Fix', { error_id: detailTabPanel.getRecord().get('id'), message: fixFieldValue });
             fix.save({
                 success: function() {

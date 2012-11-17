@@ -1,17 +1,17 @@
-Ext.define('Kort.model.Fix', {
+Ext.define('Kort.model.Vote', {
     extend: 'Ext.data.Model',
     config: {
 		idProperty: 'id',
 		
         fields: [
 			{ name: 'id', type: 'auto' },
-			{ name: 'error_id', type: 'string' },
+			{ name: 'validation_id', type: 'string' },
 			{ name: 'message', type: 'string' }
         ],
         
 		proxy: {
 			type: "rest",
-            url : "./server/webservices/bug/fix",
+            url : "./server/webservices/validation/vote",
             reader: {
                 type: "json"
             }
