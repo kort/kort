@@ -28,8 +28,14 @@ Ext.define('Kort.controller.Firststeps', {
             messageBox;
 
         if(usernameValue !== '') {
-            userStore.on('write', me.storeWriteHandler, this, { single: true });
-            user.set('username', usernameValue);
+            console.log(usernameValue.search(/^[a-zA-Z0-9]+$/));
+            if(usernameValue.search(/^[a-zA-Z0-9]+$/) === -1) {
+                messageBox = Ext.create('Kort.view.NotificationMessageBox');
+                messageBox.alert(Ext.i18n.Bundle.message('firststeps.alert.username.specialchars.title'), Ext.i18n.Bundle.message('firststeps.alert.username.specialchars.message'), Ext.emptyFn);
+            } else {
+                userStore.on('write', me.storeWriteHandler, this, { single: true });
+                user.set('username', usernameValue);
+            }
         } else {
             messageBox = Ext.create('Kort.view.NotificationMessageBox');
             messageBox.alert(Ext.i18n.Bundle.message('firststeps.alert.username.empty.title'), Ext.i18n.Bundle.message('firststeps.alert.username.empty.message'), Ext.emptyFn);
