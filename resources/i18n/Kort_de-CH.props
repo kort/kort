@@ -21,6 +21,8 @@ firststeps.form.username.placeholder=Benutzername
 firststeps.form.button.submit=Spielen!
 firststeps.alert.username.empty.title=Benutzernamen eingeben
 firststeps.alert.username.empty.message=Bitte gib einen Benutzernamen ein.
+firststeps.alert.username.specialchars.title=Sonderzeichen gefunden
+firststeps.alert.username.specialchars.message=Benutze bitte nur Buchstaben und Zahlen für deinen Benutzernamen.
 
 # Bugmap
 bugmap.title=Aufträge in deiner Nähe
