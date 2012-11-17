@@ -13,7 +13,7 @@ Ext.define('Kort.plugin.PullRefresh', {
             if (store) {
                 store.load({
                     callback: function(records, operation, success) {
-                        Ext.defer(callbackFn, 10000, scope);
+                        callbackFn.call(scope);
                     }
                 });
             } else {

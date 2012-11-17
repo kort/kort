@@ -37,7 +37,7 @@ fix.map.title=Karte
 fix.alert.fixfield.empty.title=Felder ausfüllen
 fix.alert.fixfield.empty.message=Bitte alle Felder ausfüllen.
 fix.alert.submit.failure.title=Fehler beim Senden
-fix.alert.submit.failure.message=Beim übertragen des Formulars ist etwas schief gelaufen. Bitte versuche es später noch einmal.
+fix.alert.submit.failure.message=Beim Übertragen des Formulars ist etwas schief gelaufen. Bitte versuche es später noch einmal.
 
 # Validation
 validation.title=Validieren
@@ -45,9 +45,14 @@ validation.loadmask.message=Lade Validierungen...
 validation.emptytext=Keine Validierungen vorhanden.
 validation.list.header=Validierungen übrig
 
-## Validation Detail
+## Vote
 vote.map.title=Karte
 vote.container.title=Validierung
+vote.container.button.accept=Akzeptieren
+vote.container.button.decline=Ablehnen
+vote.container.button.cancel=Weiss nicht
+vote.alert.submit.failure.title=Fehler beim Senden
+vote.alert.submit.failure.message=Beim Übertragen des deiner Stimme ist etwas schief gelaufen. Bitte versuche es später noch einmal.
 
 # PullRefresh Plugin
 pullrefresh.pullrefresh=Zum Aktualisieren herunterziehen

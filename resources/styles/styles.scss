@@ -210,7 +210,6 @@ $label-background-color: #46578D;
 }
 
 // PullRefresh Plugin
-
 .x-list-pullrefresh-arrow {
     $arrow-width: 34px;
     $arrow-height: 94px;
@@ -231,6 +230,24 @@ $label-background-color: #46578D;
     }
     .x-list-pullrefresh-updated {
         font-size: 0.9em;
+    }
+}
+
+/* -----------------------
+   Vote
+   ----------------------- */
+.voteContainer {
+    padding: $panel-padding;
+    
+    .voteButtonContainer {
+        margin-top: 0.5em;
+        
+        .voteConfirmButton {
+            margin-right: 0.5em;
+        }
+        .voteCancelButton {
+            margin-left: 0.5em;
+        }
     }
 }
 
