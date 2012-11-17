@@ -12,7 +12,7 @@ Ext.define('Kort.controller.Fix', {
         refs: {
             bugmapNavigationView: '#bugmapNavigationView',
             detailTabPanel: '.fixtabpanel',
-            fixFormSubmitButton: '.fixtabpanel .formpanel .button',
+            fixFormSubmitButton: '.fixtabpanel .formpanel .button[cls=fixSubmitButton]',
             fixField: '.fixtabpanel .formpanel .field',
             fixmap: '.fixtabpanel .fixmap'
         },
