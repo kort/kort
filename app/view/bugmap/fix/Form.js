@@ -52,6 +52,7 @@ Ext.define('Kort.view.bugmap.fix.Form', {
                 fixField,
                 {
                     xtype: 'button',
+                    cls: 'fixSubmitButton',
                     ui: 'confirm',
                     id: 'fixFormSubmitButton',
                     text: Ext.i18n.Bundle.message('fix.form.button.submit')
