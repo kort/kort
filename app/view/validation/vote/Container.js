@@ -12,10 +12,7 @@ Ext.define('Kort.view.validation.vote.Container', {
             direction: 'vertical',
             directionLock: true
         },
-        layout: {
-            type: 'vbox',
-            align: 'stretch'
-        },
+        layout: 'vbox',
         title: Ext.i18n.Bundle.message('vote.container.title')
 	},
     
