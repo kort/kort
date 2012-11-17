@@ -31,11 +31,13 @@ Ext.application({
 	],
 
     models: [
+		'Badge',
 		'Bug',
         'Fix',
         'Tracktype',
         'User',
-        'Validation'
+        'Validation',
+        'Vote'
     ],
 
     stores: [

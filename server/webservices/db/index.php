@@ -30,7 +30,7 @@ $app->get(
     }
 );
 $app->post(
-    '/fixes',
+    '/fix',
     function () use ($fixHandler, $app) {
         $fixHandler->insertFix($app->request()->post());
     }
