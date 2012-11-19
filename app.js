@@ -18,6 +18,7 @@ Ext.application({
     ],
 
     controllers: [
+		'About',
 		'Bugmap',
         'Firststeps',
 		'Fix',
@@ -34,7 +35,7 @@ Ext.application({
 		'Badge',
 		'Bug',
         'Fix',
-        'Tracktype',
+        'SelectAnswer',
         'User',
         'Validation',
         'Vote'
@@ -42,7 +43,7 @@ Ext.application({
 
     stores: [
 		'Bugs',
-		'Tracktypes',
+		'SelectAnswers',
         'User',
         'Validations'
     ],
@@ -65,7 +66,7 @@ Ext.application({
     // launch function is called as soon as app is ready
     launch: function() {
         var userStore = Ext.getStore('User'),
-            tracktypesStore = Ext.getStore('Tracktypes'),
+            selectAnswersStore = Ext.getStore('SelectAnswers'),
             validationsStore = Ext.getStore('Validations'),
             mainPanel;
 
@@ -76,7 +77,7 @@ Ext.application({
         mainPanel = Ext.create('Kort.view.Main');
         Ext.Viewport.add(mainPanel);
 
-        tracktypesStore.load();
+        selectAnswersStore.load();
         
         Kort.geolocation = Ext.create('Kort.util.Geolocation');
         Kort.geolocation.updateLocation(function (geo) {
