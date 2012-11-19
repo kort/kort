@@ -70,7 +70,8 @@ Ext.define('Kort.controller.Login', {
         url += 'client_id=' + oauth.client_id + '&';
         url += 'scope=' + scopes + '&';
         url += 'access_type=' + oauth.access_type + '&';
-        url += 'redirect_uri=' + urlLib.getAppUrl() + oauth.redirect_path + '&';
+        url += 'redirect_uri=' + encodeURIComponent(urlLib.getAppUrl() + oauth.redirect_path) + '&';
+        url += 'state=' + urlLib.getAppEnv() + '&';
         url += 'approval_prompt=' + (params.force ? 'force' : 'auto');
 
         return url;
