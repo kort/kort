@@ -35,7 +35,12 @@ class PsqlConnection
 
     public function doSelectQuery($fieldsArr, $table, $condition, $orderBy = '', $limit = null)
     {
-        $queryStr = 'SELECT '.implode(',', $fieldsArr).' FROM '.$table;
+        if (count($fieldsArr) == 0) {
+            $fields = "*";
+        } else {
+            $fields = implode(',', $fieldsArr);
+        }
+        $queryStr = 'SELECT '.$fields.' FROM '.$table;
 
         if ($condition != '') {
             $queryStr .= ' WHERE '.$condition;
