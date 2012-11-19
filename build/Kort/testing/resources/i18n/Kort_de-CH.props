@@ -5,6 +5,9 @@ tab.highscore=Highscore
 tab.profile=Profil
 button.back=Zurück
 
+# Submitted Popup
+submitted.message=Vielen Dank!
+
 # Login
 login.title=Login
 login.introduction=Bitte logge dich ein um kort nutzen zu können!
@@ -18,28 +21,44 @@ firststeps.form.username.placeholder=Benutzername
 firststeps.form.button.submit=Spielen!
 firststeps.alert.username.empty.title=Benutzernamen eingeben
 firststeps.alert.username.empty.message=Bitte gib einen Benutzernamen ein.
+firststeps.alert.username.specialchars.title=Sonderzeichen gefunden
+firststeps.alert.username.specialchars.message=Benutze bitte nur Buchstaben und Zahlen für deinen Benutzernamen.
 
 # Bugmap
 bugmap.title=Aufträge in deiner Nähe
 bugmap.loadmask.message=Lade Auträge...
 
-# Fix
+## Fix
 fix.form.title=Auftrag
 fix.form.field.image=Bild
 fix.form.message.placeholder=Deine Antwort...
 fix.form.button.submit=Senden
 fix.map.title=Karte
-fix.submitted.message=Vielen Dank!
 fix.alert.fixfield.empty.title=Felder ausfüllen
 fix.alert.fixfield.empty.message=Bitte alle Felder ausfüllen.
 fix.alert.submit.failure.title=Fehler beim Senden
-fix.alert.submit.failure.message=Beim übertragen des Formulars ist etwas schief gelaufen. Bitte versuche es später noch einmal.
+fix.alert.submit.failure.message=Beim Übertragen des Formulars ist etwas schief gelaufen. Bitte versuche es später noch einmal.
 
 # Validation
 validation.title=Validieren
 validation.loadmask.message=Lade Validierungen...
 validation.emptytext=Keine Validierungen vorhanden.
 validation.list.header=Validierungen übrig
+
+## Vote
+vote.map.title=Karte
+vote.container.title=Validierung
+vote.container.button.accept=Akzeptieren
+vote.container.button.decline=Ablehnen
+vote.container.button.cancel=Weiss nicht
+vote.alert.submit.failure.title=Fehler beim Senden
+vote.alert.submit.failure.message=Beim Übertragen des deiner Stimme ist etwas schief gelaufen. Bitte versuche es später noch einmal.
+
+# PullRefresh Plugin
+pullrefresh.pullrefresh=Zum Aktualisieren herunterziehen
+pullrefresh.releaserefresh=Zum Aktualisieren loslassen...
+pullrefresh.loading=wird aktualisiert...
+pullrefresh.lastupdated=Zuletzt aktualisiert:
 
 # Highscore
 highscore.title=Highscore
