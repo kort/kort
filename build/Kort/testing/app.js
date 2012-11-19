@@ -65837,6 +65837,410 @@ Ext.define('Ext.navigation.View', {
 });
 
 /**
+ * This plugin adds pull to refresh functionality to the List.
+ *
+ * ## Example
+ *
+ *     @example
+ *     var store = Ext.create('Ext.data.Store', {
+ *         fields: ['name', 'img', 'text'],
+ *         data: [
+ *             {
+ *                 name: 'rdougan',
+ *                 img: 'http://a0.twimg.com/profile_images/1261180556/171265_10150129602722922_727937921_7778997_8387690_o_reasonably_small.jpg',
+ *                 text: 'JavaScript development'
+ *             }
+ *         ]
+ *     });
+ *
+ *     Ext.create('Ext.dataview.List', {
+ *         fullscreen: true,
+ *
+ *         store: store,
+ *
+ *         plugins: [
+ *             {
+ *                 xclass: 'Ext.plugin.PullRefresh',
+ *                 pullRefreshText: 'Pull down for more new Tweets!'
+ *             }
+ *         ],
+ *
+ *         itemTpl: [
+ *             '<img src="{img}" alt="{name} photo" />',
+ *             '<div class="tweet"><b>{name}:</b> {text}</div>'
+ *         ]
+ *     });
+ */
+Ext.define('Ext.plugin.PullRefresh', {
+    extend: 'Ext.Component',
+    alias: 'plugin.pullrefresh',
+    requires: ['Ext.DateExtras'],
+
+    config: {
+        /**
+         * @cfg {Ext.dataview.List} list
+         * The list to which this PullRefresh plugin is connected.
+         * This will usually by set automatically when configuring the list with this plugin.
+         * @accessor
+         */
+        list: null,
+
+        /**
+         * @cfg {String} pullRefreshText The text that will be shown while you are pulling down.
+         * @accessor
+         */
+        pullRefreshText: 'Pull down to refresh...',
+
+        /**
+         * @cfg {String} releaseRefreshText The text that will be shown after you have pulled down enough to show the release message.
+         * @accessor
+         */
+        releaseRefreshText: 'Release to refresh...',
+
+        /**
+         * @cfg {String} lastUpdatedText The text to be shown in front of the last updated time.
+         * @accessor
+         */
+        lastUpdatedText: 'Last Updated:',
+
+        /**
+         * @cfg {String} loadingText The text that will be shown while the list is refreshing.
+         * @accessor
+         */
+        loadingText: 'Loading...',
+
+        /**
+         * @cfg {Number} snappingAnimationDuration The duration for snapping back animation after the data has been refreshed
+         * @accessor
+         */
+        snappingAnimationDuration: 150,
+
+        /**
+         * @cfg {Function} refreshFn The function that will be called to refresh the list.
+         * If this is not defined, the store's load function will be called.
+         * The refresh function gets called with a reference to this plugin instance.
+         * @accessor
+         */
+        refreshFn: null,
+
+        /**
+         * @cfg {Ext.XTemplate/String/Array} pullTpl The template being used for the pull to refresh markup.
+         * @accessor
+         */
+        pullTpl: [
+            '<div class="x-list-pullrefresh">',
+                '<div class="x-list-pullrefresh-arrow"></div>',
+                '<div class="x-loading-spinner">',
+                    '<span class="x-loading-top"></span>',
+                    '<span class="x-loading-right"></span>',
+                    '<span class="x-loading-bottom"></span>',
+                    '<span class="x-loading-left"></span>',
+                '</div>',
+                '<div class="x-list-pullrefresh-wrap">',
+                    '<h3 class="x-list-pullrefresh-message">{message}</h3>',
+                    '<div class="x-list-pullrefresh-updated">{lastUpdatedText}&nbsp;{lastUpdated:date("m/d/Y h:iA")}</div>',
+                '</div>',
+            '</div>'
+        ].join(''),
+
+        translatable: true
+    },
+
+    isRefreshing: false,
+    currentViewState: '',
+
+    initialize: function() {
+        this.callParent();
+
+        this.on({
+            painted: 'onPainted',
+            scope: this
+        });
+    },
+
+    init: function(list) {
+        var me = this;
+
+        me.setList(list);
+        me.initScrollable();
+    },
+
+    initScrollable: function() {
+        var me = this,
+            list = me.getList(),
+            store = list.getStore(),
+            pullTpl = me.getPullTpl(),
+            element = me.element,
+            scrollable = list.getScrollable(),
+            scroller;
+
+        if (!scrollable) {
+            return;
+        }
+
+        scroller = scrollable.getScroller();
+
+        me.lastUpdated = new Date();
+
+        list.container.insert(0, me);
+
+        // We provide our own load mask so if the Store is autoLoading already disable the List's mask straight away,
+        // otherwise if the Store loads later allow the mask to show once then remove it thereafter
+        if (store) {
+            if (store.isAutoLoading()) {
+                list.setLoadingText(null);
+            } else {
+                store.on({
+                    load: {
+                        single: true,
+                        fn: function() {
+                            list.setLoadingText(null);
+                        }
+                    }
+                });
+            }
+        }
+
+        pullTpl.overwrite(element, {
+            message: me.getPullRefreshText(),
+            lastUpdatedText: me.getLastUpdatedText(),
+            lastUpdated: me.lastUpdated
+        }, true);
+
+        me.loadingElement = element.getFirstChild();
+        me.messageEl = element.down('.x-list-pullrefresh-message');
+        me.updatedEl = element.down('.x-list-pullrefresh-updated');
+
+        me.maxScroller = scroller.getMaxPosition();
+
+        scroller.on({
+            maxpositionchange: me.setMaxScroller,
+            scroll: me.onScrollChange,
+            scope: me
+        });
+    },
+
+    onScrollableChange: function() {
+        this.initScrollable();
+    },
+
+    updateList: function(newList, oldList) {
+        var me = this;
+
+        if (newList && newList != oldList) {
+            newList.on({
+                order: 'after',
+                scrollablechange: me.onScrollableChange,
+                scope: me
+            });
+        } else if (oldList) {
+            oldList.un({
+                order: 'after',
+                scrollablechange: me.onScrollableChange,
+                scope: me
+            });
+        }
+    },
+
+    /**
+     * @private
+     * Attempts to load the newest posts via the attached List's Store's Proxy
+     */
+    fetchLatest: function() {
+        var store = this.getList().getStore(),
+            proxy = store.getProxy(),
+            operation;
+
+        operation = Ext.create('Ext.data.Operation', {
+            page: 1,
+            start: 0,
+            model: store.getModel(),
+            limit: store.getPageSize(),
+            action: 'read',
+            filters: store.getRemoteFilter() ? store.getFilters() : []
+        });
+
+        proxy.read(operation, this.onLatestFetched, this);
+    },
+
+    /**
+     * @private
+     * Called after fetchLatest has finished grabbing data. Matches any returned records against what is already in the
+     * Store. If there is an overlap, updates the existing records with the new data and inserts the new items at the
+     * front of the Store. If there is no overlap, insert the new records anyway and record that there's a break in the
+     * timeline between the new and the old records.
+     */
+    onLatestFetched: function(operation) {
+        var store      = this.getList().getStore(),
+            oldRecords = store.getData(),
+            newRecords = operation.getRecords(),
+            length     = newRecords.length,
+            toInsert   = [],
+            newRecord, oldRecord, i;
+
+        for (i = 0; i < length; i++) {
+            newRecord = newRecords[i];
+            oldRecord = oldRecords.getByKey(newRecord.getId());
+
+            if (oldRecord) {
+                oldRecord.set(newRecord.getData());
+            } else {
+                toInsert.push(newRecord);
+            }
+
+            oldRecord = undefined;
+        }
+
+        store.insert(0, toInsert);
+    },
+
+    onPainted: function() {
+        this.pullHeight = this.loadingElement.getHeight();
+    },
+
+    setMaxScroller: function(scroller, position) {
+        this.maxScroller = position;
+    },
+
+    onScrollChange: function(scroller, x, y) {
+        if (y < 0) {
+            this.onBounceTop(y);
+        }
+        if (y > this.maxScroller.y) {
+            this.onBounceBottom(y);
+        }
+    },
+
+    /**
+     * @private
+     */
+    applyPullTpl: function(config) {
+        return (Ext.isObject(config) && config.isTemplate) ? config : new Ext.XTemplate(config);
+    },
+
+    onBounceTop: function(y) {
+        var me = this,
+            pullHeight = me.pullHeight,
+            list = me.getList(),
+            scroller = list.getScrollable().getScroller();
+
+        if (!me.isReleased) {
+            if (!pullHeight) {
+                me.onPainted();
+                pullHeight = me.pullHeight;
+            }
+            if (!me.isRefreshing && -y >= pullHeight + 10) {
+                me.isRefreshing = true;
+
+                me.setViewState('release');
+
+                scroller.getContainer().onBefore({
+                    dragend: 'onScrollerDragEnd',
+                    single: true,
+                    scope: me
+                });
+            }
+            else if (me.isRefreshing && -y < pullHeight + 10) {
+                me.isRefreshing = false;
+                me.setViewState('pull');
+            }
+        }
+
+        me.getTranslatable().translate(0, -y);
+    },
+
+    onScrollerDragEnd: function() {
+        var me = this;
+
+        if (me.isRefreshing) {
+            var list = me.getList(),
+                scroller = list.getScrollable().getScroller();
+
+            scroller.minPosition.y = -me.pullHeight;
+            scroller.on({
+                scrollend: 'loadStore',
+                single: true,
+                scope: me
+            });
+
+            me.isReleased = true;
+        }
+    },
+
+    loadStore: function() {
+        var me = this,
+            list = me.getList(),
+            scroller = list.getScrollable().getScroller();
+
+        me.setViewState('loading');
+        me.isReleased = false;
+
+        Ext.defer(function() {
+            scroller.on({
+                scrollend: function() {
+                    if (me.getRefreshFn()) {
+                        me.getRefreshFn().call(me, me);
+                    } else {
+                        me.fetchLatest();
+                    }
+                    me.resetRefreshState();
+                },
+                delay: 100,
+                single: true,
+                scope: me
+            });
+            scroller.minPosition.y = 0;
+            scroller.scrollTo(null, 0, true);
+        }, 500, me);
+    },
+
+    onBounceBottom: Ext.emptyFn,
+
+    setViewState: function(state) {
+        var me = this,
+            prefix = Ext.baseCSSPrefix,
+            messageEl = me.messageEl,
+            loadingElement = me.loadingElement;
+
+        if (state === me.currentViewState) {
+            return me;
+        }
+        me.currentViewState = state;
+
+        if (messageEl && loadingElement) {
+            switch (state) {
+                case 'pull':
+                    messageEl.setHtml(me.getPullRefreshText());
+                    loadingElement.removeCls([prefix + 'list-pullrefresh-release', prefix + 'list-pullrefresh-loading']);
+                break;
+
+                case 'release':
+                    messageEl.setHtml(me.getReleaseRefreshText());
+                    loadingElement.addCls(prefix + 'list-pullrefresh-release');
+                break;
+
+                case 'loading':
+                    messageEl.setHtml(me.getLoadingText());
+                    loadingElement.addCls(prefix + 'list-pullrefresh-loading');
+                break;
+            }
+        }
+
+        return me;
+    },
+
+    resetRefreshState: function() {
+        var me = this;
+
+        me.isRefreshing = false;
+        me.lastUpdated = new Date();
+
+        me.setViewState('pull');
+        me.updatedEl.setHtml(this.getLastUpdatedText() + '&nbsp;' + Ext.util.Format.date(me.lastUpdated, "m/d/Y h:iA"));
+    }
+});
+
+/**
  * Used in the {@link Ext.tab.Bar} component. This shouldn't be used directly, instead use
  * {@link Ext.tab.Bar} or {@link Ext.tab.Panel}.
  * @private
@@ -68216,9 +68620,9 @@ Ext.define('Kort.util.Config', {
             overlayLeafletMap: 1500,
             overlayOverlayPanel: 1600
         },
-        fixMap: {
+        osmMap: {
             featureColor: '#FF0000',
-            featureFillColor: '#FF0000'
+            featureOpacity: 0.7
         }
 	},
 	
@@ -68304,6 +68708,37 @@ Ext.define('Kort.view.bugmap.NavigationView', {
 	}
 });
 
+Ext.define('Kort.view.bugmap.fix.TabPanel', {
+	extend: 'Ext.tab.Panel',
+	alias: 'widget.fixtabpanel',
+    
+	config: {
+        title: '',
+        fullscreen: true,
+        cls: 'fixTabPanel',
+        tabBar: {
+            minHeight: '1em'
+        }
+	},
+    
+    initialize: function () {
+        var fixForm,
+            fixMap;
+
+        this.callParent(arguments);
+
+        fixForm = {
+            xtype: 'fixform',
+            record: this.getRecord()
+        };
+        fixMap = {
+            xtype: 'fixmap'
+        };
+        
+        this.add([fixForm, fixMap]);
+    }
+});
+
 Ext.define('Kort.controller.Bugmap', {
     extend: 'Ext.app.Controller',
     requires: [
@@ -68313,7 +68748,8 @@ Ext.define('Kort.controller.Bugmap', {
     config: {
         views: [
             'bugmap.BugMessageBox',
-            'bugmap.NavigationView'
+            'bugmap.NavigationView',
+            'bugmap.fix.TabPanel'
         ],
         refs: {
             mainTabPanel: '#mainTabPanel',
@@ -68351,10 +68787,10 @@ Ext.define('Kort.controller.Bugmap', {
     },
 
     onBugmapNavigationViewPush: function(cmp, view, opts) {
-        this.getRefreshBugsButton().hide();
+        //this.getRefreshBugsButton().hide();
     },
     onBugmapNavigationViewPop: function(cmp, view, opts) {
-        this.getRefreshBugsButton().show();
+        //this.getRefreshBugsButton().show();
     },
 
     onMapRender: function(cmp, map, tileLayer) {
@@ -68391,9 +68827,12 @@ Ext.define('Kort.controller.Bugmap', {
 
         url = './server/webservices/bug/position/' + lat + ',' + lng;
         bugsStore.getProxy().setUrl(url);
-        
+
         me.showLoadMask();
-        
+
+        // centering map to current position
+        me.getMapCmp().setMapCenter(L.latLng(lat, lng));
+
         // Load bugs store
 		bugsStore.load(function(records, operation, success) {
             me.syncProblemMarkers(records);
@@ -68453,8 +68892,7 @@ Ext.define('Kort.controller.Bugmap', {
     addMarker: function(bug) {
         var me = this,
             icon,
-            marker,
-            tpl;
+            marker;
 
         icon = Kort.util.Config.getMarkerIcon(bug.get('type'));
         marker = L.marker([bug.get('latitude'), bug.get('longitude')], {
@@ -68475,7 +68913,7 @@ Ext.define('Kort.controller.Bugmap', {
         var tpl,
             marker = e.target,
             bug = marker.bug,
-            CLICK_TOLERANCE = 200,
+            CLICK_TOLERANCE = 400,
             timeDifference, bugMessageBox;
 
         timeDifference = e.originalEvent.timeStamp - marker.lastClickTimestamp;
@@ -68494,14 +68932,14 @@ Ext.define('Kort.controller.Bugmap', {
 
     markerConfirmHandler: function(buttonId, value, opt) {
         if(buttonId === 'yes') {
-            console.log('Open bug detail (id: ' + this.getActiveBug().data.id + ')');
-            this.showBugDetail(this.getActiveBug());
+            console.log('Open fix (id: ' + this.getActiveBug().data.id + ')');
+            this.showFix(this.getActiveBug());
         }
 
         this.setActiveBug(null);
     },
 
-    showBugDetail: function(bug) {
+    showFix: function(bug) {
         var fixTabPanel = Ext.create('Kort.view.bugmap.fix.TabPanel', {
             record: bug,
             title: bug.get('title')
@@ -68516,7 +68954,7 @@ Ext.define('Kort.controller.Bugmap', {
             zIndex: Kort.util.Config.getZIndex().overlayLeafletMap
         });
     },
-    
+
     hideLoadMask: function() {
         this.getBugmapNavigationView().setMasked(false);
     },
@@ -68526,7 +68964,7 @@ Ext.define('Kort.controller.Bugmap', {
         this.setMarkerLayerGroup(L.layerGroup());
 
         this.setBugsStore(Ext.getStore('Bugs'));
-        
+
         this.setMessageBoxTemplate(
             new Ext.Template(
                 '<div class="confirm-content">',
@@ -68636,8 +69074,13 @@ Ext.define('Kort.controller.Firststeps', {
             messageBox;
 
         if(usernameValue !== '') {
-            userStore.on('write', me.storeWriteHandler, this, { single: true });
-            user.set('username', usernameValue);
+            if(usernameValue.search(/^[a-zA-Z0-9]+$/) === -1) {
+                messageBox = Ext.create('Kort.view.NotificationMessageBox');
+                messageBox.alert(Ext.i18n.Bundle.message('firststeps.alert.username.specialchars.title'), Ext.i18n.Bundle.message('firststeps.alert.username.specialchars.message'), Ext.emptyFn);
+            } else {
+                userStore.on('write', me.storeWriteHandler, this, { single: true });
+                user.set('username', usernameValue);
+            }
         } else {
             messageBox = Ext.create('Kort.view.NotificationMessageBox');
             messageBox.alert(Ext.i18n.Bundle.message('firststeps.alert.username.empty.title'), Ext.i18n.Bundle.message('firststeps.alert.username.empty.message'), Ext.emptyFn);
@@ -68655,37 +69098,6 @@ Ext.define('Kort.controller.Firststeps', {
         if (e.event.keyCode === 13){
             this.onFirststepsFormSubmitButtonTap();
         }
-    }
-});
-
-Ext.define('Kort.view.bugmap.fix.TabPanel', {
-	extend: 'Ext.tab.Panel',
-	alias: 'widget.fixtabpanel',
-    
-	config: {
-        title: '',
-        fullscreen: true,
-        cls: 'fixTabPanel',
-        tabBar: {
-            minHeight: '1em'
-        }
-	},
-    
-    initialize: function () {
-        var fixForm,
-            fixMap;
-
-        this.callParent(arguments);
-
-        fixForm = {
-            xtype: 'fixform',
-            record: this.getRecord()
-        };
-        fixMap = {
-            xtype: 'fixmap'
-        };
-        
-        this.add([fixForm, fixMap]);
     }
 });
 
@@ -68760,6 +69172,7 @@ Ext.define('Kort.view.bugmap.fix.Form', {
                 fixField,
                 {
                     xtype: 'button',
+                    cls: 'fixSubmitButton',
                     ui: 'confirm',
                     id: 'fixFormSubmitButton',
                     text: Ext.i18n.Bundle.message('fix.form.button.submit')
@@ -68810,12 +69223,12 @@ Ext.define('Kort.view.bugmap.fix.Form', {
     }
 });
 
-Ext.define('Kort.view.bugmap.fix.SubmittedPopupPanel', {
+Ext.define('Kort.view.SubmittedPopupPanel', {
 	extend: 'Ext.Panel',
-	alias: 'widget.fixsubmittedpopuppanel',
+	alias: 'widget.submittedpopuppanel',
 	
 	config: {
-        cls: 'fixSubmittedPopupPanel',
+        cls: 'submittedPopupPanel',
 		centered: true,
         zIndex: Kort.util.Config.getZIndex().overlayLeafletMap,
 		showAnimation: {
@@ -68828,7 +69241,7 @@ Ext.define('Kort.view.bugmap.fix.SubmittedPopupPanel', {
 		},
 		
 		html:	'<div class="content">' +
-					'<p>' + Ext.i18n.Bundle.message('fix.submitted.message') + '</p>' +
+					'<p>' + Ext.i18n.Bundle.message('submitted.message') + '</p>' +
 				'</div>',
 		
 		listeners: {
@@ -68845,54 +69258,24 @@ Ext.define('Kort.view.bugmap.fix.SubmittedPopupPanel', {
 	}
 });
 
-Ext.define('Kort.controller.Fix', {
+Ext.define('Kort.controller.OsmMap', {
     extend: 'Ext.app.Controller',
 
     config: {
-        views: [
-            'bugmap.fix.TabPanel',
-            'bugmap.fix.Map',
-            'bugmap.fix.Form',
-			'bugmap.fix.SubmittedPopupPanel'
-        ],
-        refs: {
-            bugmapNavigationView: '#bugmapNavigationView',
-            fixTabPanel: '.fixtabpanel',
-            fixFormSubmitButton: '.fixtabpanel .formpanel .button',
-            fixField: '.fixtabpanel .formpanel .field',
-            fixmap: '.fixtabpanel .fixmap'
-        },
-        control: {
-            fixFormSubmitButton: {
-                tap: 'onFixFormSubmitButtonTap'
-            },
-            fixField: {
-                keyup: 'onFixFieldKeyUp'
-            },
-            fixmap: {
-                maprender: 'onFixmapMaprender'
-            }
-        },
-
-        bugsStore: null,
         map: null
     },
 
-    init: function() {
-        this.setBugsStore(Ext.getStore('Bugs'));
-    },
-
-    onFixmapMaprender: function(cmp, map, tileLayer) {
-        var bug = this.getFixTabPanel().getRecord();
+    onMaprender: function(cmp, map, tileLayer) {
+        var record = this.getDetailTabPanel().getRecord();
 
         this.setMap(map);
-        cmp.setMapCenter(L.latLng(bug.get('latitude'), bug.get('longitude')));
-        this.renderOsmElement(bug);
+        cmp.setMapCenter(L.latLng(record.get('latitude'), record.get('longitude')));
+        this.renderOsmElement(record);
     },
 
-    renderOsmElement: function(bug) {
+    renderOsmElement: function(record) {
         var me = this,
-            url = './server/webservices/osm/' + bug.get('osm_type') + '/' + bug.get('osm_id');
+            url = './server/webservices/osm/' + record.get('osm_type') + '/' + record.get('osm_id');
 
         Ext.Ajax.request({
             url: url,
@@ -68901,14 +69284,14 @@ Ext.define('Kort.controller.Fix', {
             },
             success: function(response) {
                 if(response.responseXML) {
-                    me.addFeature(response.responseXML, bug);
+                    me.addFeature(response.responseXML, record);
                 }
             }
         });
     },
 
-    addFeature: function(xml, bug) {
-        var icon = Kort.util.Config.getMarkerIcon(bug.get('type')),
+    addFeature: function(xml, record) {
+        var icon = Kort.util.Config.getMarkerIcon(record.get('type')),
             layer;
 
         layer = new L.OSM.DataLayer(xml, {
@@ -68919,13 +69302,13 @@ Ext.define('Kort.controller.Fix', {
                 },
                 way: {
                     clickable: false,
-                    color: Kort.util.Config.getFixMap().featureColor,
-                    fillColor: Kort.util.Config.getFixMap().featureFillColor
+                    color: Kort.util.Config.getOsmMap().featureColor,
+                    opacity: Kort.util.Config.getOsmMap().featureOpacity
                 },
                 area: {
                     clickable: false,
-                    color: Kort.util.Config.getFixMap().featureColor,
-                    fillColor: Kort.util.Config.getFixMap().featureFillColor
+                    color: Kort.util.Config.getOsmMap().featureColor,
+                    opacity: Kort.util.Config.getOsmMap().featureOpacity
                 }
             }
         });
@@ -68941,27 +69324,55 @@ Ext.define('Kort.controller.Fix', {
         if(bounds.hasOwnProperty('_northEast') || bounds.hasOwnProperty('_southWest')) {
             this.getMap().fitBounds(bounds);
         }
+    }
+});
+
+Ext.define('Kort.controller.Fix', {
+    extend: 'Kort.controller.OsmMap',
+
+    config: {
+        views: [
+            'bugmap.NavigationView',
+            'bugmap.fix.TabPanel',
+            'bugmap.fix.Map',
+            'bugmap.fix.Form',
+			'SubmittedPopupPanel'
+        ],
+        refs: {
+            bugmapNavigationView: '#bugmapNavigationView',
+            detailTabPanel: '.fixtabpanel',
+            fixFormSubmitButton: '.fixtabpanel .formpanel .button[cls=fixSubmitButton]',
+            fixField: '.fixtabpanel .formpanel .field',
+            fixmap: '.fixtabpanel .fixmap'
+        },
+        control: {
+            fixFormSubmitButton: {
+                tap: 'onFixFormSubmitButtonTap'
+            },
+            fixField: {
+                keyup: 'onFixFieldKeyUp'
+            },
+            fixmap: {
+                maprender: 'onMaprender'
+            }
+        },
+
+        bugsStore: null
+    },
+
+    init: function() {
+        this.setBugsStore(Ext.getStore('Bugs'));
     },
 
     onFixFormSubmitButtonTap: function() {
         var me = this,
-            fixTabPanel = this.getFixTabPanel(),
+            detailTabPanel = this.getDetailTabPanel(),
             fixFieldValue = this.getFixField().getValue(),
             fix,
             messageBox;
 
         if (fixFieldValue !== '') {
-            /*Ext.Ajax.request({
-                url: './server/webservices/bug/fixes',
-                callback: function(options, success, response) {
-                    alert('form submitted successfully!');
-                },
-                scope: me,
-                form: 'fixform',
-                isUpload: true
-            });*/
-
-            fix = Ext.create('Kort.model.Fix', { error_id: fixTabPanel.getRecord().get('id'), message: fixFieldValue });
+            fix = Ext.create('Kort.model.Fix', { error_id: detailTabPanel.getRecord().get('id'), message: fixFieldValue });
             fix.save({
                 success: function() {
                     me.fixSuccessfulSubmittedHandler();
@@ -68985,7 +69396,7 @@ Ext.define('Kort.controller.Fix', {
     },
 
     fixSuccessfulSubmittedHandler: function() {
-        this.showProblemAddedPopupPanel();
+        this.showSubmittedPopupPanel();
         // remove detail panel
         this.getBugmapNavigationView().pop();
     },
@@ -68994,8 +69405,8 @@ Ext.define('Kort.controller.Fix', {
 	 * Displays the confirmation popup
 	 * @private
 	 */
-	showProblemAddedPopupPanel: function() {
-        var popupPanel = Ext.create('Kort.view.bugmap.fix.SubmittedPopupPanel');
+	showSubmittedPopupPanel: function() {
+        var popupPanel = Ext.create('Kort.view.SubmittedPopupPanel');
 		Ext.Viewport.add(popupPanel);
 		popupPanel.show();
 	}
@@ -69172,16 +69583,205 @@ Ext.define('Kort.controller.Login', {
         url += 'client_id=' + oauth.client_id + '&';
         url += 'scope=' + scopes + '&';
         url += 'access_type=' + oauth.access_type + '&';
-        url += 'redirect_uri=' + urlLib.getAppUrl() + oauth.redirect_path + '&';
+        url += 'redirect_uri=' + encodeURIComponent(urlLib.getAppUrl() + oauth.redirect_path) + '&';
+        url += 'state=' + urlLib.getAppEnv() + '&';
         url += 'approval_prompt=' + (params.force ? 'force' : 'auto');
 
         return url;
     }
 });
 
+Ext.define('Kort.plugin.PullRefresh', {
+    extend: 'Ext.plugin.PullRefresh',
+    alias: 'plugin.kortpullrefresh',
+	
+	config: {
+        pullRefreshText: Ext.i18n.Bundle.message('pullrefresh.pullrefresh'),
+        loadingText: Ext.i18n.Bundle.message('pullrefresh.loading'),
+        releaseRefreshText: Ext.i18n.Bundle.message('pullrefresh.releaserefresh'),
+        lastUpdatedText: Ext.i18n.Bundle.message('pullrefresh.lastupdated'),
+        dateFormat: 'd.m.Y H:i:s',
+        refreshFn: function(callbackFn, scope) {
+            var store = this.getList().getStore();
+            if (store) {
+                store.load({
+                    callback: function(records, operation, success) {
+                        callbackFn.call(scope);
+                    }
+                });
+            } else {
+                callbackFn.call(scope);
+            }
+        },
+        
+		pullTpl: [
+            '<div class="x-list-pullrefresh">',
+                '<div class="x-list-pullrefresh-arrow"></div>',
+                '<div class="x-loading-spinner">',
+                    '<span class="x-loading-top"></span>',
+                    '<span class="x-loading-right"></span>',
+                    '<span class="x-loading-bottom"></span>',
+                    '<span class="x-loading-left"></span>',
+                '</div>',
+                '<div class="x-list-pullrefresh-wrap">',
+                    '<h3 class="x-list-pullrefresh-message">{message}</h3>',
+                    '<div class="x-list-pullrefresh-updated">{lastUpdatedText}&nbsp;{lastUpdatedFormatted}</div>',
+                '</div>',
+            '</div>'
+        ].join('')
+	},
+    
+    initScrollable: function() {
+        /* jshint maxcomplexity:10 */
+        var me = this,
+            list = me.getList(),
+            store = list.getStore(),
+            pullTpl = me.getPullTpl(),
+            element = me.element,
+            scrollable = list.getScrollable(),
+            scroller;
+
+        if (!scrollable) {
+            return;
+        }
+
+        scroller = scrollable.getScroller();
+
+        me.lastUpdated = new Date();
+        me.lastUpdatedFormatted = Ext.util.Format.date(me.lastUpdated, me.getDateFormat());
+
+        list.container.insert(0, me);
+
+        // We provide our own load mask so if the Store is autoLoading already disable the List's mask straight away,
+        // otherwise if the Store loads later allow the mask to show once then remove it thereafter
+        if (store) {
+            if (store.isAutoLoading()) {
+                list.setLoadingText(null);
+            } else {
+                store.on({
+                    load: {
+                        single: true,
+                        fn: function() {
+                            list.setLoadingText(null);
+                        }
+                    }
+                });
+            }
+        }
+
+        pullTpl.overwrite(element, {
+            message: me.getPullRefreshText(),
+            lastUpdatedText: me.getLastUpdatedText(),
+            lastUpdatedFormatted: me.lastUpdatedFormatted
+        }, true);
+
+        me.loadingElement = element.getFirstChild();
+        me.messageEl = element.down('.x-list-pullrefresh-message');
+        me.updatedEl = element.down('.x-list-pullrefresh-updated');
+
+        me.maxScroller = scroller.getMaxPosition();
+
+        scroller.on({
+            maxpositionchange: me.setMaxScroller,
+            scroll: me.onScrollChange,
+            scope: me
+        });
+    },
+    
+    onBounceTop: function(y) {
+        /* jshint maxcomplexity:10 */
+        var me = this,
+            pullHeight = me.pullHeight,
+            list = me.getList(),
+            scroller = list.getScrollable().getScroller();
+
+        if (!me.isReleased && !me.isLoading) {
+            if (!pullHeight) {
+                me.onPainted();
+                pullHeight = me.pullHeight;
+            }
+            if (!me.isRefreshing && -y >= pullHeight + 10) {
+                me.isRefreshing = true;
+
+                me.setViewState('release');
+
+                scroller.getContainer().onBefore({
+                    dragend: 'onScrollerDragEnd',
+                    single: true,
+                    scope: me
+                });
+            }
+            else if (me.isRefreshing && -y < pullHeight + 10) {
+                me.isRefreshing = false;
+                me.setViewState('pull');
+            }
+        }
+        
+        me.getTranslatable().translate(0, -y);
+    },
+    
+    loadStore: function() {
+        var me = this,
+            list = me.getList(),
+            store = list.getStore();
+
+        me.setViewState('loading');
+        me.isReleased = false;
+        me.isLoading = true;
+        
+        if (me.getRefreshFn()) {
+            if(store) {
+                store.suspendEvents();
+            }
+            me.getRefreshFn().call(me, me.afterStoreLoad, me);
+        } else {
+            me.fetchLatest();
+            Ext.defer(function() {
+                me.resetRefreshElement();
+            }, 1000);
+        }
+    },
+    
+    afterStoreLoad: function() {
+        var me = this,
+            list = me.getList(),
+            store = list.getStore();
+        
+        if(store) {
+            store.resumeEvents();
+        }
+        me.resetRefreshElement();
+    },
+    
+    resetRefreshElement: function() {
+        var me = this,
+            list = me.getList(),
+            scroller = list.getScrollable().getScroller();
+
+        me.isLoading = false;
+        me.resetRefreshState();
+        scroller.minPosition.y = 0;
+        scroller.scrollTo(null, 0, true);
+    },
+	
+    resetRefreshState: function() {
+        var me = this;
+
+        me.isRefreshing = false;
+        me.lastUpdated = new Date();
+        me.lastUpdatedFormatted = Ext.util.Format.date(me.lastUpdated, me.getDateFormat());
+
+        me.setViewState('pull');
+        me.updatedEl.setHtml(this.getLastUpdatedText() + '&nbsp;' +  me.lastUpdatedFormatted);
+    }
+});
+
 Ext.define('Kort.view.validation.List', {
 	extend: 'Ext.List',
 	alias: 'widget.validationlist',
+    requires: [
+        'Kort.plugin.PullRefresh'
+    ],
     
 	config: {
 		layout: 'fit',
@@ -69189,31 +69789,54 @@ Ext.define('Kort.view.validation.List', {
         grouped: true,
         loadingText: Ext.i18n.Bundle.message('validation.loadmask.message'),
         emptyText: Ext.i18n.Bundle.message('validation.emptytext'),
-        itemTpl: '<div>{title} / {formattedDistance}</div>'
+        disableSelection: true,
+        
+        itemTpl:    '<div class="validation-item">' +
+                        '<div class="image">' +
+                            '<img class="bugtype-image" src="./resources/images/marker_icons/{type}.png" />' +
+                        '</div>' +
+                        '<div class="content">' +
+                            '<div class="title">{title}</div>' +
+                            '<div class="ratings">' +
+                                '<span class="upratings">' +
+                                    '+{upratings}' +
+                                    '<img class="thumb" src="./resources/images/validation/thumbs-up.png" />' +
+                                '</span>' +
+                                '<span class="downratings">' +
+                                    '-{downratings}' +
+                                    '<img class="thumb" src="./resources/images/validation/thumbs-down.png" />' +
+                                '</span>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div class="distance">{formattedDistance}</div>' +
+                    '</div>',
+        
+        plugins: [
+            {
+                xclass: 'Kort.plugin.PullRefresh'
+            }
+        ]
 	}
 });
 
-Ext.define('Kort.view.validation.Container', {
-	extend: 'Ext.Container',
-	alias: 'widget.validationcontainer',
+Ext.define('Kort.view.validation.NavigationView', {
+	extend: 'Ext.navigation.View',
+	alias: 'widget.validationnavigationview',
     requires: [
-        'Ext.TitleBar'
+        'Ext.Button',
+        'Kort.view.validation.List'
     ],
 	
 	config: {
-		title: Ext.i18n.Bundle.message('tab.validation'),
+        title: Ext.i18n.Bundle.message('tab.validation'),
 		url: 'validation',
-		id: 'validationContainer',
+		id: 'validationNavigationView',
 		iconCls: 'check_black2',
-		layout: 'fit',
+        defaultBackButtonText: Ext.i18n.Bundle.message('button.back'),
+        
 		items: [
 			{
-				xtype: 'titlebar',
-				cls: 'titlebar',
-				docked: 'top',
-				title: Ext.i18n.Bundle.message('validation.title')
-			},
-			{
+                title: Ext.i18n.Bundle.message('validation.title'),
                 xtype: 'validationlist'
 			}
 		]
@@ -69260,9 +69883,9 @@ Ext.define('Kort.view.profile.Container', {
     initialize: function () {
         this.callParent(arguments);
 
-        var profileContentContainer = {
+        var profileContentComponent = {
             xtype: 'component',
-            id: 'profileContentContainer',
+            id: 'profileContentComponent',
             tpl: new Ext.XTemplate(
                 '<div class="profile-content">',
                     '<div class="info">',
@@ -69304,7 +69927,7 @@ Ext.define('Kort.view.profile.Container', {
                 )
         };
         
-        this.add(profileContentContainer);
+        this.add(profileContentComponent);
     }
 });
 
@@ -69326,7 +69949,7 @@ Ext.define('Kort.view.Main', {
                 xtype: 'bugmapnavigationview'
             },
             {
-                xtype: 'validationcontainer'
+                xtype: 'validationnavigationview'
             },
             {
                 xtype: 'highscorecontainer'
@@ -69389,12 +70012,12 @@ Ext.define('Kort.controller.Profile', {
         refs: {
             mainTabPanel: '#mainTabPanel',
             profileContainer: '#profileContainer',
-            profileContentContainer: '#profileContentContainer',
+            profileContentComponent: '#profileContentComponent',
             logoutButton: '#logoutButton'
         },
         control: {
-            profileContentContainer: {
-                initialize: 'onProfileContentContrainerInitialize'
+            profileContentComponent: {
+                initialize: 'onProfileContentComponentInitialize'
             },
             logoutButton: {
                 tap: 'onLogoutButtonTap'
@@ -69411,15 +70034,15 @@ Ext.define('Kort.controller.Profile', {
         this.getMainTabPanel().setActiveItem(this.getProfileContainer());
     },
     
-    onProfileContentContrainerInitialize: function() {
+    onProfileContentComponentInitialize: function() {
         var store = this.getUserStore(),
             user;
             
         if(!store.isLoaded()) {
-            Ext.defer(this.onProfileContentContrainerInitialize, 500, this);
+            Ext.defer(this.onProfileContentComponentInitialize, 500, this);
         } else {
             user = this.getUserStore().first();
-            this.getProfileContentContainer().setRecord(user);
+            this.getProfileContentComponent().setRecord(user);
         }
     },
     
@@ -69454,25 +70077,273 @@ Ext.define('Kort.controller.Profile', {
     }
 });
 
+Ext.define('Kort.view.validation.vote.ButtonContainer', {
+	extend: 'Ext.Container',
+	alias: 'widget.votebuttoncontainer',
+    requires: [
+        'Ext.Button'
+    ],
+	
+	config: {
+        cls: 'voteButtonContainer',
+        flex: 1,
+        layout: {
+            type: 'hbox',
+            align: 'top'
+        },
+        defaults: {
+            xtype: 'button',
+            flex: 1
+        },
+        
+        items: [
+            {
+                ui: 'confirm',
+                cls: 'voteConfirmButton',
+                text: Ext.i18n.Bundle.message('vote.container.button.accept')
+            },
+            {
+                ui: 'decline',
+                cls: 'voteDeclineButton',
+                text: Ext.i18n.Bundle.message('vote.container.button.decline')
+            },
+            {
+                cls: 'voteCancelButton',
+                text: Ext.i18n.Bundle.message('vote.container.button.cancel')
+            }
+        ]
+	}
+});
+
+Ext.define('Kort.view.validation.vote.Container', {
+	extend: 'Ext.Container',
+	alias: 'widget.votecontainer',
+    requires: [
+        'Ext.Button',
+        'Kort.view.validation.vote.ButtonContainer'
+    ],
+	
+	config: {
+        cls: 'voteContainer',
+        scrollable: {
+            direction: 'vertical',
+            directionLock: true
+        },
+        layout: 'vbox',
+        title: Ext.i18n.Bundle.message('vote.container.title')
+	},
+    
+    initialize: function () {
+        var voteContentContainer,
+            buttonContainer;
+
+        this.callParent(arguments);
+        
+        voteContentContainer = {
+            xtype: 'component',
+            cls: 'voteContent',
+            record: this.getRecord(),
+            tpl:    new Ext.XTemplate(
+                        '<div class="vote-content">',
+                            '<div class="description">',
+                                '{description}',
+                            '</div>',
+                            '<div class="fixmessage">',
+                                '{fixmessage}',
+                            '</div>',
+                        '</div>'
+                    )
+        };
+        
+        buttonContainer = {
+            xtype: 'votebuttoncontainer'
+        };
+        
+        this.add([voteContentContainer, buttonContainer]);
+    }
+});
+
+Ext.define('Kort.view.validation.vote.Map', {
+	extend: 'Ext.ux.LeafletMap',
+	alias: 'widget.votemap',
+    
+	config: {
+        title: Ext.i18n.Bundle.message('vote.map.title'),
+        mapOptions: {
+            zoom: Kort.util.Config.getLeafletMap().zoom
+        },
+        tileLayerUrl: Kort.util.Config.getLeafletMap().tileLayerUrl,
+        tileLayerOptions: {
+            apikey: Kort.util.Config.getLeafletMap().apiKey,
+            styleId: Kort.util.Config.getLeafletMap().styleId
+        }
+	}
+});
+
+Ext.define('Kort.view.validation.vote.TabPanel', {
+	extend: 'Ext.tab.Panel',
+	alias: 'widget.votetabpanel',
+    requires: [
+        'Kort.view.validation.vote.Container',
+        'Kort.view.validation.vote.Map'
+    ],
+    
+	config: {
+        title: '',
+        fullscreen: true,
+        cls: 'voteTabPanel',
+        tabBar: {
+            minHeight: '1em'
+        }
+	},
+    
+    initialize: function () {
+        var voteContainer,
+            voteMap;
+
+        this.callParent(arguments);
+
+        voteContainer = {
+            xtype: 'votecontainer',
+            record: this.getRecord()
+        };
+        voteMap = {
+            xtype: 'votemap'
+        };
+        
+        this.add([voteContainer, voteMap]);
+    }
+});
+
 Ext.define('Kort.controller.Validation', {
     extend: 'Ext.app.Controller',
     
     config: {
         views: [
-            'validation.Container',
-            'validation.List'
+            'validation.NavigationView',
+            'validation.List',
+            'validation.vote.TabPanel'
         ],
         refs: {
             mainTabPanel: '#mainTabPanel',
-            validationContainer: '#validationContainer'
+            validationNavigationView: '#validationNavigationView',
+            validationList: '.validationlist'
+        },
+        control: {
+            validationList: {
+                itemtap: 'onValidationListItemTap'
+            }
         },
         routes: {
             'validation': 'showValidation'
         }
     },
     
+    onValidationListItemTap: function(list, index, target, record, e) {
+        var voteTabPanel = Ext.create('Kort.view.validation.vote.TabPanel', {
+            record: record,
+            title: record.get('title')
+        });
+        this.getValidationNavigationView().push(voteTabPanel);
+    },
+    
     showValidation: function() {
-        this.getMainTabPanel().setActiveItem(this.getValidationContainer());
+        this.getMainTabPanel().setActiveItem(this.getValidationNavigationView());
+    }
+});
+
+Ext.define('Kort.controller.Vote', {
+    extend: 'Kort.controller.OsmMap',
+
+    config: {
+        views: [
+            'validation.NavigationView',
+            'validation.vote.ButtonContainer',
+            'validation.vote.Container',
+            'validation.vote.Map',
+            'validation.vote.TabPanel'
+        ],
+        refs: {
+            validationNavigationView: '#validationNavigationView',
+            detailTabPanel: '.votetabpanel',
+            voteMap: '.votetabpanel .votemap',
+            voteAcceptButton: '.votetabpanel .votecontainer .button[cls=voteConfirmButton]',
+            voteDeclineButton: '.votetabpanel .votecontainer .button[cls=voteDeclineButton]',
+            voteCancelButton: '.votetabpanel .votecontainer .button[cls=voteCancelButton]'
+        },
+        control: {
+            voteMap: {
+                maprender: 'onMaprender'
+            },
+            voteAcceptButton: {
+                tap: 'onVoteAcceptButtonTap'
+            },
+            voteDeclineButton: {
+                tap: 'onVoteDeclineButtonTap'
+            },
+            voteCancelButton: {
+                tap: 'onVoteCancelButtonTap'
+            }
+        }
+    },
+    
+    onVoteAcceptButtonTap: function() {
+        this.sendVote('accept');
+    },
+    
+    onVoteDeclineButtonTap: function() {
+        this.sendVote('decline');
+    },
+    
+    onVoteCancelButtonTap: function() {
+        // remove detail panel
+        this.getValidationNavigationView().pop();
+    },
+    
+    sendVote: function(message) {
+        var me = this,
+            detailTabPanel = this.getDetailTabPanel(),
+            vote;
+
+        vote = Ext.create('Kort.model.Vote', { validation_id: detailTabPanel.getRecord().get('id'), message: message });
+        vote.save({
+            success: function() {
+                me.voteSuccessfulSubmittedHandler();
+            },
+            failure: function() {
+                var messageBox = Ext.create('Kort.view.NotificationMessageBox');
+                messageBox.alert(Ext.i18n.Bundle.message('vote.alert.submit.failure.title'), Ext.i18n.Bundle.message('vote.alert.submit.failure.message'), Ext.emptyFn);
+            }
+        });
+    },
+    
+    voteSuccessfulSubmittedHandler: function() {
+        this.showSubmittedPopupPanel();
+        // remove detail panel
+        this.getValidationNavigationView().pop();
+    },
+
+    /**
+	 * Displays the confirmation popup
+	 * @private
+	 */
+	showSubmittedPopupPanel: function() {
+        var popupPanel = Ext.create('Kort.view.SubmittedPopupPanel');
+		Ext.Viewport.add(popupPanel);
+		popupPanel.show();
+	}
+});
+
+Ext.define('Kort.model.Badge', {
+    extend: 'Ext.data.Model',
+    config: {
+		idProperty: 'id',
+		
+        fields: [
+			{ name: 'id', type: 'auto' },
+			{ name: 'name', type: 'string' },
+			{ name: 'won', type: 'boolean' }
+        ]
     }
 });
 
@@ -69510,7 +70381,7 @@ Ext.define('Kort.model.Fix', {
         
 		proxy: {
 			type: "rest",
-            url : "./server/webservices/bug/fixes",
+            url : "./server/webservices/bug/fix",
             reader: {
                 type: "json"
             }
@@ -69565,6 +70436,7 @@ Ext.define('Kort.model.Validation', {
 			{ name: 'osm_id', type: 'int' },
 			{ name: 'osm_type', type: 'string' },
 			{ name: 'title', type: 'string' },
+			{ name: 'type', type: 'string' },
 			{ name: 'description', type: 'string' },
 			{ name: 'fixmessage', type: 'string' },
             { name: 'upratings', type: 'int' },
@@ -69575,6 +70447,27 @@ Ext.define('Kort.model.Validation', {
             { name: 'distance', type: 'int' },
             { name: 'formattedDistance', type: 'string' }
         ]
+    }
+});
+
+Ext.define('Kort.model.Vote', {
+    extend: 'Ext.data.Model',
+    config: {
+		idProperty: 'id',
+		
+        fields: [
+			{ name: 'id', type: 'auto' },
+			{ name: 'validation_id', type: 'string' },
+			{ name: 'message', type: 'string' }
+        ],
+        
+		proxy: {
+			type: "rest",
+            url : "./server/webservices/validation/vote",
+            reader: {
+                type: "json"
+            }
+		}
     }
 });
 
@@ -69636,7 +70529,7 @@ Ext.define('Kort.store.Validations', {
 	
 	config: {
 		model: 'Kort.model.Validation',
-        autoLoad: true,
+        
 		grouper: {
             groupFn: function(record) {
                 var validationsLeft = record.get('requiredValidations') - record.get('upratings') + record.get('downratings');
@@ -69662,7 +70555,65 @@ Ext.define('Kort.store.Validations', {
                 type: "json"
             }
 		}
+	},
+    
+    /**
+     * Update distances of trails in store
+     */
+	updateDistances: function(geo) {
+		if(!this.isLoading()) {
+			this.each(function(record, index, length) {
+				record.set('distance', geo.getDistance(record.get('latitude'), record.get('longitude')));
+				record.set('formattedDistance', geo.getFormattedDistance(record.get('distance')));
+			});
+			this.sort();
+		}
 	}
+});
+
+Ext.define('Kort.util.Geolocation', {
+    extend: 'Ext.util.Geolocation',
+
+    config: {
+        available: false,
+        autoUpdate: false,
+
+        listeners: {
+            locationupdate: function(geo, eOpts) {
+                geo.setAvailable(true);
+            },
+            locationerror: function(geo, bTimeout, bPermissionDenied, bLocationUnavailable, message, eOpts) {
+                geo.setAvailable(false);
+            }
+        }
+    },
+
+    /* source: http://www.movable-type.co.uk/scripts/latlong.html */
+    getDistance: function(latitude, longitude) {
+        var earthRadius = 6371000, // m
+            dLat, dLng, thisLatitude, otherLatitude, a, c;
+
+        latitude = parseFloat(latitude);
+        longitude = parseFloat(longitude);
+
+        dLat = (latitude - this.getLatitude()).toRad();
+        dLng = (longitude - this.getLongitude()).toRad();
+        thisLatitude = this.getLatitude().toRad();
+        otherLatitude = latitude.toRad();
+
+        a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.sin(dLng/2) * Math.sin(dLng/2) * Math.cos(thisLatitude) * Math.cos(otherLatitude);
+        c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        return earthRadius * c;
+    },
+
+    getFormattedDistance: function(distanceInMeters) {
+        if(distanceInMeters > 999) {
+            // round to one decimal
+            return (Math.round(distanceInMeters / 100) / 10) + "km";
+        } else {
+            return Math.round(distanceInMeters) + "m";
+        }
+    }
 });
 
 
@@ -69672,7 +70623,8 @@ Ext.application({
     requires: [
         'Ext.MessageBox',
         'Ext.i18n.Bundle',
-        'Kort.util.Config'
+        'Kort.util.Config',
+        'Kort.util.Geolocation'
     ],
 
     controllers: [
@@ -69682,16 +70634,20 @@ Ext.application({
 		'Highscore',
         'Login',
         'Main',
+        'OsmMap',
         'Profile',
-        'Validation'
+        'Validation',
+        'Vote'
 	],
 
     models: [
+		'Badge',
 		'Bug',
         'Fix',
         'Tracktype',
         'User',
-        'Validation'
+        'Validation',
+        'Vote'
     ],
 
     stores: [
@@ -69720,6 +70676,7 @@ Ext.application({
     launch: function() {
         var userStore = Ext.getStore('User'),
             tracktypesStore = Ext.getStore('Tracktypes'),
+            validationsStore = Ext.getStore('Validations'),
             mainPanel;
 
         this.prepareI18n();
@@ -69730,6 +70687,16 @@ Ext.application({
         Ext.Viewport.add(mainPanel);
 
         tracktypesStore.load();
+        
+        Kort.geolocation = Ext.create('Kort.util.Geolocation');
+        Kort.geolocation.updateLocation(function (geo) {
+            // add locationupdate listener after store load
+            validationsStore.on('load', function(store) {
+                geo.on('locationupdate', store.updateDistances(geo), store);
+            }, this, { single: true });
+            validationsStore.load();
+            geo.setAutoUpdate(true);
+        });
         
         // check if user is logged in
         userStore.load(function() {

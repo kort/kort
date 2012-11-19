@@ -17,6 +17,10 @@ if (isset($_GET['code'])) {
 $appUrl = 'http://' . $_SERVER['HTTP_HOST'];
 if ($_SERVER['HTTP_HOST'] === "localhost") {
     $appUrl .= "/kort";
+    
+    if (isset($_GET['state']) && !empty($_GET['state'])) {
+        $appUrl .= "/build/Kort/" . $_GET['state'] . "/";
+    }
 }
 
 header('Location: ' . $appUrl);
