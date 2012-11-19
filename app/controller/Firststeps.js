@@ -28,7 +28,6 @@ Ext.define('Kort.controller.Firststeps', {
             messageBox;
 
         if(usernameValue !== '') {
-            console.log(usernameValue.search(/^[a-zA-Z0-9]+$/));
             if(usernameValue.search(/^[a-zA-Z0-9]+$/) === -1) {
                 messageBox = Ext.create('Kort.view.NotificationMessageBox');
                 messageBox.alert(Ext.i18n.Bundle.message('firststeps.alert.username.specialchars.title'), Ext.i18n.Bundle.message('firststeps.alert.username.specialchars.message'), Ext.emptyFn);
