@@ -4,9 +4,10 @@ $default-font-size: 0.9em;
 $label-background-color: #46578D;
 
 /* -----------------------
-   Overlay
+   Overlay / About
    ----------------------- */
-.overlay-content {
+.overlay-content,
+.about-content {
     $logo-size: 300px;
     
     .logo {
@@ -21,6 +22,12 @@ $label-background-color: #46578D;
         font-size: $default-font-size;
         margin: 1em 0;
     }
+}
+
+.about-content {
+    font-size: 0.7em;
+    text-align: center;
+    padding: $panel-padding;
 }
 
 // Login
@@ -101,16 +108,12 @@ $label-background-color: #46578D;
 }
 
 .fixTabPanel {
-    .fixform {
-        margin: $panel-padding;
-
-        .x-form .x-scroll-container > .x-inner {
-            padding: 0;
-        }
-        .x-form-label span span.bundle {
-            font-size: 1.2em;
-        }
-
+    .fixContentComponent {
+        padding: $panel-padding;
+    }
+    .fixFormPanel {
+        margin: 0 $panel-padding $panel-padding $panel-padding;
+        
         .fixfield {
             margin-bottom: 0.4em;
         }
