@@ -2,9 +2,6 @@
 require_once('../../../lib/Slim-2.1.0/Slim/Slim.php');
 require_once('../../../server/php/ClassLoader.php');
 
-use Webservice\RelayHandlerPost;
-use Webservice\RelayHandlerGet;
-
 // Load Slim library
 \Slim\Slim::registerAutoloader();
 Kort\ClassLoader::registerAutoLoader();
@@ -13,19 +10,23 @@ Kort\ClassLoader::registerAutoLoader();
 $app = new \Slim\Slim();
 $res = $app->response();
 
-$relayGet = new RelayHandlerGet($app);
+$bugHandler = new \Webservice\Bug\BugHandler();
+$fixHandler = new \Webservice\Fix\FixHandler();
+
 $app->get(
-    '/:path+',
-    function ($path) use ($relayGet, $res) {
-        $res->write($relayGet->relayHandler($path));
+    '/position/:lat,:lng',
+    function ($lat, $lng) use ($bugHandler, $res) {
+        $limit = (isset($_GET['limit'])) ? $_GET['limit'] : 20;
+        $radius = (isset($_GET['radius'])) ? $_GET['radius'] : 5000;
+
+        $res->write($bugHandler->getBugsByOwnPosition($lat, $lng, $limit, $radius));
     }
 );
 
-$relayPost = new RelayHandlerPost($app);
 $app->post(
-    '/:path+',
-    function ($path) use ($relayPost, $res) {
-        $res->write($relayPost->relayHandler($path));
+    '/fix',
+    function () use ($fixHandler, $app) {
+        $fixHandler->insertFix($app->request()->post());
     }
 );
 
