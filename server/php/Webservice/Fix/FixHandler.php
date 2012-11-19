@@ -1,29 +1,23 @@
 <?php
 namespace Webservice\Fix;
 
-use Webservice\Database\AbstractDbHandler;
+use Webservice\RelayHandler;
 
-class FixHandler extends DbHandler
+class FixHandler extends RelayHandler
 {
-    protected $fixTable = 'kort.fix';
-    protected $fixFields = array(
+    protected $table = 'kort.fix';
+    protected $fields = array(
         'id',
         'create_date',
         'error_id',
         'message'
     );
 
-    public function insertFix($postVariables)
+    public function insertFix($data)
     {
-        $data = array();
-        foreach ($this->fixFields as $key) {
-            if (array_key_exists($key, $postVariables)) {
-                $data[$key] = $this->db->escapeLitereal($postVariables[$key]);
-            }
-        }
         $data['id'] = "nextval('kort.fix_id')";
         $data['create_date'] = "now()";
 
-        $this->db->doInsertQuery($data, $this->fixTable);
+        $this->postToDb($data);
     }
 }

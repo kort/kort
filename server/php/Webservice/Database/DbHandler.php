@@ -1,7 +1,7 @@
 <?php
 namespace Webservice\Database;
 
-abstract class DbHandler
+class DbHandler
 {
     protected $db;
 
@@ -12,5 +12,24 @@ abstract class DbHandler
         } else {
             $this->db = $db;
         }
+    }
+
+    public function doSelect($fields, $table, $where, $orderBy, $limit)
+    {
+        if (!$limit || $limit > 500) {
+            $limit = 500;
+        }
+        $result = $this->db->doSelectQuery($fields, $table, $where, $orderBy, $limit);
+        return json_encode($result);
+    }
+
+    public function doInsert($fields, $table, $data)
+    {
+        foreach ($fields as $key) {
+            if (array_key_exists($key, $data)) {
+                $data[$key] = $this->db->escapeLitereal($data[$key]);
+            }
+        }
+        $this->db->doInsertQuery($data, $table);
     }
 }

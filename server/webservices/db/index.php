@@ -10,29 +10,25 @@ Kort\ClassLoader::registerAutoLoader();
 $app = new \Slim\Slim();
 $res = $app->response();
 
-$bugHandler = new \Webservice\Bug\BugHandler();
-$fixHandler = new \Webservice\Fix\FixHandler();
+$dbHandler = new \Webservice\Database\DbHandler();
 
 // define REST resources
 $app->get(
-    '/position/:lat,:lng',
-    function ($lat, $lng) use ($bugHandler, $res) {
-        $limit = (isset($_GET['limit'])) ? $_GET['limit'] : 20;
-        $radius = (isset($_GET['radius'])) ? $_GET['radius'] : 5000;
+    '/:table(/:fields)',
+    function ($table, $fields=null) use ($dbHandler, $res) {
+        $fields = (isset($fields) ? explode(",", $fields) : null);
+        $where = (isset($_GET['where']) ? $_GET['where'] : null);
+        $orderBy = (isset($_GET['orderby']) ? $_GET['orderby'] : null);
+        $limit = (isset($_GET['limit']) ? $_GET['limit'] : null);
 
-        $res->write($bugHandler->getBugsByOwnPosition($lat, $lng, $limit, $radius));
+        $res->write($dbHandler->doSelect($fields, $table, $where, $orderBy, $limit));
     }
 );
-$app->get(
-    '/tracktypes',
-    function () use ($bugHandler, $res) {
-        $res->write($bugHandler->getTracktypes());
-    }
-);
+
 $app->post(
-    '/fix',
-    function () use ($fixHandler, $app) {
-        $fixHandler->insertFix($app->request()->post());
+    '/:table/:fields',
+    function ($table, $fields) use ($dbHandler, $app) {
+        $dbHandler->doInsert($fields, $table, $app->request()->post());
     }
 );
 
