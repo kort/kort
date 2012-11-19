@@ -3,7 +3,7 @@ namespace Webservice\Fix;
 
 use Webservice\Database\AbstractDbHandler;
 
-class FixHandler extends AbstractDbHandler
+class FixHandler extends DbHandler
 {
     protected $fixTable = 'kort.fix';
     protected $fixFields = array(

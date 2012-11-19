@@ -1,7 +1,7 @@
 <?php
 namespace Webservice\Database;
 
-abstract class AbstractDbHandler
+abstract class DbHandler
 {
     protected $db;
 
