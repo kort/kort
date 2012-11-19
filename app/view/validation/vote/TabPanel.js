@@ -3,7 +3,7 @@ Ext.define('Kort.view.validation.vote.TabPanel', {
 	alias: 'widget.votetabpanel',
     requires: [
         'Kort.view.validation.vote.Container',
-        'Kort.view.validation.vote.Map'
+        'Kort.view.LeafletMap'
     ],
     
 	config: {
@@ -26,7 +26,9 @@ Ext.define('Kort.view.validation.vote.TabPanel', {
             record: this.getRecord()
         };
         voteMap = {
-            xtype: 'votemap'
+            title: Ext.i18n.Bundle.message('vote.map.title'),
+            xtype: 'kortleafletmap',
+            cls: 'voteMap'
         };
         
         this.add([voteContainer, voteMap]);

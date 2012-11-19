@@ -64,6 +64,8 @@ pullrefresh.lastupdated=Zuletzt aktualisiert:
 
 # Highscore
 highscore.title=Highscore
+highscore.loadmask.message=Lade Highscore...
+highscore.emptytext=Highscore kann nicht geladen werden.
 
 # Profil
 profile.title=Profil
