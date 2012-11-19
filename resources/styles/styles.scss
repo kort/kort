@@ -201,12 +201,6 @@ $label-background-color: #46578D;
             .distance {
                 float: right;
                 font-size: 0.7em;
-                font-weight: bold;
-                background-color: $label-background-color;
-                padding: 0.4em 0.6em;
-                color: white;
-                border-radius: 1em;
-                text-shadow: rgba(0, 0, 0, 0.25) 0 0.08em 0;
             }
         }
     }
@@ -248,7 +242,7 @@ $label-background-color: #46578D;
 }
 
 /* -----------------------
-   Vote
+   Highscore
    ----------------------- */
 #highscoreContainer {
     .highscore-item {
@@ -259,9 +253,13 @@ $label-background-color: #46578D;
         }
         .username {
             float: left;
+            width: 7em;
+            overflow: hidden;
+            margin: 0 0.5em;
         }
         .koinCount {
-            float: left;
+            float: right;
+            font-size: 0.7em;
         }
     }
 }
@@ -324,12 +322,6 @@ $label-background-color: #46578D;
         }
         .koins-number {
             margin-left: 0.5em;
-            background-color: $label-background-color;
-            padding: 0.2em 0.5em;
-            font-weight: bold;
-            color: white;
-            border-radius: 1em;
-            text-shadow: rgba(0, 0, 0, 0.25) 0 0.08em 0;
         }
     }
     .badges {
@@ -378,4 +370,13 @@ $label-background-color: #46578D;
         margin: 0;
         padding: 0.6em 0.8em;
     }
+}
+
+.kort-label {
+    font-weight: bold;
+    background-color: $label-background-color;
+    padding: 0.4em 0.6em;
+    color: white;
+    border-radius: 1em;
+    text-shadow: rgba(0, 0, 0, 0.25) 0 0.08em 0;
 }

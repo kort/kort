@@ -64,7 +64,7 @@ Ext.define('Kort.view.profile.Container', {
                     '</div>',
                     '<div class="koins">',
                         '<span class="koins-introduction">' + Ext.i18n.Bundle.message('profile.content.koins.introduction') + '</span>',
-                        '<span class="koins-number">{koinCount}</span>',
+                        '<span class="kort-label koins-number">{koinCount}</span>',
                     '</div>',
                     // TODO small hack to recieve sencha list header styling
                     '<div class="profile-header x-list-normal">',
