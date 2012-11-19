@@ -28,6 +28,7 @@ Ext.define('Kort.view.validation.vote.ButtonContainer', {
             },
             {
                 cls: 'voteCancelButton',
+                iconCls: 'arrow_left',
                 text: Ext.i18n.Bundle.message('vote.container.button.cancel')
             }
         ]
