@@ -4,7 +4,8 @@ Ext.define('Kort.controller.Main', {
     config: {
         views: [
             'Main',
-            'NotificationMessageBox'
+            'NotificationMessageBox',
+            'LeafletMap'
         ],
         refs: {
             mainTabPanel: '#mainTabPanel',

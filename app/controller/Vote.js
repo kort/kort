@@ -6,13 +6,13 @@ Ext.define('Kort.controller.Vote', {
             'validation.NavigationView',
             'validation.vote.ButtonContainer',
             'validation.vote.Container',
-            'validation.vote.Map',
-            'validation.vote.TabPanel'
+            'validation.vote.TabPanel',
+            'LeafletMap'
         ],
         refs: {
             validationNavigationView: '#validationNavigationView',
             detailTabPanel: '.votetabpanel',
-            voteMap: '.votetabpanel .votemap',
+            voteMap: '.votetabpanel .kortleafletmap[cls=voteMap]',
             voteAcceptButton: '.votetabpanel .votecontainer .button[cls=voteConfirmButton]',
             voteDeclineButton: '.votetabpanel .votecontainer .button[cls=voteDeclineButton]',
             voteCancelButton: '.votetabpanel .votecontainer .button[cls=voteCancelButton]'

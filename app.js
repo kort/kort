@@ -35,6 +35,7 @@ Ext.application({
 		'Badge',
 		'Bug',
         'Fix',
+		'HighscoreEntry',
         'SelectAnswer',
         'User',
         'Validation',
@@ -43,6 +44,7 @@ Ext.application({
 
     stores: [
 		'Bugs',
+		'Highscore',
 		'SelectAnswers',
         'User',
         'Validations'
