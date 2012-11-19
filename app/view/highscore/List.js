@@ -13,9 +13,9 @@ Ext.define('Kort.view.highscore.List', {
         disableSelection: true,
         
         itemTpl:    '<div class="highscore-item">' +
-                        '<div class="ranking">{ranking}</div>' +
+                        '<div class="ranking">#{ranking}</div>' +
                         '<div class="username">{username}</div>' +
-                        '<div class="koinCount">{koinCount}</div>' +
+                        '<div class="kort-label koinCount">{koinCount} ' + Ext.i18n.Bundle.message('highscore.koins') + '</div>' +
                     '</div>',
         
         plugins: [
