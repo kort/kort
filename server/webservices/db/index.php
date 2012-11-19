@@ -15,7 +15,7 @@ $dbHandler = new \Webservice\Database\DbHandler();
 // define REST resources
 $app->get(
     '/:table(/:fields)',
-    function ($table, $fields=null) use ($dbHandler, $res) {
+    function ($table, $fields = null) use ($dbHandler, $res) {
         $fields = (isset($fields) ? explode(",", $fields) : null);
         $where = (isset($_GET['where']) ? $_GET['where'] : null);
         $orderBy = (isset($_GET['orderby']) ? $_GET['orderby'] : null);
