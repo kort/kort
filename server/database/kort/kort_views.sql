@@ -21,7 +21,7 @@ select a.answer_id tracktype_id,
        a.title,
        a.sorting
 from   kort.answer a
-where  a.type = 'tracktype';
+where  a.type = 'missing_track_type';
 
 create or replace view kort.language as
 select a.answer_id language_id,
@@ -29,7 +29,7 @@ select a.answer_id language_id,
        a.title,
        a.sorting
 from   kort.answer a
-where  a.type = 'language';
+where  a.type = 'language_unknown';
 
 create or replace view kort.relationtype as
 select a.answer_id relationtype_id,
@@ -46,3 +46,11 @@ select a.answer_id religion_id,
        a.sorting
 from   kort.answer a
 where  a.type = 'religion';
+
+create or replace view kort.select_answer as
+select a.answer_id id,
+       a.type,
+       a.value,
+       a.title,
+       a.sorting
+from   kort.answer a;
