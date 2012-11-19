@@ -7,6 +7,7 @@ Ext.define('Kort.util.Config', {
 		leafletMap: {
             zoom: 15,
 			tileLayerUrl: 'http://{s}.tile.cloudmade.com/{apikey}/{styleId}/256/{z}/{x}/{y}.png',
+            tileLayerAttribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
 			apiKey: '729242682cb24de8aa825c8aed993cba',
             styleId: 997
 		},

@@ -1,6 +1,9 @@
 Ext.define('Kort.view.bugmap.fix.TabPanel', {
 	extend: 'Ext.tab.Panel',
 	alias: 'widget.fixtabpanel',
+    requires: [
+        'Kort.view.LeafletMap'
+    ],
     
 	config: {
         title: '',
@@ -22,7 +25,9 @@ Ext.define('Kort.view.bugmap.fix.TabPanel', {
             record: this.getRecord()
         };
         fixMap = {
-            xtype: 'fixmap'
+            title: Ext.i18n.Bundle.message('fix.map.title'),
+            xtype: 'kortleafletmap',
+            cls: 'fixMap'
         };
         
         this.add([fixForm, fixMap]);

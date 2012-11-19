@@ -242,14 +242,26 @@ $label-background-color: #46578D;
 .voteContainer {
     padding: $panel-padding;
     
-    .voteButtonContainer {
-        margin-top: 0.5em;
+    .voteButtonContainer .x-button {
+        margin-top: 0.2em;
+    }
+}
+
+/* -----------------------
+   Vote
+   ----------------------- */
+#highscoreContainer {
+    .highscore-item {
+        clear: both;
         
-        .voteConfirmButton {
-            margin-right: 0.5em;
+        .ranking {
+            float: left;
         }
-        .voteCancelButton {
-            margin-left: 0.5em;
+        .username {
+            float: left;
+        }
+        .koinCount {
+            float: left;
         }
     }
 }

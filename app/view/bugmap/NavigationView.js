@@ -2,7 +2,7 @@ Ext.define('Kort.view.bugmap.NavigationView', {
 	extend: 'Ext.navigation.View',
 	alias: 'widget.bugmapnavigationview',
     requires: [
-        'Ext.ux.LeafletMap',
+        'Kort.view.LeafletMap',
         'Ext.Button'
     ],
 	
@@ -28,18 +28,9 @@ Ext.define('Kort.view.bugmap.NavigationView', {
 			{
                 title: Ext.i18n.Bundle.message('bugmap.title'),
                 
-                xtype: 'leafletmap',
+                xtype: 'kortleafletmap',
                 id: 'bugmap',
-                useCurrentLocation: true,
-                autoMapCenter: false,
-                mapOptions: {
-                    zoom: Kort.util.Config.getLeafletMap().zoom
-                },
-                tileLayerUrl: Kort.util.Config.getLeafletMap().tileLayerUrl,
-                tileLayerOptions: {
-                    apikey: Kort.util.Config.getLeafletMap().apiKey,
-                    styleId: Kort.util.Config.getLeafletMap().styleId
-                }
+                useCurrentLocation: true
 			}
 		]
 	}

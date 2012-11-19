@@ -32,6 +32,9 @@ $tabs-dark: #111;
 @include pictos-iconmask('list');
 @include pictos-iconmask('check_black2');
 @include pictos-iconmask('nuclear');
+@include pictos-iconmask('add_black');
+@include pictos-iconmask('minus_black1');
+@include pictos-iconmask('help');
 
 .x-toolbar-light .x-title {
     color: #fff;

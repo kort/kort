@@ -5,16 +5,16 @@ Ext.define('Kort.controller.Fix', {
         views: [
             'bugmap.NavigationView',
             'bugmap.fix.TabPanel',
-            'bugmap.fix.Map',
             'bugmap.fix.Form',
-			'SubmittedPopupPanel'
+			'SubmittedPopupPanel',
+            'LeafletMap'
         ],
         refs: {
             bugmapNavigationView: '#bugmapNavigationView',
             detailTabPanel: '.fixtabpanel',
             fixFormSubmitButton: '.fixtabpanel .formpanel .button[cls=fixSubmitButton]',
             fixField: '.fixtabpanel .formpanel .field',
-            fixmap: '.fixtabpanel .fixmap'
+            fixmap: '.fixtabpanel .kortleafletmap[cls=fixMap]'
         },
         control: {
             fixFormSubmitButton: {
