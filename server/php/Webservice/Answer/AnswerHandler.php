@@ -6,11 +6,18 @@ use Webservice\RelayHandler;
 class AnswerHandler extends RelayHandler
 {
     protected $table = 'kort.select_answer';
-    protected $fields = array('id', 'type_key', 'title', 'sorting');
+    protected $fields = array('id', 'value', 'title', 'sorting');
 
-    public function getAnswers()
+    public function getAllAnswers()
     {
         $this->orderBy = 'sorting';
+        return $this->getFromDb();
+    }
+
+    public function getSpecificAnswers($type)
+    {
+        $this->orderBy = 'sorting';
+        $this->where = "type = '" . $type ."'";
         return $this->getFromDb();
     }
 }
