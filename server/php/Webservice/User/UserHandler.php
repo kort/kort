@@ -3,7 +3,7 @@ namespace Webservice\User;
 
 use Webservice\Database\AbstractDbHandler;
 
-class UserHandler extends AbstractDbHandler
+class UserHandler extends DbHandler
 {
     protected $userData = array();
 
