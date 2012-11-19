@@ -1,18 +1,42 @@
 <?php
 namespace Webservice;
 
-abstract class RelayHandler
+class RelayHandler
 {
-    protected $app;
+    protected $wsConfig;
+    protected $table;
+    protected $fields = array();
+    protected $where;
+    protected $orderby;
+    protected $limit;
 
-    public function __construct($app)
+    public function __construct()
     {
-        $this->app = $app;
+        $this->wsConfig = new DbWebserviceConfig();
     }
 
-    abstract public function relayHandler();
+    protected function getFromDb()
+    {
+        $path  = "/" . $this->table;
+        $path .= (count($this->fields) > 0) ? "/" . implode(",", $this->fields) : "";
+        $path .= "?";
 
-    public function relayRequest($method, $url, $data = false)
+        $path .= ($this->where) ? "where=" . urlencode($this->where) . "&" : "";
+        $path .= ($this->orderBy) ? "orderby=" . urlencode($this->orderBy) . "&" : "";
+        $path .= ($this->limit) ? "limit=" . $this->limit . "&" : "";
+
+        return $this->request("GET", $this->wsConfig->url . $path);
+    }
+
+    protected function postToDb($data)
+    {
+        $path  = "/" . $this->table;
+        $path .= "/" . implode(",", $this->fields);
+
+        return $this->request("POST", $this->wsConfig->url . $path, $data);
+    }
+
+    private function request($method, $url, $data = false)
     {
         $curl = curl_init();
 
