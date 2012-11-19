@@ -7,25 +7,23 @@ Ext.define('Kort.view.validation.vote.ButtonContainer', {
 	
 	config: {
         cls: 'voteButtonContainer',
-        flex: 1,
-        layout: {
-            type: 'hbox',
-            align: 'top'
-        },
+        layout: 'vbox',
         defaults: {
             xtype: 'button',
-            flex: 1
+            iconMask: true
         },
         
         items: [
             {
                 ui: 'confirm',
                 cls: 'voteConfirmButton',
+                iconCls: 'add_black',
                 text: Ext.i18n.Bundle.message('vote.container.button.accept')
             },
             {
                 ui: 'decline',
                 cls: 'voteDeclineButton',
+                iconCls: 'minus_black1',
                 text: Ext.i18n.Bundle.message('vote.container.button.decline')
             },
             {
