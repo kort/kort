@@ -15,7 +15,14 @@ $answerHandler = new \Webservice\Answer\AnswerHandler();
 $app->get(
     '/',
     function () use ($answerHandler, $res) {
-        $res->write($answerHandler->getAnswers());
+        $res->write($answerHandler->getAllAnswers());
+    }
+);
+
+$app->get(
+    '/:type',
+    function ($type) use ($answerHandler, $res) {
+        $res->write($answerHandler->getSpecificAnswers($type));
     }
 );
 
