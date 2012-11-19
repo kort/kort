@@ -23,6 +23,9 @@ Ext.define('Kort.view.Main', {
             },
             {
                 xtype: 'profilecontainer'
+            },
+            {
+                xtype: 'aboutcontainer'
             }
         ]
     }

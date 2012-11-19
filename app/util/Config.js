@@ -2,6 +2,8 @@ Ext.define('Kort.util.Config', {
 	singleton: true,
 
 	config: {
+        version: '0.5.0',
+        
 		leafletMap: {
             zoom: 15,
 			tileLayerUrl: 'http://{s}.tile.cloudmade.com/{apikey}/{styleId}/256/{z}/{x}/{y}.png',
