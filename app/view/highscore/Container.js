@@ -2,7 +2,8 @@ Ext.define('Kort.view.highscore.Container', {
 	extend: 'Ext.Container',
 	alias: 'widget.highscorecontainer',
     requires: [
-        'Ext.TitleBar'
+        'Ext.TitleBar',
+        'Kort.view.highscore.List'
     ],
 	
 	config: {
@@ -19,7 +20,7 @@ Ext.define('Kort.view.highscore.Container', {
 				title: Ext.i18n.Bundle.message('highscore.title')
 			},
 			{
-                html: 'Hier kommt die Highscore'
+                xtype: 'highscorelist'
 			}
 		]
 	}
