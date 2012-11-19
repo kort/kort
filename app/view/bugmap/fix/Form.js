@@ -70,7 +70,7 @@ Ext.define('Kort.view.bugmap.fix.Form', {
                 name: 'fixfield',
                 cls: 'fixfield'
             },
-            selectAnswersStore
+            selectAnswersStore;
         
         if(bug.get('view_type') === 'select') {
             selectAnswersStore = Ext.getStore('SelectAnswers');
