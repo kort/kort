@@ -1,3 +1,4 @@
+/*jshint maxcomplexity:10 */
 Ext.define('Kort.plugin.PullRefresh', {
     extend: 'Ext.plugin.PullRefresh',
     alias: 'plugin.kortpullrefresh',
@@ -39,7 +40,6 @@ Ext.define('Kort.plugin.PullRefresh', {
 	},
     
     initScrollable: function() {
-        /* jshint maxcomplexity:10 */
         var me = this,
             list = me.getList(),
             store = list.getStore(),
@@ -96,7 +96,6 @@ Ext.define('Kort.plugin.PullRefresh', {
     },
     
     onBounceTop: function(y) {
-        /* jshint maxcomplexity:10 */
         var me = this,
             pullHeight = me.pullHeight,
             list = me.getList(),
