@@ -3,7 +3,8 @@ Ext.define('Kort.controller.Highscore', {
     
     config: {
         views: [
-            'highscore.Container'
+            'highscore.Container',
+            'highscore.List'
         ],
         refs: {
             mainTabPanel: '#mainTabPanel',
@@ -15,6 +16,7 @@ Ext.define('Kort.controller.Highscore', {
     },
     
     showHighscore: function() {
+        Ext.getStore('Highscore').load();
         this.getMainTabPanel().setActiveItem(this.getHighscoreContainer());
     }
 });
