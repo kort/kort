@@ -46,6 +46,7 @@ Ext.define('Kort.view.bugmap.fix.Form', {
         
         fixFormPanel = {
             xtype: 'formpanel',
+            cls: 'fixFormPanel',
             scrollable: false,
             flex: 1,
             items: [
@@ -69,15 +70,17 @@ Ext.define('Kort.view.bugmap.fix.Form', {
                 name: 'fixfield',
                 cls: 'fixfield'
             },
-            tracktypesStore;
+            selectAnswersStore
         
         if(bug.get('view_type') === 'select') {
-            tracktypesStore = Ext.getStore('Tracktypes');
+            selectAnswersStore = Ext.getStore('SelectAnswers');
+            selectAnswersStore.filter('type', bug.get('type'));
+            
             fieldConfig = Ext.merge(fieldConfig, {
-                store: tracktypesStore,
+                store: selectAnswersStore,
                 // always use Ext.picker.Picker
                 usePicker: true,
-                valueField: 'type_key',
+                valueField: 'value',
                 displayField: 'title',
                 defaultPhonePickerConfig: {
                     cancelButton: Ext.i18n.Bundle.message('picker.cancel'),
