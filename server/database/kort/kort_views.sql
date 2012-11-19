@@ -20,6 +20,7 @@ select a.answer_id tracktype_id,
        a.value type_key,
        a.title,
        a.sorting
+from   kort.answer a
 where  a.type = 'tracktype';
 
 create or replace view kort.language as
@@ -27,6 +28,7 @@ select a.answer_id language_id,
        a.value language_key,
        a.title,
        a.sorting
+from   kort.answer a
 where  a.type = 'language';
 
 create or replace view kort.relationtype as
@@ -34,4 +36,13 @@ select a.answer_id relationtype_id,
        a.value type_key,
        a.title,
        a.sorting
+from   kort.answer a
 where  a.type = 'relationtype';
+
+create or replace view kort.religion as
+select a.answer_id religion_id,
+       a.value type_key,
+       a.title,
+       a.sorting
+from   kort.answer a
+where  a.type = 'religion';
