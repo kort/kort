@@ -4,7 +4,7 @@ namespace Webservice\Bug;
 use Webservice\Database\AbstractDbHandler;
 use Helper\PostGisSqlHelper;
 
-class BugHandler extends AbstractDbHandler
+class BugHandler extends DbHandler
 {
     protected $bugTable = 'kort.errors';
     protected $bugFields = array(
