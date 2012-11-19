@@ -35,7 +35,7 @@ create table kort.user_badge (
 
 create table kort.answer (
     answer_id integer primary key,
-    type string,
+    type varchar(100),
     value varchar(100) unique not null,
     title varchar(100) not null,
     sorting integer not null
