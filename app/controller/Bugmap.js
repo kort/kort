@@ -24,8 +24,8 @@ Ext.define('Kort.controller.Bugmap', {
                 tap: 'onRefreshBugsButtonTap'
             },
             bugmapNavigationView: {
-                push: 'onBugmapNavigationViewPush',
-                pop: 'onBugmapNavigationViewPop'
+                detailpush: 'onBugmapNavigationViewDetailPush',
+                back: 'onBugmapNavigationViewBack'
             }
         },
 
@@ -45,11 +45,11 @@ Ext.define('Kort.controller.Bugmap', {
         this.getMainTabPanel().setActiveItem(this.getBugmapNavigationView());
     },
 
-    onBugmapNavigationViewPush: function(cmp, view, opts) {
-        //this.getRefreshBugsButton().hide();
+    onBugmapNavigationViewDetailPush: function(cmp, view, opts) {
+        this.getRefreshBugsButton().hide();
     },
-    onBugmapNavigationViewPop: function(cmp, view, opts) {
-        //this.getRefreshBugsButton().show();
+    onBugmapNavigationViewBack: function(cmp, view, opts) {
+        this.getRefreshBugsButton().show();
     },
 
     onMapRender: function(cmp, map, tileLayer) {
@@ -74,6 +74,7 @@ Ext.define('Kort.controller.Bugmap', {
     },
 
     onRefreshBugsButtonTap: function() {
+        this.getRefreshBugsButton().disable();
         this.refreshBugMarkers();
     },
 
@@ -95,6 +96,7 @@ Ext.define('Kort.controller.Bugmap', {
         // Load bugs store
 		bugsStore.load(function(records, operation, success) {
             me.syncProblemMarkers(records);
+            me.getRefreshBugsButton().enable();
         });
     },
 
@@ -199,11 +201,15 @@ Ext.define('Kort.controller.Bugmap', {
     },
 
     showFix: function(bug) {
-        var fixTabPanel = Ext.create('Kort.view.bugmap.fix.TabPanel', {
+        var bugmapNavigationView = this.getBugmapNavigationView(),
+            fixTabPanel;
+
+        fixTabPanel = Ext.create('Kort.view.bugmap.fix.TabPanel', {
             record: bug,
             title: bug.get('title')
         });
-        this.getBugmapNavigationView().push(fixTabPanel);
+        bugmapNavigationView.push(fixTabPanel);
+        bugmapNavigationView.fireEvent('detailpush', bugmapNavigationView);
     },
 
     showLoadMask: function() {
@@ -242,7 +248,7 @@ Ext.define('Kort.controller.Bugmap', {
                         '<div class="content">',
                             '<p>',
                                 Ext.i18n.Bundle.message('bugmap.messagebox.koins.earn'),
-                                ' {koinsToWin} ',
+                                ' <span class="important">{koinCount}</span> ',
                                 Ext.i18n.Bundle.message('bugmap.messagebox.koins.name'),
                             '</p>',
                         '</div>',
