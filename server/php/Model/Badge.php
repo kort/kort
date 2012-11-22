@@ -20,7 +20,7 @@ class Badge
     public static function getValueFn()
     {
         return function ($badge) {
-            return $badge->getName();
+            return array("name" => $badge->getName());
         };
     }
 }
