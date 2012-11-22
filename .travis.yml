@@ -33,9 +33,9 @@ before_script:
   - sudo pear channel-discover hamcrest.googlecode.com/svn/pear
   - sudo pear install --alldeps deepend/Mockery
   - export PATH="$PATH:$CI_HOME:/usr/local/heroku/bin"
+  - curl http://kort.rdmr.ch/webservices/update/git
 
 script: ant -f build_kort.xml build
 
 after_script:
-  - curl http://kort.rdmr.ch/webservices/update/git
   - bash $CI_HOME/server/heroku/heroku.sh
