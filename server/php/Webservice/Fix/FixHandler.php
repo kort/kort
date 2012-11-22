@@ -23,8 +23,9 @@ class FixHandler extends DbProxyHandler
         $this->getDbProxy()->postToDb($data);
 
         $koins = 100;
-        $badge = new Badge("bla_badge");
-        $reward = new Reward($koins, array($badge));
+        $firstBadge = new Badge("highscore_place_1");
+        $voteBadge = new Badge("vote_count_10");
+        $reward = new Reward($koins, array($firstBadge, $voteBadge));
         return $reward->toJson();
     }
 }
