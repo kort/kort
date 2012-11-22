@@ -21,6 +21,12 @@ $app->get(
         $res->write($userHandler->getUser());
     }
 );
+$app->get(
+    '/badges/:id',
+    function ($id) use ($userHandler, $res) {
+        $res->write($userHandler->getUserBadges($id));
+    }
+);
 
 $app->post(
     '/',
