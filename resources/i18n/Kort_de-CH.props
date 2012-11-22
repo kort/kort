@@ -7,7 +7,8 @@ tab.about=Über kort
 button.back=Zurück
 
 # Submitted Popup
-submitted.message=Vielen Dank!
+submitted.message.1=Du hast dir
+submitted.message.2=koins verdient!
 
 # Login
 login.title=Login
@@ -19,7 +20,7 @@ login.loadmask.message=Login...
 # Firststeps
 firststeps.introduction=Willkommen bei kort! Wähle einen Benutzernamen:
 firststeps.form.username.placeholder=Benutzername
-firststeps.form.button.submit=Spielen!
+firststeps.form.button.submit=Mission starten!
 firststeps.alert.username.empty.title=Benutzernamen eingeben
 firststeps.alert.username.empty.message=Bitte gib einen Benutzernamen ein.
 firststeps.alert.username.specialchars.title=Sonderzeichen gefunden
@@ -28,6 +29,8 @@ firststeps.alert.username.specialchars.message=Benutze bitte nur Buchstaben und 
 # Bugmap
 bugmap.title=Aufträge in deiner Nähe
 bugmap.loadmask.message=Lade Auträge...
+bugmap.messagebox.koins.earn=Verdiene dir
+bugmap.messagebox.koins.name=koins
 
 ## Fix
 fix.form.title=Auftrag
@@ -40,6 +43,10 @@ fix.alert.fixfield.empty.title=Felder ausfüllen
 fix.alert.fixfield.empty.message=Bitte alle Felder ausfüllen.
 fix.alert.submit.failure.title=Fehler beim Senden
 fix.alert.submit.failure.message=Beim Übertragen des Formulars ist etwas schief gelaufen. Bitte versuche es später noch einmal.
+fix.alert.reward.title=Du wurdest stärker!
+fix.alert.reward.koins.1=Du hast
+fix.alert.reward.koins.2=koins gewonnen.
+fix.alert.reward.badges.title=Gewonnene Badges
 
 # Validation
 validation.title=Validieren
