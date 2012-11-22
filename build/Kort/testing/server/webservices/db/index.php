@@ -26,15 +26,9 @@ $app->get(
 );
 
 $app->post(
-<<<<<<< HEAD
-    '/fix',
-    function () use ($fixHandler, $app) {
-        $fixHandler->insertFix($app->request()->post());
-=======
     '/:table/:fields',
     function ($table, $fields) use ($dbHandler, $app) {
         $dbHandler->doInsert($fields, $table, $app->request()->post());
->>>>>>> Updated testing build
     }
 );
 

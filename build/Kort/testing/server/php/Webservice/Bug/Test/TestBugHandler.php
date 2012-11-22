@@ -14,8 +14,9 @@ class TestBugHandler extends AbstractKortUnitTestCase
 
     public function setUp()
     {
-        $this->dbConn = M::mock('PsqlConnection');
-        $this->handler = new BugHandler($this->dbConn);
+        $this->mockProxy = M::mock('DbProxy');
+        $this->handler = new BugHandler();
+        $this->handler->setDbProxy($this->mockProxy);
     }
 
     public function tearDown()
@@ -30,11 +31,9 @@ class TestBugHandler extends AbstractKortUnitTestCase
 
     public function testGetBugsByOwnPosition()
     {
-        $this->dbConn
-                ->shouldReceive('doSelectQuery')
-                ->once()
-                ->with(typeOf('array'), typeOf('string'), typeOf('string'), '/8,47/', 50)
-                ->andReturn(array("test" => "value"));
-        $this->assertEqual("{\"test\":\"value\"}", $this->handler->getBugsByOwnPosition(47, 8, 50, 5000));
+        $this->mockProxy->shouldReceive('setOrderBy')/*->with('/4000/')*/;
+        $this->mockProxy->shouldReceive('setLimit')->with(50);
+        $this->mockProxy->shouldReceive('getFromDb')->andReturn("{\"test\":\"value\"}");
+        $this->assertEqual("{\"test\":\"value\"}", $this->handler->getBugsByOwnPosition(47, 8, 50, 4000));
     }
 }
