@@ -4,6 +4,7 @@ Ext.define('Kort.view.NotificationMessageBox', {
 
     config: {
         zIndex: Kort.util.Config.getZIndex().overlayOverlayPanel,
-        hideOnMaskTap: true
+        hideOnMaskTap: true,
+        cls: 'notificationMessageBox'
     }
 });
