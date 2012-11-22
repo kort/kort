@@ -8,18 +8,17 @@ Kort\ClassLoader::registerAutoLoader();
 
 // create Slim app
 $app = new \Slim\Slim();
-$res = $app->response();
 
 $bugHandler = new \Webservice\Bug\BugHandler();
 $fixHandler = new \Webservice\Fix\FixHandler();
 
 $app->get(
     '/position/:lat,:lng',
-    function ($lat, $lng) use ($bugHandler, $res) {
-        $limit = (isset($_GET['limit'])) ? $_GET['limit'] : 20;
-        $radius = (isset($_GET['radius'])) ? $_GET['radius'] : 5000;
+    function ($lat, $lng) use ($bugHandler, $app) {
+        $limit = $app->request()->params('limit');
+        $radius = $app->request()->params('radius');
 
-        $res->write($bugHandler->getBugsByOwnPosition($lat, $lng, $limit, $radius));
+        $app->response()->write($bugHandler->getBugsByOwnPosition($lat, $lng, $limit, $radius));
     }
 );
 

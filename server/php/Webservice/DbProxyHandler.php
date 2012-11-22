@@ -16,4 +16,10 @@ abstract class DbProxyHandler
     {
         return $this->dbProxy;
     }
+
+    //used for unit testing
+    public function setDbProxy($proxy)
+    {
+        $this->dbProxy = $proxy;
+    }
 }
