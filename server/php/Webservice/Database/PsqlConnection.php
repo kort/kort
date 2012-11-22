@@ -1,19 +1,49 @@
 <?php
 namespace Webservice\Database;
 
+use Helper\PgHelper;
+
 class PsqlConnection
 {
-    protected $dbConn = null;
+    protected $db = null;
 
-    public function __construct($dbConfig)
+    public function __construct($dbConfig, $db = null)
     {
-        $conn_string = $this->createConnectionString($dbConfig);
-        $this->createDbConnection($conn_string);
+        if (!empty($db)) {
+            $this->db = $db;
+        } else {
+            $conn_string = $this->createConnectionString($dbConfig);
+            $this->db = new PgHelper($conn_string);
+        }
     }
 
     public function __destruct()
     {
-        $this->close();
+        $this->db->close();
+    }
+
+    public function doSelectQuery($fieldsArr, $table, $where, $orderBy = '', $limit = null)
+    {
+        $selectSql = $this->generateSelectSql($fieldsArr, $table, $where, $orderBy, $limit);
+        $result =$this->db->query($selectSql);
+
+        return $result;
+    }
+
+    public function doInsertQuery($dataArr, $table)
+    {
+        $insertSql = $this->generateInsertSql(array_keys($dataArr), $table);
+        $this->db->prepare("insert-kort", $insertSql);
+        $result = $this->db->execute("insert-kort", array_values($dataArr));
+        return $result;
+    }
+
+    public function doUpdateQuery($dataArr, $table, $where)
+    {
+        $updateSql = $this->generateUpdateSql(array_keys($dataArr), $table, $where);
+        $this->db->prepare("update-kort", $updateSql);
+        $result = $this->db->execute("update-kort", array_values($dataArr));
+        return $result;
     }
 
     protected function createConnectionString($dbConfig)
@@ -26,66 +56,72 @@ class PsqlConnection
         return $conn_string;
     }
 
-    // creates database connection
-    protected function createDbConnection($conn_string)
+    protected function generateInsertSql($fields, $table)
     {
-        $db = pg_connect($conn_string);
-        $this->dbConn = $db;
+        $numbers = range(1, count($fields));
+        $sql  = "INSERT INTO " . $table;
+        $sql .= " (" . implode(",", $fields) . ")";
+        $sql .= " VALUES (";
+        $sql .= implode(
+            ',',
+            array_map(
+                function ($number) {
+                    return "$". $number;
+                },
+                $numbers
+            )
+        );
+        $sql .=  ');';
+
+        return $sql;
     }
 
-    public function doSelectQuery($fieldsArr, $table, $condition, $orderBy = '', $limit = null)
+    protected function generateUpdateSql($fields, $table, $where)
     {
-        if (count($fieldsArr) == 0) {
-            $fields = "*";
+        $numbers = range(1, count($fields));
+        $sql = "UPDATE " . $table . " set ";
+        $sql .= implode(
+            ',',
+            array_map(
+                function (
+                    $field,
+                    $number
+                ) {
+                    return $field . " = $". $number;
+                },
+                $fields,
+                $numbers
+            )
+        );
+        if (!empty($where)) {
+            $sql .= " WHERE " . $where;
+        }
+        $sql .=  ';';
+
+        return $sql;
+    }
+
+    protected function generateSelectSql($fields, $table, $where, $orderBy, $limit)
+    {
+        $sql = "SELECT ";
+        if (count($fields) == 0) {
+            $sql .= "*";
         } else {
-            $fields = implode(',', $fieldsArr);
+            $sql .= implode(',', $fields);
         }
-        $queryStr = 'SELECT '.$fields.' FROM '.$table;
-
-        if ($condition != '') {
-            $queryStr .= ' WHERE '.$condition;
+        $sql .= " FROM " . $table;
+        if (!empty($where)) {
+            $sql .= " WHERE " . $where;
         }
-
-        if ($orderBy != '') {
-            $queryStr .= ' ORDER BY '.$orderBy;
+        if (!empty($orderBy)) {
+            $sql .= " ORDER BY " . $orderBy;
         }
-
-        if ($limit) {
-            $queryStr .= ' LIMIT '.$limit;
+        if (!empty($limit)) {
+            $sql .= " LIMIT " . $limit;
         }
 
-        $queryStr .= ';';
-        $result = pg_query($this->dbConn, $queryStr);
+        $sql .=  ';';
 
-        $resultArr = array();
-        while ($row = pg_fetch_assoc($result)) {
-            $resultArr[] = $row;
-        }
-        return $resultArr;
-    }
-
-    public function doInsertQuery($dataArr, $table)
-    {
-        $insertStr = 'INSERT INTO '.$table;
-        $insertStr .= ' (' . implode(',', array_keys($dataArr)) . ')';
-        $insertStr .= ' VALUES (' . implode(',', array_values($dataArr)) . ')';
-        $insertStr .= ';';
-
-        $result = pg_query($this->dbConn, $insertStr);
-
-        return $result;
-    }
-
-    public function escapeLitereal($value)
-    {
-        if ($value && !is_numeric($value)) {
-            return "'" . $value . "'";
-        }
-        return $value;
-    }
-
-    protected function close()
-    {
-        pg_close($this->dbConn);
+        return $sql;
     }
 }
