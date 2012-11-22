@@ -7,7 +7,6 @@ use Model\Reward;
 
 class FixHandler extends DbProxyHandler
 {
-    protected $dbProxy;
     protected $table = 'kort.fix';
     protected $fields = array(
         'id',
