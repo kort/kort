@@ -69074,6 +69074,10 @@ Ext.define('Kort.controller.Firststeps', {
             messageBox;
 
         if(usernameValue !== '') {
+<<<<<<< HEAD
+=======
+            console.log(usernameValue.search(/^[a-zA-Z0-9]+$/));
+>>>>>>> Updated testing build
             if(usernameValue.search(/^[a-zA-Z0-9]+$/) === -1) {
                 messageBox = Ext.create('Kort.view.NotificationMessageBox');
                 messageBox.alert(Ext.i18n.Bundle.message('firststeps.alert.username.specialchars.title'), Ext.i18n.Bundle.message('firststeps.alert.username.specialchars.message'), Ext.emptyFn);
@@ -69632,7 +69636,10 @@ Ext.define('Kort.plugin.PullRefresh', {
 	},
     
     initScrollable: function() {
+<<<<<<< HEAD
         /* jshint maxcomplexity:10 */
+=======
+>>>>>>> Updated testing build
         var me = this,
             list = me.getList(),
             store = list.getStore(),
@@ -69689,7 +69696,10 @@ Ext.define('Kort.plugin.PullRefresh', {
     },
     
     onBounceTop: function(y) {
+<<<<<<< HEAD
         /* jshint maxcomplexity:10 */
+=======
+>>>>>>> Updated testing build
         var me = this,
             pullHeight = me.pullHeight,
             list = me.getList(),
@@ -70492,13 +70502,13 @@ Ext.define('Kort.store.Bugs', {
 
 Ext.define('Kort.store.Tracktypes', {
     extend: 'Ext.data.Store',
-	
+
 	config: {
 		model: 'Kort.model.Tracktype',
-		
+
 		proxy: {
 			type: "ajax",
-            url : "./server/webservices/bug/tracktypes",
+            url : "./server/webservices/answer/missing_track_type",
             sorters: 'sorting',
             reader: {
                 type: "json"
