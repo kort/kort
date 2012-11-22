@@ -72,6 +72,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Kopf- und Fusszeile
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Seitenränder
+\usepackage[inner=2.2cm,outer=2.2cm,top=1.7cm,bottom=1.7cm,includeheadfoot]{geometry}
+
 % Kopf- und Fusszeile mit Linien
 \usepackage[automark,headsepline,footsepline]{scrpage2}
 
@@ -87,7 +90,7 @@
 \ihead{\footnotesize{\leftmark}}
 
 % Inhalt der Fusszeile
-\ifoot{\footnotesize{A Location-Based Crowdsourcing Game App with HTML5 and OpenStreetMap}}
+\ifoot{\footnotesize{Gamified Mobile App für die Verbesserung von OpenStreetMap}}
 \ofoot{\footnotesize{\thepage}}
 
 % MakeUppercase überschreiben, um Grosschreibung in Kopfzeile für Spezialseiten zu deaktivieren (Achtung böser Hack!)
