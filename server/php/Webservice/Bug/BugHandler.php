@@ -1,10 +1,10 @@
 <?php
 namespace Webservice\Bug;
 
-use Webservice\RelayHandler;
+use Webservice\DbProxyHandler;
 use Helper\PostGisSqlHelper;
 
-class BugHandler extends RelayHandler
+class BugHandler extends DbProxyHandler
 {
     protected $table = 'kort.errors';
     protected $fields = array(
@@ -24,10 +24,10 @@ class BugHandler extends RelayHandler
     public function getBugsByOwnPosition($lat, $lng, $limit, $radius)
     {
         //TODO: Use the radius and get a fast result
-        // $this->where = "ST_DWithin(geom," . PostGisSqlHelper::getLatLngGeom($lat, $lng) . "," . $radius . ")";
-        $this->orderBy = "geom <-> " . PostGisSqlHelper::getLatLngGeom($lat, $lng);
-        $this->limit = $limit;
+        // $this->dbProxy->setWhere("ST_DWithin(geom," . PostGisSqlHelper::getLatLngGeom($lat, $lng) . "," . $radius . ")");
+        $this->getDbProxy()->setOrderBy("geom <-> " . PostGisSqlHelper::getLatLngGeom($lat, $lng));
+        $this->getDbProxy()->setLimit($limit);
 
-        return $this->getFromDb();
+        return $this->getDbProxy()->getFromDb();
     }
 }

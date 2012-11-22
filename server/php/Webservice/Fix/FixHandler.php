@@ -1,10 +1,11 @@
 <?php
 namespace Webservice\Fix;
 
-use Webservice\RelayHandler;
+use Webservice\DbProxyHandler;
 
-class FixHandler extends RelayHandler
+class FixHandler extends DbProxyHandler
 {
+    protected $dbProxy;
     protected $table = 'kort.fix';
     protected $fields = array(
         'id',
@@ -18,6 +19,6 @@ class FixHandler extends RelayHandler
         $data['id'] = "nextval('kort.fix_id')";
         $data['create_date'] = "now()";
 
-        $this->postToDb($data);
+        $this->getDbProxy()->postToDb($data);
     }
 }
