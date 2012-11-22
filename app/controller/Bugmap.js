@@ -226,13 +226,25 @@ Ext.define('Kort.controller.Bugmap', {
 
         this.setMessageBoxTemplate(
             new Ext.Template(
-                '<div class="confirm-content">',
-                    '<div class="description">',
+                '<div class="messagebox-content">',
+                    '<div class="textpic">',
                         '<div class="image">',
                             '<img class="bugtype-image" src="./resources/images/marker_icons/{type}.png" />',
                         '</div>',
                         '<div class="content">',
                             '<p>{description}</p>',
+                        '</div>',
+                    '</div>',
+                    '<div class="textpic">',
+                        '<div class="image">',
+                            '<img class="koin-image" src="./resources/images/koins/koin_no_value.png" />',
+                        '</div>',
+                        '<div class="content">',
+                            '<p>',
+                                Ext.i18n.Bundle.message('bugmap.messagebox.koins.earn'),
+                                ' {koinsToWin} ',
+                                Ext.i18n.Bundle.message('bugmap.messagebox.koins.name'),
+                            '</p>',
                         '</div>',
                     '</div>',
                 '</div>'
