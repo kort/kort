@@ -1,21 +1,29 @@
 <?php
-namespace Webservice\Bug\Test;
+namespace Webservice\Answer\Test;
 
 use TestHelper\AbstractKortUnitTestCase;
-use Webservice\Bug\BugHandler;
+use Webservice\DbProxy;
+use Webservice\Answer\AnswerHandler;
 use \Mockery as M;
 
-class TestBugHandler extends AbstractKortUnitTestCase
+class TestAnswerHandler extends AbstractKortUnitTestCase
 {
     public function __construct()
     {
-        parent::__construct("kort - TestBugHandler");
+        parent::__construct("kort - TestAnswerHandler");
     }
 
     public function setUp()
     {
-        $this->mockProxy = M::mock('DbProxy');
-        $this->handler = new BugHandler();
+        $this->mockProxy = M::mock(
+            'DbProxy',
+            array(
+                "setLimit" => null,
+                "setOrderBy" => null,
+                "setWhere" => null
+            )
+        );
+        $this->handler = new AnswerHandler();
         $this->handler->setDbProxy($this->mockProxy);
     }
 
@@ -26,14 +34,18 @@ class TestBugHandler extends AbstractKortUnitTestCase
 
     public function testConstruct()
     {
-        $this->assertIsA($this->handler, "Webservice\\Bug\\BugHandler");
+        $this->assertIsA($this->handler, "Webservice\\Answer\\AnswerHandler");
     }
 
-    public function testGetBugsByOwnPosition()
+    public function testGetSpecificAnswers()
     {
-        $this->mockProxy->shouldReceive('setOrderBy')/*->with('/4000/')*/;
-        $this->mockProxy->shouldReceive('setLimit')->with(50);
         $this->mockProxy->shouldReceive('getFromDb')->andReturn("{\"test\":\"value\"}");
-        $this->assertEqual("{\"test\":\"value\"}", $this->handler->getBugsByOwnPosition(47, 8, 50, 4000));
+        $this->assertEqual("{\"test\":\"value\"}", $this->handler->getSpecificAnswers("some_type", 1));
+    }
+
+    public function testGetSpecificAnswersEmpty()
+    {
+        $this->mockProxy->shouldReceive('getFromDb')->andReturn("");
+        $this->assertEqual("", $this->handler->getSpecificAnswers("some_type", 1));
     }
 }
