@@ -1,6 +1,8 @@
 <?php
 namespace Webservice\Database;
 
+use Webservice\DbWebserviceConfig;
+
 class DbHandler
 {
     protected $db;
@@ -31,5 +33,11 @@ class DbHandler
             }
         }
         $this->db->doInsertQuery($data, $table);
+    }
+
+    public function checkAuth($apiKey)
+    {
+        $wsConfig = new DbWebserviceConfig();
+        return ($wsConfig->getApiKey() === $apiKey);
     }
 }
