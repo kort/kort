@@ -347,7 +347,6 @@ $label-background-color: #46578D;
 /* -----------------------
    Message Boxes
    ----------------------- */
-
 .bugMessageBox ,
 .notificationMessageBox {
     .x-msgbox-text {
@@ -365,7 +364,7 @@ $label-background-color: #46578D;
                     }
                     
                     .badges {
-                        $badge-image-size: 100px;
+                        $badge-image-size: 110px;
                         overflow: hidden;
 
                         .badge {
