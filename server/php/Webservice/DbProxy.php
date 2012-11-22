@@ -1,7 +1,6 @@
 <?php
 namespace Webservice;
 
-//DbProxy
 class DbProxy
 {
     protected $wsConfig;
