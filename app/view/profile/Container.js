@@ -70,18 +70,22 @@ Ext.define('Kort.view.profile.Container', {
                     '<div class="profile-header x-list-normal">',
                         '<div class="x-list-header">' + Ext.i18n.Bundle.message('profile.content.badges.header') + '</div>',
                     '</div>',
-                    '<div class="badges">',
-                        '<tpl for="badges">',
-                            '<div class="badge">',
-                                '<img src="./resources/images/badges/<tpl if="won">{name}<tpl else>locked</tpl>.png" />',
-                                '<p class="badge-title">{name}</p>',
-                            '</div>',
-                        '</tpl>',
-                    '</div>',
                 '</div>'
                 )
         };
         
-        this.add(profileContentComponent);
+        var badgesDataView = {
+            xtype: 'dataview',
+            id: 'profileBadgesDataView',
+            store: 'UserBadges',
+            inline: true,
+            itemTpl:    '<div class="badge">' +
+                            '<img src="./resources/images/badges/<tpl if="won">{name}<tpl else>locked</tpl>.png" />' +
+                            '<p class="badge-title">{name}</p>' +
+                        '</div>',
+            scrollable: false
+        }
+        
+        this.add([profileContentComponent, badgesDataView]);
     }
 });
