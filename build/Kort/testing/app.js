@@ -68610,7 +68610,7 @@ Ext.define('Kort.util.Config', {
 		leafletMap: {
             zoom: 15,
 			tileLayerUrl: 'http://{s}.tile.cloudmade.com/{apikey}/{styleId}/256/{z}/{x}/{y}.png',
-            tileLayerAttribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
+            tileLayerAttribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>',
 			apiKey: '729242682cb24de8aa825c8aed993cba',
             styleId: 997
 		},
@@ -68845,8 +68845,8 @@ Ext.define('Kort.controller.Bugmap', {
                 tap: 'onRefreshBugsButtonTap'
             },
             bugmapNavigationView: {
-                push: 'onBugmapNavigationViewPush',
-                pop: 'onBugmapNavigationViewPop'
+                detailpush: 'onBugmapNavigationViewDetailPush',
+                back: 'onBugmapNavigationViewBack'
             }
         },
 
@@ -68866,11 +68866,11 @@ Ext.define('Kort.controller.Bugmap', {
         this.getMainTabPanel().setActiveItem(this.getBugmapNavigationView());
     },
 
-    onBugmapNavigationViewPush: function(cmp, view, opts) {
-        //this.getRefreshBugsButton().hide();
+    onBugmapNavigationViewDetailPush: function(cmp, view, opts) {
+        this.getRefreshBugsButton().hide();
     },
-    onBugmapNavigationViewPop: function(cmp, view, opts) {
-        //this.getRefreshBugsButton().show();
+    onBugmapNavigationViewBack: function(cmp, view, opts) {
+        this.getRefreshBugsButton().show();
     },
 
     onMapRender: function(cmp, map, tileLayer) {
@@ -69020,14 +69020,19 @@ Ext.define('Kort.controller.Bugmap', {
     },
 
     showFix: function(bug) {
-        var fixTabPanel = Ext.create('Kort.view.bugmap.fix.TabPanel', {
+        var bugmapNavigationView = this.getBugmapNavigationView(),
+            fixTabPanel;
+
+        fixTabPanel = Ext.create('Kort.view.bugmap.fix.TabPanel', {
             record: bug,
             title: bug.get('title')
         });
-        this.getBugmapNavigationView().push(fixTabPanel);
+        bugmapNavigationView.push(fixTabPanel);
+        bugmapNavigationView.fireEvent('detailpush', bugmapNavigationView);
     },
 
     showLoadMask: function() {
+        this.getRefreshBugsButton().disable();
         this.getBugmapNavigationView().setMasked({
             xtype: 'loadmask',
             message: Ext.i18n.Bundle.message('bugmap.loadmask.message'),
@@ -69037,6 +69042,7 @@ Ext.define('Kort.controller.Bugmap', {
 
     hideLoadMask: function() {
         this.getBugmapNavigationView().setMasked(false);
+        this.getRefreshBugsButton().enable();
     },
 
     init: function() {
@@ -69047,13 +69053,25 @@ Ext.define('Kort.controller.Bugmap', {
 
         this.setMessageBoxTemplate(
             new Ext.Template(
-                '<div class="confirm-content">',
-                    '<div class="description">',
+                '<div class="messagebox-content">',
+                    '<div class="textpic">',
                         '<div class="image">',
                             '<img class="bugtype-image" src="./resources/images/marker_icons/{type}.png" />',
                         '</div>',
                         '<div class="content">',
                             '<p>{description}</p>',
+                        '</div>',
+                    '</div>',
+                    '<div class="textpic">',
+                        '<div class="image">',
+                            '<img class="koin-image" src="./resources/images/koins/koin_no_value.png" />',
+                        '</div>',
+                        '<div class="content">',
+                            '<p>',
+                                Ext.i18n.Bundle.message('bugmap.messagebox.koins.earn'),
+                                ' <span class="important">{koinCount}</span> ',
+                                Ext.i18n.Bundle.message('bugmap.messagebox.koins.name'),
+                            '</p>',
                         '</div>',
                     '</div>',
                 '</div>'
@@ -69291,39 +69309,52 @@ Ext.define('Kort.view.bugmap.fix.Form', {
     }
 });
 
-Ext.define('Kort.view.SubmittedPopupPanel', {
-	extend: 'Ext.Panel',
-	alias: 'widget.submittedpopuppanel',
-	
-	config: {
-        cls: 'submittedPopupPanel',
-		centered: true,
-        zIndex: Kort.util.Config.getZIndex().overlayLeafletMap,
-		showAnimation: {
-			type: 'pop',
-			duration: 150
-		},
-		hideAnimation: {
-			type: 'popOut',
-			duration: 150
-		},
-		
-		html:	'<div class="content">' +
-					'<p>' + Ext.i18n.Bundle.message('submitted.message') + '</p>' +
-				'</div>',
-		
-		listeners: {
-			show: function(panelComp, eOpts) {
-				// automatically hide panel after certain time
-				Ext.defer(function() {
-					this.hide();
-				}, 2000, this);
-			},
-            hide: function() {
-                this.destroy();
-            }
-		}
-	}
+Ext.define('Kort.view.NotificationMessageBox', {
+    extend: 'Ext.MessageBox',
+    xtype: 'notificationmessagebox',
+
+    config: {
+        zIndex: Kort.util.Config.getZIndex().overlayOverlayPanel,
+        hideOnMaskTap: true,
+        cls: 'notificationMessageBox'
+    }
+});
+
+Ext.define('Kort.view.RewardMessageBox', {
+    extend: 'Kort.view.NotificationMessageBox',
+    xtype: 'rewardmessagebox',
+
+    config: {
+        rewardTpl: new Ext.XTemplate(
+                '<div class="messagebox-content">',
+                    '<div class="textpic">',
+                        '<div class="image">',
+                            '<img class="koin-image" src="./resources/images/koins/koin_no_value.png" />',
+                        '</div>',
+                        '<div class="content">',
+                            '<p>' +
+                                Ext.i18n.Bundle.message('reward.alert.koins.1') +
+                                ' <span class="important">{koinCount}</span> ' +
+                                Ext.i18n.Bundle.message('reward.alert.koins.2') +
+                            '</p>',
+                        '</div>',
+                    '</div>',
+                    '<div class="text">',
+                        '<div class="content">',
+                            '<h1> ' + Ext.i18n.Bundle.message('reward.alert.badges.title') + ' </h1>',
+                            '<div class="badges">',
+                                '<tpl for="badges">',
+                                    '<div class="badge">',
+                                        '<img src="./resources/images/badges/{name}.png" />',
+                                    '</div>',
+                                '</tpl>',
+                            '</div>',
+                            '</p>',
+                        '</div>',
+                    '</div>',
+                '</div>'
+            )
+    }
 });
 
 Ext.define('Kort.controller.OsmMap', {
@@ -69403,8 +69434,8 @@ Ext.define('Kort.controller.Fix', {
             'bugmap.NavigationView',
             'bugmap.fix.TabPanel',
             'bugmap.fix.Form',
-			'SubmittedPopupPanel',
-            'LeafletMap'
+            'LeafletMap',
+            'RewardMessageBox'
         ],
         refs: {
             bugmapNavigationView: '#bugmapNavigationView',
@@ -69423,13 +69454,7 @@ Ext.define('Kort.controller.Fix', {
             fixmap: {
                 maprender: 'onMaprender'
             }
-        },
-
-        bugsStore: null
-    },
-
-    init: function() {
-        this.setBugsStore(Ext.getStore('Bugs'));
+        }
     },
 
     onFixFormSubmitButtonTap: function() {
@@ -69442,8 +69467,8 @@ Ext.define('Kort.controller.Fix', {
         if (fixFieldValue !== '') {
             fix = Ext.create('Kort.model.Fix', { error_id: detailTabPanel.getRecord().get('id'), message: fixFieldValue });
             fix.save({
-                success: function() {
-                    me.fixSuccessfulSubmittedHandler();
+                success: function(records, operation) {
+                    me.fixSuccessfulSubmittedHandler(operation.getResponse().responseText);
                 },
                 failure: function() {
                     var messageBox = Ext.create('Kort.view.NotificationMessageBox');
@@ -69463,20 +69488,27 @@ Ext.define('Kort.controller.Fix', {
         }
     },
 
-    fixSuccessfulSubmittedHandler: function() {
-        this.showSubmittedPopupPanel();
+    fixSuccessfulSubmittedHandler: function(responseText) {
+        var rewardConfig = JSON.parse(responseText),
+            reward = Ext.create('Kort.model.Reward', rewardConfig),
+            bugmapNavigationView = this.getBugmapNavigationView();
+        
+        this.reloadStores();
+        this.showRewardMessageBox(reward);
         // remove detail panel
-        this.getBugmapNavigationView().pop();
+        bugmapNavigationView.pop();
+        bugmapNavigationView.fireEvent('back', bugmapNavigationView);
     },
-
-    /**
-	 * Displays the confirmation popup
-	 * @private
-	 */
-	showSubmittedPopupPanel: function() {
-        var popupPanel = Ext.create('Kort.view.SubmittedPopupPanel');
-		Ext.Viewport.add(popupPanel);
-		popupPanel.show();
+    
+    reloadStores: function() {
+        Ext.getStore('User').load();
+    },
+    
+	showRewardMessageBox: function(reward) {
+        var messageBox = Ext.create('Kort.view.RewardMessageBox', {
+            record: reward
+        });
+        messageBox.alert(Ext.i18n.Bundle.message('reward.alert.title'), messageBox.getRewardTpl().apply(reward.data), Ext.emptyFn);
 	}
 });
 
@@ -70016,7 +70048,7 @@ Ext.define('Kort.view.profile.Container', {
                     '<div class="badges">',
                         '<tpl for="badges">',
                             '<div class="badge">',
-                                '<img src="./resources/images/badges/{name}<tpl if="won">-act</tpl>.png" />',
+                                '<img src="./resources/images/badges/<tpl if="won">{name}<tpl else>locked</tpl>.png" />',
                                 '<p class="badge-title">{name}</p>',
                             '</div>',
                         '</tpl>',
@@ -70059,16 +70091,6 @@ Ext.define('Kort.view.Main', {
                 xtype: 'aboutcontainer'
             }
         ]
-    }
-});
-
-Ext.define('Kort.view.NotificationMessageBox', {
-    extend: 'Ext.MessageBox',
-    xtype: 'notificationmessagebox',
-
-    config: {
-        zIndex: Kort.util.Config.getZIndex().overlayOverlayPanel,
-        hideOnMaskTap: true
     }
 });
 
@@ -70393,8 +70415,8 @@ Ext.define('Kort.controller.Vote', {
 
         vote = Ext.create('Kort.model.Vote', { validation_id: detailTabPanel.getRecord().get('id'), message: message });
         vote.save({
-            success: function() {
-                me.voteSuccessfulSubmittedHandler();
+            success: function(records, operation) {
+                me.voteSuccessfulSubmittedHandler(operation.getResponse().responseText);
             },
             failure: function() {
                 var messageBox = Ext.create('Kort.view.NotificationMessageBox');
@@ -70403,20 +70425,25 @@ Ext.define('Kort.controller.Vote', {
         });
     },
     
-    voteSuccessfulSubmittedHandler: function() {
-        this.showSubmittedPopupPanel();
+    voteSuccessfulSubmittedHandler: function(responseText) {
+        var rewardConfig = JSON.parse(responseText),
+            reward = Ext.create('Kort.model.Reward', rewardConfig);
+        
+        this.reloadStores();
+        this.showRewardMessageBox(reward);
         // remove detail panel
         this.getValidationNavigationView().pop();
     },
-
-    /**
-	 * Displays the confirmation popup
-	 * @private
-	 */
-	showSubmittedPopupPanel: function() {
-        var popupPanel = Ext.create('Kort.view.SubmittedPopupPanel');
-		Ext.Viewport.add(popupPanel);
-		popupPanel.show();
+    
+    reloadStores: function() {
+        Ext.getStore('User').load();
+    },
+    
+	showRewardMessageBox: function(reward) {
+        var messageBox = Ext.create('Kort.view.RewardMessageBox', {
+            record: reward
+        });
+        messageBox.alert(Ext.i18n.Bundle.message('reward.alert.title'), messageBox.getRewardTpl().apply(reward.data), Ext.emptyFn);
 	}
 });
 
@@ -70449,7 +70476,8 @@ Ext.define('Kort.model.Bug', {
             { name: 'latitude', type: 'string' },
             { name: 'longitude', type: 'string' },
             { name: 'view_type', type: 'string' },
-            { name: 'answer_placeholder', type: 'string' }
+            { name: 'answer_placeholder', type: 'string' },
+            { name: 'koinsToWin', type: 'int' }
         ]
     }
 });
@@ -70486,6 +70514,21 @@ Ext.define('Kort.model.HighscoreEntry', {
 			{ name: 'koinCount', type: 'int' },
             { name: 'ranking', type: 'int' }
         ]
+    }
+});
+
+Ext.define('Kort.model.Reward', {
+    extend: 'Ext.data.Model',
+    config: {
+		idProperty: 'id',
+		
+        fields: [
+			{ name: 'id', type: 'auto' },
+			{ name: 'koinCount', type: 'string' },
+            { name: 'badges', type: 'array' }
+        ],
+        
+        hasMany: { model: 'Badge', name: 'badges' }
     }
 });
 
@@ -70610,13 +70653,13 @@ Ext.define('Kort.store.Highscore', {
 
 Ext.define('Kort.store.SelectAnswers', {
     extend: 'Ext.data.Store',
-	
+
 	config: {
 		model: 'Kort.model.SelectAnswer',
-		
+
 		proxy: {
 			type: 'ajax',
-            url : './server/webservices/bug/selectanswers',
+            url : './server/webservices/answer',
             sorters: 'sorting',
             reader: {
                 type: 'json'
@@ -70764,6 +70807,7 @@ Ext.application({
 		'Bug',
         'Fix',
 		'HighscoreEntry',
+		'Reward',
         'SelectAnswer',
         'User',
         'Validation',

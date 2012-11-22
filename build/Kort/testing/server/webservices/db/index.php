@@ -8,27 +8,34 @@ Kort\ClassLoader::registerAutoLoader();
 
 
 $app = new \Slim\Slim();
-$res = $app->response();
 
 $dbHandler = new \Webservice\Database\DbHandler();
 
 // define REST resources
 $app->get(
     '/:table(/:fields)',
-    function ($table, $fields = null) use ($dbHandler, $res) {
-        $fields = (isset($fields) ? explode(",", $fields) : null);
-        $where = (isset($_GET['where']) ? $_GET['where'] : null);
-        $orderBy = (isset($_GET['orderby']) ? $_GET['orderby'] : null);
-        $limit = (isset($_GET['limit']) ? $_GET['limit'] : null);
+    function ($table, $fields = null) use ($dbHandler, $app) {
+         if (!$dbHandler->checkAuth($app->request()->params('key'))) {
+            $app->response()->status(403);
+        } else {
+            $fields = (isset($fields) ? explode(",", $fields) : null);
+            $where = $app->request()->params('where');
+            $orderBy = $app->request()->params('orderby');
+            $limit = $app->request()->params('limit');
 
-        $res->write($dbHandler->doSelect($fields, $table, $where, $orderBy, $limit));
+            $app->response()->write($dbHandler->doSelect($fields, $table, $where, $orderBy, $limit));
+        }
     }
 );
 
 $app->post(
     '/:table/:fields',
     function ($table, $fields) use ($dbHandler, $app) {
-        $dbHandler->doInsert($fields, $table, $app->request()->post());
+        if (!$dbHandler->checkAuth($app->request()->params('key'))) {
+            $app->response()->status(403);
+        } else {
+            $app->response()->write($dbHandler->doInsert($fields, $table, $app->request()->post()));
+        }
     }
 );
 
