@@ -53,8 +53,8 @@ Ext.define('Kort.controller.Vote', {
 
         vote = Ext.create('Kort.model.Vote', { validation_id: detailTabPanel.getRecord().get('id'), message: message });
         vote.save({
-            success: function() {
-                me.voteSuccessfulSubmittedHandler();
+            success: function(records, operation) {
+                me.voteSuccessfulSubmittedHandler(operation.getResponse().responseText);
             },
             failure: function() {
                 var messageBox = Ext.create('Kort.view.NotificationMessageBox');
@@ -63,19 +63,24 @@ Ext.define('Kort.controller.Vote', {
         });
     },
     
-    voteSuccessfulSubmittedHandler: function() {
-        this.showSubmittedPopupPanel();
+    voteSuccessfulSubmittedHandler: function(responseText) {
+        var rewardConfig = JSON.parse(responseText),
+            reward = Ext.create('Kort.model.Reward', rewardConfig);
+        
+        this.reloadStores();
+        this.showRewardMessageBox(reward);
         // remove detail panel
         this.getValidationNavigationView().pop();
     },
-
-    /**
-	 * Displays the confirmation popup
-	 * @private
-	 */
-	showSubmittedPopupPanel: function() {
-        var popupPanel = Ext.create('Kort.view.SubmittedPopupPanel');
-		Ext.Viewport.add(popupPanel);
-		popupPanel.show();
+    
+    reloadStores: function() {
+        Ext.getStore('User').load();
+    },
+    
+	showRewardMessageBox: function(reward) {
+        var messageBox = Ext.create('Kort.view.RewardMessageBox', {
+            record: reward
+        });
+        messageBox.alert(Ext.i18n.Bundle.message('reward.alert.title'), messageBox.getRewardTpl().apply(reward.data), Ext.emptyFn);
 	}
 });
