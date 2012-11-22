@@ -5,9 +5,9 @@ insert into kort.badge (badge_id, name, description, sorting) VALUES (3, 'highsc
 insert into kort.badge (badge_id, name, description, sorting) VALUES (4, 'fix_count_100', '100 Aufträge erledigt', 210);
 insert into kort.badge (badge_id, name, description, sorting) VALUES (5, 'fix_count_50', '50 Aufträge erledigt', 220);
 insert into kort.badge (badge_id, name, description, sorting) VALUES (6, 'fix_count_10', '10 Aufträge erledigt', 230);
-insert into kort.badge (badge_id, name, description, sorting) VALUES (7, 'verification_count_1000', '1000 Verifikationen getätigt', 310);
-insert into kort.badge (badge_id, name, description, sorting) VALUES (8, 'verification_count_100', '100 Verifikationen getätigt', 320);
-insert into kort.badge (badge_id, name, description, sorting) VALUES (9, 'verification_count_10', '10 Verifikationen getätigt', 330);
+insert into kort.badge (badge_id, name, description, sorting) VALUES (7, 'vote_count_1000', '1000 Validationen getätigt', 310);
+insert into kort.badge (badge_id, name, description, sorting) VALUES (8, 'vote_count_100', '100 Validationen getätigt', 320);
+insert into kort.badge (badge_id, name, description, sorting) VALUES (9, 'vote_count_10', '10 Validationen getätigt', 330);
 insert into kort.badge (badge_id, name, description, sorting) VALUES (10, 'diligent_fix_10_24', '10 Aufträge in 24h', 410);
 insert into kort.badge (badge_id, name, description, sorting) VALUES (11, 'diligent_verification_10_24', '10 Verifikationen in 24h', 420);
 insert into kort.badge (badge_id, name, description, sorting) VALUES (12, 'bugtype_motorway_ref', 'Einen Auftrag vom Typ Strassenbezeichner erledigt', 510);
