@@ -1,29 +1,24 @@
 <?php
 namespace Webservice\Fix;
 
-use Webservice\Database\AbstractDbHandler;
+use Webservice\DbProxyHandler;
 
-class FixHandler extends AbstractDbHandler
+class FixHandler extends DbProxyHandler
 {
-    protected $fixTable = 'kort.fix';
-    protected $fixFields = array(
+    protected $dbProxy;
+    protected $table = 'kort.fix';
+    protected $fields = array(
         'id',
         'create_date',
         'error_id',
         'message'
     );
 
-    public function insertFix($postVariables)
+    public function insertFix($data)
     {
-        $data = array();
-        foreach ($this->fixFields as $key) {
-            if (array_key_exists($key, $postVariables)) {
-                $data[$key] = $this->db->escapeLitereal($postVariables[$key]);
-            }
-        }
         $data['id'] = "nextval('kort.fix_id')";
         $data['create_date'] = "now()";
 
-        $this->db->doInsertQuery($data, $this->fixTable);
+        $this->getDbProxy()->postToDb($data);
     }
 }

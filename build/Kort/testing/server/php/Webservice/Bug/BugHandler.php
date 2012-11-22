@@ -1,13 +1,13 @@
 <?php
 namespace Webservice\Bug;
 
-use Webservice\Database\AbstractDbHandler;
+use Webservice\DbProxyHandler;
 use Helper\PostGisSqlHelper;
 
-class BugHandler extends AbstractDbHandler
+class BugHandler extends DbProxyHandler
 {
-    protected $bugTable = 'kort.errors';
-    protected $bugFields = array(
+    protected $table = 'kort.errors';
+    protected $fields = array(
         'id',
         'schema',
         'type',
@@ -24,21 +24,19 @@ class BugHandler extends AbstractDbHandler
     public function getBugsByOwnPosition($lat, $lng, $limit, $radius)
     {
         //TODO: Use the radius and get a fast result
+<<<<<<< HEAD
         // $where = "ST_DWithin(geom," . PostGisSqlHelper::getLatLngGeom($lat, $lng) . "," . $radius . ")";
         $where = "";
         $orderBy = "geom <-> " . PostGisSqlHelper::getLatLngGeom($lat, $lng);
         $result = $this->db->doSelectQuery($this->bugFields, $this->bugTable, $where, $orderBy, $limit);
         return json_encode($result);
     }
+=======
+        // $this->dbProxy->setWhere("ST_DWithin(geom," . PostGisSqlHelper::getLatLngGeom($lat, $lng) . "," . $radius . ")");
+        $this->getDbProxy()->setOrderBy("geom <-> " . PostGisSqlHelper::getLatLngGeom($lat, $lng));
+        $this->getDbProxy()->setLimit($limit);
+>>>>>>> Updated testing build
 
-    public function getTracktypes()
-    {
-        $fields = array('id', 'type_key', 'title', 'sorting');
-        $table = 'kort.tracktype';
-        $where = '';
-        $orderBy = 'sorting';
-        $limit = '';
-        $result = $this->db->doSelectQuery($fields, $table, $where, $orderBy, $limit);
-        return json_encode($result);
+        return $this->getDbProxy()->getFromDb();
     }
 }

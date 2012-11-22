@@ -1,21 +1,39 @@
 <?php
 namespace Webservice;
 
-class RelayHandler
+//DbProxy
+class DbProxy
 {
     protected $wsConfig;
     protected $table;
     protected $fields = array();
     protected $where;
-    protected $orderby;
+    protected $orderBy;
     protected $limit;
 
-    public function __construct()
+    public function __construct($table, $fields)
     {
         $this->wsConfig = new DbWebserviceConfig();
+        $this->table = $table;
+        $this->fields = $fields;
     }
 
-    protected function getFromDb()
+    public function setWhere($where)
+    {
+        $this->where = $where;
+    }
+
+    public function setOrderBy($orderBy)
+    {
+        $this->orderBy = $orderBy;
+    }
+
+    public function setLimit($limit)
+    {
+         $this->limit = $limit;
+    }
+
+    public function getFromDb()
     {
         $path  = "/" . $this->table;
         $path .= (count($this->fields) > 0) ? "/" . implode(",", $this->fields) : "";
@@ -28,7 +46,7 @@ class RelayHandler
         return $this->request("GET", $this->wsConfig->url . $path);
     }
 
-    protected function postToDb($data)
+    public function postToDb($data)
     {
         $path  = "/" . $this->table;
         $path .= "/" . implode(",", $this->fields);
