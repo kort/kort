@@ -32,6 +32,7 @@ else
     cp -r $SOURCE_DIR/lib/qunit $BUILD_DIR/lib
     cp -r $SOURCE_DIR/lib/simpletest $BUILD_DIR/lib
     cp -r $SOURCE_DIR/lib/zocial $BUILD_DIR/lib
+    cp -r $SOURCE_DIR/lib/jquery-1.8.3 $BUILD_DIR/lib
 
     cp -r $SOURCE_DIR/server/php/ $BUILD_DIR/server/
     cp -r $SOURCE_DIR/server/webservices/ $BUILD_DIR/server/
