@@ -2,6 +2,8 @@
 namespace Webservice\Fix;
 
 use Webservice\DbProxyHandler;
+use Model\Badge;
+use Model\Reward;
 
 class FixHandler extends DbProxyHandler
 {
@@ -18,7 +20,11 @@ class FixHandler extends DbProxyHandler
     {
         $data['id'] = "nextval('kort.fix_id')";
         $data['create_date'] = "now()";
-
         $this->getDbProxy()->postToDb($data);
+
+        $koins = 100;
+        $badge = new Badge("bla_badge");
+        $reward = new Reward($koins, array($badge));
+        return $reward->toJson();
     }
 }
