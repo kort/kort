@@ -1,9 +1,9 @@
 <?php
 namespace Webservice\User;
 
-use Webservice\Database\AbstractDbHandler;
+use Webservice\DbProxyHandler;
 
-class UserHandler extends DbHandler
+class UserHandler extends DbProxyHandler
 {
     protected $userData = array();
 
