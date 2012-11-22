@@ -12,7 +12,7 @@ Ext.define('Kort.view.RewardMessageBox', {
                         '<div class="content">',
                             '<p>' +
                                 Ext.i18n.Bundle.message('reward.alert.koins.1') +
-                                ' <span class="important">{koins}</span> ' +
+                                ' <span class="important">{koinCount}</span> ' +
                                 Ext.i18n.Bundle.message('reward.alert.koins.2') +
                             '</p>',
                         '</div>',
