@@ -25,7 +25,7 @@ class PsqlConnection
     public function doSelectQuery($fieldsArr, $table, $where, $orderBy = '', $limit = null)
     {
         $selectSql = $this->generateSelectSql($fieldsArr, $table, $where, $orderBy, $limit);
-        $result =$this->db->query($selectSql);
+        $result = $this->db->query($selectSql);
 
         return $result;
     }

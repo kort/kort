@@ -15,7 +15,14 @@ class TestPsqlConnection extends AbstractKortUnitTestCase
 
     public function setUp()
     {
-        $this->mockDb = M::mock('PgHelper');
+        $this->mockDb = M::mock(
+            'PgHelper',
+            array(
+                "prepare" => null,
+                "execute" => null,
+                "close" => null,
+            )
+        );
         $this->psql = new PsqlConnection(array(), $this->mockDb);
 
         $this->fields = array("id", "title");
@@ -23,8 +30,6 @@ class TestPsqlConnection extends AbstractKortUnitTestCase
         $this->where = "id = 3";
         $this->orderBy = "title desc";
         $this->limit = 10;
-
-        $this->return = array("id" => 3, "sorting" => 1);
     }
 
     public function tearDown()
@@ -34,10 +39,12 @@ class TestPsqlConnection extends AbstractKortUnitTestCase
 
     public function testDoSelectQuery()
     {
+        $expectedResult = array("id" => 3, "sorting" => 1);
         $sql = "SELECT id,title FROM schema.testtable WHERE id = 3 ORDER BY title desc LIMIT 10;";
-        $this->mockDb->shouldReceive('query')->with($sql)->andReturn($this->return);
+        $this->mockDb->shouldReceive('query')->with($sql)->andReturn($expectedResult);
         $result = $this->psql->doSelectQuery($this->fields, $this->table, $this->where, $this->orderBy, $this->limit);
 
-        $this->assertEqual($this->return, $result, "The result should match with the input");
+        $this->assertTrue(is_array($result), "The result should be an array");
+        $this->assertEqual($expectedResult, $result, "The result should match with the input");
     }
 }
