@@ -115,27 +115,6 @@ $label-background-color: #46578D;
     }
 }
 
-// submitted popup
-.submittedPopupPanel.x-panel.x-floating {
-	width: 200px;
-	height: 150px;
-	background-color: rgba(0, 0, 0, 0.7);
-	-webkit-border-radius: 0.5em;
-	border-radius: 0.5em;
-	-webkit-box-shadow: none;
-	
-	.x-panel-inner {
-		color: #fff;
-		text-align: center;
-		margin-top: 0.8em;
-		padding-top: 5.2em;
-		background-color: transparent;
-		overflow: hidden;
-		font-weight: bold;
-	}
-}
-
-
 /* -----------------------
    Validation
    ----------------------- */
@@ -383,6 +362,24 @@ $label-background-color: #46578D;
                     
                     h1 {
                         font-weight: bold;
+                    }
+                    
+                    .badges {
+                        $badge-image-size: 100px;
+                        overflow: hidden;
+
+                        .badge {
+                            float: left;
+                            width: $badge-image-size/2;
+                            margin: 0.2em 0.5em;
+                            text-align: center;
+                            overflow: hidden;
+                            
+                            img {
+                                width: $badge-image-size/2;
+                                height: $badge-image-size/2;
+                            }
+                        }
                     }
                 }
             }
