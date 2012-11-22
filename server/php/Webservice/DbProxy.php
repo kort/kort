@@ -1,6 +1,8 @@
 <?php
 namespace Webservice;
 
+use Helper\CurlHelper;
+
 class DbProxy
 {
     protected $wsConfig;
@@ -9,12 +11,20 @@ class DbProxy
     protected $where;
     protected $orderBy;
     protected $limit;
+    protected $curl;
 
     public function __construct($table, $fields)
     {
         $this->wsConfig = new DbWebserviceConfig();
         $this->table = $table;
         $this->fields = $fields;
+        $this->curl = new CurlHelper();
+    }
+
+    //only used for unit testing
+    public function setCurl($curl)
+    {
+        $this->curl = $curl;
     }
 
     public function setWhere($where)
@@ -61,19 +71,17 @@ class DbProxy
 
     private function request($method, $url, $data = false)
     {
-        $curl = curl_init();
-
         switch ($method)
         {
             case "POST":
-                curl_setopt($curl, CURLOPT_POST, 1);
+                $this->curl->setOption(CURLOPT_POST, 1);
 
                 if ($data) {
-                    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+                    $this->curl->setOption(CURLOPT_POSTFIELDS, $data);
                 }
                 break;
             case "PUT":
-                curl_setopt($curl, CURLOPT_PUT, 1);
+                $this->curl->setOption(CURLOPT_PUT, 1);
                 break;
             default:
                 if ($data) {
@@ -81,11 +89,11 @@ class DbProxy
                 }
         }
 
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        $this->curl->setOption(CURLOPT_URL, $url);
+        $this->curl->setOption(CURLOPT_RETURNTRANSFER, 1);
 
-        $result = curl_exec($curl);
-        curl_close($curl);
+        $result = $this->curl->execute();
+        $this->curl->close();
 
         return $result;
     }
