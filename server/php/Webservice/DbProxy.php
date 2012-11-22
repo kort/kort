@@ -57,7 +57,7 @@ class DbProxy
         if ($this->limit) {
             $path .= "limit=" . $this->limit . "&";
         }
-
+        $path .= "key=" . $this->wsConfig->getApiKey();
         return $this->request("GET", $this->wsConfig->url . $path);
     }
 
@@ -66,6 +66,7 @@ class DbProxy
         $path  = "/" . $this->table;
         $path .= "/" . implode(",", $this->fields);
 
+        $data['key'] = $this->wsConfig->getApiKey();
         return $this->request("POST", $this->wsConfig->url . $path, $data);
     }
 
