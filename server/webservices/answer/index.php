@@ -12,7 +12,7 @@ $answerHandler = new \Webservice\Answer\AnswerHandler();
 
 $app->get(
     '/(:type)',
-    function ($type=null) use ($answerHandler, $app) {
+    function ($type = null) use ($answerHandler, $app) {
         $limit = $app->request()->params('limit');
         if (empty($type)) {
              $response = $answerHandler->getAllAnswers($limit);
