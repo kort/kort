@@ -1,23 +1,23 @@
 <?php
 namespace Webservice\Answer;
 
-use Webservice\RelayHandler;
+use Webservice\DbProxyHandler;
 
-class AnswerHandler extends RelayHandler
+class AnswerHandler extends DbProxyHandler
 {
     protected $table = 'kort.select_answer';
     protected $fields = array('id', 'value', 'title', 'sorting');
 
     public function getAllAnswers()
     {
-        $this->orderBy = 'sorting';
+        $this->getDbProxy()->setOrderBy = 'sorting';
         return $this->getFromDb();
     }
 
     public function getSpecificAnswers($type)
     {
-        $this->orderBy = 'sorting';
-        $this->where = "type = '" . $type ."'";
-        return $this->getFromDb();
+       $this->getDbProxy()->setOrderBy = 'sorting';
+       $this->getDbProxy()->setWhere = "type = '" . $type ."'";
+       return $this->getDbProxy()->getFromDb();
     }
 }

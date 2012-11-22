@@ -3,7 +3,6 @@ namespace Webservice\Fix\Test;
 
 use TestHelper\AbstractKortUnitTestCase;
 use Webservice\Fix\FixHandler;
-use \Mockery as M;
 
 class TestFixHandler extends AbstractKortUnitTestCase
 {
@@ -14,12 +13,7 @@ class TestFixHandler extends AbstractKortUnitTestCase
 
     public function setUp()
     {
-        $this->handler = new FixHandler(M::mock('PsqlConnection'));
-    }
-
-    public function tearDown()
-    {
-        M::close();
+        $this->handler = new FixHandler();
     }
 
     public function testConstruct()
