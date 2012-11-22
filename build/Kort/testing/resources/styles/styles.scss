@@ -4,9 +4,10 @@ $default-font-size: 0.9em;
 $label-background-color: #46578D;
 
 /* -----------------------
-   Overlay
+   Overlay / About
    ----------------------- */
-.overlay-content {
+.overlay-content,
+.about-content {
     $logo-size: 300px;
     
     .logo {
@@ -101,16 +102,12 @@ $label-background-color: #46578D;
 }
 
 .fixTabPanel {
-    .fixform {
-        margin: $panel-padding;
-
-        .x-form .x-scroll-container > .x-inner {
-            padding: 0;
-        }
-        .x-form-label span span.bundle {
-            font-size: 1.2em;
-        }
-
+    .fixContentComponent {
+        padding: $panel-padding;
+    }
+    .fixFormPanel {
+        margin: 0 $panel-padding $panel-padding $panel-padding;
+        
         .fixfield {
             margin-bottom: 0.4em;
         }
@@ -142,6 +139,11 @@ $label-background-color: #46578D;
    Validation
    ----------------------- */
 #validationNavigationView {
+    .x-list-header {
+        text-shadow: rgba(0, 0, 0, 0.25) 0 0.08em 0;
+        color: #fff;
+    }
+
     .x-list-item {
         .x-list-item-body {
             padding: 0.4em 0.6em;
@@ -149,11 +151,8 @@ $label-background-color: #46578D;
 
 		&.x-item-pressed .x-list-item-body {
 			background: #D8E3EE none;
-			border-top: 1px solid #aaaaaa;
-			box-shadow: inset 0 0 10px #abccee;
-			-webkit-box-shadow: inset 0 0 10px #abccee;
-			-moz-box-shadow: inset 0 0 10px #abccee;
-			box-shadow: inset 0 0 10px #abccee;
+			border-top: 0.1em solid #aaaaaa;
+			box-shadow: inset 0 0 0.5em #abccee;
 		}
         
         .validation-item {
@@ -198,12 +197,6 @@ $label-background-color: #46578D;
             .distance {
                 float: right;
                 font-size: 0.7em;
-                font-weight: bold;
-                background-color: $label-background-color;
-                padding: 0.4em 0.6em;
-                color: white;
-                border-radius: 1em;
-                text-shadow: rgba(0, 0, 0, 0.25) 0 0.08em 0;
             }
         }
     }
@@ -239,14 +232,48 @@ $label-background-color: #46578D;
 .voteContainer {
     padding: $panel-padding;
     
-    .voteButtonContainer {
-        margin-top: 0.5em;
-        
-        .voteConfirmButton {
-            margin-right: 0.5em;
+    .vote-content {
+        .description {
+            margin: 0.5em 0;
         }
-        .voteCancelButton {
-            margin-left: 0.5em;
+        
+        .fixmessage {
+            border-radius: 0.5em;
+            padding: 0.5em 0.7em;
+            background-color: $dark-grey;
+            color: #fff;
+			box-shadow: inset 0 0 0.5em #303030;
+        }
+    }
+    
+    .voteButtonContainer {
+        margin-top: 1em;
+        
+        .x-button {
+            margin-top: 0.2em;
+        }
+    }
+}
+
+/* -----------------------
+   Highscore
+   ----------------------- */
+#highscoreContainer {
+    .highscore-item {
+        clear: both;
+        
+        .ranking {
+            float: left;
+        }
+        .username {
+            float: left;
+            width: 7em;
+            overflow: hidden;
+            margin: 0 0.5em;
+        }
+        .koinCount {
+            float: right;
+            font-size: 0.7em;
         }
     }
 }
@@ -277,16 +304,6 @@ $label-background-color: #46578D;
     
         dl.text {
             float: left;
-            dt {
-                font-size: 0.6em;
-                margin-top: 0.6em;
-                margin-bottom: 0.1em;
-                color: $dark-grey;
-                text-transform: uppercase;
-            }
-            dd {
-                font-size: 0.8em;
-            }
         }
     }
     
@@ -309,12 +326,6 @@ $label-background-color: #46578D;
         }
         .koins-number {
             margin-left: 0.5em;
-            background-color: $label-background-color;
-            padding: 0.2em 0.5em;
-            font-weight: bold;
-            color: white;
-            border-radius: 1em;
-            text-shadow: rgba(0, 0, 0, 0.25) 0 0.08em 0;
         }
     }
     .badges {
@@ -340,7 +351,22 @@ $label-background-color: #46578D;
     }
 }
 
-/* GLOBAL STYLES */
+
+/* -----------------------
+   About
+   ----------------------- */
+#aboutContainer {
+    $about-dl-title-width: 6em;
+    $about-dl-margin-top: 0.3em;
+    
+    .about-content {
+        padding: $panel-padding;
+    }
+}
+
+/* -----------------------
+   Global Styles
+   ----------------------- */
 .x-form .x-scroll-container > .x-inner {
     padding: 0;
 }
@@ -362,5 +388,28 @@ $label-background-color: #46578D;
         height: auto;
         margin: 0;
         padding: 0.6em 0.8em;
+    }
+}
+
+.kort-label {
+    font-weight: bold;
+    background-color: $label-background-color;
+    padding: 0.4em 0.6em;
+    color: white;
+    border-radius: 1em;
+    text-shadow: rgba(0, 0, 0, 0.25) 0 0.08em 0;
+}
+
+.kort-definitionlist {
+    dt {
+        font-size: 0.6em;
+        margin-top: 0.8em;
+        margin-bottom: 0.1em;
+        color: $dark-grey;
+        text-transform: uppercase;
+    }
+    dd {
+        font-size: 0.8em;
+        margin: 0.2em 0;
     }
 }
