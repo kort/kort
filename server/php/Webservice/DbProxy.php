@@ -38,9 +38,15 @@ class DbProxy
         $path .= (count($this->fields) > 0) ? "/" . implode(",", $this->fields) : "";
         $path .= "?";
 
-        $path .= ($this->where) ? "where=" . urlencode($this->where) . "&" : "";
-        $path .= ($this->orderBy) ? "orderby=" . urlencode($this->orderBy) . "&" : "";
-        $path .= ($this->limit) ? "limit=" . $this->limit . "&" : "";
+        if ($this->where) {
+            $path .= "where=" . urlencode($this->where) . "&";
+        }
+        if ($this->orderBy) {
+            $path .= "orderby=" . urlencode($this->orderBy) . "&";
+        }
+        if ($this->limit) {
+            $path .= "limit=" . $this->limit . "&";
+        }
 
         return $this->request("GET", $this->wsConfig->url . $path);
     }
