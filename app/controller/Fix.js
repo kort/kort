@@ -62,12 +62,14 @@ Ext.define('Kort.controller.Fix', {
 
     fixSuccessfulSubmittedHandler: function(responseText) {
         var rewardConfig = JSON.parse(responseText),
-            reward = Ext.create('Kort.model.Reward', rewardConfig);
+            reward = Ext.create('Kort.model.Reward', rewardConfig),
+            bugmapNavigationView = this.getBugmapNavigationView();
         
         this.reloadStores();
         this.showRewardMessageBox(reward);
         // remove detail panel
-        this.getBugmapNavigationView().pop();
+        bugmapNavigationView.pop();
+        bugmapNavigationView.fireEvent('back', bugmapNavigationView);
     },
     
     reloadStores: function() {

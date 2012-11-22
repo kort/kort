@@ -5,7 +5,7 @@ Ext.define('Kort.model.Reward', {
 		
         fields: [
 			{ name: 'id', type: 'auto' },
-			{ name: 'koins', type: 'string' },
+			{ name: 'koinCount', type: 'string' },
             { name: 'badges', type: 'array' }
         ],
         
