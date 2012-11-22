@@ -74,7 +74,6 @@ Ext.define('Kort.controller.Bugmap', {
     },
 
     onRefreshBugsButtonTap: function() {
-        this.getRefreshBugsButton().disable();
         this.refreshBugMarkers();
     },
 
@@ -96,7 +95,6 @@ Ext.define('Kort.controller.Bugmap', {
         // Load bugs store
 		bugsStore.load(function(records, operation, success) {
             me.syncProblemMarkers(records);
-            me.getRefreshBugsButton().enable();
         });
     },
 
@@ -213,6 +211,7 @@ Ext.define('Kort.controller.Bugmap', {
     },
 
     showLoadMask: function() {
+        this.getRefreshBugsButton().disable();
         this.getBugmapNavigationView().setMasked({
             xtype: 'loadmask',
             message: Ext.i18n.Bundle.message('bugmap.loadmask.message'),
@@ -222,6 +221,7 @@ Ext.define('Kort.controller.Bugmap', {
 
     hideLoadMask: function() {
         this.getBugmapNavigationView().setMasked(false);
+        this.getRefreshBugsButton().enable();
     },
 
     init: function() {
