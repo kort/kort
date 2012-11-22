@@ -36,6 +36,7 @@ Ext.application({
 		'Bug',
         'Fix',
 		'HighscoreEntry',
+		'Reward',
         'SelectAnswer',
         'User',
         'Validation',
