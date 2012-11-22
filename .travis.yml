@@ -6,7 +6,8 @@ env:
   matrix:
   - DEPLOY="false" TARGET_ENV="dev" CI_HOME=`pwd`/odi86/kort
   - DEPLOY="false" TARGET_ENV="prod" CI_HOME=`pwd`/odi86/kort
-  global: "EIn+Rm7OxX8OKygBRBCaSTOqFGcBMWu5kHdKqSxOmHRJYjxuMOJpKV+rnyep\n+RsyFDx2Z9yKlqRRS4cpZh7M6wwC63EV46+7aWtzzTjnbMZfVzLQA9EmaEU4\nYMsKGtpQk2mhvaNKd3UbEpDl0Zq74NnAY0zipx0l02UymcFnZEc="
+  global:
+    -secure: "EIn+Rm7OxX8OKygBRBCaSTOqFGcBMWu5kHdKqSxOmHRJYjxuMOJpKV+rnyep\n+RsyFDx2Z9yKlqRRS4cpZh7M6wwC63EV46+7aWtzzTjnbMZfVzLQA9EmaEU4\nYMsKGtpQk2mhvaNKd3UbEpDl0Zq74NnAY0zipx0l02UymcFnZEc="
 
 matrix:
   include:
