@@ -2,7 +2,8 @@
 
 namespace Model;
 
-class Badge {
+class Badge
+{
     protected $name;
 
     public function __construct($name)
@@ -18,6 +19,8 @@ class Badge {
 
     public static function getValueFn()
     {
-        return function($badge) { return $badge->getName(); };
+        return function ($badge) {
+            return $badge->getName();
+        };
     }
 }
