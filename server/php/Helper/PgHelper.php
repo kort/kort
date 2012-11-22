@@ -2,9 +2,12 @@
 
 namespace Helper;
 
-class PgHelper {
+class PgHelper
+{
     protected $dbConn;
-    public function __construct($connectionString) {
+
+    public function __construct($connectionString)
+    {
         $this->dbConn = pg_connect($connectionString);
     }
 
@@ -33,5 +36,4 @@ class PgHelper {
     {
         pg_close($this->dbConn);
     }
-
 }

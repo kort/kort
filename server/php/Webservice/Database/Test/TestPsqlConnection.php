@@ -16,7 +16,7 @@ class TestPsqlConnection extends AbstractKortUnitTestCase
     public function setUp()
     {
         $this->mockDb = M::mock('PgHelper');
-        $this->psql = new PsqlConnection(array(),$this->mockDb);
+        $this->psql = new PsqlConnection(array(), $this->mockDb);
 
         $this->fields = array("id", "title");
         $this->table = "schema.testtable";
