@@ -5,15 +5,12 @@ module("kort-BugWebservice", {
 });
 
 test("position", function() {
-	var method = 'position',
+	var type = 'GET',
         data = null,
-        type = 'GET',
-        param = '47.3441552,8.531329900000003', url;
-
-    url = urlLib.getAppUrl() + this.path + '/' + method + '/' + param;
+        url = urlLib.getAppUrl() + this.path + '/position/47.3441552,8.531329900000003';
 
     api_test(url, type, data, function (bugs) {
-        notStrictEqual(bugs, undefined, method + " method call failed");
+        notStrictEqual(bugs, undefined, "method call failed");
         ok(bugs.length >= 1, "no bugs have been returned");
 
         equal(bugs.length, 20, "Not exactly 20 bugs have been returned");
@@ -31,4 +28,40 @@ test("position", function() {
         notStrictEqual(bug.view_type, undefined, "view_type field is absent");
         notStrictEqual(bug.answer_placeholder, undefined, "answer_placeholder field is absent");
     });
+});
+
+test("position - no params with trailing slash", function() {
+	var type = 'GET',
+        data = null,
+        url = urlLib.getAppUrl() + this.path + '/position/';
+
+    api_test(url, type, data, function (result) {
+        equal(result.status, 404, "position w/o params should return 404.");
+    }, true);
+});
+
+test("position - no params, no trailing slash", function() {
+	var type = 'GET',
+        data = null,
+        url = urlLib.getAppUrl() + this.path + '/position';
+
+    api_test(url, type, data, function (result) {
+        equal(result.status, 404, "position w/o params should return 404.");
+    }, true);
+});
+
+test("fix", function() {
+	var type = 'POST',
+        data = {
+            id: 12345,
+            create_date: '2012-11-19',
+            error_id: 6716165,
+            message: 'Test fix message'
+        },
+        url = urlLib.getAppUrl() + this.path + '/fix';
+
+    api_test(url, type, data, function (result) {
+        console.log(result);
+        equal(result.status, 200, "Post to /bug/fix should be okay.");
+    }, true);
 });
