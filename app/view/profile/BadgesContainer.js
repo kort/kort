@@ -1,0 +1,43 @@
+Ext.define('Kort.view.profile.BadgesContainer', {
+	extend: 'Ext.Container',
+	alias: 'widget.badgescontainer',
+    
+    requires: [
+        'Ext.TitleBar',
+        'Ext.Button',
+        'Kort.view.profile.BadgesCarousel'
+    ],
+	
+	config: {
+        zIndex: Kort.util.Config.getZIndex().overlayLeafletMap,
+        layout: 'vbox',
+        
+        showAnimation: {
+            type: 'slideIn',
+            direction: 'up'
+        },
+        hideAnimation: {
+            type: 'slideOut',
+            direction: 'down'
+        },
+        
+		items: [
+            {
+				xtype: 'titlebar',
+				title: Ext.i18n.Bundle.message('profile.badges.title'),
+                
+                items: [
+                    {
+                        text: Ext.i18n.Bundle.message('profile.badges.button.close'),
+                        cls: 'badgesContainerBackButton',
+                        ui: 'back',
+                        align: 'left'
+                    }
+                ]
+			},
+			{
+				xtype: 'badgescarousel'
+			}
+		]
+	}
+});
