@@ -7,4 +7,8 @@ namespace Webservice;
 class DbWebserviceConfig
 {
     public $url = "http://kort.rdmr.ch/webservices/db";
+
+    public function getApiKey() {
+        return getenv('KORT_DB_API_KEY');
+    }
 }
