@@ -26,7 +26,7 @@ Ext.define('Kort.view.profile.Container', {
                 
                 items: [
                     {
-                        text: 'Logout',
+                        text: Ext.i18n.Bundle.message('profile.button.logout'),
                         align: 'right',
                         ui: 'decline',
                         id: 'logoutButton'

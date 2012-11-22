@@ -6,14 +6,16 @@ Ext.define('Kort.controller.Profile', {
     
     config: {
         views: [
-            'profile.Container'
+            'profile.Container',
+            'profile.BadgesContainer'
         ],
         refs: {
             mainTabPanel: '#mainTabPanel',
             profileContainer: '#profileContainer',
             profileContentComponent: '#profileContentComponent',
             profileBadgesDataView: '#profileBadgesDataView',
-            logoutButton: '#logoutButton'
+            logoutButton: '#logoutButton',
+            badgesContainerBackButton: '.badgescontainer .button[cls=badgesContainerBackButton]'
         },
         control: {
             profileContentComponent: {
@@ -24,13 +26,17 @@ Ext.define('Kort.controller.Profile', {
             },
             logoutButton: {
                 tap: 'onLogoutButtonTap'
+            },
+            badgesContainerBackButton: {
+                tap: 'onBadgesContainerBackButtonTap'
             }
         },
         routes: {
             'profile': 'showProfile'
         },
         
-        userStore: null
+        userStore: null,
+        badgesContainer: null
     },
     
     showProfile: function() {
@@ -50,7 +56,16 @@ Ext.define('Kort.controller.Profile', {
     },
     
     onProfileBadgesDataViewItemTap: function(dataViewCmp, index, target, record, e) {
-        console.log(record);
+        var badgesContainer = Ext.create('Kort.view.profile.BadgesContainer');
+        // TODO ugly way to set active carousel item
+        badgesContainer.getItems().items[1].setActiveItem(index);
+        this.setBadgesContainer(badgesContainer);
+        Ext.Viewport.add(badgesContainer);
+        badgesContainer.show();
+    },
+    
+    onBadgesContainerBackButtonTap: function() {
+        this.getBadgesContainer().hide();
     },
     
     onLogoutButtonTap: function() {
