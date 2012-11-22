@@ -48,6 +48,7 @@ Ext.application({
 		'Highscore',
 		'SelectAnswers',
         'User',
+        'UserBadges',
         'Validations'
     ],
 
@@ -95,6 +96,7 @@ Ext.application({
         // check if user is logged in
         userStore.load(function() {
             var user = userStore.first(),
+                userBadges = Ext.getStore('UserBadges'),
                 loginPanel,
                 firststepsPanel;
             if (!user.get('loggedIn')) {
@@ -109,6 +111,10 @@ Ext.application({
                 Ext.Viewport.add(firststepsPanel);
                 firststepsPanel.show();
             }
+            
+            // loading badges of user
+            userBadges.getProxy().setUrl('./server/webservices/user/badges/' + user.get('id'));
+            userBadges.load();
         });
     },
 

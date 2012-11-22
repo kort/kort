@@ -12,11 +12,15 @@ Ext.define('Kort.controller.Profile', {
             mainTabPanel: '#mainTabPanel',
             profileContainer: '#profileContainer',
             profileContentComponent: '#profileContentComponent',
+            profileBadgesDataView: '#profileBadgesDataView',
             logoutButton: '#logoutButton'
         },
         control: {
             profileContentComponent: {
                 initialize: 'onProfileContentComponentInitialize'
+            },
+            profileBadgesDataView: {
+                itemtap: 'onProfileBadgesDataViewItemTap'
             },
             logoutButton: {
                 tap: 'onLogoutButtonTap'
@@ -43,6 +47,10 @@ Ext.define('Kort.controller.Profile', {
             user = this.getUserStore().first();
             this.getProfileContentComponent().setRecord(user);
         }
+    },
+    
+    onProfileBadgesDataViewItemTap: function(dataViewCmp, index, target, record, e) {
+        console.log(record);
     },
     
     onLogoutButtonTap: function() {

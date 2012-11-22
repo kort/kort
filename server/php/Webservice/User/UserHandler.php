@@ -42,8 +42,6 @@ class UserHandler extends DbProxyHandler
         $this->userData['validationCount'] = 0;
         $this->userData['koinCount'] = 0;
 
-        $this->userData['badges'] = $this->getUserBadges();
-
         return \json_encode($this->userData);
     }
 
@@ -59,28 +57,11 @@ class UserHandler extends DbProxyHandler
     {
         // TODO implement insertUser
     }
-
-    /**
-    * Get either a Gravatar URL or complete image tag for a specified email address.
-    *
-    * @param string $s Size in pixels, defaults to 80px [ 1 - 2048 ]
-    * @param string $d Default imageset to use [ 404 | mm | identicon | monsterid | wavatar ]
-    * @param string $r Maximum rating (inclusive) [ g | pg | r | x ]
-    * @return String containing the URL
-    * @source http://gravatar.com/site/implement/images/php/
-    */
-    private function getGravatarUrl ($s = 200, $d = 'mm', $r = 'r')
-    {
-        $url = 'http://www.gravatar.com/avatar/';
-        $url .= \md5(\strtolower(\trim($this->userData['email'])));
-        $url .= "?s=$s&d=$d&r=$r";
-        return $url;
-    }
-
-    private function getUserBadges()
+    
+    public function getUserBadges($id)
     {
         // TODO implement badges query
-        return array(
+        $badges = array(
             array(
                 'id' => 1,
                 'name' => 'highscore_place_1',
@@ -112,5 +93,23 @@ class UserHandler extends DbProxyHandler
                 'won' => true
             )
         );
+        return \json_encode($badges);
+    }
+
+    /**
+    * Get either a Gravatar URL or complete image tag for a specified email address.
+    *
+    * @param string $s Size in pixels, defaults to 80px [ 1 - 2048 ]
+    * @param string $d Default imageset to use [ 404 | mm | identicon | monsterid | wavatar ]
+    * @param string $r Maximum rating (inclusive) [ g | pg | r | x ]
+    * @return String containing the URL
+    * @source http://gravatar.com/site/implement/images/php/
+    */
+    private function getGravatarUrl ($s = 200, $d = 'mm', $r = 'r')
+    {
+        $url = 'http://www.gravatar.com/avatar/';
+        $url .= \md5(\strtolower(\trim($this->userData['email'])));
+        $url .= "?s=$s&d=$d&r=$r";
+        return $url;
     }
 }
