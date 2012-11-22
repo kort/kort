@@ -27,12 +27,12 @@ test("root", function() {
 test("missing_track_type", function() {
 	var type = 'GET',
         data = null,
-        url = urlLib.getAppUrl() + this.path + '/missing_track_type?limit=9';
+        url = urlLib.getAppUrl() + this.path + '/missing_track_type?limit=5';
 
     api_test(url, type, data, function (answers) {
         notStrictEqual(answers, undefined, "method call failed");
         ok(answers.length >= 1, "no answers have been returned");
-        equal(answers.length, 9, "Exactly 9 answers should be returned");
+        equal(answers.length, 5, "Exactly 5 answers should be returned");
 
         $.each(answers, function() {
             strictEqual(this.type, 'missing_track_type', "Only answer with type missing_track_type should be returned");
