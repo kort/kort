@@ -37,7 +37,8 @@ class DbHandler
         $this->db->doUpdateQuery($data, $table, $where);
     }
 
-    protected function reduceData($fields, $data) {
+    protected function reduceData($fields, $data)
+    {
         $reducedData = array();
         foreach ($fields as $key) {
             if (array_key_exists($key, $data)) {
