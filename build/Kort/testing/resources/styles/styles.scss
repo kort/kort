@@ -74,37 +74,38 @@ $label-background-color: #46578D;
     }
 }
 
-
-/* -----------------------
-   Bug Confirm Message Box / Fix Panel
-   ----------------------- */
-.bugMessageBox .confirm-content,
-.fixContentComponent .fix-content {
-    .description {
-        overflow: hidden;
-        text-align: left;
-
-        .image {
-            $image-width: 64px;
-            $image-height: 74px;
-            float: left;
-            margin: 0 1em 0.5em 0.5em;
-
-            .bugtype-image {
-                width: $image-width/2;
-                height: $image-height/2;
-            }
-        }
-        .content {
-            font-size: $default-font-size;
-        }
-    }
-}
-
 .fixTabPanel {
     .fixContentComponent {
         padding: $panel-padding;
+        
+        .fix-content {
+            text-align: left;
+
+            .description {
+                overflow: hidden;
+                margin: 0.5em 0;
+
+                .image {
+                    float: left;
+                    margin: 0 1em 0.5em 0.5em;
+                    width: 40px;
+                    height: 40px;
+
+                    .bugtype-image {
+                        $bugtype-image-width: 64px;
+                        $bugtype-image-height: 74px;
+                        width: $bugtype-image-width/2;
+                        height: $bugtype-image-height/2;
+                    }
+                }
+                .content {
+                    font-size: $default-font-size;
+                    line-height: 1.3em;
+                }
+            }
+        }
     }
+    
     .fixFormPanel {
         margin: 0 $panel-padding $panel-padding $panel-padding;
         
@@ -113,27 +114,6 @@ $label-background-color: #46578D;
         }
     }
 }
-
-// submitted popup
-.submittedPopupPanel.x-panel.x-floating {
-	width: 200px;
-	height: 150px;
-	background-color: rgba(0, 0, 0, 0.7);
-	-webkit-border-radius: 0.5em;
-	border-radius: 0.5em;
-	-webkit-box-shadow: none;
-	
-	.x-panel-inner {
-		color: #fff;
-		text-align: center;
-		margin-top: 0.8em;
-		padding-top: 5.2em;
-		background-color: transparent;
-		overflow: hidden;
-		font-weight: bold;
-	}
-}
-
 
 /* -----------------------
    Validation
@@ -361,6 +341,81 @@ $label-background-color: #46578D;
     
     .about-content {
         padding: $panel-padding;
+    }
+}
+
+/* -----------------------
+   Message Boxes
+   ----------------------- */
+.bugMessageBox ,
+.notificationMessageBox {
+    .x-msgbox-text {
+        padding: 0.5em;
+        
+        .messagebox-content {
+            text-align: left;
+
+            .text {
+                .content {
+                    font-size: $default-font-size;
+                    
+                    h1 {
+                        font-weight: bold;
+                    }
+                    
+                    .badges {
+                        $badge-image-size: 110px;
+                        overflow: hidden;
+
+                        .badge {
+                            float: left;
+                            width: $badge-image-size/2;
+                            margin: 0.2em 0.5em;
+                            text-align: center;
+                            overflow: hidden;
+                            
+                            img {
+                                width: $badge-image-size/2;
+                                height: $badge-image-size/2;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .textpic {
+                overflow: hidden;
+                margin: 0.5em 0;
+
+                .image {
+                    float: left;
+                    margin: 0 1em 0.5em 0;
+                    width: 40px;
+                    height: 40px;
+
+                    .bugtype-image {
+                        $bugtype-image-width: 64px;
+                        $bugtype-image-height: 74px;
+                        width: $bugtype-image-width/2;
+                        height: $bugtype-image-height/2;
+                    }
+                    .koin-image {
+                        $koin-image-width: 70px;
+                        $koin-image-height: 70px;
+                        width: $koin-image-width/2;
+                        height: $koin-image-height/2;
+                    }
+                }
+                .content {
+                    font-size: $default-font-size;
+                    line-height: 1.3em;
+
+                    .important {
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
     }
 }
 

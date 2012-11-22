@@ -25,7 +25,7 @@ $app->get(
 $app->post(
     '/fix',
     function () use ($fixHandler, $app) {
-        $fixHandler->insertFix($app->request()->post());
+        $app->response()->write($fixHandler->insertFix($app->request()->post()));
     }
 );
 

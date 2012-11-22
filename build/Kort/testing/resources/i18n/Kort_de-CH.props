@@ -7,7 +7,8 @@ tab.about=Über kort
 button.back=Zurück
 
 # Submitted Popup
-submitted.message=Vielen Dank!
+submitted.message.1=Du hast dir
+submitted.message.2=koins verdient!
 
 # Login
 login.title=Login
@@ -19,7 +20,7 @@ login.loadmask.message=Login...
 # Firststeps
 firststeps.introduction=Willkommen bei kort! Wähle einen Benutzernamen:
 firststeps.form.username.placeholder=Benutzername
-firststeps.form.button.submit=Spielen!
+firststeps.form.button.submit=Mission starten!
 firststeps.alert.username.empty.title=Benutzernamen eingeben
 firststeps.alert.username.empty.message=Bitte gib einen Benutzernamen ein.
 firststeps.alert.username.specialchars.title=Sonderzeichen gefunden
@@ -28,6 +29,8 @@ firststeps.alert.username.specialchars.message=Benutze bitte nur Buchstaben und 
 # Bugmap
 bugmap.title=Aufträge in deiner Nähe
 bugmap.loadmask.message=Lade Auträge...
+bugmap.messagebox.koins.earn=Verdiene dir
+bugmap.messagebox.koins.name=koins
 
 ## Fix
 fix.form.title=Auftrag
@@ -97,3 +100,9 @@ messagebox.cancel=Abbrechen
 # Picker
 picker.done=Fertig
 picker.cancel=Abbrechen
+
+# Reward
+reward.alert.title=Du wurdest stärker!
+reward.alert.koins.1=Du hast
+reward.alert.koins.2=koins gewonnen.
+reward.alert.badges.title=Gewonnene Badges
