@@ -24,7 +24,22 @@ if (params.debug !== undefined) {
 
 /*inspired by http://www.beletsky.net/2010/12/testing-rest-services-with-javascript.html */
 function api_test(url, type, data, callback, raw) {
+    var callbackbWrapper;
+
     raw = raw || false;
+    if (raw) {
+        callbackbWrapper = function(result) { callback(result); };
+    } else {
+        callbackbWrapper = function(result) {
+            if (result.status === 0) {
+                ok(false, '0 status - browser could be on offline mode');
+            } else if (result.status === 404) {
+                ok(false, '404 error');
+            } else {
+                callback($.parseJSON(result.responseText));
+            }
+        };
+    }
 
     $.ajax({
         url: url,
@@ -35,17 +50,7 @@ function api_test(url, type, data, callback, raw) {
         dataType: 'json',
         async: false,
         complete: function (result) {
-            if (raw) {
-                callback(result);
-            } else {
-                if (result.status == 0) {
-                    ok(false, '0 status - browser could be on offline mode');
-                } else if (result.status == 404) {
-                    ok(false, '404 error');
-                } else {
-                    callback($.parseJSON(result.responseText));
-                }
-            }
+            callbackbWrapper(result);
         }
     });
 }

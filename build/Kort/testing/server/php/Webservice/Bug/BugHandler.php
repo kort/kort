@@ -23,19 +23,13 @@ class BugHandler extends DbProxyHandler
 
     public function getBugsByOwnPosition($lat, $lng, $limit, $radius)
     {
+        $limit = empty($limit) ? 20 : $limit;
+        $radius = empty($radius) ? 5000 : $radius;
         //TODO: Use the radius and get a fast result
-<<<<<<< HEAD
-        // $where = "ST_DWithin(geom," . PostGisSqlHelper::getLatLngGeom($lat, $lng) . "," . $radius . ")";
-        $where = "";
-        $orderBy = "geom <-> " . PostGisSqlHelper::getLatLngGeom($lat, $lng);
-        $result = $this->db->doSelectQuery($this->bugFields, $this->bugTable, $where, $orderBy, $limit);
-        return json_encode($result);
-    }
-=======
-        // $this->dbProxy->setWhere("ST_DWithin(geom," . PostGisSqlHelper::getLatLngGeom($lat, $lng) . "," . $radius . ")");
+        // $userPosition =  PostGisSqlHelper::getLatLngGeom($lat, $lng);
+        // $this->dbProxy->setWhere("ST_DWithin(geom," . $userPosition . "," . $radius . ")");
         $this->getDbProxy()->setOrderBy("geom <-> " . PostGisSqlHelper::getLatLngGeom($lat, $lng));
         $this->getDbProxy()->setLimit($limit);
->>>>>>> Updated testing build
 
         return $this->getDbProxy()->getFromDb();
     }

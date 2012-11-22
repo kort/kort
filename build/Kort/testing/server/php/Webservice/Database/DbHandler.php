@@ -20,7 +20,7 @@ class DbHandler
             $limit = 500;
         }
         $result = $this->db->doSelectQuery($fields, $table, $where, $orderBy, $limit);
-        return json_encode($result);
+        return (count($result) > 0) ? json_encode($result) : "";
     }
 
     public function doInsert($fields, $table, $data)

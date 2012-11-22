@@ -68605,9 +68605,12 @@ Ext.define('Kort.util.Config', {
 	singleton: true,
 
 	config: {
+        version: '0.5.0',
+        
 		leafletMap: {
             zoom: 15,
 			tileLayerUrl: 'http://{s}.tile.cloudmade.com/{apikey}/{styleId}/256/{z}/{x}/{y}.png',
+            tileLayerAttribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
 			apiKey: '729242682cb24de8aa825c8aed993cba',
             styleId: 997
 		},
@@ -68651,6 +68654,68 @@ Ext.define('Kort.util.Config', {
     }
 });
 
+Ext.define('Kort.view.about.Container', {
+	extend: 'Ext.Container',
+	alias: 'widget.aboutcontainer',
+    requires: [
+        'Ext.TitleBar'
+    ],
+	
+	config: {
+		title: Ext.i18n.Bundle.message('tab.about'),
+		url: 'about',
+		id: 'aboutContainer',
+		iconCls: 'info',
+		layout: 'vbox',
+        scrollable: true,
+		items: [
+			{
+				xtype: 'titlebar',
+				cls: 'titlebar',
+				docked: 'top',
+				title: Ext.i18n.Bundle.message('about.title')
+			},
+			{
+                html:   '<div class="about-content">' +
+                            '<div class="logo">' +
+                                '<img src="./resources/images/kort-logo.png" />' +
+                            '</div>' +
+                            '<dl class="kort-definitionlist info">' +
+                                '<dt>' + Ext.i18n.Bundle.message('about.version.title') + '</dt>' +
+                                '<dd>' + Kort.util.Config.getVersion() + '</dd>' +
+                                '<dt>' + Ext.i18n.Bundle.message('about.authors.title') + '</dt>' +
+                                '<dd>' + Ext.i18n.Bundle.message('about.authors.author1') + '</dd>' +
+                                '<dd>' + Ext.i18n.Bundle.message('about.authors.author2') + '</dd>' +
+                                '<dt>' + Ext.i18n.Bundle.message('about.legal.title') + '</dt>' +
+                                '<dd>' + Ext.i18n.Bundle.message('about.legal.message') + '</dd>' +
+                            '</dl>' +
+                        '</div>'
+			}
+		]
+	}
+});
+
+Ext.define('Kort.controller.About', {
+    extend: 'Ext.app.Controller',
+    
+    config: {
+        views: [
+            'about.Container'
+        ],
+        refs: {
+            mainTabPanel: '#mainTabPanel',
+            aboutContainer: '#aboutContainer'
+        },
+        routes: {
+            'about': 'showAbout'
+        }
+    },
+    
+    showAbout: function() {
+        this.getMainTabPanel().setActiveItem(this.getAboutContainer());
+    }
+});
+
 Ext.define('Kort.view.bugmap.BugMessageBox', {
 	extend: 'Ext.MessageBox',
 	alias: 'widget.bugmessagebox',
@@ -68661,11 +68726,30 @@ Ext.define('Kort.view.bugmap.BugMessageBox', {
     }
 });
 
+Ext.define('Kort.view.LeafletMap', {
+    extend: 'Ext.ux.LeafletMap',
+    xtype: 'kortleafletmap',
+
+    config: {
+        useCurrentLocation: false,
+        autoMapCenter: false,
+        mapOptions: {
+            zoom: Kort.util.Config.getLeafletMap().zoom
+        },
+        tileLayerUrl: Kort.util.Config.getLeafletMap().tileLayerUrl,
+        tileLayerOptions: {
+            apikey: Kort.util.Config.getLeafletMap().apiKey,
+            styleId: Kort.util.Config.getLeafletMap().styleId,
+            attribution: Kort.util.Config.getLeafletMap().tileLayerAttribution
+        }
+    }
+});
+
 Ext.define('Kort.view.bugmap.NavigationView', {
 	extend: 'Ext.navigation.View',
 	alias: 'widget.bugmapnavigationview',
     requires: [
-        'Ext.ux.LeafletMap',
+        'Kort.view.LeafletMap',
         'Ext.Button'
     ],
 	
@@ -68691,18 +68775,9 @@ Ext.define('Kort.view.bugmap.NavigationView', {
 			{
                 title: Ext.i18n.Bundle.message('bugmap.title'),
                 
-                xtype: 'leafletmap',
+                xtype: 'kortleafletmap',
                 id: 'bugmap',
-                useCurrentLocation: true,
-                autoMapCenter: false,
-                mapOptions: {
-                    zoom: Kort.util.Config.getLeafletMap().zoom
-                },
-                tileLayerUrl: Kort.util.Config.getLeafletMap().tileLayerUrl,
-                tileLayerOptions: {
-                    apikey: Kort.util.Config.getLeafletMap().apiKey,
-                    styleId: Kort.util.Config.getLeafletMap().styleId
-                }
+                useCurrentLocation: true
 			}
 		]
 	}
@@ -68711,6 +68786,9 @@ Ext.define('Kort.view.bugmap.NavigationView', {
 Ext.define('Kort.view.bugmap.fix.TabPanel', {
 	extend: 'Ext.tab.Panel',
 	alias: 'widget.fixtabpanel',
+    requires: [
+        'Kort.view.LeafletMap'
+    ],
     
 	config: {
         title: '',
@@ -68732,7 +68810,9 @@ Ext.define('Kort.view.bugmap.fix.TabPanel', {
             record: this.getRecord()
         };
         fixMap = {
-            xtype: 'fixmap'
+            title: Ext.i18n.Bundle.message('fix.map.title'),
+            xtype: 'kortleafletmap',
+            cls: 'fixMap'
         };
         
         this.add([fixForm, fixMap]);
@@ -69074,10 +69154,6 @@ Ext.define('Kort.controller.Firststeps', {
             messageBox;
 
         if(usernameValue !== '') {
-<<<<<<< HEAD
-=======
-            console.log(usernameValue.search(/^[a-zA-Z0-9]+$/));
->>>>>>> Updated testing build
             if(usernameValue.search(/^[a-zA-Z0-9]+$/) === -1) {
                 messageBox = Ext.create('Kort.view.NotificationMessageBox');
                 messageBox.alert(Ext.i18n.Bundle.message('firststeps.alert.username.specialchars.title'), Ext.i18n.Bundle.message('firststeps.alert.username.specialchars.message'), Ext.emptyFn);
@@ -69103,23 +69179,6 @@ Ext.define('Kort.controller.Firststeps', {
             this.onFirststepsFormSubmitButtonTap();
         }
     }
-});
-
-Ext.define('Kort.view.bugmap.fix.Map', {
-	extend: 'Ext.ux.LeafletMap',
-	alias: 'widget.fixmap',
-    
-	config: {
-        title: Ext.i18n.Bundle.message('fix.map.title'),
-        mapOptions: {
-            zoom: Kort.util.Config.getLeafletMap().zoom
-        },
-        tileLayerUrl: Kort.util.Config.getLeafletMap().tileLayerUrl,
-        tileLayerOptions: {
-            apikey: Kort.util.Config.getLeafletMap().apiKey,
-            styleId: Kort.util.Config.getLeafletMap().styleId
-        }
-	}
 });
 
 Ext.define('Kort.view.bugmap.fix.Form', {
@@ -69170,6 +69229,7 @@ Ext.define('Kort.view.bugmap.fix.Form', {
         
         fixFormPanel = {
             xtype: 'formpanel',
+            cls: 'fixFormPanel',
             scrollable: false,
             flex: 1,
             items: [
@@ -69193,15 +69253,19 @@ Ext.define('Kort.view.bugmap.fix.Form', {
                 name: 'fixfield',
                 cls: 'fixfield'
             },
-            tracktypesStore;
+            selectAnswersStore;
         
         if(bug.get('view_type') === 'select') {
-            tracktypesStore = Ext.getStore('Tracktypes');
+            selectAnswersStore = Ext.getStore('SelectAnswers');
+            
+            // filter answers for given type
+            selectAnswersStore.filter('type', bug.get('type'));
+            
             fieldConfig = Ext.merge(fieldConfig, {
-                store: tracktypesStore,
+                store: selectAnswersStore,
                 // always use Ext.picker.Picker
                 usePicker: true,
-                valueField: 'type_key',
+                valueField: 'value',
                 displayField: 'title',
                 defaultPhonePickerConfig: {
                     cancelButton: Ext.i18n.Bundle.message('picker.cancel'),
@@ -69338,16 +69402,16 @@ Ext.define('Kort.controller.Fix', {
         views: [
             'bugmap.NavigationView',
             'bugmap.fix.TabPanel',
-            'bugmap.fix.Map',
             'bugmap.fix.Form',
-			'SubmittedPopupPanel'
+			'SubmittedPopupPanel',
+            'LeafletMap'
         ],
         refs: {
             bugmapNavigationView: '#bugmapNavigationView',
             detailTabPanel: '.fixtabpanel',
             fixFormSubmitButton: '.fixtabpanel .formpanel .button[cls=fixSubmitButton]',
             fixField: '.fixtabpanel .formpanel .field',
-            fixmap: '.fixtabpanel .fixmap'
+            fixmap: '.fixtabpanel .kortleafletmap[cls=fixMap]'
         },
         control: {
             fixFormSubmitButton: {
@@ -69416,11 +69480,224 @@ Ext.define('Kort.controller.Fix', {
 	}
 });
 
+/*jshint maxcomplexity:10 */
+Ext.define('Kort.plugin.PullRefresh', {
+    extend: 'Ext.plugin.PullRefresh',
+    alias: 'plugin.kortpullrefresh',
+	
+	config: {
+        pullRefreshText: Ext.i18n.Bundle.message('pullrefresh.pullrefresh'),
+        loadingText: Ext.i18n.Bundle.message('pullrefresh.loading'),
+        releaseRefreshText: Ext.i18n.Bundle.message('pullrefresh.releaserefresh'),
+        lastUpdatedText: Ext.i18n.Bundle.message('pullrefresh.lastupdated'),
+        dateFormat: 'd.m.Y H:i:s',
+        refreshFn: function(callbackFn, scope) {
+            var store = this.getList().getStore();
+            if (store) {
+                store.load({
+                    callback: function(records, operation, success) {
+                        callbackFn.call(scope);
+                    }
+                });
+            } else {
+                callbackFn.call(scope);
+            }
+        },
+        
+		pullTpl: [
+            '<div class="x-list-pullrefresh">',
+                '<div class="x-list-pullrefresh-arrow"></div>',
+                '<div class="x-loading-spinner">',
+                    '<span class="x-loading-top"></span>',
+                    '<span class="x-loading-right"></span>',
+                    '<span class="x-loading-bottom"></span>',
+                    '<span class="x-loading-left"></span>',
+                '</div>',
+                '<div class="x-list-pullrefresh-wrap">',
+                    '<h3 class="x-list-pullrefresh-message">{message}</h3>',
+                    '<div class="x-list-pullrefresh-updated">{lastUpdatedText}&nbsp;{lastUpdatedFormatted}</div>',
+                '</div>',
+            '</div>'
+        ].join('')
+	},
+    
+    initScrollable: function() {
+        var me = this,
+            list = me.getList(),
+            store = list.getStore(),
+            pullTpl = me.getPullTpl(),
+            element = me.element,
+            scrollable = list.getScrollable(),
+            scroller;
+
+        if (!scrollable) {
+            return;
+        }
+
+        scroller = scrollable.getScroller();
+
+        me.lastUpdated = new Date();
+        me.lastUpdatedFormatted = Ext.util.Format.date(me.lastUpdated, me.getDateFormat());
+
+        list.container.insert(0, me);
+
+        // We provide our own load mask so if the Store is autoLoading already disable the List's mask straight away,
+        // otherwise if the Store loads later allow the mask to show once then remove it thereafter
+        if (store) {
+            if (store.isAutoLoading()) {
+                list.setLoadingText(null);
+            } else {
+                store.on({
+                    load: {
+                        single: true,
+                        fn: function() {
+                            list.setLoadingText(null);
+                        }
+                    }
+                });
+            }
+        }
+
+        pullTpl.overwrite(element, {
+            message: me.getPullRefreshText(),
+            lastUpdatedText: me.getLastUpdatedText(),
+            lastUpdatedFormatted: me.lastUpdatedFormatted
+        }, true);
+
+        me.loadingElement = element.getFirstChild();
+        me.messageEl = element.down('.x-list-pullrefresh-message');
+        me.updatedEl = element.down('.x-list-pullrefresh-updated');
+
+        me.maxScroller = scroller.getMaxPosition();
+
+        scroller.on({
+            maxpositionchange: me.setMaxScroller,
+            scroll: me.onScrollChange,
+            scope: me
+        });
+    },
+    
+    onBounceTop: function(y) {
+        var me = this,
+            pullHeight = me.pullHeight,
+            list = me.getList(),
+            scroller = list.getScrollable().getScroller();
+
+        if (!me.isReleased && !me.isLoading) {
+            if (!pullHeight) {
+                me.onPainted();
+                pullHeight = me.pullHeight;
+            }
+            if (!me.isRefreshing && -y >= pullHeight + 10) {
+                me.isRefreshing = true;
+
+                me.setViewState('release');
+
+                scroller.getContainer().onBefore({
+                    dragend: 'onScrollerDragEnd',
+                    single: true,
+                    scope: me
+                });
+            }
+            else if (me.isRefreshing && -y < pullHeight + 10) {
+                me.isRefreshing = false;
+                me.setViewState('pull');
+            }
+        }
+        
+        me.getTranslatable().translate(0, -y);
+    },
+    
+    loadStore: function() {
+        var me = this,
+            list = me.getList(),
+            store = list.getStore();
+
+        me.setViewState('loading');
+        me.isReleased = false;
+        me.isLoading = true;
+        
+        if (me.getRefreshFn()) {
+            if(store) {
+                store.suspendEvents();
+            }
+            me.getRefreshFn().call(me, me.afterStoreLoad, me);
+        } else {
+            me.fetchLatest();
+            Ext.defer(function() {
+                me.resetRefreshElement();
+            }, 1000);
+        }
+    },
+    
+    afterStoreLoad: function() {
+        var me = this,
+            list = me.getList(),
+            store = list.getStore();
+        
+        if(store) {
+            store.resumeEvents();
+        }
+        me.resetRefreshElement();
+    },
+    
+    resetRefreshElement: function() {
+        var me = this,
+            list = me.getList(),
+            scroller = list.getScrollable().getScroller();
+
+        me.isLoading = false;
+        me.resetRefreshState();
+        scroller.minPosition.y = 0;
+        scroller.scrollTo(null, 0, true);
+    },
+	
+    resetRefreshState: function() {
+        var me = this;
+
+        me.isRefreshing = false;
+        me.lastUpdated = new Date();
+        me.lastUpdatedFormatted = Ext.util.Format.date(me.lastUpdated, me.getDateFormat());
+
+        me.setViewState('pull');
+        me.updatedEl.setHtml(this.getLastUpdatedText() + '&nbsp;' +  me.lastUpdatedFormatted);
+    }
+});
+
+Ext.define('Kort.view.highscore.List', {
+	extend: 'Ext.List',
+	alias: 'widget.highscorelist',
+    requires: [
+        'Kort.plugin.PullRefresh'
+    ],
+    
+	config: {
+		layout: 'fit',
+		store: 'Highscore',
+        loadingText: Ext.i18n.Bundle.message('highscore.loadmask.message'),
+        emptyText: Ext.i18n.Bundle.message('highscore.emptytext'),
+        disableSelection: true,
+        
+        itemTpl:    '<div class="highscore-item">' +
+                        '<div class="ranking">#{ranking}</div>' +
+                        '<div class="username">{username}</div>' +
+                        '<div class="kort-label koinCount">{koinCount} ' + Ext.i18n.Bundle.message('highscore.koins') + '</div>' +
+                    '</div>',
+        
+        plugins: [
+            {
+                xclass: 'Kort.plugin.PullRefresh'
+            }
+        ]
+	}
+});
+
 Ext.define('Kort.view.highscore.Container', {
 	extend: 'Ext.Container',
 	alias: 'widget.highscorecontainer',
     requires: [
-        'Ext.TitleBar'
+        'Ext.TitleBar',
+        'Kort.view.highscore.List'
     ],
 	
 	config: {
@@ -69437,7 +69714,7 @@ Ext.define('Kort.view.highscore.Container', {
 				title: Ext.i18n.Bundle.message('highscore.title')
 			},
 			{
-                html: 'Hier kommt die Highscore'
+                xtype: 'highscorelist'
 			}
 		]
 	}
@@ -69448,7 +69725,8 @@ Ext.define('Kort.controller.Highscore', {
     
     config: {
         views: [
-            'highscore.Container'
+            'highscore.Container',
+            'highscore.List'
         ],
         refs: {
             mainTabPanel: '#mainTabPanel',
@@ -69460,6 +69738,7 @@ Ext.define('Kort.controller.Highscore', {
     },
     
     showHighscore: function() {
+        Ext.getStore('Highscore').load();
         this.getMainTabPanel().setActiveItem(this.getHighscoreContainer());
     }
 });
@@ -69595,197 +69874,6 @@ Ext.define('Kort.controller.Login', {
     }
 });
 
-Ext.define('Kort.plugin.PullRefresh', {
-    extend: 'Ext.plugin.PullRefresh',
-    alias: 'plugin.kortpullrefresh',
-	
-	config: {
-        pullRefreshText: Ext.i18n.Bundle.message('pullrefresh.pullrefresh'),
-        loadingText: Ext.i18n.Bundle.message('pullrefresh.loading'),
-        releaseRefreshText: Ext.i18n.Bundle.message('pullrefresh.releaserefresh'),
-        lastUpdatedText: Ext.i18n.Bundle.message('pullrefresh.lastupdated'),
-        dateFormat: 'd.m.Y H:i:s',
-        refreshFn: function(callbackFn, scope) {
-            var store = this.getList().getStore();
-            if (store) {
-                store.load({
-                    callback: function(records, operation, success) {
-                        callbackFn.call(scope);
-                    }
-                });
-            } else {
-                callbackFn.call(scope);
-            }
-        },
-        
-		pullTpl: [
-            '<div class="x-list-pullrefresh">',
-                '<div class="x-list-pullrefresh-arrow"></div>',
-                '<div class="x-loading-spinner">',
-                    '<span class="x-loading-top"></span>',
-                    '<span class="x-loading-right"></span>',
-                    '<span class="x-loading-bottom"></span>',
-                    '<span class="x-loading-left"></span>',
-                '</div>',
-                '<div class="x-list-pullrefresh-wrap">',
-                    '<h3 class="x-list-pullrefresh-message">{message}</h3>',
-                    '<div class="x-list-pullrefresh-updated">{lastUpdatedText}&nbsp;{lastUpdatedFormatted}</div>',
-                '</div>',
-            '</div>'
-        ].join('')
-	},
-    
-    initScrollable: function() {
-<<<<<<< HEAD
-        /* jshint maxcomplexity:10 */
-=======
->>>>>>> Updated testing build
-        var me = this,
-            list = me.getList(),
-            store = list.getStore(),
-            pullTpl = me.getPullTpl(),
-            element = me.element,
-            scrollable = list.getScrollable(),
-            scroller;
-
-        if (!scrollable) {
-            return;
-        }
-
-        scroller = scrollable.getScroller();
-
-        me.lastUpdated = new Date();
-        me.lastUpdatedFormatted = Ext.util.Format.date(me.lastUpdated, me.getDateFormat());
-
-        list.container.insert(0, me);
-
-        // We provide our own load mask so if the Store is autoLoading already disable the List's mask straight away,
-        // otherwise if the Store loads later allow the mask to show once then remove it thereafter
-        if (store) {
-            if (store.isAutoLoading()) {
-                list.setLoadingText(null);
-            } else {
-                store.on({
-                    load: {
-                        single: true,
-                        fn: function() {
-                            list.setLoadingText(null);
-                        }
-                    }
-                });
-            }
-        }
-
-        pullTpl.overwrite(element, {
-            message: me.getPullRefreshText(),
-            lastUpdatedText: me.getLastUpdatedText(),
-            lastUpdatedFormatted: me.lastUpdatedFormatted
-        }, true);
-
-        me.loadingElement = element.getFirstChild();
-        me.messageEl = element.down('.x-list-pullrefresh-message');
-        me.updatedEl = element.down('.x-list-pullrefresh-updated');
-
-        me.maxScroller = scroller.getMaxPosition();
-
-        scroller.on({
-            maxpositionchange: me.setMaxScroller,
-            scroll: me.onScrollChange,
-            scope: me
-        });
-    },
-    
-    onBounceTop: function(y) {
-<<<<<<< HEAD
-        /* jshint maxcomplexity:10 */
-=======
->>>>>>> Updated testing build
-        var me = this,
-            pullHeight = me.pullHeight,
-            list = me.getList(),
-            scroller = list.getScrollable().getScroller();
-
-        if (!me.isReleased && !me.isLoading) {
-            if (!pullHeight) {
-                me.onPainted();
-                pullHeight = me.pullHeight;
-            }
-            if (!me.isRefreshing && -y >= pullHeight + 10) {
-                me.isRefreshing = true;
-
-                me.setViewState('release');
-
-                scroller.getContainer().onBefore({
-                    dragend: 'onScrollerDragEnd',
-                    single: true,
-                    scope: me
-                });
-            }
-            else if (me.isRefreshing && -y < pullHeight + 10) {
-                me.isRefreshing = false;
-                me.setViewState('pull');
-            }
-        }
-        
-        me.getTranslatable().translate(0, -y);
-    },
-    
-    loadStore: function() {
-        var me = this,
-            list = me.getList(),
-            store = list.getStore();
-
-        me.setViewState('loading');
-        me.isReleased = false;
-        me.isLoading = true;
-        
-        if (me.getRefreshFn()) {
-            if(store) {
-                store.suspendEvents();
-            }
-            me.getRefreshFn().call(me, me.afterStoreLoad, me);
-        } else {
-            me.fetchLatest();
-            Ext.defer(function() {
-                me.resetRefreshElement();
-            }, 1000);
-        }
-    },
-    
-    afterStoreLoad: function() {
-        var me = this,
-            list = me.getList(),
-            store = list.getStore();
-        
-        if(store) {
-            store.resumeEvents();
-        }
-        me.resetRefreshElement();
-    },
-    
-    resetRefreshElement: function() {
-        var me = this,
-            list = me.getList(),
-            scroller = list.getScrollable().getScroller();
-
-        me.isLoading = false;
-        me.resetRefreshState();
-        scroller.minPosition.y = 0;
-        scroller.scrollTo(null, 0, true);
-    },
-	
-    resetRefreshState: function() {
-        var me = this;
-
-        me.isRefreshing = false;
-        me.lastUpdated = new Date();
-        me.lastUpdatedFormatted = Ext.util.Format.date(me.lastUpdated, me.getDateFormat());
-
-        me.setViewState('pull');
-        me.updatedEl.setHtml(this.getLastUpdatedText() + '&nbsp;' +  me.lastUpdatedFormatted);
-    }
-});
-
 Ext.define('Kort.view.validation.List', {
 	extend: 'Ext.List',
 	alias: 'widget.validationlist',
@@ -69818,7 +69906,7 @@ Ext.define('Kort.view.validation.List', {
                                 '</span>' +
                             '</div>' +
                         '</div>' +
-                        '<div class="distance">{formattedDistance}</div>' +
+                        '<div class="kort-label distance">{formattedDistance}</div>' +
                     '</div>',
         
         plugins: [
@@ -69902,7 +69990,7 @@ Ext.define('Kort.view.profile.Container', {
                         '<div class="picture">',
                             '<img src="{picUrl}" />',
                         '</div>',
-                        '<dl class="text">',
+                        '<dl class="kort-definitionlist text">',
                             '<dt>' + Ext.i18n.Bundle.message('profile.content.username') + '</dt>',
                             '<dd>{username}</dd>',
                             '<dt>' + Ext.i18n.Bundle.message('profile.content.email') + '</dt>',
@@ -69919,7 +70007,7 @@ Ext.define('Kort.view.profile.Container', {
                     '</div>',
                     '<div class="koins">',
                         '<span class="koins-introduction">' + Ext.i18n.Bundle.message('profile.content.koins.introduction') + '</span>',
-                        '<span class="koins-number">{koinCount}</span>',
+                        '<span class="kort-label koins-number">{koinCount}</span>',
                     '</div>',
                     // TODO small hack to recieve sencha list header styling
                     '<div class="profile-header x-list-normal">',
@@ -69966,6 +70054,9 @@ Ext.define('Kort.view.Main', {
             },
             {
                 xtype: 'profilecontainer'
+            },
+            {
+                xtype: 'aboutcontainer'
             }
         ]
     }
@@ -69987,7 +70078,8 @@ Ext.define('Kort.controller.Main', {
     config: {
         views: [
             'Main',
-            'NotificationMessageBox'
+            'NotificationMessageBox',
+            'LeafletMap'
         ],
         refs: {
             mainTabPanel: '#mainTabPanel',
@@ -70096,29 +70188,28 @@ Ext.define('Kort.view.validation.vote.ButtonContainer', {
 	
 	config: {
         cls: 'voteButtonContainer',
-        flex: 1,
-        layout: {
-            type: 'hbox',
-            align: 'top'
-        },
+        layout: 'vbox',
         defaults: {
             xtype: 'button',
-            flex: 1
+            iconMask: true
         },
         
         items: [
             {
                 ui: 'confirm',
                 cls: 'voteConfirmButton',
+                iconCls: 'add_black',
                 text: Ext.i18n.Bundle.message('vote.container.button.accept')
             },
             {
                 ui: 'decline',
                 cls: 'voteDeclineButton',
+                iconCls: 'minus_black1',
                 text: Ext.i18n.Bundle.message('vote.container.button.decline')
             },
             {
                 cls: 'voteCancelButton',
+                iconCls: 'arrow_left',
                 text: Ext.i18n.Bundle.message('vote.container.button.cancel')
             }
         ]
@@ -70173,29 +70264,12 @@ Ext.define('Kort.view.validation.vote.Container', {
     }
 });
 
-Ext.define('Kort.view.validation.vote.Map', {
-	extend: 'Ext.ux.LeafletMap',
-	alias: 'widget.votemap',
-    
-	config: {
-        title: Ext.i18n.Bundle.message('vote.map.title'),
-        mapOptions: {
-            zoom: Kort.util.Config.getLeafletMap().zoom
-        },
-        tileLayerUrl: Kort.util.Config.getLeafletMap().tileLayerUrl,
-        tileLayerOptions: {
-            apikey: Kort.util.Config.getLeafletMap().apiKey,
-            styleId: Kort.util.Config.getLeafletMap().styleId
-        }
-	}
-});
-
 Ext.define('Kort.view.validation.vote.TabPanel', {
 	extend: 'Ext.tab.Panel',
 	alias: 'widget.votetabpanel',
     requires: [
         'Kort.view.validation.vote.Container',
-        'Kort.view.validation.vote.Map'
+        'Kort.view.LeafletMap'
     ],
     
 	config: {
@@ -70218,7 +70292,9 @@ Ext.define('Kort.view.validation.vote.TabPanel', {
             record: this.getRecord()
         };
         voteMap = {
-            xtype: 'votemap'
+            title: Ext.i18n.Bundle.message('vote.map.title'),
+            xtype: 'kortleafletmap',
+            cls: 'voteMap'
         };
         
         this.add([voteContainer, voteMap]);
@@ -70270,13 +70346,13 @@ Ext.define('Kort.controller.Vote', {
             'validation.NavigationView',
             'validation.vote.ButtonContainer',
             'validation.vote.Container',
-            'validation.vote.Map',
-            'validation.vote.TabPanel'
+            'validation.vote.TabPanel',
+            'LeafletMap'
         ],
         refs: {
             validationNavigationView: '#validationNavigationView',
             detailTabPanel: '.votetabpanel',
-            voteMap: '.votetabpanel .votemap',
+            voteMap: '.votetabpanel .kortleafletmap[cls=voteMap]',
             voteAcceptButton: '.votetabpanel .votecontainer .button[cls=voteConfirmButton]',
             voteDeclineButton: '.votetabpanel .votecontainer .button[cls=voteDeclineButton]',
             voteCancelButton: '.votetabpanel .votecontainer .button[cls=voteCancelButton]'
@@ -70399,15 +70475,30 @@ Ext.define('Kort.model.Fix', {
     }
 });
 
-Ext.define('Kort.model.Tracktype', {
+Ext.define('Kort.model.HighscoreEntry', {
+    extend: 'Ext.data.Model',
+    config: {
+		idProperty: 'user_id',
+
+        fields: [
+			{ name: 'user_id', type: 'auto' },
+			{ name: 'username', type: 'string' },
+			{ name: 'koinCount', type: 'int' },
+            { name: 'ranking', type: 'int' }
+        ]
+    }
+});
+
+Ext.define('Kort.model.SelectAnswer', {
     extend: 'Ext.data.Model',
     config: {
 		idProperty: 'id',
 		
         fields: [
 			{ name: 'id', type: 'auto' },
-			{ name: 'type_key', type: 'string' },
+			{ name: 'value', type: 'string' },
 			{ name: 'title', type: 'string' },
+			{ name: 'type', type: 'string' },
 			{ name: 'sorting', type: 'integer' }
         ]
     }
@@ -70500,18 +70591,35 @@ Ext.define('Kort.store.Bugs', {
 	}
 });
 
-Ext.define('Kort.store.Tracktypes', {
+Ext.define('Kort.store.Highscore', {
     extend: 'Ext.data.Store',
-
+	
 	config: {
-		model: 'Kort.model.Tracktype',
-
+		model: 'Kort.model.HighscoreEntry',
+		
 		proxy: {
-			type: "ajax",
-            url : "./server/webservices/answer/missing_track_type",
+			type: 'ajax',
+            url : './resources/stores/highscore.json',
+            sorters: 'place',
+            reader: {
+                type: 'json'
+            }
+		}
+	}
+});
+
+Ext.define('Kort.store.SelectAnswers', {
+    extend: 'Ext.data.Store',
+	
+	config: {
+		model: 'Kort.model.SelectAnswer',
+		
+		proxy: {
+			type: 'ajax',
+            url : './server/webservices/bug/selectanswers',
             sorters: 'sorting',
             reader: {
-                type: "json"
+                type: 'json'
             }
 		}
 	}
@@ -70638,6 +70746,7 @@ Ext.application({
     ],
 
     controllers: [
+		'About',
 		'Bugmap',
         'Firststeps',
 		'Fix',
@@ -70654,7 +70763,8 @@ Ext.application({
 		'Badge',
 		'Bug',
         'Fix',
-        'Tracktype',
+		'HighscoreEntry',
+        'SelectAnswer',
         'User',
         'Validation',
         'Vote'
@@ -70662,7 +70772,8 @@ Ext.application({
 
     stores: [
 		'Bugs',
-		'Tracktypes',
+		'Highscore',
+		'SelectAnswers',
         'User',
         'Validations'
     ],
@@ -70685,7 +70796,7 @@ Ext.application({
     // launch function is called as soon as app is ready
     launch: function() {
         var userStore = Ext.getStore('User'),
-            tracktypesStore = Ext.getStore('Tracktypes'),
+            selectAnswersStore = Ext.getStore('SelectAnswers'),
             validationsStore = Ext.getStore('Validations'),
             mainPanel;
 
@@ -70696,7 +70807,7 @@ Ext.application({
         mainPanel = Ext.create('Kort.view.Main');
         Ext.Viewport.add(mainPanel);
 
-        tracktypesStore.load();
+        selectAnswersStore.load();
         
         Kort.geolocation = Ext.create('Kort.util.Geolocation');
         Kort.geolocation.updateLocation(function (geo) {
