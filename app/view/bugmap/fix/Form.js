@@ -74,6 +74,8 @@ Ext.define('Kort.view.bugmap.fix.Form', {
         
         if(bug.get('view_type') === 'select') {
             selectAnswersStore = Ext.getStore('SelectAnswers');
+            
+            // filter answers for given type
             selectAnswersStore.filter('type', bug.get('type'));
             
             fieldConfig = Ext.merge(fieldConfig, {

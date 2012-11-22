@@ -47,7 +47,7 @@ Ext.define('Kort.view.profile.Container', {
                         '<div class="picture">',
                             '<img src="{picUrl}" />',
                         '</div>',
-                        '<dl class="text">',
+                        '<dl class="kort-definitionlist text">',
                             '<dt>' + Ext.i18n.Bundle.message('profile.content.username') + '</dt>',
                             '<dd>{username}</dd>',
                             '<dt>' + Ext.i18n.Bundle.message('profile.content.email') + '</dt>',
