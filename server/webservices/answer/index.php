@@ -11,18 +11,20 @@ $app = new \Slim\Slim();
 $answerHandler = new \Webservice\Answer\AnswerHandler();
 
 $app->get(
-    '/',
-    function () use ($answerHandler, $app) {
+    '/(:type)',
+    function ($type=null) use ($answerHandler, $app) {
         $limit = $app->request()->params('limit');
-        $app->response()->write($answerHandler->getAllAnswers($limit));
-    }
-);
+        if (empty($type)) {
+             $response = $answerHandler->getAllAnswers($limit);
+        } else {
+            $response = $answerHandler->getSpecificAnswers($type, $limit);
+        }
 
-$app->get(
-    '/:type',
-    function ($type) use ($answerHandler, $app) {
-        $limit = $app->request()->params('limit');
-        $app->response()->write($answerHandler->getSpecificAnswers($type, $limit));
+        if (!empty($response)) {
+            $app->response()->write($response);
+        } else {
+            $app->response()->status(404);
+        }
     }
 );
 
