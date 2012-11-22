@@ -43,10 +43,6 @@ fix.alert.fixfield.empty.title=Felder ausfüllen
 fix.alert.fixfield.empty.message=Bitte alle Felder ausfüllen.
 fix.alert.submit.failure.title=Fehler beim Senden
 fix.alert.submit.failure.message=Beim Übertragen des Formulars ist etwas schief gelaufen. Bitte versuche es später noch einmal.
-fix.alert.reward.title=Du wurdest stärker!
-fix.alert.reward.koins.1=Du hast
-fix.alert.reward.koins.2=koins gewonnen.
-fix.alert.reward.badges.title=Gewonnene Badges
 
 # Validation
 validation.title=Validieren
@@ -104,3 +100,9 @@ messagebox.cancel=Abbrechen
 # Picker
 picker.done=Fertig
 picker.cancel=Abbrechen
+
+# Reward
+reward.alert.title=Du wurdest stärker!
+reward.alert.koins.1=Du hast
+reward.alert.koins.2=koins gewonnen.
+reward.alert.badges.title=Gewonnene Badges
