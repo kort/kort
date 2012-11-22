@@ -31,7 +31,7 @@ function api_test(url, type, data, callback, raw) {
         type: type,
         processData: false,
         contentType: 'application/json; charset=utf-8',
-        data: JSON.stringify(data),
+        data: data,
         dataType: 'json',
         async: false,
         complete: function (result) {
