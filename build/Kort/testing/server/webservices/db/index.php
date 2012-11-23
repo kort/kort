@@ -15,7 +15,7 @@ $dbHandler = new \Webservice\Database\DbHandler();
 $app->get(
     '/:table(/:fields)',
     function ($table, $fields = null) use ($dbHandler, $app) {
-         if (!$dbHandler->checkAuth($app->request()->params('key'))) {
+        if (!$dbHandler->checkAuth($app->request()->params('key'))) {
             $app->response()->status(403);
         } else {
             $fields = (isset($fields) ? explode(",", $fields) : null);

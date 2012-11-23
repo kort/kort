@@ -16,9 +16,16 @@ $userHandler = new UserHandler();
 
 // define REST resources
 $app->get(
-    '/',
+    '/:id',
     function () use ($userHandler, $res) {
         $res->write($userHandler->getUser());
+    }
+);
+
+$app->get(
+    '/:id/badges',
+    function ($id) use ($userHandler, $res) {
+        $res->write($userHandler->getUserBadges($id));
     }
 );
 
@@ -28,16 +35,17 @@ $app->post(
         $userHandler->insertUser($app->request()->getBody());
     }
 );
+
 $app->put(
     '/:id',
     function ($id) use ($userHandler, $app) {
-        $userHandler->updateUser($id, $app->request()->getBody());
+        $userHandler->updateUser($id, $app->request()->put());
     }
 );
 
 $app->get(
     '/logout',
-    function () use ($userHandler, $res) {
+    function () use ($res) {
         \session_destroy();
         $res->write("Congratulations! You've now officially logged out!");
     }

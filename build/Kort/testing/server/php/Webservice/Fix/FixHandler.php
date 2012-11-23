@@ -7,7 +7,6 @@ use Model\Reward;
 
 class FixHandler extends DbProxyHandler
 {
-    protected $dbProxy;
     protected $table = 'kort.fix';
     protected $fields = array(
         'id',
@@ -22,10 +21,10 @@ class FixHandler extends DbProxyHandler
         $data['create_date'] = "now()";
         $this->getDbProxy()->postToDb($data);
 
-        $koins = 100;
+        $koinCount = 100;
         $firstBadge = new Badge("highscore_place_1");
         $voteBadge = new Badge("vote_count_10");
-        $reward = new Reward($koins, array($firstBadge, $voteBadge));
+        $reward = new Reward($koinCount, array($firstBadge, $voteBadge));
         return $reward->toJson();
     }
 }
