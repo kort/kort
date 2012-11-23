@@ -45,15 +45,18 @@ Ext.define('Kort.view.profile.Container', {
 		]
 	},
     initialize: function () {
+        var profileContentComponent,
+            badgesDataView;
+
         this.callParent(arguments);
 
-        var profileContentComponent = {
+        profileContentComponent = {
             xtype: 'profilecontentcomponent'
         };
         
-        var badgesDataView = {
+        badgesDataView = {
             xtype: 'profilebadgesdataview'
-        }
+        };
         
         this.add([profileContentComponent, badgesDataView]);
     }
