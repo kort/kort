@@ -113,7 +113,7 @@ Ext.application({
             }
             
             // loading badges of user
-            userBadges.getProxy().setUrl('./server/webservices/user/badges/' + user.get('id'));
+            userBadges.getProxy().setUrl('./server/webservices/user/' + user.get('id') + '/badges');
             userBadges.load();
         });
     },

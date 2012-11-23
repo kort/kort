@@ -4,10 +4,12 @@ Ext.define('Kort.view.profile.BadgesCarousel', {
 	
 	config: {
         flex: 1,
+        cls: 'profileBadgesCarousel',
         itemTpl: new Ext.XTemplate(
                     '<div class="carouselitem-content">' +
-                        '<img src="./resources/images/badges/<tpl if="won">{name}<tpl else>locked</tpl>.png" />' +
-                        '<p class="badge-title">{name}</p>' +
+                        '<h1 class="badge-title">{title}</h1>' +
+                        '<img class="badge-image" src="./resources/images/badges/<tpl if="won">{name}<tpl else>locked</tpl>.png" />' +
+                        '<p class="badge-description">{description}</p>' +
                     '</div>'
                 )
 	},

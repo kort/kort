@@ -6,6 +6,8 @@ Ext.define('Kort.model.Badge', {
         fields: [
 			{ name: 'id', type: 'auto' },
 			{ name: 'name', type: 'string' },
+			{ name: 'title', type: 'string' },
+			{ name: 'description', type: 'string' },
 			{ name: 'won', type: 'boolean' }
         ]
     }
