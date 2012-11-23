@@ -5,6 +5,7 @@ Ext.define('Kort.view.profile.BadgesCarousel', {
 	config: {
         flex: 1,
         cls: 'profileBadgesCarousel',
+        selectedBadgeIndex: 0,
         itemTpl: new Ext.XTemplate(
                     '<div class="carouselitem-content">' +
                         '<h1 class="badge-title">{title}</h1>' +
@@ -21,9 +22,12 @@ Ext.define('Kort.view.profile.BadgesCarousel', {
             userBadgesStore = Ext.getStore('UserBadges');
         
         userBadgesStore.each(function (badge, index, length) {
-            me.add({
+            var component = {
+                xtype: 'component',
                 html: me.getItemTpl().apply(badge.data)
-            });
+            }
+            me.add(component);
         });
+        me.setActiveItem(me.getSelectedBadgeIndex());
     }
 });
