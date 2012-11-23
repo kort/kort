@@ -8,7 +8,9 @@ Ext.define('Kort.model.Badge', {
 			{ name: 'name', type: 'string' },
 			{ name: 'title', type: 'string' },
 			{ name: 'description', type: 'string' },
-			{ name: 'won', type: 'boolean' }
+            { name: 'color', type: 'string' },
+			{ name: 'won', type: 'boolean' },
+            { name: 'sorting', type: 'int' }
         ]
     }
 });

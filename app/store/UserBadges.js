@@ -3,13 +3,13 @@ Ext.define('Kort.store.UserBadges', {
 
 	config: {
 		model: 'Kort.model.Badge',
-        autoSync: true,
         
 		proxy: {
-			type: "rest",
-            url : "",
+			type: 'rest',
+            url : '',
+            sorters: 'sorting',
             reader: {
-                type: "json"
+                type: 'json'
             }
 		}
 	}
