@@ -14,14 +14,14 @@ Ext.define('Kort.controller.Bugmap', {
             mainTabPanel: '#mainTabPanel',
             mapCmp: '#bugmap',
             bugmapNavigationView: '#bugmapNavigationView',
-            refreshBugsButton: '#refreshBugsButton'
+            bugmapRefreshButton: '#bugmapNavigationView .button[cls=bugmapRefreshButton]'
         },
         control: {
             mapCmp: {
                 maprender: 'onMapRender'
             },
-            refreshBugsButton: {
-                tap: 'onRefreshBugsButtonTap'
+            bugmapRefreshButton: {
+                tap: 'onBugmapRefreshButtonTap'
             },
             bugmapNavigationView: {
                 detailpush: 'onBugmapNavigationViewDetailPush',
@@ -46,10 +46,10 @@ Ext.define('Kort.controller.Bugmap', {
     },
 
     onBugmapNavigationViewDetailPush: function(cmp, view, opts) {
-        this.getRefreshBugsButton().hide();
+        this.getBugmapRefreshButton().hide();
     },
     onBugmapNavigationViewBack: function(cmp, view, opts) {
-        this.getRefreshBugsButton().show();
+        this.getBugmapRefreshButton().show();
     },
 
     onMapRender: function(cmp, map, tileLayer) {
@@ -73,7 +73,7 @@ Ext.define('Kort.controller.Bugmap', {
         me.getMarkerLayerGroup().addTo(map);
     },
 
-    onRefreshBugsButtonTap: function() {
+    onBugmapRefreshButtonTap: function() {
         this.refreshBugMarkers();
     },
 
@@ -211,7 +211,7 @@ Ext.define('Kort.controller.Bugmap', {
     },
 
     showLoadMask: function() {
-        this.getRefreshBugsButton().disable();
+        this.getBugmapRefreshButton().disable();
         this.getBugmapNavigationView().setMasked({
             xtype: 'loadmask',
             message: Ext.i18n.Bundle.message('bugmap.loadmask.message'),
@@ -221,7 +221,7 @@ Ext.define('Kort.controller.Bugmap', {
 
     hideLoadMask: function() {
         this.getBugmapNavigationView().setMasked(false);
-        this.getRefreshBugsButton().enable();
+        this.getBugmapRefreshButton().enable();
     },
 
     init: function() {

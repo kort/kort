@@ -28,10 +28,17 @@ Ext.define('Kort.view.profile.Container', {
                 
                 items: [
                     {
+                        xtype: 'button',
+                        cls: 'profileRefreshButton',
+                        iconCls: 'refresh',
+                        iconMask: true,
+                        align: 'right'
+                    },
+                    {
                         text: Ext.i18n.Bundle.message('profile.button.logout'),
-                        align: 'right',
+                        cls: 'profileLogoutButton',
                         ui: 'decline',
-                        id: 'logoutButton'
+                        align: 'right'
                     }
                 ]
 			}

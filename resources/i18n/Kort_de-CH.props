@@ -82,6 +82,7 @@ profile.content.koins.header=Koins
 profile.content.koins.introduction=Deine gesammelten koins:
 profile.content.badges.header=Auszeichnungen
 profile.logout.loadmask.message=Logout...
+profile.refresh.loadmask.message=Lade Profil...
 profile.badges.title=Deine Auszeichnungen
 profile.badges.emptytext=Deine Auszeichnungen konnten nicht geladen werden.
 profile.badges.button.close=Schliessen
