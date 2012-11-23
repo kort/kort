@@ -107,7 +107,7 @@ Ext.application({
             var user = userStore.first();
             
             // check if user is logged in
-            if (!user.get('loggedIn')) {
+            if (!user.get('logged_in')) {
                 me.showLoginOverlay();
             } else {
                 me.showMainPanel(geo, user, mainPanel);

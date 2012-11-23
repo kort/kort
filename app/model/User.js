@@ -8,12 +8,12 @@ Ext.define('Kort.model.User', {
 			{ name: 'name', type: 'string' },
 			{ name: 'username', type: 'string' },
 			{ name: 'email', type: 'string' },
-            { name: 'picUrl', type: 'string' },
-			{ name: 'loggedIn', type: 'boolean' },
+            { name: 'pic_url', type: 'string' },
+			{ name: 'logged_in', type: 'boolean' },
 			{ name: 'token', type: 'string' },
-			{ name: 'fixCount', type: 'int' },
-			{ name: 'validationCount', type: 'int' },
-			{ name: 'koinCount', type: 'int' }
+			{ name: 'fix_count', type: 'int' },
+			{ name: 'validation_count', type: 'int' },
+			{ name: 'koin_count', type: 'int' }
         ]
     }
 });
