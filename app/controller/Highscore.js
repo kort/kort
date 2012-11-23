@@ -11,12 +11,12 @@ Ext.define('Kort.controller.Highscore', {
             highscoreContainer: '#highscoreContainer'
         },
         routes: {
-            'highscore': 'showHighscore'
+            //'highscore': 'showHighscore'
         }
     },
     
     showHighscore: function() {
-        Ext.getStore('Highscore').load();
+        console.log(this.getHighscoreContainer());
         this.getMainTabPanel().setActiveItem(this.getHighscoreContainer());
     }
 });

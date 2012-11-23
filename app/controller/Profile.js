@@ -35,16 +35,9 @@ Ext.define('Kort.controller.Profile', {
                 tap: 'onBadgesContainerBackButtonTap'
             }
         },
-        routes: {
-            'profile': 'showProfile'
-        },
         
         userStore: null,
         badgesContainer: null
-    },
-    
-    showProfile: function() {
-        this.getMainTabPanel().setActiveItem(this.getProfileContainer());
     },
     
     onProfileContentComponentInitialize: function() {

@@ -16,9 +16,6 @@ Ext.define('Kort.controller.Validation', {
             validationList: {
                 itemtap: 'onValidationListItemTap'
             }
-        },
-        routes: {
-            'validation': 'showValidation'
         }
     },
     
@@ -28,9 +25,5 @@ Ext.define('Kort.controller.Validation', {
             title: record.get('title')
         });
         this.getValidationNavigationView().push(voteTabPanel);
-    },
-    
-    showValidation: function() {
-        this.getMainTabPanel().setActiveItem(this.getValidationNavigationView());
     }
 });
