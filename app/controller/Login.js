@@ -3,7 +3,7 @@ Ext.define('Kort.controller.Login', {
     requires: [
         'Ext.LoadMask'
     ],
-    
+
     config: {
         views: [
             'overlay.login.Panel'
@@ -40,21 +40,21 @@ Ext.define('Kort.controller.Login', {
         // redirect to google login page
         document.location.href = this.buildGoogleUrl(this.getRemote().google);
     },
-    
+
     showLoadMask: function() {
         this.getLoginPanel().setMasked({
             xtype: 'loadmask',
             message: Ext.i18n.Bundle.message('login.loadmask.message')
         });
-        
+
         Ext.defer(this.hideLoadMask, Kort.util.Config.getTimeout(), this);
     },
-    
+
     hideLoadMask: function() {
         this.getLoginPanel().setMasked(false);
         console.log('something went wrong');
     },
-    
+
     buildGoogleUrl: function(oauth) {
         var urlLib = new UrlLib(),
             params = urlLib.getUrlParams(),
@@ -70,7 +70,7 @@ Ext.define('Kort.controller.Login', {
         url += 'client_id=' + oauth.client_id + '&';
         url += 'scope=' + scopes + '&';
         url += 'access_type=' + oauth.access_type + '&';
-        url += 'redirect_uri=' + encodeURIComponent(urlLib.getAppUrl() + oauth.redirect_path) + '&';
+        url += 'redirect_uri=' + encodeURIComponent(urlLib.getAppUrl() + '/' + oauth.redirect_path) + '&';
         url += 'state=' + urlLib.getAppEnv() + '&';
         url += 'approval_prompt=' + (params.force ? 'force' : 'auto');
 
