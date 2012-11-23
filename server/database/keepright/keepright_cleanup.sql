@@ -1,7 +1,7 @@
 -- reduce amount of data
 delete from keepright.errors where schema::numeric < 80;
 
-vacuum full osm_bugs; 
+vacuum full keepright.errors; 
 reindex database osm_bugs;
 
 -- translate description
