@@ -1,14 +1,17 @@
 drop schema kort cascade;
 create schema kort;
 
+create sequence kort.fix_id;
+create sequence kort.validation_id;
+create sequence kort.user_id;
+
 create table kort.fix (
     fix_id integer primary key,
+    user_id integer,
     create_date timestamp not null,
     error_id integer not null,
     message text
 );
-
-create sequence kort.fix_id;
 
 create table kort.user (
     user_id integer primary key,
@@ -41,5 +44,12 @@ create table kort.answer (
     value varchar(100) unique not null,
     title varchar(100) not null,
     sorting integer not null
+);
+
+create table kort.validation (
+    validation_id integer primary key,
+    user_id integer,
+    fix_id integer,
+    valid boolean
 );
 
