@@ -11,6 +11,7 @@ Ext.define('Kort.view.profile.BadgesContainer', {
 	config: {
         zIndex: Kort.util.Config.getZIndex().overlayLeafletMap,
         layout: 'vbox',
+        selectedBadgeIndex: 0,
         
         showAnimation: {
             type: 'slideIn',
@@ -34,10 +35,18 @@ Ext.define('Kort.view.profile.BadgesContainer', {
                         align: 'left'
                     }
                 ]
-			},
-			{
-				xtype: 'badgescarousel'
 			}
 		]
-	}
+	},
+    
+    initialize: function() {
+        this.callParent(arguments);
+        
+        var badgesCarousel = {
+            xtype: 'badgescarousel', 
+            selectedBadgeIndex: this.getSelectedBadgeIndex()
+        }
+        
+        this.add(badgesCarousel);
+    }
 });

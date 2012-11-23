@@ -16,8 +16,7 @@ Ext.define('Kort.controller.Profile', {
             profileBadgesDataView: '.profilebadgesdataview',
             profileRefreshButton: '#profileContainer .button[cls=profileRefreshButton]',
             profileLogoutButton: '#profileContainer .button[cls=profileLogoutButton]',
-            badgesContainerBackButton: '.badgescontainer .button[cls=badgesContainerBackButton]',
-            badgesCarousel: '.badgescontainer .badgescarousel'
+            badgesContainerBackButton: '.badgescontainer .button[cls=badgesContainerBackButton]'
         },
         control: {
             profileContentComponent: {
@@ -61,9 +60,9 @@ Ext.define('Kort.controller.Profile', {
     },
     
     onProfileBadgesDataViewItemTap: function(dataViewCmp, index, target, record, e) {
-        var badgesContainer = Ext.create('Kort.view.profile.BadgesContainer');
-        
-        this.getBadgesCarousel().setActiveItem(index);
+        var badgesContainer = Ext.create('Kort.view.profile.BadgesContainer', {
+            selectedBadgeIndex: index
+        });
         this.setBadgesContainer(badgesContainer);
         Ext.Viewport.add(badgesContainer);
         badgesContainer.show();
