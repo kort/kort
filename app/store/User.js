@@ -7,7 +7,7 @@ Ext.define('Kort.store.User', {
         
 		proxy: {
 			type: "rest",
-            url : "./server/webservices/user/",
+            url : "./server/webservices/user/1",
             reader: {
                 type: "json"
             }
