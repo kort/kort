@@ -73,6 +73,7 @@ highscore.koins=koins
 
 # Profil
 profile.title=Profil
+profile.button.logout=Logout
 profile.content.username=Benutzername
 profile.content.email=Email
 profile.content.fixes=Anzahl erledigte Aufträge
@@ -81,6 +82,8 @@ profile.content.koins.header=Koins
 profile.content.koins.introduction=Deine gesammelten koins:
 profile.content.badges.header=Badges
 profile.logout.loadmask.message=Logout...
+profile.badges.title=Deine Auszeichnungen
+profile.badges.button.close=Schliessen
 
 # About
 about.title=Über kort

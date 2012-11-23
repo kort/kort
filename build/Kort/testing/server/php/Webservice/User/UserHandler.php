@@ -7,52 +7,29 @@ class UserHandler extends DbProxyHandler
 {
     protected $userData = array();
 
-    public function __construct()
+    protected $table = 'kort.user';
+    protected $fields = array(
+        'id',
+        'name',
+        'email',
+        'username',
+        'picUrl',
+        'token'
+    );
+
+    public function getUser($id)
     {
-        $this->userData['name'] = "";
-        $this->userData['email'] = "";
-        $this->userData['username'] = "";
-        $this->userData['picUrl'] = "";
-        $this->userData['token'] = null;
-        $this->userData['loggedIn'] = false;
-    }
+        $this->getDbProxy()->setWhere("id = ". $id);
+        $userData = json_decode($this->getDbProxy()->getFromDb(), true);
+        $userData['picUrl'] = $this->getGravatarUrl( $userData['email']);
+        $userData['loggedIn'] = isset($_SESSION['token']);
 
-    public function getUser()
-    {
-        if (isset($_SESSION['token'])) {
-            $tokenArray = \json_decode($_SESSION['token'], true);
-            $this->userData['token'] = $tokenArray['access_token'];
-            $this->userData['loggedIn'] = true;
-        }
-
-        if (isset($_SESSION['name'])) {
-            $this->userData['name'] = $_SESSION['name'];
-        }
-
-        if (isset($_SESSION['username'])) {
-            $this->userData['username'] = $_SESSION['username'];
-        }
-
-        if (isset($_SESSION['email'])) {
-            $this->userData['email'] = $_SESSION['email'];
-        }
-        $this->userData['picUrl'] = $this->getGravatarUrl();
-
-        $this->userData['fixCount'] = 0;
-        $this->userData['validationCount'] = 0;
-        $this->userData['koinCount'] = 0;
-
-        $this->userData['badges'] = $this->getUserBadges();
-
-        return \json_encode($this->userData);
+        return json_encode($userData);
     }
 
     public function updateUser($id, $data)
     {
-        $dataArr = json_decode($data, true);
-        if (isset($_SESSION)) {
-            $_SESSION['username'] = $dataArr['username'];
-        }
+        //$this->getDbProxy()->updateDb($id, $data);
     }
 
     public function insertUser($data)
@@ -60,27 +37,10 @@ class UserHandler extends DbProxyHandler
         // TODO implement insertUser
     }
 
-    /**
-    * Get either a Gravatar URL or complete image tag for a specified email address.
-    *
-    * @param string $s Size in pixels, defaults to 80px [ 1 - 2048 ]
-    * @param string $d Default imageset to use [ 404 | mm | identicon | monsterid | wavatar ]
-    * @param string $r Maximum rating (inclusive) [ g | pg | r | x ]
-    * @return String containing the URL
-    * @source http://gravatar.com/site/implement/images/php/
-    */
-    private function getGravatarUrl ($s = 200, $d = 'mm', $r = 'r')
-    {
-        $url = 'http://www.gravatar.com/avatar/';
-        $url .= \md5(\strtolower(\trim($this->userData['email'])));
-        $url .= "?s=$s&d=$d&r=$r";
-        return $url;
-    }
-
-    private function getUserBadges()
+    public function getUserBadges($id)
     {
         // TODO implement badges query
-        return array(
+        $badges = array(
             array(
                 'id' => 1,
                 'name' => 'highscore_place_1',
@@ -112,5 +72,23 @@ class UserHandler extends DbProxyHandler
                 'won' => true
             )
         );
+        return \json_encode($badges);
+    }
+
+    /**
+    * Get either a Gravatar URL or complete image tag for a specified email address.
+    *
+    * @param string $s Size in pixels, defaults to 80px [ 1 - 2048 ]
+    * @param string $d Default imageset to use [ 404 | mm | identicon | monsterid | wavatar ]
+    * @param string $r Maximum rating (inclusive) [ g | pg | r | x ]
+    * @return String containing the URL
+    * @source http://gravatar.com/site/implement/images/php/
+    */
+    private function getGravatarUrl ($s = 200, $d = 'mm', $r = 'r')
+    {
+        $url = 'http://www.gravatar.com/avatar/';
+        $url .= \md5(\strtolower(\trim($this->userData['email'])));
+        $url .= "?s=$s&d=$d&r=$r";
+        return $url;
     }
 }

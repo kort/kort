@@ -14,18 +14,18 @@ var UrlLib = function() {
 
     me.getAppUrl = function() {
         var host = window.location.host,
-            url = 'http://' + host + '/';
+            url = 'http://' + host;
         if (host === 'localhost') {
-            url += 'kort/';
+            url += '/kort';
         }
         return url;
     };
-    
+
     me.getAppEnv = function() {
         var host = window.location.host,
             pathname = window.location.pathname,
             env = '';
-        
+
         if (host === 'localhost') {
             if(pathname.indexOf('build/Kort/production') > -1) {
                 env = 'production';

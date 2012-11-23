@@ -4,19 +4,19 @@ namespace Model;
 class Reward
 {
     protected $badges = array();
-    protected $koins = 0;
+    protected $koinCount = 0;
 
-    public function __construct($koins = 0, $badges = array())
+    public function __construct($koinCount = 0, $badges = array())
     {
         $this->badges = $badges;
-        $this->koins = $koins;
+        $this->koinCount = $koinCount;
     }
 
     public function toJson()
     {
         $response = array();
         $response["badges"] = array_map(Badge::getValueFn(), $this->getBadges());
-        $response["koins"] = $this->getKoins();
+        $response["koinCount"] = $this->getKoinCount();
 
         return json_encode($response);
     }
@@ -26,8 +26,8 @@ class Reward
         return $this->badges;
     }
 
-    protected function getKoins()
+    protected function getKoinCount()
     {
-        return $this->koins;
+        return $this->koinCount;
     }
 }

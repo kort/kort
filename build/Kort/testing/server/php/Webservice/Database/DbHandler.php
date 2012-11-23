@@ -9,7 +9,7 @@ class DbHandler
 
     public function __construct($db = null)
     {
-        if ($db == null) {
+        if (empty($db)) {
             $this->db = new PsqlConnection(new DbConfig());
         } else {
             $this->db = $db;
@@ -27,12 +27,25 @@ class DbHandler
 
     public function doInsert($fields, $table, $data)
     {
+        $data = $this->reduceData($fields, $data);
+        $this->db->doInsertQuery($data, $table);
+    }
+
+    public function doUpdate($fields, $table, $data, $where)
+    {
+        $data = $this->reduceData($fields, $data);
+        $this->db->doUpdateQuery($data, $table, $where);
+    }
+
+    protected function reduceData($fields, $data)
+    {
+        $reducedData = array();
         foreach ($fields as $key) {
             if (array_key_exists($key, $data)) {
-                $data[$key] = $this->db->escapeLitereal($data[$key]);
+                $reducedData[$key] = $data[$key];
             }
         }
-        $this->db->doInsertQuery($data, $table);
+        return $reducedData;
     }
 
     public function checkAuth($apiKey)
