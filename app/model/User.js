@@ -13,10 +13,7 @@ Ext.define('Kort.model.User', {
 			{ name: 'token', type: 'string' },
 			{ name: 'fixCount', type: 'int' },
 			{ name: 'validationCount', type: 'int' },
-			{ name: 'koinCount', type: 'int' },
-            { name: 'badges', type: 'array' }
-        ],
-        
-        hasMany: { model: 'Badge', name: 'badges' }
+			{ name: 'koinCount', type: 'int' }
+        ]
     }
 });

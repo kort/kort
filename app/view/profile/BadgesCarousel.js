@@ -25,9 +25,17 @@ Ext.define('Kort.view.profile.BadgesCarousel', {
             var component = {
                 xtype: 'component',
                 html: me.getItemTpl().apply(badge.data)
+            };
+            // if user owns badge set badge background color
+            if(badge.get('won')) {
+                component.style = {
+                    'background-color': badge.get('color')
+                };
             }
+            
             me.add(component);
         });
+        // show choosen badge
         me.setActiveItem(me.getSelectedBadgeIndex());
     }
 });

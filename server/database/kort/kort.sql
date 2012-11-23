@@ -22,7 +22,9 @@ create table kort.user (
 create table kort.badge (
     bagde_id integer primary key,
     name varchar(100) not null,
+    title varchar(100) not null,
     description varchar(500) not null,
+    color varchar(10) not null,
     sorting integer not null
 );
 
