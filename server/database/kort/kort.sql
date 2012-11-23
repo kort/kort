@@ -16,7 +16,7 @@ create table kort.user (
     username varchar(100),
     email varchar(100),
     token varchar(255),
-    koins integer not null
+    koin_count integer not null
 );
 
 create table kort.badge (
