@@ -308,15 +308,16 @@ $label-background-color: #46578D;
             margin-left: 0.5em;
         }
     }
-    .badges {
-        $badge-image-size: 150px;
-        padding: 0 $panel-padding $panel-padding $panel-padding;
-        overflow: hidden;
+}
+
+#profileBadgesDataView {
+    .x-dataview-container {
+        padding: $panel-padding;
         
         .badge {
-            float: left;
-            width: 90px;
-            padding: 0.2em 0.5em;
+            $badge-image-size: 160px;
+            width: $badge-image-size/2;
+            margin: 0.2em 0.5em;
             text-align: center;
             overflow: hidden;
             

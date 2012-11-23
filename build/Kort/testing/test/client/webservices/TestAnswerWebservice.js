@@ -7,7 +7,7 @@ module("kort-AnswerWebservice", {
 test("root", function() {
 	var type = 'GET',
         data = null,
-        url = urlLib.getAppUrl() + this.path + '/?limit=10';
+        url = urlLib.getAppUrl() + '/' + this.path + '/?limit=10';
 
     api_test(url, type, data, function (answers) {
         notStrictEqual(answers, undefined, "method call failed");
@@ -27,7 +27,7 @@ test("root", function() {
 test("missing_track_type", function() {
 	var type = 'GET',
         data = null,
-        url = urlLib.getAppUrl() + this.path + '/missing_track_type?limit=5';
+        url = urlLib.getAppUrl() + '/' + this.path + '/missing_track_type?limit=5';
 
     api_test(url, type, data, function (answers) {
         notStrictEqual(answers, undefined, "method call failed");
@@ -47,7 +47,7 @@ test("missing_track_type", function() {
 test("not existings type", function() {
 	var type = 'GET',
         data = null,
-        url = urlLib.getAppUrl() + this.path + '/does_not_exist_test';
+        url = urlLib.getAppUrl() + '/' + this.path + '/does_not_exist_test';
 
     api_test(url, type, data, function (result) {
         equal(result.status, 404, "not existing answer type should return 404.");

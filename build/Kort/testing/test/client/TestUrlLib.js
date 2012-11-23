@@ -47,9 +47,9 @@ test("getUrlParams without values", function() {
 
 test("getAppUrl", function() {
     if (window.location.host === 'localhost') {
-        equal(this.urlLib.getAppUrl(), "http://localhost/kort/", "Should return correct app url");
+        equal(this.urlLib.getAppUrl(), "http://localhost/kort", "Should return correct app url");
     } else {
-        equal(this.urlLib.getAppUrl(), "http://" + window.location.host + "/", "Should return correct app url");
+        equal(this.urlLib.getAppUrl(), "http://" + window.location.host, "Should return correct app url");
     }
 
 });
