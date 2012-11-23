@@ -12,9 +12,9 @@ class UserGetHandler extends DbProxyHandler
         'username',
         'email',
         'token',
-        'fixCount',
-        'validationCount',
-        'koinCount'
+        'fix_count',
+        'validation_count',
+        'koin_count'
     );
 
     public function getUser($id)
@@ -23,8 +23,8 @@ class UserGetHandler extends DbProxyHandler
         $userData = json_decode($this->getDbProxy()->getFromDb(), true);
         $userData = $userData[0];
 
-        $userData['picUrl'] = $this->getGravatarUrl($userData['email']);
-        $userData['loggedIn'] = isset($_SESSION['token']);
+        $userData['pic_url'] = $this->getGravatarUrl($userData['email']);
+        $userData['logged_in'] = isset($_SESSION['token']);
 
         return json_encode($userData);
     }
