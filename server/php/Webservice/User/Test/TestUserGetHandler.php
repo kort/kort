@@ -14,7 +14,7 @@ class TestUserGetHandler extends AbstractKortUnitTestCase
     public function setUp()
     {
         parent::setup();
-        $this->handler = new UserHandler();
+        $this->handler = new UserGetHandler();
     }
 
     public function testConstruct()
