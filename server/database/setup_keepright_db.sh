@@ -81,8 +81,13 @@ do
     psql -d $DB_NAME -c "copy $DB_SCHEMA.errors from '$part_file' DELIMITER '	' null '\N' CSV;"
 done
 echo "End."
+
+echo "Combining part files to reduced keepright dump /tmp/keepright_errors.txt"
 cat /tmp/kr_part* >> /tmp/keepright_errors.txt
+
+echo "Delete all part files"
 rm /tmp/kr_part*
+
 echo "Creating indices"
 psql -d $DB_NAME -f $DIR/keepright/keepright_index.sql
 
