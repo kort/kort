@@ -153,7 +153,7 @@ $label-background-color: #46578D;
                 float: left;
 
                 .title {
-                    font-size: 0.8em;
+                    font-size: $default-font-size;
                     margin-bottom: 0.4em;
                 }
                 .ratings {
@@ -261,7 +261,7 @@ $label-background-color: #46578D;
 /* -----------------------
    Profile
    ----------------------- */
-#profileContentComponent {
+.profileContentComponent {
     .info {
         padding: $panel-padding;
         overflow: hidden;
@@ -302,7 +302,7 @@ $label-background-color: #46578D;
         clear: both;
         
         .koins-introduction {
-            font-size: 0.8em;
+            font-size: $default-font-size;
         }
         .koins-number {
             margin-left: 0.5em;
@@ -310,24 +310,51 @@ $label-background-color: #46578D;
     }
 }
 
-#profileBadgesDataView {
-    .x-dataview-container {
+.profileBadgesDataView {
+    padding: $panel-padding;
+    
+    .badge {
+        $badge-image-size: 160px;
+        width: $badge-image-size/2;
+        margin: 0.2em 0.5em;
+        text-align: center;
+        overflow: hidden;
+
+        .badge-title {
+            font-size: 0.6em;
+        }
+        img {
+            width: $badge-image-size/2;
+            height: $badge-image-size/2;
+        }
+    }
+    
+    .emptytext {
+        font-size: $default-font-size;
+    }
+}
+
+.profileBadgesCarousel {
+    .carouselitem-content {
+        text-align: center;
         padding: $panel-padding;
         
-        .badge {
-            $badge-image-size: 160px;
-            width: $badge-image-size/2;
-            margin: 0.2em 0.5em;
-            text-align: center;
-            overflow: hidden;
+        h1 {
+            font-weight: bold;
+            margin-bottom: 0.5em;
+        }
+        .badge-image {
+            $carousel-badge-image-size: 220px;
+            width: $carousel-badge-image-size/2;
             
-            .badge-title {
-                font-size: 0.6em;
-            }
             img {
-                width: $badge-image-size/2;
-                height: $badge-image-size/2;
+                width: $carousel-badge-image-size/2;
+                height: $carousel-badge-image-size/2;
             }
+        }
+        .badge-description {
+            font-size: $default-font-size;
+            margin: 0.5em 0;
         }
     }
 }
@@ -465,7 +492,7 @@ $label-background-color: #46578D;
         text-transform: uppercase;
     }
     dd {
-        font-size: 0.8em;
+        font-size: $default-font-size;
         margin: 0.2em 0;
     }
 }

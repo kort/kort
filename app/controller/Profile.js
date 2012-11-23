@@ -12,10 +12,11 @@ Ext.define('Kort.controller.Profile', {
         refs: {
             mainTabPanel: '#mainTabPanel',
             profileContainer: '#profileContainer',
-            profileContentComponent: '#profileContentComponent',
-            profileBadgesDataView: '#profileBadgesDataView',
+            profileContentComponent: '.profilecontentcomponent',
+            profileBadgesDataView: '.profilebadgesdataview',
             logoutButton: '#logoutButton',
-            badgesContainerBackButton: '.badgescontainer .button[cls=badgesContainerBackButton]'
+            badgesContainerBackButton: '.badgescontainer .button[cls=badgesContainerBackButton]',
+            badgesCarousel: '.badgescontainer .badgescarousel'
         },
         control: {
             profileContentComponent: {
@@ -57,8 +58,8 @@ Ext.define('Kort.controller.Profile', {
     
     onProfileBadgesDataViewItemTap: function(dataViewCmp, index, target, record, e) {
         var badgesContainer = Ext.create('Kort.view.profile.BadgesContainer');
-        // TODO ugly way to set active carousel item
-        badgesContainer.getItems().items[1].setActiveItem(index);
+        
+        this.getBadgesCarousel().setActiveItem(index);
         this.setBadgesContainer(badgesContainer);
         Ext.Viewport.add(badgesContainer);
         badgesContainer.show();

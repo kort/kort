@@ -80,9 +80,10 @@ profile.content.fixes=Anzahl erledigte Aufträge
 profile.content.validations=Anzahl Validierungen
 profile.content.koins.header=Koins
 profile.content.koins.introduction=Deine gesammelten koins:
-profile.content.badges.header=Badges
+profile.content.badges.header=Auszeichnungen
 profile.logout.loadmask.message=Logout...
 profile.badges.title=Deine Auszeichnungen
+profile.badges.emptytext=Deine Auszeichnungen konnten nicht geladen werden.
 profile.badges.button.close=Schliessen
 
 # About
@@ -108,4 +109,4 @@ picker.cancel=Abbrechen
 reward.alert.title=Du wurdest stärker!
 reward.alert.koins.1=Du hast
 reward.alert.koins.2=koins gewonnen.
-reward.alert.badges.title=Gewonnene Badges
+reward.alert.badges.title=Auszeichnungen
