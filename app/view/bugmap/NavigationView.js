@@ -17,7 +17,7 @@ Ext.define('Kort.view.bugmap.NavigationView', {
             items: [
                 {
                     xtype: 'button',
-                    id: 'refreshBugsButton',
+                    cls: 'bugmapRefreshButton',
                     iconCls: 'refresh',
                     iconMask: true,
                     align: 'right'
