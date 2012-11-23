@@ -7,7 +7,7 @@ module("kort-BugWebservice", {
 test("position", function() {
 	var type = 'GET',
         data = null,
-        url = urlLib.getAppUrl() + this.path + '/position/47.3441552,8.531329900000003';
+        url = urlLib.getAppUrl() + '/' + this.path + '/position/47.3441552,8.531329900000003';
 
     api_test(url, type, data, function (bugs) {
         notStrictEqual(bugs, undefined, "method call failed");
@@ -33,7 +33,7 @@ test("position", function() {
 test("position - no params with trailing slash", function() {
 	var type = 'GET',
         data = null,
-        url = urlLib.getAppUrl() + this.path + '/position/';
+        url = urlLib.getAppUrl() + '/' + this.path + '/position/';
 
     api_test(url, type, data, function (result) {
         equal(result.status, 404, "position w/o params should return 404.");
@@ -43,7 +43,7 @@ test("position - no params with trailing slash", function() {
 test("position - no params, no trailing slash", function() {
 	var type = 'GET',
         data = null,
-        url = urlLib.getAppUrl() + this.path + '/position';
+        url = urlLib.getAppUrl() + '/' + this.path + '/position';
 
     api_test(url, type, data, function (result) {
         equal(result.status, 404, "position w/o params should return 404.");
@@ -58,7 +58,7 @@ test("fix", function() {
             error_id: 6716165,
             message: 'Test fix message'
         },
-        url = urlLib.getAppUrl() + this.path + '/fix';
+        url = urlLib.getAppUrl() + '/' + this.path + '/fix';
 
     api_test(url, type, data, function (result) {
         console.log(result);

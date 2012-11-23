@@ -7,57 +7,36 @@ class UserHandler extends DbProxyHandler
 {
     protected $userData = array();
 
-    public function __construct()
+    protected $table = 'kort.user';
+    protected $fields = array(
+        'id',
+        'name',
+        'email',
+        'username',
+        'picUrl',
+        'token'
+    );
+
+    public function getUser($id)
     {
-        $this->userData['name'] = "";
-        $this->userData['email'] = "";
-        $this->userData['username'] = "";
-        $this->userData['picUrl'] = "";
-        $this->userData['token'] = null;
-        $this->userData['loggedIn'] = false;
-    }
+        $this->getDbProxy()->setWhere("id = ". $id);
+        $userData = json_decode($this->getDbProxy()->getFromDb(), true);
+        $userData['picUrl'] = $this->getGravatarUrl( $userData['email']);
+        $userData['loggedIn'] = isset($_SESSION['token']);
 
-    public function getUser()
-    {
-        if (isset($_SESSION['token'])) {
-            $tokenArray = \json_decode($_SESSION['token'], true);
-            $this->userData['token'] = $tokenArray['access_token'];
-            $this->userData['loggedIn'] = true;
-        }
-
-        if (isset($_SESSION['name'])) {
-            $this->userData['name'] = $_SESSION['name'];
-        }
-
-        if (isset($_SESSION['username'])) {
-            $this->userData['username'] = $_SESSION['username'];
-        }
-
-        if (isset($_SESSION['email'])) {
-            $this->userData['email'] = $_SESSION['email'];
-        }
-        $this->userData['picUrl'] = $this->getGravatarUrl();
-
-        $this->userData['fixCount'] = 0;
-        $this->userData['validationCount'] = 0;
-        $this->userData['koinCount'] = 0;
-
-        return \json_encode($this->userData);
+        return json_encode($userData);
     }
 
     public function updateUser($id, $data)
     {
-        $dataArr = json_decode($data, true);
-        if (isset($_SESSION)) {
-            $_SESSION['username'] = $dataArr['username'];
-        }
+        //$this->getDbProxy()->updateDb($id, $data);
     }
 
     public function insertUser($data)
     {
         // TODO implement insertUser
     }
-    
+
     public function getUserBadges($id)
     {
         // TODO implement badges query
