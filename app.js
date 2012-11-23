@@ -69,53 +69,92 @@ Ext.application({
 
     // launch function is called as soon as app is ready
     launch: function() {
-        var userStore = Ext.getStore('User'),
-            selectAnswersStore = Ext.getStore('SelectAnswers'),
-            validationsStore = Ext.getStore('Validations'),
-            mainPanel;
+        var selectAnswersStore = Ext.getStore('SelectAnswers');
 
         this.prepareI18n();
         this.configureMessageBox();
 
-        // create main view
-        mainPanel = Ext.create('Kort.view.Main');
-        Ext.Viewport.add(mainPanel);
-
         selectAnswersStore.load();
         
-        Kort.geolocation = Ext.create('Kort.util.Geolocation');
-        Kort.geolocation.updateLocation(function (geo) {
-            // add locationupdate listener after store load
-            validationsStore.on('load', function(store) {
-                geo.on('locationupdate', store.updateDistances(geo), store);
-            }, this, { single: true });
-            validationsStore.load();
-            geo.setAutoUpdate(true);
-        });
+        // create main panel
+        var mainPanel = Ext.create('Kort.view.Main');
+        Ext.Viewport.add(mainPanel);
+        mainPanel.hide();
         
-        // check if user is logged in
-        userStore.load(function() {
-            var user = userStore.first(),
-                userBadges = Ext.getStore('UserBadges'),
-                loginPanel,
-                firststepsPanel;
-            if (!user.get('loggedIn')) {
-                console.log('user not logged in -> show login panel');
-                mainPanel.hide();
-                loginPanel = Ext.create('Kort.view.overlay.login.Panel');
-                Ext.Viewport.add(loginPanel);
-                loginPanel.show();
-            } else if(!user.get('username')) {
-                console.log('no username given -> show first steps panel');
-                firststepsPanel = Ext.create('Kort.view.overlay.firststeps.Panel');
-                Ext.Viewport.add(firststepsPanel);
-                firststepsPanel.show();
+        // create ui
+        this.loadGeolocation(mainPanel);
+    },
+    
+    loadGeolocation: function(mainPanel) {
+        var me = this;
+        
+        Kort.geolocation = Ext.create('Kort.util.Geolocation');
+        Kort.geolocation.updateLocation(function(geo) {
+            if(geo) {
+                me.loadUser(geo, mainPanel);
+            } else {
+                // TODO geolocation error panel
+                console.log('geolocation must be available!');
             }
-            
-            // loading badges of user
-            userBadges.getProxy().setUrl('./server/webservices/user/' + user.get('id') + '/badges');
-            userBadges.load();
         });
+    },
+    
+    loadUser: function(geo, mainPanel) {
+        var me = this,
+            userStore = Ext.getStore('User');
+        
+        userStore.load(function() {
+            var user = userStore.first();
+            
+            // check if user is logged in
+            if (!user.get('loggedIn')) {
+                me.showLoginOverlay();
+            } else {
+                me.showMainPanel(geo, user, mainPanel);
+            }
+        });
+    },
+    
+    showLoginOverlay: function() {
+        var loginPanel;
+        
+        console.log('user not logged in -> show login panel');
+        loginPanel = Ext.create('Kort.view.overlay.login.Panel');
+        Ext.Viewport.add(loginPanel);
+        loginPanel.show();
+    },
+    
+    showMainPanel: function(geo, user, mainPanel) {
+        var validationsStore = Ext.getStore('Validations'),
+            userBadges = Ext.getStore('UserBadges');
+        
+        mainPanel.show();
+        
+        // add locationupdate listener after store load
+        validationsStore.on('load', function(store) {
+            store.updateDistances(geo);
+            geo.on('locationupdate', store.updateDistances(geo), store);
+        }, this, { single: true });
+        validationsStore.load();
+        geo.setAutoUpdate(true);
+
+        // loading badges of user
+        userBadges.getProxy().setUrl('./server/webservices/user/' + user.get('id') + '/badges');
+        userBadges.load();
+        
+        // loading highscore
+        Ext.getStore('Highscore').load();
+
+        if(!user.get('username')) {
+            this.showFirstStepsPanel();
+        }
+    },
+    
+    showFirstStepsPanel: function() {
+        var firststepsPanel = Ext.create('Kort.view.overlay.firststeps.Panel');
+        console.log('no username given -> show first steps panel');
+        Ext.Viewport.add(firststepsPanel);
+        firststepsPanel.show();
     },
 
     prepareI18n: function() {

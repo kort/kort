@@ -14,11 +14,15 @@ Ext.define('Kort.controller.Bugmap', {
             mainTabPanel: '#mainTabPanel',
             mapCmp: '#bugmap',
             bugmapNavigationView: '#bugmapNavigationView',
+            bugmapCenterButton: '#bugmapNavigationView .button[cls=bugmapCenterButton]',
             bugmapRefreshButton: '#bugmapNavigationView .button[cls=bugmapRefreshButton]'
         },
         control: {
             mapCmp: {
                 maprender: 'onMapRender'
+            },
+            bugmapCenterButton: {
+                tap: 'onBugmapCenterButtonTap'
             },
             bugmapRefreshButton: {
                 tap: 'onBugmapRefreshButtonTap'
@@ -29,10 +33,6 @@ Ext.define('Kort.controller.Bugmap', {
             }
         },
 
-        routes: {
-            'bugmap': 'showBugmap'
-        },
-
         map: null,
         ownPositionMarker: null,
         markerLayerGroup: [],
@@ -41,14 +41,12 @@ Ext.define('Kort.controller.Bugmap', {
         messageBoxTemplate: null
     },
 
-    showBugmap: function() {
-        this.getMainTabPanel().setActiveItem(this.getBugmapNavigationView());
-    },
-
     onBugmapNavigationViewDetailPush: function(cmp, view, opts) {
+        this.getBugmapCenterButton().hide();
         this.getBugmapRefreshButton().hide();
     },
     onBugmapNavigationViewBack: function(cmp, view, opts) {
+        this.getBugmapCenterButton().show();
         this.getBugmapRefreshButton().show();
     },
 
@@ -73,24 +71,32 @@ Ext.define('Kort.controller.Bugmap', {
         me.getMarkerLayerGroup().addTo(map);
     },
 
+    onBugmapCenterButtonTap: function() {
+        this.centerMapToCurrentPosition();
+    },
+    
     onBugmapRefreshButtonTap: function() {
         this.refreshBugMarkers();
+    },
+    
+    centerMapToCurrentPosition: function() {
+        // centering map to current position
+        this.getMapCmp().setMapCenter(this.getCurrentLocationLatLng(this.getMapCmp()));
     },
 
     refreshBugMarkers: function() {
         var me = this,
-            lat = me.getMapCmp().getGeo().getLatitude(),
-            lng = me.getMapCmp().getGeo().getLongitude(),
+            mapCmp = me.getMapCmp(),
             bugsStore = me.getBugsStore(),
-            url;
-
-        url = './server/webservices/bug/position/' + lat + ',' + lng;
+            url, currentLatLng;
+        
+        currentLatLng = me.getCurrentLocationLatLng(mapCmp);
+        url = './server/webservices/bug/position/' + currentLatLng.lat + ',' + currentLatLng.lng;
         bugsStore.getProxy().setUrl(url);
 
         me.showLoadMask();
 
-        // centering map to current position
-        me.getMapCmp().setMapCenter(L.latLng(lat, lng));
+        me.centerMapToCurrentPosition();
 
         // Load bugs store
 		bugsStore.load(function(records, operation, success) {
@@ -223,6 +229,19 @@ Ext.define('Kort.controller.Bugmap', {
         this.getBugmapNavigationView().setMasked(false);
         this.getBugmapRefreshButton().enable();
     },
+    
+    /**
+	 * Returns current location
+	 * @private
+	 */
+	getCurrentLocationLatLng: function(mapCmp) {
+		if(mapCmp.getUseCurrentLocation()) {
+            var geo = mapCmp.getGeo();
+			return L.latLng(geo.getLatitude(), geo.getLongitude());
+		} else {
+			return mapCmp.getMap().getCenter();
+		}
+	},
 
     init: function() {
         // create layer group for bug markers

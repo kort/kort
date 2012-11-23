@@ -6,15 +6,7 @@ Ext.define('Kort.controller.About', {
             'about.Container'
         ],
         refs: {
-            mainTabPanel: '#mainTabPanel',
             aboutContainer: '#aboutContainer'
-        },
-        routes: {
-            'about': 'showAbout'
         }
-    },
-    
-    showAbout: function() {
-        this.getMainTabPanel().setActiveItem(this.getAboutContainer());
     }
 });
