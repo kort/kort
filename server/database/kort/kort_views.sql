@@ -54,3 +54,14 @@ select a.answer_id id,
        a.title,
        a.sorting
 from   kort.answer a;
+
+create or replace view kort.user_model as
+select u.user_id id,
+       u.name,
+       u.username,
+       u.email,
+       u.token,
+       u.koin_count,
+       (select count(1) from kort.fix f where f.user_id = u.user_id) fix_count,
+       (select count(1) from kort.validation v where v.user_id = u.user_id) validation_count
+from   kort.user u;
