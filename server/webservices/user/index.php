@@ -37,6 +37,14 @@ $app->get(
     }
 );
 
+$app->get(
+    '/:id/logout',
+    function () use ($res) {
+        \session_destroy();
+        $res->write("Congratulations! You've now officially logged out!");
+    }
+);
+
 $app->post(
     '/',
     function () use ($userHandler, $app) {
@@ -48,14 +56,6 @@ $app->put(
     '/:id',
     function ($id) use ($userHandler, $app) {
         $userHandler->updateUser($id, $app->request()->put());
-    }
-);
-
-$app->get(
-    '/logout',
-    function () use ($res) {
-        \session_destroy();
-        $res->write("Congratulations! You've now officially logged out!");
     }
 );
 
