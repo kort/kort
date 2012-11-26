@@ -40,7 +40,6 @@ class DbHandler
     protected function reduceData($fields, $data)
     {
         $reducedData = array();
-        $fields = explode(",", $fields);
         foreach ($fields as $key) {
             if (array_key_exists($key, $data)) {
                 $reducedData[$key] = $data[$key];
