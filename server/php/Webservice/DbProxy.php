@@ -70,6 +70,19 @@ class DbProxy
         return $this->request("POST", $this->wsConfig->url . $path, $data);
     }
 
+    public function update($data)
+    {
+        $path  = "/" . $this->table;
+        $path .= "/" . implode(",", $this->fields);
+
+        if ($this->where) {
+            $path .= "where=" . urlencode($this->where) . "&";
+        }
+
+        $data['key'] = $this->wsConfig->getApiKey();
+        return $this->request("PUT", $this->wsConfig->url . $path, $data);
+    }
+
     private function request($method, $url, $data = false)
     {
         switch ($method)
@@ -82,7 +95,11 @@ class DbProxy
                 }
                 break;
             case "PUT":
-                $this->curl->setOption(CURLOPT_PUT, 1);
+                $this->curl->setOption(CURLOPT_CUSTOMREQUEST, "PUT");
+
+                if ($data) {
+                    $this->curl->setOption(CURLOPT_POSTFIELDS, $data);
+                }
                 break;
             default:
                 if ($data) {
