@@ -3,7 +3,7 @@ Ext.define('Kort.controller.Profile', {
     requires: [
         'Ext.LoadMask'
     ],
-    
+
     config: {
         views: [
             'profile.Container',
@@ -35,15 +35,15 @@ Ext.define('Kort.controller.Profile', {
                 tap: 'onBadgesContainerBackButtonTap'
             }
         },
-        
+
         userStore: null,
         badgesContainer: null
     },
-    
+
     onProfileContentComponentInitialize: function() {
         var store = this.getUserStore(),
             user;
-            
+
         if(!store.isLoaded()) {
             Ext.defer(this.onProfileContentComponentInitialize, 500, this);
         } else {
@@ -51,7 +51,7 @@ Ext.define('Kort.controller.Profile', {
             this.getProfileContentComponent().setRecord(user);
         }
     },
-    
+
     onProfileBadgesDataViewItemTap: function(dataViewCmp, index, target, record, e) {
         var badgesContainer = Ext.create('Kort.view.profile.BadgesContainer', {
             selectedBadgeIndex: index
@@ -60,55 +60,56 @@ Ext.define('Kort.controller.Profile', {
         Ext.Viewport.add(badgesContainer);
         badgesContainer.show();
     },
-    
+
     onBadgesContainerBackButtonTap: function() {
         this.getBadgesContainer().hide();
     },
-    
+
     onProfileLogoutButtonTap: function() {
-        var me = this;
+        var me = this,
+            user = me.getUserStore().first();
         me.showLoadMask(Ext.i18n.Bundle.message('profile.logout.loadmask.message'));
         Ext.Ajax.request({
-            url: './server/webservices/user/logout',
+            url: './server/webservices/user/' + user.id + '/logout',
             success: function(response){
                 // reload current page
                 window.location.reload();
             }
         });
     },
-    
+
     onProfileRefreshButtonTap: function() {
         var me = this,
             userStore = Ext.getStore('User');
-        
+
         me.showLoadMask(Ext.i18n.Bundle.message('profile.refresh.loadmask.message'));
-        
+
         userStore.load(function() {
             var user = userStore.first(),
                 userBadges = Ext.getStore('UserBadges');
-                
+
             // loading badges of user
             userBadges.getProxy().setUrl('./server/webservices/user/' + user.get('id') + '/badges');
             userBadges.load();
             me.hideLoadMask();
         });
     },
-    
+
     showLoadMask: function(message) {
         this.getProfileRefreshButton().disable();
         Ext.Viewport.setMasked({
             xtype: 'loadmask',
             message: message
         });
-        
+
         Ext.defer(this.hideLoadMask, Kort.util.Config.getTimeout(), this);
     },
-    
+
     hideLoadMask: function() {
         this.getProfileRefreshButton().enable();
         Ext.Viewport.setMasked(false);
     },
-    
+
     init: function() {
         this.setUserStore(Ext.getStore('User'));
     }
