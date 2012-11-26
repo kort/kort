@@ -18,12 +18,13 @@ create table kort.user (
     name varchar(100) not null,
     username varchar(100),
     email varchar(100),
+    koin_count integer not null,
     token varchar(255),
-    koin_count integer not null
+    oauth_provider varchar(100)
 );
 
 create table kort.badge (
-    bagde_id integer primary key,
+    badge_id integer primary key,
     name varchar(100) not null,
     title varchar(100) not null,
     description varchar(500) not null,
