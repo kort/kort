@@ -33,7 +33,7 @@ class TestBugHandler extends AbstractKortUnitTestCase
     {
         $this->mockProxy->shouldReceive('setOrderBy')/*->with('/4000/')*/;
         $this->mockProxy->shouldReceive('setLimit')->with(50);
-        $this->mockProxy->shouldReceive('getFromDb')->andReturn("{\"test\":\"value\"}");
+        $this->mockProxy->shouldReceive('select')->andReturn("{\"test\":\"value\"}");
         $this->assertEqual("{\"test\":\"value\"}", $this->handler->getBugsByOwnPosition(47, 8, 50, 4000));
     }
 }
