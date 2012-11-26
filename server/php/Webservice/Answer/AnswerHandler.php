@@ -12,7 +12,7 @@ class AnswerHandler extends DbProxyHandler
     {
         $this->getDbProxy()->setLimit($limit);
         $this->getDbProxy()->setOrderBy('sorting');
-        return $this->getDbProxy()->getFromDb();
+        return $this->getDbProxy()->select();
     }
 
     public function getSpecificAnswers($type, $limit)
@@ -20,6 +20,6 @@ class AnswerHandler extends DbProxyHandler
         $this->getDbProxy()->setLimit($limit);
         $this->getDbProxy()->setWhere("type = '" . $type ."'");
         $this->getDbProxy()->setOrderBy('sorting');
-        return $this->getDbProxy()->getFromDb();
+        return $this->getDbProxy()->select();
     }
 }
