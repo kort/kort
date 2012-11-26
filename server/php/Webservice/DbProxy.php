@@ -61,7 +61,7 @@ class DbProxy
         return $this->request("GET", $this->wsConfig->url . $path);
     }
 
-    public function postToDb($data)
+    public function insert($data)
     {
         $path  = "/" . $this->table;
         $path .= "/" . implode(",", $this->fields);

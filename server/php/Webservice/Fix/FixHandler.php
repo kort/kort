@@ -19,7 +19,7 @@ class FixHandler extends DbProxyHandler
     {
         $data['id'] = "nextval('kort.fix_id')";
         $data['create_date'] = "now()";
-        $this->getDbProxy()->postToDb($data);
+        $this->getDbProxy()->insert($data);
 
         $koinCount = 100;
         $firstBadge = new Badge("highscore_place_1");
