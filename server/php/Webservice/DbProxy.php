@@ -42,7 +42,7 @@ class DbProxy
          $this->limit = $limit;
     }
 
-    public function getFromDb()
+    public function select()
     {
         $path  = "/" . $this->table;
         $path .= (count($this->fields) > 0) ? "/" . implode(",", $this->fields) : "";

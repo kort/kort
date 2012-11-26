@@ -31,6 +31,6 @@ class BugHandler extends DbProxyHandler
         $this->getDbProxy()->setOrderBy("geom <-> " . PostGisSqlHelper::getLatLngGeom($lat, $lng));
         $this->getDbProxy()->setLimit($limit);
 
-        return $this->getDbProxy()->getFromDb();
+        return $this->getDbProxy()->select();
     }
 }

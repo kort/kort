@@ -23,7 +23,7 @@ class TestDbProxy extends AbstractKortUnitTestCase
                 ->andReturn("returnValue");
         $this->mockCurl->shouldReceive('close');
 
-        $this->assertEqual("returnValue", $dbProxy->getFromDb());
+        $this->assertEqual("returnValue", $dbProxy->select());
 
     }
 }
