@@ -25,7 +25,18 @@ $app->get(
 $app->post(
     '/fix',
     function () use ($fixHandler, $app) {
-        $app->response()->write($fixHandler->insertFix($app->request()->post()));
+        $data = json_decode($app->request()->getBody(), true);
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            $app->response()->status(400);
+            $app->response()->write("Invalid JSON given!");
+        }
+        $result = $fixHandler->insertFix($data);
+        if (!$result) {
+            $app->response()->status(400);
+            $app->response()->write("Could not insert record: " . $result);
+        } else {
+            $app->response()->write($result);
+        }
     }
 );
 
