@@ -31,10 +31,12 @@ $app->get(
 $app->post(
     '/:table/:fields',
     function ($table, $fields) use ($dbHandler, $app) {
-        if (!$dbHandler->checkAuth($app->request()->params('key'))) {
+        $request = $app->request();
+        if (!$dbHandler->checkAuth($request->params('key'))) {
             $app->response()->status(403);
         } else {
-            $app->response()->write($dbHandler->doInsert($fields, $table, $app->request()->post()));
+            $fields = (isset($fields) ? explode(",", $fields) : null);
+            $app->response()->write($dbHandler->doInsert($fields, $table, $request->post()));
         }
     }
 );
