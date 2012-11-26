@@ -6,21 +6,28 @@ use Helper\PostGisSqlHelper;
 
 class BugHandler extends DbProxyHandler
 {
-    protected $table = 'kort.errors';
-    protected $fields = array(
-        'id',
-        'schema',
-        'type',
-        'osm_id',
-        'osm_type',
-        'title',
-        'description',
-        'latitude',
-        'longitude',
-        'view_type',
-        'answer_placeholder'
-    );
+    protected function getTable()
+    {
+        return 'kort.errors';
+    }
 
+    protected function getFields()
+    {
+        return array(
+            'id',
+            'schema',
+            'type',
+            'osm_id',
+            'osm_type',
+            'title',
+            'description',
+            'latitude',
+            'longitude',
+            'view_type',
+            'answer_placeholder'
+        );
+    }
+    
     public function getBugsByOwnPosition($lat, $lng, $limit, $radius)
     {
         $limit = empty($limit) ? 20 : $limit;

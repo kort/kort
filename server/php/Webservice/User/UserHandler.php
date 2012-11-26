@@ -5,14 +5,21 @@ use Webservice\DbProxyHandler;
 
 class UserHandler extends DbProxyHandler
 {
-    protected $table = 'kort.user';
-    protected $fields = array(
-        'user_id',
-        'name',
-        'email',
-        'username',
-        'token'
-    );
+    protected function getTable()
+    {
+        return 'kort.user';
+    }
+
+    protected function getFields()
+    {
+        return array(
+            'user_id',
+            'name',
+            'email',
+            'username',
+            'token'
+        );
+    }
 
     public function updateUser($id, $data)
     {

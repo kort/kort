@@ -5,17 +5,24 @@ use Webservice\DbProxyHandler;
 
 class UserGetHandler extends DbProxyHandler
 {
-    protected $table = 'kort.user_model';
-    protected $fields = array(
-        'id',
-        'name',
-        'username',
-        'email',
-        'token',
-        'fix_count',
-        'validation_count',
-        'koin_count'
-    );
+    protected function getTable()
+    {
+        return 'kort.user_model';
+    }
+
+    protected function getFields()
+    {
+        return array(
+            'id',
+            'name',
+            'username',
+            'email',
+            'token',
+            'fix_count',
+            'validation_count',
+            'koin_count'
+        );
+    }
 
     public function getUser($id)
     {
@@ -70,17 +77,17 @@ class UserGetHandler extends DbProxyHandler
     /**
     * Get either a Gravatar URL or complete image tag for a specified email address.
     *
-    * @param string $s Size in pixels, defaults to 80px [ 1 - 2048 ]
-    * @param string $d Default imageset to use [ 404 | mm | identicon | monsterid | wavatar ]
-    * @param string $r Maximum rating (inclusive) [ g | pg | r | x ]
+    * @param  Size in pixels, defaults to 80px [ 1 - 2048 ]
+    * @param  Default imageset to use [ 404 | mm | identicon | monsterid | wavatar ]
+    * @param  Maximum rating (inclusive) [ g | pg | r | x ]
     * @return String containing the URL
     * @source http://gravatar.com/site/implement/images/php/
     */
-    protected function getGravatarUrl ($email, $s = 200, $d = 'mm', $r = 'r')
+    protected function getGravatarUrl ($email, $sizeInPixel = 200, $imageSet = 'mm', $rating = 'r')
     {
         $url = 'http://www.gravatar.com/avatar/';
         $url .= \md5(\strtolower(\trim($email)));
-        $url .= "?s=$s&d=$d&r=$r";
+        $url .= "?s=$sizeInPixel&d=$imageSet&r=$rating";
         return $url;
     }
 }
