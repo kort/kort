@@ -20,7 +20,7 @@ class UserGetHandler extends DbProxyHandler
     public function getUser($id)
     {
         $this->getDbProxy()->setWhere("id = ". $id);
-        $userData = json_decode($this->getDbProxy()->getFromDb(), true);
+        $userData = json_decode($this->getDbProxy()->select(), true);
         $userData = $userData[0];
 
         $userData['pic_url'] = $this->getGravatarUrl($userData['email']);
