@@ -5,8 +5,15 @@ use Webservice\DbProxyHandler;
 
 class AnswerHandler extends DbProxyHandler
 {
-    protected $table = 'kort.select_answer';
-    protected $fields = array('id', 'value', 'title', 'sorting', 'type');
+    protected function getTable()
+    {
+        return 'kort.select_answer';
+    }
+
+    protected function getFields()
+    {
+        return array('id', 'value', 'title', 'sorting', 'type');
+    }
 
     public function getAllAnswers($limit)
     {
