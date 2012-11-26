@@ -39,5 +39,17 @@ $app->post(
     }
 );
 
+$app->put(
+    '/:table/:fields',
+    function ($table, $fields) use ($dbHandler, $app) {
+        if (!$dbHandler->checkAuth($app->request()->params('key'))) {
+            $app->response()->status(403);
+        } else {
+            $where = $app->request()->params('where');
+            $app->response()->write($dbHandler->doUpdate($fields, $table, $app->request()->put(), $where));
+        }
+    }
+);
+
 // start Slim app
 $app->run();
