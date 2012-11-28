@@ -12,6 +12,7 @@ class DbProxy
     protected $orderBy;
     protected $limit;
     protected $curl;
+    protected $returnFields;
 
     public function __construct($table, $fields)
     {
@@ -25,6 +26,16 @@ class DbProxy
     public function setCurl($curl)
     {
         $this->curl = $curl;
+    }
+
+    public function setFields($fields)
+    {
+         $this->fields = $fields;
+    }
+
+    public function setReturnFields($returnFields)
+    {
+        $this->returnFields = $returnFields;
     }
 
     public function setWhere($where)
@@ -67,6 +78,9 @@ class DbProxy
         $path .= "/" . implode(",", $this->fields);
 
         $data['key'] = $this->wsConfig->getApiKey();
+        if ($this->returnFields) {
+            $data['return'] = implode(",", $this->returnFields);
+        }
         return $this->request("POST", $this->wsConfig->url . $path, $data);
     }
 
@@ -80,6 +94,9 @@ class DbProxy
         }
 
         $data['key'] = $this->wsConfig->getApiKey();
+        if ($this->returnFields) {
+            $data['return'] = implode(",", $this->returnFields);
+        }
         return $this->request("PUT", $this->wsConfig->url . $path, $data);
     }
 

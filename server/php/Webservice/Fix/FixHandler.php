@@ -19,9 +19,9 @@ class FixHandler extends DbProxyHandler
 
     public function insertFix($data)
     {
-        $success = $this->getDbProxy()->insert($data);
+        $insertedFix = $this->getDbProxy()->insert($data);
 
-        if (!$success) {
+        if (!$insertedFix) {
             return false;
         }
 

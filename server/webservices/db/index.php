@@ -36,7 +36,10 @@ $app->post(
             $app->response()->status(403);
         } else {
             $fields = (isset($fields) ? explode(",", $fields) : null);
-            $app->response()->write($dbHandler->doInsert($fields, $table, $request->post()));
+            $returnFields = $request->params('return');
+            $returnFields = $returnFields ? explode(",", $returnFields) : $fields;
+
+            $app->response()->write($dbHandler->doInsert($fields, $table, $request->post(), $returnFields));
         }
     }
 );
