@@ -22,7 +22,7 @@ $app->get(
     function ($id) use ($userGetHandler, $res) {
         $userData = $userGetHandler->getUser($id);
 
-        if (!$userData) {
+        if (!$userData || $_SESSION['user_id'] != $id) {
             $res->status(403);
         } else {
             $res->write($userData);
