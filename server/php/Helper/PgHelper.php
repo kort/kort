@@ -31,6 +31,11 @@ class PgHelper
         return pg_execute($this->dbConn, $name, $parameter);
     }
 
+    public function fetch_row($result)
+    {
+        return pg_fetch_array($result, null, PGSQL_ASSOC);
+    }
+
 
     public function close()
     {
