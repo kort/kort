@@ -30,12 +30,13 @@ class PsqlConnection
         return $result;
     }
 
-    public function doInsertQuery($dataArr, $table)
+    public function doInsertQuery($dataArr, $table, $seq)
     {
-        $insertSql = $this->generateInsertSql(array_keys($dataArr), $table);
+        $insertSql = $this->generateInsertSql(array_keys($dataArr), $table, $seq);
         $this->db->prepare("insert-kort", $insertSql);
         $result = $this->db->execute("insert-kort", array_values($dataArr));
-        return $result;
+
+        return $this->db->fetch_row($result);
     }
 
     public function doUpdateQuery($dataArr, $table, $where)
@@ -43,7 +44,7 @@ class PsqlConnection
         $updateSql = $this->generateUpdateSql(array_keys($dataArr), $table, $where);
         $this->db->prepare("update-kort", $updateSql);
         $result = $this->db->execute("update-kort", array_values($dataArr));
-        return $result;
+        return $this->db->fetch_row($result);
     }
 
     protected function createConnectionString($dbConfig)
@@ -56,7 +57,7 @@ class PsqlConnection
         return $conn_string;
     }
 
-    protected function generateInsertSql($fields, $table)
+    protected function generateInsertSql($fields, $table, $returnFields)
     {
         $numbers = range(1, count($fields));
         $sql  = "INSERT INTO " . $table;
@@ -71,7 +72,12 @@ class PsqlConnection
                 $numbers
             )
         );
-        $sql .=  ');';
+        $sql .=  ')';
+
+        if ($returnFields) {
+            $sql .= " RETURNING " . implode(",", $returnFields);
+        }
+        $sql .= ";";
 
         return $sql;
     }
@@ -106,10 +112,14 @@ class PsqlConnection
         $sql = "SELECT ";
         if (count($fields) == 0) {
             $sql .= "*";
-        } else {
+        } else if (is_array($fields)) {
             $sql .= implode(',', $fields);
+        } else {
+            $sql .= $fields;
         }
+        if (!empty($table)) {
         $sql .= " FROM " . $table;
+        }
         if (!empty($where)) {
             $sql .= " WHERE " . $where;
         }
