@@ -12,7 +12,7 @@ reindex database osm_bugs;
 
 -- fill data in table error_type
 insert into keepright.error_type (error_type_id, type, description, view_type, answer_placeholder) values (90, 'motorway_ref', 'Autobahn ohne Bezeichner', 'text','Bezeichner');
-insert into keepright.error_type (error_type_id, type, description, view_type, answer_placeholder) values (100, 'religion', 'Kultst?tte/Kirche ohne Religion', 'select', 'Religion');
+insert into keepright.error_type (error_type_id, type, description, view_type, answer_placeholder) values (100, 'religion', 'Kultstätte/Kirche ohne Religion', 'select', 'Religion');
 insert into keepright.error_type (error_type_id, type, description, view_type, answer_placeholder) values (110, 'poi_name', 'Objekt ohne Namen', 'text', 'Name');
 insert into keepright.error_type (error_type_id, type, description, view_type, answer_placeholder) values (180, 'relation_type', 'Beziehung ohne Typ', 'select', 'Typ');
 insert into keepright.error_type (error_type_id, type, description, view_type, answer_placeholder) values (300, 'missing_maxspeed', 'Fehlendes Tempolimit', 'number', 'Tempolimit');
