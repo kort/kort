@@ -36,7 +36,7 @@ class PsqlConnection
         $this->db->prepare("insert-kort", $insertSql);
         $result = $this->db->execute("insert-kort", array_values($dataArr));
 
-        return $this->db->fetch_row($result);
+        return $this->db->fetchRow($result);
     }
 
     public function doUpdateQuery($dataArr, $table, $where, $returnFields)
@@ -44,7 +44,7 @@ class PsqlConnection
         $updateSql = $this->generateUpdateSql(array_keys($dataArr), $table, $where, $returnFields);
         $this->db->prepare("update-kort", $updateSql);
         $result = $this->db->execute("update-kort", array_values($dataArr));
-        return $this->db->fetch_row($result);
+        return $this->db->fetchRow($result);
     }
 
     protected function createConnectionString($dbConfig)
