@@ -40,6 +40,7 @@ Ext.application({
 		'Reward',
         'SelectAnswer',
         'User',
+        'UserLocal',
         'Validation',
         'Vote'
     ],
@@ -50,6 +51,7 @@ Ext.application({
 		'SelectAnswers',
         'User',
         'UserBadges',
+        'UserLocal',
         'Validations'
     ],
 
@@ -92,27 +94,66 @@ Ext.application({
         Kort.geolocation = Ext.create('Kort.util.Geolocation');
         Kort.geolocation.updateLocation(function(geo) {
             if(geo) {
-                me.loadUser(geo, mainPanel);
+                me.loadUserClientSecret(geo, mainPanel);
             } else {
                 me.showGeolocationErrorOverlay();
             }
         });
     },
     
-    loadUser: function(geo, mainPanel) {
+    loadUserClientSecret: function(geo, mainPanel) {
+        var me = this,
+            userLocalStore = Ext.getStore('UserLocal');
+        
+        userLocalStore.load(function(records, operation, success) {
+            console.log('userLocalStore loaded');
+            if(records.length === 0) {
+                console.log('no client secret record found in localstorage');
+                me.loadUser(geo, mainPanel);
+            } else {
+                console.log('client secret found in localstorage: ' + records[0].get('secret'));
+                me.loadUser(geo, mainPanel, records[0].get('secret'));
+            }
+        }, me);
+    },
+    
+    loadUser: function(geo, mainPanel, clientSecret) {
         var me = this,
             userStore = Ext.getStore('User');
-        
+
+        if(clientSecret) {
+            userStore.getProxy().setUrl('./server/webservices/user/' + clientSecret);
+        }
         userStore.load(function() {
             var user = userStore.first();
+            console.log('user loaded');
+            console.log(user);
             
             // check if user is logged in
-            if (!user.get('logged_in')) {
+            if (!user || !user.get('logged_in')) {
                 me.showLoginOverlay();
             } else {
+                if(!clientSecret) {
+                    console.log('clientSecret not passed -> write client secret to localstore');
+                    me.writeUserClientSecret(user.get('secret'));
+                }
                 me.showMainPanel(geo, user, mainPanel);
             }
         });
+    },
+    
+    writeUserClientSecret: function(clientSecret) {
+        var userLocalStore = Ext.getStore('UserLocal'),
+            userLocal;
+        
+        if(clientSecret) {
+            console.log('writing userClientSecret to localstore: ' + clientSecret);
+            userLocal = Ext.create('Kort.model.UserLocal', { 'secret': clientSecret });
+            console.log(userLocal);
+            userLocalStore.add(userLocal);
+        } else {
+            console.log('Error: no client secret passed');
+        }
     },
     
     showLoginOverlay: function() {
