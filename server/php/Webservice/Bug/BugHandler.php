@@ -24,7 +24,8 @@ class BugHandler extends DbProxyHandler
             'latitude',
             'longitude',
             'view_type',
-            'answer_placeholder'
+            'answer_placeholder',
+            'koin_count'
         );
     }
 
