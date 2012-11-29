@@ -47,11 +47,15 @@ $app->post(
 $app->put(
     '/:table/:fields',
     function ($table, $fields) use ($dbHandler, $app) {
-        if (!$dbHandler->checkAuth($app->request()->params('key'))) {
+        $request = $app->request();
+        if (!$dbHandler->checkAuth($request->params('key'))) {
             $app->response()->status(403);
         } else {
-            $where = $app->request()->params('where');
-            $app->response()->write($dbHandler->doUpdate($fields, $table, $app->request()->put(), $where));
+            $fields = (isset($fields) ? explode(",", $fields) : null);
+            $returnFields = $request->params('return');
+            $returnFields = $returnFields ? explode(",", $returnFields) : $fields;
+            $where = $request->params('where');
+            $app->response()->write($dbHandler->doUpdate($fields, $table, $request->put(), $where, $returnFields));
         }
     }
 );

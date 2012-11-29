@@ -13,6 +13,7 @@ class UserHandler extends DbProxyHandler
     protected function getFields()
     {
         return array(
+            'user_id',
             'name',
             'email',
             'username',
@@ -21,22 +22,26 @@ class UserHandler extends DbProxyHandler
         );
     }
 
+    protected function getReturnFields()
+    {
+        return array(
+            'user_id',
+            'name',
+            'username',
+            'email'
+        );
+    }
+
     public function updateUser($id, $data)
     {
+        $this->getDbProxy()->setReturnFields($this->getReturnFields());
         $this->getDbProxy()->setWhere("user_id = " . $id);
-        $this->getDbProxy()->update($data);
+        return json_encode($this->getDbProxy()->update($data));
     }
 
     public function insertUser($data)
     {
-        $this->getDbProxy()->setReturnFields(
-                array(
-                   'user_id',
-                   'name',
-                   'username',
-                   'email'
-                )
-        );
-        return json_decode($this->getDbProxy()->insert($data), true);
+        $this->getDbProxy()->setReturnFields($this->getReturnFields());
+        return json_encode($this->getDbProxy()->insert($data));
     }
 }
