@@ -3,13 +3,12 @@ Ext.define('Kort.store.User', {
 
 	config: {
 		model: 'Kort.model.User',
-        autoSync: true,
 
 		proxy: {
-			type: "rest",
-            url : "./server/webservices/user",
+			type: 'rest',
+            url : './server/webservices/user',
             reader: {
-                type: "json"
+                type: 'json'
             }
         }
 	}
