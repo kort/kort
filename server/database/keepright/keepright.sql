@@ -28,12 +28,13 @@ create table keepright.errors (
 );
 
 create table keepright.error_type (
-       error_type_id integer not null,
-       type character varying(20) not null, 
-       description character varying(255), 
-       view_type character varying(50),
-       answer_placeholder character varying(100),
-       PRIMARY KEY (error_type_id)
+    error_type_id integer not null,
+    type character varying(20) not null, 
+    description character varying(255), 
+    view_type character varying(50),
+    answer_placeholder character varying(100),
+    koin_count integer not null,
+    PRIMARY KEY (error_type_id)
 );
 
 
