@@ -8,6 +8,7 @@ select  e.error_id id,
         t.view_type,
         t.answer_placeholder,
         e.msgid description,
+        t.koin_count,
         CAST(e.lat AS NUMERIC)/10000000 latitude,
         CAST(e.lon AS NUMERIC)/10000000 longitude,
         e.geom
