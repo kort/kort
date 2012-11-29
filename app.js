@@ -1,3 +1,5 @@
+/*jshint maxcomplexity:10 */
+
 //<debug>
 Ext.Loader.setPath({
     'Ext': 'touch/src',
@@ -71,7 +73,8 @@ Ext.application({
 
     // launch function is called as soon as app is ready
     launch: function() {
-        var selectAnswersStore = Ext.getStore('SelectAnswers');
+        var selectAnswersStore = Ext.getStore('SelectAnswers'),
+            mainPanel;
 
         this.prepareI18n();
         this.configureMessageBox();
@@ -79,7 +82,7 @@ Ext.application({
         selectAnswersStore.load();
         
         // create main panel
-        var mainPanel = Ext.create('Kort.view.Main');
+        mainPanel = Ext.create('Kort.view.Main');
         Ext.Viewport.add(mainPanel);
         mainPanel.hide();
         

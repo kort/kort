@@ -44,7 +44,7 @@ Ext.define('Kort.view.profile.BadgesContainer', {
         this.callParent(arguments);
         
         var badgesCarousel = {
-            xtype: 'badgescarousel', 
+            xtype: 'badgescarousel',
             selectedBadgeIndex: this.getSelectedBadgeIndex()
         }
         
