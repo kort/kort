@@ -33,16 +33,34 @@ class UserGetHandler extends DbProxyHandler
             $userData = json_decode($this->getDbProxy()->select(), true);
             $userData = $userData[0];
 
-            if($userData) {
+            if(!empty($userData)) {
                 if (!isset($_SESSION)) {
                     session_start();
                 }
                 $_SESSION['secret'] = $secret;
                 $userData['pic_url'] = $this->getGravatarUrl($userData['email']);
                 $userData['logged_in'] = true;
+                return json_encode($userData);
             }
         }
-        return json_encode($userData);
+        return $this->getDefaultUserJson();
+    }
+
+    protected function getDefaultUserJson() {
+        $user = array();
+        $user['id'] = null;
+        $user['name'] = "Anonymous";
+        $user['username'] = "";
+        $user["email"] = "";
+        $user["token"] = "";
+        $user["fix_count"] = 0;
+        $user["validation_count"] = 0;
+        $user["koin_count"] = 0;
+        $user["pic_url"] = "";
+        $user["logged_in"] = false;
+        $user["secret"] = "";
+
+        return json_encode($user);
     }
 
     public function getUserBadges($id)
