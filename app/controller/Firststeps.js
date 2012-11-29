@@ -22,8 +22,6 @@ Ext.define('Kort.controller.Firststeps', {
 
     onFirststepsFormSubmitButtonTap: function() {
         var me = this,
-            userStore = Ext.getStore('User'),
-            user = userStore.first(),
             usernameValue = this.getUsernameTextfield().getValue(),
             messageBox;
 
@@ -32,8 +30,10 @@ Ext.define('Kort.controller.Firststeps', {
                 messageBox = Ext.create('Kort.view.NotificationMessageBox');
                 messageBox.alert(Ext.i18n.Bundle.message('firststeps.alert.username.specialchars.title'), Ext.i18n.Bundle.message('firststeps.alert.username.specialchars.message'), Ext.emptyFn);
             } else {
-                userStore.on('write', me.storeWriteHandler, this, { single: true });
-                user.set('username', usernameValue);
+                Kort.user.set('username', usernameValue);
+                Kort.user.save({
+                    success: me.storeWriteHandler
+                }, me);
             }
         } else {
             messageBox = Ext.create('Kort.view.NotificationMessageBox');

@@ -15,6 +15,33 @@ Ext.define('Kort.model.User', {
 			{ name: 'validation_count', type: 'int' },
 			{ name: 'koin_count', type: 'int' },
             { name: 'secret', type: 'string' }
-        ]
+        ],
+        
+		proxy: {
+			type: 'rest',
+            url : './server/webservices/user',
+            reader: {
+                type: 'json'
+            }
+        }
+    },
+    
+    statics: {
+        reload: function(user, idProperty, callback, scope) {
+            this.load(user.get(idProperty), {
+                success: function(record, operation) {
+                    var userBadges = Ext.getStore('UserBadges');
+                    user = record;
+
+                    // loading badges of user
+                    userBadges.getProxy().setUrl('./server/webservices/user/' + user.get('id') + '/badges');
+                    userBadges.load();
+                    if(typeof callback === 'function') {
+                        scope = scope || this;
+                        callback.call(scope);
+                    }
+                }
+            });
+        }
     }
 });

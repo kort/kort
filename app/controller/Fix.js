@@ -73,7 +73,7 @@ Ext.define('Kort.controller.Fix', {
     },
     
     reloadStores: function() {
-        Ext.getStore('User').load();
+        Kort.model.User.reload(Kort.user, 'secret');
     },
     
 	showRewardMessageBox: function(reward) {
