@@ -1,0 +1,75 @@
+\chapter{Backend-Administration}
+\label{backend_administration}
+
+\section{Hinzufügen von Fehler-Datenquellen}
+
+\section{Hinzufügen von Fehlertypen}
+
+\subsection{Fehlertypen}
+In der App sind bereits folgende Fehlertypen implementiert:
+
+\begin{itemize}
+\item Autobahn ohne Bezeichner
+\item Kultstätte/Kirche ohne Religion
+\item Objekt ohne Namen
+\item Beziehung ohne Typ
+\item Fehlendes Tempolimit
+\item Sprache des Namens unbekannt
+\item Typ des Wegs unbekannt
+\item Strasse ohne Namen
+\end{itemize}
+
+Diese Typen sind in der Tabelle \inlinecode{keepright.error\_type} definiert.
+Im Feld \inlinecode{type} dieser Tabelle befindet sich die eindeutige Identifikation eines Typs.
+Diese wird beispielsweise für die Anzeige eines passenden Marker-Icons und der Verbindung zu einem passenden View-Typ (siehe Abschnitt \ref{view_types}) verwendet.
+
+% IMAGE keepright.error_type
+
+\subsubsection{Erstellen eines neuen Fehlertyps}
+
+
+\subsection{View-Typen}
+\label{view_types}
+All diese Typen werden dann wiederum einem spezifischen View-Typen zugeordnet.
+Dieser bestimmt, wie das Formular zum Lösen des Fehlers in der Benutzeroberfläche aussieht.
+
+In Tabelle \ref{kort-view-types-table} sind die bereits vorhandenen View-Typen beschrieben.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.2\twocelltabwidth}|p{0.8\twocelltabwidth}|}
+\hline 
+\textbf{Typ} & \textbf{Beschreibung} \\ 
+\hline 
+text & Rendert ein Text-Eingabefeld \\ 
+\hline 
+number & Rendert ein Zahl-Eingabefeld \\ 
+\hline 
+select & Rendert eine Select-Box mit vorgefüllten Werten aus der Datenbank \\ 
+\hline 
+\end{tabular} 
+\caption{kort: View-Typen}
+\label{kort-view-types-table}
+\end{table}
+
+Wird als View-Typ \emph{select} gewählt, müssen in der Tabelle \inlinecode{kort.answer} noch die möglichen Antworten eingetragen werden.
+Darin kann der eigentliche Wert des OpenStreetMap-Tags und eine passende Bezeichnung hinterlegt werden.
+Als \inlinecode{type} muss der jeweilige Typen-Bezeichner gewählt werden.
+
+\subsubsection{Erstellen eines neuen View-Typen}
+Um einen neuen View-Typen zu definieren muss wie in Code-Ausschnitt \ref{kort-add_view_type} beschrieben die Unterscheidung in der Klasse \inlinecode{Kort.view.bugmap.fix.Form} um den neuen Typen ergänzt werden.
+
+\lstset{language=JavaScript}
+\begin{lstlisting}[float, caption=Hinzufügen eines View-Typen in der Klasse Kort.view.bugmap.fix.Form, label=kort-add_view_type]
+createFixField: function(bug) {
+	[...]
+	
+	if(bug.get('view_type') === '<Neuer View-Typ>') {
+		fixField = Ext.create('<Neue View-Klasse>', fieldConfig);
+	} else {
+		...
+	}
+	
+	[...]
+}
+\end{lstlisting}
