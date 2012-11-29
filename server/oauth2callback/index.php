@@ -30,10 +30,10 @@ if (isset($_GET['code'])) {
 
     //save user data in database
     $dbProxy = new Webservice\DbProxy($table, $fields);
-    $dbProxy->setReturnFields(array('user_id'));
+    $dbProxy->setReturnFields(array('secret'));
     $insertedUser = json_decode($dbProxy->insert($user), true);
 
-     $_SESSION['user_id'] = $insertedUser['user_id'];
+    $_SESSION['secret'] = $insertedUser['secret'];
 }
 
 $appUrl = 'http://' . $_SERVER['HTTP_HOST'];
