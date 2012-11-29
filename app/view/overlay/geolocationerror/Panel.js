@@ -2,7 +2,7 @@ Ext.define('Kort.view.overlay.geolocationerror.Panel', {
 	extend: 'Ext.Panel',
 	alias: 'widget.geolocationerrorpanel',
     requires: [
-        'Ext.Button',
+        'Ext.Button'
     ],
 
 	config: {
