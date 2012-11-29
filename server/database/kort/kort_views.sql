@@ -15,6 +15,23 @@ from    keepright.errors e,
         keepright.error_type t
 where   e.error_type_id = t.error_type_id;
 
+create or replace view kort.validations as
+select  f.fix_id id,
+        t.type,
+        e.object_id osm_id,
+        e.object_type osm_type,
+        t.description title,
+        f.message fixmessage,
+        e.msgid description,
+        CAST(e.lat AS NUMERIC)/10000000 latitude,
+        CAST(e.lon AS NUMERIC)/10000000 longitude,
+        e.geom
+from    keepright.errors e,
+        keepright.error_type t,
+        kort.fix f
+where   e.error_type_id = t.error_type_id
+        and f.error_id = e.error_id;
+
 create or replace view kort.tracktype as
 select a.answer_id tracktype_id,
        a.value type_key,

@@ -187,6 +187,7 @@ Ext.application({
         
         mainPanel.show();
         
+        validationsStore.getProxy().setUrl('./server/webservices/validation/position/' + geo.getLatitude() + ',' + geo.getLongitude());
         // add locationupdate listener after store load
         validationsStore.on('load', function(store) {
             store.updateDistances(geo);
