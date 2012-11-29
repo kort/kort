@@ -23,27 +23,8 @@ $app->get(
         if (empty($secret) && isset($_SESSION['secret'])) {
             $secret = $_SESSION['secret'];
         }
-
         $userData = $userGetHandler->getUser($secret);
-
-        if (!empty($userData) && $userData != "[]") {
-            $res->write($userData);
-        } else {
-            $user = array();
-            $user['id'] = null;
-            $user['name'] = "Anonymous";
-            $user['username'] = "";
-            $user["email"] = "";
-            $user["token"] = "";
-            $user["fix_count"] = 0;
-            $user["validation_count"] = 0;
-            $user["koin_count"] = 0;
-            $user["pic_url"] = "";
-            $user["logged_in"] = false;
-            $user["secret"] = "";
-
-            $res->write(json_encode($user));
-        }
+        $res->write($userData);
     }
 );
 
