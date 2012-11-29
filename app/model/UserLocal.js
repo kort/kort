@@ -1,10 +1,10 @@
 Ext.define('Kort.model.UserLocal', {
     extend: 'Ext.data.Model',
     config: {
-		idProperty: 'secret',
+        identifier: 'uuid',
 
         fields: [
-			{ name: 'secret', type: 'auto' }
+			{ name: 'secret', type: 'string' }
         ]
     }
 });
