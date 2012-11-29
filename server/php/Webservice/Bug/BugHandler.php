@@ -27,7 +27,7 @@ class BugHandler extends DbProxyHandler
             'answer_placeholder'
         );
     }
-    
+
     public function getBugsByOwnPosition($lat, $lng, $limit, $radius)
     {
         $limit = empty($limit) ? 20 : $limit;
