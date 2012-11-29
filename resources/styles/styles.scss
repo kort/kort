@@ -59,6 +59,17 @@ $label-background-color: #46578D;
     }
 }
 
+// GeolocationError
+#geolocationerrorPanel {
+    .x-panel-inner {
+        padding: 1em;
+    }
+    
+    .x-button {
+        margin-top: 0.5em;
+    }
+}
+
 /* -----------------------
    Map
    ----------------------- */
