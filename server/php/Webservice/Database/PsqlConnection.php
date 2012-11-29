@@ -115,13 +115,13 @@ class PsqlConnection
         $sql = "SELECT ";
         if (count($fields) == 0) {
             $sql .= "*";
-        } else if (is_array($fields)) {
+        } elseif (is_array($fields)) {
             $sql .= implode(',', $fields);
         } else {
             $sql .= $fields;
         }
         if (!empty($table)) {
-        $sql .= " FROM " . $table;
+            $sql .= " FROM " . $table;
         }
         if (!empty($where)) {
             $sql .= " WHERE " . $where;

@@ -71,7 +71,7 @@ $app->post(
 
 $app->put(
     '/(:id)',
-    function ($id=null) use ($userHandler, $app) {
+    function ($id = null) use ($userHandler, $app) {
         if (empty($id)) {
             $id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : -1;
         }
