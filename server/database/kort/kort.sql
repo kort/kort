@@ -20,7 +20,8 @@ create table kort.user (
     email varchar(100),
     koin_count integer not null default 0,
     token varchar(255),
-    oauth_provider varchar(100)
+    oauth_provider varchar(100),
+    secret varchar(100)
 );
 
 create table kort.badge (
