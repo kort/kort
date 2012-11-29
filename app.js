@@ -49,7 +49,6 @@ Ext.application({
 		'Bugs',
 		'Highscore',
 		'SelectAnswers',
-        'User',
         'UserBadges',
         'UserLocal',
         'Validations'
@@ -119,30 +118,33 @@ Ext.application({
     
     loadUser: function(geo, mainPanel, clientSecret) {
         var me = this,
-            userStore = Ext.getStore('User'),
             userLocalStore = Ext.getStore('UserLocal');
 
-        if(clientSecret) {
-            userStore.getProxy().setUrl('./server/webservices/user/' + clientSecret);
+        if(!clientSecret) {
+            clientSecret = 0;
         }
-        userStore.load(function() {
-            var user = userStore.first();
-            console.log('user loaded');
-            console.log(user);
-            
-            // check if user is logged in
-            if (!user || !user.get('logged_in')) {
-                if(clientSecret) {
-                    console.log('remove wrong client secret form local store');
-                    userLocalStore.removeAll();
+        Kort.model.User.load(clientSecret, {
+            success: function(record, operation) {
+                // set global accessor to user
+                Kort.user = record;
+
+                console.log('user loaded');
+                console.log(Kort.user);
+
+                // check if user is logged in
+                if (!Kort.user.get('logged_in')) {
+                    if(clientSecret && clientSecret !== 0) {
+                        console.log('remove wrong client secret form local store');
+                        userLocalStore.removeAll();
+                    }
+                    me.showLoginOverlay();
+                } else {
+                    if(!clientSecret) {
+                        console.log('clientSecret not passed -> write client secret to localstore');
+                        me.writeUserClientSecret(Kort.user.get('secret'));
+                    }
+                    me.showMainPanel(geo, mainPanel);
                 }
-                me.showLoginOverlay();
-            } else {
-                if(!clientSecret) {
-                    console.log('clientSecret not passed -> write client secret to localstore');
-                    me.writeUserClientSecret(user.get('secret'));
-                }
-                me.showMainPanel(geo, user, mainPanel);
             }
         });
     },
@@ -179,7 +181,7 @@ Ext.application({
         geolocationerrorPanel.show();
     },
     
-    showMainPanel: function(geo, user, mainPanel) {
+    showMainPanel: function(geo, mainPanel) {
         var validationsStore = Ext.getStore('Validations'),
             userBadges = Ext.getStore('UserBadges');
         
@@ -194,13 +196,13 @@ Ext.application({
         geo.setAutoUpdate(true);
 
         // loading badges of user
-        userBadges.getProxy().setUrl('./server/webservices/user/' + user.get('id') + '/badges');
+        userBadges.getProxy().setUrl('./server/webservices/user/' + Kort.user.get('id') + '/badges');
         userBadges.load();
         
         // loading highscore
         Ext.getStore('Highscore').load();
 
-        if(!user.get('username')) {
+        if(!Kort.user.get('username')) {
             this.showFirstStepsPanel();
         }
     },

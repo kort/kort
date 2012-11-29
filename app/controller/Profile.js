@@ -36,19 +36,14 @@ Ext.define('Kort.controller.Profile', {
             }
         },
 
-        userStore: null,
         badgesContainer: null
     },
 
     onProfileContentComponentInitialize: function() {
-        var store = this.getUserStore(),
-            user;
-
-        if(!store.isLoaded()) {
+        if(!Kort.user) {
             Ext.defer(this.onProfileContentComponentInitialize, 500, this);
         } else {
-            user = this.getUserStore().first();
-            this.getProfileContentComponent().setRecord(user);
+            this.getProfileContentComponent().setRecord(Kort.user);
         }
     },
 
@@ -67,11 +62,11 @@ Ext.define('Kort.controller.Profile', {
 
     onProfileLogoutButtonTap: function() {
         var me = this,
-            user = me.getUserStore().first(),
             userLocalStore = Ext.getStore('UserLocal');
+
         me.showLoadMask(Ext.i18n.Bundle.message('profile.logout.loadmask.message'));
         Ext.Ajax.request({
-            url: './server/webservices/user/' + user.get('id') + '/logout',
+            url: './server/webservices/user/' + Kort.user.get('id') + '/logout',
             success: function(response){
                 userLocalStore.removeAll();
                 
@@ -82,20 +77,11 @@ Ext.define('Kort.controller.Profile', {
     },
 
     onProfileRefreshButtonTap: function() {
-        var me = this,
-            userStore = Ext.getStore('User');
+        var me = this;
 
         me.showLoadMask(Ext.i18n.Bundle.message('profile.refresh.loadmask.message'));
-
-        userStore.load(function() {
-            var user = userStore.first(),
-                userBadges = Ext.getStore('UserBadges');
-
-            // loading badges of user
-            userBadges.getProxy().setUrl('./server/webservices/user/' + user.get('id') + '/badges');
-            userBadges.load();
-            me.hideLoadMask();
-        });
+        
+        Kort.model.User.reload(Kort.user, 'secret', me.hideLoadMask, me);
     },
 
     showLoadMask: function(message) {
@@ -111,9 +97,5 @@ Ext.define('Kort.controller.Profile', {
     hideLoadMask: function() {
         this.getProfileRefreshButton().enable();
         Ext.Viewport.setMasked(false);
-    },
-
-    init: function() {
-        this.setUserStore(Ext.getStore('User'));
     }
 });
