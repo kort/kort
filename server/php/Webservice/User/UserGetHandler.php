@@ -31,7 +31,7 @@ class UserGetHandler extends DbProxyHandler
         $userData = $userData[0];
 
         $userData['pic_url'] = $this->getGravatarUrl($userData['email']);
-        $userData['logged_in'] = isset($_SESSION['token']);
+        $userData['logged_in'] = isset($_SESSION['user_id']);
 
         return json_encode($userData);
     }
