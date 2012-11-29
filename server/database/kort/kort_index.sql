@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX secret_idx ON kort.user (secret);
