@@ -316,6 +316,7 @@ $label-background-color: #46578D;
     .badge {
         $badge-image-size: 160px;
         width: $badge-image-size/2;
+        height: $badge-image-size/2;
         margin: 0.2em 0.5em;
         text-align: center;
         overflow: hidden;
