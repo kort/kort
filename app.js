@@ -119,7 +119,8 @@ Ext.application({
     
     loadUser: function(geo, mainPanel, clientSecret) {
         var me = this,
-            userStore = Ext.getStore('User');
+            userStore = Ext.getStore('User'),
+            userLocalStore = Ext.getStore('UserLocal');
 
         if(clientSecret) {
             userStore.getProxy().setUrl('./server/webservices/user/' + clientSecret);
@@ -131,6 +132,10 @@ Ext.application({
             
             // check if user is logged in
             if (!user || !user.get('logged_in')) {
+                if(clientSecret) {
+                    console.log('remove wrong client secret form local store');
+                    userLocalStore.removeAll();
+                }
                 me.showLoginOverlay();
             } else {
                 if(!clientSecret) {

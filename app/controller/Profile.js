@@ -67,11 +67,14 @@ Ext.define('Kort.controller.Profile', {
 
     onProfileLogoutButtonTap: function() {
         var me = this,
-            user = me.getUserStore().first();
+            user = me.getUserStore().first(),
+            userLocalStore = Ext.getStore('UserLocal');
         me.showLoadMask(Ext.i18n.Bundle.message('profile.logout.loadmask.message'));
         Ext.Ajax.request({
-            url: './server/webservices/user/' + user.id + '/logout',
+            url: './server/webservices/user/' + user.get('id') + '/logout',
             success: function(response){
+                userLocalStore.removeAll();
+                
                 // reload current page
                 window.location.reload();
             }
