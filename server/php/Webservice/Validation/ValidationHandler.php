@@ -20,7 +20,7 @@ class ValidationHandler extends DbProxyHandler
             'osm_type',
             'title',
             'fixmessage',
-            'description',
+            'question',
             'latitude',
             'longitude'
         );

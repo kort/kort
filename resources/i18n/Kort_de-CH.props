@@ -58,8 +58,8 @@ validation.list.header=Validierungen übrig
 ## Vote
 vote.map.title=Karte
 vote.container.title=Validierung
-vote.container.button.accept=Akzeptieren
-vote.container.button.decline=Ablehnen
+vote.container.button.accept=Ja
+vote.container.button.decline=Nein
 vote.container.button.cancel=Weiss nicht
 vote.alert.submit.failure.title=Fehler beim Senden
 vote.alert.submit.failure.message=Beim Übertragen des deiner Stimme ist etwas schief gelaufen. Bitte versuche es später noch einmal.

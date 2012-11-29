@@ -17,7 +17,7 @@ class VoteHandler extends DbProxyHandler
         return array('validation_id', 'message');
     }
 
-    public function insertFix($data)
+    public function insertVote($data)
     {
         $insertedVote = $this->getDbProxy()->insert($data);
 
