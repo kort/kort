@@ -18,14 +18,30 @@ $userGetHandler = new UserGetHandler();
 
 // define REST resources
 $app->get(
-    '/:id',
-    function ($id) use ($userGetHandler, $res) {
+    '/(:id)',
+    function ($id = null) use ($userGetHandler, $res) {
+        if (empty($id)) {
+            $id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : -1;
+        }
+
         $userData = $userGetHandler->getUser($id);
 
-        if (!$userData || $_SESSION['user_id'] != $id) {
-            $res->status(403);
+        if ($userData && isset($_SESSION['user_id']) && $_SESSION['user_id'] == $id) {
+              $res->write($userData);
         } else {
-            $res->write($userData);
+            $user = array();
+            $user['id'] = null;
+            $user['name'] = "Anonymous";
+            $user['username'] = "";
+            $user["email"] = "";
+            $user["token"] = "";
+            $user["fix_count"] = 0;
+            $user["validation_count"] = 0;
+            $user["koin_count"] = 0;
+            $user["pic_url"] = "";
+            $user["logged_in"] = false;
+
+            $res->write(json_encode($user));
         }
     }
 );
@@ -48,14 +64,19 @@ $app->get(
 $app->post(
     '/',
     function () use ($userHandler, $app) {
-        $userHandler->insertUser($app->request()->getBody());
+        $data = json_decode($app->request()->getBody(), true);
+        $app->response()->write($userHandler->insertUser(), $data);
     }
 );
 
 $app->put(
-    '/:id',
-    function ($id) use ($userHandler, $app) {
-        $userHandler->updateUser($id, $app->request()->put());
+    '/(:id)',
+    function ($id=null) use ($userHandler, $app) {
+        if (empty($id)) {
+            $id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : -1;
+        }
+        $data = json_decode($app->request()->getBody(), true);
+        $app->response()->write($userHandler->updateUser($id, $data));
     }
 );
 

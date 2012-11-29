@@ -37,10 +37,10 @@ class DbHandler
         }
     }
 
-    public function doUpdate($fields, $table, $data, $where)
+    public function doUpdate($fields, $table, $data, $where, $returnFields)
     {
         $data = $this->reduceData($fields, $data);
-        $updatedData = $this->db->doUpdateQuery($data, $table, $where);
+        $updatedData = $this->db->doUpdateQuery($data, $table, $where, $returnFields);
         if (!$updatedData) {
             return $updatedData;
         } else {
