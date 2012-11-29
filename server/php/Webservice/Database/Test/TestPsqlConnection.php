@@ -49,11 +49,11 @@ class TestPsqlConnection extends AbstractKortUnitTestCase
     public function testDoUpdateQuery()
     {
         $data = array("title" => "test title", "sorting" => 99);
-        $sql = "UPDATE schema.testtable set title = $1,sorting = $2 WHERE id = 3;";
+        $sql = "UPDATE schema.testtable set title = $1,sorting = $2 WHERE id = 3 RETURNING id,title;";
         $this->mockDb->shouldReceive('prepare')->with("update-kort", $sql);
         $this->mockDb->shouldReceive('execute')->with("update-kort", array("test title", 99));
-        $this->mockDb->shouldReceive('fetch_row')->andReturn($data);
-        $result = $this->psql->doUpdateQuery($data, $this->table, $this->where);
+        $this->mockDb->shouldReceive('fetchRow')->andReturn($data);
+        $result = $this->psql->doUpdateQuery($data, $this->table, $this->where, $this->fields);
 
         $this->assertTrue(is_array($result), "The result should be an array");
         $this->assertEqual($data, $result, "The result should match with the input");
