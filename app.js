@@ -22,6 +22,7 @@ Ext.application({
 		'Bugmap',
         'Firststeps',
 		'Fix',
+        'GeolocationError',
 		'Highscore',
         'Login',
         'Main',
@@ -93,8 +94,7 @@ Ext.application({
             if(geo) {
                 me.loadUser(geo, mainPanel);
             } else {
-                // TODO geolocation error panel
-                console.log('geolocation must be available!');
+                me.showGeolocationErrorOverlay();
             }
         });
     },
@@ -122,6 +122,15 @@ Ext.application({
         loginPanel = Ext.create('Kort.view.overlay.login.Panel');
         Ext.Viewport.add(loginPanel);
         loginPanel.show();
+    },
+    
+    showGeolocationErrorOverlay: function() {
+        var geolocationerrorPanel;
+        
+        console.log('geolocation error');
+        geolocationerrorPanel = Ext.create('Kort.view.overlay.geolocationerror.Panel');
+        Ext.Viewport.add(geolocationerrorPanel);
+        geolocationerrorPanel.show();
     },
     
     showMainPanel: function(geo, user, mainPanel) {

@@ -8,7 +8,6 @@ Ext.define('Kort.view.overlay.firststeps.Panel', {
     ],
 
 	config: {
-		url: 'firststeps',
 		id: 'firststepsPanel',
 		layout: 'vbox',
         modal: true,
