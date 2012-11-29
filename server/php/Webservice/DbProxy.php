@@ -88,6 +88,7 @@ class DbProxy
     {
         $path  = "/" . $this->table;
         $path .= "/" . implode(",", $this->fields);
+        $path .= "?";
 
         if ($this->where) {
             $path .= "where=" . urlencode($this->where) . "&";
@@ -115,7 +116,7 @@ class DbProxy
                 $this->curl->setOption(CURLOPT_CUSTOMREQUEST, "PUT");
 
                 if ($data) {
-                    $this->curl->setOption(CURLOPT_POSTFIELDS, $data);
+                    $this->curl->setOption(CURLOPT_POSTFIELDS, http_build_query($data));
                 }
                 break;
             default:
