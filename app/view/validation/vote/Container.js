@@ -28,8 +28,8 @@ Ext.define('Kort.view.validation.vote.Container', {
             record: this.getRecord(),
             tpl:    new Ext.XTemplate(
                         '<div class="vote-content">',
-                            '<div class="description">',
-                                '{description}',
+                            '<div class="question">',
+                                '{question}',
                             '</div>',
                             '<div class="fixmessage">',
                                 '{fixmessage}',

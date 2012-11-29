@@ -23,7 +23,7 @@ select  f.fix_id id,
         e.object_type osm_type,
         t.description title,
         f.message fixmessage,
-        e.msgid description,
+        t.vote_question question,
         CAST(e.lat AS NUMERIC)/10000000 latitude,
         CAST(e.lon AS NUMERIC)/10000000 longitude,
         e.geom
