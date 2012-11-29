@@ -6,7 +6,6 @@ Ext.define('Kort.view.overlay.login.Panel', {
     ],
 
 	config: {
-		url: 'login',
 		id: 'loginPanel',
 		layout: 'vbox',
         modal: true,
