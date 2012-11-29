@@ -14,9 +14,13 @@ if (isset($_GET['code'])) {
     $token = $client->getAccessToken();
 
     $user = $oauth2->userinfo->get();
-    $fields = array('name', 'email', 'oauth_provider');
+    $fields = array('name', 'email', 'oauth_provider', 'secret');
     $table = "kort.user";
     $user['oauth_provider'] = "Google";
+
+    //generate user secret
+    $generator = new Helper\SecretGenerator();
+    $user['secret'] = $generator->getSecret();
 
     $authObj = json_decode($token);
     if (isset($authObj->refresh_token)) {

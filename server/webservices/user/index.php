@@ -18,16 +18,16 @@ $userGetHandler = new UserGetHandler();
 
 // define REST resources
 $app->get(
-    '/(:id)',
-    function ($id = null) use ($userGetHandler, $res) {
-        if (empty($id)) {
-            $id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : -1;
+    '/(:secret)',
+    function ($secret = null) use ($userGetHandler, $res) {
+        if (empty($secret) && isset($_SESSION['secret'])) {
+            $secret = $_SESSION['secret'];
         }
 
-        $userData = $userGetHandler->getUser($id);
+        $userData = $userGetHandler->getUser($secret);
 
-        if ($userData && isset($_SESSION['user_id']) && $_SESSION['user_id'] == $id) {
-              $res->write($userData);
+        if (!empty($userData) && $userData != "[]") {
+            $res->write($userData);
         } else {
             $user = array();
             $user['id'] = null;
@@ -40,6 +40,7 @@ $app->get(
             $user["koin_count"] = 0;
             $user["pic_url"] = "";
             $user["logged_in"] = false;
+            $user["secret"] = "";
 
             $res->write(json_encode($user));
         }

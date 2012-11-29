@@ -20,19 +20,26 @@ class UserGetHandler extends DbProxyHandler
             'token',
             'fix_count',
             'validation_count',
-            'koin_count'
+            'koin_count',
+            'secret'
         );
     }
 
-    public function getUser($id)
+    public function getUser($secret)
     {
-        $this->getDbProxy()->setWhere("id = ". $id);
-        $userData = json_decode($this->getDbProxy()->select(), true);
-        $userData = $userData[0];
+        $userData = array();
+        if (!empty($secret)) {
+            $this->getDbProxy()->setWhere("secret = '". $secret . "'");
+            $userData = json_decode($this->getDbProxy()->select(), true);
+            $userData = $userData[0];
 
-        $userData['pic_url'] = $this->getGravatarUrl($userData['email']);
-        $userData['logged_in'] = isset($_SESSION['user_id']);
-
+            if($userData) {
+                session_start();
+                $_SESSION['secret'] = $secret;
+                $userData['pic_url'] = $this->getGravatarUrl($userData['email']);
+                $userData['logged_in'] = true;
+            }
+        }
         return json_encode($userData);
     }
 

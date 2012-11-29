@@ -61,6 +61,7 @@ select u.user_id id,
        u.username,
        u.email,
        u.token,
+       u.secret,
        u.koin_count,
        (select count(1) from kort.fix f where f.user_id = u.user_id) fix_count,
        (select count(1) from kort.validation v where v.user_id = u.user_id) validation_count
