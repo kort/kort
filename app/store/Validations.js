@@ -23,10 +23,10 @@ Ext.define('Kort.store.Validations', {
         ],
         
 		proxy: {
-			type: "ajax",
-            url : "./resources/stores/validations.json",
+			type: 'ajax',
+            url : './resources/stores/validations.json',
             reader: {
-                type: "json"
+                type: 'json'
             }
 		}
 	},
