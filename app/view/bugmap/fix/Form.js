@@ -6,7 +6,8 @@ Ext.define('Kort.view.bugmap.fix.Form', {
         'Ext.Button',
         'Ext.field.Select',
         'Ext.field.Number',
-        'Ext.field.Text'
+        'Ext.field.Text',
+        'Kort.view.bugmap.fix.type.Select'
     ],
     
 	config: {
@@ -69,32 +70,14 @@ Ext.define('Kort.view.bugmap.fix.Form', {
             fieldConfig = {
                 name: 'fixfield',
                 cls: 'fixfield'
-            },
-            selectAnswersStore;
+            };
         
         if(bug.get('view_type') === 'select') {
-            selectAnswersStore = Ext.getStore('SelectAnswers');
-            
-            // filter answers for given type
-            selectAnswersStore.filter('type', bug.get('type'));
-            
             fieldConfig = Ext.merge(fieldConfig, {
-                store: selectAnswersStore,
-                // always use Ext.picker.Picker
-                usePicker: true,
-                valueField: 'value',
-                displayField: 'title',
-                defaultPhonePickerConfig: {
-                    cancelButton: Ext.i18n.Bundle.message('picker.cancel'),
-                    doneButton: Ext.i18n.Bundle.message('picker.done')
-                },
-                defaultTabletPickerConfig: {
-                    cancelButton: Ext.i18n.Bundle.message('picker.cancel'),
-                    doneButton: Ext.i18n.Bundle.message('picker.done')
-                }
+                type: bug.get('type')
             });
             
-            fixField = Ext.create('Ext.field.Select', fieldConfig);
+            fixField = Ext.create('Kort.view.bugmap.fix.type.Select', fieldConfig);
         } else if(bug.get('view_type') === 'number') {
             fixField = Ext.create('Ext.field.Number', fieldConfig);
         } else {
