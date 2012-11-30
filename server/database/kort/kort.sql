@@ -1,6 +1,3 @@
-drop schema kort cascade;
-create schema kort;
-
 create sequence kort.fix_id;
 create sequence kort.validation_id;
 create sequence kort.user_id;
