@@ -11,10 +11,10 @@ Ext.define('Kort.model.Vote', {
         ],
         
 		proxy: {
-			type: "rest",
-            url : "./server/webservices/validation/vote",
+			type: 'rest',
+            url : './server/webservices/validation/vote',
             reader: {
-                type: "json"
+                type: 'json'
             }
 		}
     }
