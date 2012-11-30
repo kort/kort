@@ -7,7 +7,7 @@ Ext.define('Kort.model.Vote', {
 			{ name: 'id', type: 'auto' },
 			{ name: 'fix_id', type: 'int' },
 			{ name: 'user_id', type: 'string' },
-			{ name: 'valid', type: 'boolean' }
+			{ name: 'valid', type: 'string' }
         ],
         
 		proxy: {

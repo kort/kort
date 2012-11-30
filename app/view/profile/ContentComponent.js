@@ -18,8 +18,8 @@ Ext.define('Kort.view.profile.ContentComponent', {
                             '<dd>{email}</dd>',
                             '<dt>' + Ext.i18n.Bundle.message('profile.content.fixes') + '</dt>',
                             '<dd>{fix_count}</dd>',
-                            '<dt>' + Ext.i18n.Bundle.message('profile.content.validations') + '</dt>',
-                            '<dd>{validation_count}</dd>',
+                            '<dt>' + Ext.i18n.Bundle.message('profile.content.votes') + '</dt>',
+                            '<dd>{vote_count}</dd>',
                         '</dl>',
                     '</div>',
                     // TODO small hack to recieve sencha list header styling

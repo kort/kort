@@ -12,7 +12,7 @@ Ext.define('Kort.model.User', {
 			{ name: 'logged_in', type: 'boolean' },
 			{ name: 'token', type: 'string' },
 			{ name: 'fix_count', type: 'int' },
-			{ name: 'validation_count', type: 'int' },
+			{ name: 'vote_count', type: 'int' },
 			{ name: 'koin_count', type: 'int' },
             { name: 'secret', type: 'string' }
         ],

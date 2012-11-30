@@ -19,7 +19,7 @@ class UserGetHandler extends DbProxyHandler
             'email',
             'token',
             'fix_count',
-            'validation_count',
+            'vote_count',
             'koin_count',
             'secret'
         );
@@ -54,7 +54,7 @@ class UserGetHandler extends DbProxyHandler
         $user["email"] = "";
         $user["token"] = "";
         $user["fix_count"] = 0;
-        $user["validation_count"] = 0;
+        $user["vote_count"] = 0;
         $user["koin_count"] = 0;
         $user["pic_url"] = "";
         $user["logged_in"] = false;

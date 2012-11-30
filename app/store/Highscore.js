@@ -5,8 +5,8 @@ Ext.define('Kort.store.Highscore', {
 		model: 'Kort.model.HighscoreEntry',
 		
 		proxy: {
-			type: 'ajax',
-            url : './resources/stores/highscore.json',
+			type: 'rest',
+            url : './server/webservices/highscore',
             sorters: 'place',
             reader: {
                 type: 'json'
