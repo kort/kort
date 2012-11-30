@@ -21,17 +21,22 @@ Ext.define('Kort.view.validation.List', {
                             '<div class="title">{title}</div>' +
                             '<div class="ratings">' +
                                 '<span class="upratings">' +
-                                    '+{upratings}' +
+                                    '<tpl if="upratings &gt; 0">+</tpl>' +
+                                    '{upratings}' +
                                     '<img class="thumb" src="./resources/images/validation/thumbs-up.png" />' +
                                 '</span>' +
                                 '<span class="downratings">' +
-                                    '-{downratings}' +
+                                    '<tpl if="downratings &gt; 0">-</tpl>' +
+                                    '{downratings}' +
                                     '<img class="thumb" src="./resources/images/validation/thumbs-down.png" />' +
                                 '</span>' +
                             '</div>' +
                         '</div>' +
                         '<tpl if="formatted_distance">' +
-                            '<div class="kort-label distance">{formatted_distance}</div>' +
+                            '<div class="distance">' +
+                                '<span class="title">' + Ext.i18n.Bundle.message('validation.distance') + '</span> ' +
+                                '<span class="value">{formatted_distance}</span>' +
+                            '</div>' +
                         '</tpl>' +
                     '</div>',
         
