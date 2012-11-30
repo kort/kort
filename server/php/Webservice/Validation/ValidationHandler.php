@@ -22,7 +22,10 @@ class ValidationHandler extends DbProxyHandler
             'fixmessage',
             'question',
             'latitude',
-            'longitude'
+            'longitude',
+            'upratings',
+            'downratings',
+            'required_validations'
         );
     }
 
