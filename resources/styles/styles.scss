@@ -258,6 +258,7 @@ $label-background-color: #46578D;
         overflow: hidden;
         font-size: $default-font-size;
         padding: 0.65em 0.8em;
+        box-shadow: inset 0 0 1em #D1D1D1;
         
         .ranking {
             float: left;
@@ -267,25 +268,26 @@ $label-background-color: #46578D;
             color: #fff;
         }
         
+        &.you .username {
+            font-weight: bold;
+        }
         &.firstPlace {
-            font-size: 1em;
             background-color: #fff4b8;
-            
+            box-shadow: inset 0 0 1em #A29F6F;
             .ranking {
                 background-color: #ffe139;
             }
         }
         &.secondPlace {
-            font-size: 0.95em;
             background-color: #d1d1d1;
-            
+            box-shadow: inset 0 0 1em #979797;
             .ranking {
                 background-color: #7d7d7d;
             }
         }
         &.thirdPlace {
             background-color: #e2c89b;
-            
+            box-shadow: inset 0 0 1em #B68768;
             .ranking {
                 background-color: #8f6823;
             }
@@ -296,9 +298,16 @@ $label-background-color: #46578D;
             margin-left: 1em;
             
             .username {
-                width: 7em;
-                overflow: hidden;
                 margin-bottom: 0.3em;
+                
+                .you {
+                    text-transform: uppercase;
+                    font-size: 0.6em;
+                    padding: 0.2em 0.4em;
+                    background-color: $dark-grey;
+                    color: #fff;
+                    margin-left: 0.5em;
+                }
             }
             .fixCount {
                 font-size: 0.9em;

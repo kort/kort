@@ -33,11 +33,12 @@ Ext.define('Kort.controller.Fix', {
         var me = this,
             detailTabPanel = this.getDetailTabPanel(),
             fixFieldValue = this.getFixField().getValue(),
+            userId = Kort.user.get('id'),
             fix,
             messageBox;
 
         if (fixFieldValue !== '') {
-            fix = Ext.create('Kort.model.Fix', { error_id: detailTabPanel.getRecord().get('id'), message: fixFieldValue });
+            fix = Ext.create('Kort.model.Fix', { error_id: detailTabPanel.getRecord().get('id'), user_id: userId, message: fixFieldValue });
             fix.save({
                 success: function(records, operation) {
                     me.fixSuccessfulSubmittedHandler(operation.getResponse().responseText);

@@ -17,10 +17,11 @@ Ext.define('Kort.view.highscore.List', {
                         '<tpl if="ranking == 1"> firstPlace</tpl>' +
                         '<tpl if="ranking == 2"> secondPlace</tpl>' +
                         '<tpl if="ranking == 3"> thirdPlace</tpl>' +
+                        '<tpl if="you"> you</tpl>' +
                         '">' +
                             '<div class="ranking">#{ranking}</div>' +
                             '<div class="information">' +
-                                '<div class="username">{username}</div>' +
+                                '<div class="username"><span class="value">{username}<tpl if="you"></span> <span class="you">' + Ext.i18n.Bundle.message('highscore.you') + '</span></tpl></div>' +
                                 '<div class="fixCount"><span class="title">' + Ext.i18n.Bundle.message('highscore.fixcount') + '</span> <span class="value">{fix_count}</span></div>' +
                                 '<div class="voteCount"><span class="title">' + Ext.i18n.Bundle.message('highscore.votecount') + '</span> <span class="value">{vote_count}</span></div>' +
                             '</div>' +
