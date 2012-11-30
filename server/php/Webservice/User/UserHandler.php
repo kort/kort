@@ -15,10 +15,11 @@ class UserHandler extends DbProxyHandler
         return array(
             'user_id',
             'name',
-            'email',
+            'oauth_user_id',
             'username',
             'oauth_provider',
-            'token'
+            'token',
+            'secret'
         );
     }
 
@@ -28,7 +29,8 @@ class UserHandler extends DbProxyHandler
             'user_id',
             'name',
             'username',
-            'email'
+            'oauth_user_id',
+            'secret'
         );
     }
 
@@ -36,12 +38,12 @@ class UserHandler extends DbProxyHandler
     {
         $this->getDbProxy()->setReturnFields($this->getReturnFields());
         $this->getDbProxy()->setWhere("user_id = " . $id);
-        return json_encode($this->getDbProxy()->update($data));
+        return $this->getDbProxy()->update($data);
     }
 
     public function insertUser($data)
     {
         $this->getDbProxy()->setReturnFields($this->getReturnFields());
-        return json_encode($this->getDbProxy()->insert($data));
+        return $this->getDbProxy()->insert($data);
     }
 }
