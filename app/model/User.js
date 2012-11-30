@@ -1,3 +1,4 @@
+/*jshint maxcomplexity:10 */
 Ext.define('Kort.model.User', {
     extend: 'Ext.data.Model',
     config: {
@@ -30,11 +31,12 @@ Ext.define('Kort.model.User', {
         reload: function(user, idProperty, callback, scope) {
             this.load(user.get(idProperty), {
                 success: function(record, operation) {
-                    var userBadges = Ext.getStore('UserBadges');
+                    var userBadges = Ext.getStore('UserBadges'),
+                        property;
                     
-                    for (var prop in record.getData()) {
-                        if (user.hasOwnProperty(prop)) {
-                            user.set(prop, record.getData()[prop]);
+                    for (property in record.getData()) {
+                        if (user.hasOwnProperty(property)) {
+                            user.set(property, record.getData()[property]);
                         }
                     }
 
