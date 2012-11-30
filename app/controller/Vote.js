@@ -34,11 +34,11 @@ Ext.define('Kort.controller.Vote', {
     },
     
     onVoteAcceptButtonTap: function() {
-        this.sendVote('accept');
+        this.sendVote(true);
     },
     
     onVoteDeclineButtonTap: function() {
-        this.sendVote('decline');
+        this.sendVote(false);
     },
     
     onVoteCancelButtonTap: function() {
@@ -46,12 +46,13 @@ Ext.define('Kort.controller.Vote', {
         this.getValidationNavigationView().pop();
     },
     
-    sendVote: function(message) {
+    sendVote: function(valid) {
         var me = this,
             detailTabPanel = this.getDetailTabPanel(),
+            userId = Kort.user.get('id'),
             vote;
 
-        vote = Ext.create('Kort.model.Vote', { validation_id: detailTabPanel.getRecord().get('id'), message: message });
+        vote = Ext.create('Kort.model.Vote', { fix_id: detailTabPanel.getRecord().get('id'), user_id: userId, valid: valid });
         vote.save({
             success: function(records, operation) {
                 me.voteSuccessfulSubmittedHandler(operation.getResponse().responseText);
