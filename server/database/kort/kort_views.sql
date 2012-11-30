@@ -80,7 +80,7 @@ create or replace view kort.user_model as
 select u.user_id id,
        u.name,
        u.username,
-       u.email,
+       u.oauth_user_id,
        u.token,
        u.secret,
        u.koin_count,
@@ -89,7 +89,7 @@ select u.user_id id,
 from   kort.user u;
 
 create or replace view kort.highscore as
-select rank() over (order by u.koin_count) ranking,
+select rank() over (order by u.koin_count desc) ranking,
        u.user_id user_id,
        u.username,
        u.koin_count,
