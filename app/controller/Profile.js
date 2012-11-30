@@ -92,15 +92,18 @@ Ext.define('Kort.controller.Profile', {
     
     refreshProfile: function() {
         var me = this;
-
-        me.showLoadMask(Ext.i18n.Bundle.message('profile.refresh.loadmask.message'));
+        
+        // show loadmask only if container is already loaded
+        if(this.getProfileContainer()) {
+            me.showLoadMask(Ext.i18n.Bundle.message('profile.refresh.loadmask.message'));
+        }
         
         Kort.model.User.reload(Kort.user, 'secret', me.hideLoadMask, me);
     },
 
     showLoadMask: function(message) {
         this.getProfileRefreshButton().disable();
-        Ext.Viewport.setMasked({
+        this.getProfileContainer().setMasked({
             xtype: 'loadmask',
             message: message
         });
@@ -110,6 +113,6 @@ Ext.define('Kort.controller.Profile', {
 
     hideLoadMask: function() {
         this.getProfileRefreshButton().enable();
-        Ext.Viewport.setMasked(false);
+        this.getProfileContainer().setMasked(false);
     }
 });
