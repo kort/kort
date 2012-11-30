@@ -9,22 +9,22 @@ Kort\ClassLoader::registerAutoLoader();
 // create Slim app
 $app = new \Slim\Slim();
 
-$bugHandler = new \Webservice\Bug\BugHandler();
-$fixHandler = new \Webservice\Fix\FixHandler();
+$validationHandler = new \Webservice\Validation\ValidationHandler();
+$voteHandler = new \Webservice\Vote\VoteHandler();
 
 $app->get(
     '/position/:lat,:lng',
-    function ($lat, $lng) use ($bugHandler, $app) {
+    function ($lat, $lng) use ($validationHandler, $app) {
         $limit = $app->request()->params('limit');
         $radius = $app->request()->params('radius');
 
-        $app->response()->write($bugHandler->getBugsByOwnPosition($lat, $lng, $limit, $radius));
+        $app->response()->write($validationHandler->getValidationsByOwnPosition($lat, $lng, $limit, $radius));
     }
 );
 
 $app->post(
-    '/fix',
-    function () use ($fixHandler, $app) {
+    '/vote',
+    function () use ($voteHandler, $app) {
         $data = json_decode($app->request()->getBody(), true);
 
         if (!isset($_SESSION) || $data['user_id'] != $_SESSION['user_id']) {
@@ -38,7 +38,7 @@ $app->post(
             $app->response()->write("Invalid JSON given!");
             return;
         }
-        $result = $fixHandler->insertFix($data);
+        $result = $voteHandler->insertVote($data);
         if (!$result) {
             $app->response()->status(400);
             $app->response()->write("Could not insert record: " . $result);

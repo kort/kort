@@ -56909,6 +56909,780 @@ Ext.define('Ext.data.Validations', {
 });
 
 /**
+ * @author Tommy Maintz
+ *
+ * This class generates UUID's according to RFC 4122. This class has a default id property.
+ * This means that a single instance is shared unless the id property is overridden. Thus,
+ * two {@link Ext.data.Model} instances configured like the following share one generator:
+ *
+ *     Ext.define('MyApp.data.MyModelX', {
+ *         extend: 'Ext.data.Model',
+ *         config: {
+ *             identifier: 'uuid'
+ *         }
+ *     });
+ *
+ *     Ext.define('MyApp.data.MyModelY', {
+ *         extend: 'Ext.data.Model',
+ *         config: {
+ *             identifier: 'uuid'
+ *         }
+ *     });
+ *
+ * This allows all models using this class to share a commonly configured instance.
+ *
+ * # Using Version 1 ("Sequential") UUID's
+ *
+ * If a server can provide a proper timestamp and a "cryptographic quality random number"
+ * (as described in RFC 4122), the shared instance can be configured as follows:
+ *
+ *     Ext.data.identifier.Uuid.Global.reconfigure({
+ *         version: 1,
+ *         clockSeq: clock, // 14 random bits
+ *         salt: salt,      // 48 secure random bits (the Node field)
+ *         timestamp: ts    // timestamp per Section 4.1.4
+ *     });
+ *
+ *     // or these values can be split into 32-bit chunks:
+ *
+ *     Ext.data.identifier.Uuid.Global.reconfigure({
+ *         version: 1,
+ *         clockSeq: clock,
+ *         salt: { lo: saltLow32, hi: saltHigh32 },
+ *         timestamp: { lo: timestampLow32, hi: timestamptHigh32 }
+ *     });
+ *
+ * This approach improves the generator's uniqueness by providing a valid timestamp and
+ * higher quality random data. Version 1 UUID's should not be used unless this information
+ * can be provided by a server and care should be taken to avoid caching of this data.
+ *
+ * See [http://www.ietf.org/rfc/rfc4122.txt](http://www.ietf.org/rfc/rfc4122.txt) for details.
+ */
+Ext.define('Ext.data.identifier.Uuid', {
+    extend: 'Ext.data.identifier.Simple',
+
+    alias: 'data.identifier.uuid',
+
+    isUnique: true,
+
+    config: {
+        /**
+         * The id for this generator instance. By default all model instances share the same
+         * UUID generator instance. By specifying an id other then 'uuid', a unique generator instance
+         * will be created for the Model.
+         */
+        id: undefined,
+
+        /**
+         * @property {Number/Object} salt
+         * When created, this value is a 48-bit number. For computation, this value is split
+         * into 32-bit parts and stored in an object with `hi` and `lo` properties.
+         */
+        salt: null,
+
+        /**
+         * @property {Number/Object} timestamp
+         * When created, this value is a 60-bit number. For computation, this value is split
+         * into 32-bit parts and stored in an object with `hi` and `lo` properties.
+         */
+        timestamp: null,
+
+        /**
+         * @cfg {Number} version
+         * The Version of UUID. Supported values are:
+         *
+         *  * 1 : Time-based, "sequential" UUID.
+         *  * 4 : Pseudo-random UUID.
+         *
+         * The default is 4.
+         */
+        version: 4
+    },
+
+    applyId: function(id) {
+        if (id === undefined) {
+            return Ext.data.identifier.Uuid.Global;
+        }
+        return id;
+    },
+
+    constructor: function() {
+        var me = this;
+        me.callParent(arguments);
+        me.parts = [];
+        me.init();
+    },
+
+    /**
+     * Reconfigures this generator given new config properties.
+     */
+    reconfigure: function(config) {
+        this.setConfig(config);
+        this.init();
+    },
+
+    generate: function () {
+        var me = this,
+            parts = me.parts,
+            version = me.getVersion(),
+            salt = me.getSalt(),
+            time = me.getTimestamp();
+
+        /*
+           The magic decoder ring (derived from RFC 4122 Section 4.2.2):
+
+           +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+           |                          time_low                             |
+           +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+           |           time_mid            |  ver  |        time_hi        |
+           +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+           |res|  clock_hi |   clock_low   |    salt 0   |M|     salt 1    |
+           +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+           |                         salt (2-5)                            |
+           +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+                     time_mid      clock_hi (low 6 bits)
+            time_low     | time_hi |clock_lo
+                |        |     |   || salt[0]
+                |        |     |   ||   | salt[1..5]
+                v        v     v   vv   v v
+                0badf00d-aced-1def-b123-dfad0badbeef
+                              ^    ^     ^
+                        version    |     multicast (low bit)
+                                   |
+                                reserved (upper 2 bits)
+        */
+        parts[0] = me.toHex(time.lo, 8);
+        parts[1] = me.toHex(time.hi & 0xFFFF, 4);
+        parts[2] = me.toHex(((time.hi >>> 16) & 0xFFF) | (version << 12), 4);
+        parts[3] = me.toHex(0x80 | ((me.clockSeq >>> 8) & 0x3F), 2) +
+                   me.toHex(me.clockSeq & 0xFF, 2);
+        parts[4] = me.toHex(salt.hi, 4) + me.toHex(salt.lo, 8);
+
+        if (version == 4) {
+            me.init(); // just regenerate all the random values...
+        } else {
+            // sequentially increment the timestamp...
+            ++time.lo;
+            if (time.lo >= me.twoPow32) { // if (overflow)
+                time.lo = 0;
+                ++time.hi;
+            }
+        }
+
+        return parts.join('-').toLowerCase();
+    },
+
+    /**
+     * @private
+     */
+    init: function () {
+        var me = this,
+            salt = me.getSalt(),
+            time = me.getTimestamp();
+
+        if (me.getVersion() == 4) {
+            // See RFC 4122 (Secion 4.4)
+            //   o  If the state was unavailable (e.g., non-existent or corrupted),
+            //      or the saved node ID is different than the current node ID,
+            //      generate a random clock sequence value.
+            me.clockSeq = me.rand(0, me.twoPow14-1);
+
+            if (!salt) {
+                salt = {};
+                me.setSalt(salt);
+            }
+
+            if (!time) {
+                time = {};
+                me.setTimestamp(time);
+            }
+
+            // See RFC 4122 (Secion 4.4)
+            salt.lo = me.rand(0, me.twoPow32-1);
+            salt.hi = me.rand(0, me.twoPow16-1);
+            time.lo = me.rand(0, me.twoPow32-1);
+            time.hi = me.rand(0, me.twoPow28-1);
+        } else {
+            // this is run only once per-instance
+            me.setSalt(me.split(me.getSalt()));
+            me.setTimestamp(me.split(me.getTimestamp()));
+
+            // Set multicast bit: "the least significant bit of the first octet of the
+            // node ID" (nodeId = salt for this implementation):
+            me.getSalt().hi |= 0x100;
+        }
+    },
+
+    /**
+     * Some private values used in methods on this class.
+     * @private
+     */
+    twoPow14: Math.pow(2, 14),
+    twoPow16: Math.pow(2, 16),
+    twoPow28: Math.pow(2, 28),
+    twoPow32: Math.pow(2, 32),
+
+    /**
+     * Converts a value into a hexadecimal value. Also allows for a maximum length
+     * of the returned value.
+     * @param value
+     * @param length
+     * @private
+     */
+    toHex: function(value, length) {
+        var ret = value.toString(16);
+        if (ret.length > length) {
+            ret = ret.substring(ret.length - length); // right-most digits
+        } else if (ret.length < length) {
+            ret = Ext.String.leftPad(ret, length, '0');
+        }
+        return ret;
+    },
+
+    /**
+     * Generates a random value with between a low and high.
+     * @param lo
+     * @param hi
+     * @private
+     */
+    rand: function(lo, hi) {
+        var v = Math.random() * (hi - lo + 1);
+        return Math.floor(v) + lo;
+    },
+
+    /**
+     * Splits a number into a low and high value.
+     * @param bignum
+     * @private
+     */
+    split: function(bignum) {
+        if (typeof(bignum) == 'number') {
+            var hi = Math.floor(bignum / this.twoPow32);
+            return {
+                lo: Math.floor(bignum - hi * this.twoPow32),
+                hi: hi
+            };
+        }
+        return bignum;
+    }
+}, function() {
+    this.Global = new this({
+        id: 'uuid'
+    });
+});
+
+/**
+ * @author Ed Spencer
+ *
+ * WebStorageProxy is simply a superclass for the {@link Ext.data.proxy.LocalStorage LocalStorage} proxy. It uses the
+ * new HTML5 key/value client-side storage objects to save {@link Ext.data.Model model instances} for offline use.
+ * @private
+ */
+Ext.define('Ext.data.proxy.WebStorage', {
+    extend: 'Ext.data.proxy.Client',
+    alternateClassName: 'Ext.data.WebStorageProxy',
+
+    requires: 'Ext.Date',
+
+    config: {
+        /**
+         * @cfg {String} id
+         * The unique ID used as the key in which all record data are stored in the local storage object.
+         */
+        id: undefined,
+
+        // WebStorage proxies dont use readers and writers
+        /**
+         * @cfg
+         * @hide
+         */
+        reader: null,
+        /**
+         * @cfg
+         * @hide
+         */
+        writer: null,
+
+        /**
+         * @cfg {Boolean} enablePagingParams This can be set to true if you want the webstorage proxy to comply
+         * to the paging params set on the store.
+         */
+        enablePagingParams: false
+    },
+
+    /**
+     * Creates the proxy, throws an error if local storage is not supported in the current browser.
+     * @param {Object} config (optional) Config object.
+     */
+    constructor: function(config) {
+        this.callParent(arguments);
+
+        /**
+         * @property {Object} cache
+         * Cached map of records already retrieved by this Proxy. Ensures that the same instance is always retrieved.
+         */
+        this.cache = {};
+
+    },
+
+    updateModel: function(model) {
+        if (!this.getId()) {
+            this.setId(model.modelName);
+        }
+    },
+
+    //inherit docs
+    create: function(operation, callback, scope) {
+        var records = operation.getRecords(),
+            length  = records.length,
+            ids     = this.getIds(),
+            id, record, i;
+
+        operation.setStarted();
+
+        for (i = 0; i < length; i++) {
+            record = records[i];
+            id = record.getId();
+
+            this.setRecord(record);
+            ids.push(id);
+        }
+
+        this.setIds(ids);
+
+        operation.setCompleted();
+        operation.setSuccessful();
+
+        if (typeof callback == 'function') {
+            callback.call(scope || this, operation);
+        }
+    },
+
+    //inherit docs
+    read: function(operation, callback, scope) {
+        var records    = [],
+            ids        = this.getIds(),
+            model      = this.getModel(),
+            idProperty = model.getIdProperty(),
+            params     = operation.getParams() || {},
+            sorters = operation.getSorters(),
+            filters = operation.getFilters(),
+            start = operation.getStart(),
+            limit = operation.getLimit(),
+            length     = ids.length,
+            i, record, collection;
+
+        //read a single record
+        if (params[idProperty] !== undefined) {
+            record = this.getRecord(params[idProperty]);
+            if (record) {
+                records.push(record);
+                operation.setSuccessful();
+            }
+        } else {
+            for (i = 0; i < length; i++) {
+                records.push(this.getRecord(ids[i]));
+            }
+
+            collection = Ext.create('Ext.util.Collection');
+
+            // First we comply to filters
+            if (filters && filters.length) {
+                collection.setFilters(filters);
+            }
+            // Then we comply to sorters
+            if (sorters && sorters.length) {
+                collection.setSorters(sorters);
+            }
+
+            collection.addAll(records);
+
+            if (this.getEnablePagingParams() && start !== undefined && limit !== undefined) {
+                records = collection.items.slice(start, start + limit);
+            } else {
+                records = collection.items.slice();
+            }
+
+            operation.setSuccessful();
+        }
+
+        operation.setCompleted();
+
+        operation.setResultSet(Ext.create('Ext.data.ResultSet', {
+            records: records,
+            total  : records.length,
+            loaded : true
+        }));
+        operation.setRecords(records);
+
+        if (typeof callback == 'function') {
+            callback.call(scope || this, operation);
+        }
+    },
+
+    //inherit docs
+    update: function(operation, callback, scope) {
+        var records = operation.getRecords(),
+            length  = records.length,
+            ids     = this.getIds(),
+            record, id, i;
+
+        operation.setStarted();
+
+        for (i = 0; i < length; i++) {
+            record = records[i];
+            this.setRecord(record);
+
+            //we need to update the set of ids here because it's possible that a non-phantom record was added
+            //to this proxy - in which case the record's id would never have been added via the normal 'create' call
+            id = record.getId();
+            if (id !== undefined && Ext.Array.indexOf(ids, id) == -1) {
+                ids.push(id);
+            }
+        }
+        this.setIds(ids);
+
+        operation.setCompleted();
+        operation.setSuccessful();
+
+        if (typeof callback == 'function') {
+            callback.call(scope || this, operation);
+        }
+    },
+
+    //inherit
+    destroy: function(operation, callback, scope) {
+        var records = operation.getRecords(),
+            length  = records.length,
+            ids     = this.getIds(),
+
+            //newIds is a copy of ids, from which we remove the destroyed records
+            newIds  = [].concat(ids),
+            i;
+
+        operation.setStarted();
+
+        for (i = 0; i < length; i++) {
+            Ext.Array.remove(newIds, records[i].getId());
+            this.removeRecord(records[i], false);
+        }
+
+        this.setIds(newIds);
+
+        operation.setCompleted();
+        operation.setSuccessful();
+
+        if (typeof callback == 'function') {
+            callback.call(scope || this, operation);
+        }
+    },
+
+    /**
+     * @private
+     * Fetches a model instance from the Proxy by ID. Runs each field's decode function (if present) to decode the data.
+     * @param {String} id The record's unique ID
+     * @return {Ext.data.Model} The model instance or undefined if the record did not exist in the storage.
+     */
+    getRecord: function(id) {
+        if (this.cache[id] === undefined) {
+            var recordKey = this.getRecordKey(id),
+                item = this.getStorageObject().getItem(recordKey),
+                data    = {},
+                Model   = this.getModel(),
+                fields  = Model.getFields().items,
+                length  = fields.length,
+                i, field, name, record, rawData, dateFormat;
+
+            if (!item) {
+                return undefined;
+            }
+
+            rawData = Ext.decode(item);
+
+            for (i = 0; i < length; i++) {
+                field = fields[i];
+                name  = field.getName();
+
+                if (typeof field.getDecode() == 'function') {
+                    data[name] = field.getDecode()(rawData[name]);
+                } else {
+                    if (field.getType().type == 'date') {
+                        dateFormat = field.getDateFormat();
+                        if (dateFormat) {
+                            data[name] = Ext.Date.parse(rawData[name], dateFormat);
+                        } else {
+                            data[name] = new Date(rawData[name]);
+                        }
+                    } else {
+                        data[name] = rawData[name];
+                    }
+                }
+            }
+
+            record = new Model(data, id);
+            this.cache[id] = record;
+        }
+
+        return this.cache[id];
+    },
+
+    /**
+     * Saves the given record in the Proxy. Runs each field's encode function (if present) to encode the data.
+     * @param {Ext.data.Model} record The model instance
+     * @param {String} [id] The id to save the record under (defaults to the value of the record's getId() function)
+     */
+    setRecord: function(record, id) {
+        if (id) {
+            record.setId(id);
+        } else {
+            id = record.getId();
+        }
+
+        var me = this,
+            rawData = record.getData(),
+            data    = {},
+            Model   = me.getModel(),
+            fields  = Model.getFields().items,
+            length  = fields.length,
+            i = 0,
+            field, name, obj, key, dateFormat;
+
+        for (; i < length; i++) {
+            field = fields[i];
+            name  = field.getName();
+
+            if (field.getPersist() === false) {
+                continue;
+            }
+
+            if (typeof field.getEncode() == 'function') {
+                data[name] = field.getEncode()(rawData[name], record);
+            } else {
+                if (field.getType().type == 'date' && Ext.isDate(rawData[name])) {
+                    dateFormat = field.getDateFormat();
+                    if (dateFormat) {
+                        data[name] = Ext.Date.format(rawData[name], dateFormat);
+                    } else {
+                        data[name] = rawData[name].getTime();
+                    }
+                } else {
+                    data[name] = rawData[name];
+                }
+            }
+        }
+
+        obj = me.getStorageObject();
+        key = me.getRecordKey(id);
+
+        //keep the cache up to date
+        me.cache[id] = record;
+
+        //iPad bug requires that we remove the item before setting it
+        obj.removeItem(key);
+        try {
+            obj.setItem(key, Ext.encode(data));
+        } catch(e){
+            this.fireEvent('exception', this, e);
+        }
+
+        record.commit();
+    },
+
+    /**
+     * @private
+     * Physically removes a given record from the local storage. Used internally by {@link #destroy}, which you should
+     * use instead because it updates the list of currently-stored record ids
+     * @param {String/Number/Ext.data.Model} id The id of the record to remove, or an Ext.data.Model instance
+     */
+    removeRecord: function(id, updateIds) {
+        var me = this,
+            ids;
+
+        if (id.isModel) {
+            id = id.getId();
+        }
+
+        if (updateIds !== false) {
+            ids = me.getIds();
+            Ext.Array.remove(ids, id);
+            me.setIds(ids);
+        }
+
+        me.getStorageObject().removeItem(me.getRecordKey(id));
+    },
+
+    /**
+     * @private
+     * Given the id of a record, returns a unique string based on that id and the id of this proxy. This is used when
+     * storing data in the local storage object and should prevent naming collisions.
+     * @param {String/Number/Ext.data.Model} id The record id, or a Model instance
+     * @return {String} The unique key for this record
+     */
+    getRecordKey: function(id) {
+        if (id.isModel) {
+            id = id.getId();
+        }
+
+        return Ext.String.format("{0}-{1}", this.getId(), id);
+    },
+
+    /**
+     * @private
+     * Returns the array of record IDs stored in this Proxy
+     * @return {Number[]} The record IDs. Each is cast as a Number
+     */
+    getIds: function() {
+        var ids    = (this.getStorageObject().getItem(this.getId()) || "").split(","),
+            length = ids.length,
+            i;
+
+        if (length == 1 && ids[0] === "") {
+            ids = [];
+        }
+
+        return ids;
+    },
+
+    /**
+     * @private
+     * Saves the array of ids representing the set of all records in the Proxy
+     * @param {Number[]} ids The ids to set
+     */
+    setIds: function(ids) {
+        var obj = this.getStorageObject(),
+            str = ids.join(","),
+            id  = this.getId();
+
+        obj.removeItem(id);
+
+        if (!Ext.isEmpty(str)) {
+            try {
+                obj.setItem(id, str);
+            } catch(e){
+                this.fireEvent('exception', this, e);
+            }
+        }
+    },
+
+    /**
+     * @private
+     * Sets up the Proxy by claiming the key in the storage object that corresponds to the unique id of this Proxy. Called
+     * automatically by the constructor, this should not need to be called again unless {@link #clear} has been called.
+     */
+    initialize: function() {
+        this.callParent(arguments);
+        var storageObject = this.getStorageObject();
+        try {
+            storageObject.setItem(this.getId(), storageObject.getItem(this.getId()) || "");
+        } catch(e){
+            this.fireEvent('exception', this, e);
+        }
+    },
+
+    /**
+     * Destroys all records stored in the proxy and removes all keys and values used to support the proxy from the
+     * storage object.
+     */
+    clear: function() {
+        var obj = this.getStorageObject(),
+            ids = this.getIds(),
+            len = ids.length,
+            i;
+
+        //remove all the records
+        for (i = 0; i < len; i++) {
+            this.removeRecord(ids[i], false);
+        }
+
+        //remove the supporting objects
+        obj.removeItem(this.getId());
+    },
+
+    /**
+     * @private
+     * Abstract function which should return the storage object that data will be saved to. This must be implemented
+     * in each subclass.
+     * @return {Object} The storage object
+     */
+    getStorageObject: function() {
+    }
+});
+
+/**
+ * @author Ed Spencer
+ * @aside guide proxies
+ *
+ * The LocalStorageProxy uses the new HTML5 localStorage API to save {@link Ext.data.Model Model} data locally on the
+ * client browser. HTML5 localStorage is a key-value store (e.g. cannot save complex objects like JSON), so
+ * LocalStorageProxy automatically serializes and deserializes data when saving and retrieving it.
+ *
+ * localStorage is extremely useful for saving user-specific information without needing to build server-side
+ * infrastructure to support it. Let's imagine we're writing a Twitter search application and want to save the user's
+ * searches locally so they can easily perform a saved search again later. We'd start by creating a Search model:
+ *
+ *     Ext.define('Search', {
+ *         extend: 'Ext.data.Model',
+ *         config: {
+ *             fields: ['id', 'query'],
+ *             proxy: {
+ *                 type: 'localstorage',
+ *                 id  : 'twitter-Searches'
+ *             }
+ *         }
+ *     });
+ *
+ * Our Search model contains just two fields - id and query - plus a Proxy definition. The only configuration we need to
+ * pass to the LocalStorage proxy is an {@link #id}. This is important as it separates the Model data in this Proxy from
+ * all others. The localStorage API puts all data into a single shared namespace, so by setting an id we enable
+ * LocalStorageProxy to manage the saved Search data.
+ *
+ * Saving our data into localStorage is easy and would usually be done with a {@link Ext.data.Store Store}:
+ *
+ *     //our Store automatically picks up the LocalStorageProxy defined on the Search model
+ *     var store = Ext.create('Ext.data.Store', {
+ *         model: "Search"
+ *     });
+ *
+ *     //loads any existing Search data from localStorage
+ *     store.load();
+ *
+ *     //now add some Searches
+ *     store.add({query: 'Sencha Touch'});
+ *     store.add({query: 'Ext JS'});
+ *
+ *     //finally, save our Search data to localStorage
+ *     store.sync();
+ *
+ * The LocalStorageProxy automatically gives our new Searches an id when we call store.sync(). It encodes the Model data
+ * and places it into localStorage. We can also save directly to localStorage, bypassing the Store altogether:
+ *
+ *     var search = Ext.create('Search', {query: 'Sencha Animator'});
+ *
+ *     //uses the configured LocalStorageProxy to save the new Search to localStorage
+ *     search.save();
+ *
+ * # Limitations
+ *
+ * If this proxy is used in a browser where local storage is not supported, the constructor will throw an error. A local
+ * storage proxy requires a unique ID which is used as a key in which all record data are stored in the local storage
+ * object.
+ *
+ * It's important to supply this unique ID as it cannot be reliably determined otherwise. If no id is provided but the
+ * attached store has a storeId, the storeId will be used. If neither option is presented the proxy will throw an error.
+ */
+Ext.define('Ext.data.proxy.LocalStorage', {
+    extend: 'Ext.data.proxy.WebStorage',
+    alias: 'proxy.localstorage',
+    alternateClassName: 'Ext.data.LocalStorageProxy',
+
+    //inherit docs
+    getStorageObject: function() {
+        return window.localStorage;
+    }
+});
+
+/**
  * @author Ed Spencer
  * @aside guide proxies
  *
@@ -69693,16 +70467,8 @@ Ext.define('Kort.controller.About', {
             'about.Container'
         ],
         refs: {
-            mainTabPanel: '#mainTabPanel',
             aboutContainer: '#aboutContainer'
-        },
-        routes: {
-            'about': 'showAbout'
         }
-    },
-    
-    showAbout: function() {
-        this.getMainTabPanel().setActiveItem(this.getAboutContainer());
     }
 });
 
@@ -69754,7 +70520,14 @@ Ext.define('Kort.view.bugmap.NavigationView', {
             items: [
                 {
                     xtype: 'button',
-                    id: 'refreshBugsButton',
+                    cls: 'bugmapCenterButton',
+                    iconCls: 'locate',
+                    iconMask: true,
+                    align: 'left'
+                },
+                {
+                    xtype: 'button',
+                    cls: 'bugmapRefreshButton',
                     iconCls: 'refresh',
                     iconMask: true,
                     align: 'right'
@@ -69825,23 +70598,23 @@ Ext.define('Kort.controller.Bugmap', {
             mainTabPanel: '#mainTabPanel',
             mapCmp: '#bugmap',
             bugmapNavigationView: '#bugmapNavigationView',
-            refreshBugsButton: '#refreshBugsButton'
+            bugmapCenterButton: '#bugmapNavigationView .button[cls=bugmapCenterButton]',
+            bugmapRefreshButton: '#bugmapNavigationView .button[cls=bugmapRefreshButton]'
         },
         control: {
             mapCmp: {
                 maprender: 'onMapRender'
             },
-            refreshBugsButton: {
-                tap: 'onRefreshBugsButtonTap'
+            bugmapCenterButton: {
+                tap: 'onBugmapCenterButtonTap'
+            },
+            bugmapRefreshButton: {
+                tap: 'onBugmapRefreshButtonTap'
             },
             bugmapNavigationView: {
                 detailpush: 'onBugmapNavigationViewDetailPush',
                 back: 'onBugmapNavigationViewBack'
             }
-        },
-
-        routes: {
-            'bugmap': 'showBugmap'
         },
 
         map: null,
@@ -69851,16 +70624,55 @@ Ext.define('Kort.controller.Bugmap', {
         bugsStore: null,
         messageBoxTemplate: null
     },
+    
+    init: function() {
+        var me = this;
+        me.callParent(arguments);
+        
+        // create layer group for bug markers
+        me.setMarkerLayerGroup(L.layerGroup());
 
-    showBugmap: function() {
-        this.getMainTabPanel().setActiveItem(this.getBugmapNavigationView());
+        me.setBugsStore(Ext.getStore('Bugs'));
+
+        me.setMessageBoxTemplate(
+            new Ext.Template(
+                '<div class="messagebox-content">',
+                    '<div class="textpic">',
+                        '<div class="image">',
+                            '<img class="bugtype-image" src="./resources/images/marker_icons/{type}.png" />',
+                        '</div>',
+                        '<div class="content">',
+                            '<p>{description}</p>',
+                        '</div>',
+                    '</div>',
+                    '<div class="textpic">',
+                        '<div class="image">',
+                            '<img class="koin-image" src="./resources/images/koins/koin_no_value.png" />',
+                        '</div>',
+                        '<div class="content">',
+                            '<p>',
+                                Ext.i18n.Bundle.message('bugmap.messagebox.koins.earn'),
+                                ' <span class="important">{koin_count}</span> ',
+                                Ext.i18n.Bundle.message('bugmap.messagebox.koins.name'),
+                            '</p>',
+                        '</div>',
+                    '</div>',
+                '</div>'
+            )
+        );
+        
+        me.getApplication().on({
+            fixsend: { fn: me.refreshBugMarkers, scope: me }
+        });
     },
 
     onBugmapNavigationViewDetailPush: function(cmp, view, opts) {
-        this.getRefreshBugsButton().hide();
+        this.getBugmapCenterButton().hide();
+        this.getBugmapRefreshButton().hide();
     },
     onBugmapNavigationViewBack: function(cmp, view, opts) {
-        this.getRefreshBugsButton().show();
+        this.getBugmapCenterButton().show();
+        this.getBugmapRefreshButton().show();
     },
 
     onMapRender: function(cmp, map, tileLayer) {
@@ -69884,24 +70696,32 @@ Ext.define('Kort.controller.Bugmap', {
         me.getMarkerLayerGroup().addTo(map);
     },
 
-    onRefreshBugsButtonTap: function() {
+    onBugmapCenterButtonTap: function() {
+        this.centerMapToCurrentPosition();
+    },
+    
+    onBugmapRefreshButtonTap: function() {
         this.refreshBugMarkers();
+    },
+    
+    centerMapToCurrentPosition: function() {
+        // centering map to current position
+        this.getMapCmp().setMapCenter(this.getCurrentLocationLatLng(this.getMapCmp()));
     },
 
     refreshBugMarkers: function() {
         var me = this,
-            lat = me.getMapCmp().getGeo().getLatitude(),
-            lng = me.getMapCmp().getGeo().getLongitude(),
+            mapCmp = me.getMapCmp(),
             bugsStore = me.getBugsStore(),
-            url;
-
-        url = './server/webservices/bug/position/' + lat + ',' + lng;
+            url, currentLatLng;
+        
+        currentLatLng = me.getCurrentLocationLatLng(mapCmp);
+        url = './server/webservices/bug/position/' + currentLatLng.lat + ',' + currentLatLng.lng;
         bugsStore.getProxy().setUrl(url);
 
         me.showLoadMask();
 
-        // centering map to current position
-        me.getMapCmp().setMapCenter(L.latLng(lat, lng));
+        me.centerMapToCurrentPosition();
 
         // Load bugs store
 		bugsStore.load(function(records, operation, success) {
@@ -70022,7 +70842,8 @@ Ext.define('Kort.controller.Bugmap', {
     },
 
     showLoadMask: function() {
-        this.getRefreshBugsButton().disable();
+        this.getBugmapCenterButton().disable();
+        this.getBugmapRefreshButton().disable();
         this.getBugmapNavigationView().setMasked({
             xtype: 'loadmask',
             message: Ext.i18n.Bundle.message('bugmap.loadmask.message'),
@@ -70032,42 +70853,22 @@ Ext.define('Kort.controller.Bugmap', {
 
     hideLoadMask: function() {
         this.getBugmapNavigationView().setMasked(false);
-        this.getRefreshBugsButton().enable();
+        this.getBugmapCenterButton().enable();
+        this.getBugmapRefreshButton().enable();
     },
-
-    init: function() {
-        // create layer group for bug markers
-        this.setMarkerLayerGroup(L.layerGroup());
-
-        this.setBugsStore(Ext.getStore('Bugs'));
-
-        this.setMessageBoxTemplate(
-            new Ext.Template(
-                '<div class="messagebox-content">',
-                    '<div class="textpic">',
-                        '<div class="image">',
-                            '<img class="bugtype-image" src="./resources/images/marker_icons/{type}.png" />',
-                        '</div>',
-                        '<div class="content">',
-                            '<p>{description}</p>',
-                        '</div>',
-                    '</div>',
-                    '<div class="textpic">',
-                        '<div class="image">',
-                            '<img class="koin-image" src="./resources/images/koins/koin_no_value.png" />',
-                        '</div>',
-                        '<div class="content">',
-                            '<p>',
-                                Ext.i18n.Bundle.message('bugmap.messagebox.koins.earn'),
-                                ' <span class="important">{koinCount}</span> ',
-                                Ext.i18n.Bundle.message('bugmap.messagebox.koins.name'),
-                            '</p>',
-                        '</div>',
-                    '</div>',
-                '</div>'
-            )
-        );
-    }
+    
+    /**
+	 * Returns current location
+	 * @private
+	 */
+	getCurrentLocationLatLng: function(mapCmp) {
+		if(mapCmp.getUseCurrentLocation()) {
+            var geo = mapCmp.getGeo();
+			return L.latLng(geo.getLatitude(), geo.getLongitude());
+		} else {
+			return mapCmp.getMap().getCenter();
+		}
+	}
 });
 
 Ext.define('Kort.view.overlay.firststeps.Panel', {
@@ -70080,7 +70881,6 @@ Ext.define('Kort.view.overlay.firststeps.Panel', {
     ],
 
 	config: {
-		url: 'firststeps',
 		id: 'firststepsPanel',
 		layout: 'vbox',
         modal: true,
@@ -70156,8 +70956,6 @@ Ext.define('Kort.controller.Firststeps', {
 
     onFirststepsFormSubmitButtonTap: function() {
         var me = this,
-            userStore = Ext.getStore('User'),
-            user = userStore.first(),
             usernameValue = this.getUsernameTextfield().getValue(),
             messageBox;
 
@@ -70166,8 +70964,10 @@ Ext.define('Kort.controller.Firststeps', {
                 messageBox = Ext.create('Kort.view.NotificationMessageBox');
                 messageBox.alert(Ext.i18n.Bundle.message('firststeps.alert.username.specialchars.title'), Ext.i18n.Bundle.message('firststeps.alert.username.specialchars.message'), Ext.emptyFn);
             } else {
-                userStore.on('write', me.storeWriteHandler, this, { single: true });
-                user.set('username', usernameValue);
+                Kort.user.set('username', usernameValue);
+                Kort.user.save({
+                    success: me.userSuccessfullSavedHandler
+                }, me);
             }
         } else {
             messageBox = Ext.create('Kort.view.NotificationMessageBox');
@@ -70175,10 +70975,9 @@ Ext.define('Kort.controller.Firststeps', {
         }
     },
 
-    storeWriteHandler: function(store, operation) {
+    userSuccessfullSavedHandler: function(store, operation) {
+        this.getApplication().fireEvent('usersave');
         this.getFirststepsPanel().hide();
-        // TODO destroy panel after hide event
-        //this.getFirststepsPanel().destroy();
     },
 
     onUsernameTextfieldKeyUp: function(field, e) {
@@ -70186,6 +70985,35 @@ Ext.define('Kort.controller.Firststeps', {
         if (e.event.keyCode === 13){
             this.onFirststepsFormSubmitButtonTap();
         }
+    }
+});
+
+Ext.define('Kort.view.bugmap.fix.type.Select', {
+	extend: 'Ext.field.Select',
+    
+	config: {
+        store: 'SelectAnswers',
+        
+        // always use Ext.picker.Picker
+        usePicker: true,
+        valueField: 'value',
+        displayField: 'title',
+        defaultPhonePickerConfig: {
+            cancelButton: Ext.i18n.Bundle.message('picker.cancel'),
+            doneButton: Ext.i18n.Bundle.message('picker.done')
+        },
+        defaultTabletPickerConfig: {
+            cancelButton: Ext.i18n.Bundle.message('picker.cancel'),
+            doneButton: Ext.i18n.Bundle.message('picker.done')
+        },
+        type: ''
+	},
+    
+    initialize: function() {
+        this.callParent(arguments);
+        
+        // filter answers for given type
+        this.getStore().filter('type', this.getType());
     }
 });
 
@@ -70197,7 +71025,8 @@ Ext.define('Kort.view.bugmap.fix.Form', {
         'Ext.Button',
         'Ext.field.Select',
         'Ext.field.Number',
-        'Ext.field.Text'
+        'Ext.field.Text',
+        'Kort.view.bugmap.fix.type.Select'
     ],
     
 	config: {
@@ -70260,32 +71089,14 @@ Ext.define('Kort.view.bugmap.fix.Form', {
             fieldConfig = {
                 name: 'fixfield',
                 cls: 'fixfield'
-            },
-            selectAnswersStore;
+            };
         
         if(bug.get('view_type') === 'select') {
-            selectAnswersStore = Ext.getStore('SelectAnswers');
-            
-            // filter answers for given type
-            selectAnswersStore.filter('type', bug.get('type'));
-            
             fieldConfig = Ext.merge(fieldConfig, {
-                store: selectAnswersStore,
-                // always use Ext.picker.Picker
-                usePicker: true,
-                valueField: 'value',
-                displayField: 'title',
-                defaultPhonePickerConfig: {
-                    cancelButton: Ext.i18n.Bundle.message('picker.cancel'),
-                    doneButton: Ext.i18n.Bundle.message('picker.done')
-                },
-                defaultTabletPickerConfig: {
-                    cancelButton: Ext.i18n.Bundle.message('picker.cancel'),
-                    doneButton: Ext.i18n.Bundle.message('picker.done')
-                }
+                type: bug.get('type')
             });
             
-            fixField = Ext.create('Ext.field.Select', fieldConfig);
+            fixField = Ext.create('Kort.view.bugmap.fix.type.Select', fieldConfig);
         } else if(bug.get('view_type') === 'number') {
             fixField = Ext.create('Ext.field.Number', fieldConfig);
         } else {
@@ -70451,11 +71262,12 @@ Ext.define('Kort.controller.Fix', {
         var me = this,
             detailTabPanel = this.getDetailTabPanel(),
             fixFieldValue = this.getFixField().getValue(),
+            userId = Kort.user.get('id'),
             fix,
             messageBox;
 
         if (fixFieldValue !== '') {
-            fix = Ext.create('Kort.model.Fix', { error_id: detailTabPanel.getRecord().get('id'), message: fixFieldValue });
+            fix = Ext.create('Kort.model.Fix', { error_id: detailTabPanel.getRecord().get('id'), user_id: userId, message: fixFieldValue });
             fix.save({
                 success: function(records, operation) {
                     me.fixSuccessfulSubmittedHandler(operation.getResponse().responseText);
@@ -70483,15 +71295,12 @@ Ext.define('Kort.controller.Fix', {
             reward = Ext.create('Kort.model.Reward', rewardConfig),
             bugmapNavigationView = this.getBugmapNavigationView();
         
-        this.reloadStores();
+        this.getApplication().fireEvent('fixsend');
+        
         this.showRewardMessageBox(reward);
         // remove detail panel
         bugmapNavigationView.pop();
         bugmapNavigationView.fireEvent('back', bugmapNavigationView);
-    },
-    
-    reloadStores: function() {
-        Ext.getStore('User').load();
     },
     
 	showRewardMessageBox: function(reward) {
@@ -70500,6 +71309,84 @@ Ext.define('Kort.controller.Fix', {
         });
         messageBox.alert(Ext.i18n.Bundle.message('reward.alert.title'), messageBox.getRewardTpl().apply(reward.data), Ext.emptyFn);
 	}
+});
+
+Ext.define('Kort.view.overlay.geolocationerror.Panel', {
+	extend: 'Ext.Panel',
+	alias: 'widget.geolocationerrorpanel',
+    requires: [
+        'Ext.Button'
+    ],
+
+	config: {
+		id: 'geolocationerrorPanel',
+		layout: 'vbox',
+        modal: true,
+        scrollable: true,
+        cls: 'overlayLeafletMap',
+        
+		items: [
+			{
+                html:   '<div class="overlay-content">' +
+                            '<div class="logo">' +
+                                '<img src="./resources/images/kort-logo.png" />' +
+                            '</div>' +
+                            '<div class="introduction">' +
+                                Ext.i18n.Bundle.message('geolocationerror.introduction') +
+                            '</div>' +
+                        '</div>'
+			},
+            {
+                xtype: 'button',
+                id: 'geolocationerrorReloadButton',
+                text: Ext.i18n.Bundle.message('geolocationerror.button.reload'),
+                ui: 'confirm'
+            }
+		]
+	}
+});
+
+Ext.define('Kort.controller.GeolocationError', {
+    extend: 'Ext.app.Controller',
+    requires: [
+        'Ext.LoadMask'
+    ],
+
+    config: {
+        views: [
+            'overlay.geolocationerror.Panel'
+        ],
+        refs: {
+            geolocationerrorPanel: '#geolocationerrorPanel',
+            geolocationerrorReloadButton: '#geolocationerrorReloadButton'
+        },
+        control: {
+            geolocationerrorReloadButton: {
+                tap: 'onGeolocationerrorReloadButtonTap'
+            }
+        }
+    },
+
+    onGeolocationerrorReloadButtonTap: function() {
+        var me = this;
+        me.showLoadMask(Ext.i18n.Bundle.message('geolocationerror.loadmask.message'));
+        
+        // reload app
+        window.location.reload();
+    },
+    
+    showLoadMask: function(message) {
+        this.getGeolocationerrorPanel().setMasked({
+            xtype: 'loadmask',
+            message: message
+        });
+
+        Ext.defer(this.hideLoadMask, Kort.util.Config.getTimeout(), this);
+    },
+
+    hideLoadMask: function() {
+        this.getGeolocationerrorPanel().setMasked(false);
+    }
 });
 
 /*jshint maxcomplexity:10 */
@@ -70514,11 +71401,18 @@ Ext.define('Kort.plugin.PullRefresh', {
         lastUpdatedText: Ext.i18n.Bundle.message('pullrefresh.lastupdated'),
         dateFormat: 'd.m.Y H:i:s',
         refreshFn: function(callbackFn, scope) {
-            var store = this.getList().getStore();
+            var me = this,
+                list = me.getList(),
+                store = list.getStore();
+
             if (store) {
                 store.load({
                     callback: function(records, operation, success) {
                         callbackFn.call(scope);
+                        // wait until bounce back animation is done
+                        Ext.defer(function() {
+                            list.refresh();
+                        }, 500);
                     }
                 });
             } else {
@@ -70700,11 +71594,22 @@ Ext.define('Kort.view.highscore.List', {
         emptyText: Ext.i18n.Bundle.message('highscore.emptytext'),
         disableSelection: true,
         
-        itemTpl:    '<div class="highscore-item">' +
-                        '<div class="ranking">#{ranking}</div>' +
-                        '<div class="username">{username}</div>' +
-                        '<div class="kort-label koinCount">{koinCount} ' + Ext.i18n.Bundle.message('highscore.koins') + '</div>' +
-                    '</div>',
+        itemTpl:    new Ext.XTemplate(
+                        '<div class="highscore-item' +
+                        '<tpl if="ranking == 1"> firstPlace</tpl>' +
+                        '<tpl if="ranking == 2"> secondPlace</tpl>' +
+                        '<tpl if="ranking == 3"> thirdPlace</tpl>' +
+                        '<tpl if="you"> you</tpl>' +
+                        '">' +
+                            '<div class="ranking">#{ranking}</div>' +
+                            '<div class="information">' +
+                                '<div class="username"><span class="value">{username}<tpl if="you"></span> <span class="you">' + Ext.i18n.Bundle.message('highscore.you') + '</span></tpl></div>' +
+                                '<div class="fixCount"><span class="title">' + Ext.i18n.Bundle.message('highscore.fixcount') + '</span> <span class="value">{fix_count}</span></div>' +
+                                '<div class="voteCount"><span class="title">' + Ext.i18n.Bundle.message('highscore.votecount') + '</span> <span class="value">{vote_count}</span></div>' +
+                            '</div>' +
+                            '<div class="koins"><span class="koinCount">{koin_count}</span> <span class="title">' + Ext.i18n.Bundle.message('highscore.koins') + '</span></div>' +
+                        '</div>'
+                    ),
         
         plugins: [
             {
@@ -70752,16 +71657,28 @@ Ext.define('Kort.controller.Highscore', {
         ],
         refs: {
             mainTabPanel: '#mainTabPanel',
-            highscoreContainer: '#highscoreContainer'
-        },
-        routes: {
-            'highscore': 'showHighscore'
+            highscoreContainer: '#highscoreContainer',
+            highscoreList: '.highscorelist'
         }
     },
     
-    showHighscore: function() {
-        Ext.getStore('Highscore').load();
-        this.getMainTabPanel().setActiveItem(this.getHighscoreContainer());
+    init: function() {
+        var me = this;
+        me.callParent(arguments);
+        
+        me.getApplication().on({
+            votesend: { fn: me.refreshView, scope: me },
+            fixsend: { fn: me.refreshView, scope: me },
+            usersave: { fn: me.refreshView, scoep: me }
+        });
+    },
+    
+    refreshView: function() {
+        var me = this;
+        
+        Ext.getStore('Highscore').load(function(records, operation, success) {
+            me.getHighscoreList().refresh();
+        });
     }
 });
 
@@ -70773,7 +71690,6 @@ Ext.define('Kort.view.overlay.login.Panel', {
     ],
 
 	config: {
-		url: 'login',
 		id: 'loginPanel',
 		layout: 'vbox',
         modal: true,
@@ -70928,7 +71844,7 @@ Ext.define('Kort.view.validation.List', {
                                 '</span>' +
                             '</div>' +
                         '</div>' +
-                        '<div class="kort-label distance">{formattedDistance}</div>' +
+                        '<div class="kort-label distance">{formatted_distance}</div>' +
                     '</div>',
         
         plugins: [
@@ -70963,12 +71879,74 @@ Ext.define('Kort.view.validation.NavigationView', {
 	}
 });
 
+Ext.define('Kort.view.profile.ContentComponent', {
+	extend: 'Ext.Component',
+	alias: 'widget.profilecontentcomponent',
+	
+	config: {
+        cls: 'profileContentComponent',
+        
+        tpl: new Ext.XTemplate(
+                '<div class="profile-content">',
+                    '<div class="info">',
+                        '<div class="picture">',
+                            '<img src="{pic_url}" />',
+                        '</div>',
+                        '<dl class="kort-definitionlist text">',
+                            '<dt>' + Ext.i18n.Bundle.message('profile.content.username') + '</dt>',
+                            '<dd>{username}</dd>',
+                            '<dt>' + Ext.i18n.Bundle.message('profile.content.email') + '</dt>',
+                            '<dd>{email}</dd>',
+                            '<dt>' + Ext.i18n.Bundle.message('profile.content.fixes') + '</dt>',
+                            '<dd>{fix_count}</dd>',
+                            '<dt>' + Ext.i18n.Bundle.message('profile.content.votes') + '</dt>',
+                            '<dd>{vote_count}</dd>',
+                        '</dl>',
+                    '</div>',
+                    // TODO small hack to recieve sencha list header styling
+                    '<div class="profile-header x-list-normal">',
+                        '<div class="x-list-header">' + Ext.i18n.Bundle.message('profile.content.koins.header') + '</div>',
+                    '</div>',
+                    '<div class="koins">',
+                        '<span class="koins-introduction">' + Ext.i18n.Bundle.message('profile.content.koins.introduction') + '</span>',
+                        '<span class="kort-label koins-number">{koin_count}</span>',
+                    '</div>',
+                    // TODO small hack to recieve sencha list header styling
+                    '<div class="profile-header x-list-normal">',
+                        '<div class="x-list-header">' + Ext.i18n.Bundle.message('profile.content.badges.header') + '</div>',
+                    '</div>',
+                '</div>'
+            )
+	}
+});
+
+Ext.define('Kort.view.profile.BadgesDataView', {
+	extend: 'Ext.DataView',
+	alias: 'widget.profilebadgesdataview',
+	
+	config: {
+        cls: 'profileBadgesDataView',
+        store: 'UserBadges',
+        inline: true,
+        itemTpl:    '<div class="badge">' +
+                        '<img src="./resources/images/badges/<tpl if="won">{name}<tpl else>locked</tpl>.png" />' +
+                        '<p class="badge-title">{title}</p>' +
+                    '</div>',
+        scrollable: false,
+        emptyText: '<div class="emptytext">' + Ext.i18n.Bundle.message('profile.badges.emptytext') + '</div>',
+        // disable loading mask for badges dataview
+        loadingText: false
+	}
+});
+
 Ext.define('Kort.view.profile.Container', {
 	extend: 'Ext.Container',
 	alias: 'widget.profilecontainer',
     requires: [
         'Ext.TitleBar',
-        'Ext.Button'
+        'Ext.Button',
+        'Kort.view.profile.ContentComponent',
+        'Kort.view.profile.BadgesDataView'
     ],
 	
 	config: {
@@ -70991,65 +71969,35 @@ Ext.define('Kort.view.profile.Container', {
                 
                 items: [
                     {
+                        xtype: 'button',
+                        cls: 'profileRefreshButton',
+                        iconCls: 'refresh',
+                        iconMask: true,
+                        align: 'left'
+                    },
+                    {
                         text: Ext.i18n.Bundle.message('profile.button.logout'),
-                        align: 'right',
+                        cls: 'profileLogoutButton',
                         ui: 'decline',
-                        id: 'logoutButton'
+                        align: 'right'
                     }
                 ]
 			}
 		]
 	},
     initialize: function () {
+        var profileContentComponent,
+            badgesDataView;
+
         this.callParent(arguments);
 
-        var profileContentComponent = {
-            xtype: 'component',
-            id: 'profileContentComponent',
-            tpl: new Ext.XTemplate(
-                '<div class="profile-content">',
-                    '<div class="info">',
-                        '<div class="picture">',
-                            '<img src="{picUrl}" />',
-                        '</div>',
-                        '<dl class="kort-definitionlist text">',
-                            '<dt>' + Ext.i18n.Bundle.message('profile.content.username') + '</dt>',
-                            '<dd>{username}</dd>',
-                            '<dt>' + Ext.i18n.Bundle.message('profile.content.email') + '</dt>',
-                            '<dd>{email}</dd>',
-                            '<dt>' + Ext.i18n.Bundle.message('profile.content.fixes') + '</dt>',
-                            '<dd>{fixCount}</dd>',
-                            '<dt>' + Ext.i18n.Bundle.message('profile.content.validations') + '</dt>',
-                            '<dd>{validationCount}</dd>',
-                        '</dl>',
-                    '</div>',
-                    // TODO small hack to recieve sencha list header styling
-                    '<div class="profile-header x-list-normal">',
-                        '<div class="x-list-header">' + Ext.i18n.Bundle.message('profile.content.koins.header') + '</div>',
-                    '</div>',
-                    '<div class="koins">',
-                        '<span class="koins-introduction">' + Ext.i18n.Bundle.message('profile.content.koins.introduction') + '</span>',
-                        '<span class="kort-label koins-number">{koinCount}</span>',
-                    '</div>',
-                    // TODO small hack to recieve sencha list header styling
-                    '<div class="profile-header x-list-normal">',
-                        '<div class="x-list-header">' + Ext.i18n.Bundle.message('profile.content.badges.header') + '</div>',
-                    '</div>',
-                '</div>'
-                )
+        profileContentComponent = {
+            xtype: 'profilecontentcomponent'
         };
         
-        var badgesDataView = {
-            xtype: 'dataview',
-            id: 'profileBadgesDataView',
-            store: 'UserBadges',
-            inline: true,
-            itemTpl:    '<div class="badge">' +
-                            '<img src="./resources/images/badges/<tpl if="won">{name}<tpl else>locked</tpl>.png" />' +
-                            '<p class="badge-title">{name}</p>' +
-                        '</div>',
-            scrollable: false
-        }
+        badgesDataView = {
+            xtype: 'profilebadgesdataview'
+        };
         
         this.add([profileContentComponent, badgesDataView]);
     }
@@ -71099,12 +72047,24 @@ Ext.define('Kort.controller.Main', {
         ],
         refs: {
             mainTabPanel: '#mainTabPanel',
-            bugmapNavigationView: '#bugmapNavigationView'
+            aboutContainer: '#aboutContainer',
+            bugmapNavigationView: '#bugmapNavigationView',
+            highscoreContainer: '#highscoreContainer',
+            profileContainer: '#profileContainer',
+            validationNavigationView: '#validationNavigationView'
         },
         control: {
             mainTabPanel: {
                 activeitemchange: 'onMainTabPanelActiveItemChange'
             }
+        },
+
+        routes: {
+            'about': 'showAbout',
+            'bugmap': 'showBugmap',
+            'highscore': 'showHighscore',
+            'profile': 'showProfile',
+            'validation': 'showValidation'
         }
     },
 
@@ -71114,6 +72074,28 @@ Ext.define('Kort.controller.Main', {
      */
     onMainTabPanelActiveItemChange: function(container, newCmp, oldCmp, eOpts) {
         this.redirectTo(newCmp.getUrl());
+    },
+    
+    showAbout: function() {
+        this.showView(this.getAboutContainer());
+    },
+    showBugmap: function() {
+        this.showView(this.getBugmapNavigationView());
+    },
+    showHighscore: function() {
+        this.showView(this.getHighscoreContainer());
+    },
+    showProfile: function() {
+        this.showView(this.getProfileContainer());
+    },
+    showValidation: function() {
+        this.showView(this.getValidationNavigationView());
+    },
+    
+    showView: function(viewCmp) {
+        if(this.getMainTabPanel()) {
+            this.getMainTabPanel().setActiveItem(viewCmp);
+        }
     }
 });
 
@@ -71123,10 +72105,13 @@ Ext.define('Kort.view.profile.BadgesCarousel', {
 	
 	config: {
         flex: 1,
+        cls: 'profileBadgesCarousel',
+        selectedBadgeIndex: 0,
         itemTpl: new Ext.XTemplate(
                     '<div class="carouselitem-content">' +
-                        '<img src="./resources/images/badges/<tpl if="won">{name}<tpl else>locked</tpl>.png" />' +
-                        '<p class="badge-title">{name}</p>' +
+                        '<h1 class="badge-title">{title}</h1>' +
+                        '<img class="badge-image" src="./resources/images/badges/<tpl if="won">{name}<tpl else>locked</tpl>.png" />' +
+                        '<p class="badge-description">{description}</p>' +
                     '</div>'
                 )
 	},
@@ -71138,10 +72123,21 @@ Ext.define('Kort.view.profile.BadgesCarousel', {
             userBadgesStore = Ext.getStore('UserBadges');
         
         userBadgesStore.each(function (badge, index, length) {
-            me.add({
+            var component = {
+                xtype: 'component',
                 html: me.getItemTpl().apply(badge.data)
-            });
+            };
+            // if user owns badge set badge background color
+            if(badge.get('won')) {
+                component.style = {
+                    'background-color': badge.get('color')
+                };
+            }
+            
+            me.add(component);
         });
+        // show choosen badge
+        me.setActiveItem(me.getSelectedBadgeIndex());
     }
 });
 
@@ -71181,12 +72177,22 @@ Ext.define('Kort.view.profile.BadgesContainer', {
                         align: 'left'
                     }
                 ]
-			},
-			{
-				xtype: 'badgescarousel'
 			}
-		]
-	}
+		],
+        
+        selectedBadgeIndex: 0
+	},
+    
+    initialize: function() {
+        this.callParent(arguments);
+        
+        var badgesCarousel = {
+            xtype: 'badgescarousel',
+            selectedBadgeIndex: this.getSelectedBadgeIndex()
+        };
+        
+        this.add(badgesCarousel);
+    }
 });
 
 Ext.define('Kort.controller.Profile', {
@@ -71194,7 +72200,7 @@ Ext.define('Kort.controller.Profile', {
     requires: [
         'Ext.LoadMask'
     ],
-    
+
     config: {
         views: [
             'profile.Container',
@@ -71203,9 +72209,10 @@ Ext.define('Kort.controller.Profile', {
         refs: {
             mainTabPanel: '#mainTabPanel',
             profileContainer: '#profileContainer',
-            profileContentComponent: '#profileContentComponent',
-            profileBadgesDataView: '#profileBadgesDataView',
-            logoutButton: '#logoutButton',
+            profileContentComponent: '.profilecontentcomponent',
+            profileBadgesDataView: '.profilebadgesdataview',
+            profileRefreshButton: '#profileContainer .button[cls=profileRefreshButton]',
+            profileLogoutButton: '#profileContainer .button[cls=profileLogoutButton]',
             badgesContainerBackButton: '.badgescontainer .button[cls=badgesContainerBackButton]'
         },
         control: {
@@ -71215,78 +72222,92 @@ Ext.define('Kort.controller.Profile', {
             profileBadgesDataView: {
                 itemtap: 'onProfileBadgesDataViewItemTap'
             },
-            logoutButton: {
-                tap: 'onLogoutButtonTap'
+            profileRefreshButton: {
+                tap: 'onProfileRefreshButtonTap'
+            },
+            profileLogoutButton: {
+                tap: 'onProfileLogoutButtonTap'
             },
             badgesContainerBackButton: {
                 tap: 'onBadgesContainerBackButtonTap'
             }
         },
-        routes: {
-            'profile': 'showProfile'
-        },
-        
-        userStore: null,
+
         badgesContainer: null
     },
     
-    showProfile: function() {
-        this.getMainTabPanel().setActiveItem(this.getProfileContainer());
+    init: function() {
+        var me = this;
+        me.callParent(arguments);
+        
+        me.getApplication().on({
+            votesend: { fn: me.refreshProfile, scope: me },
+            fixsend: { fn: me.refreshProfile, scope: me }
+        });
     },
-    
+
     onProfileContentComponentInitialize: function() {
-        var store = this.getUserStore(),
-            user;
-            
-        if(!store.isLoaded()) {
+        if(!Kort.user) {
             Ext.defer(this.onProfileContentComponentInitialize, 500, this);
         } else {
-            user = this.getUserStore().first();
-            this.getProfileContentComponent().setRecord(user);
+            this.getProfileContentComponent().setRecord(Kort.user);
         }
     },
-    
+
     onProfileBadgesDataViewItemTap: function(dataViewCmp, index, target, record, e) {
-        var badgesContainer = Ext.create('Kort.view.profile.BadgesContainer');
-        // TODO ugly way to set active carousel item
-        badgesContainer.getItems().items[1].setActiveItem(index);
+        var badgesContainer = Ext.create('Kort.view.profile.BadgesContainer', {
+            selectedBadgeIndex: index
+        });
         this.setBadgesContainer(badgesContainer);
         Ext.Viewport.add(badgesContainer);
         badgesContainer.show();
     },
-    
+
     onBadgesContainerBackButtonTap: function() {
         this.getBadgesContainer().hide();
     },
-    
-    onLogoutButtonTap: function() {
-        var me = this;
-        me.showLoadMask();
+
+    onProfileLogoutButtonTap: function() {
+        var me = this,
+            userLocalStore = Ext.getStore('UserLocal');
+
+        me.showLoadMask(Ext.i18n.Bundle.message('profile.logout.loadmask.message'));
         Ext.Ajax.request({
-            url: './server/webservices/user/logout',
+            url: './server/webservices/user/' + Kort.user.get('id') + '/logout',
             success: function(response){
+                userLocalStore.removeAll();
+                
                 // reload current page
                 window.location.reload();
             }
         });
     },
+
+    onProfileRefreshButtonTap: function() {
+        this.refreshProfile();
+    },
     
-    showLoadMask: function() {
+    refreshProfile: function() {
+        var me = this;
+
+        me.showLoadMask(Ext.i18n.Bundle.message('profile.refresh.loadmask.message'));
+        
+        Kort.model.User.reload(Kort.user, 'secret', me.hideLoadMask, me);
+    },
+
+    showLoadMask: function(message) {
+        this.getProfileRefreshButton().disable();
         Ext.Viewport.setMasked({
             xtype: 'loadmask',
-            message: Ext.i18n.Bundle.message('profile.logout.loadmask.message')
+            message: message
         });
-        
+
         Ext.defer(this.hideLoadMask, Kort.util.Config.getTimeout(), this);
     },
-    
+
     hideLoadMask: function() {
+        this.getProfileRefreshButton().enable();
         Ext.Viewport.setMasked(false);
-        console.log('something went wrong');
-    },
-    
-    init: function() {
-        this.setUserStore(Ext.getStore('User'));
     }
 });
 
@@ -71357,8 +72378,8 @@ Ext.define('Kort.view.validation.vote.Container', {
             record: this.getRecord(),
             tpl:    new Ext.XTemplate(
                         '<div class="vote-content">',
-                            '<div class="description">',
-                                '{description}',
+                            '<div class="question">',
+                                '{question}',
                             '</div>',
                             '<div class="fixmessage">',
                                 '{fixmessage}',
@@ -71430,10 +72451,25 @@ Ext.define('Kort.controller.Validation', {
             validationList: {
                 itemtap: 'onValidationListItemTap'
             }
-        },
-        routes: {
-            'validation': 'showValidation'
         }
+    },
+    
+    init: function() {
+        var me = this;
+        me.callParent(arguments);
+        
+        me.getApplication().on({
+            votesend: { fn: me.refreshView, scope: me },
+            fixsend: { fn: me.refreshView, scope: me }
+        });
+    },
+    
+    refreshView: function() {
+        var me = this;
+        
+        Ext.getStore('Validations').load(function(records, operation, success) {
+            me.getValidationList().refresh();
+        });
     },
     
     onValidationListItemTap: function(list, index, target, record, e) {
@@ -71442,10 +72478,6 @@ Ext.define('Kort.controller.Validation', {
             title: record.get('title')
         });
         this.getValidationNavigationView().push(voteTabPanel);
-    },
-    
-    showValidation: function() {
-        this.getMainTabPanel().setActiveItem(this.getValidationNavigationView());
     }
 });
 
@@ -71485,11 +72517,11 @@ Ext.define('Kort.controller.Vote', {
     },
     
     onVoteAcceptButtonTap: function() {
-        this.sendVote('accept');
+        this.sendVote('true');
     },
     
     onVoteDeclineButtonTap: function() {
-        this.sendVote('decline');
+        this.sendVote('false');
     },
     
     onVoteCancelButtonTap: function() {
@@ -71497,12 +72529,13 @@ Ext.define('Kort.controller.Vote', {
         this.getValidationNavigationView().pop();
     },
     
-    sendVote: function(message) {
+    sendVote: function(valid) {
         var me = this,
             detailTabPanel = this.getDetailTabPanel(),
+            userId = Kort.user.get('id'),
             vote;
 
-        vote = Ext.create('Kort.model.Vote', { validation_id: detailTabPanel.getRecord().get('id'), message: message });
+        vote = Ext.create('Kort.model.Vote', { fix_id: detailTabPanel.getRecord().get('id'), user_id: userId, valid: valid });
         vote.save({
             success: function(records, operation) {
                 me.voteSuccessfulSubmittedHandler(operation.getResponse().responseText);
@@ -71518,14 +72551,11 @@ Ext.define('Kort.controller.Vote', {
         var rewardConfig = JSON.parse(responseText),
             reward = Ext.create('Kort.model.Reward', rewardConfig);
         
-        this.reloadStores();
+        this.getApplication().fireEvent('votesend');
+        
         this.showRewardMessageBox(reward);
         // remove detail panel
         this.getValidationNavigationView().pop();
-    },
-    
-    reloadStores: function() {
-        Ext.getStore('User').load();
     },
     
 	showRewardMessageBox: function(reward) {
@@ -71544,7 +72574,11 @@ Ext.define('Kort.model.Badge', {
         fields: [
 			{ name: 'id', type: 'auto' },
 			{ name: 'name', type: 'string' },
-			{ name: 'won', type: 'boolean' }
+			{ name: 'title', type: 'string' },
+			{ name: 'description', type: 'string' },
+            { name: 'color', type: 'string' },
+			{ name: 'won', type: 'boolean' },
+            { name: 'sorting', type: 'int' }
         ]
     }
 });
@@ -71566,7 +72600,7 @@ Ext.define('Kort.model.Bug', {
             { name: 'longitude', type: 'string' },
             { name: 'view_type', type: 'string' },
             { name: 'answer_placeholder', type: 'string' },
-            { name: 'koinsToWin', type: 'int' }
+            { name: 'koin_count', type: 'int' }
         ]
     }
 });
@@ -71578,15 +72612,16 @@ Ext.define('Kort.model.Fix', {
 		
         fields: [
 			{ name: 'id', type: 'auto' },
+			{ name: 'user_id', type: 'int' },
 			{ name: 'error_id', type: 'string' },
 			{ name: 'message', type: 'string' }
         ],
         
 		proxy: {
-			type: "rest",
-            url : "./server/webservices/bug/fix",
+			type: 'rest',
+            url : './server/webservices/bug/fix',
             reader: {
-                type: "json"
+                type: 'json'
             }
 		}
     }
@@ -71599,8 +72634,11 @@ Ext.define('Kort.model.HighscoreEntry', {
 
         fields: [
 			{ name: 'user_id', type: 'auto' },
+            { name: 'you', type: 'boolean' },
 			{ name: 'username', type: 'string' },
-			{ name: 'koinCount', type: 'int' },
+            { name: 'fix_count', type: 'int' },
+            { name: 'vote_count', type: 'int' },
+			{ name: 'koin_count', type: 'int' },
             { name: 'ranking', type: 'int' }
         ]
     }
@@ -71636,6 +72674,7 @@ Ext.define('Kort.model.SelectAnswer', {
     }
 });
 
+/*jshint maxcomplexity:10 */
 Ext.define('Kort.model.User', {
     extend: 'Ext.data.Model',
     config: {
@@ -71646,16 +72685,62 @@ Ext.define('Kort.model.User', {
 			{ name: 'name', type: 'string' },
 			{ name: 'username', type: 'string' },
 			{ name: 'email', type: 'string' },
-            { name: 'picUrl', type: 'string' },
-			{ name: 'loggedIn', type: 'boolean' },
+            { name: 'pic_url', type: 'string' },
+			{ name: 'logged_in', type: 'boolean' },
 			{ name: 'token', type: 'string' },
-			{ name: 'fixCount', type: 'int' },
-			{ name: 'validationCount', type: 'int' },
-			{ name: 'koinCount', type: 'int' },
-            { name: 'badges', type: 'array' }
+			{ name: 'fix_count', type: 'int' },
+			{ name: 'vote_count', type: 'int' },
+			{ name: 'koin_count', type: 'int' },
+            { name: 'secret', type: 'string' }
         ],
         
-        hasMany: { model: 'Badge', name: 'badges' }
+		proxy: {
+			type: 'rest',
+            url : './server/webservices/user',
+            reader: {
+                type: 'json'
+            }
+        }
+    },
+    
+    statics: {
+        reload: function(user, idProperty, callback, scope) {
+            this.load(user.get(idProperty), {
+                success: function(record, operation) {
+                    var userBadges = Ext.getStore('UserBadges'),
+                        property;
+                    
+                    for (property in record.getData()) {
+                        if (user.hasOwnProperty(property)) {
+                            user.set(property, record.getData()[property]);
+                        }
+                    }
+
+                    // loading badges of user
+                    userBadges.getProxy().setUrl('./server/webservices/user/' + user.get('id') + '/badges');
+                    userBadges.load();
+                    if(typeof callback === 'function') {
+                        scope = scope || this;
+                        callback.call(scope);
+                    }
+                }
+            });
+        }
+    }
+});
+
+Ext.define('Kort.model.UserLocal', {
+    extend: 'Ext.data.Model',
+    requires: [
+        'Ext.data.identifier.Uuid'
+    ],
+    
+    config: {
+        identifier: 'uuid',
+
+        fields: [
+			{ name: 'secret', type: 'string' }
+        ]
     }
 });
 
@@ -71670,15 +72755,15 @@ Ext.define('Kort.model.Validation', {
 			{ name: 'osm_type', type: 'string' },
 			{ name: 'title', type: 'string' },
 			{ name: 'type', type: 'string' },
-			{ name: 'description', type: 'string' },
+			{ name: 'question', type: 'string' },
 			{ name: 'fixmessage', type: 'string' },
             { name: 'upratings', type: 'int' },
             { name: 'downratings', type: 'int' },
-            { name: 'requiredValidations', type: 'int' },
+            { name: 'required_validations', type: 'int' },
             { name: 'latitude', type: 'string' },
             { name: 'longitude', type: 'string' },
             { name: 'distance', type: 'int' },
-            { name: 'formattedDistance', type: 'string' }
+            { name: 'formatted_distance', type: 'string' }
         ]
     }
 });
@@ -71690,15 +72775,16 @@ Ext.define('Kort.model.Vote', {
 		
         fields: [
 			{ name: 'id', type: 'auto' },
-			{ name: 'validation_id', type: 'string' },
-			{ name: 'message', type: 'string' }
+			{ name: 'fix_id', type: 'int' },
+			{ name: 'user_id', type: 'string' },
+			{ name: 'valid', type: 'string' }
         ],
         
 		proxy: {
-			type: "rest",
-            url : "./server/webservices/validation/vote",
+			type: 'rest',
+            url : './server/webservices/validation/vote',
             reader: {
-                type: "json"
+                type: 'json'
             }
 		}
     }
@@ -71711,13 +72797,13 @@ Ext.define('Kort.store.Bugs', {
 		model: 'Kort.model.Bug',
 		
 		proxy: {
-			type: "ajax",
-            url : "./resources/stores/bugs.json",
+			type: 'ajax',
+            url : './resources/stores/bugs.json',
             extraParams: {
                 'radius': Kort.util.Config.getBugs().radius
             },
             reader: {
-                type: "json"
+                type: 'json'
             }
 		}
 	}
@@ -71730,8 +72816,8 @@ Ext.define('Kort.store.Highscore', {
 		model: 'Kort.model.HighscoreEntry',
 		
 		proxy: {
-			type: 'ajax',
-            url : './resources/stores/highscore.json',
+			type: 'rest',
+            url : './server/webservices/highscore',
             sorters: 'place',
             reader: {
                 type: 'json'
@@ -71757,37 +72843,34 @@ Ext.define('Kort.store.SelectAnswers', {
 	}
 });
 
-Ext.define('Kort.store.User', {
-    extend: 'Ext.data.Store',
-
-	config: {
-		model: 'Kort.model.User',
-        autoSync: true,
-        
-		proxy: {
-			type: "rest",
-            url : "./server/webservices/user/",
-            reader: {
-                type: "json"
-            }
-		}
-	}
-});
-
 Ext.define('Kort.store.UserBadges', {
     extend: 'Ext.data.Store',
 
 	config: {
 		model: 'Kort.model.Badge',
-        autoSync: true,
         
 		proxy: {
-			type: "rest",
-            url : "",
+			type: 'rest',
+            url : '',
+            sorters: 'sorting',
             reader: {
-                type: "json"
+                type: 'json'
             }
 		}
+	}
+});
+
+Ext.define('Kort.store.UserLocal', {
+    extend: 'Ext.data.Store',
+
+	config: {
+		model: 'Kort.model.UserLocal',
+        autoSync: true,
+
+		proxy: {
+            type: 'localstorage',
+            id: 'kort-user'
+        }
 	}
 });
 
@@ -71799,7 +72882,7 @@ Ext.define('Kort.store.Validations', {
         
 		grouper: {
             groupFn: function(record) {
-                var validationsLeft = record.get('requiredValidations') - record.get('upratings') + record.get('downratings');
+                var validationsLeft = record.get('required_validations') - record.get('upratings') + record.get('downratings');
                 return validationsLeft + ' ' + Ext.i18n.Bundle.message('validation.list.header');
             }
         },
@@ -71816,10 +72899,10 @@ Ext.define('Kort.store.Validations', {
         ],
         
 		proxy: {
-			type: "ajax",
-            url : "./resources/stores/validations.json",
+			type: 'rest',
+            url : './server/webservices/validation',
             reader: {
-                type: "json"
+                type: 'json'
             }
 		}
 	},
@@ -71831,7 +72914,7 @@ Ext.define('Kort.store.Validations', {
 		if(!this.isLoading()) {
 			this.each(function(record, index, length) {
 				record.set('distance', geo.getDistance(record.get('latitude'), record.get('longitude')));
-				record.set('formattedDistance', geo.getFormattedDistance(record.get('distance')));
+				record.set('formatted_distance', geo.getFormattedDistance(record.get('distance')));
 			});
 			this.sort();
 		}
@@ -71883,6 +72966,8 @@ Ext.define('Kort.util.Geolocation', {
     }
 });
 
+/*jshint maxcomplexity:10 */
+
 
 Ext.application({
     name: 'Kort',
@@ -71899,6 +72984,7 @@ Ext.application({
 		'Bugmap',
         'Firststeps',
 		'Fix',
+        'GeolocationError',
 		'Highscore',
         'Login',
         'Main',
@@ -71916,6 +73002,7 @@ Ext.application({
 		'Reward',
         'SelectAnswer',
         'User',
+        'UserLocal',
         'Validation',
         'Vote'
     ],
@@ -71924,8 +73011,8 @@ Ext.application({
 		'Bugs',
 		'Highscore',
 		'SelectAnswers',
-        'User',
         'UserBadges',
+        'UserLocal',
         'Validations'
     ],
 
@@ -71940,59 +73027,154 @@ Ext.application({
 
     viewport: {
 		// hide navigation bar of browser
-        // TODO reenable autoMaximize (deactivated for iPhone simulator)
-		autoMaximize: false
+		autoMaximize: true
 	},
 
     // launch function is called as soon as app is ready
     launch: function() {
-        var userStore = Ext.getStore('User'),
-            selectAnswersStore = Ext.getStore('SelectAnswers'),
-            validationsStore = Ext.getStore('Validations'),
+        var selectAnswersStore = Ext.getStore('SelectAnswers'),
             mainPanel;
 
         this.prepareI18n();
         this.configureMessageBox();
 
-        // create main view
-        mainPanel = Ext.create('Kort.view.Main');
-        Ext.Viewport.add(mainPanel);
-
         selectAnswersStore.load();
         
-        Kort.geolocation = Ext.create('Kort.util.Geolocation');
-        Kort.geolocation.updateLocation(function (geo) {
-            // add locationupdate listener after store load
-            validationsStore.on('load', function(store) {
-                geo.on('locationupdate', store.updateDistances(geo), store);
-            }, this, { single: true });
-            validationsStore.load();
-            geo.setAutoUpdate(true);
-        });
+        // create main panel
+        mainPanel = Ext.create('Kort.view.Main');
+        Ext.Viewport.add(mainPanel);
+        mainPanel.hide();
         
-        // check if user is logged in
-        userStore.load(function() {
-            var user = userStore.first(),
-                userBadges = Ext.getStore('UserBadges'),
-                loginPanel,
-                firststepsPanel;
-            if (!user.get('loggedIn')) {
-                console.log('user not logged in -> show login panel');
-                mainPanel.hide();
-                loginPanel = Ext.create('Kort.view.overlay.login.Panel');
-                Ext.Viewport.add(loginPanel);
-                loginPanel.show();
-            } else if(!user.get('username')) {
-                console.log('no username given -> show first steps panel');
-                firststepsPanel = Ext.create('Kort.view.overlay.firststeps.Panel');
-                Ext.Viewport.add(firststepsPanel);
-                firststepsPanel.show();
+        // create ui
+        this.loadGeolocation(mainPanel);
+    },
+    
+    loadGeolocation: function(mainPanel) {
+        var me = this;
+        
+        Kort.geolocation = Ext.create('Kort.util.Geolocation');
+        Kort.geolocation.updateLocation(function(geo) {
+            if(geo) {
+                me.loadUserClientSecret(geo, mainPanel);
+            } else {
+                me.showGeolocationErrorOverlay();
             }
-            
-            // loading badges of user
-            userBadges.getProxy().setUrl('./server/webservices/user/badges/' + user.get('id'));
-            userBadges.load();
         });
+    },
+    
+    loadUserClientSecret: function(geo, mainPanel) {
+        var me = this,
+            userLocalStore = Ext.getStore('UserLocal');
+        
+        userLocalStore.load(function(records, operation, success) {
+            console.log('userLocalStore loaded');
+            if(records.length === 0) {
+                console.log('no client secret record found in localstorage');
+                me.loadUser(geo, mainPanel);
+            } else {
+                console.log('client secret found in localstorage: ' + records[0].get('secret'));
+                me.loadUser(geo, mainPanel, records[0].get('secret'));
+            }
+        }, me);
+    },
+    
+    loadUser: function(geo, mainPanel, clientSecret) {
+        var me = this,
+            userLocalStore = Ext.getStore('UserLocal');
+
+        if(!clientSecret) {
+            clientSecret = 0;
+        }
+        Kort.model.User.load(clientSecret, {
+            success: function(record, operation) {
+                // set global accessor to user
+                Kort.user = record;
+
+                console.log('user loaded');
+                console.log(Kort.user);
+
+                // check if user is logged in
+                if (!Kort.user.get('logged_in')) {
+                    if(clientSecret && clientSecret !== 0) {
+                        console.log('remove wrong client secret form local store');
+                        userLocalStore.removeAll();
+                    }
+                    me.showLoginOverlay();
+                } else {
+                    if(!clientSecret) {
+                        console.log('clientSecret not passed -> write client secret to localstore');
+                        me.writeUserClientSecret(Kort.user.get('secret'));
+                    }
+                    me.showMainPanel(geo, mainPanel);
+                }
+            }
+        });
+    },
+    
+    writeUserClientSecret: function(clientSecret) {
+        var userLocalStore = Ext.getStore('UserLocal'),
+            userLocal;
+        
+        if(clientSecret) {
+            console.log('writing userClientSecret to localstore: ' + clientSecret);
+            userLocal = Ext.create('Kort.model.UserLocal', { 'secret': clientSecret });
+            console.log(userLocal);
+            userLocalStore.add(userLocal);
+        } else {
+            console.log('Error: no client secret passed');
+        }
+    },
+    
+    showLoginOverlay: function() {
+        var loginPanel;
+        
+        console.log('user not logged in -> show login panel');
+        loginPanel = Ext.create('Kort.view.overlay.login.Panel');
+        Ext.Viewport.add(loginPanel);
+        loginPanel.show();
+    },
+    
+    showGeolocationErrorOverlay: function() {
+        var geolocationerrorPanel;
+        
+        console.log('geolocation error');
+        geolocationerrorPanel = Ext.create('Kort.view.overlay.geolocationerror.Panel');
+        Ext.Viewport.add(geolocationerrorPanel);
+        geolocationerrorPanel.show();
+    },
+    
+    showMainPanel: function(geo, mainPanel) {
+        var validationsStore = Ext.getStore('Validations'),
+            userBadges = Ext.getStore('UserBadges');
+        
+        mainPanel.show();
+        
+        validationsStore.getProxy().setUrl('./server/webservices/validation/position/' + geo.getLatitude() + ',' + geo.getLongitude());
+        // add locationupdate listener after store load
+        validationsStore.on('load', function(store) {
+            store.updateDistances(geo);
+            geo.on('locationupdate', store.updateDistances(geo), store);
+        }, this, { single: true });
+        validationsStore.load();
+        geo.setAutoUpdate(true);
+
+        // loading badges of user
+        userBadges.getProxy().setUrl('./server/webservices/user/' + Kort.user.get('id') + '/badges');
+        userBadges.load();
+        
+        // loading highscore
+        Ext.getStore('Highscore').load();
+
+        if(!Kort.user.get('username')) {
+            this.showFirstStepsPanel();
+        }
+    },
+    
+    showFirstStepsPanel: function() {
+        var firststepsPanel = Ext.create('Kort.view.overlay.firststeps.Panel');
+        console.log('no username given -> show first steps panel');
+        Ext.Viewport.add(firststepsPanel);
+        firststepsPanel.show();
     },
 
     prepareI18n: function() {

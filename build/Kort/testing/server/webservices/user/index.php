@@ -3,6 +3,7 @@ require_once('../../../lib/Slim-2.1.0/Slim/Slim.php');
 require_once('../../../server/php/ClassLoader.php');
 
 use Webservice\User\UserHandler;
+use Webservice\User\UserGetHandler;
 
 // Load Slim library
 \Slim\Slim::registerAutoloader();
@@ -13,41 +14,51 @@ $res = $app->response();
  \session_start();
 
 $userHandler = new UserHandler();
+$userGetHandler = new UserGetHandler();
 
 // define REST resources
 $app->get(
-    '/:id',
-    function () use ($userHandler, $res) {
-        $res->write($userHandler->getUser());
+    '/(:secret)',
+    function ($secret = null) use ($userGetHandler, $res) {
+        if (empty($secret) && isset($_SESSION['secret'])) {
+            $secret = $_SESSION['secret'];
+        }
+        $userData = $userGetHandler->getUser($secret);
+        $res->write($userData);
     }
 );
 
 $app->get(
     '/:id/badges',
-    function ($id) use ($userHandler, $res) {
-        $res->write($userHandler->getUserBadges($id));
+    function ($id) use ($userGetHandler, $res) {
+        $res->write($userGetHandler->getUserBadges($id));
+    }
+);
+
+$app->get(
+    '/:id/logout',
+    function () use ($res) {
+        \session_destroy();
+        $res->write("Congratulations! You've now officially logged out!");
     }
 );
 
 $app->post(
     '/',
     function () use ($userHandler, $app) {
-        $userHandler->insertUser($app->request()->getBody());
+        $data = json_decode($app->request()->getBody(), true);
+        $app->response()->write($userHandler->insertUser(), $data);
     }
 );
 
 $app->put(
-    '/:id',
-    function ($id) use ($userHandler, $app) {
-        $userHandler->updateUser($id, $app->request()->put());
-    }
-);
-
-$app->get(
-    '/logout',
-    function () use ($res) {
-        \session_destroy();
-        $res->write("Congratulations! You've now officially logged out!");
+    '/(:id)',
+    function ($id = null) use ($userHandler, $app) {
+        if (empty($id)) {
+            $id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : -1;
+        }
+        $data = json_decode($app->request()->getBody(), true);
+        $app->response()->write($userHandler->updateUser($id, $data));
     }
 );
 

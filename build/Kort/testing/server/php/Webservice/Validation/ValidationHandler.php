@@ -1,35 +1,35 @@
 <?php
-namespace Webservice\Bug;
+namespace Webservice\Validation;
 
 use Webservice\DbProxyHandler;
 use Helper\PostGisSqlHelper;
 
-class BugHandler extends DbProxyHandler
+class ValidationHandler extends DbProxyHandler
 {
     protected function getTable()
     {
-        return 'kort.errors';
+        return 'kort.validations';
     }
 
     protected function getFields()
     {
         return array(
             'id',
-            'schema',
             'type',
             'osm_id',
             'osm_type',
             'title',
-            'description',
+            'fixmessage',
+            'question',
             'latitude',
             'longitude',
-            'view_type',
-            'answer_placeholder',
-            'koin_count'
+            'upratings',
+            'downratings',
+            'required_validations'
         );
     }
 
-    public function getBugsByOwnPosition($lat, $lng, $limit, $radius)
+    public function getValidationsByOwnPosition($lat, $lng, $limit, $radius)
     {
         $limit = empty($limit) ? 20 : $limit;
         $radius = empty($radius) ? 5000 : $radius;
