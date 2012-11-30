@@ -59,8 +59,8 @@ fi
 # Create schema
 psql -d $DB_NAME -c "create schema $DB_SCHEMA authorization $DB_OWNER"
 psql -d $DB_NAME -f $DIR/keepright/keepright.sql
-psql -d $DB_NAME -c "alter table $DB_SCHEMA.errors owner to $DB_OWNER"
-psql -d $DB_NAME -c "alter table $DB_SCHEMA.error_type owner to $DB_OWNER"
+echo "Transfer ownership of all objects to $DB_OWNER"
+for tbl in `psql -qAt -c "select schemaname || '.' || tablename from pg_tables where schemaname = '$DB_SCHEMA';" $DB_NAME` ; do  psql -c "alter table $tbl owner to $DB_OWNER" $DB_NAME ; done
 
 # Load keepright data
 if [ -z $PREVIOUS_DOWNLOAD ] ; then
