@@ -30,7 +30,9 @@ Ext.define('Kort.view.validation.List', {
                                 '</span>' +
                             '</div>' +
                         '</div>' +
-                        '<div class="kort-label distance">{formatted_distance}</div>' +
+                        '<tpl if="formatted_distance">' +
+                            '<div class="kort-label distance">{formatted_distance}</div>' +
+                        '</tpl>' +
                     '</div>',
         
         plugins: [

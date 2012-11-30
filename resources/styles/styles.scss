@@ -549,6 +549,11 @@ $label-background-color: #46578D;
     z-index: 1500;
 }
 
+// titlebar
+.x-toolbar .x-title {
+    font-size: 1em;
+}
+
 // TabPanel tabBar
 .fixTabPanel,
 .voteTabPanel {
