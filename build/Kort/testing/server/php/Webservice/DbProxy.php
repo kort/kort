@@ -12,6 +12,7 @@ class DbProxy
     protected $orderBy;
     protected $limit;
     protected $curl;
+    protected $returnFields;
 
     public function __construct($table, $fields)
     {
@@ -25,6 +26,16 @@ class DbProxy
     public function setCurl($curl)
     {
         $this->curl = $curl;
+    }
+
+    public function setFields($fields)
+    {
+         $this->fields = $fields;
+    }
+
+    public function setReturnFields($returnFields)
+    {
+        $this->returnFields = $returnFields;
     }
 
     public function setWhere($where)
@@ -42,7 +53,7 @@ class DbProxy
          $this->limit = $limit;
     }
 
-    public function getFromDb()
+    public function select()
     {
         $path  = "/" . $this->table;
         $path .= (count($this->fields) > 0) ? "/" . implode(",", $this->fields) : "";
@@ -61,13 +72,33 @@ class DbProxy
         return $this->request("GET", $this->wsConfig->url . $path);
     }
 
-    public function postToDb($data)
+    public function insert($data)
     {
         $path  = "/" . $this->table;
         $path .= "/" . implode(",", $this->fields);
 
         $data['key'] = $this->wsConfig->getApiKey();
+        if ($this->returnFields) {
+            $data['return'] = implode(",", $this->returnFields);
+        }
         return $this->request("POST", $this->wsConfig->url . $path, $data);
+    }
+
+    public function update($data)
+    {
+        $path  = "/" . $this->table;
+        $path .= "/" . implode(",", $this->fields);
+        $path .= "?";
+
+        if ($this->where) {
+            $path .= "where=" . urlencode($this->where) . "&";
+        }
+
+        $data['key'] = $this->wsConfig->getApiKey();
+        if ($this->returnFields) {
+            $data['return'] = implode(",", $this->returnFields);
+        }
+        return $this->request("PUT", $this->wsConfig->url . $path, $data);
     }
 
     private function request($method, $url, $data = false)
@@ -82,7 +113,11 @@ class DbProxy
                 }
                 break;
             case "PUT":
-                $this->curl->setOption(CURLOPT_PUT, 1);
+                $this->curl->setOption(CURLOPT_CUSTOMREQUEST, "PUT");
+
+                if ($data) {
+                    $this->curl->setOption(CURLOPT_POSTFIELDS, http_build_query($data));
+                }
                 break;
             default:
                 if ($data) {

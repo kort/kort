@@ -1,6 +1,6 @@
 # Main View (TabPanel)
 tab.bugmap=Aufträge
-tab.validation=Validieren
+tab.validation=Prüfen
 tab.highscore=Highscore
 tab.profile=Profil
 tab.about=Über kort
@@ -26,6 +26,11 @@ firststeps.alert.username.empty.message=Bitte gib einen Benutzernamen ein.
 firststeps.alert.username.specialchars.title=Sonderzeichen gefunden
 firststeps.alert.username.specialchars.message=Benutze bitte nur Buchstaben und Zahlen für deinen Benutzernamen.
 
+# Geolocation error
+geolocationerror.introduction=Um kort verwenden zu können muss auf deine Position zugegriffen werden können.
+geolocationerror.button.reload=Applikation neu laden
+geolocationerror.loadmask.message=Lade App neu...
+
 # Bugmap
 bugmap.title=Aufträge in deiner Nähe
 bugmap.loadmask.message=Lade Auträge...
@@ -45,16 +50,16 @@ fix.alert.submit.failure.title=Fehler beim Senden
 fix.alert.submit.failure.message=Beim Übertragen des Formulars ist etwas schief gelaufen. Bitte versuche es später noch einmal.
 
 # Validation
-validation.title=Validieren
-validation.loadmask.message=Lade Validierungen...
-validation.emptytext=Keine Validierungen vorhanden.
-validation.list.header=Validierungen übrig
+validation.title=Prüfen
+validation.loadmask.message=Lade Daten...
+validation.emptytext=Keine Daten vorhanden.
+validation.list.header=positive Bewertungen übrig
 
 ## Vote
 vote.map.title=Karte
-vote.container.title=Validierung
-vote.container.button.accept=Akzeptieren
-vote.container.button.decline=Ablehnen
+vote.container.title=Prüfen
+vote.container.button.accept=Ja
+vote.container.button.decline=Nein
 vote.container.button.cancel=Weiss nicht
 vote.alert.submit.failure.title=Fehler beim Senden
 vote.alert.submit.failure.message=Beim Übertragen des deiner Stimme ist etwas schief gelaufen. Bitte versuche es später noch einmal.
@@ -69,7 +74,10 @@ pullrefresh.lastupdated=Zuletzt aktualisiert:
 highscore.title=Highscore
 highscore.loadmask.message=Lade Highscore...
 highscore.emptytext=Highscore kann nicht geladen werden.
+highscore.you=Du!
 highscore.koins=koins
+highscore.fixcount=Aufträge:
+highscore.votecount=Prüfungen:
 
 # Profil
 profile.title=Profil
@@ -77,12 +85,14 @@ profile.button.logout=Logout
 profile.content.username=Benutzername
 profile.content.email=Email
 profile.content.fixes=Anzahl erledigte Aufträge
-profile.content.validations=Anzahl Validierungen
+profile.content.votes=Anzahl getätigte Prüfungen
 profile.content.koins.header=Koins
 profile.content.koins.introduction=Deine gesammelten koins:
-profile.content.badges.header=Badges
+profile.content.badges.header=Auszeichnungen
 profile.logout.loadmask.message=Logout...
+profile.refresh.loadmask.message=Lade Profil...
 profile.badges.title=Deine Auszeichnungen
+profile.badges.emptytext=Deine Auszeichnungen konnten nicht geladen werden.
 profile.badges.button.close=Schliessen
 
 # About
@@ -108,4 +118,4 @@ picker.cancel=Abbrechen
 reward.alert.title=Du wurdest stärker!
 reward.alert.koins.1=Du hast
 reward.alert.koins.2=koins gewonnen.
-reward.alert.badges.title=Gewonnene Badges
+reward.alert.badges.title=Auszeichnungen

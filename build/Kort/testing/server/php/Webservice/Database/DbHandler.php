@@ -25,16 +25,27 @@ class DbHandler
         return (count($result) > 0) ? json_encode($result) : "";
     }
 
-    public function doInsert($fields, $table, $data)
+    public function doInsert($fields, $table, $data, $returnFields)
     {
         $data = $this->reduceData($fields, $data);
-        $this->db->doInsertQuery($data, $table);
+        $insertedData = $this->db->doInsertQuery($data, $table, $returnFields);
+        return json_encode($insertedData);
+        if (!$insertedData) {
+            return $insertedData;
+        } else {
+            json_encode($insertedData);
+        }
     }
 
-    public function doUpdate($fields, $table, $data, $where)
+    public function doUpdate($fields, $table, $data, $where, $returnFields)
     {
         $data = $this->reduceData($fields, $data);
-        $this->db->doUpdateQuery($data, $table, $where);
+        $updatedData = $this->db->doUpdateQuery($data, $table, $where, $returnFields);
+        if (!$updatedData) {
+            return $updatedData;
+        } else {
+            return json_encode($updatedData);
+        }
     }
 
     protected function reduceData($fields, $data)

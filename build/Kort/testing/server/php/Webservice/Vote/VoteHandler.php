@@ -1,27 +1,27 @@
 <?php
-namespace Webservice\Fix;
+namespace Webservice\Vote;
 
 use Webservice\DbProxyHandler;
 use Model\Badge;
 use Model\Reward;
 
-class FixHandler extends DbProxyHandler
+class VoteHandler extends DbProxyHandler
 {
     protected function getTable()
     {
-        return 'kort.fix';
+        return 'kort.validation';
     }
 
     protected function getFields()
     {
-        return array('user_id', 'error_id', 'message');
+        return array('fix_id', 'user_id', 'valid');
     }
 
-    public function insertFix($data)
+    public function insertVote($data)
     {
-        $insertedFix = $this->getDbProxy()->insert($data);
+        $insertedVote = $this->getDbProxy()->insert($data);
 
-        if (!$insertedFix) {
+        if (!$insertedVote) {
             return false;
         }
 
