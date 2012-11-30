@@ -10,11 +10,18 @@ Ext.define('Kort.plugin.PullRefresh', {
         lastUpdatedText: Ext.i18n.Bundle.message('pullrefresh.lastupdated'),
         dateFormat: 'd.m.Y H:i:s',
         refreshFn: function(callbackFn, scope) {
-            var store = this.getList().getStore();
+            var me = this,
+                list = me.getList(),
+                store = list.getStore();
+
             if (store) {
                 store.load({
                     callback: function(records, operation, success) {
                         callbackFn.call(scope);
+                        // wait until bounce back animation is done
+                        Ext.defer(function() {
+                            list.refresh();
+                        }, 500);
                     }
                 });
             } else {
