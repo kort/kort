@@ -30,10 +30,12 @@ Ext.define('Kort.controller.Validation', {
     },
     
     refreshView: function() {
-        var me = this;
+        var me = this,
+            validationsStore = Ext.getStore('Validations');
         
         if(me.getValidationList()) {
-            Ext.getStore('Validations').load(function(records, operation, success) {
+            validationsStore.load(function(records, operation, success) {
+                validationsStore.updateDistances(Kort.geolocation);
                 me.getValidationList().refresh();
             });
         }
