@@ -18,12 +18,15 @@ where   e.error_type_id = t.error_type_id;
 
 create or replace view kort.validations as
 select  f.fix_id id,
-        t.type,
         e.object_id osm_id,
         e.object_type osm_type,
         t.description title,
-        f.message fixmessage,
+        t.type,
         t.vote_question question,
+        f.message fixmessage,
+       (select count(1) from kort.validation v where v.fix_id = f.fix_id and v.valid) upratings,
+       (select count(1) from kort.validation v where v.fix_id = f.fix_id and not v.valid) downratings,
+        t.required_validations,
         CAST(e.lat AS NUMERIC)/10000000 latitude,
         CAST(e.lon AS NUMERIC)/10000000 longitude,
         e.geom

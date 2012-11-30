@@ -9,12 +9,12 @@ class VoteHandler extends DbProxyHandler
 {
     protected function getTable()
     {
-        return 'kort.vote';
+        return 'kort.validation';
     }
 
     protected function getFields()
     {
-        return array('validation_id', 'message');
+        return array('fix_id', 'user_id', 'valid');
     }
 
     public function insertVote($data)
