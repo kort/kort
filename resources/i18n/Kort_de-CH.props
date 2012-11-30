@@ -1,6 +1,6 @@
 # Main View (TabPanel)
 tab.bugmap=Aufträge
-tab.validation=Validieren
+tab.validation=Prüfen
 tab.highscore=Highscore
 tab.profile=Profil
 tab.about=Über kort
@@ -50,14 +50,14 @@ fix.alert.submit.failure.title=Fehler beim Senden
 fix.alert.submit.failure.message=Beim Übertragen des Formulars ist etwas schief gelaufen. Bitte versuche es später noch einmal.
 
 # Validation
-validation.title=Validieren
-validation.loadmask.message=Lade Validierungen...
-validation.emptytext=Keine Validierungen vorhanden.
-validation.list.header=Validierungen übrig
+validation.title=Prüfen
+validation.loadmask.message=Lade Daten...
+validation.emptytext=Keine Daten vorhanden.
+validation.list.header=positive Bewertungen übrig
 
 ## Vote
 vote.map.title=Karte
-vote.container.title=Validierung
+vote.container.title=Prüfen
 vote.container.button.accept=Ja
 vote.container.button.decline=Nein
 vote.container.button.cancel=Weiss nicht
