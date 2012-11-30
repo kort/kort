@@ -14,10 +14,10 @@ create table kort.user (
     user_id integer primary key default nextval('kort.user_id'),
     name varchar(100) not null,
     username varchar(100),
-    email varchar(100),
     koin_count integer not null default 0,
     token varchar(255),
     oauth_provider varchar(100),
+    oauth_user_id varchar(100),
     secret varchar(100)
 );
 
