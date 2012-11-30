@@ -15,7 +15,9 @@ Ext.define('Kort.view.highscore.List', {
         itemTpl:    '<div class="highscore-item">' +
                         '<div class="ranking">#{ranking}</div>' +
                         '<div class="username">{username}</div>' +
-                        '<div class="kort-label koinCount">{koinCount} ' + Ext.i18n.Bundle.message('highscore.koins') + '</div>' +
+                        '<div class="fixCount">{fix_count}</div>' +
+                        '<div class="voteCount">{vote_count}</div>' +
+                        '<div class="kort-label koinCount">{koin_count} ' + Ext.i18n.Bundle.message('highscore.koins') + '</div>' +
                     '</div>',
         
         plugins: [
