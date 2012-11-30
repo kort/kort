@@ -54,6 +54,7 @@ validation.title=Prüfen
 validation.loadmask.message=Lade Daten...
 validation.emptytext=Keine Daten vorhanden.
 validation.list.header=positive Bewertungen übrig
+validation.distance=Distanz:
 
 ## Vote
 vote.map.title=Karte
@@ -86,9 +87,9 @@ profile.content.username=Benutzername
 profile.content.oauthuserid=OAuth Benutzername
 profile.content.fixes=Anzahl erledigte Aufträge
 profile.content.votes=Anzahl getätigte Prüfungen
-profile.content.koins.header=Koins
-profile.content.koins.introduction=Deine gesammelten koins:
-profile.content.badges.header=Auszeichnungen
+profile.content.koins.header=Gesammelte Koins
+profile.content.koins.title=koins
+profile.content.badges.header=Gewonnene Auszeichnungen
 profile.logout.loadmask.message=Logout...
 profile.refresh.loadmask.message=Lade Profil...
 profile.badges.title=Deine Auszeichnungen
