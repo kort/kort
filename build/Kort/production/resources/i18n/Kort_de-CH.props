@@ -1,0 +1,121 @@
+# Main View (TabPanel)
+tab.bugmap=Aufträge
+tab.validation=Prüfen
+tab.highscore=Highscore
+tab.profile=Profil
+tab.about=Über kort
+button.back=Zurück
+
+# Submitted Popup
+submitted.message.1=Du hast dir
+submitted.message.2=koins verdient!
+
+# Login
+login.title=Login
+login.introduction=Bitte logge dich ein um kort nutzen zu können!
+login.button.google=Login mit Google
+login.button.twitter=Login mit Twitter
+login.loadmask.message=Login...
+
+# Firststeps
+firststeps.introduction=Willkommen bei kort! Wähle einen Benutzernamen:
+firststeps.form.username.placeholder=Benutzername
+firststeps.form.button.submit=Mission starten!
+firststeps.alert.username.empty.title=Benutzernamen eingeben
+firststeps.alert.username.empty.message=Bitte gib einen Benutzernamen ein.
+firststeps.alert.username.specialchars.title=Sonderzeichen gefunden
+firststeps.alert.username.specialchars.message=Benutze bitte nur Buchstaben und Zahlen für deinen Benutzernamen.
+
+# Geolocation error
+geolocationerror.introduction=Um kort verwenden zu können muss auf deine Position zugegriffen werden können.
+geolocationerror.button.reload=Applikation neu laden
+geolocationerror.loadmask.message=Lade App neu...
+
+# Bugmap
+bugmap.title=Aufträge in deiner Nähe
+bugmap.loadmask.message=Lade Auträge...
+bugmap.messagebox.koins.earn=Verdiene dir
+bugmap.messagebox.koins.name=koins
+
+## Fix
+fix.form.title=Auftrag
+fix.form.field.image=Bild
+fix.form.message.placeholder=Deine Antwort...
+fix.form.button.submit=Senden
+fix.form.loadmask.message=Lade Antworten...
+fix.map.title=Karte
+fix.alert.fixfield.empty.title=Felder ausfüllen
+fix.alert.fixfield.empty.message=Bitte alle Felder ausfüllen.
+fix.alert.submit.failure.title=Fehler beim Senden
+fix.alert.submit.failure.message=Beim Übertragen des Formulars ist etwas schief gelaufen. Bitte versuche es später noch einmal.
+
+# Validation
+validation.title=Prüfen
+validation.loadmask.message=Lade Daten...
+validation.emptytext=Keine Daten vorhanden.
+validation.list.header=positive Bewertungen übrig
+
+## Vote
+vote.map.title=Karte
+vote.container.title=Prüfen
+vote.container.button.accept=Ja
+vote.container.button.decline=Nein
+vote.container.button.cancel=Weiss nicht
+vote.alert.submit.failure.title=Fehler beim Senden
+vote.alert.submit.failure.message=Beim Übertragen des deiner Stimme ist etwas schief gelaufen. Bitte versuche es später noch einmal.
+
+# PullRefresh Plugin
+pullrefresh.pullrefresh=Zum Aktualisieren herunterziehen
+pullrefresh.releaserefresh=Zum Aktualisieren loslassen...
+pullrefresh.loading=wird aktualisiert...
+pullrefresh.lastupdated=Zuletzt aktualisiert:
+
+# Highscore
+highscore.title=Highscore
+highscore.loadmask.message=Lade Highscore...
+highscore.emptytext=Highscore kann nicht geladen werden.
+highscore.you=Du!
+highscore.koins=koins
+highscore.fixcount=Aufträge:
+highscore.votecount=Prüfungen:
+
+# Profil
+profile.title=Profil
+profile.button.logout=Logout
+profile.content.username=Benutzername
+profile.content.email=Email
+profile.content.fixes=Anzahl erledigte Aufträge
+profile.content.votes=Anzahl getätigte Prüfungen
+profile.content.koins.header=Koins
+profile.content.koins.introduction=Deine gesammelten koins:
+profile.content.badges.header=Auszeichnungen
+profile.logout.loadmask.message=Logout...
+profile.refresh.loadmask.message=Lade Profil...
+profile.badges.title=Deine Auszeichnungen
+profile.badges.emptytext=Deine Auszeichnungen konnten nicht geladen werden.
+profile.badges.button.close=Schliessen
+
+# About
+about.title=Über kort
+about.version.title=Version
+about.authors.title=Autoren
+about.authors.author1=Stefan Oderbolz
+about.authors.author2=Jürg Hunziker
+about.legal.title=Rechtliche Hinweise
+about.legal.message=Wir bitten dich die OpenStreetMap Regeln einzuhalten.
+
+# MessageBox
+messagebox.ok=OK
+messagebox.yes=Ja
+messagebox.no=Nein
+messagebox.cancel=Abbrechen
+
+# Picker
+picker.done=Fertig
+picker.cancel=Abbrechen
+
+# Reward
+reward.alert.title=Du wurdest stärker!
+reward.alert.koins.1=Du hast
+reward.alert.koins.2=koins gewonnen.
+reward.alert.badges.title=Auszeichnungen
