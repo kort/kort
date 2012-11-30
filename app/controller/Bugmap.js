@@ -217,6 +217,7 @@ Ext.define('Kort.controller.Bugmap', {
     },
 
     showLoadMask: function() {
+        this.getBugmapCenterButton().disable();
         this.getBugmapRefreshButton().disable();
         this.getBugmapNavigationView().setMasked({
             xtype: 'loadmask',
@@ -227,6 +228,7 @@ Ext.define('Kort.controller.Bugmap', {
 
     hideLoadMask: function() {
         this.getBugmapNavigationView().setMasked(false);
+        this.getBugmapCenterButton().enable();
         this.getBugmapRefreshButton().enable();
     },
     
