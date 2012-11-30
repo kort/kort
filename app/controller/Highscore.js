@@ -27,8 +27,10 @@ Ext.define('Kort.controller.Highscore', {
     refreshView: function() {
         var me = this;
         
-        Ext.getStore('Highscore').load(function(records, operation, success) {
-            me.getHighscoreList().refresh();
-        });
+        if(me.getHighscoreList()) {
+            Ext.getStore('Highscore').load(function(records, operation, success) {
+                me.getHighscoreList().refresh();
+            });
+        }
     }
 });

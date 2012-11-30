@@ -32,9 +32,11 @@ Ext.define('Kort.controller.Validation', {
     refreshView: function() {
         var me = this;
         
-        Ext.getStore('Validations').load(function(records, operation, success) {
-            me.getValidationList().refresh();
-        });
+        if(me.getValidationList()) {
+            Ext.getStore('Validations').load(function(records, operation, success) {
+                me.getValidationList().refresh();
+            });
+        }
     },
     
     onValidationListItemTap: function(list, index, target, record, e) {
