@@ -25,6 +25,14 @@ class HighscoreHandler extends DbProxyHandler
 
     public function getHighscore()
     {
-        return $this->getDbProxy()->select();
+        $scoreList = json_decode($this->getDbProxy()->select(), true);
+        $addOwnUserId = function($score) {
+            if (isset($_SESSION['user_id'])) {
+                $score['you'] = ($score['user_id'] == $_SESSION['user_id']);
+            }
+            return $score;
+        };
+        $scoreList = array_map($addOwnUserId, $scoreList);
+        return json_encode($scoreList);
     }
 }
