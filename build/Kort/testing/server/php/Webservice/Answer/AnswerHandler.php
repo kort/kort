@@ -5,14 +5,21 @@ use Webservice\DbProxyHandler;
 
 class AnswerHandler extends DbProxyHandler
 {
-    protected $table = 'kort.select_answer';
-    protected $fields = array('id', 'value', 'title', 'sorting', 'type');
+    protected function getTable()
+    {
+        return 'kort.select_answer';
+    }
+
+    protected function getFields()
+    {
+        return array('id', 'value', 'title', 'sorting', 'type');
+    }
 
     public function getAllAnswers($limit)
     {
         $this->getDbProxy()->setLimit($limit);
         $this->getDbProxy()->setOrderBy('sorting');
-        return $this->getDbProxy()->getFromDb();
+        return $this->getDbProxy()->select();
     }
 
     public function getSpecificAnswers($type, $limit)
@@ -20,6 +27,6 @@ class AnswerHandler extends DbProxyHandler
         $this->getDbProxy()->setLimit($limit);
         $this->getDbProxy()->setWhere("type = '" . $type ."'");
         $this->getDbProxy()->setOrderBy('sorting');
-        return $this->getDbProxy()->getFromDb();
+        return $this->getDbProxy()->select();
     }
 }

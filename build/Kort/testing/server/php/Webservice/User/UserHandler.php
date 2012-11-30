@@ -5,90 +5,43 @@ use Webservice\DbProxyHandler;
 
 class UserHandler extends DbProxyHandler
 {
-    protected $userData = array();
-
-    protected $table = 'kort.user';
-    protected $fields = array(
-        'id',
-        'name',
-        'email',
-        'username',
-        'picUrl',
-        'token'
-    );
-
-    public function getUser($id)
+    protected function getTable()
     {
-        $this->getDbProxy()->setWhere("id = ". $id);
-        $userData = json_decode($this->getDbProxy()->getFromDb(), true);
-        $userData['picUrl'] = $this->getGravatarUrl( $userData['email']);
-        $userData['loggedIn'] = isset($_SESSION['token']);
+        return 'kort.user';
+    }
 
-        return json_encode($userData);
+    protected function getFields()
+    {
+        return array(
+            'user_id',
+            'name',
+            'email',
+            'username',
+            'oauth_provider',
+            'token'
+        );
+    }
+
+    protected function getReturnFields()
+    {
+        return array(
+            'user_id',
+            'name',
+            'username',
+            'email'
+        );
     }
 
     public function updateUser($id, $data)
     {
-        //$this->getDbProxy()->updateDb($id, $data);
+        $this->getDbProxy()->setReturnFields($this->getReturnFields());
+        $this->getDbProxy()->setWhere("user_id = " . $id);
+        return json_encode($this->getDbProxy()->update($data));
     }
 
     public function insertUser($data)
     {
-        // TODO implement insertUser
-    }
-
-    public function getUserBadges($id)
-    {
-        // TODO implement badges query
-        $badges = array(
-            array(
-                'id' => 1,
-                'name' => 'highscore_place_1',
-                'won' => false
-            ),
-            array(
-                'id' => 2,
-                'name' => 'highscore_place_2',
-                'won' => false
-            ),
-            array(
-                'id' => 3,
-                'name' => 'highscore_place_3',
-                'won' => true
-            ),
-            array(
-                'id' => 4,
-                'name' => 'fix_count_100',
-                'won' => false
-            ),
-            array(
-                'id' => 5,
-                'name' => 'fix_count_50',
-                'won' => true
-            ),
-            array(
-                'id' => 6,
-                'name' => 'fix_count_10',
-                'won' => true
-            )
-        );
-        return \json_encode($badges);
-    }
-
-    /**
-    * Get either a Gravatar URL or complete image tag for a specified email address.
-    *
-    * @param string $s Size in pixels, defaults to 80px [ 1 - 2048 ]
-    * @param string $d Default imageset to use [ 404 | mm | identicon | monsterid | wavatar ]
-    * @param string $r Maximum rating (inclusive) [ g | pg | r | x ]
-    * @return String containing the URL
-    * @source http://gravatar.com/site/implement/images/php/
-    */
-    private function getGravatarUrl ($s = 200, $d = 'mm', $r = 'r')
-    {
-        $url = 'http://www.gravatar.com/avatar/';
-        $url .= \md5(\strtolower(\trim($this->userData['email'])));
-        $url .= "?s=$s&d=$d&r=$r";
-        return $url;
+        $this->getDbProxy()->setReturnFields($this->getReturnFields());
+        return json_encode($this->getDbProxy()->insert($data));
     }
 }

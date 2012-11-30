@@ -4,12 +4,10 @@ namespace Webservice;
 abstract class DbProxyHandler
 {
     private $dbProxy;
-    protected $table;
-    protected $fields;
 
     public function __construct()
     {
-        $this->dbProxy = new DbProxy($this->table, $this->fields);
+        $this->dbProxy = new DbProxy($this->getTable(), $this->getFields());
     }
 
     protected function getDbProxy()
@@ -22,4 +20,7 @@ abstract class DbProxyHandler
     {
         $this->dbProxy = $proxy;
     }
+
+    abstract protected function getFields();
+    abstract protected function getTable();
 }

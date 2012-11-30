@@ -30,20 +30,21 @@ class PsqlConnection
         return $result;
     }
 
-    public function doInsertQuery($dataArr, $table)
+    public function doInsertQuery($dataArr, $table, $returnFields)
     {
-        $insertSql = $this->generateInsertSql(array_keys($dataArr), $table);
+        $insertSql = $this->generateInsertSql(array_keys($dataArr), $table, $returnFields);
         $this->db->prepare("insert-kort", $insertSql);
         $result = $this->db->execute("insert-kort", array_values($dataArr));
-        return $result;
+
+        return $this->db->fetchRow($result);
     }
 
-    public function doUpdateQuery($dataArr, $table, $where)
+    public function doUpdateQuery($dataArr, $table, $where, $returnFields)
     {
-        $updateSql = $this->generateUpdateSql(array_keys($dataArr), $table, $where);
+        $updateSql = $this->generateUpdateSql(array_keys($dataArr), $table, $where, $returnFields);
         $this->db->prepare("update-kort", $updateSql);
         $result = $this->db->execute("update-kort", array_values($dataArr));
-        return $result;
+        return $this->db->fetchRow($result);
     }
 
     protected function createConnectionString($dbConfig)
@@ -56,7 +57,7 @@ class PsqlConnection
         return $conn_string;
     }
 
-    protected function generateInsertSql($fields, $table)
+    protected function generateInsertSql($fields, $table, $returnFields)
     {
         $numbers = range(1, count($fields));
         $sql  = "INSERT INTO " . $table;
@@ -71,12 +72,17 @@ class PsqlConnection
                 $numbers
             )
         );
-        $sql .=  ');';
+        $sql .=  ')';
+
+        if ($returnFields) {
+            $sql .= " RETURNING " . implode(",", $returnFields);
+        }
+        $sql .= ";";
 
         return $sql;
     }
 
-    protected function generateUpdateSql($fields, $table, $where)
+    protected function generateUpdateSql($fields, $table, $where, $returnFields)
     {
         $numbers = range(1, count($fields));
         $sql = "UPDATE " . $table . " set ";
@@ -96,6 +102,9 @@ class PsqlConnection
         if (!empty($where)) {
             $sql .= " WHERE " . $where;
         }
+        if ($returnFields) {
+            $sql .= " RETURNING " . implode(",", $returnFields);
+        }
         $sql .=  ';';
 
         return $sql;
@@ -106,10 +115,14 @@ class PsqlConnection
         $sql = "SELECT ";
         if (count($fields) == 0) {
             $sql .= "*";
-        } else {
+        } elseif (is_array($fields)) {
             $sql .= implode(',', $fields);
+        } else {
+            $sql .= $fields;
         }
-        $sql .= " FROM " . $table;
+        if (!empty($table)) {
+            $sql .= " FROM " . $table;
+        }
         if (!empty($where)) {
             $sql .= " WHERE " . $where;
         }
