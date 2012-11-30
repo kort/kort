@@ -12,13 +12,21 @@ Ext.define('Kort.view.highscore.List', {
         emptyText: Ext.i18n.Bundle.message('highscore.emptytext'),
         disableSelection: true,
         
-        itemTpl:    '<div class="highscore-item">' +
-                        '<div class="ranking">#{ranking}</div>' +
-                        '<div class="username">{username}</div>' +
-                        '<div class="fixCount">{fix_count}</div>' +
-                        '<div class="voteCount">{vote_count}</div>' +
-                        '<div class="kort-label koinCount">{koin_count} ' + Ext.i18n.Bundle.message('highscore.koins') + '</div>' +
-                    '</div>',
+        itemTpl:    new Ext.XTemplate(
+                        '<div class="highscore-item' +
+                        '<tpl if="ranking == 1"> firstPlace</tpl>' +
+                        '<tpl if="ranking == 2"> secondPlace</tpl>' +
+                        '<tpl if="ranking == 3"> thirdPlace</tpl>' +
+                        '">' +
+                            '<div class="ranking">#{ranking}</div>' +
+                            '<div class="information">' +
+                                '<div class="username">{username}</div>' +
+                                '<div class="fixCount"><span class="title">' + Ext.i18n.Bundle.message('highscore.fixcount') + '</span> <span class="value">{fix_count}</span></div>' +
+                                '<div class="voteCount"><span class="title">' + Ext.i18n.Bundle.message('highscore.votecount') + '</span> <span class="value">{vote_count}</span></div>' +
+                            '</div>' +
+                            '<div class="koins"><span class="koinCount">{koin_count}</span> <span class="title">' + Ext.i18n.Bundle.message('highscore.koins') + '</span></div>' +
+                        '</div>'
+                    ),
         
         plugins: [
             {

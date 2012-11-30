@@ -68,14 +68,11 @@ Ext.define('Kort.controller.Vote', {
         var rewardConfig = JSON.parse(responseText),
             reward = Ext.create('Kort.model.Reward', rewardConfig);
         
-        this.reloadStores();
+        this.getApplication().fireEvent('votesend');
+        
         this.showRewardMessageBox(reward);
         // remove detail panel
         this.getValidationNavigationView().pop();
-    },
-    
-    reloadStores: function() {
-        Kort.model.User.reload(Kort.user, 'secret');
     },
     
 	showRewardMessageBox: function(reward) {

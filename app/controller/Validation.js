@@ -19,6 +19,24 @@ Ext.define('Kort.controller.Validation', {
         }
     },
     
+    init: function() {
+        var me = this;
+        me.callParent(arguments);
+        
+        me.getApplication().on({
+            votesend: { fn: me.refreshView, scope: me },
+            fixsend: { fn: me.refreshView, scope: me }
+        });
+    },
+    
+    refreshView: function() {
+        var me = this;
+        
+        Ext.getStore('Validations').load(function(records, operation, success) {
+            me.getValidationList().refresh();
+        });
+    },
+    
     onValidationListItemTap: function(list, index, target, record, e) {
         var voteTabPanel = Ext.create('Kort.view.validation.vote.TabPanel', {
             record: record,

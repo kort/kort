@@ -31,7 +31,12 @@ Ext.define('Kort.model.User', {
             this.load(user.get(idProperty), {
                 success: function(record, operation) {
                     var userBadges = Ext.getStore('UserBadges');
-                    user = record;
+                    
+                    for (var prop in record.getData()) {
+                        if (user.hasOwnProperty(prop)) {
+                            user.set(prop, record.getData()[prop]);
+                        }
+                    }
 
                     // loading badges of user
                     userBadges.getProxy().setUrl('./server/webservices/user/' + user.get('id') + '/badges');

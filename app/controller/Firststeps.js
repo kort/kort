@@ -32,7 +32,7 @@ Ext.define('Kort.controller.Firststeps', {
             } else {
                 Kort.user.set('username', usernameValue);
                 Kort.user.save({
-                    success: me.storeWriteHandler
+                    success: me.userSuccessfullSavedHandler
                 }, me);
             }
         } else {
@@ -41,10 +41,9 @@ Ext.define('Kort.controller.Firststeps', {
         }
     },
 
-    storeWriteHandler: function(store, operation) {
+    userSuccessfullSavedHandler: function(store, operation) {
+        this.getApplication().fireEvent('usersave');
         this.getFirststepsPanel().hide();
-        // TODO destroy panel after hide event
-        //this.getFirststepsPanel().destroy();
     },
 
     onUsernameTextfieldKeyUp: function(field, e) {

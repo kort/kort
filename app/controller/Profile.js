@@ -38,6 +38,16 @@ Ext.define('Kort.controller.Profile', {
 
         badgesContainer: null
     },
+    
+    init: function() {
+        var me = this;
+        me.callParent(arguments);
+        
+        me.getApplication().on({
+            votesend: { fn: me.refreshProfile, scope: me },
+            fixsend: { fn: me.refreshProfile, scope: me }
+        });
+    },
 
     onProfileContentComponentInitialize: function() {
         if(!Kort.user) {
@@ -77,6 +87,10 @@ Ext.define('Kort.controller.Profile', {
     },
 
     onProfileRefreshButtonTap: function() {
+        this.refreshProfile();
+    },
+    
+    refreshProfile: function() {
         var me = this;
 
         me.showLoadMask(Ext.i18n.Bundle.message('profile.refresh.loadmask.message'));
