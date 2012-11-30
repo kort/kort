@@ -23,7 +23,7 @@ $app->get(
         if (empty($secret) && isset($_SESSION['secret'])) {
             $secret = $_SESSION['secret'];
         }
-        $userData = $userGetHandler->getUser($secret);
+        $userData = $userGetHandler->getUserBySecret($secret);
         $res->write($userData);
     }
 );
