@@ -14,6 +14,7 @@ if (isset($_GET['code'])) {
     $token = $client->getAccessToken();
     $user = $oauth2->userinfo->get();
     $user['oauth_provider'] = "Google";
+    $user['oauth_user_id'] = $user['email'];
 
     $userGetHandler = new Webservice\User\UserGetHandler();
     $userData = json_decode($userGetHandler->getUserByOAuthUserId($user['email']), true);
