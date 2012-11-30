@@ -13,11 +13,11 @@ Ext.define('Kort.model.Validation', {
 			{ name: 'fixmessage', type: 'string' },
             { name: 'upratings', type: 'int' },
             { name: 'downratings', type: 'int' },
-            { name: 'requiredValidations', type: 'int' },
+            { name: 'required_validations', type: 'int' },
             { name: 'latitude', type: 'string' },
             { name: 'longitude', type: 'string' },
             { name: 'distance', type: 'int' },
-            { name: 'formattedDistance', type: 'string' }
+            { name: 'formatted_distance', type: 'string' }
         ]
     }
 });

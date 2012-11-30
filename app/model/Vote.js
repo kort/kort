@@ -5,8 +5,9 @@ Ext.define('Kort.model.Vote', {
 		
         fields: [
 			{ name: 'id', type: 'auto' },
-			{ name: 'validation_id', type: 'string' },
-			{ name: 'message', type: 'string' }
+			{ name: 'fix_id', type: 'int' },
+			{ name: 'user_id', type: 'string' },
+			{ name: 'valid', type: 'boolean' }
         ],
         
 		proxy: {

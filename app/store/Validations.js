@@ -6,7 +6,7 @@ Ext.define('Kort.store.Validations', {
         
 		grouper: {
             groupFn: function(record) {
-                var validationsLeft = record.get('requiredValidations') - record.get('upratings') + record.get('downratings');
+                var validationsLeft = record.get('required_validations') - record.get('upratings') + record.get('downratings');
                 return validationsLeft + ' ' + Ext.i18n.Bundle.message('validation.list.header');
             }
         },
@@ -38,7 +38,7 @@ Ext.define('Kort.store.Validations', {
 		if(!this.isLoading()) {
 			this.each(function(record, index, length) {
 				record.set('distance', geo.getDistance(record.get('latitude'), record.get('longitude')));
-				record.set('formattedDistance', geo.getFormattedDistance(record.get('distance')));
+				record.set('formatted_distance', geo.getFormattedDistance(record.get('distance')));
 			});
 			this.sort();
 		}
