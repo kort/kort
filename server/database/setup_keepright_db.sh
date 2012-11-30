@@ -2,24 +2,24 @@
 DIR="$( cd "$( dirname "$0" )" && pwd )"
 while getopts ":o:n:s:dp:" opt; do
     case $opt in
-        o)  
+        o)
             DB_OWNER="$OPTARG"
             ;;
-        n)  
+        n)
             DB_NAME="$OPTARG"
             ;;
-        s)  
+        s)
             DB_SCHEMA="$OPTARG"
             ;;
-        d)  
+        d)
             DROP_DB="true"
             ;;
-        p)  
+        p)
             PREVIOUS_DOWNLOAD="$OPTARG"
             ;;
         \?) # fall-through
             ;&
-        :)  
+        :)
             echo "USAGE: `basename $0` [-o <db owner>] [-n <database name>] [-s <schema name>] [-d drop database if exists] [-p path to previously downloaded error csv]" >&2
             echo "Example: `basename $0` -o `whoami` -n osm_bugs -s keepright -p /tmp/keepright_errors.txt" >&2
             exit 1
@@ -88,7 +88,7 @@ cat /tmp/kr_part* >> /tmp/keepright_errors.txt
 echo "Delete all part files"
 rm /tmp/kr_part*
 
-echo "Creating indices"
+echo "Creating indexes"
 psql -d $DB_NAME -f $DIR/keepright/keepright_index.sql
 
 echo "Cleanup data"
