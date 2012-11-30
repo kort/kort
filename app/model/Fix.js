@@ -5,6 +5,7 @@ Ext.define('Kort.model.Fix', {
 		
         fields: [
 			{ name: 'id', type: 'auto' },
+			{ name: 'user_id', type: 'int' },
 			{ name: 'error_id', type: 'string' },
 			{ name: 'message', type: 'string' }
         ],
