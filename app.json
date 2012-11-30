@@ -45,9 +45,6 @@
             "path": "lib/Leaflet-0.4.5/dist/leaflet-osm.js"
         },
         {
-            "path": "lib/jquery-1.8.3/jquery-1.8.3.min.js"
-        },
-        {
             "path": "lib/kort-libs/UrlLib.js"
         },
         {
@@ -130,6 +127,7 @@
         "lib/qunit",
         "lib/simpletest",
         "lib/zocial",
+        "lib/jquery-1.8.3",
         "server/webservices",
         "server/php",
         "server/oauth2callback",
