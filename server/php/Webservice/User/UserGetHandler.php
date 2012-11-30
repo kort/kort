@@ -75,44 +75,6 @@ class UserGetHandler extends DbProxyHandler
         return json_encode($user);
     }
 
-    public function getUserBadges($id)
-    {
-        // TODO implement badges query
-        $badges = array(
-            array(
-                'id' => 1,
-                'name' => 'highscore_place_1',
-                'won' => false
-            ),
-            array(
-                'id' => 2,
-                'name' => 'highscore_place_2',
-                'won' => false
-            ),
-            array(
-                'id' => 3,
-                'name' => 'highscore_place_3',
-                'won' => true
-            ),
-            array(
-                'id' => 4,
-                'name' => 'fix_count_100',
-                'won' => false
-            ),
-            array(
-                'id' => 5,
-                'name' => 'fix_count_50',
-                'won' => true
-            ),
-            array(
-                'id' => 6,
-                'name' => 'fix_count_10',
-                'won' => true
-            )
-        );
-        return \json_encode($badges);
-    }
-
     /**
     * Get either a Gravatar URL or complete image tag for a specified email address.
     *
