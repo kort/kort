@@ -85,5 +85,15 @@ select u.user_id id,
        u.secret,
        u.koin_count,
        (select count(1) from kort.fix f where f.user_id = u.user_id) fix_count,
-       (select count(1) from kort.validation v where v.user_id = u.user_id) validation_count
+       (select count(1) from kort.validation v where v.user_id = u.user_id) vote_count
 from   kort.user u;
+
+create or replace view kort.highscore as
+select rank() over (order by u.koin_count) ranking,
+       u.user_id user_id,
+       u.username,
+       u.koin_count,
+       (select count(1) from kort.fix f where f.user_id = u.user_id) fix_count,
+       (select count(1) from kort.validation v where v.user_id = u.user_id) vote_count
+from   kort.user u
+order by ranking;

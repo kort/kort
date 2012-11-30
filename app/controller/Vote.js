@@ -34,11 +34,11 @@ Ext.define('Kort.controller.Vote', {
     },
     
     onVoteAcceptButtonTap: function() {
-        this.sendVote(true);
+        this.sendVote('true');
     },
     
     onVoteDeclineButtonTap: function() {
-        this.sendVote(false);
+        this.sendVote('false');
     },
     
     onVoteCancelButtonTap: function() {
