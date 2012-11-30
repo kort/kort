@@ -14,7 +14,7 @@ class FixHandler extends DbProxyHandler
 
     protected function getFields()
     {
-        return array('error_id', 'message');
+        return array('user_id', 'error_id', 'message');
     }
 
     public function insertFix($data)
