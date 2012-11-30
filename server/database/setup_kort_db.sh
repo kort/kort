@@ -39,14 +39,17 @@ psql -d $DB_NAME -c "drop schema if exists $DB_SCHEMA cascade;"
 echo "Create schema $DB_SCHEMA (tables, sequences, types)"
 psql -d $DB_NAME -c "create schema $DB_SCHEMA authorization $DB_OWNER"
 psql -d $DB_NAME -f $DIR/kort/kort.sql
-psql -d $DB_NAME -c "alter table $DB_SCHEMA.user owner to $DB_OWNER"
-psql -d $DB_NAME -c "alter table $DB_SCHEMA.error_type owner to $DB_OWNER"
 
 echo "Creating indexes"
 psql -d $DB_NAME -f $DIR/kort/kort_index.sql
 
 echo "Creating views"
 psql -d $DB_NAME -f $DIR/kort/kort_views.sql
+
+echo "Transfer ownership of all objects to $DB_OWNER"
+for tbl in `psql -qAt -c "select tablename from pg_tables where schemaname = '$DB_SCHEMA';" $DB_NAME` ; do  psql -c "alter table $tbl owner to $DB_OWNER" $DB_NAME ; done
+for tbl in `psql -qAt -c "select sequence_name from information_schema.sequences where sequence_schema = '$DB_SCHEMA';" $DB_NAME` ; do  psql -c "alter table $tbl owner to $DB_OWNER" $DB_NAME ; done
+for tbl in `psql -qAt -c "select table_name from information_schema.views where table_schema = '$DB_SCHEMA';" $DB_NAME` ; do  psql -c "alter table $tbl owner to $DB_OWNER" $DB_NAME ; done
 
 echo "Inserting data"
 psql -d $DB_NAME -f $DIR/kort/kort_data.sql
