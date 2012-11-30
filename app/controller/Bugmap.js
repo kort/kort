@@ -40,6 +40,47 @@ Ext.define('Kort.controller.Bugmap', {
         bugsStore: null,
         messageBoxTemplate: null
     },
+    
+    init: function() {
+        var me = this;
+        me.callParent(arguments);
+        
+        // create layer group for bug markers
+        me.setMarkerLayerGroup(L.layerGroup());
+
+        me.setBugsStore(Ext.getStore('Bugs'));
+
+        me.setMessageBoxTemplate(
+            new Ext.Template(
+                '<div class="messagebox-content">',
+                    '<div class="textpic">',
+                        '<div class="image">',
+                            '<img class="bugtype-image" src="./resources/images/marker_icons/{type}.png" />',
+                        '</div>',
+                        '<div class="content">',
+                            '<p>{description}</p>',
+                        '</div>',
+                    '</div>',
+                    '<div class="textpic">',
+                        '<div class="image">',
+                            '<img class="koin-image" src="./resources/images/koins/koin_no_value.png" />',
+                        '</div>',
+                        '<div class="content">',
+                            '<p>',
+                                Ext.i18n.Bundle.message('bugmap.messagebox.koins.earn'),
+                                ' <span class="important">{koin_count}</span> ',
+                                Ext.i18n.Bundle.message('bugmap.messagebox.koins.name'),
+                            '</p>',
+                        '</div>',
+                    '</div>',
+                '</div>'
+            )
+        );
+        
+        me.getApplication().on({
+            fixsend: { fn: me.refreshBugMarkers, scope: me }
+        });
+    },
 
     onBugmapNavigationViewDetailPush: function(cmp, view, opts) {
         this.getBugmapCenterButton().hide();
@@ -243,39 +284,5 @@ Ext.define('Kort.controller.Bugmap', {
 		} else {
 			return mapCmp.getMap().getCenter();
 		}
-	},
-
-    init: function() {
-        // create layer group for bug markers
-        this.setMarkerLayerGroup(L.layerGroup());
-
-        this.setBugsStore(Ext.getStore('Bugs'));
-
-        this.setMessageBoxTemplate(
-            new Ext.Template(
-                '<div class="messagebox-content">',
-                    '<div class="textpic">',
-                        '<div class="image">',
-                            '<img class="bugtype-image" src="./resources/images/marker_icons/{type}.png" />',
-                        '</div>',
-                        '<div class="content">',
-                            '<p>{description}</p>',
-                        '</div>',
-                    '</div>',
-                    '<div class="textpic">',
-                        '<div class="image">',
-                            '<img class="koin-image" src="./resources/images/koins/koin_no_value.png" />',
-                        '</div>',
-                        '<div class="content">',
-                            '<p>',
-                                Ext.i18n.Bundle.message('bugmap.messagebox.koins.earn'),
-                                ' <span class="important">{koin_count}</span> ',
-                                Ext.i18n.Bundle.message('bugmap.messagebox.koins.name'),
-                            '</p>',
-                        '</div>',
-                    '</div>',
-                '</div>'
-            )
-        );
-    }
+	}
 });

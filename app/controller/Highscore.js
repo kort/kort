@@ -8,15 +8,27 @@ Ext.define('Kort.controller.Highscore', {
         ],
         refs: {
             mainTabPanel: '#mainTabPanel',
-            highscoreContainer: '#highscoreContainer'
-        },
-        routes: {
-            //'highscore': 'showHighscore'
+            highscoreContainer: '#highscoreContainer',
+            highscoreList: '.highscorelist'
         }
     },
     
-    showHighscore: function() {
-        console.log(this.getHighscoreContainer());
-        this.getMainTabPanel().setActiveItem(this.getHighscoreContainer());
+    init: function() {
+        var me = this;
+        me.callParent(arguments);
+        
+        me.getApplication().on({
+            votesend: { fn: me.refreshView, scope: me },
+            fixsend: { fn: me.refreshView, scope: me },
+            usersave: { fn: me.refreshView, scoep: me }
+        });
+    },
+    
+    refreshView: function() {
+        var me = this;
+        
+        Ext.getStore('Highscore').load(function(records, operation, success) {
+            me.getHighscoreList().refresh();
+        });
     }
 });

@@ -250,21 +250,92 @@ $label-background-color: #46578D;
    Highscore
    ----------------------- */
 #highscoreContainer {
+    .x-list-item-body {
+        padding: 0;
+    }
+    
     .highscore-item {
-        clear: both;
+        overflow: hidden;
+        font-size: $default-font-size;
+        padding: 0.65em 0.8em;
         
         .ranking {
             float: left;
+            border-radius: 5em;
+            padding: 0.4em;
+            background-color: #4e6490;
+            color: #fff;
         }
-        .username {
+        
+        &.firstPlace {
+            font-size: 1em;
+            background-color: #fff4b8;
+            
+            .ranking {
+                background-color: #ffe139;
+            }
+        }
+        &.secondPlace {
+            font-size: 0.95em;
+            background-color: #d1d1d1;
+            
+            .ranking {
+                background-color: #7d7d7d;
+            }
+        }
+        &.thirdPlace {
+            background-color: #e2c89b;
+            
+            .ranking {
+                background-color: #8f6823;
+            }
+        }
+        
+        .information {
             float: left;
-            width: 7em;
-            overflow: hidden;
-            margin: 0 0.5em;
+            margin-left: 1em;
+            
+            .username {
+                width: 7em;
+                overflow: hidden;
+                margin-bottom: 0.3em;
+            }
+            .fixCount {
+                font-size: 0.9em;
+                float: left;
+                overflow: hidden;
+            }
+            .voteCount {
+                font-size: 0.9em;
+                float: left;
+                margin-left: 0.5em;
+                overflow: hidden;
+            }
+            .fixCount,
+            .voteCount {
+                .title {
+                    font-size: 0.75em;
+                    text-transform: uppercase;
+                    color: $dark-grey;
+                }
+                .value {
+                    font-weight: bold;
+                }
+            }
         }
-        .koinCount {
+        
+        .koins {
             float: right;
-            font-size: 0.7em;
+            
+            .title {
+                color: $dark-grey;
+                font-size: 0.7em;
+                text-transform: uppercase;
+            }
+            .koinCount {
+                font-size: 1.3em;
+                font-weight: bold;
+            }
         }
     }
 }

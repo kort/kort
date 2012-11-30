@@ -75,6 +75,8 @@ highscore.title=Highscore
 highscore.loadmask.message=Lade Highscore...
 highscore.emptytext=Highscore kann nicht geladen werden.
 highscore.koins=koins
+highscore.fixcount=Aufträge:
+highscore.votecount=Prüfungen:
 
 # Profil
 profile.title=Profil
