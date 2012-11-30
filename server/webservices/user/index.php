@@ -4,6 +4,7 @@ require_once('../../../server/php/ClassLoader.php');
 
 use Webservice\User\UserHandler;
 use Webservice\User\UserGetHandler;
+use Webservice\User\UserBadgesHandler;
 
 // Load Slim library
 \Slim\Slim::registerAutoloader();
@@ -15,6 +16,7 @@ $res = $app->response();
 
 $userHandler = new UserHandler();
 $userGetHandler = new UserGetHandler();
+$userBadgesHandler = new UserBadgesHandler();
 
 // define REST resources
 $app->get(
@@ -30,8 +32,8 @@ $app->get(
 
 $app->get(
     '/:id/badges',
-    function ($id) use ($userGetHandler, $res) {
-        $res->write($userGetHandler->getUserBadges($id));
+    function ($id) use ($userBadgesHandler, $res) {
+        $res->write($userBadgesHandler->getUserBadges($id));
     }
 );
 
