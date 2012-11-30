@@ -96,4 +96,5 @@ select rank() over (order by u.koin_count desc) ranking,
        (select count(1) from kort.fix f where f.user_id = u.user_id) fix_count,
        (select count(1) from kort.validation v where v.user_id = u.user_id) vote_count
 from   kort.user u
+where  u.username is not null
 order by ranking;
