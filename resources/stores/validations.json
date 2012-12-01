@@ -5,15 +5,13 @@
         "osm_type": "node",
         "title": "Objekt ohne Namen",
         "type": "poi_name",
-        "description": "Ist dieser Name korrekt?",
+        "question": "Ist dieser Name korrekt?",
         "fixmessage": "Zum Hirschen",
         "upratings": 2,
         "downratings": 1,
-        "requiredValidations": 3,
+        "required_validations": 3,
         "latitude": "47.2332342000000000",
-        "longitude": "8.8210699000000000",
-        "distance": "400",
-        "formattedDistance": "400m"
+        "longitude": "8.8210699000000000"
     },
     {
         "id": 2,
@@ -21,15 +19,13 @@
         "osm_type": "node",
         "title": "Objekt ohne Namen",
         "type": "poi_name",
-        "description": "Ist dieser Name korrekt?",
+        "question": "Ist dieser Name korrekt?",
         "fixmessage": "Disco Disco",
         "upratings": 0,
         "downratings": 0,
-        "requiredValidations": 3,
+        "required_validations": 3,
         "latitude": "47.2273286000000000",
-        "longitude": "8.8366867000000000",
-        "distance": "1000",
-        "formattedDistance": "1km"
+        "longitude": "8.8366867000000000"
     },
     {
         "id": 3,
@@ -37,15 +33,13 @@
         "osm_type": "way",
         "title": "Wegtyp",
         "type": "missing_track_type",
-        "description": "Ist dieser Wegtyp korrekt?",
+        "question": "Ist dieser Wegtyp korrekt?",
         "fixmessage": "Ackerstrasse",
         "upratings": 1,
         "downratings": 0,
-        "requiredValidations": 3,
+        "required_validations": 3,
         "latitude": "47.2461772000000000",
-        "longitude": "8.8234915000000000",
-        "distance": "100",
-        "formattedDistance": "100m"
+        "longitude": "8.8234915000000000"
     },
     {
         "id": 4,
@@ -53,14 +47,12 @@
         "osm_type": "way",
         "title": "Wegtyp",
         "type": "missing_track_type",
-        "description": "Ist dieser Wegtyp korrekt?",
+        "question": "Ist dieser Wegtyp korrekt?",
         "fixmessage": "Feldweg",
         "upratings": 0,
         "downratings": 2,
-        "requiredValidations": 3,
+        "required_validations": 3,
         "latitude": "47.2472092000000000",
-        "longitude": "8.8195124000000000",
-        "distance": "600",
-        "formattedDistance": "600m"
+        "longitude": "8.8195124000000000"
     }
 ]

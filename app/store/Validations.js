@@ -23,8 +23,8 @@ Ext.define('Kort.store.Validations', {
         ],
         
 		proxy: {
-			type: 'rest',
-            url : './server/webservices/validation',
+			type: 'ajax',
+            url : './resources/stores/validations.json',
             reader: {
                 type: 'json'
             }
@@ -35,6 +35,7 @@ Ext.define('Kort.store.Validations', {
      * Update distances of trails in store
      */
 	updateDistances: function(geo) {
+        console.log('updatedistances');
 		if(!this.isLoading()) {
 			this.each(function(record, index, length) {
 				record.set('distance', geo.getDistance(record.get('latitude'), record.get('longitude')));
