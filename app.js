@@ -189,13 +189,20 @@ Ext.application({
         
         mainPanel.show();
         
-        validationsStore.getProxy().setUrl('./server/webservices/validation/position/' + geo.getLatitude() + ',' + geo.getLongitude());
-        // add locationupdate listener after store load
-        validationsStore.on('load', function(store) {
-            store.updateDistances(geo);
-            geo.on('locationupdate', store.updateDistances(geo), store);
-        }, this, { single: true });
-        validationsStore.load();
+        // TODO reenable webservice after validations view is fixed
+        //validationsStore.getProxy().setUrl('./server/webservices/validation/position/' + geo.getLatitude() + ',' + geo.getLongitude());
+        
+        validationsStore.load(function(records, operation, success) {
+            console.log('validationStores load');
+            validationsStore.updateDistances(Kort.geolocation);
+            
+            // updated distances on location update
+            geo.on('locationupdate', function() {
+                console.log('location update');
+                validationsStore.updateDistances(geo)
+            });
+        }, this);
+        // enable auto update on geolocation
         geo.setAutoUpdate(true);
 
         // loading badges of user
