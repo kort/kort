@@ -72,6 +72,9 @@ Ext.application({
 
     // launch function is called as soon as app is ready
     launch: function() {
+        // Destroy the #appStartscreen element
+        Ext.fly('appStartscreen').destroy();
+        
         var selectAnswersStore = Ext.getStore('SelectAnswers'),
             mainPanel;
 
