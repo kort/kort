@@ -2,7 +2,7 @@ Ext.define('Kort.view.highscore.List', {
 	extend: 'Ext.List',
 	alias: 'widget.highscorelist',
     requires: [
-        'Kort.plugin.PullRefresh'
+        'Kort.view.highscore.PullRefreshPlugin'
     ],
     
 	config: {
@@ -31,7 +31,7 @@ Ext.define('Kort.view.highscore.List', {
         
         plugins: [
             {
-                xclass: 'Kort.plugin.PullRefresh'
+                xclass: 'Kort.view.highscore.PullRefreshPlugin'
             }
         ]
 	}
