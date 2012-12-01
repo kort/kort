@@ -15,14 +15,13 @@ Ext.define('Kort.plugin.PullRefresh', {
                 store = list.getStore();
 
             if (store) {
-                store.load({
-                    callback: function(records, operation, success) {
-                        callbackFn.call(scope);
-                        // wait until bounce back animation is done
-                        Ext.defer(function() {
-                            list.refresh();
-                        }, 500);
-                    }
+                store.load(function(records, operation, success) {
+                    store.updateDistances(Kort.geolocation);
+                    callbackFn.call(scope);
+                    // wait until bounce back animation is done
+                    Ext.defer(function() {
+                        list.refresh();
+                    }, 500);
                 });
             } else {
                 callbackFn.call(scope);
