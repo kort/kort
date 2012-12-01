@@ -189,12 +189,12 @@ $label-background-color: #46578D;
             
             .distance {
                 float: right;
-                margin: 0.5em 0;
 
                 .title {
                     color: $dark-grey;
                     font-size: 0.7em;
                     text-transform: uppercase;
+                    margin-bottom: 0.1em;
                 }
                 .value {
                     font-size: 1.2em;
@@ -307,7 +307,7 @@ $label-background-color: #46578D;
         
         .information {
             float: left;
-            margin-left: 1em;
+            margin-left: 0.7em;
             
             .username {
                 margin-bottom: 0.3em;
@@ -370,7 +370,7 @@ $label-background-color: #46578D;
         overflow: hidden;
     
         .picture {
-            $profile-picture-size: 100px;
+            $profile-picture-size: 80px;
 
             border: .1em solid #858585;
             float: left;
@@ -379,7 +379,7 @@ $label-background-color: #46578D;
             margin: 0.3em 0.5em 0.5em 0;
 
             img {
-                border: 0.3em solid white;
+                border: 0.25em solid white;
                 width: $profile-picture-size;
                 height: $profile-picture-size;
             }
