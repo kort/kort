@@ -202,7 +202,7 @@ Ext.application({
             // updated distances on location update
             geo.on('locationupdate', function() {
                 console.log('location update');
-                validationsStore.updateDistances(geo)
+                validationsStore.updateDistances(geo);
             });
         }, this);
         // enable auto update on geolocation
