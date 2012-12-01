@@ -2,7 +2,7 @@ Ext.define('Kort.view.validation.List', {
 	extend: 'Ext.List',
 	alias: 'widget.validationlist',
     requires: [
-        'Kort.plugin.PullRefresh'
+        'Kort.view.validation.PullRefreshPlugin'
     ],
     
 	config: {
@@ -34,15 +34,15 @@ Ext.define('Kort.view.validation.List', {
                         '</div>' +
                         '<tpl if="formatted_distance">' +
                             '<div class="distance">' +
-                                '<span class="title">' + Ext.i18n.Bundle.message('validation.distance') + '</span> ' +
-                                '<span class="value">{formatted_distance}</span>' +
+                                '<div class="title">' + Ext.i18n.Bundle.message('validation.distance') + '</div> ' +
+                                '<div class="value">{formatted_distance}</div>' +
                             '</div>' +
                         '</tpl>' +
                     '</div>',
         
         plugins: [
             {
-                xclass: 'Kort.plugin.PullRefresh'
+                xclass: 'Kort.view.validation.PullRefreshPlugin'
             }
         ]
 	}
