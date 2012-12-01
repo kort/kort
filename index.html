@@ -5,10 +5,49 @@
     <title>kort</title>
 
     <link rel="icon" href="./resources/images/kort-favicon.ico" type="image/png" />
+    <style type="text/css">
+        #appStartscreen {
+            height: 100%;
+            background-color: #395971;
+            color: #fff;
+            padding: 1.5em 0.5em 0.5em 0.5em;
+            text-align: center;
+        }
+        #appStartscreen .kort-logo img {
+            width: 150px;
+            height: 150px;
+        }
+        #appStartscreen .loading-content {
+            margin-top: 1.5em;
+        }
+        #appStartscreen .loading-content .loading-text {
+            font-size: 0.9em;
+            text-transform: uppercase;
+            margin-left: 0.8em;
+            margin-top: 0.3em;
+        }
+        #appStartscreen .loading-content .loading-text .title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-right: 0.2em;
+        }
+        #appStartscreen .loading-content .loading-spinner {
+            margin-top: 1em;
+        }
+    </style>
 
     <!-- The line below must be kept intact for Sencha Command to build your application -->
     <script id="microloader" type="text/javascript" src="touch/microloader/development.js"></script>
 </head>
 <body>
+    <div id="appStartscreen">
+        <div class="kort-logo">
+            <img src="./resources/images/kort-logo_white.png" />
+        </div>
+        <div class="loading-content">
+            <p class="loading-text"><span class="title">kort</span> wird geladen. Bitte warten...</p>
+            <div class="loading-spinner"><img src="./resources/images/ajax-loader.gif" /></div>
+        </div>
+    </div>
 </body>
 </html>
