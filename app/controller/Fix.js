@@ -38,12 +38,15 @@ Ext.define('Kort.controller.Fix', {
             messageBox;
 
         if (fixFieldValue !== '') {
+            me.showSendMask();
             fix = Ext.create('Kort.model.Fix', { error_id: detailTabPanel.getRecord().get('id'), user_id: userId, message: fixFieldValue });
             fix.save({
                 success: function(records, operation) {
+                    me.hideSendMask();
                     me.fixSuccessfulSubmittedHandler(operation.getResponse().responseText);
                 },
                 failure: function() {
+                    me.hideSendMask();
                     var messageBox = Ext.create('Kort.view.NotificationMessageBox');
                     messageBox.alert(Ext.i18n.Bundle.message('fix.alert.submit.failure.title'), Ext.i18n.Bundle.message('fix.alert.submit.failure.message'), Ext.emptyFn);
                 }
@@ -72,6 +75,18 @@ Ext.define('Kort.controller.Fix', {
         // remove detail panel
         bugmapNavigationView.pop();
         bugmapNavigationView.fireEvent('back', bugmapNavigationView);
+    },
+    
+    showSendMask: function() {
+        this.getBugmapNavigationView().setMasked({
+            xtype: 'loadmask',
+            message: Ext.i18n.Bundle.message('fix.sendmask.message'),
+            zIndex: Kort.util.Config.getZIndex().overlayLeafletMap
+        });
+    },
+    
+    hideSendMask: function() {
+        this.getBugmapNavigationView().setMasked(false);
     },
     
 	showRewardMessageBox: function(reward) {
