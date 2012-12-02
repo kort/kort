@@ -4,6 +4,7 @@ require_once('../../../server/php/ClassLoader.php');
 
 use Webservice\User\UserHandler;
 use Webservice\User\UserGetHandler;
+use Webservice\User\UserBadgesHandler;
 
 // Load Slim library
 \Slim\Slim::registerAutoloader();
@@ -15,6 +16,7 @@ $res = $app->response();
 
 $userHandler = new UserHandler();
 $userGetHandler = new UserGetHandler();
+$userBadgesHandler = new UserBadgesHandler();
 
 // define REST resources
 $app->get(
@@ -23,15 +25,15 @@ $app->get(
         if (empty($secret) && isset($_SESSION['secret'])) {
             $secret = $_SESSION['secret'];
         }
-        $userData = $userGetHandler->getUser($secret);
+        $userData = $userGetHandler->getUserBySecret($secret);
         $res->write($userData);
     }
 );
 
 $app->get(
     '/:id/badges',
-    function ($id) use ($userGetHandler, $res) {
-        $res->write($userGetHandler->getUserBadges($id));
+    function ($id) use ($userBadgesHandler, $res) {
+        $res->write($userBadgesHandler->getUserBadges($id));
     }
 );
 
@@ -61,6 +63,11 @@ $app->put(
         $app->response()->write($userHandler->updateUser($id, $data));
     }
 );
+
+if (!isset($_SESSION)) {
+    session_cache_limiter(false);
+    session_start();
+}
 
 // start Slim app
 $app->run();

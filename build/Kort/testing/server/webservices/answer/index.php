@@ -13,11 +13,10 @@ $answerHandler = new \Webservice\Answer\AnswerHandler();
 $app->get(
     '/(:type)',
     function ($type = null) use ($answerHandler, $app) {
-        $limit = $app->request()->params('limit');
         if (empty($type)) {
-             $response = $answerHandler->getAllAnswers($limit);
+             $response = $answerHandler->getAllAnswers();
         } else {
-            $response = $answerHandler->getSpecificAnswers($type, $limit);
+            $response = $answerHandler->getSpecificAnswers($type);
         }
 
         if (!empty($response)) {
@@ -27,6 +26,11 @@ $app->get(
         }
     }
 );
+
+if (!isset($_SESSION)) {
+    session_cache_limiter(false);
+    session_start();
+}
 
 // start Slim app
 $app->run();
