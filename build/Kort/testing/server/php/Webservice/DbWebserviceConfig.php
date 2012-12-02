@@ -6,8 +6,7 @@ namespace Webservice;
  */
 class DbWebserviceConfig
 {
-    //public $url = "http://kort.rdmr.ch/webservices/db";
-    public $url = "http://localhost/kort/server/webservices/db";
+    public $url = "http://kort.rdmr.ch/webservices/db";
 
     public function getApiKey()
     {

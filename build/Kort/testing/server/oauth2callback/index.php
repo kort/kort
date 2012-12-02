@@ -12,28 +12,30 @@ if (isset($_GET['code'])) {
     $client->authenticate($_GET['code']);
     session_start();
     $token = $client->getAccessToken();
-
     $user = $oauth2->userinfo->get();
-    $fields = array('name', 'email', 'oauth_provider', 'secret');
-    $table = "kort.user";
     $user['oauth_provider'] = "Google";
+    $user['oauth_user_id'] = $user['email'];
 
-    //generate user secret
-    $generator = new Helper\SecretGenerator();
-    $user['secret'] = $generator->getSecret();
+    $userGetHandler = new Webservice\User\UserGetHandler();
+    $userData = json_decode($userGetHandler->getUserByOAuthUserId($user['email']), true);
 
-    $authObj = json_decode($token);
-    if (isset($authObj->refresh_token)) {
-           $user['token'] = $authObj->refresh_token;
-           $fields[] = "token";
+    $userHandler = new Webservice\User\UserHandler();
+    if (empty($userData)) {
+        //generate user secret
+        $generator = new Helper\SecretGenerator();
+        $user['secret'] = $generator->getSecret();
+        $authObj = json_decode($token);
+        if (isset($authObj->refresh_token)) {
+            $user['token'] = $authObj->refresh_token;
+            $fields[] = "token";
+        }
+        $dbUser = $userHandler->insertUser($user);
+    } else {
+        $dbUser = $userHandler->updateUser($userData['id'], $user);
     }
-
-    //save user data in database
-    $dbProxy = new Webservice\DbProxy($table, $fields);
-    $dbProxy->setReturnFields(array('secret'));
-    $insertedUser = json_decode($dbProxy->insert($user), true);
-
-    $_SESSION['secret'] = $insertedUser['secret'];
+    $dbUser = json_decode($dbUser, true);
+    $_SESSION['secret'] = $dbUser['secret'];
+    $_SESSION['user_id'] = $dbUser['user_id'];
 }
 
 $appUrl = 'http://' . $_SERVER['HTTP_HOST'];

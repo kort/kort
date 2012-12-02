@@ -16,7 +16,7 @@ class UserGetHandler extends DbProxyHandler
             'id',
             'name',
             'username',
-            'email',
+            'oauth_user_id',
             'token',
             'fix_count',
             'vote_count',
@@ -25,9 +25,8 @@ class UserGetHandler extends DbProxyHandler
         );
     }
 
-    public function getUser($secret)
+    public function getUserBySecret($secret)
     {
-        $userData = array();
         if (!empty($secret)) {
             $this->getDbProxy()->setWhere("secret = '". $secret . "'");
             $userData = json_decode($this->getDbProxy()->select(), true);
@@ -38,12 +37,25 @@ class UserGetHandler extends DbProxyHandler
                     session_start();
                 }
                 $_SESSION['secret'] = $secret;
-                $userData['pic_url'] = $this->getGravatarUrl($userData['email']);
+                $_SESSION['user_id'] = $userData['id'];
+                $userData['pic_url'] = $this->getGravatarUrl($userData['oauth_user_id']);
                 $userData['logged_in'] = true;
                 return json_encode($userData);
             }
         }
         return $this->getDefaultUserJson();
+    }
+
+    public function getUserByOAuthUserId($oauth_user_id)
+    {
+        $this->getDbProxy()->setWhere("oauth_user_id = '". $oauth_user_id . "'");
+
+        $userData = json_decode($this->getDbProxy()->select(), true);
+        if (count($userData) > 0) {
+            $userData = $userData[0];
+        }
+
+        return json_encode($userData);
     }
 
     protected function getDefaultUserJson() {
@@ -61,44 +73,6 @@ class UserGetHandler extends DbProxyHandler
         $user["secret"] = "";
 
         return json_encode($user);
-    }
-
-    public function getUserBadges($id)
-    {
-        // TODO implement badges query
-        $badges = array(
-            array(
-                'id' => 1,
-                'name' => 'highscore_place_1',
-                'won' => false
-            ),
-            array(
-                'id' => 2,
-                'name' => 'highscore_place_2',
-                'won' => false
-            ),
-            array(
-                'id' => 3,
-                'name' => 'highscore_place_3',
-                'won' => true
-            ),
-            array(
-                'id' => 4,
-                'name' => 'fix_count_100',
-                'won' => false
-            ),
-            array(
-                'id' => 5,
-                'name' => 'fix_count_50',
-                'won' => true
-            ),
-            array(
-                'id' => 6,
-                'name' => 'fix_count_10',
-                'won' => true
-            )
-        );
-        return \json_encode($badges);
     }
 
     /**
