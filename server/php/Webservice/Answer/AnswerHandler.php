@@ -17,6 +17,9 @@ class AnswerHandler extends DbProxyHandler
 
     public function getAllAnswers()
     {
+        if (isset($_GET['debug'])) {
+            return "getAllAnswers";
+        }
         $this->getDbProxy()->setOrderBy('sorting');
         return $this->getDbProxy()->select();
     }
