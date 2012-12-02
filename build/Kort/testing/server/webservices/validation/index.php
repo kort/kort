@@ -48,5 +48,10 @@ $app->post(
     }
 );
 
+if (!isset($_SESSION)) {
+    session_cache_limiter(false);
+    session_start();
+}
+
 // start Slim app
 $app->run();

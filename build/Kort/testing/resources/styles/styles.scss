@@ -148,6 +148,7 @@ $label-background-color: #46578D;
         
         .validation-item {
             overflow: hidden;
+            font-size: $default-font-size;
 
             .image {
                 $image-width: 64px;
@@ -164,11 +165,10 @@ $label-background-color: #46578D;
                 float: left;
 
                 .title {
-                    font-size: $default-font-size;
                     margin-bottom: 0.4em;
                 }
                 .ratings {
-                    font-size: 0.7em;
+                    font-size: 0.8em;
 
                     img.thumb {
                         $thumb-width: 20px;
@@ -181,13 +181,25 @@ $label-background-color: #46578D;
 
                     .upratings,
                     .downratings {
+                        color: $dark-grey;
                         margin: 0 0.3em;
                     }
                 }
             } 
+            
             .distance {
                 float: right;
-                font-size: 0.7em;
+
+                .title {
+                    color: $dark-grey;
+                    font-size: 0.7em;
+                    text-transform: uppercase;
+                    margin-bottom: 0.1em;
+                }
+                .value {
+                    font-size: 1.2em;
+                    font-weight: bold;
+                }
             }
         }
     }
@@ -295,7 +307,7 @@ $label-background-color: #46578D;
         
         .information {
             float: left;
-            margin-left: 1em;
+            margin-left: 0.7em;
             
             .username {
                 margin-bottom: 0.3em;
@@ -358,7 +370,7 @@ $label-background-color: #46578D;
         overflow: hidden;
     
         .picture {
-            $profile-picture-size: 100px;
+            $profile-picture-size: 80px;
 
             border: .1em solid #858585;
             float: left;
@@ -367,7 +379,7 @@ $label-background-color: #46578D;
             margin: 0.3em 0.5em 0.5em 0;
 
             img {
-                border: 0.3em solid white;
+                border: 0.25em solid white;
                 width: $profile-picture-size;
                 height: $profile-picture-size;
             }
@@ -389,14 +401,29 @@ $label-background-color: #46578D;
         }
     }
     .koins {
-        padding: $panel-padding;
+        padding: 0.1em $panel-padding;
         clear: both;
         
-        .koins-introduction {
-            font-size: $default-font-size;
+        .koins-image {
+            float: left;
+            img {
+                $profile-koin-image-size: 60px;
+                width: $profile-koin-image-size/2;
+                height: $profile-koin-image-size/2;
+            }
         }
-        .koins-number {
-            margin-left: 0.5em;
+        .koins-info {
+            margin-top: 0.2em;
+            
+            .koins-number {
+                margin: 0 0.3em 0 0.5em;
+                font-size: 1.2em;
+                font-weight: bold;
+            }
+            .koins-title {
+                text-transform: uppercase;
+                font-size: 0.7em;
+            }
         }
     }
 }
@@ -407,7 +434,6 @@ $label-background-color: #46578D;
     .badge {
         $badge-image-size: 160px;
         width: $badge-image-size/2;
-        height: $badge-image-size/2;
         margin: 0.2em 0.5em;
         text-align: center;
         overflow: hidden;
@@ -547,6 +573,11 @@ $label-background-color: #46578D;
 }
 .overlayLeafletMap {
     z-index: 1500;
+}
+
+// titlebar
+.x-toolbar .x-title {
+    font-size: 1em;
 }
 
 // TabPanel tabBar

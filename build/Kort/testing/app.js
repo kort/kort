@@ -71406,14 +71406,13 @@ Ext.define('Kort.plugin.PullRefresh', {
                 store = list.getStore();
 
             if (store) {
-                store.load({
-                    callback: function(records, operation, success) {
-                        callbackFn.call(scope);
-                        // wait until bounce back animation is done
-                        Ext.defer(function() {
-                            list.refresh();
-                        }, 500);
-                    }
+                store.load(function(records, operation, success) {
+                    store.updateDistances(Kort.geolocation);
+                    callbackFn.call(scope);
+                    // wait until bounce back animation is done
+                    Ext.defer(function() {
+                        list.refresh();
+                    }, 500);
                 });
             } else {
                 callbackFn.call(scope);
@@ -71580,11 +71579,40 @@ Ext.define('Kort.plugin.PullRefresh', {
     }
 });
 
+Ext.define('Kort.view.highscore.PullRefreshPlugin', {
+    extend: 'Kort.plugin.PullRefresh',
+    alias: 'plugin.highscorepullrefresh',
+    
+    requires: [
+        'Kort.plugin.PullRefresh'
+    ],
+	
+	config: {
+       refreshFn: function(callbackFn, scope) {
+            var me = this,
+                list = me.getList(),
+                store = list.getStore();
+
+            if (store) {
+                store.load(function(records, operation, success) {
+                    callbackFn.call(scope);
+                    // wait until bounce back animation is done
+                    Ext.defer(function() {
+                        list.refresh();
+                    }, 500);
+                });
+            } else {
+                callbackFn.call(scope);
+            }
+        }
+	}
+});
+
 Ext.define('Kort.view.highscore.List', {
 	extend: 'Ext.List',
 	alias: 'widget.highscorelist',
     requires: [
-        'Kort.plugin.PullRefresh'
+        'Kort.view.highscore.PullRefreshPlugin'
     ],
     
 	config: {
@@ -71613,7 +71641,7 @@ Ext.define('Kort.view.highscore.List', {
         
         plugins: [
             {
-                xclass: 'Kort.plugin.PullRefresh'
+                xclass: 'Kort.view.highscore.PullRefreshPlugin'
             }
         ]
 	}
@@ -71676,9 +71704,11 @@ Ext.define('Kort.controller.Highscore', {
     refreshView: function() {
         var me = this;
         
-        Ext.getStore('Highscore').load(function(records, operation, success) {
-            me.getHighscoreList().refresh();
-        });
+        if(me.getHighscoreList()) {
+            Ext.getStore('Highscore').load(function(records, operation, success) {
+                me.getHighscoreList().refresh();
+            });
+        }
     }
 });
 
@@ -71812,11 +71842,41 @@ Ext.define('Kort.controller.Login', {
     }
 });
 
+Ext.define('Kort.view.validation.PullRefreshPlugin', {
+    extend: 'Kort.plugin.PullRefresh',
+    alias: 'plugin.validationpullrefresh',
+    
+    requires: [
+        'Kort.plugin.PullRefresh'
+    ],
+	
+	config: {
+       refreshFn: function(callbackFn, scope) {
+            var me = this,
+                list = me.getList(),
+                store = list.getStore();
+
+            if (store) {
+                store.load(function(records, operation, success) {
+                    store.updateDistances(Kort.geolocation);
+                    callbackFn.call(scope);
+                    // wait until bounce back animation is done
+                    Ext.defer(function() {
+                        list.refresh();
+                    }, 500);
+                });
+            } else {
+                callbackFn.call(scope);
+            }
+        }
+	}
+});
+
 Ext.define('Kort.view.validation.List', {
 	extend: 'Ext.List',
 	alias: 'widget.validationlist',
     requires: [
-        'Kort.plugin.PullRefresh'
+        'Kort.view.validation.PullRefreshPlugin'
     ],
     
 	config: {
@@ -71835,21 +71895,28 @@ Ext.define('Kort.view.validation.List', {
                             '<div class="title">{title}</div>' +
                             '<div class="ratings">' +
                                 '<span class="upratings">' +
-                                    '+{upratings}' +
+                                    '<tpl if="upratings &gt; 0">+</tpl>' +
+                                    '{upratings}' +
                                     '<img class="thumb" src="./resources/images/validation/thumbs-up.png" />' +
                                 '</span>' +
                                 '<span class="downratings">' +
-                                    '-{downratings}' +
+                                    '<tpl if="downratings &gt; 0">-</tpl>' +
+                                    '{downratings}' +
                                     '<img class="thumb" src="./resources/images/validation/thumbs-down.png" />' +
                                 '</span>' +
                             '</div>' +
                         '</div>' +
-                        '<div class="kort-label distance">{formatted_distance}</div>' +
+                        '<tpl if="formatted_distance">' +
+                            '<div class="distance">' +
+                                '<div class="title">' + Ext.i18n.Bundle.message('validation.distance') + '</div> ' +
+                                '<div class="value">{formatted_distance}</div>' +
+                            '</div>' +
+                        '</tpl>' +
                     '</div>',
         
         plugins: [
             {
-                xclass: 'Kort.plugin.PullRefresh'
+                xclass: 'Kort.view.validation.PullRefreshPlugin'
             }
         ]
 	}
@@ -71895,8 +71962,8 @@ Ext.define('Kort.view.profile.ContentComponent', {
                         '<dl class="kort-definitionlist text">',
                             '<dt>' + Ext.i18n.Bundle.message('profile.content.username') + '</dt>',
                             '<dd>{username}</dd>',
-                            '<dt>' + Ext.i18n.Bundle.message('profile.content.email') + '</dt>',
-                            '<dd>{email}</dd>',
+                            '<dt>' + Ext.i18n.Bundle.message('profile.content.oauthuserid') + '</dt>',
+                            '<dd>{oauth_user_id}</dd>',
                             '<dt>' + Ext.i18n.Bundle.message('profile.content.fixes') + '</dt>',
                             '<dd>{fix_count}</dd>',
                             '<dt>' + Ext.i18n.Bundle.message('profile.content.votes') + '</dt>',
@@ -71908,8 +71975,11 @@ Ext.define('Kort.view.profile.ContentComponent', {
                         '<div class="x-list-header">' + Ext.i18n.Bundle.message('profile.content.koins.header') + '</div>',
                     '</div>',
                     '<div class="koins">',
-                        '<span class="koins-introduction">' + Ext.i18n.Bundle.message('profile.content.koins.introduction') + '</span>',
-                        '<span class="kort-label koins-number">{koin_count}</span>',
+                        '<div class="koins-image"><img src="./resources/images/koins/koin_no_value.png" /></div>',
+                        '<div class="koins-info">',
+                            '<span class="koins-number">{koin_count}</span>',
+                            '<span class="koins-title">' + Ext.i18n.Bundle.message('profile.content.koins.title') + '</span>',
+                        '</div>',
                     '</div>',
                     // TODO small hack to recieve sencha list header styling
                     '<div class="profile-header x-list-normal">',
@@ -72289,15 +72359,18 @@ Ext.define('Kort.controller.Profile', {
     
     refreshProfile: function() {
         var me = this;
-
-        me.showLoadMask(Ext.i18n.Bundle.message('profile.refresh.loadmask.message'));
+        
+        // show loadmask only if container is already loaded
+        if(this.getProfileContainer()) {
+            me.showLoadMask(Ext.i18n.Bundle.message('profile.refresh.loadmask.message'));
+        }
         
         Kort.model.User.reload(Kort.user, 'secret', me.hideLoadMask, me);
     },
 
     showLoadMask: function(message) {
         this.getProfileRefreshButton().disable();
-        Ext.Viewport.setMasked({
+        this.getProfileContainer().setMasked({
             xtype: 'loadmask',
             message: message
         });
@@ -72307,7 +72380,7 @@ Ext.define('Kort.controller.Profile', {
 
     hideLoadMask: function() {
         this.getProfileRefreshButton().enable();
-        Ext.Viewport.setMasked(false);
+        this.getProfileContainer().setMasked(false);
     }
 });
 
@@ -72465,11 +72538,15 @@ Ext.define('Kort.controller.Validation', {
     },
     
     refreshView: function() {
-        var me = this;
+        var me = this,
+            validationsStore = Ext.getStore('Validations');
         
-        Ext.getStore('Validations').load(function(records, operation, success) {
-            me.getValidationList().refresh();
-        });
+        if(me.getValidationList()) {
+            validationsStore.load(function(records, operation, success) {
+                validationsStore.updateDistances(Kort.geolocation);
+                me.getValidationList().refresh();
+            });
+        }
     },
     
     onValidationListItemTap: function(list, index, target, record, e) {
@@ -72684,7 +72761,7 @@ Ext.define('Kort.model.User', {
 			{ name: 'id', type: 'auto' },
 			{ name: 'name', type: 'string' },
 			{ name: 'username', type: 'string' },
-			{ name: 'email', type: 'string' },
+			{ name: 'oauth_user_id', type: 'string' },
             { name: 'pic_url', type: 'string' },
 			{ name: 'logged_in', type: 'boolean' },
 			{ name: 'token', type: 'string' },
@@ -72899,8 +72976,8 @@ Ext.define('Kort.store.Validations', {
         ],
         
 		proxy: {
-			type: 'rest',
-            url : './server/webservices/validation',
+			type: 'ajax',
+            url : './resources/stores/validations.json',
             reader: {
                 type: 'json'
             }
@@ -72911,6 +72988,7 @@ Ext.define('Kort.store.Validations', {
      * Update distances of trails in store
      */
 	updateDistances: function(geo) {
+        console.log('updatedistances');
 		if(!this.isLoading()) {
 			this.each(function(record, index, length) {
 				record.set('distance', geo.getDistance(record.get('latitude'), record.get('longitude')));
@@ -73032,6 +73110,9 @@ Ext.application({
 
     // launch function is called as soon as app is ready
     launch: function() {
+        // Destroy the #appStartscreen element
+        Ext.fly('appStartscreen').destroy();
+        
         var selectAnswersStore = Ext.getStore('SelectAnswers'),
             mainPanel;
 
@@ -73149,13 +73230,20 @@ Ext.application({
         
         mainPanel.show();
         
-        validationsStore.getProxy().setUrl('./server/webservices/validation/position/' + geo.getLatitude() + ',' + geo.getLongitude());
-        // add locationupdate listener after store load
-        validationsStore.on('load', function(store) {
-            store.updateDistances(geo);
-            geo.on('locationupdate', store.updateDistances(geo), store);
-        }, this, { single: true });
-        validationsStore.load();
+        // TODO reenable webservice after validations view is fixed
+        //validationsStore.getProxy().setUrl('./server/webservices/validation/position/' + geo.getLatitude() + ',' + geo.getLongitude());
+        
+        validationsStore.load(function(records, operation, success) {
+            console.log('validationStores load');
+            validationsStore.updateDistances(Kort.geolocation);
+            
+            // updated distances on location update
+            geo.on('locationupdate', function() {
+                console.log('location update');
+                validationsStore.updateDistances(geo);
+            });
+        }, this);
+        // enable auto update on geolocation
         geo.setAutoUpdate(true);
 
         // loading badges of user
