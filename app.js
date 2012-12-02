@@ -192,8 +192,7 @@ Ext.application({
         
         mainPanel.show();
         
-        // TODO reenable webservice after validations view is fixed
-        //validationsStore.getProxy().setUrl('./server/webservices/validation/position/' + geo.getLatitude() + ',' + geo.getLongitude());
+        validationsStore.getProxy().setUrl('./server/webservices/validation/position/' + geo.getLatitude() + ',' + geo.getLongitude());
         
         validationsStore.load(function(records, operation, success) {
             console.log('validationStores load');
