@@ -496,6 +496,20 @@ $label-background-color: #46578D;
     
     .about-content {
         padding: $panel-padding;
+        
+        dt {
+            margin-top: 1em;
+        }
+        dd {
+            font-size: 0.8em;
+        }
+        
+        a.mail,
+        a.mail:hover, a.mail:active, a.mail:focus {
+            font-size: 0.8em;
+            color: #177DB6;
+            text-decoration: none;
+        }
     }
 }
 
@@ -587,6 +601,11 @@ $label-background-color: #46578D;
 // titlebar
 .x-toolbar .x-title {
     font-size: 1em;
+}
+
+// picker
+.x-picker-slot .x-picker-item {
+    font-size: 0.8em;
 }
 
 // TabPanel tabBar
