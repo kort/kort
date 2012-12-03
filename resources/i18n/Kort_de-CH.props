@@ -41,7 +41,8 @@ bugmap.messagebox.koins.name=koins
 
 ## Fix
 fix.form.title=Auftrag
-fix.form.field.image=Bild
+fix.form.koins.earn=Hol dir die
+fix.form.koins.name=koins!
 fix.form.message.placeholder=Deine Antwort...
 fix.form.button.submit=Senden
 fix.form.loadmask.message=Lade Antworten...
@@ -57,7 +58,7 @@ validation.title=Prüfen
 validation.loadmask.message=Lade Daten...
 validation.emptytext=Keine Daten vorhanden.
 validation.list.header=positive Prüfungen übrig
-validation.distance=Distanz:
+validation.distance=Distanz
 
 ## Vote
 vote.map.title=Karte
@@ -119,6 +120,8 @@ picker.cancel=Abbrechen
 
 # Reward
 reward.alert.title=Du wurdest stärker!
-reward.alert.koins.1=Du hast
-reward.alert.koins.2=koins gewonnen.
-reward.alert.badges.title=Auszeichnungen
+reward.alert.koins.new.1=Bravo! Du hast
+reward.alert.koins.new.2=koins gewonnen.
+reward.alert.koins.total.1=Deine Gesamtpunktzahl beträgt nun
+reward.alert.koins.total.2=koins.
+reward.alert.badges.title=Gewonnene Auszeichnungen
