@@ -57,7 +57,7 @@ fix.alert.submit.failure.message=Beim Übertragen des Formulars ist etwas schief
 validation.title=Prüfen
 validation.loadmask.message=Lade Daten...
 validation.emptytext=Keine Daten vorhanden.
-validation.list.header=positive Prüfungen übrig
+validation.list.header=positive Überprüfungen nötig
 validation.distance=Distanz
 
 ## Vote
@@ -89,9 +89,9 @@ highscore.votecount=Prüfungen:
 profile.title=Profil
 profile.button.logout=Logout
 profile.content.username=Benutzername
-profile.content.oauthuserid=OAuth Benutzername
-profile.content.fixes=Anzahl erledigte Aufträge
-profile.content.votes=Anzahl getätigte Prüfungen
+profile.content.oauthprovider=Eingeloggt über
+profile.content.fixes=Erledigte Aufträge
+profile.content.votes=Getätigte Überprüfungen
 profile.content.koins.header=Gesammelte Koins
 profile.content.koins.title=koins
 profile.content.badges.header=Gewonnene Auszeichnungen
@@ -105,6 +105,8 @@ profile.badges.button.close=Schliessen
 about.title=Über kort
 about.version.title=Version
 about.authors.title=Autoren
+about.project.title=Projekt
+about.partners.title=Industriepartner
 about.legal.title=Rechtliche Hinweise
 about.legal.message=Wir bitten dich die OpenStreetMap Regeln einzuhalten.
 

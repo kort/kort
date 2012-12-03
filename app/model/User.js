@@ -9,6 +9,7 @@ Ext.define('Kort.model.User', {
 			{ name: 'name', type: 'string' },
 			{ name: 'username', type: 'string' },
 			{ name: 'oauth_user_id', type: 'string' },
+			{ name: 'oauth_provider', type: 'string' },
             { name: 'pic_url', type: 'string' },
 			{ name: 'logged_in', type: 'boolean' },
 			{ name: 'token', type: 'string' },

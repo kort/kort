@@ -17,6 +17,7 @@ class UserGetHandler extends DbProxyHandler
             'name',
             'username',
             'oauth_user_id',
+            'oauth_provider',
             'token',
             'fix_count',
             'vote_count',
