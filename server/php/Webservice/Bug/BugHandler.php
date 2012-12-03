@@ -52,7 +52,7 @@ class BugHandler extends DbProxyHandler
 
     public function translateBug($bug)
     {
-        $bug['description'] = str_replace("\$", "%",  $bug['description']);
+        $bug['description'] = str_replace("\$", "%", $bug['description']);
         $bug['description'] = $this->translate($bug['description']);
 
         $search = array("%1", "\$2", "\$3", "\$4", "\$5");
