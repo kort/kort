@@ -24,7 +24,7 @@
  *     &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;http://cdn.leafletjs.com/leaflet-0.4.5/leaflet.css&quot;&gt;
  *
  * ## Example
- * 
+ *
  *     Ext.Viewport.add({
  *         xtype: 'leafletmap',
  *         useCurrentLocation: true
@@ -103,16 +103,16 @@ Ext.define('Ext.ux.LeafletMap', {
 <span id='Ext-ux-LeafletMap-cfg-tileLayerUrl'>        /**
 </span>         * @cfg {String} [tileLayerUrl=&quot;http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&quot;]
          * URL template for tile-layer in the following form
-         * 
+         *
          *     'http://{s}.somedomain.com/blabla/{z}/{x}/{y}.png'
-         * 
-         * {s} means one of the randomly chosen subdomains (their range is specified in options; a, b or c by default, 
+         *
+         * {s} means one of the randomly chosen subdomains (their range is specified in options; a, b or c by default,
          * can be omitted), {z} — zoom level, {x} and {y} — tile coordinates.
-         * 
+         *
          * You can use custom keys in the template, which will be evaluated from {@link Ext.ux.LeafletMap#tileLayerOptions}, like this:
-         * 
+         *
          *     tileLayerUrl: 'http://{s}.somedomain.com/{foo}/{z}/{x}/{y}.png', tileLayerOptions: {foo: 'bar'};
-         * 
+         *
          * @accessor
          */
         tileLayerUrl: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
