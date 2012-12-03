@@ -28,8 +28,12 @@ Ext.define('Kort.view.about.Container', {
                                 '<dt>' + Ext.i18n.Bundle.message('about.version.title') + '</dt>' +
                                 '<dd>' + Kort.util.Config.getVersion() + '</dd>' +
                                 '<dt>' + Ext.i18n.Bundle.message('about.authors.title') + '</dt>' +
-                                '<dd>' +  Kort.util.Config.getAuthors().names[0] + ' <span class="mail">(' + Kort.util.Config.getAuthors().emails[0] + ')</span></dd>' +
-                                '<dd>' +  Kort.util.Config.getAuthors().names[1] + ' <span class="mail">(' + Kort.util.Config.getAuthors().emails[1] + ')</span></dd>' +
+                                '<dd>' +  Kort.util.Config.getAbout().authors[0] + '</dd>' +
+                                '<dd>' +  Kort.util.Config.getAbout().authors[1] + '</dd>' +
+                                '<dt>' + Ext.i18n.Bundle.message('about.project.title') + '</dt>' +
+                                '<dd>' + Kort.util.Config.getAbout().project + '</dd>' +
+                                '<dt>' + Ext.i18n.Bundle.message('about.partners.title') + '</dt>' +
+                                '<dd>' + Kort.util.Config.getAbout().partners[0] + '</dd>' +
                                 '<dt>' + Ext.i18n.Bundle.message('about.legal.title') + '</dt>' +
                                 '<dd>' + Ext.i18n.Bundle.message('about.legal.message') + '</dd>' +
                             '</dl>' +
