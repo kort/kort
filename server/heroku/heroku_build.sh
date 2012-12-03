@@ -24,7 +24,6 @@ else
     cp -r $SOURCE_DIR/ux $BUILD_DIR/
     cp -r $SOURCE_DIR/i18n $BUILD_DIR
     cp -r $SOURCE_DIR/test $BUILD_DIR
-    cp -r $SOURCE_DIR/docs $BUILD_DIR
 
     cp -r $SOURCE_DIR/lib/Leaflet-0.4.5/dist/ $BUILD_DIR/lib/Leaflet-0.4.5/
     cp -r $SOURCE_DIR/lib/Slim-2.1.0/Slim/ $BUILD_DIR/lib/Slim-2.1.0/

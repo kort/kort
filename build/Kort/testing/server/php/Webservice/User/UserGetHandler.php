@@ -32,7 +32,7 @@ class UserGetHandler extends DbProxyHandler
             $userData = json_decode($this->getDbProxy()->select(), true);
             $userData = $userData[0];
 
-            if(!empty($userData)) {
+            if (!empty($userData)) {
                 if (!isset($_SESSION)) {
                     session_start();
                 }
@@ -58,7 +58,8 @@ class UserGetHandler extends DbProxyHandler
         return json_encode($userData);
     }
 
-    protected function getDefaultUserJson() {
+    protected function getDefaultUserJson()
+    {
         $user = array();
         $user['id'] = null;
         $user['name'] = "Anonymous";

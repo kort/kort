@@ -70956,7 +70956,7 @@ Ext.define('Kort.controller.Firststeps', {
 
     onFirststepsFormSubmitButtonTap: function() {
         var me = this,
-            usernameValue = this.getUsernameTextfield().getValue(),
+            usernameValue = me.getUsernameTextfield().getValue(),
             messageBox;
 
         if(usernameValue !== '') {
@@ -70964,9 +70964,17 @@ Ext.define('Kort.controller.Firststeps', {
                 messageBox = Ext.create('Kort.view.NotificationMessageBox');
                 messageBox.alert(Ext.i18n.Bundle.message('firststeps.alert.username.specialchars.title'), Ext.i18n.Bundle.message('firststeps.alert.username.specialchars.message'), Ext.emptyFn);
             } else {
+                me.getFirststepsFormSubmitButton().disable();
                 Kort.user.set('username', usernameValue);
                 Kort.user.save({
-                    success: me.userSuccessfullSavedHandler
+                    success: function() {
+                        me.userSuccessfullSavedHandler();
+                    },
+                    failure: function() {
+                        me.getFirststepsFormSubmitButton().enable();
+                        messageBox = Ext.create('Kort.view.NotificationMessageBox');
+                        messageBox.alert(Ext.i18n.Bundle.message('firststeps.alert.submit.failure.title'), Ext.i18n.Bundle.message('firststeps.alert.submit.failure.message'), Ext.emptyFn);
+                    }
                 }, me);
             }
         } else {
@@ -71267,12 +71275,15 @@ Ext.define('Kort.controller.Fix', {
             messageBox;
 
         if (fixFieldValue !== '') {
+            me.showSendMask();
             fix = Ext.create('Kort.model.Fix', { error_id: detailTabPanel.getRecord().get('id'), user_id: userId, message: fixFieldValue });
             fix.save({
                 success: function(records, operation) {
+                    me.hideSendMask();
                     me.fixSuccessfulSubmittedHandler(operation.getResponse().responseText);
                 },
                 failure: function() {
+                    me.hideSendMask();
                     var messageBox = Ext.create('Kort.view.NotificationMessageBox');
                     messageBox.alert(Ext.i18n.Bundle.message('fix.alert.submit.failure.title'), Ext.i18n.Bundle.message('fix.alert.submit.failure.message'), Ext.emptyFn);
                 }
@@ -71303,6 +71314,18 @@ Ext.define('Kort.controller.Fix', {
         bugmapNavigationView.fireEvent('back', bugmapNavigationView);
     },
     
+    showSendMask: function() {
+        this.getBugmapNavigationView().setMasked({
+            xtype: 'loadmask',
+            message: Ext.i18n.Bundle.message('fix.sendmask.message'),
+            zIndex: Kort.util.Config.getZIndex().overlayLeafletMap
+        });
+    },
+    
+    hideSendMask: function() {
+        this.getBugmapNavigationView().setMasked(false);
+    },
+    
 	showRewardMessageBox: function(reward) {
         var messageBox = Ext.create('Kort.view.RewardMessageBox', {
             record: reward
@@ -71331,6 +71354,7 @@ Ext.define('Kort.view.overlay.geolocationerror.Panel', {
                             '<div class="logo">' +
                                 '<img src="./resources/images/kort-logo.png" />' +
                             '</div>' +
+                            '<div class="sadsmiley">:(</div>' +
                             '<div class="introduction">' +
                                 Ext.i18n.Bundle.message('geolocationerror.introduction') +
                             '</div>' +
@@ -71697,7 +71721,7 @@ Ext.define('Kort.controller.Highscore', {
         me.getApplication().on({
             votesend: { fn: me.refreshView, scope: me },
             fixsend: { fn: me.refreshView, scope: me },
-            usersave: { fn: me.refreshView, scoep: me }
+            usersave: { fn: me.refreshView, scope: me }
         });
     },
     
@@ -71886,6 +71910,7 @@ Ext.define('Kort.view.validation.List', {
         loadingText: Ext.i18n.Bundle.message('validation.loadmask.message'),
         emptyText: Ext.i18n.Bundle.message('validation.emptytext'),
         disableSelection: true,
+        scrollToTopOnRefresh: false,
         
         itemTpl:    '<div class="validation-item">' +
                         '<div class="image">' +
@@ -72611,13 +72636,16 @@ Ext.define('Kort.controller.Vote', {
             detailTabPanel = this.getDetailTabPanel(),
             userId = Kort.user.get('id'),
             vote;
-
+            
+        me.showSendMask();
         vote = Ext.create('Kort.model.Vote', { fix_id: detailTabPanel.getRecord().get('id'), user_id: userId, valid: valid });
         vote.save({
             success: function(records, operation) {
+                me.hideSendMask();
                 me.voteSuccessfulSubmittedHandler(operation.getResponse().responseText);
             },
             failure: function() {
+                me.hideSendMask();
                 var messageBox = Ext.create('Kort.view.NotificationMessageBox');
                 messageBox.alert(Ext.i18n.Bundle.message('vote.alert.submit.failure.title'), Ext.i18n.Bundle.message('vote.alert.submit.failure.message'), Ext.emptyFn);
             }
@@ -72633,6 +72661,18 @@ Ext.define('Kort.controller.Vote', {
         this.showRewardMessageBox(reward);
         // remove detail panel
         this.getValidationNavigationView().pop();
+    },
+    
+    showSendMask: function() {
+        this.getValidationNavigationView().setMasked({
+            xtype: 'loadmask',
+            message: Ext.i18n.Bundle.message('vote.sendmask.message'),
+            zIndex: Kort.util.Config.getZIndex().overlayLeafletMap
+        });
+    },
+    
+    hideSendMask: function() {
+        this.getValidationNavigationView().setMasked(false);
     },
     
 	showRewardMessageBox: function(reward) {
@@ -73230,8 +73270,7 @@ Ext.application({
         
         mainPanel.show();
         
-        // TODO reenable webservice after validations view is fixed
-        //validationsStore.getProxy().setUrl('./server/webservices/validation/position/' + geo.getLatitude() + ',' + geo.getLongitude());
+        validationsStore.getProxy().setUrl('./server/webservices/validation/position/' + geo.getLatitude() + ',' + geo.getLongitude());
         
         validationsStore.load(function(records, operation, success) {
             console.log('validationStores load');
