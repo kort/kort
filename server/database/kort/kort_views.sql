@@ -93,6 +93,16 @@ select u.user_id id,
        (select count(1) from kort.validation v where v.user_id = u.user_id) vote_count
 from   kort.user u;
 
+create or replace view kort.user_badges as
+select b.badge_id id,
+       b.name,
+       b.title,
+       b.description,
+       b.color,
+       b.sorting
+from   kort.badge b
+order by b.sorting;
+
 create or replace view kort.highscore as
 select rank() over (order by u.koin_count desc) ranking,
        u.user_id user_id,
