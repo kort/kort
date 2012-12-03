@@ -20,14 +20,16 @@ class LocaleHelper
         $this->properties = parse_ini_file(dirname(__FILE__) . "/../../../resources/i18n/" . $localeFile);
     }
 
-    public function getValue($key) {
+    public function getValue($key)
+    {
         if (array_key_exists($key, $this->properties)) {
             return $this->properties[$key];
         }
         return $key;
     }
 
-    protected function getLang() {
+    protected function getLang()
+    {
         $userLangs = $this->getUserLanguages();
 
         foreach ($userLangs as $lang) {
@@ -43,7 +45,8 @@ class LocaleHelper
         $langs = array();
         if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
             // break up string into pieces (languages and q factors)
-            preg_match_all('/([a-z]{1,8}(-[a-z]{1,8})?)\s*(;\s*q\s*=\s*(1|0\.[0-9]+))?/i', $_SERVER['HTTP_ACCEPT_LANGUAGE'], $lang_parse);
+            $http_lang_match = '/([a-z]{1,8}(-[a-z]{1,8})?)\s*(;\s*q\s*=\s*(1|0\.[0-9]+))?/i';
+            preg_match_all($http_lang_match, $_SERVER['HTTP_ACCEPT_LANGUAGE'], $lang_parse);
 
             if (count($lang_parse[1])) {
                 // create a list like "en" => 0.8
@@ -51,7 +54,9 @@ class LocaleHelper
 
                 // set default to 1 for any without q factor
                 foreach ($langs as $lang => $val) {
-                    if ($val === '') $langs[$lang] = 1;
+                    if ($val === '') {
+                        $langs[$lang] = 1;
+                    }
                 }
 
                 // sort list based on value
