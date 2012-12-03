@@ -24,15 +24,13 @@ Ext.define('Kort.util.Config', {
             featureColor: '#FF0000',
             featureOpacity: 0.7
         },
-        authors: {
-            names: [
+        about: {
+            authors: [
                 'Stefan Oderbolz',
                 'Jürg Hunziker'
             ],
-            emails: [
-                '<a href="mailto:soderbol@hsr.ch">soderbol@hsr.ch</a>',
-                '<a href="mailto:jhunzike@hsr.ch">jhunzike@hsr.ch</a>'
-            ]
+            project: 'HSR Bachelorarbeit HS2012/13',
+            partners: ['bigforge AG (<a href="http://bitforge.ch" target="_blank">http://bitforge.ch</a>)']
         }
 	},
 	
