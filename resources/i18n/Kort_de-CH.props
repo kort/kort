@@ -20,7 +20,7 @@ login.loadmask.message=Login...
 # Firststeps
 firststeps.introduction=Willkommen bei kort! Wähle einen Benutzernamen:
 firststeps.form.username.placeholder=Benutzername
-firststeps.form.button.submit=Mission starten!
+firststeps.form.button.submit=Mission beginnen!
 firststeps.alert.username.empty.title=Benutzernamen eingeben
 firststeps.alert.username.empty.message=Bitte gib einen Benutzernamen ein.
 firststeps.alert.username.specialchars.title=Sonderzeichen gefunden
