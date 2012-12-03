@@ -11,7 +11,12 @@ select  e.error_id id,
         t.koin_count,
         CAST(e.lat AS NUMERIC)/10000000 latitude,
         CAST(e.lon AS NUMERIC)/10000000 longitude,
-        e.geom
+        e.geom,
+        e.txt1,
+        e.txt2,
+        e.txt3,
+        e.txt4,
+        e.txt5
 from    keepright.errors e,
         keepright.error_type t
 where   e.error_type_id = t.error_type_id;
