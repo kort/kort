@@ -25,6 +25,8 @@ firststeps.alert.username.empty.title=Benutzernamen eingeben
 firststeps.alert.username.empty.message=Bitte gib einen Benutzernamen ein.
 firststeps.alert.username.specialchars.title=Sonderzeichen gefunden
 firststeps.alert.username.specialchars.message=Benutze bitte nur Buchstaben und Zahlen für deinen Benutzernamen.
+firststeps.alert.submit.failure.title=Fehler beim Senden
+firststeps.alert.submit.failure.message=Beim Übertragen deines Benutzernamens ist ein Fehler aufgetretten. Bitte versuche es später noch einmal.
 
 # Geolocation error
 geolocationerror.introduction=Um kort verwenden zu können muss auf deine Position zugegriffen werden können.
