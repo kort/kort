@@ -40,6 +40,15 @@ $label-background-color: #46578D;
             display: list-item !important;
         }
     }
+    
+    #loginButtonOsm {
+        &.zocial.pinboard {
+            background-color: #9ED485;
+        }
+        .x-button-label {
+            font-size: 0.9em;
+        }
+    }
 }
 
 // Firststeps
@@ -138,6 +147,10 @@ $label-background-color: #46578D;
     .x-list-header {
         text-shadow: rgba(0, 0, 0, 0.25) 0 0.08em 0;
         color: #fff;
+        
+        .text {
+            font-size: 0.9em;
+        }
     }
 
     .x-list-item {

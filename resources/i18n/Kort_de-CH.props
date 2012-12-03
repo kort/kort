@@ -14,7 +14,7 @@ submitted.message.2=koins verdient!
 login.title=Login
 login.introduction=Bitte logge dich ein um kort nutzen zu können!
 login.button.google=Login mit Google
-login.button.twitter=Login mit Twitter
+login.button.osm=Login mit OpenStreetMap
 login.loadmask.message=Login...
 
 # Firststeps
@@ -56,7 +56,7 @@ fix.alert.submit.failure.message=Beim Übertragen des Formulars ist etwas schief
 validation.title=Prüfen
 validation.loadmask.message=Lade Daten...
 validation.emptytext=Keine Daten vorhanden.
-validation.list.header=positive Bewertungen übrig
+validation.list.header=positive Prüfungen übrig
 validation.distance=Distanz:
 
 ## Vote
