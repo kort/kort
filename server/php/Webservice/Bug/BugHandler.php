@@ -55,14 +55,13 @@ class BugHandler extends DbProxyHandler
         $bug['description'] = str_replace("\$", "%", $bug['description']);
         $bug['description'] = $this->translate($bug['description']);
 
-        $search = array("%1", "\$2", "\$3", "\$4", "\$5");
+        $search = array("%1", "%2", "%3", "%4", "%5");
         $placeholder1 = $this->translate($bug['txt1']);
         $placeholder2 = $this->translate($bug['txt2']);
         $placeholder3 = $this->translate($bug['txt3']);
         $placeholder4 = $this->translate($bug['txt4']);
         $placeholder5 = $this->translate($bug['txt5']);
         $replace = array($placeholder1, $placeholder2, $placeholder3, $placeholder4, $placeholder5);
-
         $bug['description'] = str_replace($search, $replace, $bug['description']);
 
         return $bug;
