@@ -197,12 +197,6 @@ Ext.application({
         validationsStore.load(function(records, operation, success) {
             console.log('validationStores load');
             validationsStore.updateDistances(Kort.geolocation);
-            
-            // updated distances on location update
-            geo.on('locationupdate', function() {
-                console.log('location update');
-                validationsStore.updateDistances(geo);
-            });
         }, this);
         // enable auto update on geolocation
         geo.setAutoUpdate(true);
