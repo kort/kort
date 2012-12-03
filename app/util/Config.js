@@ -23,7 +23,11 @@ Ext.define('Kort.util.Config', {
         osmMap: {
             featureColor: '#FF0000',
             featureOpacity: 0.7
-        }
+        },
+        authors: [
+            'Stefan Oderbolz <a class="mail" href="mailto:soderbol@hsr.ch">soderbol@hsr.ch</a>',
+            'Jürg Hunziker <a class="mail" href="mailto:soderbol@hsr.ch">jhunzike@hsr.ch</a>'
+        ]
 	},
 	
 	constructor: function(config) {

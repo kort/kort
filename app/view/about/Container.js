@@ -28,8 +28,8 @@ Ext.define('Kort.view.about.Container', {
                                 '<dt>' + Ext.i18n.Bundle.message('about.version.title') + '</dt>' +
                                 '<dd>' + Kort.util.Config.getVersion() + '</dd>' +
                                 '<dt>' + Ext.i18n.Bundle.message('about.authors.title') + '</dt>' +
-                                '<dd>' + Ext.i18n.Bundle.message('about.authors.author1') + '</dd>' +
-                                '<dd>' + Ext.i18n.Bundle.message('about.authors.author2') + '</dd>' +
+                                '<dd>' + Kort.util.Config.getAuthors()[0] + '</dd>' +
+                                '<dd>' + Kort.util.Config.getAuthors()[1] + '</dd>' +
                                 '<dt>' + Ext.i18n.Bundle.message('about.legal.title') + '</dt>' +
                                 '<dd>' + Ext.i18n.Bundle.message('about.legal.message') + '</dd>' +
                             '</dl>' +
