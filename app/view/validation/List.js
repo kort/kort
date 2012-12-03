@@ -12,6 +12,7 @@ Ext.define('Kort.view.validation.List', {
         loadingText: Ext.i18n.Bundle.message('validation.loadmask.message'),
         emptyText: Ext.i18n.Bundle.message('validation.emptytext'),
         disableSelection: true,
+        scrollToTopOnRefresh: false,
         
         itemTpl:    '<div class="validation-item">' +
                         '<div class="image">' +
