@@ -18,6 +18,7 @@ Ext.define('Kort.view.overlay.geolocationerror.Panel', {
                             '<div class="logo">' +
                                 '<img src="./resources/images/kort-logo.png" />' +
                             '</div>' +
+                            '<div class="sadsmiley">:(</div>' +
                             '<div class="introduction">' +
                                 Ext.i18n.Bundle.message('geolocationerror.introduction') +
                             '</div>' +
