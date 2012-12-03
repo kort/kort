@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Ext-ux-LeafletMap'>/**
+</span> * Wraps a Leaflet map in an {@link Ext.Component} using the [Leaflet API](http://leafletjs.com/reference.html).
+ *
+ * To use this component you must include an additional JavaScript an a CSS file from Leaflet:
+ *
+ *     &lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.leafletjs.com/leaflet-0.4.5/leaflet.js&quot;&gt;&lt;/script&gt;
+ *     &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;http://cdn.leafletjs.com/leaflet-0.4.5/leaflet.css&quot;&gt;
+ *
+ * ## Example
+ * 
+ *     Ext.Viewport.add({
+ *         xtype: 'leafletmap',
+ *         useCurrentLocation: true
+ *     });
+ *
+ */
+Ext.define('Ext.ux.LeafletMap', {
+    extend: 'Ext.Container',
+    xtype: 'leafletmap',
+    requires: ['Ext.util.Geolocation'],
+
+    config: {
+<span id='Ext-ux-LeafletMap-event-maprender'>        /**
+</span>         * @event maprender
+         * Fired when map is initially rendered.
+         * @param {Ext.ux.LeafletMap} this
+         * @param {L.Map} map The rendered L.Map instance
+         * @param {L.TileLayer} tileLayer The rendered L.TileLayer instance
+         */
+
+<span id='Ext-ux-LeafletMap-event-zoomend'>        /**
+</span>         * @event zoomend
+         * Fired when a map zoom ended.
+         * @param {Ext.ux.LeafletMap} this
+         * @param {L.Map} map The rendered L.Map instance
+         * @param {L.TileLayer} tileLayer The rendered L.TileLayer instance
+         * @param {Number} zoom The current zoom level of the map
+         */
+
+<span id='Ext-ux-LeafletMap-event-movestart'>        /**
+</span>         * @event movestart
+         * Fired when a panning on map starts.
+         * @param {Ext.ux.LeafletMap} this
+         * @param {L.Map} map The rendered L.Map instance
+         * @param {L.TileLayer} tileLayer The rendered L.TileLayer instance
+         */
+
+<span id='Ext-ux-LeafletMap-event-moveend'>        /**
+</span>         * @event moveend
+         * Fired when a panning on map ends.
+         * @param {Ext.ux.LeafletMap} this
+         * @param {L.Map} map The rendered L.Map instance
+         * @param {L.TileLayer} tileLayer The rendered L.TileLayer instance
+         */
+
+<span id='Ext-ux-LeafletMap-cfg-baseCls'>        /**
+</span>         * @cfg {String} baseCls
+         * The base CSS class to apply to the map's element
+         * @accessor
+         */
+        baseCls: Ext.baseCSSPrefix + 'llmap',
+
+<span id='Ext-ux-LeafletMap-cfg-useCurrentLocation'>        /**
+</span>         * @cfg {Boolean/Ext.util.Geolocation} useCurrentLocation
+         * Pass in true to center the map based on the geolocation coordinates or pass a
+         * {@link Ext.util.Geolocation GeoLocation} config to have more control over your GeoLocation options
+         * @accessor
+         */
+        useCurrentLocation: false,
+
+<span id='Ext-ux-LeafletMap-cfg-map'>        /**
+</span>         * @cfg {L.Map} map
+         * The wrapped map.
+         * @accessor
+         */
+        map: null,
+
+<span id='Ext-ux-LeafletMap-cfg-mapOptions'>        /**
+</span>         * @cfg {Object} mapOptions
+         * MapOptions as specified by the Leaflet documentation:
+         * [http://leaflet.cloudmade.com/reference.html#map-options](http://leaflet.cloudmade.com/reference.html#map-options)
+         * @accessor
+         */
+        mapOptions: {},
+
+<span id='Ext-ux-LeafletMap-cfg-tileLayerUrl'>        /**
+</span>         * @cfg {String} [tileLayerUrl=&quot;http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&quot;]
+         * URL template for tile-layer in the following form
+         * 
+         *     'http://{s}.somedomain.com/blabla/{z}/{x}/{y}.png'
+         * 
+         * {s} means one of the randomly chosen subdomains (their range is specified in options; a, b or c by default, 
+         * can be omitted), {z} — zoom level, {x} and {y} — tile coordinates.
+         * 
+         * You can use custom keys in the template, which will be evaluated from {@link Ext.ux.LeafletMap#tileLayerOptions}, like this:
+         * 
+         *     tileLayerUrl: 'http://{s}.somedomain.com/{foo}/{z}/{x}/{y}.png', tileLayerOptions: {foo: 'bar'};
+         * 
+         * @accessor
+         */
+        tileLayerUrl: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+
+<span id='Ext-ux-LeafletMap-cfg-tileLayerOptions'>        /**
+</span>         * @cfg {Object} tileLayerOptions
+         * Tile-layer options which should be used in the L.TileLayer constructor.
+         * @accessor
+         */
+        tileLayerOptions: {},
+
+<span id='Ext-ux-LeafletMap-cfg-tileLayer'>        /**
+</span>         * @cfg {L.TileLayer} tileLayer
+         * The wrapped layer.
+         * @accessor
+         */
+        tileLayer: null,
+
+<span id='Ext-ux-LeafletMap-cfg-geo'>        /**
+</span>         * @cfg {Ext.util.Geolocation} geo
+         * Geolocation provider for the map.
+         * @accessor
+         */
+        geo: null,
+
+<span id='Ext-ux-LeafletMap-cfg-autoMapCenter'>        /**
+</span>         * @cfg {Boolean} autoMapCenter
+         * Defines if the map should automatically center itself on a geoupdate event.
+         * Only applies if {@link Ext.ux.LeafletMap#useCurrentLocation} is set to true.
+         * @accessor
+         */
+        autoMapCenter: false,
+
+<span id='Ext-ux-LeafletMap-cfg-initialCenter'>        /**
+</span>         * @cfg {Boolean} initialCenter
+         * Defines if the map initially should be centered to the current location.
+         * @accessor
+         */
+        initialCenter: true
+    },
+
+<span id='Ext-ux-LeafletMap-method-constructor'>    constructor: function () {
+</span>        this.callParent(arguments);
+
+        var ll = window.L;
+
+        if (!ll) {
+            this.setHtml('Leaflet library is required');
+        }
+    },
+
+<span id='Ext-ux-LeafletMap-method-initialize'>    initialize: function () {
+</span>        this.callParent();
+        this.on({
+            painted: 'doResize',
+            scope: this
+        });
+        this.innerElement.on('touchstart', 'onTouchStart', this);
+    },
+
+<span id='Ext-ux-LeafletMap-method-getElementConfig'>    getElementConfig: function () {
+</span>        return {
+            reference: 'element',
+            className: 'x-container',
+            children: [{
+                reference: 'innerElement',
+                className: 'x-inner',
+                children: [{
+                    reference: 'mapContainer',
+                    className: Ext.baseCSSPrefix + 'map-container'
+                }]
+            }]
+        };
+    },
+
+<span id='Ext-ux-LeafletMap-method-onTouchStart'>    onTouchStart: function (e) {
+</span>        e.makeUnpreventable();
+    },
+
+<span id='Ext-ux-LeafletMap-method-applyMapOptions'>    applyMapOptions: function (options) {
+</span>        return Ext.merge({}, this.options, options);
+    },
+
+<span id='Ext-ux-LeafletMap-method-updateMapOptions'>    updateMapOptions: function (newOptions) {
+</span>        var me = this,
+            ll = window.L,
+            map = this.getMap();
+
+        if (ll &amp;&amp; map) {
+            map.setOptions(newOptions);
+        }
+        if (newOptions.center &amp;&amp; !me.isPainted()) {
+            me.un('painted', 'setMapCenter', this);
+            me.on('painted', 'setMapCenter', this, { delay: 150, single: true, args: [newOptions.center] });
+        }
+    },
+
+<span id='Ext-ux-LeafletMap-method-getMapOptions'>    getMapOptions: function () {
+</span>        return Ext.merge({}, this.options || this.getInitialConfig('mapOptions'));
+    },
+
+<span id='Ext-ux-LeafletMap-method-getTileLayerOptions'>    getTileLayerOptions: function () {
+</span>        return Ext.merge({}, this.options || this.getInitialConfig('tileLayerOptions'));
+    },
+
+<span id='Ext-ux-LeafletMap-method-updateUseCurrentLocation'>    updateUseCurrentLocation: function (useCurrentLocation) {
+</span>        this.setGeo(useCurrentLocation);
+        if (!this.getMap() &amp;&amp; (!useCurrentLocation || !this.getInitialCenter())) {
+            this.renderMap();
+        }
+    },
+
+<span id='Ext-ux-LeafletMap-method-applyGeo'>    applyGeo: function (config) {
+</span>        return Ext.factory(config, Ext.util.Geolocation, this.getGeo());
+    },
+
+<span id='Ext-ux-LeafletMap-method-updateGeo'>    updateGeo: function (newGeo, oldGeo) {
+</span>        var events = {
+            locationupdate : 'onGeoUpdate',
+            locationerror : 'onGeoError',
+            scope : this
+        };
+
+        if (oldGeo) {
+            oldGeo.un(events);
+        }
+
+        if (newGeo) {
+            newGeo.on(events);
+            newGeo.updateLocation();
+        }
+    },
+
+<span id='Ext-ux-LeafletMap-method-doResize'>    doResize: function () {
+</span>        var ll = window.L,
+            map = this.getMap();
+
+        if (ll &amp;&amp; map) {
+            map.invalidateSize();
+        }
+    },
+
+<span id='Ext-ux-LeafletMap-method-renderMap'>    // @private
+</span>    renderMap: function () {
+        var me = this,
+            ll = window.L,
+            element = me.mapContainer,
+            mapOptions = me.getMapOptions(),
+            map,
+            tileLayer;
+
+        // if map isn't painted yet -&gt; recall method after a certain time
+        if (!me.isPainted()) {
+            me.un('painted', 'renderMap', this);
+            me.on('painted', 'renderMap', this, { delay: 150, single: true, args: [] });
+            return;
+        }
+
+        if (ll) {
+            if (element.dom.firstChild) {
+                Ext.fly(element.dom.firstChild).destroy();
+            }
+
+            // if no center property is given -&gt; use default position
+            if (!mapOptions.hasOwnProperty('center') || !(mapOptions.center instanceof ll.LatLng)) {
+                mapOptions.center = new ll.LatLng(47.36865, 8.539183); // default: Zuerich
+            }
+
+            me.setTileLayer(new ll.TileLayer(me.getTileLayerUrl(), me.getTileLayerOptions()));
+            tileLayer = me.getTileLayer();
+            mapOptions.layers = [tileLayer];
+
+            me.setMap(new ll.Map(element.dom, mapOptions));
+            map = me.getMap();
+
+            // track map events
+            map.on('zoomend', me.onZoomEnd, me);
+            map.on('movestart', me.onMoveStart, me);
+            map.on('moveend', me.onMoveEnd, me);
+            me.fireEvent('maprender', me, map, tileLayer);
+        }
+    },
+
+<span id='Ext-ux-LeafletMap-method-onGeoUpdate'>    // @private
+</span>    onGeoUpdate: function (geo) {
+        var ll = window.L;
+
+        if (ll &amp;&amp; geo &amp;&amp; (this.getAutoMapCenter() || this.getInitialCenter())) {
+            this.setMapCenter(new ll.LatLng(geo.getLatitude(), geo.getLongitude()));
+            this.setInitialCenter(false);
+        }
+    },
+
+<span id='Ext-ux-LeafletMap-method-onGeoError'>    // @private
+</span>    onGeoError: function (geo) {
+        this.setUseCurrentLocation(false);
+        if(!this.getMap()) {
+            this.renderMap();
+        }
+    },
+
+<span id='Ext-ux-LeafletMap-method-setMapCenter'>    /**
+</span>     * Moves the map center to the designated coordinates hash of the form:
+     *
+     *     { latitude: 47.36865, longitude: 8.539183 }
+     *
+     * or a L.LatLng object representing to the target location.
+     *
+     * @param {Object/L.LatLng} coordinates Object representing the desired longitude and
+     * latitude upon which to center the map.
+     */
+    setMapCenter: function (coordinates) {
+        var me = this,
+            map = me.getMap(),
+            ll = window.L;
+
+        if (ll) {
+            if (!me.isPainted()) {
+                me.un('painted', 'setMapCenter', this);
+                me.on('painted', 'setMapCenter', this, { delay: 150, single: true, args: [coordinates] });
+                return;
+            }
+
+            coordinates = coordinates || new ll.LatLng(47.36865, 8.539183);
+
+            if (coordinates &amp;&amp; !(coordinates instanceof ll.LatLng) &amp;&amp; coordinates.hasOwnProperty('latitude')) {
+                coordinates = new ll.LatLng(coordinates.latitude, coordinates.longitude);
+            }
+
+            if (!map) {
+                me.renderMap();
+                map = me.getMap();
+            }
+
+            if (map &amp;&amp; coordinates instanceof ll.LatLng) {
+                map.panTo(coordinates);
+            } else {
+                this.options = Ext.apply(this.getMapOptions(), {
+                    center: coordinates
+                });
+            }
+        }
+    },
+
+<span id='Ext-ux-LeafletMap-method-onZoomEnd'>    // @private
+</span>    onZoomEnd: function () {
+        var mapOptions = this.getMapOptions(),
+            map = this.getMap(),
+            tileLayer = this.getTileLayer(),
+            zoom;
+
+        zoom = map.getZoom() || 10;
+
+        this.options = Ext.apply(mapOptions, {
+            zoom: zoom
+        });
+
+        this.fireEvent('zoomend', this, map, tileLayer, zoom);
+    },
+
+<span id='Ext-ux-LeafletMap-method-onMoveStart'>    // @private
+</span>    onMoveStart: function () {
+        var map = this.getMap(),
+            tileLayer = this.getTileLayer();
+
+        this.fireEvent('movestart', this, map, tileLayer);
+    },
+
+<span id='Ext-ux-LeafletMap-method-onMoveEnd'>    // @private
+</span>    onMoveEnd: function () {
+        var map = this.getMap(),
+            tileLayer = this.getTileLayer();
+
+        this.fireEvent('moveend', this, map, tileLayer);
+    },
+
+<span id='Ext-ux-LeafletMap-method-destroy'>    // @private
+</span>    destroy: function () {
+        Ext.destroy(this.getGeo());
+        var map = this.getMap(),
+            layer = this.getTileLayer();
+
+        if (map) {
+            map = null;
+        }
+        if (layer) {
+            layer = null;
+        }
+
+        this.callParent();
+    }
+});</pre>
+</body>
+</html>

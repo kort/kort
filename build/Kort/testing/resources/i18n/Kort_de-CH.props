@@ -20,7 +20,7 @@ login.loadmask.message=Login...
 # Firststeps
 firststeps.introduction=Willkommen bei kort! Wähle einen Benutzernamen:
 firststeps.form.username.placeholder=Benutzername
-firststeps.form.button.submit=Mission starten!
+firststeps.form.button.submit=Mission beginnen!
 firststeps.alert.username.empty.title=Benutzernamen eingeben
 firststeps.alert.username.empty.message=Bitte gib einen Benutzernamen ein.
 firststeps.alert.username.specialchars.title=Sonderzeichen gefunden
@@ -44,6 +44,7 @@ fix.form.message.placeholder=Deine Antwort...
 fix.form.button.submit=Senden
 fix.form.loadmask.message=Lade Antworten...
 fix.map.title=Karte
+fix.sendmask.message=Sende Lösung...
 fix.alert.fixfield.empty.title=Felder ausfüllen
 fix.alert.fixfield.empty.message=Bitte alle Felder ausfüllen.
 fix.alert.submit.failure.title=Fehler beim Senden
@@ -62,6 +63,7 @@ vote.container.title=Prüfen
 vote.container.button.accept=Ja
 vote.container.button.decline=Nein
 vote.container.button.cancel=Weiss nicht
+vote.sendmask.message=Sende Antwort...
 vote.alert.submit.failure.title=Fehler beim Senden
 vote.alert.submit.failure.message=Beim Übertragen des deiner Stimme ist etwas schief gelaufen. Bitte versuche es später noch einmal.
 

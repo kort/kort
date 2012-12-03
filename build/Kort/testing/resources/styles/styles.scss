@@ -31,7 +31,7 @@ $label-background-color: #46578D;
     }
     
     .loginButtons {
-        margin: 1em 0;
+        margin: 0.5em 0;
         
         .x-zocial-button {
             margin: 0.2em 0;
@@ -50,7 +50,7 @@ $label-background-color: #46578D;
     
     #usernameForm {
         .x-form-inner {
-            margin: 1em 0;
+            margin: 0.5em 0;
         }
 
         .usernameTextfield {
@@ -67,6 +67,11 @@ $label-background-color: #46578D;
     
     .x-button {
         margin-top: 0.5em;
+    }
+    
+    .sadsmiley {
+        text-align: center;
+        font-size: 4em;
     }
 }
 
@@ -219,6 +224,10 @@ $label-background-color: #46578D;
 }
 .x-list-pullrefresh {
     top: -4.5em;
+    
+    .x-loading-spinner {
+        font-size: 1.8em;
+    }
     
     .x-list-pullrefresh-message {
         font-size: 1.2em;
