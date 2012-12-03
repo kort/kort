@@ -48,6 +48,36 @@ class DbHandler
         }
     }
 
+    public function doTransaction($statements)
+    {
+        $returnValue = "";
+        foreach ($statements as $params) {
+            switch($params['type']) {
+                case "INSERT":
+                    $result = $this->doInsert($params['fields'], $params['table'], $params['data'], $params['returnFields']);
+                    if ($params['return']) {
+                        $returnValue = $result;
+                    }
+                    break;
+                case "UPDATE":
+                    $result = $this->doUpdate($params['fields'], $params['table'], $params['data'], $params['where'], $params['returnFields']);
+                    if ($params['return']) {
+                        $returnValue = $result;
+                    }
+                    break;
+                case "SELECT":
+                    $result = $this->doSelect($params['fields'], $params['table'], $params['where'], $params['orderBy'], $params['limit']);
+                    if ($params['return']) {
+                        $returnValue = $result;
+                    }
+                    break;
+                default:
+                    $returnValue = false;
+            }
+        }
+        return $returnValue;
+    }
+
     protected function reduceData($fields, $data)
     {
         $reducedData = array();
