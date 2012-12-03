@@ -106,13 +106,12 @@ $label-background-color: #46578D;
         .fix-content {
             text-align: left;
 
-            .description {
+            .textpic {
                 overflow: hidden;
                 margin: 0.5em 0;
 
                 .image {
                     float: left;
-                    margin: 0 1em 0.5em 0.5em;
                     width: 40px;
                     height: 40px;
 
@@ -122,10 +121,21 @@ $label-background-color: #46578D;
                         width: $bugtype-image-width/2;
                         height: $bugtype-image-height/2;
                     }
+                    .koin-image {
+                        $koin-image-width: 70px;
+                        $koin-image-height: 70px;
+                        width: $koin-image-width/2;
+                        height: $koin-image-height/2;
+                    }
                 }
                 .content {
                     font-size: $default-font-size;
                     line-height: 1.3em;
+                    margin-left: 45px;
+
+                    .important {
+                        font-weight: bold;
+                    }
                 }
             }
         }
@@ -207,7 +217,8 @@ $label-background-color: #46578D;
             
             .distance {
                 float: right;
-
+                text-align: right;
+                
                 .title {
                     color: $dark-grey;
                     font-size: 0.7em;
@@ -215,7 +226,6 @@ $label-background-color: #46578D;
                     margin-bottom: 0.1em;
                 }
                 .value {
-                    font-size: 1.2em;
                     font-weight: bold;
                 }
             }
@@ -369,15 +379,17 @@ $label-background-color: #46578D;
         
         .koins {
             float: right;
-            
+            text-align: right;
+
             .title {
                 color: $dark-grey;
                 font-size: 0.7em;
                 text-transform: uppercase;
+                margin-bottom: 0.1em;
             }
-            .koinCount {
-                font-size: 1.3em;
+            .value {
                 font-weight: bold;
+                font-size: 1.1em;
             }
         }
     }
@@ -517,11 +529,13 @@ $label-background-color: #46578D;
             font-size: 0.8em;
         }
         
-        a.mail,
-        a.mail:hover, a.mail:active, a.mail:focus {
+        .mail {
             font-size: 0.8em;
-            color: #177DB6;
-            text-decoration: none;
+            
+            a, a:hover, a:active, a:focus {
+                color: #177DB6;
+                text-decoration: none;
+            }
         }
     }
 }
@@ -571,7 +585,6 @@ $label-background-color: #46578D;
 
                 .image {
                     float: left;
-                    margin: 0 1em 0.5em 0;
                     width: 40px;
                     height: 40px;
 
@@ -591,6 +604,7 @@ $label-background-color: #46578D;
                 .content {
                     font-size: $default-font-size;
                     line-height: 1.3em;
+                    margin-left: 50px;
 
                     .important {
                         font-weight: bold;

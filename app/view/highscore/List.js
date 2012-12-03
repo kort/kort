@@ -25,7 +25,10 @@ Ext.define('Kort.view.highscore.List', {
                                 '<div class="fixCount"><span class="title">' + Ext.i18n.Bundle.message('highscore.fixcount') + '</span> <span class="value">{fix_count}</span></div>' +
                                 '<div class="voteCount"><span class="title">' + Ext.i18n.Bundle.message('highscore.votecount') + '</span> <span class="value">{vote_count}</span></div>' +
                             '</div>' +
-                            '<div class="koins"><span class="koinCount">{koin_count}</span> <span class="title">' + Ext.i18n.Bundle.message('highscore.koins') + '</span></div>' +
+                            '<div class="koins">' +
+                                '<div class="title">' + Ext.i18n.Bundle.message('highscore.koins') + '</div> ' +
+                                '<div class="value">{koin_count}</div>' +
+                            '</div>' +
                         '</div>'
                     ),
         
