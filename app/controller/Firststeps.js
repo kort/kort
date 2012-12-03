@@ -22,7 +22,7 @@ Ext.define('Kort.controller.Firststeps', {
 
     onFirststepsFormSubmitButtonTap: function() {
         var me = this,
-            usernameValue = this.getUsernameTextfield().getValue(),
+            usernameValue = me.getUsernameTextfield().getValue(),
             messageBox;
 
         if(usernameValue !== '') {
@@ -30,9 +30,17 @@ Ext.define('Kort.controller.Firststeps', {
                 messageBox = Ext.create('Kort.view.NotificationMessageBox');
                 messageBox.alert(Ext.i18n.Bundle.message('firststeps.alert.username.specialchars.title'), Ext.i18n.Bundle.message('firststeps.alert.username.specialchars.message'), Ext.emptyFn);
             } else {
+                me.getFirststepsFormSubmitButton().disable();
                 Kort.user.set('username', usernameValue);
                 Kort.user.save({
-                    success: me.userSuccessfullSavedHandler
+                    success: function() {
+                        me.userSuccessfullSavedHandler();
+                    },
+                    failure: function() {
+                        me.getFirststepsFormSubmitButton().enable();
+                        messageBox = Ext.create('Kort.view.NotificationMessageBox');
+                        messageBox.alert(Ext.i18n.Bundle.message('firststeps.alert.submit.failure.title'), Ext.i18n.Bundle.message('firststeps.alert.submit.failure.message'), Ext.emptyFn);
+                    }
                 }, me);
             }
         } else {
