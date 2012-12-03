@@ -133,18 +133,13 @@ Ext.define('Kort.plugin.PullRefresh', {
     },
     
     loadStore: function() {
-        var me = this,
-            list = me.getList(),
-            store = list.getStore();
+        var me = this;
 
         me.setViewState('loading');
         me.isReleased = false;
         me.isLoading = true;
         
         if (me.getRefreshFn()) {
-            if(store) {
-                store.suspendEvents();
-            }
             me.getRefreshFn().call(me, me.afterStoreLoad, me);
         } else {
             me.fetchLatest();
@@ -155,14 +150,7 @@ Ext.define('Kort.plugin.PullRefresh', {
     },
     
     afterStoreLoad: function() {
-        var me = this,
-            list = me.getList(),
-            store = list.getStore();
-        
-        if(store) {
-            store.resumeEvents();
-        }
-        me.resetRefreshElement();
+        this.resetRefreshElement();
     },
     
     resetRefreshElement: function() {
