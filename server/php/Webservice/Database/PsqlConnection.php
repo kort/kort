@@ -47,6 +47,14 @@ class PsqlConnection
         return $this->db->fetchRow($result);
     }
 
+    public function beginTransaction() {
+        $this->db->begin();
+    }
+
+    public function commitTransaction() {
+        $this->db->commit();
+    }
+
     protected function createConnectionString($dbConfig)
     {
         $conn_string  = 'host='.$dbConfig->host;
