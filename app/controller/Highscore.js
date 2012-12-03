@@ -20,7 +20,7 @@ Ext.define('Kort.controller.Highscore', {
         me.getApplication().on({
             votesend: { fn: me.refreshView, scope: me },
             fixsend: { fn: me.refreshView, scope: me },
-            usersave: { fn: me.refreshView, scoep: me }
+            usersave: { fn: me.refreshView, scope: me }
         });
     },
     
