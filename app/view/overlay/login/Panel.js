@@ -34,14 +34,14 @@ Ext.define('Kort.view.overlay.login.Panel', {
                         id: 'loginButtonGoogle',
                         baseCls: Ext.baseCSSPrefix + 'zocial-button',
                         cls: 'zocial google'
-                    },
+                    }/*,
                     {
                         xtype: 'button',
-                        text: Ext.i18n.Bundle.message('login.button.twitter'),
-                        id: 'loginButtonTwitter',
+                        text: Ext.i18n.Bundle.message('login.button.osm'),
+                        id: 'loginButtonOsm',
                         baseCls: Ext.baseCSSPrefix + 'zocial-button',
-                        cls: 'zocial twitter'
-                    }
+                        cls: 'zocial pinboard'
+                    }*/
                 ]
             }
 		]
