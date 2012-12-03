@@ -33,6 +33,11 @@ $app->get(
 $app->get(
     '/:id/badges',
     function ($id) use ($userBadgesHandler, $res) {
+        if (!isset($_SESSION) || $id != $_SESSION['user_id']) {
+            $res->status(403);
+            $res->write("Wrong user_id");
+            return;
+        }
         $res->write($userBadgesHandler->getUserBadges($id));
     }
 );
