@@ -7,21 +7,15 @@ Ext.define('Kort.view.highscore.PullRefreshPlugin', {
     ],
 	
 	config: {
-       refreshFn: function(callbackFn, scope) {
+       refreshFn: function() {
             var me = this,
                 list = me.getList(),
                 store = list.getStore();
 
             if (store) {
                 store.load(function(records, operation, success) {
-                    callbackFn.call(scope);
-                    // wait until bounce back animation is done
-                    Ext.defer(function() {
-                        list.refresh();
-                    }, 500);
+                    list.refresh();
                 });
-            } else {
-                callbackFn.call(scope);
             }
         }
 	}

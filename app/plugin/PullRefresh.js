@@ -101,69 +101,42 @@ Ext.define('Kort.plugin.PullRefresh', {
         });
     },
     
-    onBounceTop: function(y) {
+    /**
+	 * OVERRIDEN SENCHA TOUCH FUNCTION
+	 * CHANGE: wait for a longer time to scroll to top
+	 */
+    loadStore: function() {
         var me = this,
-            pullHeight = me.pullHeight,
             list = me.getList(),
             scroller = list.getScrollable().getScroller();
-
-        if (!me.isReleased && !me.isLoading) {
-            if (!pullHeight) {
-                me.onPainted();
-                pullHeight = me.pullHeight;
-            }
-            if (!me.isRefreshing && -y >= pullHeight + 10) {
-                me.isRefreshing = true;
-
-                me.setViewState('release');
-
-                scroller.getContainer().onBefore({
-                    dragend: 'onScrollerDragEnd',
-                    single: true,
-                    scope: me
-                });
-            }
-            else if (me.isRefreshing && -y < pullHeight + 10) {
-                me.isRefreshing = false;
-                me.setViewState('pull');
-            }
-        }
-        
-        me.getTranslatable().translate(0, -y);
-    },
-    
-    loadStore: function() {
-        var me = this;
 
         me.setViewState('loading');
         me.isReleased = false;
-        me.isLoading = true;
-        
-        if (me.getRefreshFn()) {
-            me.getRefreshFn().call(me, me.afterStoreLoad, me);
-        } else {
-            me.fetchLatest();
-            Ext.defer(function() {
-                me.resetRefreshElement();
-            }, 1000);
-        }
-    },
-    
-    afterStoreLoad: function() {
-        this.resetRefreshElement();
-    },
-    
-    resetRefreshElement: function() {
-        var me = this,
-            list = me.getList(),
-            scroller = list.getScrollable().getScroller();
 
-        me.isLoading = false;
-        me.resetRefreshState();
-        scroller.minPosition.y = 0;
-        scroller.scrollTo(null, 0, true);
+        Ext.defer(function() {
+            scroller.on({
+                scrollend: function() {
+                    if (me.getRefreshFn()) {
+                        me.getRefreshFn().call(me, me);
+                    } else {
+                        me.fetchLatest();
+                    }
+                    me.resetRefreshState();
+                },
+                delay: 100,
+                single: true,
+                scope: me
+            });
+            scroller.minPosition.y = 0;
+            scroller.scrollTo(null, 0, true);
+		// CHANGE: wait for a longer time to scroll to top
+        }, 1000, me);
     },
-	
+    
+    /**
+	 * OVERRIDEN SENCHA TOUCH FUNCTION
+	 * CHANGE: German date format
+	 */ 
     resetRefreshState: function() {
         var me = this;
 
