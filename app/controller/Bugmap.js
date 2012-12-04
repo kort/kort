@@ -123,6 +123,7 @@ Ext.define('Kort.controller.Bugmap', {
     centerMapToCurrentPosition: function() {
         // centering map to current position
         this.getMapCmp().setMapCenter(this.getCurrentLocationLatLng(this.getMapCmp()));
+        this.getMap().setZoom(Kort.util.Config.getLeafletMap().zoom);
     },
 
     refreshBugMarkers: function() {
