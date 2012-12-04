@@ -1,18 +1,41 @@
 <?php
+/**
+ * kort - Reward class
+ */
 namespace Model;
 
+use Badge;
+
+/**
+ * The Reward class represents the entity, which a user can win.
+ *
+ * A reward may contain an amount of koins and one or more badges.
+ *
+ * @see Model\Badge
+ */
 class Reward
 {
+    /** Array of badges */
     protected $badges = array();
+    /** Amount of koins */
     protected $koinCount = 0;
 
-    public function __construct($koinCountTotal, $koinCountNew = 0, $badges = array())
+    /**
+    * Creates a new instance of Reward
+    * @param $koinCount amount of koins for this Reward
+    * @param $badges array of Badges of this Reward
+    * @return a new instance of Reward
+    */
     {
         $this->koinCountTotal = $koinCountTotal;
         $this->koinCountNew = $koinCountNew;
         $this->badges = $badges;
     }
 
+    /**
+    * Return the reward in JSON format
+    * @return the reward in JSON format
+    */
     public function toJson()
     {
         $response = array();
@@ -27,12 +50,19 @@ class Reward
         return json_encode($response);
     }
 
+    /**
+    * Return the badges of this rewards
+    * @return the badges of this rewards
+    */
     protected function getBadges()
     {
         return $this->badges;
     }
 
-    protected function getKoinCountNew()
+    /**
+    * Return the amount of koins of this reward
+    * @return int the amount of koins of this reward
+    */
     {
         return $this->koinCountNew;
     }

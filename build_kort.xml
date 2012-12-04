@@ -8,6 +8,7 @@
     <property name="uml.dir" value="_DOCUMENTATION/03_Model" />
     <property name="php.dir" value="server" />
     <property name="php.test.dir" value="server/php" />
+    <property name="php.doc.dir" value="docs/backend" />
     <property name="js.dir" value="app" />
     <property name="js.doc.dir" value="docs/Kort"/>
     <property name="test.dir" value="test" />
@@ -38,7 +39,17 @@
 				<fileset dir="${php.test.dir}" includes="**/Test*.php"/>
 			</path>
 		</foreach>
-	</target>
+    </target>
+
+    <target name="php-docs">
+        <echo message="Generating PHPDocs"/>
+        <exec executable="phpdoc">
+            <arg value="-d"/>
+            <arg value="${php.dir}"/>
+            <arg value="-t"/>
+            <arg value="${php.doc.dir}"/>
+        </exec>
+    </target>
 
 	<target name="js-test">
 		<echo message="Running tests"/>
