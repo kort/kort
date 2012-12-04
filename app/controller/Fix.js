@@ -37,7 +37,7 @@ Ext.define('Kort.controller.Fix', {
             fix,
             messageBox;
 
-        if (fixFieldValue !== '') {
+        if (fixFieldValue && fixFieldValue !== '') {
             me.showSendMask();
             fix = Ext.create('Kort.model.Fix', { error_id: detailTabPanel.getRecord().get('id'), user_id: userId, message: fixFieldValue });
             fix.save({

@@ -6,6 +6,7 @@ Ext.define('Kort.view.bugmap.fix.type.Select', {
         
         // always use Ext.picker.Picker
         usePicker: true,
+        autoSelect: false,
         valueField: 'value',
         displayField: 'title',
         defaultPhonePickerConfig: {
