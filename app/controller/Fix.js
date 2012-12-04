@@ -11,7 +11,7 @@ Ext.define('Kort.controller.Fix', {
         ],
         refs: {
             bugmapNavigationView: '#bugmapNavigationView',
-            detailTabPanel: '.fixtabpanel',
+            detailComponent: '.fixtabpanel',
             fixFormSubmitButton: '.fixtabpanel .formpanel .button[cls=fixSubmitButton]',
             fixField: '.fixtabpanel .formpanel .field',
             fixmap: '.fixtabpanel .kortleafletmap[cls=fixMap]'
@@ -31,7 +31,7 @@ Ext.define('Kort.controller.Fix', {
 
     onFixFormSubmitButtonTap: function() {
         var me = this,
-            detailTabPanel = this.getDetailTabPanel(),
+            detailComponent = this.getDetailComponent(),
             fixFieldValue = this.getFixField().getValue(),
             userId = Kort.user.get('id'),
             fix,
@@ -39,7 +39,7 @@ Ext.define('Kort.controller.Fix', {
 
         if (fixFieldValue && fixFieldValue !== '') {
             me.showSendMask();
-            fix = Ext.create('Kort.model.Fix', { error_id: detailTabPanel.getRecord().get('id'), user_id: userId, message: fixFieldValue });
+            fix = Ext.create('Kort.model.Fix', { error_id: detailComponent.getRecord().get('id'), user_id: userId, message: fixFieldValue });
             fix.save({
                 success: function(records, operation) {
                     me.hideSendMask();
