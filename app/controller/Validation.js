@@ -5,7 +5,7 @@ Ext.define('Kort.controller.Validation', {
         views: [
             'validation.NavigationView',
             'validation.List',
-            'validation.vote.TabPanel'
+            'validation.vote.Container'
         ],
         refs: {
             mainTabPanel: '#mainTabPanel',
@@ -16,7 +16,9 @@ Ext.define('Kort.controller.Validation', {
             validationList: {
                 itemtap: 'onValidationListItemTap'
             }
-        }
+        },
+        
+        itemTapDisabled: false
     },
     
     init: function() {
@@ -42,10 +44,19 @@ Ext.define('Kort.controller.Validation', {
     },
     
     onValidationListItemTap: function(list, index, target, record, e) {
-        var voteTabPanel = Ext.create('Kort.view.validation.vote.TabPanel', {
-            record: record,
-            title: record.get('title')
-        });
-        this.getValidationNavigationView().push(voteTabPanel);
+        var me = this,
+            voteTabPanel;
+        
+        if(!me.getItemTapDisabled()) {
+            me.setItemTapDisabled(true);
+            voteTabPanel = Ext.create('Kort.view.validation.vote.Container', {
+                record: record,
+                title: record.get('title')
+            });
+            me.getValidationNavigationView().push(voteTabPanel);
+        }
+        Ext.defer(function() {
+            me.setItemTapDisabled(false);
+        }, 200);
     }
 });

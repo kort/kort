@@ -9,6 +9,7 @@ Ext.define('Kort.model.Validation', {
 			{ name: 'osm_type', type: 'string' },
 			{ name: 'title', type: 'string' },
 			{ name: 'type', type: 'string' },
+			{ name: 'view_type', type: 'string' },
 			{ name: 'question', type: 'string' },
 			{ name: 'fixmessage', type: 'string' },
             { name: 'upratings', type: 'int' },

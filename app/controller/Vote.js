@@ -4,56 +4,78 @@ Ext.define('Kort.controller.Vote', {
     config: {
         views: [
             'validation.NavigationView',
-            'validation.vote.ButtonContainer',
             'validation.vote.Container',
-            'validation.vote.TabPanel',
+            'validation.vote.AnswerActionSheet',
             'LeafletMap'
         ],
         refs: {
             validationNavigationView: '#validationNavigationView',
-            detailTabPanel: '.votetabpanel',
-            voteMap: '.votetabpanel .kortleafletmap[cls=voteMap]',
-            voteAcceptButton: '.votetabpanel .votecontainer .button[cls=voteConfirmButton]',
-            voteDeclineButton: '.votetabpanel .votecontainer .button[cls=voteDeclineButton]',
-            voteCancelButton: '.votetabpanel .votecontainer .button[cls=voteCancelButton]'
+            detailComponent: '.votecontainer',
+            voteMap: '.votecontainer .kortleafletmap[cls=voteMap]',
+            voteAnswerButton: '.votecontainer .button[cls=voteAnswerButton]',
+            voteAnswerConfirmButton: '.voteansweractionsheet .button[cls=voteAnswerConfirmButton]',
+            voteAnswerDeclineButton: '.voteansweractionsheet .button[cls=voteAnswerDeclineButton]',
+            voteAnswerCancelButton: '.voteansweractionsheet .button[cls=voteAnswerCancelButton]'
         },
         control: {
             voteMap: {
                 maprender: 'onMaprender'
             },
-            voteAcceptButton: {
-                tap: 'onVoteAcceptButtonTap'
+            voteAnswerButton: {
+                tap: 'onVoteAnswerButtonTap'
             },
-            voteDeclineButton: {
-                tap: 'onVoteDeclineButtonTap'
+            voteAnswerConfirmButton: {
+                tap: 'onVoteAnswerConfirmButtonTap'
             },
-            voteCancelButton: {
-                tap: 'onVoteCancelButtonTap'
+            voteAnswerDeclineButton: {
+                tap: 'onVoteAnswerDeclineButtonTap'
+            },
+            voteAnswerCancelButton: {
+                tap: 'onVoteAnswerCancelButtonTap'
             }
-        }
+        },
+        
+        answerActionSheet: null
     },
     
-    onVoteAcceptButtonTap: function() {
+    onVoteAnswerButtonTap: function() {
+        var answerActionSheet = Ext.create('Kort.view.validation.vote.AnswerActionSheet');
+        
+        this.setAnswerActionSheet(answerActionSheet);
+        Ext.Viewport.add(answerActionSheet);
+        answerActionSheet.show();
+    },
+    
+    onVoteAnswerConfirmButtonTap: function() {
+        if(this.getAnswerActionSheet()) {
+            this.getAnswerActionSheet().hide();
+        }
         this.sendVote('true');
     },
     
-    onVoteDeclineButtonTap: function() {
+    onVoteAnswerDeclineButtonTap: function() {
+        if(this.getAnswerActionSheet()) {
+            this.getAnswerActionSheet().hide();
+        }
         this.sendVote('false');
     },
     
-    onVoteCancelButtonTap: function() {
+    onVoteAnswerCancelButtonTap: function() {
+        if(this.getAnswerActionSheet()) {
+            this.getAnswerActionSheet().hide();
+        }
         // remove detail panel
         this.getValidationNavigationView().pop();
     },
     
     sendVote: function(valid) {
         var me = this,
-            detailTabPanel = this.getDetailTabPanel(),
+            detailComponent = this.getDetailComponent(),
             userId = Kort.user.get('id'),
             vote;
             
         me.showSendMask();
-        vote = Ext.create('Kort.model.Vote', { fix_id: detailTabPanel.getRecord().get('id'), user_id: userId, valid: valid });
+        vote = Ext.create('Kort.model.Vote', { fix_id: detailComponent.getRecord().get('id'), user_id: userId, valid: valid });
         vote.save({
             success: function(records, operation) {
                 me.hideSendMask();

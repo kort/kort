@@ -16,6 +16,7 @@ class ValidationHandler extends DbProxyHandler
         return array(
             'id',
             'type',
+            'view_type',
             'osm_id',
             'osm_type',
             'title',

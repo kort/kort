@@ -265,9 +265,9 @@ $label-background-color: #46578D;
    Vote
    ----------------------- */
 .voteContainer {
-    padding: $panel-padding;
-    
     .vote-content {
+        padding: $panel-padding;
+        
         .question {
             margin: 0.5em 0;
         }
@@ -281,12 +281,18 @@ $label-background-color: #46578D;
         }
     }
     
-    .voteButtonContainer {
-        margin-top: 1em;
-        
-        .x-button {
-            margin-top: 0.2em;
-        }
+    .voteAnswerButton {
+        margin: $panel-padding;
+    }
+}
+
+.voteAnswerActionSheet {
+    .answerContent {
+        color: white;
+        margin-bottom: 0.5em;
+    }
+    .x-button {
+        margin-bottom: 0.3em;
     }
 }
 
