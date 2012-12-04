@@ -1,24 +1,28 @@
-Test = test
-This track doesn't have a tracktype = Dieser Weg hat keinen Wegtyp
-This node is tagged as %1 and therefore needs a name tag or an operator tag = Dieser Ort ist als %1 markiert und benötigt deshalb einen Namen
-This node is tagged as %1 and therefore needs a name tag or an name tag = Dieser Ort ist als %1 markiert und benötigt deshalb einen Namen
-missing maxspeed tag = Diese Strasse hat noch kein eingetragenes Tempolimit
-This way has no tags = Diese Strasse hat noch keinen Namen
-;It would be nice if this %1 had an additional tag 'name:XX=%2' where XX shows the language of its name '%2'. = In welcher Sprache
-This way is tagged as motorway and therefore needs a ref, nat_ref or int_ref tag = Diese Autobahn hat keinen Bezeichner
-This %1 is tagged as place of worship and therefore needs a religion tag = Zu welcher Religion gehört diese Kirche/Kultstätte?
-cafe = Café
-fast_food = Fast-Food Restaurant
-restaurant = Restaurant
-school = Schule
-pharmacy = Apotheke
-fuel = Tankstelle
-cinema = Kino
-bank = Bank
-university = Universität
-theatre = Theater
-pub = Pub
-place_of_worship = Kirche/Kultstätte
-library = Bibliothek
-hospital = Spital
-courthouse = Gerichtsgebäude
+# Error descriptions
+This track doesn't have a tracktype=Um welchen Weg-Typ handelt es sich hier?
+This node is tagged as $1 and therefore needs a name tag or an operator tag=Wie heisst diese/s $1?
+This node is tagged as $1 and therefore needs a name tag=Wie heisst diese/s $1?
+missing maxspeed tag=Welches Tempolimit gilt auf dieser Strasse?
+This way has no tags=Wie heisst diese Strasse?
+It would be nice if this $1 had an additional tag 'name:XX=$2' where XX shows the language of its name '$2'.=In welcher Sprache in der Name '$2'?
+This way is tagged as motorway and therefore needs a ref, nat_ref or int_ref tag=Wie lautet die Bezeichnung dieser Autobahn (z.B. A3 oder E385)?
+This %1 is tagged as place of worship and therefore needs a religion tag=Zu welcher Religion gehört diese Kirche/Kultstätte?
+
+# Single values
+cafe=Café
+fast_food=Fast-Food Restaurant
+restaurant=Restaurant
+school=Schule
+pharmacy=Apotheke
+fuel=Tankstelle
+cinema=Kino
+bank=Bank
+university=Universität
+theatre=Theater
+pub=Pub
+place_of_worship=Kirche/Kultstätte
+library=Bibliothek
+hospital=Spital
+courthouse=Gerichtsgebäude
+way=Weg
+node=Ort
