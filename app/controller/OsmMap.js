@@ -6,7 +6,7 @@ Ext.define('Kort.controller.OsmMap', {
     },
 
     onMaprender: function(cmp, map, tileLayer) {
-        var record = this.getDetailTabPanel().getRecord();
+        var record = this.getDetailComponent().getRecord();
 
         this.setMap(map);
         cmp.setMapCenter(L.latLng(record.get('latitude'), record.get('longitude')));

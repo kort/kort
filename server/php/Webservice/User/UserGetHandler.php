@@ -65,8 +65,9 @@ class UserGetHandler extends DbProxyHandler
         $user['id'] = null;
         $user['name'] = "Anonymous";
         $user['username'] = "";
-        $user["email"] = "";
-        $user["token"] = "";
+        $user['oauth_user_id'] = "";
+        $user['oauth_provider'] = "";
+        $user['token'] = "";
         $user["fix_count"] = 0;
         $user["vote_count"] = 0;
         $user["koin_count"] = 0;

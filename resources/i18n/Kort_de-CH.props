@@ -61,11 +61,11 @@ validation.list.header=positive Überprüfungen nötig
 validation.distance=Distanz
 
 ## Vote
-vote.map.title=Karte
-vote.container.title=Prüfen
-vote.container.button.accept=Ja
-vote.container.button.decline=Nein
-vote.container.button.cancel=Weiss nicht
+vote.container.button.answer=Ich kenne die Antwort!
+vote.answeractionsheet.button.accept=Ja
+vote.answeractionsheet.button.decline=Nein
+vote.answeractionsheet.button.cancel=Weiss nicht
+vote.answeractionsheet.question=Ist die Antwort korrekt?
 vote.sendmask.message=Sende Antwort...
 vote.alert.submit.failure.title=Fehler beim Senden
 vote.alert.submit.failure.message=Beim Übertragen des deiner Stimme ist etwas schief gelaufen. Bitte versuche es später noch einmal.
