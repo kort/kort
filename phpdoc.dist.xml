@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdoc>
+    <title>kort - Backend</title>
+    <files>
+        <ignore>Test/*</ignore>
+    </files>
+</phpdoc>
