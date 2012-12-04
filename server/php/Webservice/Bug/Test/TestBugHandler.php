@@ -40,7 +40,7 @@ class TestBugHandler extends AbstractKortUnitTestCase
         $bug['txt5'] = "";
 
         $translatedBug = array();
-        $translatedBug['description'] = "Dieser Ort ist als Café markiert und benötigt deshalb einen Namen";
+        $translatedBug['description'] = "Wie heisst diese/s Café?";
         $translatedBug['txt1'] = $bug['txt1'];
         $translatedBug['txt2'] = $bug['txt2'];
         $translatedBug['txt3'] = $bug['txt3'];
