@@ -15,14 +15,8 @@ Ext.define('Kort.view.validation.PullRefreshPlugin', {
             if (store) {
                 store.load(function(records, operation, success) {
                     store.updateDistances(Kort.geolocation);
-                    callbackFn.call(scope);
-                    // wait until bounce back animation is done
-                    Ext.defer(function() {
-                        list.refresh();
-                    }, 500);
+                    list.refresh();
                 });
-            } else {
-                callbackFn.call(scope);
             }
         }
 	}
