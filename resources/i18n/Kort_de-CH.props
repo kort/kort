@@ -3,7 +3,7 @@ tab.bugmap=Aufträge
 tab.validation=Prüfen
 tab.highscore=Highscore
 tab.profile=Profil
-tab.about=Über kort
+tab.about=Über KORT
 button.back=Zurück
 
 # Submitted Popup
@@ -11,14 +11,18 @@ submitted.message.1=Du hast dir
 submitted.message.2=koins verdient!
 
 # Login
-login.title=Login
-login.introduction=Bitte logge dich ein, um kort nutzen zu können!
+login.kort.description.1=Löse Fehler
+login.kort.description.2=Sammle koins
+login.kort.description.3=Steige auf
+login.introduction.1=Um 
+login.introduction.2= nutzen zu können musst du dich aber zuerst einloggen:
 login.button.google=Login mit Google
 login.button.osm=Login mit OpenStreetMap
 login.loadmask.message=Login...
 
 # Firststeps
-firststeps.introduction=Willkommen bei kort! Wähle einen Benutzernamen:
+firststeps.introduction.1=Willkommen bei 
+firststeps.introduction.2=! Wähle einen Benutzernamen:
 firststeps.form.username.placeholder=Benutzername
 firststeps.form.button.submit=Mission beginnen!
 firststeps.alert.username.empty.title=Benutzernamen eingeben
@@ -29,7 +33,8 @@ firststeps.alert.submit.failure.title=Fehler beim Senden
 firststeps.alert.submit.failure.message=Beim Übertragen deines Benutzernamens ist ein Fehler aufgetretten. Bitte versuche es später noch einmal.
 
 # Geolocation error
-geolocationerror.introduction=Um kort verwenden zu können, muss auf deine Position zugegriffen werden können.
+geolocationerror.introduction.1=Um 
+geolocationerror.introduction.2= verwenden zu können, muss auf deine Position zugegriffen werden können.
 geolocationerror.button.reload=Applikation neu laden
 geolocationerror.loadmask.message=Lade App neu...
 
@@ -61,7 +66,7 @@ validation.list.header=positive Überprüfungen nötig
 validation.distance=Distanz
 
 ## Vote
-vote.container.button.answer=Ich kenne die Antwort!
+vote.container.button.answer=Beantworten
 vote.answeractionsheet.button.accept=Ja
 vote.answeractionsheet.button.decline=Nein
 vote.answeractionsheet.button.cancel=Weiss nicht
@@ -102,7 +107,7 @@ profile.badges.emptytext=Deine Auszeichnungen konnten nicht geladen werden.
 profile.badges.button.close=Schliessen
 
 # About
-about.title=Über kort
+about.title=Über KORT
 about.version.title=Version
 about.authors.title=Autoren
 about.project.title=Projekt
