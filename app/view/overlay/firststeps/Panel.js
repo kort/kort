@@ -30,7 +30,9 @@ Ext.define('Kort.view.overlay.firststeps.Panel', {
                                 '<img src="./resources/images/kort-logo.png" />' +
                             '</div>' +
                             '<div class="introduction">' +
-                                Ext.i18n.Bundle.message('firststeps.introduction') +
+                                Ext.i18n.Bundle.message('firststeps.introduction.1') +
+                                Kort.util.Config.getKortTitle() +
+                                Ext.i18n.Bundle.message('firststeps.introduction.2') +
                             '</div>' +
                         '</div>'
 			},
