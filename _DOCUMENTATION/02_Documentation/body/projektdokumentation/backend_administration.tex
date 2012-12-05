@@ -73,3 +73,15 @@ createFixField: function(bug) {
 	[...]
 }
 \end{lstlisting}
+
+\section{Hinzufügen von Auszeichnungen}
+\label{kort-additional-badges}
+Die bereits vorhandenen Auszeichnungen sind in Tabelle \ref{kort-badges} beschrieben. Um weitere Auszeichnungen hinzuzufügen, muss folgendermassen vorgegangen werden:
+
+\begin{enumerate}
+\item Badge muss in die Tabelle \inlinecode{kort.badge} eingefügt werden
+\item Zusätzlich muss die Regel für das Gewinnen des Badges in der Abfrage XY definiert werden. \todo[inline]{Abfrage erstellen und einfügen}
+\item Für das Frontend muss ein Bild erstellt werden, welches dem Namen (Tabellenattribut \inlinecode{kort.badge.name}) des Badges entspricht. Dieses Bild muss in folgendem Pfad gespeichert werden \inlinecode{/resources/images/badges/<badgename>.png}.
+\end{enumerate}
+
+Sind alle Punkte abgearbeitet ist der Badge im Frontend ersichtlich und kann von den Benutzern gewonnen werden.

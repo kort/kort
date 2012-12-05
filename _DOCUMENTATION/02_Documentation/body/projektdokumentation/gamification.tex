@@ -4,11 +4,99 @@
 Unter Gamification versteht man die Verwendung von spieltypischen Elementen in einem spielfremden Kontext.
 Die bekanntesten Elemente sind dabei die Punktevergabe für das Lösen von Aufgaben, die Verleihung von Badges für besondere Einsätze oder das Bereitstellen einer Highscore zum Vergleich mit anderen Benutzern.
 
-\section{Gamification in kort}
+Während unserer Arbeit hatten wir verschiedene Partner, welche uns bei der Gamification unserer Applikation unterstützen.
+So ist einer unserer Industriepartner Mitinhaber der Firma bitforge AG, welche sich auf Games im mobilen Umfeld spezialisiert hat.
+Er konnte uns vor und während der Entwicklung viele Tipps zur Verbesserung des Spielgefühls geben.
 
+\section{Gamification in kort}
+Einige Ideen konnten wir direkt in unserer App umsetzen.
+
+\subsection{Sprache}
+Gamification findet sich nicht nur in schönen Grafiken und Spiel-Elementen.
+Sie beginnt bereits bei der Sprachwahl von Texten.
+Beim Lesen der Texte sollte beispielsweise eine gewisse Spannung aufgebaut werden.
+Dadurch erhöht sich die Motivation die anstehende Aktion durchzuführen.
+Ein Beispiel dafür findet sich in der Button-Bezeichnung bei der Eingabe des eigenen Benutzernamens.
+Zu Beginn war dieser mit "`App starten"' beschriftet.
+Wir haben ihn aber später mit dem Text "`Mission beginnen!"' ersetzt.
+Weiter wurde der Button grün eingefärbt, um ihn zusätzlich vom Text und vom Hintergrund abzuheben.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{images/gamification/gamification-lang-firststeps}
+	\caption{Gamification - Sprache}
+	\label{gamification-lang-firststeps}
+\end{figure}
+
+Zusätzlich zur gewählten Ausdrucksweise sollte die Sprache dem Zielpublikum angepasst werden.
+Wir mussten dafür viele Begriffe aus dem Mapping-Vokabular für unserer breite Zielgruppe durch allgemeinere Wörter ersetzen.
+
+\subsection{Punktesystem "`koins"'}
+Eines der wichtigsten Elemente im Spiel bildet das Punktesystem. Dieses findet sicht bei beinahe allen Aktionen der App wieder. So gewinnt ein Spieler für gelöste Aufgaben oder getätigte Prüfungen eine Anzahl an sogenannten \emph{koins}. Über die Anzahl \emph{koins} kann er sich wiederum in der Highscore mit den anderen Spieler vergleichen.
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{images/gamification/gamification-koin}
+	\caption{Gamification - koins}
+	\label{gamification-koins}
+\end{figure}
+
+\subsection{Auszeichnungen}
+Zusätzlich zu den koins kann ein Spieler Auszeichnungen gewinnen. Diese erhält man durch besonders engagierten Einsatz. In \emph{kort} sind momentan folgende neun Auszeichnungen implementiert:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.3\twocelltabwidth}|p{0.7\twocelltabwidth}|}
+\hline 
+\textbf{Auszeichnungstyp} & \textbf{Beschreibung} \\ 
+\hline 
+Rangierung & Drei Auszeichnungen für das Erreichen des 1., 2. und 3. Rangs in der Highscore. \\ 
+\hline 
+Aufträge & Drei Auszeichnungen für das Lösen von 10, 50 und 100 Auträgen. \\ 
+\hline 
+Prüfungen & Drei Auszeichnungen für 10, 10 und 1000 geprüfte Antworten. \\ 
+\hline 
+\end{tabular} 
+\caption{kort Auszeichnungen}
+\label{kort-badges}
+\end{table}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{images/gamification/gamification-badges}
+	\caption{Gamification - Badges}
+	\label{gamification-badges}
+\end{figure}
+
+Das Hinzufügen von zusätzlichen Auszeichnungen ist in Abschnitt \ref{kort-additional-badges} beschrieben.
+
+\subsection{Highscore}
+Über die Highscore haben die Benutzer der App die Möglichkeit sich mit den anderen Spielern zu vergleichen. Dazu werden sie nach Anzahl gewonnener \emph{koins} in einer Rangliste eingestuft.
 
 \section{Weitere mögliche Elemente}
+Neben den verwendeten Gamification-Elementen in kort gibt es noch eine Vielzahl weiterer Elemente, welche sich für diesen Anwendungszweck eigenen würden.
 
-Zeitlich begrenze Aktionen
-Highscores für verschiedene Bereiche
-Erhöhen von Berechtigungen für besonders aktive Benutzer
+\subsubsection{Erste Schritte}
+Um den Einstieg in die Verwendung der App weiter zu vereinfachen würde sich beim ersten Start eine kurze Einführung anbieten. So könnte man dem Benutzer für die einzelnen Masken jeweils Tipps einblenden oder gar eine geführte Tour durch die App und deren Möglichkeiten anbieten.
+
+\subsubsection{Zeitlich begrenze Aktionen}
+Durch das Anbieten von zeitlich begrenzten Aktionen kann man Benutzer dazu motivieren die App erneut zu verwenden.
+So könnte man Tage definieren, an denen man die doppelte Anzahl an Punkten gewinnt.
+Zusätzlich könnte man Aktionen starten, bei denen man einen speziellen Badge gewinnen kann.\footnote{Biespiel einer zeitlich begrenzen Aktion in OpenStreetMap: Das \emph{big basball project 2011} \url{http://wiki.openstreetmap.org/wiki/Big_baseball_project_2011}}
+
+\subsubsection{Den Benutzer bei der Stange halten}
+Um den Benutzer dazu zu animieren die App zu starten, könnte man per Push-Meldungen auf aktuelle Aktionen oder Ereignisse aufmerksam machen.
+
+\subsubsection{Verschiedene Highscores}
+Durch das bereitstellen von verschiedenen Highscores (Bsp. Regional, Nach Fehlertyp) gibt man allen Benutzern die Chance irgendwo den ersten Platz zu erreichen.
+Dadurch verhindert man eine mögliche Demotivation beim Vergleich mit Powerusern.
+
+\subsubsection{Erhöhen von Berechtigungen}
+Man könnte als Belohnung für viele gelöste Fehler die Berechtigungen des Benutzers erhöhen. So könnte beispielsweise seine Stimme bei einer Überprüfung einer Lösung doppelt zählen. 
+
+\subsubsection{Schwierigkeitsstufen}
+Beim Erreichen einer gewissen Punktzahl könnte man dem Benutzer schwierigere Fehler anzeigen.
+
+\subsubsection{Design}
+Natürlich könnte man auch noch am Design einiges verändern, um den Spielspass zu erhöhen.

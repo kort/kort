@@ -1,0 +1,85 @@
+\chapter{Fehler-Datenquellen}
+\label{datenquellen}
+Die Grundlage unserer WebApp bilden die Fehlerdaten, welche korrigiert werden sollen.
+Es galt deshalb zuerst eine geeignete Quelle für Fehlerdaten in OpenStreetMap zu finden.
+
+\section{Evaluation von geeigneten Datenquellen}
+Durch die Anforderungen an die Applikation ergaben sich folgende Bedingungen, welche die Fehlerdaten erfüllen müssen:
+
+\begin{itemize}
+\item Die Fehler müssen auch für Nicht-Mapper lösbar sein. Sprich die Beschreibungen sollten kein Mapping-Vokabular enthalten.
+\item Sie müssen auf Deutsch übersetzbar sein. Die Fehlerbeschreibungen sollten somit einem gegebenen Schema folgen und nicht Freitext beinhalten.
+\item Dadurch dass wir eine mobile App erstellen und keinen vollwertigen Karten-Editor, sollen die Fehler lediglich Tags betreffen. Das Lösen des Fehlers sollte also möglich sein, ohne das Geometrieobjekt (Strasse, Gebäude, usw.) zu verändern.
+\item Die Fehler sollten sich immer nur auf einen Tag des betroffenen OSM-Objekt beziehen. Dadurch vereinfacht sich das Zurückschreiben der Daten zu OpenStreetMap.
+\end{itemize}
+
+Wir untersuchten deshalb mehrere Fehlerdatenquellen auf deren Qualität.
+
+\subsection{FIXME-Tags in OpenStreetMap}
+Die Objekte in OpenStreetMap können von Benutzern direkt mit einem FIXME-Tag versehen werden, wenn sie einen Fehler aufweisen.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.25\twocelltabwidth}|p{0.75\twocelltabwidth}|}
+\hline 
+\textbf{URL} & \url{http://wiki.openstreetmap.org/wiki/DE:Key:fixme} \\
+\hline 
+\textbf{Erfasser} & OpenStreetMap-Benutzer \\
+\hline 
+\textbf{API verfügbar?} & Ja (API oder Datenbankzugriff) \\
+\hline 
+\textbf{Lösung zurückschreiben} & Lösung könnte via API an OSM gesendet werden. \\
+\hline
+\textbf{Eignung} & \textbf{tief} \linebreak Durch die manuelle Erfassung der Daten, ist es für uns nicht möglich ein spezifisches GUI für die Fehlerbehebung zu erstellen. \\ 
+\hline 
+\end{tabular} 
+\caption{FIXME-Tags in OpenStreetMap}
+\label{datenquellen-fixme_tags_osm}
+\end{table}
+
+\subsection{OpenStreetBugs}
+Mit der Applikation OpenStreetBugs ist es für die Benutzer möglich Fehler in den Kartendaten als Bug zu erfassen.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.25\twocelltabwidth}|p{0.75\twocelltabwidth}|}
+\hline 
+\textbf{URL} & \url{http://openstreetbugs.schokokeks.org/} \\
+\hline 
+\textbf{Erfasser} & OpenStreetBugs-Benutzer \\
+\hline 
+\textbf{API verfügbar?} & ??????? \\
+\hline 
+\textbf{Lösung zurückschreiben} & Lösung müsste an OpenStreetMaps gesendet werden. Zusätzlich  müsste der Bug auf OpenStreetBugs als gelöst markiert werden. \\
+\hline
+\textbf{Eignung} & \textbf{tief} \linebreak Durch die manuelle Erfassung der Daten, ist es für uns nicht möglich ein spezifisches GUI für die Fehlerbehebung zu erstellen. \\ 
+\hline 
+\end{tabular} 
+\caption{OpenStreetBugs}
+\label{datenquellen-openstreetbugs}
+\end{table}
+
+\subsection{keepright}
+keepright ist ein Dienst, welcher jeweils über Nacht, Tag-Fehler in OSM-Objekten sucht und in einer eigenen Datenbank ablegt.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.25\twocelltabwidth}|p{0.75\twocelltabwidth}|}
+\hline 
+\textbf{URL} & \url{http://keepright.ipax.at} \\
+\hline 
+\textbf{Erfasser} & Automatisiert durch nächtlichen Job \\
+\hline 
+\textbf{API verfügbar?} & Fehlerdaten werden als Dump-File zum Download angeboten. \\
+\hline 
+\textbf{Lösung zurückschreiben} & Lösung müssten lediglich an OpenStreetMap gesendet werden. keepright baut seine Fehlerdatenbank jeweils über Nacht aus dem OSM-Daten neu auf. \\
+\hline
+\textbf{Eignung} & \textbf{hoch} \linebreak Dadurch das die Fehlerdaten automatisiert erstellt werden, ist es für uns möglich für jeweilige Fehlertypen eine geeignete Maske für deren Behebung zur Verfügung zu stellen. \\
+\hline
+\end{tabular}
+\caption{keepright}
+\label{datenquellen-keepright}
+\end{table}
+
+\section{Entscheid: Fehlerdaten von keepright}
+Durch die gute Eignung der Fehlerdaten vom keepright-Dienst, haben wir uns dazu entschieden deren Daten als Basis für unsere Fehler zu verwenden.
