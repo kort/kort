@@ -24,6 +24,7 @@ Ext.define('Kort.util.Config', {
             featureColor: '#FF0000',
             featureOpacity: 0.7
         },
+        kortTitle: '<span class="kort-title"><span class="kort-k">K</span><span class="kort-ort">ORT</span></span>',
         about: {
             authors: [
                 'Stefan Oderbolz',

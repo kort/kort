@@ -17,8 +17,15 @@ Ext.define('Kort.view.overlay.login.Panel', {
                             '<div class="logo">' +
                                 '<img src="./resources/images/kort-logo.png" />' +
                             '</div>' +
+                            '<ul class="kort-description">' +
+                                '<li>' + Ext.i18n.Bundle.message('login.kort.description.1') + '</li>' +
+                                '<li>' + Ext.i18n.Bundle.message('login.kort.description.2') + '</li>' +
+                                '<li>' + Ext.i18n.Bundle.message('login.kort.description.3') + '</li>' +
+                            '</ul>' +
                             '<div class="introduction">' +
-                                Ext.i18n.Bundle.message('login.introduction') +
+                                Ext.i18n.Bundle.message('login.introduction.1') +
+                                Kort.util.Config.getKortTitle() +
+                                Ext.i18n.Bundle.message('login.introduction.2') +
                             '</div>' +
                         '</div>'
 			},

@@ -26,6 +26,20 @@ $label-background-color: #46578D;
 
 // Login
 #loginPanel {
+    ul.kort-description {
+        margin-top: 0.5em;
+        border-radius: 0.5em;
+        padding: 0.5em 0.7em;
+        background-color: $dark-grey;
+        color: #fff;
+        box-shadow: inset 0 0 0.5em #303030;
+
+        li {
+            list-style: square;
+            margin-left: 4.5em;
+        }
+    }
+    
     .x-panel-inner {
         padding: 1em;
     }
@@ -674,5 +688,13 @@ $label-background-color: #46578D;
     dd {
         font-size: $default-font-size;
         margin: 0.2em 0;
+    }
+}
+
+.kort-title {
+    font-weight: bold;
+    
+    .kort-ort {
+        font-size: 0.8em;
     }
 }
