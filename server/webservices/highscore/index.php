@@ -19,7 +19,7 @@ $app->get(
     '/',
     function () use ($highscoreHandler, $slim) {
         $highscoreData = $highscoreHandler->getHighscore();
-        $slim->returnOr404($highscoreData);
+        $slim->returnData($highscoreData);
     }
 );
 
