@@ -20,7 +20,7 @@ $app->get(
         $radius = $app->request()->params('radius');
 
         $bugData = $bugHandler->getBugsByOwnPosition($lat, $lng, $limit, $radius);
-        $slim->returnOr404($bugData);
+        $slim->returnData($bugData);
     }
 );
 

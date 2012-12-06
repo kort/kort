@@ -27,7 +27,7 @@ $app->get(
             $secret = $_SESSION['secret'];
         }
         $userData = $userGetHandler->getUserBySecret($secret);
-        $slim->returnOr404($userData);
+        $slim->returnData($userData);
     }
 );
 
@@ -38,7 +38,7 @@ $app->get(
             return;
         }
         $userBadges = $userBadgesHandler->getUserBadges($id);
-        $slim->returnOr404($userBadges);
+        $slim->returnData($userBadges);
     }
 );
 

@@ -20,7 +20,7 @@ $app->get(
         $radius = $app->request()->params('radius');
 
         $validationData = $validationHandler->getValidationsByOwnPosition($lat, $lng, $limit, $radius);
-        $slim->returnOr404($validationData);
+        $slim->returnData($validationData);
     }
 );
 
