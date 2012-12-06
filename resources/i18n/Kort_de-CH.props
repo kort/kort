@@ -61,7 +61,7 @@ fix.alert.submit.failure.message=Beim Übertragen des Formulars ist etwas schief
 # Validation
 validation.title=Prüfen
 validation.loadmask.message=Lade Daten...
-validation.emptytext=Keine Daten vorhanden.
+validation.emptytext=Bravo! Du hast alle Meldungen überprüft.
 validation.list.header=positive Überprüfungen nötig
 validation.distance=Distanz
 

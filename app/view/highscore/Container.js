@@ -17,7 +17,17 @@ Ext.define('Kort.view.highscore.Container', {
 				xtype: 'titlebar',
 				cls: 'titlebar',
 				docked: 'top',
-				title: Ext.i18n.Bundle.message('highscore.title')
+				title: Ext.i18n.Bundle.message('highscore.title'),
+                
+                items: [
+                    {
+                        xtype: 'button',
+                        cls: 'highscoreRefreshButton',
+                        iconCls: 'refresh',
+                        iconMask: true,
+                        align: 'right'
+                    }
+                ]
 			},
 			{
                 xtype: 'highscorelist'

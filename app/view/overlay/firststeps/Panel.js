@@ -46,8 +46,8 @@ Ext.define('Kort.view.overlay.firststeps.Panel', {
                         xtype: 'textfield',
                         cls: 'usernameTextfield',
                         name: 'username',
-                        // TODO i18n bundle doens't work for placeholders
-                        placeHolder: 'Benutzername'
+                        // i18n bundle doens't work for placeholders -> get text from config
+                        placeHolder: Kort.util.Config.getFormPlaceholders().username
                     },
                     {
                         xtype: 'button',

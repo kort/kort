@@ -96,7 +96,6 @@ Ext.define('Kort.view.bugmap.fix.Form', {
             fixField = Ext.create('Ext.field.Text', fieldConfig);
         }
         
-        // TODO i18n bundle doens't work for placeholders
         fixField.setPlaceHolder(this.getRecord().get('answer_placeholder'));
         
         return fixField;
