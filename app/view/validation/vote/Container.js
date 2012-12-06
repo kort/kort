@@ -25,7 +25,7 @@ Ext.define('Kort.view.validation.vote.Container', {
 
         this.callParent(arguments);
         
-        // replace fixmessage with title if select view type given 
+        // replace fixmessage with title if select view type given
         if(this.getRecord().get('view_type') === 'select') {
             // filter answers for given type
             selectAnswersStore.filter('type', this.getRecord().get('type'));
