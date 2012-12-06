@@ -136,7 +136,7 @@ Ext.define('Kort.plugin.PullRefresh', {
     /**
 	 * OVERRIDEN SENCHA TOUCH FUNCTION
 	 * CHANGE: German date format
-	 */ 
+	 */
     resetRefreshState: function() {
         var me = this;
 
