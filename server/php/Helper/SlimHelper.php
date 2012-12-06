@@ -9,13 +9,9 @@ class SlimHelper {
         $this->app = $app;
     }
 
-    public function returnOr404($data)
+    public function returnData($data)
     {
-        if (empty($data)) {
-            $this->app->response()->status(404);
-        } else {
-            $this->app->response()->write($data);
-        }
+        $this->app->response()->write("{\"return\": ". $data . "}");
     }
 
     public function checkUserId($id)
