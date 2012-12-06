@@ -19,10 +19,12 @@ select  e.error_id id,
         e.txt5
 from    keepright.errors e,
         keepright.error_type t
-where   e.error_type_id = t.error_type_id;
+where   e.error_type_id = t.error_type_id
+and     not exists (select 1 from kort.fix f where f.error_id = e.error_id);
 
 create or replace view kort.validations as
 select  f.fix_id id,
+        f.user_id fix_user_id,
         e.object_id osm_id,
         e.object_type osm_type,
         t.description title,
@@ -40,7 +42,8 @@ from    keepright.errors e,
         keepright.error_type t,
         kort.fix f
 where   e.error_type_id = t.error_type_id
-        and f.error_id = e.error_id;
+and     f.error_id = e.error_id
+and     not f.complete;
 
 create or replace view kort.tracktype as
 select a.answer_id tracktype_id,
