@@ -11,6 +11,9 @@ class SlimHelper {
 
     public function returnData($data)
     {
+        if(empty($data)) {
+            $data = '[]';
+        }
         $this->app->response()->write("{\"return\": ". $data . "}");
     }
 

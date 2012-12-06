@@ -6,10 +6,11 @@ Ext.define('Kort.store.UserBadges', {
         
 		proxy: {
 			type: 'rest',
-            url : '',
+            url: '',
             sorters: 'sorting',
             reader: {
-                type: 'json'
+                type: 'json',
+                rootProperty: 'return'
             }
 		}
 	}
