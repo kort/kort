@@ -5,11 +5,12 @@ Ext.define('Kort.store.SelectAnswers', {
 		model: 'Kort.model.SelectAnswer',
 
 		proxy: {
-			type: 'ajax',
-            url : './server/webservices/answer',
+			type: 'rest',
+            url: './server/webservices/answer',
             sorters: 'sorting',
             reader: {
-                type: 'json'
+                type: 'json',
+                rootProperty: 'return'
             }
 		}
 	}
