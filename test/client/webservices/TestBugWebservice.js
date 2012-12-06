@@ -4,7 +4,7 @@ module("kort-BugWebservice", {
     }
 });
 
-test("position", function() {
+testSkip("position", function() {
 	var type = 'GET',
         data = null,
         url = urlLib.getAppUrl() + '/' + this.path + '/position/47.3441552,8.531329900000003';
@@ -30,7 +30,7 @@ test("position", function() {
     });
 });
 
-test("position - no params with trailing slash", function() {
+testSkip("position - no params with trailing slash", function() {
 	var type = 'GET',
         data = null,
         url = urlLib.getAppUrl() + '/' + this.path + '/position/';
@@ -40,7 +40,7 @@ test("position - no params with trailing slash", function() {
     }, true);
 });
 
-test("position - no params, no trailing slash", function() {
+testSkip("position - no params, no trailing slash", function() {
 	var type = 'GET',
         data = null,
         url = urlLib.getAppUrl() + '/' + this.path + '/position';
@@ -50,7 +50,7 @@ test("position - no params, no trailing slash", function() {
     }, true);
 });
 
-test("fix", function() {
+testSkip("fix", function() {
 	var type = 'POST',
         data = {
             id: 12345,
