@@ -20,26 +20,26 @@ Ext.application({
     ],
 
     controllers: [
-		'About',
-		'Bugmap',
+        'About',
+        'Bugmap',
         'Firststeps',
-		'Fix',
+        'Fix',
         'GeolocationError',
-		'Highscore',
+        'Highscore',
         'Login',
         'Main',
         'OsmMap',
         'Profile',
         'Validation',
         'Vote'
-	],
+    ],
 
     models: [
-		'Badge',
-		'Bug',
+        'Badge',
+        'Bug',
         'Fix',
-		'HighscoreEntry',
-		'Reward',
+        'HighscoreEntry',
+        'Reward',
         'SelectAnswer',
         'User',
         'UserLocal',
@@ -48,9 +48,9 @@ Ext.application({
     ],
 
     stores: [
-		'Bugs',
-		'Highscore',
-		'SelectAnswers',
+        'Bugs',
+        'Highscore',
+        'SelectAnswers',
         'UserBadges',
         'UserLocal',
         'Validations'
@@ -59,22 +59,22 @@ Ext.application({
     icon: './resources/images/kort-icon.png',
 
     startupImage: {
-		// Non-retina iPhone, iPod touch, and all Android devices
-		'320x460': './resources/images/kort-startup-320x460.jpg',
-		// Retina iPhone and iPod touch
-		'640x920': './resources/images/kort-startup-640x920.png'
-	},
+        // Non-retina iPhone, iPod touch, and all Android devices
+        '320x460': './resources/images/kort-startup-320x460.jpg',
+        // Retina iPhone and iPod touch
+        '640x920': './resources/images/kort-startup-640x920.png'
+    },
 
     viewport: {
-		// hide navigation bar of browser
-		autoMaximize: true
-	},
+        // hide navigation bar of browser
+        autoMaximize: true
+    },
 
     // launch function is called as soon as app is ready
     launch: function() {
         // Destroy the #appStartscreen element
         Ext.fly('appStartscreen').destroy();
-        
+
         var selectAnswersStore = Ext.getStore('SelectAnswers'),
             mainPanel;
 
@@ -82,19 +82,19 @@ Ext.application({
         this.configureMessageBox();
 
         selectAnswersStore.load();
-        
+
         // create main panel
         mainPanel = Ext.create('Kort.view.Main');
         Ext.Viewport.add(mainPanel);
         mainPanel.hide();
-        
+
         // create ui
         this.loadGeolocation(mainPanel);
     },
-    
+
     loadGeolocation: function(mainPanel) {
         var me = this;
-        
+
         Kort.geolocation = Ext.create('Kort.util.Geolocation');
         Kort.geolocation.updateLocation(function(geo) {
             if(geo) {
@@ -104,11 +104,11 @@ Ext.application({
             }
         });
     },
-    
+
     loadUserClientSecret: function(geo, mainPanel) {
         var me = this,
             userLocalStore = Ext.getStore('UserLocal');
-        
+
         userLocalStore.load(function(records, operation, success) {
             console.log('userLocalStore loaded');
             if(records.length === 0) {
@@ -120,7 +120,7 @@ Ext.application({
             }
         }, me);
     },
-    
+
     loadUser: function(geo, mainPanel, clientSecret) {
         var me = this,
             userLocalStore = Ext.getStore('UserLocal');
@@ -153,11 +153,11 @@ Ext.application({
             }
         });
     },
-    
+
     writeUserClientSecret: function(clientSecret) {
         var userLocalStore = Ext.getStore('UserLocal'),
             userLocal;
-        
+
         if(clientSecret) {
             console.log('writing userClientSecret to localstore: ' + clientSecret);
             userLocal = Ext.create('Kort.model.UserLocal', { 'secret': clientSecret });
@@ -167,33 +167,33 @@ Ext.application({
             console.log('Error: no client secret passed');
         }
     },
-    
+
     showLoginOverlay: function() {
         var loginPanel;
-        
+
         console.log('user not logged in -> show login panel');
         loginPanel = Ext.create('Kort.view.overlay.login.Panel');
         Ext.Viewport.add(loginPanel);
         loginPanel.show();
     },
-    
+
     showGeolocationErrorOverlay: function() {
         var geolocationerrorPanel;
-        
+
         console.log('geolocation error');
         geolocationerrorPanel = Ext.create('Kort.view.overlay.geolocationerror.Panel');
         Ext.Viewport.add(geolocationerrorPanel);
         geolocationerrorPanel.show();
     },
-    
+
     showMainPanel: function(geo, mainPanel) {
         var validationsStore = Ext.getStore('Validations'),
             userBadges = Ext.getStore('UserBadges');
-        
+
         mainPanel.show();
-        
+
         validationsStore.getProxy().setUrl('./server/webservices/validation/position/' + geo.getLatitude() + ',' + geo.getLongitude());
-        
+
         validationsStore.load(function(records, operation, success) {
             console.log('validationStores load');
             validationsStore.updateDistances(Kort.geolocation);
@@ -204,7 +204,7 @@ Ext.application({
         // loading badges of user
         userBadges.getProxy().setUrl('./server/webservices/user/' + Kort.user.get('id') + '/badges');
         userBadges.load();
-        
+
         // loading highscore
         Ext.getStore('Highscore').load();
 
@@ -212,7 +212,7 @@ Ext.application({
             this.showFirstStepsPanel();
         }
     },
-    
+
     showFirstStepsPanel: function() {
         var firststepsPanel = Ext.create('Kort.view.overlay.firststeps.Panel');
         console.log('no username given -> show first steps panel');
@@ -222,10 +222,10 @@ Ext.application({
 
     prepareI18n: function() {
         Ext.i18n.Bundle.configure({
-			bundle: 'Kort',
-			language: 'de-CH',
-			path: 'resources/i18n',
-			noCache: true
+            bundle: 'Kort',
+            language: 'de-CH',
+            path: 'resources/i18n',
+            noCache: true
         });
     },
 
