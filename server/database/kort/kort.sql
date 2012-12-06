@@ -49,6 +49,7 @@ create table kort.validation (
     validation_id integer primary key default nextval('kort.validation_id'),
     user_id integer,
     fix_id integer,
-    valid boolean
+    valid boolean,
+    create_date timestamp not null default now()
 );
 
