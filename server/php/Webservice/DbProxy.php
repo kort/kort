@@ -78,7 +78,7 @@ class DbProxy
             $path .= "limit=" . $this->limit . "&";
         }
         $path .= "key=" . $this->wsConfig->getApiKey();
-        return $this->request("GET", $this->wsConfig->url . $path);
+        return $this->request("GET", $this->wsConfig->getUrl() . $path);
     }
 
     public function insert($data)
@@ -90,7 +90,7 @@ class DbProxy
         if ($this->returnFields) {
             $data['return'] = implode(",", $this->returnFields);
         }
-        return $this->request("POST", $this->wsConfig->url . $path, $data);
+        return $this->request("POST", $this->wsConfig->getUrl() . $path, $data);
     }
 
     public function getInsertParams($data, $returnResults = false)
@@ -121,7 +121,7 @@ class DbProxy
         if ($this->returnFields) {
             $data['return'] = implode(",", $this->returnFields);
         }
-        return $this->request("PUT", $this->wsConfig->url . $path, $data);
+        return $this->request("PUT", $this->wsConfig->getUrl() . $path, $data);
     }
 
     protected function request($method, $url, $data = false)
