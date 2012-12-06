@@ -5,12 +5,13 @@ require_once('../../../server/php/ClassLoader.php');
 use Webservice\User\UserHandler;
 use Webservice\User\UserGetHandler;
 use Webservice\User\UserBadgesHandler;
+use Helper\SlimHelper;
 
 // Load Slim library
 \Slim\Slim::registerAutoloader();
 Kort\ClassLoader::registerAutoLoader();
 $app = new \Slim\Slim();
-$res = $app->response();
+$slim = new SlimHelper($app);
 
  \session_start();
 
@@ -21,32 +22,31 @@ $userBadgesHandler = new UserBadgesHandler();
 // define REST resources
 $app->get(
     '/(:secret)',
-    function ($secret = null) use ($userGetHandler, $res) {
+    function ($secret = null) use ($userGetHandler, $slim) {
         if (empty($secret) && isset($_SESSION['secret'])) {
             $secret = $_SESSION['secret'];
         }
         $userData = $userGetHandler->getUserBySecret($secret);
-        $res->write($userData);
+        $slim->returnOr404($userData);
     }
 );
 
 $app->get(
     '/:id/badges',
-    function ($id) use ($userBadgesHandler, $res) {
-        if (!isset($_SESSION) || $id != $_SESSION['user_id']) {
-            $res->status(403);
-            $res->write("Wrong user_id");
+    function ($id) use ($userBadgesHandler, $slim) {
+        if ($slim->checkUserId($id)) {
             return;
         }
-        $res->write($userBadgesHandler->getUserBadges($id));
+        $userBadges = $userBadgesHandler->getUserBadges($id);
+        $slim->returnOr404($userBadges);
     }
 );
 
 $app->get(
     '/:id/logout',
-    function () use ($res) {
+    function () use ($app) {
         \session_destroy();
-        $res->write("Congratulations! You've now officially logged out!");
+        $app->response()->write("Congratulations! You've now officially logged out!");
     }
 );
 
