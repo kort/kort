@@ -1,7 +1,6 @@
 \chapter{Infrastruktur}
 \label{infrastruktur}
 
-\todo[inline]{Server-Setup dokumentieren (Virtueller Server, Travis, heroku etc.}
 \section{Architektur}
 
 Das Gesamtsystem setzt sich aus insgesamt vier Komponenten zusammen: die Datenbank, der Webserver, die Fehlerquelle und das Zielsystem von OpenStreetMap. 
@@ -69,7 +68,13 @@ Auf GitHub gibt es sogenannte Hooks die man aktivieren kann.
 Dabei handelt es sich um weitere Aktionen welche durch verschiedene Ereignisse ausgelöst werden können. 
 In unserem Fall haben wir einen \emph{post-commit Hook} aktiviert, welcher dem \gls{ci} Dienst Travis-CI\footnote{\url{http://travis-ci.org}} Bescheid gibt, wenn ein neue Änderungen auf GitHub eingetroffen sind.
 
-Auf Travis läuft dann der Build, welcher durch die Konfigurationsdatei \inlinecode{.travis.yml} gesteuert ist. Darin lassen wir die Schritte sowie die Umgebung für Builds definieren. Für jede Umgebung wird dann ein separater Build ausgelöst. Somit lassen sich bequem verschiedene Versionen mit unterschiedlichen Umgebungen testen (siehe Tabelle \ref{infrastruktur-build-matrix}).
+Auf Travis läuft dann der Build, welcher durch die Konfigurationsdatei \inlinecode{.travis.yml} gesteuert ist. Darin lassen wir die Schritte sowie die Umgebung für Builds definieren. Für jede Umgebung wird dann ein separater Build ausgelöst. Somit lassen sich bequem verschiedene Versionen mit unterschiedlichen Umgebungen testen.
+Daraus entsteht dann eine sogenannte Build-Matrix welche bei jedem Build durchlaufen wird (siehe Tabelle \ref{infrastruktur-build-matrix}).
+
+Ein Travis-Build läuft immer in einer neuen virtuellen Umgebung, so dass strikt nach dem Prinzip des \emph{\gls{Bootstrapping}s} vorgegangen werden muss. Das heisst, es muss möglich sein die Applikation ohne Vorkenntnisse zu installieren, alle benötigte Software und Konfiguration muss bei jedem Build vorgenommen werden.
+Dies hilft, den Installationprozess genau festzuhalten
+
+Am Ende des Build-Vorgangs wird die \gls{WebApp} schliesslich zu Heroku übertragen. 
 
 \begin{table}[H]
 \centering
@@ -85,3 +90,6 @@ Auf Travis läuft dann der Build, welcher durch die Konfigurationsdatei \inlinec
 \caption{Build-Matrix von Travis CI}
 \label{infrastruktur-build-matrix}
 \end{table}
+
+\todo[inline]{gruntjs, ant, secure ENV, }
+\todo[inline]{Doku der REST-APIs}
