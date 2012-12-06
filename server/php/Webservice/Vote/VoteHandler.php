@@ -19,7 +19,20 @@ class VoteHandler extends DbProxyHandler
 
     public function insertVote($data)
     {
-        $insertedVote = $this->getDbProxy()->insert($data);
+        $transProxy = new \Webservice\TransactionDbProxy();
+
+        $this->getDbProxy()->setReturnFields($this->getFields());
+        $insertVoteParams = $this->getDbProxy()->getInsertParams($data, true);
+        $transProxy->addToTransaction($insertVoteParams);
+
+
+        $insertedVote = $transProxy->sendTransaction();
+
+        //return $reward;
+
+        //1. query insert vote
+        //2. berechne badges + koins
+        //3. badges hinzufügen / koins dazuzählen
 
         if (!$insertedVote) {
             return false;
