@@ -9,7 +9,7 @@ Ext.define('Kort.view.highscore.List', {
 		layout: 'fit',
 		store: 'Highscore',
         loadingText: Ext.i18n.Bundle.message('highscore.loadmask.message'),
-        emptyText: Ext.i18n.Bundle.message('highscore.emptytext'),
+        emptyText: '<div class="emptytext">' + Ext.i18n.Bundle.message('highscore.emptytext') + '</div>',
         disableSelection: true,
         
         itemTpl:    new Ext.XTemplate(

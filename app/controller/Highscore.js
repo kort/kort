@@ -9,7 +9,13 @@ Ext.define('Kort.controller.Highscore', {
         refs: {
             mainTabPanel: '#mainTabPanel',
             highscoreContainer: '#highscoreContainer',
-            highscoreList: '.highscorelist'
+            highscoreList: '.highscorelist',
+            highscoreRefreshButton: '#highscoreContainer .button[cls=highscoreRefreshButton]'
+        },
+        control: {
+            highscoreRefreshButton: {
+                tap: 'onHighscoreRefreshButtonTap'
+            }
         }
     },
     
@@ -24,13 +30,20 @@ Ext.define('Kort.controller.Highscore', {
         });
     },
     
+    onHighscoreRefreshButtonTap: function() {
+        this.refreshView();
+    },
+    
     refreshView: function() {
         var me = this,
             highscoreStore = Ext.getStore('Highscore');
         
         if(me.getHighscoreList()) {
+            me.getHighscoreList().mask();
+            
             highscoreStore.load(function(records, operation, success) {
                 me.getHighscoreList().refresh();
+                me.getHighscoreList().unmask();
             });
         }
     }

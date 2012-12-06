@@ -13,6 +13,18 @@ Ext.define('Kort.view.validation.NavigationView', {
 		iconCls: 'check_black2',
         defaultBackButtonText: Ext.i18n.Bundle.message('button.back'),
         
+        navigationBar: {
+            items: [
+                {
+                    xtype: 'button',
+                    cls: 'validationRefreshButton',
+                    iconCls: 'refresh',
+                    iconMask: true,
+                    align: 'right'
+                }
+            ]
+        },
+        
 		items: [
 			{
                 title: Ext.i18n.Bundle.message('validation.title'),
