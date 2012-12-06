@@ -31,7 +31,11 @@ Ext.define('Kort.util.Config', {
                 'Jürg Hunziker'
             ],
             project: 'HSR Bachelorarbeit HS2012/13',
-            partners: ['bigforge AG (<a href="http://bitforge.ch" target="_blank">http://bitforge.ch</a>)']
+            partners: ['bitforge AG (<a href="http://bitforge.ch" target="_blank">http://bitforge.ch</a>)']
+        },
+        // i18n plugin doesn't work for form placeholders so these are stored in config file 
+        formPlaceholders: {
+            username: 'Benutzername'
         }
 	},
 	

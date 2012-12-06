@@ -10,11 +10,15 @@ Ext.define('Kort.controller.Validation', {
         refs: {
             mainTabPanel: '#mainTabPanel',
             validationNavigationView: '#validationNavigationView',
-            validationList: '.validationlist'
+            validationList: '.validationlist',
+            validationRefreshButton: '#validationNavigationView .button[cls=validationRefreshButton]'
         },
         control: {
             validationList: {
                 itemtap: 'onValidationListItemTap'
+            },
+            validationRefreshButton: {
+                tap: 'onValidationRefreshButtonTap'
             }
         },
         
@@ -31,14 +35,20 @@ Ext.define('Kort.controller.Validation', {
         });
     },
     
+    onValidationRefreshButtonTap: function() {
+        this.refreshView();
+    },
+    
     refreshView: function() {
         var me = this,
             validationsStore = Ext.getStore('Validations');
         
         if(me.getValidationList()) {
+            me.getValidationList().mask();
             validationsStore.load(function(records, operation, success) {
                 validationsStore.updateDistances(Kort.geolocation);
                 me.getValidationList().refresh();
+                me.getValidationList().unmask();
             });
         }
     },
