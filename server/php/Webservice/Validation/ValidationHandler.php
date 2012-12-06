@@ -37,7 +37,11 @@ class ValidationHandler extends DbProxyHandler
         $radius = empty($radius) ? 5000 : $radius;
         //TODO: Use the radius and get a fast result
         // $this->getDbProxy()->setWhere("ST_DWithin(geom," . $userPosition . "," . $radius . ")");
-        $this->getDbProxy()->setWhere("fix_user_id != " . $_SESSION['user_id']);
+
+        $where  = "fix_user_id != " . $_SESSION['user_id'];
+        $where .= " AND not exists (select 1 from kort.validation val where val.fix_id = id and val.user_id = " . $_SESSION['user_id'] . ")";
+        $this->getDbProxy()->setWhere($where);
+        
         $this->getDbProxy()->setOrderBy("geom <-> " . PostGisSqlHelper::getLatLngGeom($lat, $lng));
         $this->getDbProxy()->setLimit($limit);
 
