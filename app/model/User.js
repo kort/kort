@@ -21,9 +21,10 @@ Ext.define('Kort.model.User', {
         
 		proxy: {
 			type: 'rest',
-            url : './server/webservices/user',
+            url: './server/webservices/user',
             reader: {
-                type: 'json'
+                type: 'json',
+                rootProperty: 'return'
             }
         }
     },

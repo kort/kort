@@ -12,10 +12,7 @@ Ext.define('Kort.model.Fix', {
         
 		proxy: {
 			type: 'rest',
-            url : './server/webservices/bug/fix',
-            reader: {
-                type: 'json'
-            }
+            url: './server/webservices/bug/fix'
 		}
     }
 });
