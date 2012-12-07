@@ -15,7 +15,7 @@ Ext.define('Kort.model.Bug', {
             { name: 'longitude', type: 'string' },
             { name: 'view_type', type: 'string' },
             { name: 'answer_placeholder', type: 'string' },
-            { name: 'koin_count', type: 'int' }
+            { name: 'fix_koin_count', type: 'int' }
         ]
     }
 });

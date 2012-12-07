@@ -38,7 +38,7 @@ Ext.define('Kort.view.bugmap.fix.Form', {
                                 '<div class="content">',
                                     '<p>',
                                         Ext.i18n.Bundle.message('fix.form.koins.earn'),
-                                        ' <span class="important">{koin_count}</span> ',
+                                        ' <span class="important">{fix_koin_count}</span> ',
                                         Ext.i18n.Bundle.message('fix.form.koins.name'),
                                     '</p>',
                                 '</div>',
