@@ -21,6 +21,8 @@ create table kort.fix (
     user_id integer,
     create_date timestamp not null default now(),
     error_id integer not null,
+    schema integer not null,
+    osm_id integer not null,
     message text,
     complete boolean default false
 );
