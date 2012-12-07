@@ -25,7 +25,7 @@ class BugHandler extends DbProxyHandler
             'longitude',
             'view_type',
             'answer_placeholder',
-            'koin_count',
+            'fix_koin_count',
             'txt1',
             'txt2',
             'txt3',
@@ -44,10 +44,20 @@ class BugHandler extends DbProxyHandler
         $this->getDbProxy()->setOrderBy("geom <-> " . PostGisSqlHelper::getLatLngGeom($lat, $lng));
         $this->getDbProxy()->setLimit($limit);
 
-        $bugInfos = json_decode($this->getDbProxy()->select(), true);
-        $bugInfos = array_map(array($this, "translateBug"), $bugInfos);
+        return $this->select();
+    }
 
-        return json_encode($bugInfos);
+    protected function select()
+    {
+        $data = json_decode($this->getDbProxy()->select(), true);
+        $data = array_map(array($this, "translateBug"), $data);
+        return json_encode($data);
+    }
+
+    public function getById($id)
+    {
+        $this->getDbProxy()->setWhere("id = " . $id);
+        return $this->select();
     }
 
     public function translateBug($bug)
