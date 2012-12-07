@@ -36,6 +36,20 @@ class PgHelper
         return pg_fetch_array($result, null, PGSQL_ASSOC);
     }
 
+    public function begin()
+    {
+        return pg_query($this->dbConn, "BEGIN;");
+    }
+
+    public function commit()
+    {
+        return pg_query($this->dbConn, "COMMIT;");
+    }
+
+    public function rollback()
+    {
+        return pg_query($this->dbConn, "ROLLBACK;");
+    }
 
     public function close()
     {

@@ -3,7 +3,7 @@ tab.bugmap=Aufträge
 tab.validation=Prüfen
 tab.highscore=Highscore
 tab.profile=Profil
-tab.about=Über kort
+tab.about=Über KORT
 button.back=Zurück
 
 # Submitted Popup
@@ -11,23 +11,30 @@ submitted.message.1=Du hast dir
 submitted.message.2=koins verdient!
 
 # Login
-login.title=Login
-login.introduction=Bitte logge dich ein um kort nutzen zu können!
+login.kort.description.1=Löse Fehler
+login.kort.description.2=Sammle koins
+login.kort.description.3=Steige auf
+login.introduction.1=Um 
+login.introduction.2= nutzen zu können musst du dich aber zuerst einloggen:
 login.button.google=Login mit Google
-login.button.twitter=Login mit Twitter
+login.button.osm=Login mit OpenStreetMap
 login.loadmask.message=Login...
 
 # Firststeps
-firststeps.introduction=Willkommen bei kort! Wähle einen Benutzernamen:
+firststeps.introduction.1=Willkommen bei 
+firststeps.introduction.2=! Wähle einen Benutzernamen:
 firststeps.form.username.placeholder=Benutzername
 firststeps.form.button.submit=Mission beginnen!
 firststeps.alert.username.empty.title=Benutzernamen eingeben
 firststeps.alert.username.empty.message=Bitte gib einen Benutzernamen ein.
-firststeps.alert.username.specialchars.title=Sonderzeichen gefunden
-firststeps.alert.username.specialchars.message=Benutze bitte nur Buchstaben und Zahlen für deinen Benutzernamen.
+firststeps.alert.username.specialchars.title=Zeichenproblem
+firststeps.alert.username.specialchars.message=Verwende bitte nur Buchstaben und Zahlen für deinen Benutzernamen.
+firststeps.alert.submit.failure.title=Fehler beim Senden
+firststeps.alert.submit.failure.message=Beim Übertragen deines Benutzernamens ist ein Fehler aufgetretten. Bitte versuche es später noch einmal.
 
 # Geolocation error
-geolocationerror.introduction=Um kort verwenden zu können muss auf deine Position zugegriffen werden können.
+geolocationerror.introduction.1=Um 
+geolocationerror.introduction.2= verwenden zu können, muss auf deine Position zugegriffen werden können.
 geolocationerror.button.reload=Applikation neu laden
 geolocationerror.loadmask.message=Lade App neu...
 
@@ -39,9 +46,10 @@ bugmap.messagebox.koins.name=koins
 
 ## Fix
 fix.form.title=Auftrag
-fix.form.field.image=Bild
+fix.form.koins.earn=Hol dir die
+fix.form.koins.name=koins!
 fix.form.message.placeholder=Deine Antwort...
-fix.form.button.submit=Senden
+fix.form.button.submit=Auftrag abschliessen
 fix.form.loadmask.message=Lade Antworten...
 fix.map.title=Karte
 fix.sendmask.message=Sende Lösung...
@@ -53,16 +61,16 @@ fix.alert.submit.failure.message=Beim Übertragen des Formulars ist etwas schief
 # Validation
 validation.title=Prüfen
 validation.loadmask.message=Lade Daten...
-validation.emptytext=Keine Daten vorhanden.
-validation.list.header=positive Bewertungen übrig
-validation.distance=Distanz:
+validation.emptytext=Bravo! Du hast alle Meldungen überprüft.
+validation.list.header=positive Überprüfungen nötig
+validation.distance=Distanz
 
 ## Vote
-vote.map.title=Karte
-vote.container.title=Prüfen
-vote.container.button.accept=Ja
-vote.container.button.decline=Nein
-vote.container.button.cancel=Weiss nicht
+vote.container.button.answer=Beantworten
+vote.answeractionsheet.button.accept=Ja
+vote.answeractionsheet.button.decline=Nein
+vote.answeractionsheet.button.cancel=Weiss nicht
+vote.answeractionsheet.question=Ist die Antwort korrekt?
 vote.sendmask.message=Sende Antwort...
 vote.alert.submit.failure.title=Fehler beim Senden
 vote.alert.submit.failure.message=Beim Übertragen des deiner Stimme ist etwas schief gelaufen. Bitte versuche es später noch einmal.
@@ -86,9 +94,9 @@ highscore.votecount=Prüfungen:
 profile.title=Profil
 profile.button.logout=Logout
 profile.content.username=Benutzername
-profile.content.oauthuserid=OAuth Benutzername
-profile.content.fixes=Anzahl erledigte Aufträge
-profile.content.votes=Anzahl getätigte Prüfungen
+profile.content.oauthprovider=Eingeloggt über
+profile.content.fixes=Erledigte Aufträge
+profile.content.votes=Getätigte Überprüfungen
 profile.content.koins.header=Gesammelte Koins
 profile.content.koins.title=koins
 profile.content.badges.header=Gewonnene Auszeichnungen
@@ -99,11 +107,11 @@ profile.badges.emptytext=Deine Auszeichnungen konnten nicht geladen werden.
 profile.badges.button.close=Schliessen
 
 # About
-about.title=Über kort
+about.title=Über KORT
 about.version.title=Version
 about.authors.title=Autoren
-about.authors.author1=Stefan Oderbolz
-about.authors.author2=Jürg Hunziker
+about.project.title=Projekt
+about.partners.title=Industriepartner
 about.legal.title=Rechtliche Hinweise
 about.legal.message=Wir bitten dich die OpenStreetMap Regeln einzuhalten.
 
@@ -119,6 +127,8 @@ picker.cancel=Abbrechen
 
 # Reward
 reward.alert.title=Du wurdest stärker!
-reward.alert.koins.1=Du hast
-reward.alert.koins.2=koins gewonnen.
-reward.alert.badges.title=Auszeichnungen
+reward.alert.koins.new.1=Bravo! Du hast
+reward.alert.koins.new.2=koins gewonnen.
+reward.alert.koins.total.1=Deine Gesamtpunktzahl beträgt nun
+reward.alert.koins.total.2=koins.
+reward.alert.badges.title=Gewonnene Auszeichnungen

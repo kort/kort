@@ -19,6 +19,7 @@ else
     cp $SOURCE_DIR/index*.* $BUILD_DIR
     cp $SOURCE_DIR/app.* $BUILD_DIR/
     cp -r $SOURCE_DIR/app $BUILD_DIR/
+    cp -r $SOURCE_DIR/docs $BUILD_DIR
     cp -r $SOURCE_DIR/resources $BUILD_DIR/
     cp -r $SOURCE_DIR/touch $BUILD_DIR/
     cp -r $SOURCE_DIR/ux $BUILD_DIR/
