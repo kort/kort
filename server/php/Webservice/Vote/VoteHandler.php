@@ -96,6 +96,21 @@ class VoteHandler extends DbProxyHandler
         return $params;
     }
 
+    protected function getCompletedParams($data)
+    {
+        $sql  = "update kort.fix set ";
+        $sql .= "complete = (select required_validations - upratings + downratings >= 0 from kort.validations where id = " . $data['fix_id'] . ") ";
+        $sql .= "where  u.fix_id = " . $data['fix_id'] . " ";
+        $sql .= "returning complete";
+
+        $params = array();
+        $params['sql'] = $sql;
+        $params['return'] = true;
+        $params['type'] = "SQL";
+
+        return $params;
+    }
+
     public function insertVote($data)
     {
         $transProxy = new \Webservice\TransactionDbProxy();
@@ -105,12 +120,14 @@ class VoteHandler extends DbProxyHandler
         $fixCountBadgesParams = $this->getFixCountBadgesParams($data);
         $voteCountBadgesParams = $this->getVoteCountBadgesParams($data);
         $updateKoinCountParams = $this->updateKoinCointParams($data);
+        $completedParams = $this->getCompletedParams($data);
 
         $transProxy->addToTransaction($insertVoteParams);
         $transProxy->addToTransaction($highscoreBadgesParams);
         $transProxy->addToTransaction($fixCountBadgesParams);
         $transProxy->addToTransaction($voteCountBadgesParams);
         $transProxy->addToTransaction($updateKoinCountParams);
+        $transProxy->addToTransaction($completedParams);
         $result = json_decode($transProxy->sendTransaction());
 
         $insertedHighscoreBadges = (!empty($result[1])) ? json_decode($result[1], true) : null;
