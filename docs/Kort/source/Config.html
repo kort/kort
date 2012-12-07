@@ -23,14 +23,17 @@ Ext.define('Kort.util.Config', {
 
 	config: {
 <span id='Kort-util-Config-cfg-version'>        /**
-</span>         * @cfg
-         * Current version number of application
+</span>         * @cfg {String} version Current version number of application
          */
         version: '0.5.0',
         
 <span id='Kort-util-Config-cfg-leafletMap'>        /**
-</span>         * @cfg
-         * Configuration for {Ext.ux.LeafletMap} component
+</span>         * @cfg {Object} leafletMap Configuration for {@link Ext.ux.LeafletMap} component
+         * @cfg {Number} [leafletMap.zoom=15] (required) Default zoom level of leaflet map
+         * @cfg {String} [leafletMap.tileLayerUrl=&quot;http://{s}.tile.cloudmade.com/{apikey}/{styleId}/256/{z}/{x}/{y}.png&quot;] (required) URL to tile server
+         * @cfg {String} [leafletMap.tileLayerAttribution=&quot;Map data &amp;copy; &lt;a href=&quot;http://openstreetmap.org&quot;&gt;OpenStreetMap&lt;/a&gt;&quot;] (required) Copyright information of map
+         * @cfg {String} [leafletMap.apiKey=729242682cb24de8aa825c8aed993cba] (required) API key for cloudmade tiles
+         * @cfg {Number} [leafletMap.styleId=997] (required) Style id for cloudmade tiles
          */
 		leafletMap: {
             zoom: 15,
@@ -41,8 +44,12 @@ Ext.define('Kort.util.Config', {
 		},
         
 <span id='Kort-util-Config-cfg-oAuth'>        /**
-</span>         * @cfg
-         * Configuration for oauth logins
+</span>         * @cfg {Object} oAuth Configuration for OAuth 
+         * @cfg {Object} oAuth.google (required) Configuration for Google OAuth
+         * @cfg {String} [oAuth.google.url=&quot;https://accounts.google.com/o/oauth2/auth&quot;] (required) URL to Google OAuth
+         * @cfg {String[]} oAuth.google.scopes (required) Configuration for Google OAuth
+         * @cfg {String} [oAuth.google.redirect_path=&quot;server/oauth2callback&quot;] (required) Redirect path after login
+         * @cfg {String} [oAuth.google.client_id=&quot;653755350671.apps.googleusercontent.com&quot;] (required) Google OAuth client id
          */
         oAuth: {
             google: {
@@ -59,22 +66,22 @@ Ext.define('Kort.util.Config', {
         },
         
 <span id='Kort-util-Config-cfg-timeout'>        /**
-</span>         * @cfg
-         * Default timeout for load tasks in ms
+</span>         * @cfg {Number} timeout Default timeout for load tasks in ms
          */
         timeout: 10000,
         
 <span id='Kort-util-Config-cfg-bugs'>        /**
-</span>         * @cfg
-         * Configuration for bug to load
+</span>         * @cfg {Object} bugs Configuration for bug to load
+         * @cfg {Object} [bugs.radius=5000] (required) Radius for bug selection
          */
         bugs: {
             radius: 5000
         },
         
 <span id='Kort-util-Config-cfg-zIndex'>        /**
-</span>         * @cfg
-         * zIndex for components
+</span>         * @cfg {Object} zIndex zIndex for components
+         * @cfg {Number} [zIndex.overlayLeafletMap=1500] (required) zIndex for panel to overlay leaflet map components
+         * @cfg {Number} [zIndex.overlayOverlayPanel=1600] (required) zIndex for panel to overlay another overlay panel
          */
         zIndex: {
             overlayLeafletMap: 1500,
@@ -82,8 +89,9 @@ Ext.define('Kort.util.Config', {
         },
         
 <span id='Kort-util-Config-cfg-osmMap'>        /**
-</span>         * @cfg
-         * Style configuration for osm objects
+</span>         * @cfg {Object} osmMap Style configuration for osm objects
+         * @cfg {String} [osmMap.featureColor=&quot;#FF0000&quot;] (required) Color of features
+         * @cfg {Number} [osmMap.featureOpacity=0.7] (required) Opacity of features
          */
         osmMap: {
             featureColor: '#FF0000',
@@ -91,14 +99,15 @@ Ext.define('Kort.util.Config', {
         },
         
 <span id='Kort-util-Config-cfg-kortTitle'>        /**
-</span>         * @cfg
-         * App title which can be used in content
+</span>         * @cfg {String} kortTitle App title which can be used in content
          */
         kortTitle: '&lt;span class=&quot;kort-title&quot;&gt;&lt;span class=&quot;kort-k&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;kort-ort&quot;&gt;ORT&lt;/span&gt;&lt;/span&gt;',
         
 <span id='Kort-util-Config-cfg-about'>        /**
-</span>         * @cfg
-         * Lables for about page
+</span>         * @cfg {Object} about Labels for about page
+         * @cfg {String[]} about.authors (required) Authors of application
+         * @cfg {String} [about.project=&quot;HSR Bachelorarbeit HS2012/13&quot;] (required) Title of project
+         * @cfg {String[]} about.partners (required) Project partners
          */
         about: {
             authors: [
@@ -110,8 +119,8 @@ Ext.define('Kort.util.Config', {
         },
         
 <span id='Kort-util-Config-cfg-formPlaceholders'>        /**
-</span>         * @cfg
-         * Ext.i18n.bundle plugin doesn't work for form placeholders so these are stored in config file
+</span>         * @cfg {Object} formPlaceholders Ext.i18n.bundle plugin doesn't work for form placeholders so these are stored in config file
+         * @cfg {String} [formPlaceholders.username=&quot;Benutzername&quot;] (required) Translation of username
          */
         formPlaceholders: {
             username: 'Benutzername'

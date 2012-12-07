@@ -15,7 +15,10 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js">Ext.define('Kort.view.overlay.firststeps.Panel', {
+  <pre class="prettyprint lang-js"><span id='Kort-view-overlay-firststeps-Panel'>/**
+</span> * First steps panel which overlays main panel if no username is given
+ */
+Ext.define('Kort.view.overlay.firststeps.Panel', {
 	extend: 'Ext.Panel',
 	alias: 'widget.firststepspanel',
     requires: [
@@ -25,23 +28,23 @@
     ],
 
 	config: {
-		id: 'firststepsPanel',
-		layout: 'vbox',
-        modal: true,
-        scrollable: true,
-        cls: 'overlayLeafletMap',
-        
-        showAnimation: {
-            type: 'slideIn',
+<span id='Kort-view-overlay-firststeps-Panel-cfg-id'>		id: 'firststepsPanel',
+</span><span id='Kort-view-overlay-firststeps-Panel-cfg-layout'>		layout: 'vbox',
+</span><span id='Kort-view-overlay-firststeps-Panel-cfg-modal'>        modal: true,
+</span><span id='Kort-view-overlay-firststeps-Panel-cfg-scrollable'>        scrollable: true,
+</span><span id='Kort-view-overlay-firststeps-Panel-cfg-cls'>        cls: 'overlayLeafletMap',
+</span>        
+<span id='Kort-view-overlay-firststeps-Panel-cfg-showAnimation'>        showAnimation: {
+</span>            type: 'slideIn',
             direction: 'down'
         },
-        hideAnimation: {
-            type: 'slideOut',
+<span id='Kort-view-overlay-firststeps-Panel-cfg-hideAnimation'>        hideAnimation: {
+</span>            type: 'slideOut',
             direction: 'up'
         },
         
-		items: [
-			{
+<span id='Kort-view-overlay-firststeps-Panel-cfg-items'>		items: [
+</span>			{
                 html:   '&lt;div class=&quot;overlay-content&quot;&gt;' +
                             '&lt;div class=&quot;logo&quot;&gt;' +
                                 '&lt;img src=&quot;./resources/images/kort-logo.png&quot; /&gt;' +

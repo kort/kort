@@ -15,7 +15,10 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js">Ext.define('Kort.view.validation.PullRefreshPlugin', {
+  <pre class="prettyprint lang-js"><span id='Kort-view-validation-PullRefreshPlugin'>/**
+</span> * Pull refresh plugin for validation list
+ */
+Ext.define('Kort.view.validation.PullRefreshPlugin', {
     extend: 'Kort.plugin.PullRefresh',
     alias: 'plugin.validationpullrefresh',
     
@@ -24,8 +27,8 @@
     ],
 	
 	config: {
-       refreshFn: function(callbackFn, scope) {
-            var me = this,
+<span id='Kort-view-validation-PullRefreshPlugin-cfg-refreshFn'>       refreshFn: function(callbackFn, scope) {
+</span>            var me = this,
                 list = me.getList(),
                 store = list.getStore();
 

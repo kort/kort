@@ -1,3 +1,6 @@
+/**
+ * Main container for vote view
+ */
 Ext.define('Kort.view.validation.vote.Container', {
 	extend: 'Ext.Container',
 	alias: 'widget.votecontainer',

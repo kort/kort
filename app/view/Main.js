@@ -1,3 +1,6 @@
+/**
+ * Main tabpanel of application
+ */
 Ext.define('Kort.view.Main', {
     extend: 'Ext.tab.Panel',
     xtype: 'main',

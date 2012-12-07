@@ -15,7 +15,10 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js">Ext.define('Kort.view.validation.NavigationView', {
+  <pre class="prettyprint lang-js"><span id='Kort-view-validation-NavigationView'>/**
+</span> * Main navigation view for validation tab
+ */
+Ext.define('Kort.view.validation.NavigationView', {
 	extend: 'Ext.navigation.View',
 	alias: 'widget.validationnavigationview',
     requires: [
@@ -24,14 +27,14 @@
     ],
 	
 	config: {
-        title: Ext.i18n.Bundle.message('tab.validation'),
-		url: 'validation',
-		id: 'validationNavigationView',
-		iconCls: 'check_black2',
-        defaultBackButtonText: Ext.i18n.Bundle.message('button.back'),
-        
-        navigationBar: {
-            items: [
+<span id='Kort-view-validation-NavigationView-cfg-title'>        title: Ext.i18n.Bundle.message('tab.validation'),
+</span><span id='Kort-view-validation-NavigationView-cfg-url'>		url: 'validation',
+</span><span id='Kort-view-validation-NavigationView-cfg-id'>		id: 'validationNavigationView',
+</span><span id='Kort-view-validation-NavigationView-cfg-iconCls'>		iconCls: 'check_black2',
+</span><span id='Kort-view-validation-NavigationView-cfg-defaultBackButtonText'>        defaultBackButtonText: Ext.i18n.Bundle.message('button.back'),
+</span>        
+<span id='Kort-view-validation-NavigationView-cfg-navigationBar'>        navigationBar: {
+</span>            items: [
                 {
                     xtype: 'button',
                     cls: 'validationRefreshButton',
@@ -42,8 +45,8 @@
             ]
         },
         
-		items: [
-			{
+<span id='Kort-view-validation-NavigationView-cfg-items'>		items: [
+</span>			{
                 title: Ext.i18n.Bundle.message('validation.title'),
                 xtype: 'validationlist'
 			}

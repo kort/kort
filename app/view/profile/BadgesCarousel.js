@@ -1,3 +1,6 @@
+/**
+ * Carousel view for badges
+ */
 Ext.define('Kort.view.profile.BadgesCarousel', {
 	extend: 'Ext.Carousel',
 	alias: 'widget.badgescarousel',

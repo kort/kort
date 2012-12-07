@@ -15,7 +15,10 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js">Ext.define('Kort.view.profile.BadgesContainer', {
+  <pre class="prettyprint lang-js"><span id='Kort-view-profile-BadgesContainer'>/**
+</span> * Badges container which overlays profile when a badge gets tapped
+ */
+Ext.define('Kort.view.profile.BadgesContainer', {
 	extend: 'Ext.Container',
 	alias: 'widget.badgescontainer',
     
@@ -26,20 +29,20 @@
     ],
 	
 	config: {
-        zIndex: Kort.util.Config.getZIndex().overlayLeafletMap,
-        layout: 'vbox',
-        
-        showAnimation: {
-            type: 'slideIn',
+<span id='Kort-view-profile-BadgesContainer-cfg-zIndex'>        zIndex: Kort.util.Config.getZIndex().overlayLeafletMap,
+</span><span id='Kort-view-profile-BadgesContainer-cfg-layout'>        layout: 'vbox',
+</span>        
+<span id='Kort-view-profile-BadgesContainer-cfg-showAnimation'>        showAnimation: {
+</span>            type: 'slideIn',
             direction: 'up'
         },
-        hideAnimation: {
-            type: 'slideOut',
+<span id='Kort-view-profile-BadgesContainer-cfg-hideAnimation'>        hideAnimation: {
+</span>            type: 'slideOut',
             direction: 'down'
         },
         
-		items: [
-            {
+<span id='Kort-view-profile-BadgesContainer-cfg-items'>		items: [
+</span>            {
 				xtype: 'titlebar',
 				title: Ext.i18n.Bundle.message('profile.badges.title'),
                 
@@ -54,11 +57,11 @@
 			}
 		],
         
-        selectedBadgeIndex: 0
-	},
+<span id='Kort-view-profile-BadgesContainer-cfg-selectedBadgeIndex'>        selectedBadgeIndex: 0
+</span>	},
     
-    initialize: function() {
-        this.callParent(arguments);
+<span id='Kort-view-profile-BadgesContainer-method-initialize'>    initialize: function() {
+</span>        this.callParent(arguments);
         
         var badgesCarousel = {
             xtype: 'badgescarousel',

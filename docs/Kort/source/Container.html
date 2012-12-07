@@ -15,7 +15,10 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js">Ext.define('Kort.view.about.Container', {
+  <pre class="prettyprint lang-js"><span id='Kort-view-about-Container'>/**
+</span> * Main container for about tab
+ */
+Ext.define('Kort.view.about.Container', {
 	extend: 'Ext.Container',
 	alias: 'widget.aboutcontainer',
     requires: [
@@ -23,14 +26,14 @@
     ],
 	
 	config: {
-		title: Ext.i18n.Bundle.message('tab.about'),
-		url: 'about',
-		id: 'aboutContainer',
-		iconCls: 'info',
-		layout: 'vbox',
-        scrollable: true,
-		items: [
-			{
+<span id='Kort-view-about-Container-cfg-title'>		title: Ext.i18n.Bundle.message('tab.about'),
+</span><span id='Kort-view-about-Container-cfg-url'>		url: 'about',
+</span><span id='Kort-view-about-Container-cfg-id'>		id: 'aboutContainer',
+</span><span id='Kort-view-about-Container-cfg-iconCls'>		iconCls: 'info',
+</span><span id='Kort-view-about-Container-cfg-layout'>		layout: 'vbox',
+</span><span id='Kort-view-about-Container-cfg-scrollable'>        scrollable: true,
+</span><span id='Kort-view-about-Container-cfg-items'>		items: [
+</span>			{
 				xtype: 'titlebar',
 				cls: 'titlebar',
 				docked: 'top',

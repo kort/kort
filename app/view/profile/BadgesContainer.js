@@ -1,3 +1,6 @@
+/**
+ * Badges container which overlays profile when a badge gets tapped
+ */
 Ext.define('Kort.view.profile.BadgesContainer', {
 	extend: 'Ext.Container',
 	alias: 'widget.badgescontainer',

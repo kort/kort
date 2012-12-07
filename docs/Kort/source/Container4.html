@@ -15,7 +15,10 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js">Ext.define('Kort.view.validation.vote.Container', {
+  <pre class="prettyprint lang-js"><span id='Kort-view-validation-vote-Container'>/**
+</span> * Main container for vote view
+ */
+Ext.define('Kort.view.validation.vote.Container', {
 	extend: 'Ext.Container',
 	alias: 'widget.votecontainer',
     requires: [
@@ -24,16 +27,16 @@
     ],
 	
 	config: {
-        cls: 'voteContainer',
-        scrollable: {
-            direction: 'vertical',
+<span id='Kort-view-validation-vote-Container-cfg-cls'>        cls: 'voteContainer',
+</span><span id='Kort-view-validation-vote-Container-cfg-scrollable'>        scrollable: {
+</span>            direction: 'vertical',
             directionLock: true
         },
-        layout: 'vbox'
-	},
+<span id='Kort-view-validation-vote-Container-cfg-layout'>        layout: 'vbox'
+</span>	},
     
-    initialize: function () {
-        var me = this,
+<span id='Kort-view-validation-vote-Container-method-initialize'>    initialize: function () {
+</span>        var me = this,
             selectAnswersStore = Ext.getStore('SelectAnswers'),
             voteContentContainer,
             voteMap,

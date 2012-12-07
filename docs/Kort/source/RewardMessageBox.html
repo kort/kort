@@ -15,13 +15,16 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js">Ext.define('Kort.view.RewardMessageBox', {
+  <pre class="prettyprint lang-js"><span id='Kort-view-RewardMessageBox'>/**
+</span> * Reward messagebox to show rewards
+ */
+Ext.define('Kort.view.RewardMessageBox', {
     extend: 'Kort.view.NotificationMessageBox',
     xtype: 'rewardmessagebox',
 
     config: {
-        rewardTpl: new Ext.XTemplate(
-                '&lt;div class=&quot;messagebox-content&quot;&gt;',
+<span id='Kort-view-RewardMessageBox-cfg-rewardTpl'>        rewardTpl: new Ext.XTemplate(
+</span>                '&lt;div class=&quot;messagebox-content&quot;&gt;',
                     '&lt;div class=&quot;textpic&quot;&gt;',
                         '&lt;div class=&quot;image&quot;&gt;',
                             '&lt;img class=&quot;koin-image&quot; src=&quot;./resources/images/koins/koin_no_value.png&quot; /&gt;',

@@ -15,7 +15,10 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js">Ext.define('Kort.view.overlay.geolocationerror.Panel', {
+  <pre class="prettyprint lang-js"><span id='Kort-view-overlay-geolocationerror-Panel'>/**
+</span> * Geolocation error panel which overlays main panel if geolocation isn't available
+ */
+Ext.define('Kort.view.overlay.geolocationerror.Panel', {
 	extend: 'Ext.Panel',
 	alias: 'widget.geolocationerrorpanel',
     requires: [
@@ -23,14 +26,14 @@
     ],
 
 	config: {
-		id: 'geolocationerrorPanel',
-		layout: 'vbox',
-        modal: true,
-        scrollable: true,
-        cls: 'overlayLeafletMap',
-        
-		items: [
-			{
+<span id='Kort-view-overlay-geolocationerror-Panel-cfg-id'>		id: 'geolocationerrorPanel',
+</span><span id='Kort-view-overlay-geolocationerror-Panel-cfg-layout'>		layout: 'vbox',
+</span><span id='Kort-view-overlay-geolocationerror-Panel-cfg-modal'>        modal: true,
+</span><span id='Kort-view-overlay-geolocationerror-Panel-cfg-scrollable'>        scrollable: true,
+</span><span id='Kort-view-overlay-geolocationerror-Panel-cfg-cls'>        cls: 'overlayLeafletMap',
+</span>        
+<span id='Kort-view-overlay-geolocationerror-Panel-cfg-items'>		items: [
+</span>			{
                 html:   '&lt;div class=&quot;overlay-content&quot;&gt;' +
                             '&lt;div class=&quot;logo&quot;&gt;' +
                                 '&lt;img src=&quot;./resources/images/kort-logo.png&quot; /&gt;' +

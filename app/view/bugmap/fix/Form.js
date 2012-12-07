@@ -1,3 +1,6 @@
+/**
+ * Answer form for fix view
+ */
 Ext.define('Kort.view.bugmap.fix.Form', {
 	extend: 'Ext.Container',
 	alias: 'widget.fixform',

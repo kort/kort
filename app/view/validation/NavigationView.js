@@ -1,3 +1,6 @@
+/**
+ * Main navigation view for validation tab
+ */
 Ext.define('Kort.view.validation.NavigationView', {
 	extend: 'Ext.navigation.View',
 	alias: 'widget.validationnavigationview',

@@ -15,30 +15,33 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js">Ext.define('Kort.view.bugmap.fix.type.Select', {
+  <pre class="prettyprint lang-js"><span id='Kort-view-bugmap-fix-type-Select'>/**
+</span> * Select answer type for fix view
+ */
+Ext.define('Kort.view.bugmap.fix.type.Select', {
 	extend: 'Ext.field.Select',
     
 	config: {
-        store: 'SelectAnswers',
-        
-        // always use Ext.picker.Picker
-        usePicker: true,
-        autoSelect: false,
-        valueField: 'value',
-        displayField: 'title',
-        defaultPhonePickerConfig: {
-            cancelButton: Ext.i18n.Bundle.message('picker.cancel'),
+<span id='Kort-view-bugmap-fix-type-Select-cfg-store'>        store: 'SelectAnswers',
+</span>        
+<span id='Kort-view-bugmap-fix-type-Select-cfg-usePicker'>        // always use Ext.picker.Picker
+</span>        usePicker: true,
+<span id='Kort-view-bugmap-fix-type-Select-cfg-autoSelect'>        autoSelect: false,
+</span><span id='Kort-view-bugmap-fix-type-Select-cfg-valueField'>        valueField: 'value',
+</span><span id='Kort-view-bugmap-fix-type-Select-cfg-displayField'>        displayField: 'title',
+</span><span id='Kort-view-bugmap-fix-type-Select-cfg-defaultPhonePickerConfig'>        defaultPhonePickerConfig: {
+</span>            cancelButton: Ext.i18n.Bundle.message('picker.cancel'),
             doneButton: Ext.i18n.Bundle.message('picker.done')
         },
-        defaultTabletPickerConfig: {
-            cancelButton: Ext.i18n.Bundle.message('picker.cancel'),
+<span id='Kort-view-bugmap-fix-type-Select-cfg-defaultTabletPickerConfig'>        defaultTabletPickerConfig: {
+</span>            cancelButton: Ext.i18n.Bundle.message('picker.cancel'),
             doneButton: Ext.i18n.Bundle.message('picker.done')
         },
-        type: ''
-	},
+<span id='Kort-view-bugmap-fix-type-Select-cfg-type'>        type: ''
+</span>	},
     
-    initialize: function() {
-        this.callParent(arguments);
+<span id='Kort-view-bugmap-fix-type-Select-method-initialize'>    initialize: function() {
+</span>        this.callParent(arguments);
         
         // filter answers for given type
         this.getStore().filter('type', this.getType());

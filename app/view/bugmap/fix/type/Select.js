@@ -1,3 +1,6 @@
+/**
+ * Select answer type for fix view
+ */
 Ext.define('Kort.view.bugmap.fix.type.Select', {
 	extend: 'Ext.field.Select',
     

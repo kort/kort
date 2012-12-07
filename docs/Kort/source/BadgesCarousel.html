@@ -15,16 +15,19 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js">Ext.define('Kort.view.profile.BadgesCarousel', {
+  <pre class="prettyprint lang-js"><span id='Kort-view-profile-BadgesCarousel'>/**
+</span> * Carousel view for badges
+ */
+Ext.define('Kort.view.profile.BadgesCarousel', {
 	extend: 'Ext.Carousel',
 	alias: 'widget.badgescarousel',
 	
 	config: {
-        flex: 1,
-        cls: 'profileBadgesCarousel',
-        selectedBadgeIndex: 0,
-        itemTpl: new Ext.XTemplate(
-                    '&lt;div class=&quot;carouselitem-content&quot;&gt;' +
+<span id='Kort-view-profile-BadgesCarousel-cfg-flex'>        flex: 1,
+</span><span id='Kort-view-profile-BadgesCarousel-cfg-cls'>        cls: 'profileBadgesCarousel',
+</span><span id='Kort-view-profile-BadgesCarousel-cfg-selectedBadgeIndex'>        selectedBadgeIndex: 0,
+</span><span id='Kort-view-profile-BadgesCarousel-cfg-itemTpl'>        itemTpl: new Ext.XTemplate(
+</span>                    '&lt;div class=&quot;carouselitem-content&quot;&gt;' +
                         '&lt;h1 class=&quot;badge-title&quot;&gt;{title}&lt;/h1&gt;' +
                         '&lt;img class=&quot;badge-image&quot; src=&quot;./resources/images/badges/&lt;tpl if=&quot;won&quot;&gt;{name}&lt;tpl else&gt;locked&lt;/tpl&gt;.png&quot; /&gt;' +
                         '&lt;p class=&quot;badge-description&quot;&gt;{description}&lt;/p&gt;' +
@@ -32,8 +35,8 @@
                 )
 	},
     
-    initialize: function() {
-        this.callParent(arguments);
+<span id='Kort-view-profile-BadgesCarousel-method-initialize'>    initialize: function() {
+</span>        this.callParent(arguments);
         
         var me = this,
             userBadgesStore = Ext.getStore('UserBadges');
