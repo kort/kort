@@ -15,7 +15,10 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js">Ext.define('Kort.view.highscore.Container', {
+  <pre class="prettyprint lang-js"><span id='Kort-view-highscore-Container'>/**
+</span> * Main container for highscore tab
+ */
+Ext.define('Kort.view.highscore.Container', {
 	extend: 'Ext.Container',
 	alias: 'widget.highscorecontainer',
     requires: [
@@ -24,13 +27,13 @@
     ],
 	
 	config: {
-		title: Ext.i18n.Bundle.message('tab.highscore'),
-		url: 'highscore',
-		id: 'highscoreContainer',
-		iconCls: 'list',
-		layout: 'fit',
-		items: [
-			{
+<span id='Kort-view-highscore-Container-cfg-title'>		title: Ext.i18n.Bundle.message('tab.highscore'),
+</span><span id='Kort-view-highscore-Container-cfg-url'>		url: 'highscore',
+</span><span id='Kort-view-highscore-Container-cfg-id'>		id: 'highscoreContainer',
+</span><span id='Kort-view-highscore-Container-cfg-iconCls'>		iconCls: 'list',
+</span><span id='Kort-view-highscore-Container-cfg-layout'>		layout: 'fit',
+</span><span id='Kort-view-highscore-Container-cfg-items'>		items: [
+</span>			{
 				xtype: 'titlebar',
 				cls: 'titlebar',
 				docked: 'top',

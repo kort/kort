@@ -1,3 +1,6 @@
+/**
+ * Pull refresh plugin for validation list
+ */
 Ext.define('Kort.view.validation.PullRefreshPlugin', {
     extend: 'Kort.plugin.PullRefresh',
     alias: 'plugin.validationpullrefresh',

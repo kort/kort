@@ -15,20 +15,23 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js">Ext.define('Kort.view.validation.vote.AnswerActionSheet', {
+  <pre class="prettyprint lang-js"><span id='Kort-view-validation-vote-AnswerActionSheet'>/**
+</span> * ActionSheet with answers for vote view
+ */
+Ext.define('Kort.view.validation.vote.AnswerActionSheet', {
     extend: 'Ext.ActionSheet',
     xtype: 'voteansweractionsheet',
 
     config: {
-        zIndex: Kort.util.Config.getZIndex().overlayLeafletMap,
-        cls: 'voteAnswerActionSheet',
-        
-        defaults: {
-            iconMask: true
+<span id='Kort-view-validation-vote-AnswerActionSheet-cfg-zIndex'>        zIndex: Kort.util.Config.getZIndex().overlayLeafletMap,
+</span><span id='Kort-view-validation-vote-AnswerActionSheet-cfg-cls'>        cls: 'voteAnswerActionSheet',
+</span>        
+<span id='Kort-view-validation-vote-AnswerActionSheet-cfg-defaults'>        defaults: {
+</span>            iconMask: true
         },
         
-        items: [
-            {
+<span id='Kort-view-validation-vote-AnswerActionSheet-cfg-items'>        items: [
+</span>            {
                 xtype: 'component',
                 cls: 'answerContent',
                 html: Ext.i18n.Bundle.message('vote.answeractionsheet.question')

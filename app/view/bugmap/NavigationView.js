@@ -1,3 +1,6 @@
+/**
+ * Main navigation view for bugmap tab
+ */
 Ext.define('Kort.view.bugmap.NavigationView', {
 	extend: 'Ext.navigation.View',
 	alias: 'widget.bugmapnavigationview',

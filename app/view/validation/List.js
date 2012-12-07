@@ -1,3 +1,6 @@
+/**
+ * Validations list
+ */
 Ext.define('Kort.view.validation.List', {
 	extend: 'Ext.List',
 	alias: 'widget.validationlist',

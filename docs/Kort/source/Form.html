@@ -15,7 +15,10 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js">Ext.define('Kort.view.bugmap.fix.Form', {
+  <pre class="prettyprint lang-js"><span id='Kort-view-bugmap-fix-Form'>/**
+</span> * Answer form for fix view
+ */
+Ext.define('Kort.view.bugmap.fix.Form', {
 	extend: 'Ext.Container',
 	alias: 'widget.fixform',
     requires: [
@@ -28,15 +31,15 @@
     ],
     
 	config: {
-		layout: 'vbox',
-        cls: 'fixform',
-        scrollable: true,
-        title: Ext.i18n.Bundle.message('fix.form.title'),
-        fullscreen: true
-	},
+<span id='Kort-view-bugmap-fix-Form-cfg-layout'>		layout: 'vbox',
+</span><span id='Kort-view-bugmap-fix-Form-cfg-cls'>        cls: 'fixform',
+</span><span id='Kort-view-bugmap-fix-Form-cfg-scrollable'>        scrollable: true,
+</span><span id='Kort-view-bugmap-fix-Form-cfg-title'>        title: Ext.i18n.Bundle.message('fix.form.title'),
+</span><span id='Kort-view-bugmap-fix-Form-cfg-fullscreen'>        fullscreen: true
+</span>	},
     
-    initialize: function () {
-        var fixContentComponent,
+<span id='Kort-view-bugmap-fix-Form-method-initialize'>    initialize: function () {
+</span>        var fixContentComponent,
             fixFormPanel,
             fixField;
         
@@ -94,8 +97,8 @@
         this.add([fixContentComponent, fixFormPanel]);
     },
     
-    createFixField: function(bug) {
-        var fixField,
+<span id='Kort-view-bugmap-fix-Form-method-createFixField'>    createFixField: function(bug) {
+</span>        var fixField,
             fieldConfig = {
                 name: 'fixfield',
                 cls: 'fixfield'

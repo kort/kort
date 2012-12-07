@@ -15,7 +15,10 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js">Ext.define('Kort.view.highscore.List', {
+  <pre class="prettyprint lang-js"><span id='Kort-view-highscore-List'>/**
+</span> * Highscore list
+ */
+Ext.define('Kort.view.highscore.List', {
 	extend: 'Ext.List',
 	alias: 'widget.highscorelist',
     requires: [
@@ -23,14 +26,14 @@
     ],
     
 	config: {
-		layout: 'fit',
-		store: 'Highscore',
-        loadingText: Ext.i18n.Bundle.message('highscore.loadmask.message'),
-        emptyText: '&lt;div class=&quot;emptytext&quot;&gt;' + Ext.i18n.Bundle.message('highscore.emptytext') + '&lt;/div&gt;',
-        disableSelection: true,
-        
-        itemTpl:    new Ext.XTemplate(
-                        '&lt;div class=&quot;highscore-item' +
+<span id='Kort-view-highscore-List-cfg-layout'>		layout: 'fit',
+</span><span id='Kort-view-highscore-List-cfg-store'>		store: 'Highscore',
+</span><span id='Kort-view-highscore-List-cfg-loadingText'>        loadingText: Ext.i18n.Bundle.message('highscore.loadmask.message'),
+</span><span id='Kort-view-highscore-List-cfg-emptyText'>        emptyText: '&lt;div class=&quot;emptytext&quot;&gt;' + Ext.i18n.Bundle.message('highscore.emptytext') + '&lt;/div&gt;',
+</span><span id='Kort-view-highscore-List-cfg-disableSelection'>        disableSelection: true,
+</span>        
+<span id='Kort-view-highscore-List-cfg-itemTpl'>        itemTpl:    new Ext.XTemplate(
+</span>                        '&lt;div class=&quot;highscore-item' +
                         '&lt;tpl if=&quot;ranking == 1&quot;&gt; firstPlace&lt;/tpl&gt;' +
                         '&lt;tpl if=&quot;ranking == 2&quot;&gt; secondPlace&lt;/tpl&gt;' +
                         '&lt;tpl if=&quot;ranking == 3&quot;&gt; thirdPlace&lt;/tpl&gt;' +
@@ -49,8 +52,8 @@
                         '&lt;/div&gt;'
                     ),
         
-        plugins: [
-            {
+<span id='Kort-view-highscore-List-cfg-plugins'>        plugins: [
+</span>            {
                 xclass: 'Kort.view.highscore.PullRefreshPlugin'
             }
         ]

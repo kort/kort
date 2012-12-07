@@ -15,22 +15,25 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js">Ext.define('Kort.view.profile.BadgesDataView', {
+  <pre class="prettyprint lang-js"><span id='Kort-view-profile-BadgesDataView'>/**
+</span> * DataView which displays all badges
+ */
+Ext.define('Kort.view.profile.BadgesDataView', {
 	extend: 'Ext.DataView',
 	alias: 'widget.profilebadgesdataview',
 	
 	config: {
-        cls: 'profileBadgesDataView',
-        store: 'UserBadges',
-        inline: true,
-        itemTpl:    '&lt;div class=&quot;badge&quot;&gt;' +
-                        '&lt;img src=&quot;./resources/images/badges/&lt;tpl if=&quot;won&quot;&gt;{name}&lt;tpl else&gt;locked&lt;/tpl&gt;.png&quot; /&gt;' +
+<span id='Kort-view-profile-BadgesDataView-cfg-cls'>        cls: 'profileBadgesDataView',
+</span><span id='Kort-view-profile-BadgesDataView-cfg-store'>        store: 'UserBadges',
+</span><span id='Kort-view-profile-BadgesDataView-cfg-inline'>        inline: true,
+</span><span id='Kort-view-profile-BadgesDataView-cfg-itemTpl'>        itemTpl:    '&lt;div class=&quot;badge&quot;&gt;' +
+</span>                        '&lt;img src=&quot;./resources/images/badges/&lt;tpl if=&quot;won&quot;&gt;{name}&lt;tpl else&gt;locked&lt;/tpl&gt;.png&quot; /&gt;' +
                         '&lt;p class=&quot;badge-title&quot;&gt;{title}&lt;/p&gt;' +
                     '&lt;/div&gt;',
-        scrollable: false,
-        emptyText: '&lt;div class=&quot;emptytext&quot;&gt;' + Ext.i18n.Bundle.message('profile.badges.emptytext') + '&lt;/div&gt;',
-        // disable loading mask for badges dataview
-        loadingText: false
+<span id='Kort-view-profile-BadgesDataView-cfg-scrollable'>        scrollable: false,
+</span><span id='Kort-view-profile-BadgesDataView-cfg-emptyText'>        emptyText: '&lt;div class=&quot;emptytext&quot;&gt;' + Ext.i18n.Bundle.message('profile.badges.emptytext') + '&lt;/div&gt;',
+</span><span id='Kort-view-profile-BadgesDataView-cfg-loadingText'>        // disable loading mask for badges dataview
+</span>        loadingText: false
 	}
 });</pre>
 </body>

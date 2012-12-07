@@ -15,7 +15,10 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js">Ext.define('Kort.view.highscore.PullRefreshPlugin', {
+  <pre class="prettyprint lang-js"><span id='Kort-view-highscore-PullRefreshPlugin'>/**
+</span> * Pull refresh plugin for highscore list
+ */
+Ext.define('Kort.view.highscore.PullRefreshPlugin', {
     extend: 'Kort.plugin.PullRefresh',
     alias: 'plugin.highscorepullrefresh',
     
@@ -24,8 +27,8 @@
     ],
 	
 	config: {
-       refreshFn: function() {
-            var me = this,
+<span id='Kort-view-highscore-PullRefreshPlugin-cfg-refreshFn'>       refreshFn: function() {
+</span>            var me = this,
                 list = me.getList(),
                 store = list.getStore();
 

@@ -15,15 +15,18 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js">Ext.define('Kort.view.profile.ContentComponent', {
+  <pre class="prettyprint lang-js"><span id='Kort-view-profile-ContentComponent'>/**
+</span> * Component which shows user content
+ */
+Ext.define('Kort.view.profile.ContentComponent', {
 	extend: 'Ext.Component',
 	alias: 'widget.profilecontentcomponent',
 	
 	config: {
-        cls: 'profileContentComponent',
-        
-        tpl: new Ext.XTemplate(
-                '&lt;div class=&quot;profile-content&quot;&gt;',
+<span id='Kort-view-profile-ContentComponent-cfg-cls'>        cls: 'profileContentComponent',
+</span>        
+<span id='Kort-view-profile-ContentComponent-cfg-tpl'>        tpl: new Ext.XTemplate(
+</span>                '&lt;div class=&quot;profile-content&quot;&gt;',
                     '&lt;div class=&quot;info&quot;&gt;',
                         '&lt;div class=&quot;picture&quot;&gt;',
                             '&lt;img src=&quot;{pic_url}&quot; /&gt;',

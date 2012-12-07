@@ -15,14 +15,17 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js">Ext.define('Kort.view.bugmap.BugMessageBox', {
+  <pre class="prettyprint lang-js"><span id='Kort-view-bugmap-BugMessageBox'>/**
+</span> * Message box which shows bug details
+ */
+Ext.define('Kort.view.bugmap.BugMessageBox', {
 	extend: 'Ext.MessageBox',
 	alias: 'widget.bugmessagebox',
     
     config: {
-        cls: 'bugMessageBox',
-        zIndex: Kort.util.Config.getZIndex().overlayLeafletMap
-    }
+<span id='Kort-view-bugmap-BugMessageBox-cfg-cls'>        cls: 'bugMessageBox',
+</span><span id='Kort-view-bugmap-BugMessageBox-cfg-zIndex'>        zIndex: Kort.util.Config.getZIndex().overlayLeafletMap
+</span>    }
 });</pre>
 </body>
 </html>

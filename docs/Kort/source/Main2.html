@@ -15,21 +15,24 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js">Ext.define('Kort.view.Main', {
+  <pre class="prettyprint lang-js"><span id='Kort-view-Main'>/**
+</span> * Main tabpanel of application
+ */
+Ext.define('Kort.view.Main', {
     extend: 'Ext.tab.Panel',
     xtype: 'main',
-    id: 'mainTabPanel',
-
+<span id='Kort-view-Main-property-id'>    id: 'mainTabPanel',
+</span>
     config: {
-        tabBar: {
-            docked: 'bottom',
+<span id='Kort-view-Main-cfg-tabBar'>        tabBar: {
+</span>            docked: 'bottom',
             layout: {
                 pack: 'start'
             }
         },
 
-        items: [
-            {
+<span id='Kort-view-Main-cfg-items'>        items: [
+</span>            {
                 xtype: 'bugmapnavigationview'
             },
             {
