@@ -37,17 +37,17 @@ In Tabelle \ref{kort-view-types-table} sind die bereits vorhandenen View-Typen b
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|p{0.2\twocelltabwidth}|p{0.8\twocelltabwidth}|}
-\hline 
-\textbf{Typ} & \textbf{Beschreibung} \\ 
-\hline 
-text & Rendert ein Text-Eingabefeld \\ 
-\hline 
-number & Rendert ein Zahl-Eingabefeld \\ 
-\hline 
-select & Rendert eine Select-Box mit vorgefüllten Werten aus der Datenbank \\ 
-\hline 
-\end{tabular} 
+\begin{tabular}{|p{0.15\twocelltabwidth}|p{0.85\twocelltabwidth}|}
+\hline
+\textbf{Typ} & \textbf{Beschreibung} \\
+\hline
+text & Rendert ein Text-Eingabefeld \\
+\hline
+number & Rendert ein Zahl-Eingabefeld \\
+\hline
+select & Rendert eine Select-Box mit vorgefüllten Werten aus der Datenbank \\
+\hline
+\end{tabular}
 \caption{kort: View-Typen}
 \label{kort-view-types-table}
 \end{table}
@@ -79,7 +79,7 @@ createFixField: function(bug) {
 Die bereits vorhandenen Auszeichnungen sind in Tabelle \ref{kort-badges} beschrieben. Um weitere Auszeichnungen hinzuzufügen, muss folgendermassen vorgegangen werden:
 
 \begin{enumerate}
-\item Badge muss in die Tabelle \inlinecode{kort.badge} eingefügt werden
+\item Es muss ein neuer Badge in der Tabelle \inlinecode{kort.badge} erstellt werden
 \item Zusätzlich muss die Regel für das Gewinnen des Badges in der Abfrage XY definiert werden. \todo[inline]{Abfrage erstellen und einfügen}
 \item Für das Frontend muss ein Bild erstellt werden, welches dem Namen (Tabellenattribut \inlinecode{kort.badge.name}) des Badges entspricht. Dieses Bild muss in folgendem Pfad gespeichert werden \inlinecode{/resources/images/badges/<badgename>.png}.
 \end{enumerate}

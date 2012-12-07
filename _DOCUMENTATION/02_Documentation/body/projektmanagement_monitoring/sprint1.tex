@@ -3,7 +3,7 @@
 \todo[inline]{Text anpassen für Sprint 1}
 
 Alle Informationen zum Sprint 1 sind auch in unserem Wiki zu finden:
-\url{http://redmine.rdmr.ch/redmine/projects/gftprototype/wiki/Sprint_1}
+\url{http://kort.rdmr.ch/redmine/versions/1}
 
 \subsubsection{Hauptaufgaben / Fokussierung im Sprint}
 
@@ -11,35 +11,41 @@ Alle Informationen zum Sprint 1 sind auch in unserem Wiki zu finden:
 	\item Aufsetzen der Infrastruktur (Repository, Projektmanagement, Entwicklungsumgebung, Server)
 	\item Einarbeitung in die Thematik
 	\begin{itemize}
-		\item GIS
-		\item Google Fusion Tables (GFT)
+		\item Gamification
+		\item Highscore API (?)
+		\item OpenStreetMap
+		\item OpenLayers
 		\item allenfalls weitere \gls{API}s
 	\end{itemize}
-	\item Erarbeitung eines ersten Roundtrips um Daten von und zu Google Fusion Tables zu schicken/empfangen
+	\item Wrapper für OpenStreetMap in Sencha Touch
 	\item Projektsetup
 	\begin{itemize}
 		\item GitHub\footnote{\url{http://www.github.com}} als Repository
-		\item LaTex\footnote{\url{http://www.latex-project.org}} für Dokumentation
-		\item Jenkins \footnote{\url{http://jenkins-ci.org}} für Continuous Integration (CI)
+		\item \LaTeX{}\footnote{\url{http://www.latex-project.org}} für Dokumentation
+		\item Heroku\footnote{\url{http://www.heroku.com}} fürs Hosting
+		\item Travis \footnote{\url{http://travis-ci.org}} für Continuous Integration (CI)
 		\item Redmine \footnote{\url{http://www.redmine.org}} für Projektmanagement/Wiki/Bugtracker
-		\item Scrum als Methodik
+		\item Scrum \footnote{\url{http://de.wikipedia.org/wiki/Scrum}} als Methodik
 	\end{itemize}
 \end{itemize}
 
 \subsubsection{Ziele}
 \begin{itemize}
-	\item Google Fusion Table \gls{API} kennen lernen, Potential abschätzen können
-	\item Erster Prototyp mit GFT bauen (Roundtrip mit \gls{CRUD}-Operationen)
+	\item OpenStreetMap genauer kennenlernen (Daten, Struktur, API) können
+	\item Integration in Sencha sicherstellen
+	\item Konzept der \emph{Gamification} erarbeiten
 \end{itemize}
 
 \subsubsection{Abgabe / Deliverables}
-Wir sind im ersten Sprint gut vorangekommen und konnten mit zahlreichen aufeiander aufbauenden Beispielen lernen wie das \gls{API} funktioniert und welche Möglichkeiten es bietet: Abfragen erstellen, Zugriff via \gls{API}, Zugriff via Google Maps Layer (FusionTablesLayer).
 
 \begin{itemize}
-	\item Repository, Build-Server und Projekmanagement-Tool aufgesetzt (siehe Kapitel \ref{infrastruktur})
-	\item Lauffähiger Prototyp mit Unit-Test für \gls{CRUD}-Operationen
-	\item Zahlreiche Beispiele um die Funktionsweise des \gls{API}s zu testen
+	\item Übersicht zum Projekt hier auf Redmine (Sprints, Issues/Tasks, generelle Infos)
+	\item Projekt-Setup mit GitHub, Heroku und Jenkins
+	\item Lauffähiger Prototyp mit OpenStreetMap in Sencha Touch
 \end{itemize}
 
+\subsubsection{Erledigte Arbeiten}
+Im ersten Sprint konnten wir bereits einiges erledigen. So gelang uns ein automatisierter Build der App zu Heroku. Zudem haben wir eine Sencha Touch Komponente für OpenLayers erstellt, um OpenStreetMap Daten in der App darstellen zu können. Ebenfalls gelang es uns mit dem Plugin \emph{Ext.i18n.bundle-touch} die Internationalisierung der App vorzubereiten.
+
 \subsubsection{Probleme}
-Es ist uns nicht gelungen den Roundtrip zu erstellen, d.h. Daten vom Benutzer in Fusion Tables zu speichern und diese wieder abzufragen. Wie sich herausgestellt hat, müssen schreibende Zugriffe autorisiert sein. Dazu empfiehlt Google \gls{OAuth} zu benutzen. Diese Thematik war schlicht zu gross um im ersten Sprint anzuschauen. Die schreibenden Zugriffe sind deshalb Ziel für den 2. Sprint geworden. 
+Leider mussten wir feststellen, dass OpenLayers Library eine nicht mehr wirklich zeitgemässe Bedienung aufweist. Wir werden deshalb im zweiten Sprint nach Alternativen dafür suchen.
