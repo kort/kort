@@ -93,20 +93,6 @@ class DbProxy
         return $this->request("POST", $this->wsConfig->getUrl() . $path, $data);
     }
 
-    public function getInsertParams($data, $returnResults = false)
-    {
-        $params = array();
-        $params['table'] = $this->table;
-        $params['fields'] = $this->fields;
-        $params['returnFields'] = $this->returnFields;
-        $params['data'] = $data;
-
-        $params['return'] = $returnResults;
-        $params['type'] = "INSERT";
-
-        return $params;
-    }
-
     public function update($data)
     {
         $path  = "/" . $this->table;
