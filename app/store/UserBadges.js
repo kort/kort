@@ -1,3 +1,6 @@
+/**
+ * Store for user badges
+ */
 Ext.define('Kort.store.UserBadges', {
     extend: 'Ext.data.Store',
 

@@ -1,3 +1,6 @@
+/**
+ * Model for a validation
+ */
 Ext.define('Kort.model.Validation', {
     extend: 'Ext.data.Model',
     config: {

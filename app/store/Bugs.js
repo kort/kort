@@ -1,3 +1,6 @@
+/**
+ * Store for bugs
+ */
 Ext.define('Kort.store.Bugs', {
     extend: 'Ext.data.Store',
 	

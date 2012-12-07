@@ -1,3 +1,6 @@
+/**
+ * Model for a highscore entry
+ */
 Ext.define('Kort.model.HighscoreEntry', {
     extend: 'Ext.data.Model',
     config: {

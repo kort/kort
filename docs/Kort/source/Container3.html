@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">Ext.define('Kort.view.profile.Container', {
+	extend: 'Ext.Container',
+	alias: 'widget.profilecontainer',
+    requires: [
+        'Ext.TitleBar',
+        'Ext.Button',
+        'Kort.view.profile.ContentComponent',
+        'Kort.view.profile.BadgesDataView'
+    ],
+	
+	config: {
+		title: Ext.i18n.Bundle.message('tab.profile'),
+		url: 'profile',
+		id: 'profileContainer',
+        scrollable: {
+            direction: 'vertical',
+            directionLock: true
+        },
+		iconCls: 'user',
+		layout: 'vbox',
+        
+		items: [
+			{
+				xtype: 'titlebar',
+				cls: 'titlebar',
+				docked: 'top',
+				title: Ext.i18n.Bundle.message('profile.title'),
+                
+                items: [
+                    {
+                        xtype: 'button',
+                        cls: 'profileRefreshButton',
+                        iconCls: 'refresh',
+                        iconMask: true,
+                        align: 'left'
+                    },
+                    {
+                        text: Ext.i18n.Bundle.message('profile.button.logout'),
+                        cls: 'profileLogoutButton',
+                        ui: 'decline',
+                        align: 'right'
+                    }
+                ]
+			}
+		]
+	},
+    initialize: function () {
+        var profileContentComponent,
+            badgesDataView;
+
+        this.callParent(arguments);
+
+        profileContentComponent = {
+            xtype: 'profilecontentcomponent'
+        };
+        
+        badgesDataView = {
+            xtype: 'profilebadgesdataview'
+        };
+        
+        this.add([profileContentComponent, badgesDataView]);
+    }
+});</pre>
+</body>
+</html>

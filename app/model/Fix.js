@@ -1,3 +1,6 @@
+/**
+ * Model for a fix
+ */
 Ext.define('Kort.model.Fix', {
     extend: 'Ext.data.Model',
     config: {

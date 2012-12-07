@@ -1,3 +1,6 @@
+/**
+ * Model for a bug
+ */
 Ext.define('Kort.model.Bug', {
     extend: 'Ext.data.Model',
     config: {

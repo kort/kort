@@ -1,3 +1,6 @@
+/**
+ * Controller for profile tab
+ */
 Ext.define('Kort.controller.Profile', {
     extend: 'Ext.app.Controller',
     requires: [
@@ -39,6 +42,7 @@ Ext.define('Kort.controller.Profile', {
         badgesContainer: null
     },
     
+    // @private
     init: function() {
         var me = this;
         me.callParent(arguments);
@@ -49,6 +53,7 @@ Ext.define('Kort.controller.Profile', {
         });
     },
 
+    // @private
     onProfileContentComponentInitialize: function() {
         if(!Kort.user) {
             Ext.defer(this.onProfileContentComponentInitialize, 500, this);
@@ -57,6 +62,7 @@ Ext.define('Kort.controller.Profile', {
         }
     },
 
+    // @private
     onProfileBadgesDataViewItemTap: function(dataViewCmp, index, target, record, e) {
         var badgesContainer = Ext.create('Kort.view.profile.BadgesContainer', {
             selectedBadgeIndex: index
@@ -66,10 +72,12 @@ Ext.define('Kort.controller.Profile', {
         badgesContainer.show();
     },
 
+    // @private
     onBadgesContainerBackButtonTap: function() {
         this.getBadgesContainer().hide();
     },
 
+    // @private
     onProfileLogoutButtonTap: function() {
         var me = this,
             userLocalStore = Ext.getStore('UserLocal');
@@ -86,10 +94,15 @@ Ext.define('Kort.controller.Profile', {
         });
     },
 
+    // @private
     onProfileRefreshButtonTap: function() {
         this.refreshProfile();
     },
     
+    /**
+     * @private
+     * Refreshes user
+     */
     refreshProfile: function() {
         var me = this;
         
@@ -101,6 +114,7 @@ Ext.define('Kort.controller.Profile', {
         Kort.model.User.reload(Kort.user, 'secret', me.hideLoadMask, me);
     },
 
+    // @private
     showLoadMask: function(message) {
         this.getProfileRefreshButton().disable();
         this.getProfileContainer().setMasked({
@@ -111,6 +125,7 @@ Ext.define('Kort.controller.Profile', {
         Ext.defer(this.hideLoadMask, Kort.util.Config.getTimeout(), this);
     },
 
+    // @private
     hideLoadMask: function() {
         this.getProfileRefreshButton().enable();
         this.getProfileContainer().setMasked(false);

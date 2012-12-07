@@ -1,3 +1,6 @@
+/**
+ * Model for a reward
+ */
 Ext.define('Kort.model.Reward', {
     extend: 'Ext.data.Model',
     config: {

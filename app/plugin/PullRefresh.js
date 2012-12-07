@@ -1,4 +1,7 @@
 /*jshint maxcomplexity:10 */
+/**
+ * Translated pull refresh plugin
+ */
 Ext.define('Kort.plugin.PullRefresh', {
     extend: 'Ext.plugin.PullRefresh',
     alias: 'plugin.kortpullrefresh',
@@ -45,6 +48,7 @@ Ext.define('Kort.plugin.PullRefresh', {
         ].join('')
 	},
     
+    // @inheritdoc
     initScrollable: function() {
         var me = this,
             list = me.getList(),
@@ -102,6 +106,7 @@ Ext.define('Kort.plugin.PullRefresh', {
     },
     
     /**
+     * @inheritdoc
 	 * OVERRIDEN SENCHA TOUCH FUNCTION
 	 * CHANGE: wait for a longer time to scroll to top
 	 */
@@ -134,6 +139,7 @@ Ext.define('Kort.plugin.PullRefresh', {
     },
     
     /**
+     * @inheritdoc
 	 * OVERRIDEN SENCHA TOUCH FUNCTION
 	 * CHANGE: German date format
 	 */

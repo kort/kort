@@ -1,3 +1,6 @@
+/**
+ * Model for a select answer
+ */
 Ext.define('Kort.model.SelectAnswer', {
     extend: 'Ext.data.Model',
     config: {

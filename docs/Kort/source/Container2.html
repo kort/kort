@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">Ext.define('Kort.view.highscore.Container', {
+	extend: 'Ext.Container',
+	alias: 'widget.highscorecontainer',
+    requires: [
+        'Ext.TitleBar',
+        'Kort.view.highscore.List'
+    ],
+	
+	config: {
+		title: Ext.i18n.Bundle.message('tab.highscore'),
+		url: 'highscore',
+		id: 'highscoreContainer',
+		iconCls: 'list',
+		layout: 'fit',
+		items: [
+			{
+				xtype: 'titlebar',
+				cls: 'titlebar',
+				docked: 'top',
+				title: Ext.i18n.Bundle.message('highscore.title'),
+                
+                items: [
+                    {
+                        xtype: 'button',
+                        cls: 'highscoreRefreshButton',
+                        iconCls: 'refresh',
+                        iconMask: true,
+                        align: 'right'
+                    }
+                ]
+			},
+			{
+                xtype: 'highscorelist'
+			}
+		]
+	}
+});</pre>
+</body>
+</html>

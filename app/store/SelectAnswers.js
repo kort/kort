@@ -1,3 +1,6 @@
+/**
+ * Store for select answers
+ */
 Ext.define('Kort.store.SelectAnswers', {
     extend: 'Ext.data.Store',
 
