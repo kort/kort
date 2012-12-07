@@ -22,13 +22,25 @@ if (params.debug !== undefined) {
 	};
 }
 
+/* add another kind of test to indicate tests that must be skipped for the moment */
+/* inspired by http://studgeek.com/2012/03/12/custom-jquery-qunit-test-types/ */
+QUnit.testSkip = function() {
+   QUnit.test(arguments[0] + ' (SKIPPED)', function() {
+       var li = document.getElementById(QUnit.config.current.id);
+       QUnit.done(function() {
+           li.style.background = '#FFFF99';
+       });
+   });
+};
+testSkip = QUnit.testSkip;
+
 /*inspired by http://www.beletsky.net/2010/12/testing-rest-services-with-javascript.html */
 function api_test(url, type, data, callback, raw) {
     var callbackbWrapper;
 
     raw = raw || false;
     if (raw) {
-        callbackbWrapper = function(result) { callback(result); };
+        callbackbWrapper = function(result) {callback(result);};
     } else {
         callbackbWrapper = function(result) {
             if (result.status === 0) {

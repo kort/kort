@@ -37,15 +37,51 @@ class DbHandler
         }
     }
 
-    public function doUpdate($fields, $table, $data, $where, $returnFields)
+    public function doUpdate($fields, $table, $data, $where, $returnFields, $passthru = false)
     {
         $data = $this->reduceData($fields, $data);
-        $updatedData = $this->db->doUpdateQuery($data, $table, $where, $returnFields);
+        $updatedData = $this->db->doUpdateQuery($data, $table, $where, $returnFields, $passthru);
         if (!$updatedData) {
             return $updatedData;
         } else {
             return json_encode($updatedData);
         }
+    }
+
+    public function doTransaction($statements)
+    {
+        $returnValue = "";
+        $this->db->beginTransaction();
+        foreach ($statements as $params) {
+            switch($params['type']) {
+                case "INSERT":
+                    $result = $this->doInsert($params['fields'], $params['table'], $params['data'], $params['returnFields']);
+                    if ($params['return']) {
+                        $returnValue = $result;
+                    }
+                    break;
+                case "UPDATE":
+                    $result = $this->doUpdate($params['fields'], $params['table'], $params['data'], $params['where'], $params['returnFields'], true);
+                    if ($params['return']) {
+                        $returnValue = $result;
+                    }
+                    break;
+                case "SELECT":
+                    $result = $this->doSelect($params['fields'], $params['table'], $params['where'], $params['orderBy'], $params['limit']);
+                    if ($params['return']) {
+                        $returnValue = $result;
+                    }
+                    break;
+                default:
+                    $returnValue = false;
+            }
+        }
+        if (!$returnValue) {
+            $this->db->rollbackTransaction();
+        } else {
+            $this->db->commitTransaction();
+        }
+        return $returnValue;
     }
 
     protected function reduceData($fields, $data)

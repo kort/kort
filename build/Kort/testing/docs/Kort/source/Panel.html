@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Kort-view-overlay-firststeps-Panel'>/**
+</span> * First steps panel which overlays main panel if no username is given
+ */
+Ext.define('Kort.view.overlay.firststeps.Panel', {
+	extend: 'Ext.Panel',
+	alias: 'widget.firststepspanel',
+    requires: [
+        'Ext.form.Panel',
+        'Ext.Button',
+        'Ext.field.Text'
+    ],
+
+	config: {
+<span id='Kort-view-overlay-firststeps-Panel-cfg-id'>		id: 'firststepsPanel',
+</span><span id='Kort-view-overlay-firststeps-Panel-cfg-layout'>		layout: 'vbox',
+</span><span id='Kort-view-overlay-firststeps-Panel-cfg-modal'>        modal: true,
+</span><span id='Kort-view-overlay-firststeps-Panel-cfg-scrollable'>        scrollable: true,
+</span><span id='Kort-view-overlay-firststeps-Panel-cfg-cls'>        cls: 'overlayLeafletMap',
+</span>        
+<span id='Kort-view-overlay-firststeps-Panel-cfg-showAnimation'>        showAnimation: {
+</span>            type: 'slideIn',
+            direction: 'down'
+        },
+<span id='Kort-view-overlay-firststeps-Panel-cfg-hideAnimation'>        hideAnimation: {
+</span>            type: 'slideOut',
+            direction: 'up'
+        },
+        
+<span id='Kort-view-overlay-firststeps-Panel-cfg-items'>		items: [
+</span>			{
+                html:   '&lt;div class=&quot;overlay-content&quot;&gt;' +
+                            '&lt;div class=&quot;logo&quot;&gt;' +
+                                '&lt;img src=&quot;./resources/images/kort-logo.png&quot; /&gt;' +
+                            '&lt;/div&gt;' +
+                            '&lt;div class=&quot;introduction&quot;&gt;' +
+                                Ext.i18n.Bundle.message('firststeps.introduction.1') +
+                                Kort.util.Config.getKortTitle() +
+                                Ext.i18n.Bundle.message('firststeps.introduction.2') +
+                            '&lt;/div&gt;' +
+                        '&lt;/div&gt;'
+			},
+            {
+                xtype: 'formpanel',
+                id: 'usernameForm',
+                scrollable: false,
+                layout: 'vbox',
+                items: [
+                    {
+                        xtype: 'textfield',
+                        cls: 'usernameTextfield',
+                        name: 'username',
+                        // i18n bundle doens't work for placeholders -&gt; get text from config
+                        placeHolder: Kort.util.Config.getFormPlaceholders().username
+                    },
+                    {
+                        xtype: 'button',
+                        ui: 'confirm',
+                        id: 'firststepsFormSubmitButton',
+                        text: Ext.i18n.Bundle.message('firststeps.form.button.submit')
+                    }
+                ]
+            }
+		]
+	}
+});</pre>
+</body>
+</html>

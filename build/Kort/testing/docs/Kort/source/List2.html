@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Kort-view-validation-List'>/**
+</span> * Validations list
+ */
+Ext.define('Kort.view.validation.List', {
+	extend: 'Ext.List',
+	alias: 'widget.validationlist',
+    requires: [
+        'Kort.view.validation.PullRefreshPlugin'
+    ],
+    
+	config: {
+<span id='Kort-view-validation-List-cfg-layout'>		layout: 'fit',
+</span><span id='Kort-view-validation-List-cfg-store'>		store: 'Validations',
+</span><span id='Kort-view-validation-List-cfg-grouped'>        grouped: true,
+</span><span id='Kort-view-validation-List-cfg-loadingText'>        loadingText: Ext.i18n.Bundle.message('validation.loadmask.message'),
+</span><span id='Kort-view-validation-List-cfg-emptyText'>        emptyText: '&lt;div class=&quot;emptytext&quot;&gt;' + Ext.i18n.Bundle.message('validation.emptytext') + '&lt;/div&gt;',
+</span><span id='Kort-view-validation-List-cfg-disableSelection'>        disableSelection: true,
+</span><span id='Kort-view-validation-List-cfg-scrollToTopOnRefresh'>        scrollToTopOnRefresh: false,
+</span>        
+<span id='Kort-view-validation-List-cfg-itemTpl'>        itemTpl:    '&lt;div class=&quot;validation-item&quot;&gt;' +
+</span>                        '&lt;div class=&quot;image&quot;&gt;' +
+                            '&lt;img class=&quot;bugtype-image&quot; src=&quot;./resources/images/marker_icons/{type}.png&quot; /&gt;' +
+                        '&lt;/div&gt;' +
+                        '&lt;div class=&quot;content&quot;&gt;' +
+                            '&lt;div class=&quot;title&quot;&gt;{title}&lt;/div&gt;' +
+                            '&lt;div class=&quot;ratings&quot;&gt;' +
+                                '&lt;span class=&quot;upratings&quot;&gt;' +
+                                    '&lt;tpl if=&quot;upratings &amp;gt; 0&quot;&gt;+&lt;/tpl&gt;' +
+                                    '{upratings}' +
+                                    '&lt;img class=&quot;thumb&quot; src=&quot;./resources/images/validation/thumbs-up.png&quot; /&gt;' +
+                                '&lt;/span&gt;' +
+                                '&lt;span class=&quot;downratings&quot;&gt;' +
+                                    '&lt;tpl if=&quot;downratings &amp;gt; 0&quot;&gt;-&lt;/tpl&gt;' +
+                                    '{downratings}' +
+                                    '&lt;img class=&quot;thumb&quot; src=&quot;./resources/images/validation/thumbs-down.png&quot; /&gt;' +
+                                '&lt;/span&gt;' +
+                            '&lt;/div&gt;' +
+                        '&lt;/div&gt;' +
+                        '&lt;tpl if=&quot;formatted_distance&quot;&gt;' +
+                            '&lt;div class=&quot;distance&quot;&gt;' +
+                                '&lt;div class=&quot;title&quot;&gt;' + Ext.i18n.Bundle.message('validation.distance') + '&lt;/div&gt; ' +
+                                '&lt;div class=&quot;value&quot;&gt;{formatted_distance}&lt;/div&gt;' +
+                            '&lt;/div&gt;' +
+                        '&lt;/tpl&gt;' +
+                    '&lt;/div&gt;',
+        
+<span id='Kort-view-validation-List-cfg-plugins'>        plugins: [
+</span>            {
+                xclass: 'Kort.view.validation.PullRefreshPlugin'
+            }
+        ]
+	}
+});</pre>
+</body>
+</html>
