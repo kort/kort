@@ -37,10 +37,10 @@ class DbHandler
         }
     }
 
-    public function doUpdate($fields, $table, $data, $where, $returnFields)
+    public function doUpdate($fields, $table, $data, $where, $returnFields, $passthru = false)
     {
         $data = $this->reduceData($fields, $data);
-        $updatedData = $this->db->doUpdateQuery($data, $table, $where, $returnFields);
+        $updatedData = $this->db->doUpdateQuery($data, $table, $where, $returnFields, $passthru);
         if (!$updatedData) {
             return $updatedData;
         } else {
@@ -51,6 +51,7 @@ class DbHandler
     public function doTransaction($statements)
     {
         $returnValue = "";
+        $this->db->beginTransaction();
         foreach ($statements as $params) {
             switch($params['type']) {
                 case "INSERT":
@@ -60,7 +61,7 @@ class DbHandler
                     }
                     break;
                 case "UPDATE":
-                    $result = $this->doUpdate($params['fields'], $params['table'], $params['data'], $params['where'], $params['returnFields']);
+                    $result = $this->doUpdate($params['fields'], $params['table'], $params['data'], $params['where'], $params['returnFields'], true);
                     if ($params['return']) {
                         $returnValue = $result;
                     }
@@ -74,6 +75,11 @@ class DbHandler
                 default:
                     $returnValue = false;
             }
+        }
+        if (!$returnValue) {
+            $this->db->rollbackTransaction();
+        } else {
+            $this->db->commitTransaction();
         }
         return $returnValue;
     }
