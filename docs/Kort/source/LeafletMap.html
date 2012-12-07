@@ -15,19 +15,22 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js">Ext.define('Kort.view.LeafletMap', {
+  <pre class="prettyprint lang-js"><span id='Kort-view-LeafletMap'>/**
+</span> * LeafletMap component
+ */
+Ext.define('Kort.view.LeafletMap', {
     extend: 'Ext.ux.LeafletMap',
     xtype: 'kortleafletmap',
 
     config: {
-        useCurrentLocation: false,
-        autoMapCenter: false,
-        mapOptions: {
-            zoom: Kort.util.Config.getLeafletMap().zoom
+<span id='Kort-view-LeafletMap-cfg-useCurrentLocation'>        useCurrentLocation: false,
+</span><span id='Kort-view-LeafletMap-cfg-autoMapCenter'>        autoMapCenter: false,
+</span><span id='Kort-view-LeafletMap-cfg-mapOptions'>        mapOptions: {
+</span>            zoom: Kort.util.Config.getLeafletMap().zoom
         },
-        tileLayerUrl: Kort.util.Config.getLeafletMap().tileLayerUrl,
-        tileLayerOptions: {
-            apikey: Kort.util.Config.getLeafletMap().apiKey,
+<span id='Kort-view-LeafletMap-cfg-tileLayerUrl'>        tileLayerUrl: Kort.util.Config.getLeafletMap().tileLayerUrl,
+</span><span id='Kort-view-LeafletMap-cfg-tileLayerOptions'>        tileLayerOptions: {
+</span>            apikey: Kort.util.Config.getLeafletMap().apiKey,
             styleId: Kort.util.Config.getLeafletMap().styleId,
             attribution: Kort.util.Config.getLeafletMap().tileLayerAttribution
         }

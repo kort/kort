@@ -1,3 +1,6 @@
+/**
+ * DataView which displays all badges
+ */
 Ext.define('Kort.view.profile.BadgesDataView', {
 	extend: 'Ext.DataView',
 	alias: 'widget.profilebadgesdataview',

@@ -1,3 +1,6 @@
+/**
+ * Main container for highscore tab
+ */
 Ext.define('Kort.view.highscore.Container', {
 	extend: 'Ext.Container',
 	alias: 'widget.highscorecontainer',

@@ -1,3 +1,6 @@
+/**
+ * Reward messagebox to show rewards
+ */
 Ext.define('Kort.view.RewardMessageBox', {
     extend: 'Kort.view.NotificationMessageBox',
     xtype: 'rewardmessagebox',

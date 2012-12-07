@@ -1,3 +1,6 @@
+/**
+ * Pull refresh plugin for highscore list
+ */
 Ext.define('Kort.view.highscore.PullRefreshPlugin', {
     extend: 'Kort.plugin.PullRefresh',
     alias: 'plugin.highscorepullrefresh',

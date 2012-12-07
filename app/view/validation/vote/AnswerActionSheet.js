@@ -1,3 +1,6 @@
+/**
+ * ActionSheet with answers for vote view
+ */
 Ext.define('Kort.view.validation.vote.AnswerActionSheet', {
     extend: 'Ext.ActionSheet',
     xtype: 'voteansweractionsheet',

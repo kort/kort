@@ -15,7 +15,10 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js">Ext.define('Kort.view.profile.Container', {
+  <pre class="prettyprint lang-js"><span id='Kort-view-profile-Container'>/**
+</span> * Main container for profile tab
+ */
+Ext.define('Kort.view.profile.Container', {
 	extend: 'Ext.Container',
 	alias: 'widget.profilecontainer',
     requires: [
@@ -26,18 +29,18 @@
     ],
 	
 	config: {
-		title: Ext.i18n.Bundle.message('tab.profile'),
-		url: 'profile',
-		id: 'profileContainer',
-        scrollable: {
-            direction: 'vertical',
+<span id='Kort-view-profile-Container-cfg-title'>		title: Ext.i18n.Bundle.message('tab.profile'),
+</span><span id='Kort-view-profile-Container-cfg-url'>		url: 'profile',
+</span><span id='Kort-view-profile-Container-cfg-id'>		id: 'profileContainer',
+</span><span id='Kort-view-profile-Container-cfg-scrollable'>        scrollable: {
+</span>            direction: 'vertical',
             directionLock: true
         },
-		iconCls: 'user',
-		layout: 'vbox',
-        
-		items: [
-			{
+<span id='Kort-view-profile-Container-cfg-iconCls'>		iconCls: 'user',
+</span><span id='Kort-view-profile-Container-cfg-layout'>		layout: 'vbox',
+</span>        
+<span id='Kort-view-profile-Container-cfg-items'>		items: [
+</span>			{
 				xtype: 'titlebar',
 				cls: 'titlebar',
 				docked: 'top',
@@ -61,8 +64,8 @@
 			}
 		]
 	},
-    initialize: function () {
-        var profileContentComponent,
+<span id='Kort-view-profile-Container-method-initialize'>    initialize: function () {
+</span>        var profileContentComponent,
             badgesDataView;
 
         this.callParent(arguments);

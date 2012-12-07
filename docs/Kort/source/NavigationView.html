@@ -15,7 +15,10 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js">Ext.define('Kort.view.bugmap.NavigationView', {
+  <pre class="prettyprint lang-js"><span id='Kort-view-bugmap-NavigationView'>/**
+</span> * Main navigation view for bugmap tab
+ */
+Ext.define('Kort.view.bugmap.NavigationView', {
 	extend: 'Ext.navigation.View',
 	alias: 'widget.bugmapnavigationview',
     requires: [
@@ -24,14 +27,14 @@
     ],
 	
 	config: {
-        title: Ext.i18n.Bundle.message('tab.bugmap'),
-		url: 'bugmap',
-		id: 'bugmapNavigationView',
-		iconCls: 'maps',
-        defaultBackButtonText: Ext.i18n.Bundle.message('button.back'),
-        
-        navigationBar: {
-            items: [
+<span id='Kort-view-bugmap-NavigationView-cfg-title'>        title: Ext.i18n.Bundle.message('tab.bugmap'),
+</span><span id='Kort-view-bugmap-NavigationView-cfg-url'>		url: 'bugmap',
+</span><span id='Kort-view-bugmap-NavigationView-cfg-id'>		id: 'bugmapNavigationView',
+</span><span id='Kort-view-bugmap-NavigationView-cfg-iconCls'>		iconCls: 'maps',
+</span><span id='Kort-view-bugmap-NavigationView-cfg-defaultBackButtonText'>        defaultBackButtonText: Ext.i18n.Bundle.message('button.back'),
+</span>        
+<span id='Kort-view-bugmap-NavigationView-cfg-navigationBar'>        navigationBar: {
+</span>            items: [
                 {
                     xtype: 'button',
                     cls: 'bugmapCenterButton',
@@ -48,8 +51,8 @@
                 }
             ]
         },
-		items: [
-			{
+<span id='Kort-view-bugmap-NavigationView-cfg-items'>		items: [
+</span>			{
                 title: Ext.i18n.Bundle.message('bugmap.title'),
                 
                 xtype: 'kortleafletmap',

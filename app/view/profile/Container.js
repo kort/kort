@@ -1,3 +1,6 @@
+/**
+ * Main container for profile tab
+ */
 Ext.define('Kort.view.profile.Container', {
 	extend: 'Ext.Container',
 	alias: 'widget.profilecontainer',
