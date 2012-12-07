@@ -8,7 +8,7 @@ select  e.error_id id,
         t.view_type,
         t.answer_placeholder,
         e.msgid description,
-        t.koin_count,
+        t.fix_koin_count koin_count,
         CAST(e.lat AS NUMERIC)/10000000 latitude,
         CAST(e.lon AS NUMERIC)/10000000 longitude,
         e.geom,
@@ -18,7 +18,7 @@ select  e.error_id id,
         e.txt4,
         e.txt5
 from    keepright.errors e,
-        keepright.error_type t
+        kort.error_type t
 where   e.error_type_id = t.error_type_id
 and     not exists (select 1 from kort.fix f where f.error_id = e.error_id);
 
@@ -39,7 +39,7 @@ select  f.fix_id id,
         CAST(e.lon AS NUMERIC)/10000000 longitude,
         e.geom
 from    keepright.errors e,
-        keepright.error_type t,
+        kort.error_type t,
         kort.fix f
 where   e.error_type_id = t.error_type_id
 and     f.error_id = e.error_id
