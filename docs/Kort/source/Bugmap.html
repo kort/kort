@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Kort-controller-Bugmap'>/**
+</span> * Controller for bugmap tab
+ */
+Ext.define('Kort.controller.Bugmap', {
+    extend: 'Ext.app.Controller',
+    requires: [
+        'Ext.LoadMask'
+    ],
+
+    config: {
+<span id='Kort-controller-Bugmap-cfg-views'>        views: [
+</span>            'bugmap.BugMessageBox',
+            'bugmap.NavigationView',
+            'bugmap.fix.TabPanel'
+        ],
+<span id='Kort-controller-Bugmap-cfg-refs'>        refs: {
+</span>            mainTabPanel: '#mainTabPanel',
+            mapCmp: '#bugmap',
+            bugmapNavigationView: '#bugmapNavigationView',
+            bugmapCenterButton: '#bugmapNavigationView .button[cls=bugmapCenterButton]',
+            bugmapRefreshButton: '#bugmapNavigationView .button[cls=bugmapRefreshButton]'
+        },
+<span id='Kort-controller-Bugmap-cfg-control'>        control: {
+</span>            mapCmp: {
+                maprender: 'onMapRender'
+            },
+            bugmapCenterButton: {
+                tap: 'onBugmapCenterButtonTap'
+            },
+            bugmapRefreshButton: {
+                tap: 'onBugmapRefreshButtonTap'
+            },
+            bugmapNavigationView: {
+                detailpush: 'onBugmapNavigationViewDetailPush',
+                back: 'onBugmapNavigationViewBack'
+            }
+        },
+
+<span id='Kort-controller-Bugmap-cfg-map'>        map: null,
+</span><span id='Kort-controller-Bugmap-cfg-ownPositionMarker'>        ownPositionMarker: null,
+</span><span id='Kort-controller-Bugmap-cfg-markerLayerGroup'>        markerLayerGroup: [],
+</span><span id='Kort-controller-Bugmap-cfg-activeBug'>        activeBug: null,
+</span><span id='Kort-controller-Bugmap-cfg-bugsStore'>        bugsStore: null,
+</span><span id='Kort-controller-Bugmap-cfg-messageBoxTemplate'>        messageBoxTemplate: null
+</span>    },
+    
+<span id='Kort-controller-Bugmap-method-init'>    /**
+</span>     * @private
+     * Initilizes the controller
+     */
+    init: function() {
+        var me = this;
+        me.callParent(arguments);
+        
+        // create layer group for bug markers
+        me.setMarkerLayerGroup(L.layerGroup());
+
+        me.setBugsStore(Ext.getStore('Bugs'));
+
+        me.setMessageBoxTemplate(
+            new Ext.Template(
+                '&lt;div class=&quot;messagebox-content&quot;&gt;',
+                    '&lt;div class=&quot;textpic&quot;&gt;',
+                        '&lt;div class=&quot;image&quot;&gt;',
+                            '&lt;img class=&quot;koin-image&quot; src=&quot;./resources/images/koins/koin_no_value.png&quot; /&gt;',
+                        '&lt;/div&gt;',
+                        '&lt;div class=&quot;content&quot;&gt;',
+                            '&lt;p&gt;',
+                                Ext.i18n.Bundle.message('bugmap.messagebox.koins.earn'),
+                                ' &lt;span class=&quot;important&quot;&gt;{fix_koin_count}&lt;/span&gt; ',
+                                Ext.i18n.Bundle.message('bugmap.messagebox.koins.name'),
+                            '&lt;/p&gt;',
+                        '&lt;/div&gt;',
+                    '&lt;/div&gt;',
+                    '&lt;div class=&quot;textpic&quot;&gt;',
+                        '&lt;div class=&quot;image&quot;&gt;',
+                            '&lt;img class=&quot;bugtype-image&quot; src=&quot;./resources/images/marker_icons/{type}.png&quot; /&gt;',
+                        '&lt;/div&gt;',
+                        '&lt;div class=&quot;content&quot;&gt;',
+                            '&lt;p&gt;{description}&lt;/p&gt;',
+                        '&lt;/div&gt;',
+                    '&lt;/div&gt;',
+                '&lt;/div&gt;'
+            )
+        );
+        
+        // adding listener for fixsend event
+        me.getApplication().on({
+            fixsend: { fn: me.refreshBugMarkers, scope: me }
+        });
+    },
+    
+<span id='Kort-controller-Bugmap-method-onBugmapNavigationViewDetailPush'>    // @private
+</span>    onBugmapNavigationViewDetailPush: function(cmp, view, opts) {
+        this.getBugmapCenterButton().hide();
+        this.getBugmapRefreshButton().hide();
+    },
+    
+<span id='Kort-controller-Bugmap-method-onBugmapNavigationViewBack'>    // @private
+</span>    onBugmapNavigationViewBack: function(cmp, view, opts) {
+        this.getBugmapCenterButton().show();
+        this.getBugmapRefreshButton().show();
+    },
+
+<span id='Kort-controller-Bugmap-method-onMapRender'>    // @private
+</span>    onMapRender: function(cmp, map, tileLayer) {
+        var me = this;
+        me.setMap(map);
+
+        // adding markers
+        if(cmp.getGeo()) {
+            me.addOwnPositionMarker(cmp, map);
+
+            // add listener for locationupdate event of geolocation for setting marker position
+            cmp.getGeo().addListener('locationupdate', function() {
+                // this referes to the geolocation
+                me.setOwnPositionMarkerPosition(L.latLng(this.getLatitude(), this.getLongitude()));
+            });
+        }
+
+        // wait until correct position is found
+        Ext.Function.defer(me.refreshBugMarkers, 700, me);
+
+        me.getMarkerLayerGroup().addTo(map);
+    },
+
+<span id='Kort-controller-Bugmap-method-onBugmapCenterButtonTap'>    // @private
+</span>    onBugmapCenterButtonTap: function() {
+        this.centerMapToCurrentPosition();
+    },
+    
+<span id='Kort-controller-Bugmap-method-onBugmapRefreshButtonTap'>    // @private
+</span>    onBugmapRefreshButtonTap: function() {
+        this.refreshBugMarkers();
+    },
+    
+<span id='Kort-controller-Bugmap-method-centerMapToCurrentPosition'>    /**
+</span>     * @private
+     * Centers map to current position
+     */
+    centerMapToCurrentPosition: function() {
+        // centering map to current position
+        this.getMapCmp().setMapCenter(this.getCurrentLocationLatLng(this.getMapCmp()));
+        this.getMap().setZoom(Kort.util.Config.getLeafletMap().zoom);
+    },
+
+<span id='Kort-controller-Bugmap-method-refreshBugMarkers'>    /**
+</span>     * @private
+     * Reloads and redraws all bug markers
+     */
+    refreshBugMarkers: function() {
+        var me = this,
+            mapCmp = me.getMapCmp(),
+            bugsStore = me.getBugsStore(),
+            url, currentLatLng;
+        
+        currentLatLng = me.getCurrentLocationLatLng(mapCmp);
+        url = './server/webservices/bug/position/' + currentLatLng.lat + ',' + currentLatLng.lng;
+        bugsStore.getProxy().setUrl(url);
+
+        me.showLoadMask();
+
+        me.centerMapToCurrentPosition();
+
+        // Load bugs store
+		bugsStore.load(function(records, operation, success) {
+            me.redrawBugMarkers(records);
+        });
+    },
+
+<span id='Kort-controller-Bugmap-method-redrawBugMarkers'>    /**
+</span>     * @private
+     * Removes old and draws new markers
+     * @param {Ext.data.Model[]} bugs Array of bug instances
+     */
+	redrawBugMarkers: function(bugs) {
+        var me = this;
+
+        me.removeAllMarkers();
+
+        // add markers
+        Ext.each(bugs, function (bug, index, length) {
+            if(bug.get('longitude') &amp;&amp; bug.get('longitude')) {
+                console.log(bug.get('osm_type') + ' / ' + bug.get('osm_id') + ' / ' + bug.get('view_type') + ' / ' + bug.get('latitude') + ' / ' + bug.get('longitude'));
+                me.addMarker(bug);
+            }
+        });
+        me.hideLoadMask();
+	},
+    
+<span id='Kort-controller-Bugmap-method-removeAllMarkers'>    /**
+</span>     * @private
+     * Removes all markers from map
+     */
+    removeAllMarkers: function() {
+        this.getMarkerLayerGroup().clearLayers();
+    },
+
+<span id='Kort-controller-Bugmap-method-addMarker'>    /**
+</span>     * @private
+     * Adds marker for given bug
+     * @param {Kort.model.Bug} bug Bug instance 
+     */
+    addMarker: function(bug) {
+        var me = this,
+            icon,
+            marker;
+
+        icon = Kort.util.Config.getMarkerIcon(bug.get('type'));
+        marker = L.marker([bug.get('latitude'), bug.get('longitude')], {
+            icon: icon
+        });
+
+        marker.bug = bug;
+        marker.lastClickTimestamp = 0;
+        marker.on('click', me.onMarkerClick, me);
+        me.getMarkerLayerGroup().addLayer(marker);
+    },
+    
+<span id='Kort-controller-Bugmap-method-addOwnPositionMarker'>    /**
+</span>     * @private
+     * Adds own position marker to map
+     * @param {Ext.ux.LeafletMap} cmp LeafletMap component
+     * @param {L.Map} Leaflet map instance
+     */
+    addOwnPositionMarker: function(cmp, map) {
+        var iconWidth = 20,
+            iconHeight = 20,
+            icon,
+            ownPositionMarker;
+
+        icon = L.icon({
+            iconUrl: './resources/images/marker_icons/own_position.png',
+            iconSize: [iconWidth, iconHeight],
+            iconAnchor: [(iconWidth/2), (iconHeight/2)]
+        });
+        ownPositionMarker = L.marker([cmp.getGeo().getLatitude(), cmp.getGeo().getLongitude()], {
+            icon: icon,
+            clickable: false
+        });
+        this.setOwnPositionMarker(ownPositionMarker);
+        ownPositionMarker.addTo(map);
+    },
+
+<span id='Kort-controller-Bugmap-method-setOwnPositionMarkerPosition'>    /**
+</span>     * @private
+     * Sets position of own position marker
+     * @param {L.LatLng} latlng New position of marker
+     */
+    setOwnPositionMarkerPosition: function(latlng) {
+        var ownPositionMarker = this.getOwnPositionMarker();
+        if(ownPositionMarker) {
+            ownPositionMarker.setLatLng(latlng);
+        }
+    },
+
+<span id='Kort-controller-Bugmap-method-onMarkerClick'>    /**
+</span>     * @private
+     * Executed when marker gets clicked
+     * @param {L.MouseEvent} e Mouse click event
+     */
+    onMarkerClick: function(e) {
+        var tpl,
+            marker = e.target,
+            bug = marker.bug,
+            CLICK_TOLERANCE = 400,
+            timeDifference, bugMessageBox;
+
+        timeDifference = e.originalEvent.timeStamp - marker.lastClickTimestamp;
+
+        // LEAFLET BUGFIX: only execute click if there is a certain time between last click
+        if(timeDifference &gt; CLICK_TOLERANCE) {
+            tpl = this.getMessageBoxTemplate();
+            marker.lastClickTimestamp = e.originalEvent.timeStamp;
+            this.setActiveBug(bug);
+            bugMessageBox = Ext.create('Kort.view.bugmap.BugMessageBox', {
+                record: bug
+            });
+            bugMessageBox.confirm(bug.get('title'), tpl.apply(bug.data), this.markerConfirmHandler, this);
+        }
+    },
+
+<span id='Kort-controller-Bugmap-method-markerConfirmHandler'>    // @private
+</span>    markerConfirmHandler: function(buttonId, value, opt) {
+        if(buttonId === 'yes') {
+            console.log('Open fix (id: ' + this.getActiveBug().data.id + ')');
+            this.showFix(this.getActiveBug());
+        }
+
+        this.setActiveBug(null);
+    },
+
+<span id='Kort-controller-Bugmap-method-showFix'>    /**
+</span>     * @private
+     * Displays fix detail panel
+     * @param {Kort.model.Bug} bug Bug instance
+     */
+    showFix: function(bug) {
+        var bugmapNavigationView = this.getBugmapNavigationView(),
+            fixTabPanel;
+
+        fixTabPanel = Ext.create('Kort.view.bugmap.fix.TabPanel', {
+            record: bug,
+            title: bug.get('title')
+        });
+        bugmapNavigationView.push(fixTabPanel);
+        bugmapNavigationView.fireEvent('detailpush', bugmapNavigationView);
+    },
+    
+<span id='Kort-controller-Bugmap-method-showLoadMask'>    /**
+</span>     * @private
+     * Shows load mask
+     */
+    showLoadMask: function() {
+        this.getBugmapCenterButton().disable();
+        this.getBugmapRefreshButton().disable();
+        this.getBugmapNavigationView().setMasked({
+            xtype: 'loadmask',
+            message: Ext.i18n.Bundle.message('bugmap.loadmask.message'),
+            zIndex: Kort.util.Config.getZIndex().overlayLeafletMap
+        });
+    },
+    
+<span id='Kort-controller-Bugmap-method-hideLoadMask'>    /**
+</span>     * @private
+     * Hides load mask
+     */
+    hideLoadMask: function() {
+        this.getBugmapNavigationView().setMasked(false);
+        this.getBugmapCenterButton().enable();
+        this.getBugmapRefreshButton().enable();
+    },
+    
+<span id='Kort-controller-Bugmap-method-getCurrentLocationLatLng'>    /**
+</span>	 * @private
+	 * Returns current location
+     * @param {Ext.ux.LeafletMap} mapCmp LeafletMap component
+	 */
+	getCurrentLocationLatLng: function(mapCmp) {
+		if(mapCmp.getUseCurrentLocation()) {
+            var geo = mapCmp.getGeo();
+			return L.latLng(geo.getLatitude(), geo.getLongitude());
+		} else {
+			return mapCmp.getMap().getCenter();
+		}
+	}
+});
+</pre>
+</body>
+</html>

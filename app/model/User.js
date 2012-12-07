@@ -1,4 +1,7 @@
 /*jshint maxcomplexity:10 */
+/**
+ * Model for the user instance
+ */
 Ext.define('Kort.model.User', {
     extend: 'Ext.data.Model',
     config: {

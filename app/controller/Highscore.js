@@ -1,3 +1,6 @@
+/**
+ * Controller for highscore tab
+ */
 Ext.define('Kort.controller.Highscore', {
     extend: 'Ext.app.Controller',
     
@@ -19,6 +22,10 @@ Ext.define('Kort.controller.Highscore', {
         }
     },
     
+    /**
+     * @private
+     * Initilizes the controller
+     */
     init: function() {
         var me = this;
         me.callParent(arguments);
@@ -26,14 +33,19 @@ Ext.define('Kort.controller.Highscore', {
         me.getApplication().on({
             votesend: { fn: me.refreshView, scope: me },
             fixsend: { fn: me.refreshView, scope: me },
-            usersave: { fn: me.refreshView, scope: me }
+            userchange: { fn: me.refreshView, scope: me }
         });
     },
     
+    // @private
     onHighscoreRefreshButtonTap: function() {
         this.refreshView();
     },
     
+    /**
+     * @private
+     * Refreshs highscore
+     */
     refreshView: function() {
         var me = this,
             highscoreStore = Ext.getStore('Highscore');

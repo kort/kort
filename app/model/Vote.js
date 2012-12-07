@@ -1,3 +1,6 @@
+/**
+ * Model for a vote
+ */
 Ext.define('Kort.model.Vote', {
     extend: 'Ext.data.Model',
     config: {

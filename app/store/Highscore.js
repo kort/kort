@@ -1,3 +1,6 @@
+/**
+ * Store for highscore entries
+ */
 Ext.define('Kort.store.Highscore', {
     extend: 'Ext.data.Store',
 	

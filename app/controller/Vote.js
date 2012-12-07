@@ -1,3 +1,6 @@
+/**
+ * Controller for vote panel
+ */
 Ext.define('Kort.controller.Vote', {
     extend: 'Kort.controller.OsmMap',
 
@@ -38,6 +41,7 @@ Ext.define('Kort.controller.Vote', {
         answerActionSheet: null
     },
     
+    // @private
     onVoteAnswerButtonTap: function() {
         var answerActionSheet = Ext.create('Kort.view.validation.vote.AnswerActionSheet');
         
@@ -46,20 +50,23 @@ Ext.define('Kort.controller.Vote', {
         answerActionSheet.show();
     },
     
+    // @private
     onVoteAnswerConfirmButtonTap: function() {
         if(this.getAnswerActionSheet()) {
             this.getAnswerActionSheet().hide();
         }
-        this.sendVote('true');
+        this.sendVote(true);
     },
     
+    // @private
     onVoteAnswerDeclineButtonTap: function() {
         if(this.getAnswerActionSheet()) {
             this.getAnswerActionSheet().hide();
         }
-        this.sendVote('false');
+        this.sendVote(false);
     },
     
+    // @private
     onVoteAnswerCancelButtonTap: function() {
         if(this.getAnswerActionSheet()) {
             this.getAnswerActionSheet().hide();
@@ -68,14 +75,23 @@ Ext.define('Kort.controller.Vote', {
         this.getValidationNavigationView().pop();
     },
     
+    /**
+     * @private
+     * Sends vote to server
+     * @param {String} 
+     */
     sendVote: function(valid) {
         var me = this,
-            detailComponent = this.getDetailComponent(),
+            detailComponent = me.getDetailComponent(),
             userId = Kort.user.get('id'),
-            vote;
-            
+            vote,
+            validString;
+        
+        // for valid post request valid field has to be a string
+        validString = valid.toString();
+        
         me.showSendMask();
-        vote = Ext.create('Kort.model.Vote', { fix_id: detailComponent.getRecord().get('id'), user_id: userId, valid: valid });
+        vote = Ext.create('Kort.model.Vote', { fix_id: detailComponent.getRecord().get('id'), user_id: userId, valid: validString });
         vote.save({
             success: function(records, operation) {
                 me.hideSendMask();
@@ -90,7 +106,7 @@ Ext.define('Kort.controller.Vote', {
     },
     
     voteSuccessfulSubmittedHandler: function(responseText) {
-        var rewardConfig = JSON.parse(responseText),
+        var rewardConfig = Ext.decode(responseText),
             reward = Ext.create('Kort.model.Reward', rewardConfig);
         
         this.getApplication().fireEvent('votesend');

@@ -1,7 +1,18 @@
+/**
+ * Controller for fix panel
+ */
 Ext.define('Kort.controller.Fix', {
     extend: 'Kort.controller.OsmMap',
 
     config: {
+        /**
+         * @event fixsend
+         * Fired when fix was sent
+         * @param {Ext.ux.LeafletMap} this
+         * @param {L.Map} map The rendered L.Map instance
+         * @param {L.TileLayer} tileLayer The rendered L.TileLayer instance
+         */
+        
         views: [
             'bugmap.NavigationView',
             'bugmap.fix.TabPanel',
@@ -28,7 +39,8 @@ Ext.define('Kort.controller.Fix', {
             }
         }
     },
-
+    
+    // @private
     onFixFormSubmitButtonTap: function() {
         var me = this,
             detailComponent = this.getDetailComponent(),
@@ -57,6 +69,7 @@ Ext.define('Kort.controller.Fix', {
         }
     },
 
+    // @private
     onFixFieldKeyUp: function(field, e) {
         // submit form if return key was pressed
         if (e.event.keyCode === 13){
@@ -64,6 +77,11 @@ Ext.define('Kort.controller.Fix', {
         }
     },
 
+    /**
+     * @private
+     * Called when a fix was successfully submitted
+     * @param {String} responseText Response from server
+     */
     fixSuccessfulSubmittedHandler: function(responseText) {
         var rewardConfig = JSON.parse(responseText),
             reward = Ext.create('Kort.model.Reward', rewardConfig),
@@ -77,6 +95,7 @@ Ext.define('Kort.controller.Fix', {
         bugmapNavigationView.fireEvent('back', bugmapNavigationView);
     },
     
+    // @private
     showSendMask: function() {
         this.getBugmapNavigationView().setMasked({
             xtype: 'loadmask',
@@ -85,10 +104,16 @@ Ext.define('Kort.controller.Fix', {
         });
     },
     
+    // @private
     hideSendMask: function() {
         this.getBugmapNavigationView().setMasked(false);
     },
     
+    /**
+     * @private
+     * Shows message box with rewards
+     * @param {Kort.model.Reward} reward Won reward
+     */
 	showRewardMessageBox: function(reward) {
         var messageBox = Ext.create('Kort.view.RewardMessageBox', {
             record: reward

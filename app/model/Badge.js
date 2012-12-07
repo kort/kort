@@ -1,3 +1,6 @@
+/**
+ * Model for a badge
+ */
 Ext.define('Kort.model.Badge', {
     extend: 'Ext.data.Model',
     config: {

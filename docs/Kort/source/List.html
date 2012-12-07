@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">Ext.define('Kort.view.highscore.List', {
+	extend: 'Ext.List',
+	alias: 'widget.highscorelist',
+    requires: [
+        'Kort.view.highscore.PullRefreshPlugin'
+    ],
+    
+	config: {
+		layout: 'fit',
+		store: 'Highscore',
+        loadingText: Ext.i18n.Bundle.message('highscore.loadmask.message'),
+        emptyText: '&lt;div class=&quot;emptytext&quot;&gt;' + Ext.i18n.Bundle.message('highscore.emptytext') + '&lt;/div&gt;',
+        disableSelection: true,
+        
+        itemTpl:    new Ext.XTemplate(
+                        '&lt;div class=&quot;highscore-item' +
+                        '&lt;tpl if=&quot;ranking == 1&quot;&gt; firstPlace&lt;/tpl&gt;' +
+                        '&lt;tpl if=&quot;ranking == 2&quot;&gt; secondPlace&lt;/tpl&gt;' +
+                        '&lt;tpl if=&quot;ranking == 3&quot;&gt; thirdPlace&lt;/tpl&gt;' +
+                        '&lt;tpl if=&quot;you&quot;&gt; you&lt;/tpl&gt;' +
+                        '&quot;&gt;' +
+                            '&lt;div class=&quot;ranking&quot;&gt;#{ranking}&lt;/div&gt;' +
+                            '&lt;div class=&quot;information&quot;&gt;' +
+                                '&lt;div class=&quot;username&quot;&gt;&lt;span class=&quot;value&quot;&gt;{username}&lt;tpl if=&quot;you&quot;&gt;&lt;/span&gt; &lt;span class=&quot;you&quot;&gt;' + Ext.i18n.Bundle.message('highscore.you') + '&lt;/span&gt;&lt;/tpl&gt;&lt;/div&gt;' +
+                                '&lt;div class=&quot;fixCount&quot;&gt;&lt;span class=&quot;title&quot;&gt;' + Ext.i18n.Bundle.message('highscore.fixcount') + '&lt;/span&gt; &lt;span class=&quot;value&quot;&gt;{fix_count}&lt;/span&gt;&lt;/div&gt;' +
+                                '&lt;div class=&quot;voteCount&quot;&gt;&lt;span class=&quot;title&quot;&gt;' + Ext.i18n.Bundle.message('highscore.votecount') + '&lt;/span&gt; &lt;span class=&quot;value&quot;&gt;{vote_count}&lt;/span&gt;&lt;/div&gt;' +
+                            '&lt;/div&gt;' +
+                            '&lt;div class=&quot;koins&quot;&gt;' +
+                                '&lt;div class=&quot;title&quot;&gt;' + Ext.i18n.Bundle.message('highscore.koins') + '&lt;/div&gt; ' +
+                                '&lt;div class=&quot;value&quot;&gt;{koin_count}&lt;/div&gt;' +
+                            '&lt;/div&gt;' +
+                        '&lt;/div&gt;'
+                    ),
+        
+        plugins: [
+            {
+                xclass: 'Kort.view.highscore.PullRefreshPlugin'
+            }
+        ]
+	}
+});</pre>
+</body>
+</html>

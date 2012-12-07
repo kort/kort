@@ -1,0 +1,1 @@
+jsduck ../app --o ../docs/Kort --config=./jsduck_config.json

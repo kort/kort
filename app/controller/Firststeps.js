@@ -1,7 +1,15 @@
+/**
+ * Controller for firststeps overlay
+ */
 Ext.define('Kort.controller.Firststeps', {
     extend: 'Ext.app.Controller',
 
     config: {
+        /**
+         * @event userchange
+         * Fired when user gets changed
+         */
+        
         views: [
             'overlay.firststeps.Panel'
         ],
@@ -50,7 +58,7 @@ Ext.define('Kort.controller.Firststeps', {
     },
 
     userSuccessfullSavedHandler: function(store, operation) {
-        this.getApplication().fireEvent('usersave');
+        this.getApplication().fireEvent('userchange');
         this.getFirststepsPanel().hide();
     },
 

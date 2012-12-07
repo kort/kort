@@ -1,3 +1,6 @@
+/**
+ * Store for user secret
+ */
 Ext.define('Kort.store.UserLocal', {
     extend: 'Ext.data.Store',
 

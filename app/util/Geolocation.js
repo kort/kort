@@ -1,3 +1,6 @@
+/**
+ * Geolocation with distance calculation function
+ */
 Ext.define('Kort.util.Geolocation', {
     extend: 'Ext.util.Geolocation',
 
@@ -15,7 +18,12 @@ Ext.define('Kort.util.Geolocation', {
         }
     },
 
-    /* source: http://www.movable-type.co.uk/scripts/latlong.html */
+    /**
+     * @private
+     * Calculates the distance to given latitude / logitude. Source: http://www.movable-type.co.uk/scripts/latlong.html
+     * @param {Number} latitude Latitude
+     * @param {Number} longitude Longitude
+     */
     getDistance: function(latitude, longitude) {
         var earthRadius = 6371000, // m
             dLat, dLng, thisLatitude, otherLatitude, a, c;
@@ -33,6 +41,10 @@ Ext.define('Kort.util.Geolocation', {
         return earthRadius * c;
     },
 
+    /**
+     * Returns distances with measurement unit
+     * @param {Number} distanceInMeters Distance to format
+     */
     getFormattedDistance: function(distanceInMeters) {
         if(distanceInMeters > 999) {
             // round to one decimal
