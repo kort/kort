@@ -45,6 +45,8 @@ from    keepright.errors e,
         kort.fix f
 where   e.error_type_id = t.error_type_id
 and     f.error_id = e.error_id
+and     f.schema = e.schema
+and     f.osm_id = e.osm_id
 and     not f.complete;
 
 create or replace view kort.tracktype as
