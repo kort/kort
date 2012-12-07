@@ -78,7 +78,7 @@ Ext.define('Kort.controller.Vote', {
     /**
      * @private
      * Sends vote to server
-     * @param {String} 
+     * @param {Boolean} valid Validation is correct (true) or wron (false)
      */
     sendVote: function(valid) {
         var me = this,
@@ -105,6 +105,11 @@ Ext.define('Kort.controller.Vote', {
         });
     },
     
+    /**
+     * @private
+     * Called when vote was successfully submitted to server
+     * @param {String} responseText Response from server
+     */
     voteSuccessfulSubmittedHandler: function(responseText) {
         var rewardConfig = Ext.decode(responseText),
             reward = Ext.create('Kort.model.Reward', rewardConfig);
@@ -116,6 +121,7 @@ Ext.define('Kort.controller.Vote', {
         this.getValidationNavigationView().pop();
     },
     
+    // @private
     showSendMask: function() {
         this.getValidationNavigationView().setMasked({
             xtype: 'loadmask',
@@ -124,10 +130,16 @@ Ext.define('Kort.controller.Vote', {
         });
     },
     
+    // @private
     hideSendMask: function() {
         this.getValidationNavigationView().setMasked(false);
     },
     
+    /**
+     * @private
+     * Shows reward message box
+     * @param {Kort.model.Reward} reward Reward instance
+     */
 	showRewardMessageBox: function(reward) {
         var messageBox = Ext.create('Kort.view.RewardMessageBox', {
             record: reward

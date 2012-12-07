@@ -61,7 +61,8 @@ module.exports = function(grunt) {
                     start: true,
                     stop: true,
                     strictEqual: true,
-                    test: true
+                    test: true,
+                    testSkip: true
                 }
             }
         }
