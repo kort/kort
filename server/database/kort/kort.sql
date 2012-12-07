@@ -40,6 +40,7 @@ create table kort.badge (
     badge_id integer primary key,
     name varchar(100) not null,
     title varchar(100) not null,
+    compare_value integer,
     description varchar(500) not null,
     color varchar(10) not null,
     sorting integer not null
