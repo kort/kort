@@ -13,7 +13,7 @@ $slim = new \Helper\SlimHelper($app);
 $answerHandler = new \Webservice\Answer\AnswerHandler();
 
 $app->get(
-    '/(:type)',
+    '(/:type)',
     function ($type = null) use ($answerHandler, $app, $slim) {
         if (empty($type)) {
              $answers = $answerHandler->getAllAnswers();
