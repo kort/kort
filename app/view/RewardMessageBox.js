@@ -25,7 +25,8 @@ Ext.define('Kort.view.RewardMessageBox', {
                             '</p>',
                         '</div>',
                     '</div>',
-                    '<tpl if="badges.length &gt 0">',
+                    // TODO don't print badges message when no badges were won
+                    //'<tpl if="badges.length &gt 0">',
                         '<div class="text">',
                             '<div class="content">',
                                 '<h1> ' + Ext.i18n.Bundle.message('reward.alert.badges.title') + ' </h1>',
@@ -39,7 +40,7 @@ Ext.define('Kort.view.RewardMessageBox', {
                                 '</p>',
                             '</div>',
                         '</div>',
-                    '</tpl>',
+                    //'</tpl>',
                 '</div>'
             )
     }
