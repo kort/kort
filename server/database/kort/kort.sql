@@ -2,6 +2,20 @@ create sequence kort.fix_id;
 create sequence kort.validation_id;
 create sequence kort.user_id;
 
+create table kort.error_type (
+    error_type_id integer not null,
+    type character varying(20) not null,
+    description character varying(255),
+    view_type character varying(50),
+    answer_placeholder character varying(100),
+    vote_question character varying(255),
+    vote_koin_count integer not null,
+    fix_koin_count integer not null,
+    required_validations integer not null,
+    PRIMARY KEY (error_type_id)
+);
+
+
 create table kort.fix (
     fix_id integer primary key default nextval('kort.fix_id'),
     user_id integer,
