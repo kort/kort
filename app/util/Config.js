@@ -27,7 +27,7 @@ Ext.define('Kort.util.Config', {
 		},
         
         /**
-         * @cfg {Object} oAuth Configuration for OAuth 
+         * @cfg {Object} oAuth Configuration for OAuth
          * @cfg {Object} oAuth.google (required) Configuration for Google OAuth
          * @cfg {String} [oAuth.google.url="https://accounts.google.com/o/oauth2/auth"] (required) URL to Google OAuth
          * @cfg {String[]} oAuth.google.scopes (required) Configuration for Google OAuth

@@ -199,7 +199,7 @@ Ext.define('Kort.controller.Bugmap', {
     /**
      * @private
      * Adds marker for given bug
-     * @param {Kort.model.Bug} bug Bug instance 
+     * @param {Kort.model.Bug} bug Bug instance
      */
     addMarker: function(bug) {
         var me = this,
