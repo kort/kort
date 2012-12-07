@@ -35,3 +35,4 @@
 *.ldb
 styles.css
 server/php/Webservice/Database/DbConfig.php
+*.bak
