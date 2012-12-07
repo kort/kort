@@ -6,9 +6,58 @@
 \todo[inline]{Management Summary schreiben}
 
 \section*{Ausgangslage}
+Das OpenStreetMap-Projekt beinhaltet eine sehr grosse Menge an Daten, welche frei zugänglich ist.
+Für die Pflege dieser Daten ist es daher naheliegend Software als Unterstützung zu verwenden.
+Zu diesem Zweck gibt es eine Reihe von Applikationen, welche sich grob in zwei Kategorien aufteilen lassen:
+Editoren und Qualitätssicherung
+
+Mit den Editoren lässt sich direkt oder indirekt die OpenStreetMap Karte verändern und ergänzen.
+Die Qualitätssicherung hat sich zum Ziel gesetzt fehlende oder falsche Daten aufzuspüren.
+Diese wiederum werden dann entweder automatisiert korrigiert oder einen Benutzer übersichtlich dargestellt um eine manuelle Korrektur zu ermöglichen.
+
+Einige Tools wie Keepright oder Osmose berechnen aus den Karten-Rohdaten die vorhanden Fehler.
+Dazu werden einige Heuristiken verwenden oder einfache Plausibilitätsprüfungen durchgeführt.
+Typische Fehler aus diesen Quellen sind \gls{POI}s ohne Namen oder Wege ohne eingetragenen Typ.
+
+Andere Lösungen setzen eher darauf, dass Fehler manuell von einer Person erfasst werden und diese dann detailliertere Angaben zu einem Fehler machen kann. 
+So gibt es Navigationsgeräte-Herstellen welche die Daten aus OpenStreetMap verwenden und dabei auch ihren Benutzern ermöglichen falsche Routen zu melden. 
+Falls ein \gls{Mapper} einen Fehler markieren will, so kann er dies direkt in den Metadaten der Karte hinterlegen. Jedes Objekt auf der Karte (Punkte, Wege und Relationen) kann durch beliebige sogenannte  \emph{Tags} ergänzt werden.
+Um auf einem Objekt Fehler zu markieren, hat sich die Community darauf geeinigt \inlinecode{FIXME}-Tags zu verwenden.
+
+Quellen für solche Fehler sind beispielsweise OpenStreetBug oder die FIXME-Tags aus Keepright.
 
 
 \section*{Ergebnisse}
+Das Ziel, eine cross-platform fähige \gls{WebApp} zu erstellen mit geeignetem Backend für die Verwaltung der Daten wurde klar erreicht.
+Die App bietet alle Grundfunktionalität welche nötig ist um Fehler anzuzeigen, zu validieren und an OpenStreetMap zurückzuschicken.
+Daneben sind einige Anwendungen der Gamification implementiert, so beispielsweise das Sammeln von Punkten oder die Highscore, auf der sich Benutzer miteinander messen können.
+Gerade dieser Bereich ist aber sehr offen und lässt Raum für viele weitere Konzepte. Schlussendlich ist klar, dass \textsc{Kort} noch ein grosses Stück davon entfernt ist ein Game zu sein.
+
+Das Themengebiet der Gamification bietet viele Ansätze um eine ansonsten \emph{langweilige} Aufgabe spannend zu machen.
+Dadurch bekommen diese Aufgaben einen ganz neuen Reiz und sprechen direkt den Spieltrieb des Menschen an.
+Konkret auf OpenStreetMap angewendet, finden sich auch dort beliebtere und weniger beliebte Aufgaben.
+Da es sich dabei auch noch um eine Community von (grösstenteils) Freiwilligen handelt, verschärft dieses Problem zusätzlich.
+Die mangelnden Resourcen können am effektivsten bekämpft werden, in dem zusätzliche Personen für das Thema begeistert werden.
+Es ist wichtig, die Einstiegsschwelle tief zu halten und einen unerfahrenen Benutzer Werkzeuge zu geben, die einen gewissen Spass vermitteln, jedoch keine Daten zerstören.
+
+Das Frontend ist mit dem HTML5/JavaScript Framework Sencha Touch 2 erstellt worden und orientiert sich vom Look and Feel an einer iPhone App.
+Die App bietet für die verschiedenen Funktionen unterschiedliche Tabs an, auf welchen der Benutzer Fehler beheben oder prüfen, die Highscore oder sein Profil anschauen kann.
+
+Für die Authentifizierung kommt \gls{OAuth} zum Einsatz.
+Dieses Protokoll sorgt dafür, dass sich der Benutzer mit seinem gewohnten Benutzerkonto bei \textsc{Kort} anmwelden kann.
+Derzeit sind als OAuth-Provider Google und OpenStreetMap verfügbar.
+
+Das Backend ist in PHP geschrieben und basiert auf der Kommunikation über \gls{REST}-Schnittstellen.
+Die eigenen Schnittstellen sind alle mit dem Slim Framework erstellt.
+Da die Datenbank und der Webserver auf zwei verschiedenen Servern laufen, bietet auch die Datenbank eine REST-Schnittstelle an, über welche sich beliebige SQL-Abfrage absetzen lassen.
+Diese flexible Aufteilung ermöglicht es sehr einfach die Systeme umzuziehen oder weitere hinzuzufügen.
 
 
 \section*{Ausblick}
+- robuster
+- schneller
+- Native Building (AppStore)
+- Camera Support
+- time-based Challanges
+- Push-Notifications
+- Social Media Integration (Facebook, Twitter)
