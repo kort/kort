@@ -1,1 +1,57 @@
-\section{Sprint 2}
+\subsection{Sprint 2}
+
+\textbf{15. Oktober 2012 bis 28. Oktober 2012}
+
+Alle Informationen zum Sprint 2 sind auch in unserem Wiki zu finden:
+\url{http://kort.rdmr.ch/redmine/projects/kort/wiki/Sprint_2}
+
+\subsubsection{Hauptaufgaben / Fokussierung im Sprint}
+
+\begin{itemize}
+	\item Alternative für OpenLayers finden
+	\item Aufbau der Fehler-Datenbank
+	\item Aufsetzen der REST-APIs für DB-Zugriff
+	\begin{itemize}
+		\item REST-API auf Heroku für Sencha-App
+		\item REST-API auf DB-Server für Zugiff von Heroku
+	\end{itemize}
+	\item Requirements
+	\begin{itemize}
+		\item User Szenarien
+		\item Paper Prototype
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{Ziele}
+\begin{itemize}
+	\item Roundtrip von Datenbank -> Heroku -> Webapp und zurück (Daten lesen und schreiben)
+	\item Anforderungen klar machen für Ausrichtung der App
+	\begin{itemize}
+		\item Was ist möglich?
+		\item Was soll tatsächlich abgebildet werden?
+	\end{itemize}
+	\item Technische Hürden im Middletier überwinden um sich auf Business-Logik und UI zu konzentrieren
+\end{itemize}
+
+\subsubsection{Abgabe / Deliverables}
+
+\begin{itemize}
+	\item Lauffähiger Prototyp
+	\begin{itemize}
+		\item Anzeigen von Bugs
+		\item Eintragen von Daten in DB
+	\end{itemize}
+	\item User Szenarien
+	\item Paper Prototyp
+\end{itemize}
+
+\subsubsection{Erledigte Arbeiten}
+Während des zweiten Sprints haben wir verschiedene Fehler-Datenquellen evaluiert. Wir entschieden uns für den Einsatz der \emph{keepright}-Daten, da diese sehr gut auf unserer Anforderungen passen. Sie werden automatisiert generiert, was uns die Möglichkeit gibt für die verschiedenen Typen auch automatisiert eine Lösungsmaske anzuzeigen. Zudem handelt es sich nur um Fehler in Tags der OSM-Objekte.
+
+Ebenfalls konnten wir als Alternative zu OpenLayers eine Sencha Touch Komponente für \emph{Leaflet} erstellen.
+Die Library besitzt ein gutes API und wurde speziell für die Verwendung im mobilen Umfeld erstellt.
+
+Schlussendlich konnten wir einen kompletten Roundtrip der Fehler-Daten von unserer Datenbank in die App und das Senden der Lösung wieder zurück in die Datenbank realisieren.
+
+\subsubsection{Probleme}
+Aus Zeitgründen konnten wir das Zurückschreiben der Daten zu OpenStreetMap noch nicht erledigen.
