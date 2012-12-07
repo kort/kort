@@ -95,7 +95,7 @@ Ext.define('Kort.controller.Vote', {
 <span id='Kort-controller-Vote-method-sendVote'>    /**
 </span>     * @private
      * Sends vote to server
-     * @param {String} 
+     * @param {Boolean} valid Validation is correct (true) or wron (false)
      */
     sendVote: function(valid) {
         var me = this,
@@ -122,8 +122,13 @@ Ext.define('Kort.controller.Vote', {
         });
     },
     
-<span id='Kort-controller-Vote-method-voteSuccessfulSubmittedHandler'>    voteSuccessfulSubmittedHandler: function(responseText) {
-</span>        var rewardConfig = Ext.decode(responseText),
+<span id='Kort-controller-Vote-method-voteSuccessfulSubmittedHandler'>    /**
+</span>     * @private
+     * Called when vote was successfully submitted to server
+     * @param {String} responseText Response from server
+     */
+    voteSuccessfulSubmittedHandler: function(responseText) {
+        var rewardConfig = Ext.decode(responseText),
             reward = Ext.create('Kort.model.Reward', rewardConfig);
         
         this.getApplication().fireEvent('votesend');
@@ -133,20 +138,27 @@ Ext.define('Kort.controller.Vote', {
         this.getValidationNavigationView().pop();
     },
     
-<span id='Kort-controller-Vote-method-showSendMask'>    showSendMask: function() {
-</span>        this.getValidationNavigationView().setMasked({
+<span id='Kort-controller-Vote-method-showSendMask'>    // @private
+</span>    showSendMask: function() {
+        this.getValidationNavigationView().setMasked({
             xtype: 'loadmask',
             message: Ext.i18n.Bundle.message('vote.sendmask.message'),
             zIndex: Kort.util.Config.getZIndex().overlayLeafletMap
         });
     },
     
-<span id='Kort-controller-Vote-method-hideSendMask'>    hideSendMask: function() {
-</span>        this.getValidationNavigationView().setMasked(false);
+<span id='Kort-controller-Vote-method-hideSendMask'>    // @private
+</span>    hideSendMask: function() {
+        this.getValidationNavigationView().setMasked(false);
     },
     
-<span id='Kort-controller-Vote-method-showRewardMessageBox'>	showRewardMessageBox: function(reward) {
-</span>        var messageBox = Ext.create('Kort.view.RewardMessageBox', {
+<span id='Kort-controller-Vote-method-showRewardMessageBox'>    /**
+</span>     * @private
+     * Shows reward message box
+     * @param {Kort.model.Reward} reward Reward instance
+     */
+	showRewardMessageBox: function(reward) {
+        var messageBox = Ext.create('Kort.view.RewardMessageBox', {
             record: reward
         });
         messageBox.alert(Ext.i18n.Bundle.message('reward.alert.title'), messageBox.getRewardTpl().apply(reward.data), Ext.emptyFn);
