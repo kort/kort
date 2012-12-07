@@ -22,6 +22,15 @@ class DbProxy
         $this->curl = new CurlHelper();
     }
 
+    public function isTransaction()
+    {
+        return false;
+    }
+
+    public function getDbWebserviceConfig() {
+        return $this->wsConfig;
+    }
+
     //only used for unit testing
     public function setCurl($curl)
     {
@@ -69,7 +78,7 @@ class DbProxy
             $path .= "limit=" . $this->limit . "&";
         }
         $path .= "key=" . $this->wsConfig->getApiKey();
-        return $this->request("GET", $this->wsConfig->url . $path);
+        return $this->request("GET", $this->wsConfig->getUrl() . $path);
     }
 
     public function insert($data)
@@ -81,7 +90,7 @@ class DbProxy
         if ($this->returnFields) {
             $data['return'] = implode(",", $this->returnFields);
         }
-        return $this->request("POST", $this->wsConfig->url . $path, $data);
+        return $this->request("POST", $this->wsConfig->getUrl() . $path, $data);
     }
 
     public function update($data)
@@ -98,10 +107,10 @@ class DbProxy
         if ($this->returnFields) {
             $data['return'] = implode(",", $this->returnFields);
         }
-        return $this->request("PUT", $this->wsConfig->url . $path, $data);
+        return $this->request("PUT", $this->wsConfig->getUrl() . $path, $data);
     }
 
-    private function request($method, $url, $data = false)
+    protected function request($method, $url, $data = false)
     {
         switch ($method)
         {

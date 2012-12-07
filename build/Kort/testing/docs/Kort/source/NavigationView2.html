@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Kort-view-validation-NavigationView'>/**
+</span> * Main navigation view for validation tab
+ */
+Ext.define('Kort.view.validation.NavigationView', {
+	extend: 'Ext.navigation.View',
+	alias: 'widget.validationnavigationview',
+    requires: [
+        'Ext.Button',
+        'Kort.view.validation.List'
+    ],
+	
+	config: {
+<span id='Kort-view-validation-NavigationView-cfg-title'>        title: Ext.i18n.Bundle.message('tab.validation'),
+</span><span id='Kort-view-validation-NavigationView-cfg-url'>		url: 'validation',
+</span><span id='Kort-view-validation-NavigationView-cfg-id'>		id: 'validationNavigationView',
+</span><span id='Kort-view-validation-NavigationView-cfg-iconCls'>		iconCls: 'check_black2',
+</span><span id='Kort-view-validation-NavigationView-cfg-defaultBackButtonText'>        defaultBackButtonText: Ext.i18n.Bundle.message('button.back'),
+</span>        
+<span id='Kort-view-validation-NavigationView-cfg-navigationBar'>        navigationBar: {
+</span>            items: [
+                {
+                    xtype: 'button',
+                    cls: 'validationRefreshButton',
+                    iconCls: 'refresh',
+                    iconMask: true,
+                    align: 'right'
+                }
+            ]
+        },
+        
+<span id='Kort-view-validation-NavigationView-cfg-items'>		items: [
+</span>			{
+                title: Ext.i18n.Bundle.message('validation.title'),
+                xtype: 'validationlist'
+			}
+		]
+	}
+});</pre>
+</body>
+</html>

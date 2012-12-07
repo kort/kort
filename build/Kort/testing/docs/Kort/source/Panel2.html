@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Kort-view-overlay-geolocationerror-Panel'>/**
+</span> * Geolocation error panel which overlays main panel if geolocation isn't available
+ */
+Ext.define('Kort.view.overlay.geolocationerror.Panel', {
+	extend: 'Ext.Panel',
+	alias: 'widget.geolocationerrorpanel',
+    requires: [
+        'Ext.Button'
+    ],
+
+	config: {
+<span id='Kort-view-overlay-geolocationerror-Panel-cfg-id'>		id: 'geolocationerrorPanel',
+</span><span id='Kort-view-overlay-geolocationerror-Panel-cfg-layout'>		layout: 'vbox',
+</span><span id='Kort-view-overlay-geolocationerror-Panel-cfg-modal'>        modal: true,
+</span><span id='Kort-view-overlay-geolocationerror-Panel-cfg-scrollable'>        scrollable: true,
+</span><span id='Kort-view-overlay-geolocationerror-Panel-cfg-cls'>        cls: 'overlayLeafletMap',
+</span>        
+<span id='Kort-view-overlay-geolocationerror-Panel-cfg-items'>		items: [
+</span>			{
+                html:   '&lt;div class=&quot;overlay-content&quot;&gt;' +
+                            '&lt;div class=&quot;logo&quot;&gt;' +
+                                '&lt;img src=&quot;./resources/images/kort-logo.png&quot; /&gt;' +
+                            '&lt;/div&gt;' +
+                            '&lt;div class=&quot;sadsmiley&quot;&gt;:(&lt;/div&gt;' +
+                            '&lt;div class=&quot;introduction&quot;&gt;' +
+                                Ext.i18n.Bundle.message('geolocationerror.introduction.1') +
+                                Kort.util.Config.getKortTitle() +
+                                Ext.i18n.Bundle.message('geolocationerror.introduction.2') +
+                            '&lt;/div&gt;' +
+                        '&lt;/div&gt;'
+			},
+            {
+                xtype: 'button',
+                id: 'geolocationerrorReloadButton',
+                text: Ext.i18n.Bundle.message('geolocationerror.button.reload'),
+                ui: 'confirm'
+            }
+		]
+	}
+});</pre>
+</body>
+</html>

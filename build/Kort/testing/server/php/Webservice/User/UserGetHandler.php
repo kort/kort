@@ -5,11 +5,19 @@ use Webservice\DbProxyHandler;
 
 class UserGetHandler extends DbProxyHandler
 {
+    /**
+    * Returns the database table to be used with this Handler.
+    * @return the database table as a string
+    */
     protected function getTable()
     {
         return 'kort.user_model';
     }
 
+    /**
+    * Returns the database fields to be used with this Handler.
+    * @return an array of database fields
+    */
     protected function getFields()
     {
         return array(
@@ -17,6 +25,7 @@ class UserGetHandler extends DbProxyHandler
             'name',
             'username',
             'oauth_user_id',
+            'oauth_provider',
             'token',
             'fix_count',
             'vote_count',
@@ -25,6 +34,12 @@ class UserGetHandler extends DbProxyHandler
         );
     }
 
+    /**
+    * Returns a user identified by his specific secret
+    *
+    * @param $secret the user's secret
+    * @return the JSON encoded user information
+    */
     public function getUserBySecret($secret)
     {
         if (!empty($secret)) {
@@ -46,6 +61,15 @@ class UserGetHandler extends DbProxyHandler
         return $this->getDefaultUserJson();
     }
 
+     /**
+    * Get either a Gravatar URL or complete image tag for a specified email address.
+    *
+    * @param  Size in pixels, defaults to 80px [ 1 - 2048 ]
+    * @param  Default imageset to use [ 404 | mm | identicon | monsterid | wavatar ]
+    * @param  Maximum rating (inclusive) [ g | pg | r | x ]
+    * @return String containing the URL
+    * @source http://gravatar.com/site/implement/images/php/
+    */
     public function getUserByOAuthUserId($oauth_user_id)
     {
         $this->getDbProxy()->setWhere("oauth_user_id = '". $oauth_user_id . "'");
@@ -64,8 +88,9 @@ class UserGetHandler extends DbProxyHandler
         $user['id'] = null;
         $user['name'] = "Anonymous";
         $user['username'] = "";
-        $user["email"] = "";
-        $user["token"] = "";
+        $user['oauth_user_id'] = "";
+        $user['oauth_provider'] = "";
+        $user['token'] = "";
         $user["fix_count"] = 0;
         $user["vote_count"] = 0;
         $user["koin_count"] = 0;

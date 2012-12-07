@@ -32922,6 +32922,85 @@ Ext.define('Ext.Button', {
 });
 
 /**
+ * {@link Ext.ActionSheet ActionSheets} are used to display a list of {@link Ext.Button buttons} in a popup dialog.
+ *
+ * The key difference between ActionSheet and {@link Ext.Sheet} is that ActionSheets are docked at the bottom of the
+ * screen, and the {@link #defaultType} is set to {@link Ext.Button button}.
+ *
+ * ## Example
+ *
+ *     @example preview miniphone
+ *     var actionSheet = Ext.create('Ext.ActionSheet', {
+ *         items: [
+ *             {
+ *                 text: 'Delete draft',
+ *                 ui  : 'decline'
+ *             },
+ *             {
+ *                 text: 'Save draft'
+ *             },
+ *             {
+ *                 text: 'Cancel',
+ *                 ui  : 'confirm'
+ *             }
+ *         ]
+ *     });
+ *
+ *     Ext.Viewport.add(actionSheet);
+ *     actionSheet.show();
+ *
+ * As you can see from the code above, you no longer have to specify a `xtype` when creating buttons within a {@link Ext.ActionSheet ActionSheet},
+ * because the {@link #defaultType} is set to {@link Ext.Button button}.
+ *
+ */
+Ext.define('Ext.ActionSheet', {
+    extend: 'Ext.Sheet',
+    alias : 'widget.actionsheet',
+    requires: ['Ext.Button'],
+
+    config: {
+        /**
+         * @cfg
+         * @inheritdoc
+         */
+        baseCls: Ext.baseCSSPrefix + 'sheet-action',
+
+        /**
+         * @cfg
+         * @inheritdoc
+         */
+        left: 0,
+
+        /**
+         * @cfg
+         * @inheritdoc
+         */
+        right: 0,
+
+        /**
+         * @cfg
+         * @inheritdoc
+         */
+        bottom: 0,
+
+        // @hide
+        centered: false,
+
+        /**
+         * @cfg
+         * @inheritdoc
+         */
+        height: 'auto',
+
+        /**
+         * @cfg
+         * @inheritdoc
+         */
+        defaultType: 'button'
+    }
+});
+
+/**
  * The Connection class encapsulates a connection to the page's originating domain, allowing requests to be made either
  * to a configured URL, or to a URL specified at request time.
  *
@@ -70365,12 +70444,26 @@ Ext.define('Ext.i18n.Bundle', {
 
 });
 
+/**
+ * Configuration for kort application
+ */
 Ext.define('Kort.util.Config', {
 	singleton: true,
 
 	config: {
+        /**
+         * @cfg {String} version Current version number of application
+         */
         version: '0.5.0',
         
+        /**
+         * @cfg {Object} leafletMap Configuration for {@link Ext.ux.LeafletMap} component
+         * @cfg {Number} [leafletMap.zoom=15] (required) Default zoom level of leaflet map
+         * @cfg {String} [leafletMap.tileLayerUrl="http://{s}.tile.cloudmade.com/{apikey}/{styleId}/256/{z}/{x}/{y}.png"] (required) URL to tile server
+         * @cfg {String} [leafletMap.tileLayerAttribution="Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>"] (required) Copyright information of map
+         * @cfg {String} [leafletMap.apiKey=729242682cb24de8aa825c8aed993cba] (required) API key for cloudmade tiles
+         * @cfg {Number} [leafletMap.styleId=997] (required) Style id for cloudmade tiles
+         */
 		leafletMap: {
             zoom: 15,
 			tileLayerUrl: 'http://{s}.tile.cloudmade.com/{apikey}/{styleId}/256/{z}/{x}/{y}.png',
@@ -70378,26 +70471,104 @@ Ext.define('Kort.util.Config', {
 			apiKey: '729242682cb24de8aa825c8aed993cba',
             styleId: 997
 		},
-        // default timeout for load tasks in ms
+        
+        /**
+         * @cfg {Object} oAuth Configuration for OAuth
+         * @cfg {Object} oAuth.google (required) Configuration for Google OAuth
+         * @cfg {String} [oAuth.google.url="https://accounts.google.com/o/oauth2/auth"] (required) URL to Google OAuth
+         * @cfg {String[]} oAuth.google.scopes (required) Configuration for Google OAuth
+         * @cfg {String} [oAuth.google.redirect_path="server/oauth2callback"] (required) Redirect path after login
+         * @cfg {String} [oAuth.google.client_id="653755350671.apps.googleusercontent.com"] (required) Google OAuth client id
+         */
+        oAuth: {
+            google: {
+                url: 'https://accounts.google.com/o/oauth2/auth',
+                scopes: [
+                    'https://www.googleapis.com/auth/userinfo.profile',
+                    'https://www.googleapis.com/auth/userinfo.email'
+                ],
+                redirect_path: 'server/oauth2callback',
+                response_type: 'code',
+                access_type: 'offline',
+                client_id: '653755350671.apps.googleusercontent.com'
+            }
+        },
+        
+        /**
+         * @cfg {Number} timeout Default timeout for load tasks in ms
+         */
         timeout: 10000,
+        
+        /**
+         * @cfg {Object} bugs Configuration for bug to load
+         * @cfg {Object} [bugs.radius=5000] (required) Radius for bug selection
+         */
         bugs: {
             radius: 5000
         },
+        
+        /**
+         * @cfg {Object} zIndex zIndex for components
+         * @cfg {Number} [zIndex.overlayLeafletMap=1500] (required) zIndex for panel to overlay leaflet map components
+         * @cfg {Number} [zIndex.overlayOverlayPanel=1600] (required) zIndex for panel to overlay another overlay panel
+         */
         zIndex: {
             overlayLeafletMap: 1500,
             overlayOverlayPanel: 1600
         },
+        
+        /**
+         * @cfg {Object} osmMap Style configuration for osm objects
+         * @cfg {String} [osmMap.featureColor="#FF0000"] (required) Color of features
+         * @cfg {Number} [osmMap.featureOpacity=0.7] (required) Opacity of features
+         */
         osmMap: {
             featureColor: '#FF0000',
             featureOpacity: 0.7
+        },
+        
+        /**
+         * @cfg {String} kortTitle App title which can be used in content
+         */
+        kortTitle: '<span class="kort-title"><span class="kort-k">K</span><span class="kort-ort">ORT</span></span>',
+        
+        /**
+         * @cfg {Object} about Labels for about page
+         * @cfg {String[]} about.authors (required) Authors of application
+         * @cfg {String} [about.project="HSR Bachelorarbeit HS2012/13"] (required) Title of project
+         * @cfg {String[]} about.partners (required) Project partners
+         */
+        about: {
+            authors: [
+                'Stefan Oderbolz',
+                'Jürg Hunziker'
+            ],
+            project: 'HSR Bachelorarbeit HS2012/13',
+            partners: ['bitforge AG (<a href="http://bitforge.ch" target="_blank">http://bitforge.ch</a>)']
+        },
+        
+        /**
+         * @cfg {Object} formPlaceholders Ext.i18n.bundle plugin doesn't work for form placeholders so these are stored in config file
+         * @cfg {String} [formPlaceholders.username="Benutzername"] (required) Translation of username
+         */
+        formPlaceholders: {
+            username: 'Benutzername'
         }
 	},
 	
+    /**
+     * @private
+     * initializes the configuration
+     */
 	constructor: function(config) {
 		this.initConfig(config);
 		return this;
 	},
     
+    /**
+     * Returns a Leaflet marker icon for a given type
+     * @param {String} type Type of marker
+     */
     getMarkerIcon: function(type) {
         var iconWidth = 32,
             iconHeight = 37,
@@ -70418,6 +70589,9 @@ Ext.define('Kort.util.Config', {
     }
 });
 
+/**
+ * Main container for about tab
+ */
 Ext.define('Kort.view.about.Container', {
 	extend: 'Ext.Container',
 	alias: 'widget.aboutcontainer',
@@ -70448,8 +70622,12 @@ Ext.define('Kort.view.about.Container', {
                                 '<dt>' + Ext.i18n.Bundle.message('about.version.title') + '</dt>' +
                                 '<dd>' + Kort.util.Config.getVersion() + '</dd>' +
                                 '<dt>' + Ext.i18n.Bundle.message('about.authors.title') + '</dt>' +
-                                '<dd>' + Ext.i18n.Bundle.message('about.authors.author1') + '</dd>' +
-                                '<dd>' + Ext.i18n.Bundle.message('about.authors.author2') + '</dd>' +
+                                '<dd>' +  Kort.util.Config.getAbout().authors[0] + '</dd>' +
+                                '<dd>' +  Kort.util.Config.getAbout().authors[1] + '</dd>' +
+                                '<dt>' + Ext.i18n.Bundle.message('about.project.title') + '</dt>' +
+                                '<dd>' + Kort.util.Config.getAbout().project + '</dd>' +
+                                '<dt>' + Ext.i18n.Bundle.message('about.partners.title') + '</dt>' +
+                                '<dd>' + Kort.util.Config.getAbout().partners[0] + '</dd>' +
                                 '<dt>' + Ext.i18n.Bundle.message('about.legal.title') + '</dt>' +
                                 '<dd>' + Ext.i18n.Bundle.message('about.legal.message') + '</dd>' +
                             '</dl>' +
@@ -70459,6 +70637,9 @@ Ext.define('Kort.view.about.Container', {
 	}
 });
 
+/**
+ * Controller for about tab
+ */
 Ext.define('Kort.controller.About', {
     extend: 'Ext.app.Controller',
     
@@ -70472,6 +70653,9 @@ Ext.define('Kort.controller.About', {
     }
 });
 
+/**
+ * Message box which shows bug details
+ */
 Ext.define('Kort.view.bugmap.BugMessageBox', {
 	extend: 'Ext.MessageBox',
 	alias: 'widget.bugmessagebox',
@@ -70482,6 +70666,9 @@ Ext.define('Kort.view.bugmap.BugMessageBox', {
     }
 });
 
+/**
+ * LeafletMap component
+ */
 Ext.define('Kort.view.LeafletMap', {
     extend: 'Ext.ux.LeafletMap',
     xtype: 'kortleafletmap',
@@ -70501,6 +70688,9 @@ Ext.define('Kort.view.LeafletMap', {
     }
 });
 
+/**
+ * Main navigation view for bugmap tab
+ */
 Ext.define('Kort.view.bugmap.NavigationView', {
 	extend: 'Ext.navigation.View',
 	alias: 'widget.bugmapnavigationview',
@@ -70546,6 +70736,9 @@ Ext.define('Kort.view.bugmap.NavigationView', {
 	}
 });
 
+/**
+ * Main tab panel for fix view
+ */
 Ext.define('Kort.view.bugmap.fix.TabPanel', {
 	extend: 'Ext.tab.Panel',
 	alias: 'widget.fixtabpanel',
@@ -70582,6 +70775,9 @@ Ext.define('Kort.view.bugmap.fix.TabPanel', {
     }
 });
 
+/**
+ * Controller for bugmap tab
+ */
 Ext.define('Kort.controller.Bugmap', {
     extend: 'Ext.app.Controller',
     requires: [
@@ -70625,6 +70821,10 @@ Ext.define('Kort.controller.Bugmap', {
         messageBoxTemplate: null
     },
     
+    /**
+     * @private
+     * Initilizes the controller
+     */
     init: function() {
         var me = this;
         me.callParent(arguments);
@@ -70639,42 +70839,47 @@ Ext.define('Kort.controller.Bugmap', {
                 '<div class="messagebox-content">',
                     '<div class="textpic">',
                         '<div class="image">',
+                            '<img class="koin-image" src="./resources/images/koins/koin_no_value.png" />',
+                        '</div>',
+                        '<div class="content">',
+                            '<p>',
+                                Ext.i18n.Bundle.message('bugmap.messagebox.koins.earn'),
+                                ' <span class="important">{fix_koin_count}</span> ',
+                                Ext.i18n.Bundle.message('bugmap.messagebox.koins.name'),
+                            '</p>',
+                        '</div>',
+                    '</div>',
+                    '<div class="textpic">',
+                        '<div class="image">',
                             '<img class="bugtype-image" src="./resources/images/marker_icons/{type}.png" />',
                         '</div>',
                         '<div class="content">',
                             '<p>{description}</p>',
                         '</div>',
                     '</div>',
-                    '<div class="textpic">',
-                        '<div class="image">',
-                            '<img class="koin-image" src="./resources/images/koins/koin_no_value.png" />',
-                        '</div>',
-                        '<div class="content">',
-                            '<p>',
-                                Ext.i18n.Bundle.message('bugmap.messagebox.koins.earn'),
-                                ' <span class="important">{koin_count}</span> ',
-                                Ext.i18n.Bundle.message('bugmap.messagebox.koins.name'),
-                            '</p>',
-                        '</div>',
-                    '</div>',
                 '</div>'
             )
         );
         
+        // adding listener for fixsend event
         me.getApplication().on({
             fixsend: { fn: me.refreshBugMarkers, scope: me }
         });
     },
-
+    
+    // @private
     onBugmapNavigationViewDetailPush: function(cmp, view, opts) {
         this.getBugmapCenterButton().hide();
         this.getBugmapRefreshButton().hide();
     },
+    
+    // @private
     onBugmapNavigationViewBack: function(cmp, view, opts) {
         this.getBugmapCenterButton().show();
         this.getBugmapRefreshButton().show();
     },
 
+    // @private
     onMapRender: function(cmp, map, tileLayer) {
         var me = this;
         me.setMap(map);
@@ -70696,19 +70901,30 @@ Ext.define('Kort.controller.Bugmap', {
         me.getMarkerLayerGroup().addTo(map);
     },
 
+    // @private
     onBugmapCenterButtonTap: function() {
         this.centerMapToCurrentPosition();
     },
     
+    // @private
     onBugmapRefreshButtonTap: function() {
         this.refreshBugMarkers();
     },
     
+    /**
+     * @private
+     * Centers map to current position
+     */
     centerMapToCurrentPosition: function() {
         // centering map to current position
         this.getMapCmp().setMapCenter(this.getCurrentLocationLatLng(this.getMapCmp()));
+        this.getMap().setZoom(Kort.util.Config.getLeafletMap().zoom);
     },
 
+    /**
+     * @private
+     * Reloads and redraws all bug markers
+     */
     refreshBugMarkers: function() {
         var me = this,
             mapCmp = me.getMapCmp(),
@@ -70725,15 +70941,16 @@ Ext.define('Kort.controller.Bugmap', {
 
         // Load bugs store
 		bugsStore.load(function(records, operation, success) {
-            me.syncProblemMarkers(records);
+            me.redrawBugMarkers(records);
         });
     },
 
     /**
-    * Synchronizes problem markers with recieved data from fusiontable
-    * @private
-    */
-	syncProblemMarkers: function(bugs) {
+     * @private
+     * Removes old and draws new markers
+     * @param {Ext.data.Model[]} bugs Array of bug instances
+     */
+	redrawBugMarkers: function(bugs) {
         var me = this;
 
         me.removeAllMarkers();
@@ -70747,7 +70964,42 @@ Ext.define('Kort.controller.Bugmap', {
         });
         me.hideLoadMask();
 	},
+    
+    /**
+     * @private
+     * Removes all markers from map
+     */
+    removeAllMarkers: function() {
+        this.getMarkerLayerGroup().clearLayers();
+    },
 
+    /**
+     * @private
+     * Adds marker for given bug
+     * @param {Kort.model.Bug} bug Bug instance
+     */
+    addMarker: function(bug) {
+        var me = this,
+            icon,
+            marker;
+
+        icon = Kort.util.Config.getMarkerIcon(bug.get('type'));
+        marker = L.marker([bug.get('latitude'), bug.get('longitude')], {
+            icon: icon
+        });
+
+        marker.bug = bug;
+        marker.lastClickTimestamp = 0;
+        marker.on('click', me.onMarkerClick, me);
+        me.getMarkerLayerGroup().addLayer(marker);
+    },
+    
+    /**
+     * @private
+     * Adds own position marker to map
+     * @param {Ext.ux.LeafletMap} cmp LeafletMap component
+     * @param {L.Map} Leaflet map instance
+     */
     addOwnPositionMarker: function(cmp, map) {
         var iconWidth = 20,
             iconHeight = 20,
@@ -70768,9 +71020,9 @@ Ext.define('Kort.controller.Bugmap', {
     },
 
     /**
-     * Sets position of own position marker
-     * @param latlng position of marker
      * @private
+     * Sets position of own position marker
+     * @param {L.LatLng} latlng New position of marker
      */
     setOwnPositionMarkerPosition: function(latlng) {
         var ownPositionMarker = this.getOwnPositionMarker();
@@ -70779,26 +71031,11 @@ Ext.define('Kort.controller.Bugmap', {
         }
     },
 
-    addMarker: function(bug) {
-        var me = this,
-            icon,
-            marker;
-
-        icon = Kort.util.Config.getMarkerIcon(bug.get('type'));
-        marker = L.marker([bug.get('latitude'), bug.get('longitude')], {
-            icon: icon
-        });
-
-        marker.bug = bug;
-        marker.lastClickTimestamp = 0;
-        marker.on('click', me.onMarkerClick, me);
-        me.getMarkerLayerGroup().addLayer(marker);
-    },
-
-    removeAllMarkers: function() {
-        this.getMarkerLayerGroup().clearLayers();
-    },
-
+    /**
+     * @private
+     * Executed when marker gets clicked
+     * @param {L.MouseEvent} e Mouse click event
+     */
     onMarkerClick: function(e) {
         var tpl,
             marker = e.target,
@@ -70820,6 +71057,7 @@ Ext.define('Kort.controller.Bugmap', {
         }
     },
 
+    // @private
     markerConfirmHandler: function(buttonId, value, opt) {
         if(buttonId === 'yes') {
             console.log('Open fix (id: ' + this.getActiveBug().data.id + ')');
@@ -70829,6 +71067,11 @@ Ext.define('Kort.controller.Bugmap', {
         this.setActiveBug(null);
     },
 
+    /**
+     * @private
+     * Displays fix detail panel
+     * @param {Kort.model.Bug} bug Bug instance
+     */
     showFix: function(bug) {
         var bugmapNavigationView = this.getBugmapNavigationView(),
             fixTabPanel;
@@ -70840,7 +71083,11 @@ Ext.define('Kort.controller.Bugmap', {
         bugmapNavigationView.push(fixTabPanel);
         bugmapNavigationView.fireEvent('detailpush', bugmapNavigationView);
     },
-
+    
+    /**
+     * @private
+     * Shows load mask
+     */
     showLoadMask: function() {
         this.getBugmapCenterButton().disable();
         this.getBugmapRefreshButton().disable();
@@ -70850,7 +71097,11 @@ Ext.define('Kort.controller.Bugmap', {
             zIndex: Kort.util.Config.getZIndex().overlayLeafletMap
         });
     },
-
+    
+    /**
+     * @private
+     * Hides load mask
+     */
     hideLoadMask: function() {
         this.getBugmapNavigationView().setMasked(false);
         this.getBugmapCenterButton().enable();
@@ -70858,8 +71109,9 @@ Ext.define('Kort.controller.Bugmap', {
     },
     
     /**
-	 * Returns current location
 	 * @private
+	 * Returns current location
+     * @param {Ext.ux.LeafletMap} mapCmp LeafletMap component
 	 */
 	getCurrentLocationLatLng: function(mapCmp) {
 		if(mapCmp.getUseCurrentLocation()) {
@@ -70871,6 +71123,9 @@ Ext.define('Kort.controller.Bugmap', {
 	}
 });
 
+/**
+ * First steps panel which overlays main panel if no username is given
+ */
 Ext.define('Kort.view.overlay.firststeps.Panel', {
 	extend: 'Ext.Panel',
 	alias: 'widget.firststepspanel',
@@ -70903,7 +71158,9 @@ Ext.define('Kort.view.overlay.firststeps.Panel', {
                                 '<img src="./resources/images/kort-logo.png" />' +
                             '</div>' +
                             '<div class="introduction">' +
-                                Ext.i18n.Bundle.message('firststeps.introduction') +
+                                Ext.i18n.Bundle.message('firststeps.introduction.1') +
+                                Kort.util.Config.getKortTitle() +
+                                Ext.i18n.Bundle.message('firststeps.introduction.2') +
                             '</div>' +
                         '</div>'
 			},
@@ -70917,8 +71174,8 @@ Ext.define('Kort.view.overlay.firststeps.Panel', {
                         xtype: 'textfield',
                         cls: 'usernameTextfield',
                         name: 'username',
-                        // TODO i18n bundle doens't work for placeholders
-                        placeHolder: 'Benutzername'
+                        // i18n bundle doens't work for placeholders -> get text from config
+                        placeHolder: Kort.util.Config.getFormPlaceholders().username
                     },
                     {
                         xtype: 'button',
@@ -70932,10 +71189,18 @@ Ext.define('Kort.view.overlay.firststeps.Panel', {
 	}
 });
 
+/**
+ * Controller for firststeps overlay
+ */
 Ext.define('Kort.controller.Firststeps', {
     extend: 'Ext.app.Controller',
 
     config: {
+        /**
+         * @event userchange
+         * Fired when user gets changed
+         */
+        
         views: [
             'overlay.firststeps.Panel'
         ],
@@ -70984,7 +71249,7 @@ Ext.define('Kort.controller.Firststeps', {
     },
 
     userSuccessfullSavedHandler: function(store, operation) {
-        this.getApplication().fireEvent('usersave');
+        this.getApplication().fireEvent('userchange');
         this.getFirststepsPanel().hide();
     },
 
@@ -70996,6 +71261,9 @@ Ext.define('Kort.controller.Firststeps', {
     }
 });
 
+/**
+ * Select answer type for fix view
+ */
 Ext.define('Kort.view.bugmap.fix.type.Select', {
 	extend: 'Ext.field.Select',
     
@@ -71004,6 +71272,7 @@ Ext.define('Kort.view.bugmap.fix.type.Select', {
         
         // always use Ext.picker.Picker
         usePicker: true,
+        autoSelect: false,
         valueField: 'value',
         displayField: 'title',
         defaultPhonePickerConfig: {
@@ -71025,6 +71294,9 @@ Ext.define('Kort.view.bugmap.fix.type.Select', {
     }
 });
 
+/**
+ * Answer form for fix view
+ */
 Ext.define('Kort.view.bugmap.fix.Form', {
 	extend: 'Ext.Container',
 	alias: 'widget.fixform',
@@ -71058,7 +71330,19 @@ Ext.define('Kort.view.bugmap.fix.Form', {
             record: this.getRecord(),
             tpl:    new Ext.Template(
                         '<div class="fix-content">',
-                            '<div class="description">',
+                            '<div class="textpic">',
+                                '<div class="image">',
+                                    '<img class="koin-image" src="./resources/images/koins/koin_no_value.png" />',
+                                '</div>',
+                                '<div class="content">',
+                                    '<p>',
+                                        Ext.i18n.Bundle.message('fix.form.koins.earn'),
+                                        ' <span class="important">{fix_koin_count}</span> ',
+                                        Ext.i18n.Bundle.message('fix.form.koins.name'),
+                                    '</p>',
+                                '</div>',
+                            '</div>',
+                            '<div class="textpic">',
                                 '<div class="image">',
                                     '<img class="bugtype-image" src="./resources/images/marker_icons/{type}.png" />',
                                 '</div>',
@@ -71111,13 +71395,15 @@ Ext.define('Kort.view.bugmap.fix.Form', {
             fixField = Ext.create('Ext.field.Text', fieldConfig);
         }
         
-        // TODO i18n bundle doens't work for placeholders
         fixField.setPlaceHolder(this.getRecord().get('answer_placeholder'));
         
         return fixField;
     }
 });
 
+/**
+ * Notification messagebox with overlays all panels
+ */
 Ext.define('Kort.view.NotificationMessageBox', {
     extend: 'Ext.MessageBox',
     xtype: 'notificationmessagebox',
@@ -71129,6 +71415,9 @@ Ext.define('Kort.view.NotificationMessageBox', {
     }
 });
 
+/**
+ * Reward messagebox to show rewards
+ */
 Ext.define('Kort.view.RewardMessageBox', {
     extend: 'Kort.view.NotificationMessageBox',
     xtype: 'rewardmessagebox',
@@ -71142,30 +71431,40 @@ Ext.define('Kort.view.RewardMessageBox', {
                         '</div>',
                         '<div class="content">',
                             '<p>' +
-                                Ext.i18n.Bundle.message('reward.alert.koins.1') +
-                                ' <span class="important">{koinCount}</span> ' +
-                                Ext.i18n.Bundle.message('reward.alert.koins.2') +
+                                Ext.i18n.Bundle.message('reward.alert.koins.new.1') +
+                                ' <span class="important">{koin_count_new}</span> ' +
+                                Ext.i18n.Bundle.message('reward.alert.koins.new.2') +
+                            '</p>',
+                            '<p>' +
+                                Ext.i18n.Bundle.message('reward.alert.koins.total.1') +
+                                ' <span class="important">{koin_count_total}</span> ' +
+                                Ext.i18n.Bundle.message('reward.alert.koins.total.2') +
                             '</p>',
                         '</div>',
                     '</div>',
-                    '<div class="text">',
-                        '<div class="content">',
-                            '<h1> ' + Ext.i18n.Bundle.message('reward.alert.badges.title') + ' </h1>',
-                            '<div class="badges">',
-                                '<tpl for="badges">',
-                                    '<div class="badge">',
-                                        '<img src="./resources/images/badges/{name}.png" />',
-                                    '</div>',
-                                '</tpl>',
+                    '<tpl if="badges.length &gt 0">',
+                        '<div class="text">',
+                            '<div class="content">',
+                                '<h1> ' + Ext.i18n.Bundle.message('reward.alert.badges.title') + ' </h1>',
+                                '<div class="badges">',
+                                    '<tpl for="badges">',
+                                        '<div class="badge">',
+                                            '<img src="./resources/images/badges/{name}.png" />',
+                                        '</div>',
+                                    '</tpl>',
+                                '</div>',
+                                '</p>',
                             '</div>',
-                            '</p>',
                         '</div>',
-                    '</div>',
+                    '</tpl>',
                 '</div>'
             )
     }
 });
 
+/**
+ * Controller for map components with osm objects
+ */
 Ext.define('Kort.controller.OsmMap', {
     extend: 'Ext.app.Controller',
 
@@ -71173,14 +71472,26 @@ Ext.define('Kort.controller.OsmMap', {
         map: null
     },
 
+    /**
+     * @private
+     * Called when map component gets rendered
+     * @param {Ext.ux.LeafletMap} cmp Map component
+     * @param {L.Map} map Leaflet map object
+     * @param {L.TileLayer} tileLayer Leaflet TileLayer object
+     */
     onMaprender: function(cmp, map, tileLayer) {
-        var record = this.getDetailTabPanel().getRecord();
+        var record = this.getDetailComponent().getRecord();
 
         this.setMap(map);
         cmp.setMapCenter(L.latLng(record.get('latitude'), record.get('longitude')));
         this.renderOsmElement(record);
     },
-
+    
+    /**
+     * @private
+     * Renders OpenStreetMap object from a given Kort.model.Bug instance on map
+     * @param {Kort.model.Bug} record Bug which should be rendered
+     */
     renderOsmElement: function(record) {
         var me = this,
             url = './server/webservices/osm/' + record.get('osm_type') + '/' + record.get('osm_id');
@@ -71198,6 +71509,12 @@ Ext.define('Kort.controller.OsmMap', {
         });
     },
 
+    /**
+     * @private
+     * Adds osm object feature to map
+     * @param {String} xml OSM-XML data which should be drawn
+     * @param {Kort.model.Bug} record Bug which should be rendered
+     */
     addFeature: function(xml, record) {
         var icon = Kort.util.Config.getMarkerIcon(record.get('type')),
             layer;
@@ -71224,21 +71541,37 @@ Ext.define('Kort.controller.OsmMap', {
         this.setZoomToLayerBounds(layer);
     },
     
+    /**
+     * @private
+     * sets zoomlevel of map to layer bounds
+     * @param {L.OSM.DataLayer} layer Layer for zoomlevel
+     */
     setZoomToLayerBounds: function(layer) {
         var bounds;
         
         bounds = layer.getBounds();
-        // TODO reading private variables to check if layer has any bounds
+        // reading private variables to check if layer has any bounds
         if(bounds.hasOwnProperty('_northEast') || bounds.hasOwnProperty('_southWest')) {
             this.getMap().fitBounds(bounds);
         }
     }
 });
 
+/**
+ * Controller for fix panel
+ */
 Ext.define('Kort.controller.Fix', {
     extend: 'Kort.controller.OsmMap',
 
     config: {
+        /**
+         * @event fixsend
+         * Fired when fix was sent
+         * @param {Ext.ux.LeafletMap} this
+         * @param {L.Map} map The rendered L.Map instance
+         * @param {L.TileLayer} tileLayer The rendered L.TileLayer instance
+         */
+        
         views: [
             'bugmap.NavigationView',
             'bugmap.fix.TabPanel',
@@ -71248,7 +71581,7 @@ Ext.define('Kort.controller.Fix', {
         ],
         refs: {
             bugmapNavigationView: '#bugmapNavigationView',
-            detailTabPanel: '.fixtabpanel',
+            detailComponent: '.fixtabpanel',
             fixFormSubmitButton: '.fixtabpanel .formpanel .button[cls=fixSubmitButton]',
             fixField: '.fixtabpanel .formpanel .field',
             fixmap: '.fixtabpanel .kortleafletmap[cls=fixMap]'
@@ -71265,18 +71598,19 @@ Ext.define('Kort.controller.Fix', {
             }
         }
     },
-
+    
+    // @private
     onFixFormSubmitButtonTap: function() {
         var me = this,
-            detailTabPanel = this.getDetailTabPanel(),
+            detailComponent = this.getDetailComponent(),
             fixFieldValue = this.getFixField().getValue(),
             userId = Kort.user.get('id'),
             fix,
             messageBox;
 
-        if (fixFieldValue !== '') {
+        if (fixFieldValue && fixFieldValue !== '') {
             me.showSendMask();
-            fix = Ext.create('Kort.model.Fix', { error_id: detailTabPanel.getRecord().get('id'), user_id: userId, message: fixFieldValue });
+            fix = Ext.create('Kort.model.Fix', { error_id: detailComponent.getRecord().get('id'), user_id: userId, message: fixFieldValue });
             fix.save({
                 success: function(records, operation) {
                     me.hideSendMask();
@@ -71294,6 +71628,7 @@ Ext.define('Kort.controller.Fix', {
         }
     },
 
+    // @private
     onFixFieldKeyUp: function(field, e) {
         // submit form if return key was pressed
         if (e.event.keyCode === 13){
@@ -71301,6 +71636,11 @@ Ext.define('Kort.controller.Fix', {
         }
     },
 
+    /**
+     * @private
+     * Called when a fix was successfully submitted
+     * @param {String} responseText Response from server
+     */
     fixSuccessfulSubmittedHandler: function(responseText) {
         var rewardConfig = JSON.parse(responseText),
             reward = Ext.create('Kort.model.Reward', rewardConfig),
@@ -71314,6 +71654,7 @@ Ext.define('Kort.controller.Fix', {
         bugmapNavigationView.fireEvent('back', bugmapNavigationView);
     },
     
+    // @private
     showSendMask: function() {
         this.getBugmapNavigationView().setMasked({
             xtype: 'loadmask',
@@ -71322,10 +71663,16 @@ Ext.define('Kort.controller.Fix', {
         });
     },
     
+    // @private
     hideSendMask: function() {
         this.getBugmapNavigationView().setMasked(false);
     },
     
+    /**
+     * @private
+     * Shows message box with rewards
+     * @param {Kort.model.Reward} reward Won reward
+     */
 	showRewardMessageBox: function(reward) {
         var messageBox = Ext.create('Kort.view.RewardMessageBox', {
             record: reward
@@ -71334,6 +71681,9 @@ Ext.define('Kort.controller.Fix', {
 	}
 });
 
+/**
+ * Geolocation error panel which overlays main panel if geolocation isn't available
+ */
 Ext.define('Kort.view.overlay.geolocationerror.Panel', {
 	extend: 'Ext.Panel',
 	alias: 'widget.geolocationerrorpanel',
@@ -71356,7 +71706,9 @@ Ext.define('Kort.view.overlay.geolocationerror.Panel', {
                             '</div>' +
                             '<div class="sadsmiley">:(</div>' +
                             '<div class="introduction">' +
-                                Ext.i18n.Bundle.message('geolocationerror.introduction') +
+                                Ext.i18n.Bundle.message('geolocationerror.introduction.1') +
+                                Kort.util.Config.getKortTitle() +
+                                Ext.i18n.Bundle.message('geolocationerror.introduction.2') +
                             '</div>' +
                         '</div>'
 			},
@@ -71370,6 +71722,9 @@ Ext.define('Kort.view.overlay.geolocationerror.Panel', {
 	}
 });
 
+/**
+ * Controller for geolocation error overlay
+ */
 Ext.define('Kort.controller.GeolocationError', {
     extend: 'Ext.app.Controller',
     requires: [
@@ -71390,7 +71745,8 @@ Ext.define('Kort.controller.GeolocationError', {
             }
         }
     },
-
+    
+    // @private
     onGeolocationerrorReloadButtonTap: function() {
         var me = this;
         me.showLoadMask(Ext.i18n.Bundle.message('geolocationerror.loadmask.message'));
@@ -71399,6 +71755,7 @@ Ext.define('Kort.controller.GeolocationError', {
         window.location.reload();
     },
     
+    // @private
     showLoadMask: function(message) {
         this.getGeolocationerrorPanel().setMasked({
             xtype: 'loadmask',
@@ -71408,12 +71765,16 @@ Ext.define('Kort.controller.GeolocationError', {
         Ext.defer(this.hideLoadMask, Kort.util.Config.getTimeout(), this);
     },
 
+    // @private
     hideLoadMask: function() {
         this.getGeolocationerrorPanel().setMasked(false);
     }
 });
 
 /*jshint maxcomplexity:10 */
+/**
+ * Translated pull refresh plugin
+ */
 Ext.define('Kort.plugin.PullRefresh', {
     extend: 'Ext.plugin.PullRefresh',
     alias: 'plugin.kortpullrefresh',
@@ -71460,6 +71821,7 @@ Ext.define('Kort.plugin.PullRefresh', {
         ].join('')
 	},
     
+    // @inheritdoc
     initScrollable: function() {
         var me = this,
             list = me.getList(),
@@ -71516,81 +71878,44 @@ Ext.define('Kort.plugin.PullRefresh', {
         });
     },
     
-    onBounceTop: function(y) {
-        var me = this,
-            pullHeight = me.pullHeight,
-            list = me.getList(),
-            scroller = list.getScrollable().getScroller();
-
-        if (!me.isReleased && !me.isLoading) {
-            if (!pullHeight) {
-                me.onPainted();
-                pullHeight = me.pullHeight;
-            }
-            if (!me.isRefreshing && -y >= pullHeight + 10) {
-                me.isRefreshing = true;
-
-                me.setViewState('release');
-
-                scroller.getContainer().onBefore({
-                    dragend: 'onScrollerDragEnd',
-                    single: true,
-                    scope: me
-                });
-            }
-            else if (me.isRefreshing && -y < pullHeight + 10) {
-                me.isRefreshing = false;
-                me.setViewState('pull');
-            }
-        }
-        
-        me.getTranslatable().translate(0, -y);
-    },
-    
+    /**
+     * @inheritdoc
+	 * OVERRIDEN SENCHA TOUCH FUNCTION
+	 * CHANGE: wait for a longer time to scroll to top
+	 */
     loadStore: function() {
         var me = this,
             list = me.getList(),
-            store = list.getStore();
+            scroller = list.getScrollable().getScroller();
 
         me.setViewState('loading');
         me.isReleased = false;
-        me.isLoading = true;
-        
-        if (me.getRefreshFn()) {
-            if(store) {
-                store.suspendEvents();
-            }
-            me.getRefreshFn().call(me, me.afterStoreLoad, me);
-        } else {
-            me.fetchLatest();
-            Ext.defer(function() {
-                me.resetRefreshElement();
-            }, 1000);
-        }
-    },
-    
-    afterStoreLoad: function() {
-        var me = this,
-            list = me.getList(),
-            store = list.getStore();
-        
-        if(store) {
-            store.resumeEvents();
-        }
-        me.resetRefreshElement();
-    },
-    
-    resetRefreshElement: function() {
-        var me = this,
-            list = me.getList(),
-            scroller = list.getScrollable().getScroller();
 
-        me.isLoading = false;
-        me.resetRefreshState();
-        scroller.minPosition.y = 0;
-        scroller.scrollTo(null, 0, true);
+        Ext.defer(function() {
+            scroller.on({
+                scrollend: function() {
+                    if (me.getRefreshFn()) {
+                        me.getRefreshFn().call(me, me);
+                    } else {
+                        me.fetchLatest();
+                    }
+                    me.resetRefreshState();
+                },
+                delay: 100,
+                single: true,
+                scope: me
+            });
+            scroller.minPosition.y = 0;
+            scroller.scrollTo(null, 0, true);
+		// CHANGE: wait for a longer time to scroll to top
+        }, 1000, me);
     },
-	
+    
+    /**
+     * @inheritdoc
+	 * OVERRIDEN SENCHA TOUCH FUNCTION
+	 * CHANGE: German date format
+	 */
     resetRefreshState: function() {
         var me = this;
 
@@ -71603,6 +71928,9 @@ Ext.define('Kort.plugin.PullRefresh', {
     }
 });
 
+/**
+ * Pull refresh plugin for highscore list
+ */
 Ext.define('Kort.view.highscore.PullRefreshPlugin', {
     extend: 'Kort.plugin.PullRefresh',
     alias: 'plugin.highscorepullrefresh',
@@ -71612,26 +71940,23 @@ Ext.define('Kort.view.highscore.PullRefreshPlugin', {
     ],
 	
 	config: {
-       refreshFn: function(callbackFn, scope) {
+       refreshFn: function() {
             var me = this,
                 list = me.getList(),
                 store = list.getStore();
 
             if (store) {
                 store.load(function(records, operation, success) {
-                    callbackFn.call(scope);
-                    // wait until bounce back animation is done
-                    Ext.defer(function() {
-                        list.refresh();
-                    }, 500);
+                    list.refresh();
                 });
-            } else {
-                callbackFn.call(scope);
             }
         }
 	}
 });
 
+/**
+ * Highscore list
+ */
 Ext.define('Kort.view.highscore.List', {
 	extend: 'Ext.List',
 	alias: 'widget.highscorelist',
@@ -71643,7 +71968,7 @@ Ext.define('Kort.view.highscore.List', {
 		layout: 'fit',
 		store: 'Highscore',
         loadingText: Ext.i18n.Bundle.message('highscore.loadmask.message'),
-        emptyText: Ext.i18n.Bundle.message('highscore.emptytext'),
+        emptyText: '<div class="emptytext">' + Ext.i18n.Bundle.message('highscore.emptytext') + '</div>',
         disableSelection: true,
         
         itemTpl:    new Ext.XTemplate(
@@ -71659,7 +71984,10 @@ Ext.define('Kort.view.highscore.List', {
                                 '<div class="fixCount"><span class="title">' + Ext.i18n.Bundle.message('highscore.fixcount') + '</span> <span class="value">{fix_count}</span></div>' +
                                 '<div class="voteCount"><span class="title">' + Ext.i18n.Bundle.message('highscore.votecount') + '</span> <span class="value">{vote_count}</span></div>' +
                             '</div>' +
-                            '<div class="koins"><span class="koinCount">{koin_count}</span> <span class="title">' + Ext.i18n.Bundle.message('highscore.koins') + '</span></div>' +
+                            '<div class="koins">' +
+                                '<div class="title">' + Ext.i18n.Bundle.message('highscore.koins') + '</div> ' +
+                                '<div class="value">{koin_count}</div>' +
+                            '</div>' +
                         '</div>'
                     ),
         
@@ -71671,6 +71999,9 @@ Ext.define('Kort.view.highscore.List', {
 	}
 });
 
+/**
+ * Main container for highscore tab
+ */
 Ext.define('Kort.view.highscore.Container', {
 	extend: 'Ext.Container',
 	alias: 'widget.highscorecontainer',
@@ -71690,7 +72021,17 @@ Ext.define('Kort.view.highscore.Container', {
 				xtype: 'titlebar',
 				cls: 'titlebar',
 				docked: 'top',
-				title: Ext.i18n.Bundle.message('highscore.title')
+				title: Ext.i18n.Bundle.message('highscore.title'),
+                
+                items: [
+                    {
+                        xtype: 'button',
+                        cls: 'highscoreRefreshButton',
+                        iconCls: 'refresh',
+                        iconMask: true,
+                        align: 'right'
+                    }
+                ]
 			},
 			{
                 xtype: 'highscorelist'
@@ -71699,6 +72040,9 @@ Ext.define('Kort.view.highscore.Container', {
 	}
 });
 
+/**
+ * Controller for highscore tab
+ */
 Ext.define('Kort.controller.Highscore', {
     extend: 'Ext.app.Controller',
     
@@ -71710,10 +72054,20 @@ Ext.define('Kort.controller.Highscore', {
         refs: {
             mainTabPanel: '#mainTabPanel',
             highscoreContainer: '#highscoreContainer',
-            highscoreList: '.highscorelist'
+            highscoreList: '.highscorelist',
+            highscoreRefreshButton: '#highscoreContainer .button[cls=highscoreRefreshButton]'
+        },
+        control: {
+            highscoreRefreshButton: {
+                tap: 'onHighscoreRefreshButtonTap'
+            }
         }
     },
     
+    /**
+     * @private
+     * Initilizes the controller
+     */
     init: function() {
         var me = this;
         me.callParent(arguments);
@@ -71721,21 +72075,37 @@ Ext.define('Kort.controller.Highscore', {
         me.getApplication().on({
             votesend: { fn: me.refreshView, scope: me },
             fixsend: { fn: me.refreshView, scope: me },
-            usersave: { fn: me.refreshView, scope: me }
+            userchange: { fn: me.refreshView, scope: me }
         });
     },
     
+    // @private
+    onHighscoreRefreshButtonTap: function() {
+        this.refreshView();
+    },
+    
+    /**
+     * @private
+     * Refreshs highscore
+     */
     refreshView: function() {
-        var me = this;
+        var me = this,
+            highscoreStore = Ext.getStore('Highscore');
         
         if(me.getHighscoreList()) {
-            Ext.getStore('Highscore').load(function(records, operation, success) {
+            me.getHighscoreList().mask();
+            
+            highscoreStore.load(function(records, operation, success) {
                 me.getHighscoreList().refresh();
+                me.getHighscoreList().unmask();
             });
         }
     }
 });
 
+/**
+ * Login panel which overlays main panel if user isn't logged in
+ */
 Ext.define('Kort.view.overlay.login.Panel', {
 	extend: 'Ext.Panel',
 	alias: 'widget.loginpanel',
@@ -71755,8 +72125,15 @@ Ext.define('Kort.view.overlay.login.Panel', {
                             '<div class="logo">' +
                                 '<img src="./resources/images/kort-logo.png" />' +
                             '</div>' +
+                            '<ul class="kort-description">' +
+                                '<li>' + Ext.i18n.Bundle.message('login.kort.description.1') + '</li>' +
+                                '<li>' + Ext.i18n.Bundle.message('login.kort.description.2') + '</li>' +
+                                '<li>' + Ext.i18n.Bundle.message('login.kort.description.3') + '</li>' +
+                            '</ul>' +
                             '<div class="introduction">' +
-                                Ext.i18n.Bundle.message('login.introduction') +
+                                Ext.i18n.Bundle.message('login.introduction.1') +
+                                Kort.util.Config.getKortTitle() +
+                                Ext.i18n.Bundle.message('login.introduction.2') +
                             '</div>' +
                         '</div>'
 			},
@@ -71772,20 +72149,23 @@ Ext.define('Kort.view.overlay.login.Panel', {
                         id: 'loginButtonGoogle',
                         baseCls: Ext.baseCSSPrefix + 'zocial-button',
                         cls: 'zocial google'
-                    },
+                    }/*,
                     {
                         xtype: 'button',
-                        text: Ext.i18n.Bundle.message('login.button.twitter'),
-                        id: 'loginButtonTwitter',
+                        text: Ext.i18n.Bundle.message('login.button.osm'),
+                        id: 'loginButtonOsm',
                         baseCls: Ext.baseCSSPrefix + 'zocial-button',
-                        cls: 'zocial twitter'
-                    }
+                        cls: 'zocial pinboard'
+                    }*/
                 ]
             }
 		]
 	}
 });
 
+/**
+ * Controller for login overlay
+ */
 Ext.define('Kort.controller.Login', {
     extend: 'Ext.app.Controller',
     requires: [
@@ -71805,30 +72185,18 @@ Ext.define('Kort.controller.Login', {
             loginButtonGoogle: {
                 tap: 'onLoginButtonGoogleTap'
             }
-        },
-
-        remote: {
-            google: {
-                url: 'https://accounts.google.com/o/oauth2/auth',
-                scopes: [
-                    'https://www.googleapis.com/auth/userinfo.profile',
-                    'https://www.googleapis.com/auth/userinfo.email'
-                ],
-                redirect_path: 'server/oauth2callback',
-                response_type: 'code',
-                access_type: 'offline',
-                client_id: '653755350671.apps.googleusercontent.com'
-            }
         }
     },
 
+    // @private
     onLoginButtonGoogleTap: function() {
-        console.log('loginButtonGoogle tapped -> ' + this.buildGoogleUrl(this.getRemote().google));
+        console.log('loginButtonGoogle tapped -> ' + this.buildGoogleUrl(Kort.util.Config.getOAuth().google));
         this.showLoadMask();
         // redirect to google login page
-        document.location.href = this.buildGoogleUrl(this.getRemote().google);
+        document.location.href = this.buildGoogleUrl(Kort.util.Config.getOAuth().google);
     },
 
+    // @private
     showLoadMask: function() {
         this.getLoginPanel().setMasked({
             xtype: 'loadmask',
@@ -71838,11 +72206,17 @@ Ext.define('Kort.controller.Login', {
         Ext.defer(this.hideLoadMask, Kort.util.Config.getTimeout(), this);
     },
 
+    // @private
     hideLoadMask: function() {
         this.getLoginPanel().setMasked(false);
         console.log('something went wrong');
     },
 
+    /**
+     * @private
+     * Creates google oauth url
+     * @param {Object} oauth Google OAuth configuration
+     */
     buildGoogleUrl: function(oauth) {
         var urlLib = new UrlLib(),
             params = urlLib.getUrlParams(),
@@ -71866,6 +72240,9 @@ Ext.define('Kort.controller.Login', {
     }
 });
 
+/**
+ * Pull refresh plugin for validation list
+ */
 Ext.define('Kort.view.validation.PullRefreshPlugin', {
     extend: 'Kort.plugin.PullRefresh',
     alias: 'plugin.validationpullrefresh',
@@ -71883,19 +72260,16 @@ Ext.define('Kort.view.validation.PullRefreshPlugin', {
             if (store) {
                 store.load(function(records, operation, success) {
                     store.updateDistances(Kort.geolocation);
-                    callbackFn.call(scope);
-                    // wait until bounce back animation is done
-                    Ext.defer(function() {
-                        list.refresh();
-                    }, 500);
+                    list.refresh();
                 });
-            } else {
-                callbackFn.call(scope);
             }
         }
 	}
 });
 
+/**
+ * Validations list
+ */
 Ext.define('Kort.view.validation.List', {
 	extend: 'Ext.List',
 	alias: 'widget.validationlist',
@@ -71908,7 +72282,7 @@ Ext.define('Kort.view.validation.List', {
 		store: 'Validations',
         grouped: true,
         loadingText: Ext.i18n.Bundle.message('validation.loadmask.message'),
-        emptyText: Ext.i18n.Bundle.message('validation.emptytext'),
+        emptyText: '<div class="emptytext">' + Ext.i18n.Bundle.message('validation.emptytext') + '</div>',
         disableSelection: true,
         scrollToTopOnRefresh: false,
         
@@ -71947,6 +72321,9 @@ Ext.define('Kort.view.validation.List', {
 	}
 });
 
+/**
+ * Main navigation view for validation tab
+ */
 Ext.define('Kort.view.validation.NavigationView', {
 	extend: 'Ext.navigation.View',
 	alias: 'widget.validationnavigationview',
@@ -71962,6 +72339,18 @@ Ext.define('Kort.view.validation.NavigationView', {
 		iconCls: 'check_black2',
         defaultBackButtonText: Ext.i18n.Bundle.message('button.back'),
         
+        navigationBar: {
+            items: [
+                {
+                    xtype: 'button',
+                    cls: 'validationRefreshButton',
+                    iconCls: 'refresh',
+                    iconMask: true,
+                    align: 'right'
+                }
+            ]
+        },
+        
 		items: [
 			{
                 title: Ext.i18n.Bundle.message('validation.title'),
@@ -71971,6 +72360,9 @@ Ext.define('Kort.view.validation.NavigationView', {
 	}
 });
 
+/**
+ * Component which shows user content
+ */
 Ext.define('Kort.view.profile.ContentComponent', {
 	extend: 'Ext.Component',
 	alias: 'widget.profilecontentcomponent',
@@ -71987,8 +72379,8 @@ Ext.define('Kort.view.profile.ContentComponent', {
                         '<dl class="kort-definitionlist text">',
                             '<dt>' + Ext.i18n.Bundle.message('profile.content.username') + '</dt>',
                             '<dd>{username}</dd>',
-                            '<dt>' + Ext.i18n.Bundle.message('profile.content.oauthuserid') + '</dt>',
-                            '<dd>{oauth_user_id}</dd>',
+                            '<dt>' + Ext.i18n.Bundle.message('profile.content.oauthprovider') + '</dt>',
+                            '<dd>{oauth_provider}</dd>',
                             '<dt>' + Ext.i18n.Bundle.message('profile.content.fixes') + '</dt>',
                             '<dd>{fix_count}</dd>',
                             '<dt>' + Ext.i18n.Bundle.message('profile.content.votes') + '</dt>',
@@ -72015,6 +72407,9 @@ Ext.define('Kort.view.profile.ContentComponent', {
 	}
 });
 
+/**
+ * DataView which displays all badges
+ */
 Ext.define('Kort.view.profile.BadgesDataView', {
 	extend: 'Ext.DataView',
 	alias: 'widget.profilebadgesdataview',
@@ -72034,6 +72429,9 @@ Ext.define('Kort.view.profile.BadgesDataView', {
 	}
 });
 
+/**
+ * Main container for profile tab
+ */
 Ext.define('Kort.view.profile.Container', {
 	extend: 'Ext.Container',
 	alias: 'widget.profilecontainer',
@@ -72098,6 +72496,9 @@ Ext.define('Kort.view.profile.Container', {
     }
 });
 
+/**
+ * Main tabpanel of application
+ */
 Ext.define('Kort.view.Main', {
     extend: 'Ext.tab.Panel',
     xtype: 'main',
@@ -72131,6 +72532,9 @@ Ext.define('Kort.view.Main', {
     }
 });
 
+/**
+ * Main controller for application
+ */
 Ext.define('Kort.controller.Main', {
     extend: 'Ext.app.Controller',
 
@@ -72164,29 +72568,58 @@ Ext.define('Kort.controller.Main', {
     },
 
     /**
-     * Called when active item of tabpanel changes
      * @private
+     * Called when active item of main tabpanel changes
      */
     onMainTabPanelActiveItemChange: function(container, newCmp, oldCmp, eOpts) {
         this.redirectTo(newCmp.getUrl());
     },
     
+    /**
+     * @private
+     * redirects to about tab
+     */
     showAbout: function() {
         this.showView(this.getAboutContainer());
     },
+    
+    /**
+     * @private
+     * redirects to bugmap tab
+     */
     showBugmap: function() {
         this.showView(this.getBugmapNavigationView());
     },
+    
+    /**
+     * @private
+     * redirects to highscore tab
+     */
     showHighscore: function() {
         this.showView(this.getHighscoreContainer());
     },
+    
+    /**
+     * @private
+     * redirects to profile tab
+     */
     showProfile: function() {
         this.showView(this.getProfileContainer());
     },
+    
+    /**
+     * @private
+     * redirects to validation tab
+     */
     showValidation: function() {
         this.showView(this.getValidationNavigationView());
     },
     
+    /**
+     * @private
+     * redirects to given component
+     * @param {Ext.Component} viewCmp Component which should be displayed
+     */
     showView: function(viewCmp) {
         if(this.getMainTabPanel()) {
             this.getMainTabPanel().setActiveItem(viewCmp);
@@ -72194,6 +72627,9 @@ Ext.define('Kort.controller.Main', {
     }
 });
 
+/**
+ * Carousel view for badges
+ */
 Ext.define('Kort.view.profile.BadgesCarousel', {
 	extend: 'Ext.Carousel',
 	alias: 'widget.badgescarousel',
@@ -72236,6 +72672,9 @@ Ext.define('Kort.view.profile.BadgesCarousel', {
     }
 });
 
+/**
+ * Badges container which overlays profile when a badge gets tapped
+ */
 Ext.define('Kort.view.profile.BadgesContainer', {
 	extend: 'Ext.Container',
 	alias: 'widget.badgescontainer',
@@ -72290,6 +72729,9 @@ Ext.define('Kort.view.profile.BadgesContainer', {
     }
 });
 
+/**
+ * Controller for profile tab
+ */
 Ext.define('Kort.controller.Profile', {
     extend: 'Ext.app.Controller',
     requires: [
@@ -72331,6 +72773,7 @@ Ext.define('Kort.controller.Profile', {
         badgesContainer: null
     },
     
+    // @private
     init: function() {
         var me = this;
         me.callParent(arguments);
@@ -72341,6 +72784,7 @@ Ext.define('Kort.controller.Profile', {
         });
     },
 
+    // @private
     onProfileContentComponentInitialize: function() {
         if(!Kort.user) {
             Ext.defer(this.onProfileContentComponentInitialize, 500, this);
@@ -72349,6 +72793,7 @@ Ext.define('Kort.controller.Profile', {
         }
     },
 
+    // @private
     onProfileBadgesDataViewItemTap: function(dataViewCmp, index, target, record, e) {
         var badgesContainer = Ext.create('Kort.view.profile.BadgesContainer', {
             selectedBadgeIndex: index
@@ -72358,10 +72803,12 @@ Ext.define('Kort.controller.Profile', {
         badgesContainer.show();
     },
 
+    // @private
     onBadgesContainerBackButtonTap: function() {
         this.getBadgesContainer().hide();
     },
 
+    // @private
     onProfileLogoutButtonTap: function() {
         var me = this,
             userLocalStore = Ext.getStore('UserLocal');
@@ -72378,10 +72825,15 @@ Ext.define('Kort.controller.Profile', {
         });
     },
 
+    // @private
     onProfileRefreshButtonTap: function() {
         this.refreshProfile();
     },
     
+    /**
+     * @private
+     * Refreshes user
+     */
     refreshProfile: function() {
         var me = this;
         
@@ -72393,6 +72845,7 @@ Ext.define('Kort.controller.Profile', {
         Kort.model.User.reload(Kort.user, 'secret', me.hideLoadMask, me);
     },
 
+    // @private
     showLoadMask: function(message) {
         this.getProfileRefreshButton().disable();
         this.getProfileContainer().setMasked({
@@ -72403,55 +72856,22 @@ Ext.define('Kort.controller.Profile', {
         Ext.defer(this.hideLoadMask, Kort.util.Config.getTimeout(), this);
     },
 
+    // @private
     hideLoadMask: function() {
         this.getProfileRefreshButton().enable();
         this.getProfileContainer().setMasked(false);
     }
 });
 
-Ext.define('Kort.view.validation.vote.ButtonContainer', {
-	extend: 'Ext.Container',
-	alias: 'widget.votebuttoncontainer',
-    requires: [
-        'Ext.Button'
-    ],
-	
-	config: {
-        cls: 'voteButtonContainer',
-        layout: 'vbox',
-        defaults: {
-            xtype: 'button',
-            iconMask: true
-        },
-        
-        items: [
-            {
-                ui: 'confirm',
-                cls: 'voteConfirmButton',
-                iconCls: 'add_black',
-                text: Ext.i18n.Bundle.message('vote.container.button.accept')
-            },
-            {
-                ui: 'decline',
-                cls: 'voteDeclineButton',
-                iconCls: 'minus_black1',
-                text: Ext.i18n.Bundle.message('vote.container.button.decline')
-            },
-            {
-                cls: 'voteCancelButton',
-                iconCls: 'arrow_left',
-                text: Ext.i18n.Bundle.message('vote.container.button.cancel')
-            }
-        ]
-	}
-});
-
+/**
+ * Main container for vote view
+ */
 Ext.define('Kort.view.validation.vote.Container', {
 	extend: 'Ext.Container',
 	alias: 'widget.votecontainer',
     requires: [
-        'Ext.Button',
-        'Kort.view.validation.vote.ButtonContainer'
+        'Kort.view.LeafletMap',
+        'Ext.Button'
     ],
 	
 	config: {
@@ -72460,15 +72880,29 @@ Ext.define('Kort.view.validation.vote.Container', {
             direction: 'vertical',
             directionLock: true
         },
-        layout: 'vbox',
-        title: Ext.i18n.Bundle.message('vote.container.title')
+        layout: 'vbox'
 	},
     
     initialize: function () {
-        var voteContentContainer,
-            buttonContainer;
+        var me = this,
+            selectAnswersStore = Ext.getStore('SelectAnswers'),
+            voteContentContainer,
+            voteMap,
+            voteAnswerButton,
+            fixmessage = me.getRecord().get('fixmessage');
 
         this.callParent(arguments);
+        
+        // replace fixmessage with title if select view type given
+        if(this.getRecord().get('view_type') === 'select') {
+            // filter answers for given type
+            selectAnswersStore.filter('type', this.getRecord().get('type'));
+            selectAnswersStore.each(function(item, index, length) {
+                if(item.get('value') === me.getRecord().get('fixmessage')) {
+                    fixmessage = item.get('title');
+                }
+            });
+        }
         
         voteContentContainer = {
             xtype: 'component',
@@ -72480,57 +72914,36 @@ Ext.define('Kort.view.validation.vote.Container', {
                                 '{question}',
                             '</div>',
                             '<div class="fixmessage">',
-                                '{fixmessage}',
+                                fixmessage,
                             '</div>',
                         '</div>'
                     )
         };
         
-        buttonContainer = {
-            xtype: 'votebuttoncontainer'
-        };
-        
-        this.add([voteContentContainer, buttonContainer]);
-    }
-});
-
-Ext.define('Kort.view.validation.vote.TabPanel', {
-	extend: 'Ext.tab.Panel',
-	alias: 'widget.votetabpanel',
-    requires: [
-        'Kort.view.validation.vote.Container',
-        'Kort.view.LeafletMap'
-    ],
-    
-	config: {
-        title: '',
-        fullscreen: true,
-        cls: 'voteTabPanel',
-        tabBar: {
-            minHeight: '1em'
-        }
-	},
-    
-    initialize: function () {
-        var voteContainer,
-            voteMap;
-
-        this.callParent(arguments);
-
-        voteContainer = {
-            xtype: 'votecontainer',
-            record: this.getRecord()
-        };
         voteMap = {
-            title: Ext.i18n.Bundle.message('vote.map.title'),
             xtype: 'kortleafletmap',
-            cls: 'voteMap'
+            cls: 'voteMap',
+            flex: 1,
+            mapOptions: {
+                dragging: false
+            }
         };
         
-        this.add([voteContainer, voteMap]);
+        voteAnswerButton = {
+            xtype: 'button',
+            iconMask: true,
+            ui: 'confirm',
+            cls: 'voteAnswerButton',
+            text: Ext.i18n.Bundle.message('vote.container.button.answer')
+        };
+        
+        this.add([voteContentContainer, voteMap, voteAnswerButton]);
     }
 });
 
+/**
+ * Controller for validation tab
+ */
 Ext.define('Kort.controller.Validation', {
     extend: 'Ext.app.Controller',
     
@@ -72538,20 +72951,27 @@ Ext.define('Kort.controller.Validation', {
         views: [
             'validation.NavigationView',
             'validation.List',
-            'validation.vote.TabPanel'
+            'validation.vote.Container'
         ],
         refs: {
             mainTabPanel: '#mainTabPanel',
             validationNavigationView: '#validationNavigationView',
-            validationList: '.validationlist'
+            validationList: '.validationlist',
+            validationRefreshButton: '#validationNavigationView .button[cls=validationRefreshButton]'
         },
         control: {
             validationList: {
                 itemtap: 'onValidationListItemTap'
+            },
+            validationRefreshButton: {
+                tap: 'onValidationRefreshButtonTap'
             }
-        }
+        },
+        
+        itemTapDisabled: false
     },
     
+    // @private
     init: function() {
         var me = this;
         me.callParent(arguments);
@@ -72562,83 +72982,187 @@ Ext.define('Kort.controller.Validation', {
         });
     },
     
+    // @private
+    onValidationRefreshButtonTap: function() {
+        this.refreshView();
+    },
+    
+    /**
+     * @private
+     * Refreshes validations view
+     */
     refreshView: function() {
         var me = this,
             validationsStore = Ext.getStore('Validations');
         
         if(me.getValidationList()) {
+            me.getValidationList().mask();
             validationsStore.load(function(records, operation, success) {
                 validationsStore.updateDistances(Kort.geolocation);
                 me.getValidationList().refresh();
+                me.getValidationList().unmask();
             });
         }
     },
     
+    /**
+     * @private
+     * Displays vote panel for given validation
+     */
     onValidationListItemTap: function(list, index, target, record, e) {
-        var voteTabPanel = Ext.create('Kort.view.validation.vote.TabPanel', {
-            record: record,
-            title: record.get('title')
-        });
-        this.getValidationNavigationView().push(voteTabPanel);
+        var me = this,
+            voteTabPanel;
+        
+        if(!me.getItemTapDisabled()) {
+            me.setItemTapDisabled(true);
+            voteTabPanel = Ext.create('Kort.view.validation.vote.Container', {
+                record: record,
+                title: record.get('title')
+            });
+            me.getValidationNavigationView().push(voteTabPanel);
+        }
+        Ext.defer(function() {
+            me.setItemTapDisabled(false);
+        }, 200);
     }
 });
 
+/**
+ * ActionSheet with answers for vote view
+ */
+Ext.define('Kort.view.validation.vote.AnswerActionSheet', {
+    extend: 'Ext.ActionSheet',
+    xtype: 'voteansweractionsheet',
+
+    config: {
+        zIndex: Kort.util.Config.getZIndex().overlayLeafletMap,
+        cls: 'voteAnswerActionSheet',
+        
+        defaults: {
+            iconMask: true
+        },
+        
+        items: [
+            {
+                xtype: 'component',
+                cls: 'answerContent',
+                html: Ext.i18n.Bundle.message('vote.answeractionsheet.question')
+            },
+            {
+                ui: 'confirm',
+                cls: 'voteAnswerConfirmButton',
+                iconCls: 'add_black',
+                text: Ext.i18n.Bundle.message('vote.answeractionsheet.button.accept')
+            },
+            {
+                ui: 'decline',
+                cls: 'voteAnswerDeclineButton',
+                iconCls: 'minus_black1',
+                text: Ext.i18n.Bundle.message('vote.answeractionsheet.button.decline')
+            },
+            {
+                cls: 'voteAnswerCancelButton',
+                iconCls: 'arrow_left',
+                text: Ext.i18n.Bundle.message('vote.answeractionsheet.button.cancel')
+            }
+        ]
+    }
+});
+
+/**
+ * Controller for vote panel
+ */
 Ext.define('Kort.controller.Vote', {
     extend: 'Kort.controller.OsmMap',
 
     config: {
         views: [
             'validation.NavigationView',
-            'validation.vote.ButtonContainer',
             'validation.vote.Container',
-            'validation.vote.TabPanel',
+            'validation.vote.AnswerActionSheet',
             'LeafletMap'
         ],
         refs: {
             validationNavigationView: '#validationNavigationView',
-            detailTabPanel: '.votetabpanel',
-            voteMap: '.votetabpanel .kortleafletmap[cls=voteMap]',
-            voteAcceptButton: '.votetabpanel .votecontainer .button[cls=voteConfirmButton]',
-            voteDeclineButton: '.votetabpanel .votecontainer .button[cls=voteDeclineButton]',
-            voteCancelButton: '.votetabpanel .votecontainer .button[cls=voteCancelButton]'
+            detailComponent: '.votecontainer',
+            voteMap: '.votecontainer .kortleafletmap[cls=voteMap]',
+            voteAnswerButton: '.votecontainer .button[cls=voteAnswerButton]',
+            voteAnswerConfirmButton: '.voteansweractionsheet .button[cls=voteAnswerConfirmButton]',
+            voteAnswerDeclineButton: '.voteansweractionsheet .button[cls=voteAnswerDeclineButton]',
+            voteAnswerCancelButton: '.voteansweractionsheet .button[cls=voteAnswerCancelButton]'
         },
         control: {
             voteMap: {
                 maprender: 'onMaprender'
             },
-            voteAcceptButton: {
-                tap: 'onVoteAcceptButtonTap'
+            voteAnswerButton: {
+                tap: 'onVoteAnswerButtonTap'
             },
-            voteDeclineButton: {
-                tap: 'onVoteDeclineButtonTap'
+            voteAnswerConfirmButton: {
+                tap: 'onVoteAnswerConfirmButtonTap'
             },
-            voteCancelButton: {
-                tap: 'onVoteCancelButtonTap'
+            voteAnswerDeclineButton: {
+                tap: 'onVoteAnswerDeclineButtonTap'
+            },
+            voteAnswerCancelButton: {
+                tap: 'onVoteAnswerCancelButtonTap'
             }
+        },
+        
+        answerActionSheet: null
+    },
+    
+    // @private
+    onVoteAnswerButtonTap: function() {
+        var answerActionSheet = Ext.create('Kort.view.validation.vote.AnswerActionSheet');
+        
+        this.setAnswerActionSheet(answerActionSheet);
+        Ext.Viewport.add(answerActionSheet);
+        answerActionSheet.show();
+    },
+    
+    // @private
+    onVoteAnswerConfirmButtonTap: function() {
+        if(this.getAnswerActionSheet()) {
+            this.getAnswerActionSheet().hide();
         }
+        this.sendVote(true);
     },
     
-    onVoteAcceptButtonTap: function() {
-        this.sendVote('true');
+    // @private
+    onVoteAnswerDeclineButtonTap: function() {
+        if(this.getAnswerActionSheet()) {
+            this.getAnswerActionSheet().hide();
+        }
+        this.sendVote(false);
     },
     
-    onVoteDeclineButtonTap: function() {
-        this.sendVote('false');
-    },
-    
-    onVoteCancelButtonTap: function() {
+    // @private
+    onVoteAnswerCancelButtonTap: function() {
+        if(this.getAnswerActionSheet()) {
+            this.getAnswerActionSheet().hide();
+        }
         // remove detail panel
         this.getValidationNavigationView().pop();
     },
     
+    /**
+     * @private
+     * Sends vote to server
+     * @param {Boolean} valid Validation is correct (true) or wron (false)
+     */
     sendVote: function(valid) {
         var me = this,
-            detailTabPanel = this.getDetailTabPanel(),
+            detailComponent = me.getDetailComponent(),
             userId = Kort.user.get('id'),
-            vote;
-            
+            vote,
+            validString;
+        
+        // for valid post request valid field has to be a string
+        validString = valid.toString();
+        
         me.showSendMask();
-        vote = Ext.create('Kort.model.Vote', { fix_id: detailTabPanel.getRecord().get('id'), user_id: userId, valid: valid });
+        vote = Ext.create('Kort.model.Vote', { fix_id: detailComponent.getRecord().get('id'), user_id: userId, valid: validString });
         vote.save({
             success: function(records, operation) {
                 me.hideSendMask();
@@ -72652,8 +73176,13 @@ Ext.define('Kort.controller.Vote', {
         });
     },
     
+    /**
+     * @private
+     * Called when vote was successfully submitted to server
+     * @param {String} responseText Response from server
+     */
     voteSuccessfulSubmittedHandler: function(responseText) {
-        var rewardConfig = JSON.parse(responseText),
+        var rewardConfig = Ext.decode(responseText),
             reward = Ext.create('Kort.model.Reward', rewardConfig);
         
         this.getApplication().fireEvent('votesend');
@@ -72663,6 +73192,7 @@ Ext.define('Kort.controller.Vote', {
         this.getValidationNavigationView().pop();
     },
     
+    // @private
     showSendMask: function() {
         this.getValidationNavigationView().setMasked({
             xtype: 'loadmask',
@@ -72671,10 +73201,16 @@ Ext.define('Kort.controller.Vote', {
         });
     },
     
+    // @private
     hideSendMask: function() {
         this.getValidationNavigationView().setMasked(false);
     },
     
+    /**
+     * @private
+     * Shows reward message box
+     * @param {Kort.model.Reward} reward Reward instance
+     */
 	showRewardMessageBox: function(reward) {
         var messageBox = Ext.create('Kort.view.RewardMessageBox', {
             record: reward
@@ -72683,6 +73219,9 @@ Ext.define('Kort.controller.Vote', {
 	}
 });
 
+/**
+ * Model for a badge
+ */
 Ext.define('Kort.model.Badge', {
     extend: 'Ext.data.Model',
     config: {
@@ -72700,6 +73239,9 @@ Ext.define('Kort.model.Badge', {
     }
 });
 
+/**
+ * Model for a bug
+ */
 Ext.define('Kort.model.Bug', {
     extend: 'Ext.data.Model',
     config: {
@@ -72717,11 +73259,14 @@ Ext.define('Kort.model.Bug', {
             { name: 'longitude', type: 'string' },
             { name: 'view_type', type: 'string' },
             { name: 'answer_placeholder', type: 'string' },
-            { name: 'koin_count', type: 'int' }
+            { name: 'fix_koin_count', type: 'int' }
         ]
     }
 });
 
+/**
+ * Model for a fix
+ */
 Ext.define('Kort.model.Fix', {
     extend: 'Ext.data.Model',
     config: {
@@ -72736,14 +73281,14 @@ Ext.define('Kort.model.Fix', {
         
 		proxy: {
 			type: 'rest',
-            url : './server/webservices/bug/fix',
-            reader: {
-                type: 'json'
-            }
+            url: './server/webservices/bug/fix'
 		}
     }
 });
 
+/**
+ * Model for a highscore entry
+ */
 Ext.define('Kort.model.HighscoreEntry', {
     extend: 'Ext.data.Model',
     config: {
@@ -72761,6 +73306,9 @@ Ext.define('Kort.model.HighscoreEntry', {
     }
 });
 
+/**
+ * Model for a reward
+ */
 Ext.define('Kort.model.Reward', {
     extend: 'Ext.data.Model',
     config: {
@@ -72768,7 +73316,8 @@ Ext.define('Kort.model.Reward', {
 		
         fields: [
 			{ name: 'id', type: 'auto' },
-			{ name: 'koinCount', type: 'string' },
+			{ name: 'koin_count_new', type: 'string' },
+			{ name: 'koin_count_total', type: 'string' },
             { name: 'badges', type: 'array' }
         ],
         
@@ -72776,6 +73325,9 @@ Ext.define('Kort.model.Reward', {
     }
 });
 
+/**
+ * Model for a select answer
+ */
 Ext.define('Kort.model.SelectAnswer', {
     extend: 'Ext.data.Model',
     config: {
@@ -72792,6 +73344,9 @@ Ext.define('Kort.model.SelectAnswer', {
 });
 
 /*jshint maxcomplexity:10 */
+/**
+ * Model for the user instance
+ */
 Ext.define('Kort.model.User', {
     extend: 'Ext.data.Model',
     config: {
@@ -72802,6 +73357,7 @@ Ext.define('Kort.model.User', {
 			{ name: 'name', type: 'string' },
 			{ name: 'username', type: 'string' },
 			{ name: 'oauth_user_id', type: 'string' },
+			{ name: 'oauth_provider', type: 'string' },
             { name: 'pic_url', type: 'string' },
 			{ name: 'logged_in', type: 'boolean' },
 			{ name: 'token', type: 'string' },
@@ -72813,9 +73369,10 @@ Ext.define('Kort.model.User', {
         
 		proxy: {
 			type: 'rest',
-            url : './server/webservices/user',
+            url: './server/webservices/user',
             reader: {
-                type: 'json'
+                type: 'json',
+                rootProperty: 'return'
             }
         }
     },
@@ -72846,6 +73403,9 @@ Ext.define('Kort.model.User', {
     }
 });
 
+/**
+ * Model for the users secret which gets stored in local storage
+ */
 Ext.define('Kort.model.UserLocal', {
     extend: 'Ext.data.Model',
     requires: [
@@ -72861,6 +73421,9 @@ Ext.define('Kort.model.UserLocal', {
     }
 });
 
+/**
+ * Model for a validation
+ */
 Ext.define('Kort.model.Validation', {
     extend: 'Ext.data.Model',
     config: {
@@ -72872,6 +73435,7 @@ Ext.define('Kort.model.Validation', {
 			{ name: 'osm_type', type: 'string' },
 			{ name: 'title', type: 'string' },
 			{ name: 'type', type: 'string' },
+			{ name: 'view_type', type: 'string' },
 			{ name: 'question', type: 'string' },
 			{ name: 'fixmessage', type: 'string' },
             { name: 'upratings', type: 'int' },
@@ -72885,6 +73449,9 @@ Ext.define('Kort.model.Validation', {
     }
 });
 
+/**
+ * Model for a vote
+ */
 Ext.define('Kort.model.Vote', {
     extend: 'Ext.data.Model',
     config: {
@@ -72899,14 +73466,14 @@ Ext.define('Kort.model.Vote', {
         
 		proxy: {
 			type: 'rest',
-            url : './server/webservices/validation/vote',
-            reader: {
-                type: 'json'
-            }
+            url: './server/webservices/validation/vote'
 		}
     }
 });
 
+/**
+ * Store for bugs
+ */
 Ext.define('Kort.store.Bugs', {
     extend: 'Ext.data.Store',
 	
@@ -72914,18 +73481,22 @@ Ext.define('Kort.store.Bugs', {
 		model: 'Kort.model.Bug',
 		
 		proxy: {
-			type: 'ajax',
-            url : './resources/stores/bugs.json',
+			type: 'rest',
+            url: './resources/stores/bugs.json',
             extraParams: {
                 'radius': Kort.util.Config.getBugs().radius
             },
             reader: {
-                type: 'json'
+                type: 'json',
+                rootProperty: 'return'
             }
 		}
 	}
 });
 
+/**
+ * Store for highscore entries
+ */
 Ext.define('Kort.store.Highscore', {
     extend: 'Ext.data.Store',
 	
@@ -72934,15 +73505,19 @@ Ext.define('Kort.store.Highscore', {
 		
 		proxy: {
 			type: 'rest',
-            url : './server/webservices/highscore',
+            url: './server/webservices/highscore/',
             sorters: 'place',
             reader: {
-                type: 'json'
+                type: 'json',
+                rootProperty: 'return'
             }
 		}
 	}
 });
 
+/**
+ * Store for select answers
+ */
 Ext.define('Kort.store.SelectAnswers', {
     extend: 'Ext.data.Store',
 
@@ -72950,16 +73525,20 @@ Ext.define('Kort.store.SelectAnswers', {
 		model: 'Kort.model.SelectAnswer',
 
 		proxy: {
-			type: 'ajax',
-            url : './server/webservices/answer',
+			type: 'rest',
+            url: './server/webservices/answer',
             sorters: 'sorting',
             reader: {
-                type: 'json'
+                type: 'json',
+                rootProperty: 'return'
             }
 		}
 	}
 });
 
+/**
+ * Store for user badges
+ */
 Ext.define('Kort.store.UserBadges', {
     extend: 'Ext.data.Store',
 
@@ -72968,15 +73547,19 @@ Ext.define('Kort.store.UserBadges', {
         
 		proxy: {
 			type: 'rest',
-            url : '',
+            url: '',
             sorters: 'sorting',
             reader: {
-                type: 'json'
+                type: 'json',
+                rootProperty: 'return'
             }
 		}
 	}
 });
 
+/**
+ * Store for user secret
+ */
 Ext.define('Kort.store.UserLocal', {
     extend: 'Ext.data.Store',
 
@@ -72991,6 +73574,9 @@ Ext.define('Kort.store.UserLocal', {
 	}
 });
 
+/**
+ * Store for validations
+ */
 Ext.define('Kort.store.Validations', {
     extend: 'Ext.data.Store',
 	
@@ -73000,7 +73586,7 @@ Ext.define('Kort.store.Validations', {
 		grouper: {
             groupFn: function(record) {
                 var validationsLeft = record.get('required_validations') - record.get('upratings') + record.get('downratings');
-                return validationsLeft + ' ' + Ext.i18n.Bundle.message('validation.list.header');
+                return validationsLeft + ' <span class="text">' + Ext.i18n.Bundle.message('validation.list.header') + '</span>';
             }
         },
         sorters: [
@@ -73016,16 +73602,18 @@ Ext.define('Kort.store.Validations', {
         ],
         
 		proxy: {
-			type: 'ajax',
-            url : './resources/stores/validations.json',
+			type: 'rest',
+            url: './resources/stores/validations.json',
             reader: {
-                type: 'json'
+                type: 'json',
+                rootProperty: 'return'
             }
 		}
 	},
     
     /**
      * Update distances of trails in store
+     * @param {Kort.util.Geolocation} geo Geolocation to calculate distance
      */
 	updateDistances: function(geo) {
         console.log('updatedistances');
@@ -73039,6 +73627,9 @@ Ext.define('Kort.store.Validations', {
 	}
 });
 
+/**
+ * Geolocation with distance calculation function
+ */
 Ext.define('Kort.util.Geolocation', {
     extend: 'Ext.util.Geolocation',
 
@@ -73056,7 +73647,12 @@ Ext.define('Kort.util.Geolocation', {
         }
     },
 
-    /* source: http://www.movable-type.co.uk/scripts/latlong.html */
+    /**
+     * @private
+     * Calculates the distance to given latitude / logitude. Source: http://www.movable-type.co.uk/scripts/latlong.html
+     * @param {Number} latitude Latitude
+     * @param {Number} longitude Longitude
+     */
     getDistance: function(latitude, longitude) {
         var earthRadius = 6371000, // m
             dLat, dLng, thisLatitude, otherLatitude, a, c;
@@ -73074,6 +73670,10 @@ Ext.define('Kort.util.Geolocation', {
         return earthRadius * c;
     },
 
+    /**
+     * Returns distances with measurement unit
+     * @param {Number} distanceInMeters Distance to format
+     */
     getFormattedDistance: function(distanceInMeters) {
         if(distanceInMeters > 999) {
             // round to one decimal
@@ -73098,26 +73698,26 @@ Ext.application({
     ],
 
     controllers: [
-		'About',
-		'Bugmap',
+        'About',
+        'Bugmap',
         'Firststeps',
-		'Fix',
+        'Fix',
         'GeolocationError',
-		'Highscore',
+        'Highscore',
         'Login',
         'Main',
         'OsmMap',
         'Profile',
         'Validation',
         'Vote'
-	],
+    ],
 
     models: [
-		'Badge',
-		'Bug',
+        'Badge',
+        'Bug',
         'Fix',
-		'HighscoreEntry',
-		'Reward',
+        'HighscoreEntry',
+        'Reward',
         'SelectAnswer',
         'User',
         'UserLocal',
@@ -73126,9 +73726,9 @@ Ext.application({
     ],
 
     stores: [
-		'Bugs',
-		'Highscore',
-		'SelectAnswers',
+        'Bugs',
+        'Highscore',
+        'SelectAnswers',
         'UserBadges',
         'UserLocal',
         'Validations'
@@ -73137,22 +73737,22 @@ Ext.application({
     icon: './resources/images/kort-icon.png',
 
     startupImage: {
-		// Non-retina iPhone, iPod touch, and all Android devices
-		'320x460': './resources/images/kort-startup-320x460.jpg',
-		// Retina iPhone and iPod touch
-		'640x920': './resources/images/kort-startup-640x920.png'
-	},
+        // Non-retina iPhone, iPod touch, and all Android devices
+        '320x460': './resources/images/kort-startup-320x460.jpg',
+        // Retina iPhone and iPod touch
+        '640x920': './resources/images/kort-startup-640x920.png'
+    },
 
     viewport: {
-		// hide navigation bar of browser
-		autoMaximize: true
-	},
+        // hide navigation bar of browser
+        autoMaximize: true
+    },
 
     // launch function is called as soon as app is ready
     launch: function() {
         // Destroy the #appStartscreen element
         Ext.fly('appStartscreen').destroy();
-        
+
         var selectAnswersStore = Ext.getStore('SelectAnswers'),
             mainPanel;
 
@@ -73160,19 +73760,19 @@ Ext.application({
         this.configureMessageBox();
 
         selectAnswersStore.load();
-        
+
         // create main panel
         mainPanel = Ext.create('Kort.view.Main');
         Ext.Viewport.add(mainPanel);
         mainPanel.hide();
-        
+
         // create ui
         this.loadGeolocation(mainPanel);
     },
-    
+
     loadGeolocation: function(mainPanel) {
         var me = this;
-        
+
         Kort.geolocation = Ext.create('Kort.util.Geolocation');
         Kort.geolocation.updateLocation(function(geo) {
             if(geo) {
@@ -73182,11 +73782,11 @@ Ext.application({
             }
         });
     },
-    
+
     loadUserClientSecret: function(geo, mainPanel) {
         var me = this,
             userLocalStore = Ext.getStore('UserLocal');
-        
+
         userLocalStore.load(function(records, operation, success) {
             console.log('userLocalStore loaded');
             if(records.length === 0) {
@@ -73198,7 +73798,7 @@ Ext.application({
             }
         }, me);
     },
-    
+
     loadUser: function(geo, mainPanel, clientSecret) {
         var me = this,
             userLocalStore = Ext.getStore('UserLocal');
@@ -73231,11 +73831,11 @@ Ext.application({
             }
         });
     },
-    
+
     writeUserClientSecret: function(clientSecret) {
         var userLocalStore = Ext.getStore('UserLocal'),
             userLocal;
-        
+
         if(clientSecret) {
             console.log('writing userClientSecret to localstore: ' + clientSecret);
             userLocal = Ext.create('Kort.model.UserLocal', { 'secret': clientSecret });
@@ -73245,42 +73845,36 @@ Ext.application({
             console.log('Error: no client secret passed');
         }
     },
-    
+
     showLoginOverlay: function() {
         var loginPanel;
-        
+
         console.log('user not logged in -> show login panel');
         loginPanel = Ext.create('Kort.view.overlay.login.Panel');
         Ext.Viewport.add(loginPanel);
         loginPanel.show();
     },
-    
+
     showGeolocationErrorOverlay: function() {
         var geolocationerrorPanel;
-        
+
         console.log('geolocation error');
         geolocationerrorPanel = Ext.create('Kort.view.overlay.geolocationerror.Panel');
         Ext.Viewport.add(geolocationerrorPanel);
         geolocationerrorPanel.show();
     },
-    
+
     showMainPanel: function(geo, mainPanel) {
         var validationsStore = Ext.getStore('Validations'),
             userBadges = Ext.getStore('UserBadges');
-        
+
         mainPanel.show();
-        
+
         validationsStore.getProxy().setUrl('./server/webservices/validation/position/' + geo.getLatitude() + ',' + geo.getLongitude());
-        
+
         validationsStore.load(function(records, operation, success) {
             console.log('validationStores load');
             validationsStore.updateDistances(Kort.geolocation);
-            
-            // updated distances on location update
-            geo.on('locationupdate', function() {
-                console.log('location update');
-                validationsStore.updateDistances(geo);
-            });
         }, this);
         // enable auto update on geolocation
         geo.setAutoUpdate(true);
@@ -73288,7 +73882,7 @@ Ext.application({
         // loading badges of user
         userBadges.getProxy().setUrl('./server/webservices/user/' + Kort.user.get('id') + '/badges');
         userBadges.load();
-        
+
         // loading highscore
         Ext.getStore('Highscore').load();
 
@@ -73296,7 +73890,7 @@ Ext.application({
             this.showFirstStepsPanel();
         }
     },
-    
+
     showFirstStepsPanel: function() {
         var firststepsPanel = Ext.create('Kort.view.overlay.firststeps.Panel');
         console.log('no username given -> show first steps panel');
@@ -73306,10 +73900,10 @@ Ext.application({
 
     prepareI18n: function() {
         Ext.i18n.Bundle.configure({
-			bundle: 'Kort',
-			language: 'de-CH',
-			path: 'resources/i18n',
-			noCache: true
+            bundle: 'Kort',
+            language: 'de-CH',
+            path: 'resources/i18n',
+            noCache: true
         });
     },
 

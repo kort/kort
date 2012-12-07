@@ -8,7 +8,7 @@ use Webservice\Highscore\HighscoreHandler;
 \Slim\Slim::registerAutoloader();
 Kort\ClassLoader::registerAutoLoader();
 $app = new \Slim\Slim();
-$res = $app->response();
+$slim = new \Helper\SlimHelper($app);
 
  \session_start();
 
@@ -17,9 +17,9 @@ $highscoreHandler = new HighscoreHandler();
 // define REST resources
 $app->get(
     '/',
-    function () use ($highscoreHandler, $res) {
+    function () use ($highscoreHandler, $slim) {
         $highscoreData = $highscoreHandler->getHighscore();
-        $res->write($highscoreData);
+        $slim->returnData($highscoreData);
     }
 );
 
