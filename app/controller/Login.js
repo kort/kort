@@ -1,3 +1,6 @@
+/**
+ * Controller for login overlay
+ */
 Ext.define('Kort.controller.Login', {
     extend: 'Ext.app.Controller',
     requires: [
@@ -17,30 +20,18 @@ Ext.define('Kort.controller.Login', {
             loginButtonGoogle: {
                 tap: 'onLoginButtonGoogleTap'
             }
-        },
-
-        remote: {
-            google: {
-                url: 'https://accounts.google.com/o/oauth2/auth',
-                scopes: [
-                    'https://www.googleapis.com/auth/userinfo.profile',
-                    'https://www.googleapis.com/auth/userinfo.email'
-                ],
-                redirect_path: 'server/oauth2callback',
-                response_type: 'code',
-                access_type: 'offline',
-                client_id: '653755350671.apps.googleusercontent.com'
-            }
         }
     },
 
+    // @private
     onLoginButtonGoogleTap: function() {
-        console.log('loginButtonGoogle tapped -> ' + this.buildGoogleUrl(this.getRemote().google));
+        console.log('loginButtonGoogle tapped -> ' + this.buildGoogleUrl(Kort.util.Config.getOAuth().google));
         this.showLoadMask();
         // redirect to google login page
-        document.location.href = this.buildGoogleUrl(this.getRemote().google);
+        document.location.href = this.buildGoogleUrl(Kort.util.Config.getOAuth().google);
     },
 
+    // @private
     showLoadMask: function() {
         this.getLoginPanel().setMasked({
             xtype: 'loadmask',
@@ -50,11 +41,17 @@ Ext.define('Kort.controller.Login', {
         Ext.defer(this.hideLoadMask, Kort.util.Config.getTimeout(), this);
     },
 
+    // @private
     hideLoadMask: function() {
         this.getLoginPanel().setMasked(false);
         console.log('something went wrong');
     },
 
+    /**
+     * @private
+     * Creates google oauth url
+     * @param {Object} oauth Google OAuth configuration
+     */
     buildGoogleUrl: function(oauth) {
         var urlLib = new UrlLib(),
             params = urlLib.getUrlParams(),

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Kort-util-Geolocation'>/**
+</span> * Geolocation with distance calculation function
+ */
+Ext.define('Kort.util.Geolocation', {
+    extend: 'Ext.util.Geolocation',
+
+    config: {
+<span id='Kort-util-Geolocation-cfg-available'>        available: false,
+</span><span id='Kort-util-Geolocation-cfg-autoUpdate'>        autoUpdate: false,
+</span>
+<span id='Kort-util-Geolocation-cfg-listeners'>        listeners: {
+</span>            locationupdate: function(geo, eOpts) {
+                geo.setAvailable(true);
+            },
+            locationerror: function(geo, bTimeout, bPermissionDenied, bLocationUnavailable, message, eOpts) {
+                geo.setAvailable(false);
+            }
+        }
+    },
+
+<span id='Kort-util-Geolocation-method-getDistance'>    /**
+</span>     * @private
+     * Calculates the distance to given latitude / logitude. Source: http://www.movable-type.co.uk/scripts/latlong.html
+     * @param {Number} latitude Latitude
+     * @param {Number} longitude Longitude
+     */
+    getDistance: function(latitude, longitude) {
+        var earthRadius = 6371000, // m
+            dLat, dLng, thisLatitude, otherLatitude, a, c;
+
+        latitude = parseFloat(latitude);
+        longitude = parseFloat(longitude);
+
+        dLat = (latitude - this.getLatitude()).toRad();
+        dLng = (longitude - this.getLongitude()).toRad();
+        thisLatitude = this.getLatitude().toRad();
+        otherLatitude = latitude.toRad();
+
+        a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.sin(dLng/2) * Math.sin(dLng/2) * Math.cos(thisLatitude) * Math.cos(otherLatitude);
+        c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        return earthRadius * c;
+    },
+
+<span id='Kort-util-Geolocation-method-getFormattedDistance'>    /**
+</span>     * Returns distances with measurement unit
+     * @param {Number} distanceInMeters Distance to format
+     */
+    getFormattedDistance: function(distanceInMeters) {
+        if(distanceInMeters &gt; 999) {
+            // round to one decimal
+            return (Math.round(distanceInMeters / 100) / 10) + &quot;km&quot;;
+        } else {
+            return Math.round(distanceInMeters) + &quot;m&quot;;
+        }
+    }
+});</pre>
+</body>
+</html>

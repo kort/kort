@@ -1,3 +1,6 @@
+/**
+ * Controller for geolocation error overlay
+ */
 Ext.define('Kort.controller.GeolocationError', {
     extend: 'Ext.app.Controller',
     requires: [
@@ -18,7 +21,8 @@ Ext.define('Kort.controller.GeolocationError', {
             }
         }
     },
-
+    
+    // @private
     onGeolocationerrorReloadButtonTap: function() {
         var me = this;
         me.showLoadMask(Ext.i18n.Bundle.message('geolocationerror.loadmask.message'));
@@ -27,6 +31,7 @@ Ext.define('Kort.controller.GeolocationError', {
         window.location.reload();
     },
     
+    // @private
     showLoadMask: function(message) {
         this.getGeolocationerrorPanel().setMasked({
             xtype: 'loadmask',
@@ -36,6 +41,7 @@ Ext.define('Kort.controller.GeolocationError', {
         Ext.defer(this.hideLoadMask, Kort.util.Config.getTimeout(), this);
     },
 
+    // @private
     hideLoadMask: function() {
         this.getGeolocationerrorPanel().setMasked(false);
     }

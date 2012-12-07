@@ -1,3 +1,6 @@
+/**
+ * Store for validations
+ */
 Ext.define('Kort.store.Validations', {
     extend: 'Ext.data.Store',
 	
@@ -34,6 +37,7 @@ Ext.define('Kort.store.Validations', {
     
     /**
      * Update distances of trails in store
+     * @param {Kort.util.Geolocation} geo Geolocation to calculate distance
      */
 	updateDistances: function(geo) {
         console.log('updatedistances');

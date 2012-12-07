@@ -1,3 +1,6 @@
+/**
+ * Controller for validation tab
+ */
 Ext.define('Kort.controller.Validation', {
     extend: 'Ext.app.Controller',
     
@@ -25,6 +28,7 @@ Ext.define('Kort.controller.Validation', {
         itemTapDisabled: false
     },
     
+    // @private
     init: function() {
         var me = this;
         me.callParent(arguments);
@@ -35,10 +39,15 @@ Ext.define('Kort.controller.Validation', {
         });
     },
     
+    // @private
     onValidationRefreshButtonTap: function() {
         this.refreshView();
     },
     
+    /**
+     * @private
+     * Refreshes validations view
+     */
     refreshView: function() {
         var me = this,
             validationsStore = Ext.getStore('Validations');
@@ -53,6 +62,10 @@ Ext.define('Kort.controller.Validation', {
         }
     },
     
+    /**
+     * @private
+     * Displays vote panel for given validation
+     */
     onValidationListItemTap: function(list, index, target, record, e) {
         var me = this,
             voteTabPanel;
