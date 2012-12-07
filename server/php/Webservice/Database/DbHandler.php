@@ -16,6 +16,16 @@ class DbHandler
         }
     }
 
+    public function doSql($sql)
+    {
+        $result = $this->db->doQuery($sql);
+        if (!$result) {
+            return $result;
+        } else {
+            return json_encode($result);
+        }
+    }
+
     public function doSelect($fields, $table, $where, $orderBy, $limit)
     {
         if (!$limit || $limit > 500) {
@@ -51,9 +61,16 @@ class DbHandler
     public function doTransaction($statements)
     {
         $returnValue = "";
+        $returnValues = array();
         $this->db->beginTransaction();
         foreach ($statements as $params) {
             switch($params['type']) {
+                case "SQL":
+                    $result = $this->doSql($params['sql']);
+                    if ($params['return']) {
+                        $returnValue = $result;
+                    }
+                    break;
                 case "INSERT":
                     $result = $this->doInsert($params['fields'], $params['table'], $params['data'], $params['returnFields']);
                     if ($params['return']) {
@@ -75,13 +92,15 @@ class DbHandler
                 default:
                     $returnValue = false;
             }
+            if ($returnValue === false) {
+                $this->db->rollbackTransaction();
+                return "Transaction has been rollbacked!";
+            } else {
+                $returnValues[] = $returnValue;
+            }
         }
-        if (!$returnValue) {
-            $this->db->rollbackTransaction();
-        } else {
-            $this->db->commitTransaction();
-        }
-        return $returnValue;
+        $this->db->commitTransaction();
+        return json_encode($returnValues);
     }
 
     protected function reduceData($fields, $data)

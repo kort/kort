@@ -22,12 +22,15 @@ class PsqlConnection
         $this->db->close();
     }
 
+    public function doQuery($sql)
+    {
+        return $this->db->query($sql);
+    }
+
     public function doSelectQuery($fieldsArr, $table, $where, $orderBy = '', $limit = null)
     {
         $selectSql = $this->generateSelectSql($fieldsArr, $table, $where, $orderBy, $limit);
-        $result = $this->db->query($selectSql);
-
-        return $result;
+        return $this->db->query($selectSql);
     }
 
     public function doInsertQuery($dataArr, $table, $returnFields)
