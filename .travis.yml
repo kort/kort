@@ -37,7 +37,7 @@ before_script:
   - sudo pear channel-discover hamcrest.googlecode.com/svn/pear
   - sudo pear channel-discover pear.phpdoc.org
   - sudo pear install --alldeps deepend/Mockery
-  - sudo pear install phpdoc/phpDocumentor-alpha
+  - sudo pear install phpdoc/phpDocumentor-alpha && phpenv rehash
   - sudo apt-get install graphviz
   - export PATH="$PATH:$CI_HOME:/usr/local/heroku/bin"
   - curl http://kort.rdmr.ch/webservices/update/git
