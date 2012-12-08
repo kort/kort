@@ -23,5 +23,10 @@ $osmHandler = function ($type, $id) use ($handler, $res) {
 $app->get('/:type/:id', $osmHandler);
 
 
+if (!isset($_SESSION)) {
+    session_cache_limiter(false);
+    session_start();
+}
+
 // start Slim app
 $app->run();
