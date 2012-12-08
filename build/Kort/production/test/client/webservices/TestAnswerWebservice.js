@@ -4,7 +4,7 @@ module("kort-AnswerWebservice", {
     }
 });
 
-test("root", function() {
+testSkip("root", function() {
 	var type = 'GET',
         data = null,
         url = urlLib.getAppUrl() + '/' + this.path + '/?limit=10';
@@ -24,7 +24,7 @@ test("root", function() {
     });
 });
 
-test("missing_track_type", function() {
+testSkip("missing_track_type", function() {
 	var type = 'GET',
         data = null,
         url = urlLib.getAppUrl() + '/' + this.path + '/missing_track_type?limit=5';
@@ -44,7 +44,7 @@ test("missing_track_type", function() {
     });
 });
 
-test("not existings type", function() {
+testSkip("not existings type", function() {
 	var type = 'GET',
         data = null,
         url = urlLib.getAppUrl() + '/' + this.path + '/does_not_exist_test';

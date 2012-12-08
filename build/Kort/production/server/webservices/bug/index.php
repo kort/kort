@@ -8,17 +8,19 @@ Kort\ClassLoader::registerAutoLoader();
 
 // create Slim app
 $app = new \Slim\Slim();
+$slim = new \Helper\SlimHelper($app);
 
 $bugHandler = new \Webservice\Bug\BugHandler();
 $fixHandler = new \Webservice\Fix\FixHandler();
 
 $app->get(
     '/position/:lat,:lng',
-    function ($lat, $lng) use ($bugHandler, $app) {
+    function ($lat, $lng) use ($bugHandler, $app, $slim) {
         $limit = $app->request()->params('limit');
         $radius = $app->request()->params('radius');
 
-        $app->response()->write($bugHandler->getBugsByOwnPosition($lat, $lng, $limit, $radius));
+        $bugData = $bugHandler->getBugsByOwnPosition($lat, $lng, $limit, $radius);
+        $slim->returnData($bugData);
     }
 );
 
@@ -47,6 +49,11 @@ $app->post(
         }
     }
 );
+
+if (!isset($_SESSION)) {
+    session_cache_limiter(false);
+    session_start();
+}
 
 // start Slim app
 $app->run();

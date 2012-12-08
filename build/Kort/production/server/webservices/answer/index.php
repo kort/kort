@@ -8,25 +8,27 @@ Kort\ClassLoader::registerAutoLoader();
 
 // create Slim app
 $app = new \Slim\Slim();
+$slim = new \Helper\SlimHelper($app);
+
 $answerHandler = new \Webservice\Answer\AnswerHandler();
 
 $app->get(
     '/(:type)',
-    function ($type = null) use ($answerHandler, $app) {
-        $limit = $app->request()->params('limit');
+    function ($type = null) use ($answerHandler, $app, $slim) {
         if (empty($type)) {
-             $response = $answerHandler->getAllAnswers($limit);
+             $answers = $answerHandler->getAllAnswers();
         } else {
-            $response = $answerHandler->getSpecificAnswers($type, $limit);
+            $answers = $answerHandler->getSpecificAnswers($type);
         }
 
-        if (!empty($response)) {
-            $app->response()->write($response);
-        } else {
-            $app->response()->status(404);
-        }
+        $slim->returnData($answers);
     }
 );
+
+if (!isset($_SESSION)) {
+    session_cache_limiter(false);
+    session_start();
+}
 
 // start Slim app
 $app->run();

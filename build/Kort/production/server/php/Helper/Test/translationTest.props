@@ -1,0 +1,5 @@
+Test=test
+test mit $1 dollar=dollar $2
+that's 'it=12' for me=something
+url=http://www.google.com/?q\=test
+hallo %1=Hi %1
