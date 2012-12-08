@@ -75,6 +75,8 @@
             <arg value="${js.dir}"/>
             <arg value="--output"/>
             <arg value="${js.doc.dir}"/>
+            <arg value="--config"/>
+            <arg value="jsduck/jsduck_config.json" />
         </exec>
     </target>
 
