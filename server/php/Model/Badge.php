@@ -39,7 +39,7 @@ class Badge
             9 => 'vote_count_10'
         );
     }
-    
+
     /**
     * Creates a new instance of Badge
     * @param the name of the badge
@@ -67,7 +67,7 @@ class Badge
     */
     public static function getValues($badges)
     {
-        return array_map("Badges::getValue", $badges);
+        return array_map("self::getValue", $badges);
     }
 
     /**
