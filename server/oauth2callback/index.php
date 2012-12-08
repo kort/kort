@@ -1,6 +1,13 @@
 <?php
+/**
+ * kort - the OAuth callback for Google
+ */
+
+/** Load the Google API Client */
 require_once "../../lib/google-api-php-client/src/Google_Client.php";
+/** Load the Google OAuth 2.0 service */
 require_once '../../lib/google-api-php-client/src/contrib/Google_Oauth2Service.php';
+/** Load the ClassLoader */
 require_once('../php/ClassLoader.php');
 
 Kort\ClassLoader::registerAutoLoader();

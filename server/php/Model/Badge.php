@@ -1,6 +1,6 @@
 <?php
 /**
- * kort - Badge class
+ * kort - Model\Badge class
  */
 
 namespace Model;

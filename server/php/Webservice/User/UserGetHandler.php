@@ -61,15 +61,11 @@ class UserGetHandler extends DbProxyHandler
         return $this->getDefaultUserJson();
     }
 
-     /**
-    * Get either a Gravatar URL or complete image tag for a specified email address.
-    *
-    * @param  Size in pixels, defaults to 80px [ 1 - 2048 ]
-    * @param  Default imageset to use [ 404 | mm | identicon | monsterid | wavatar ]
-    * @param  Maximum rating (inclusive) [ g | pg | r | x ]
-    * @return String containing the URL
-    * @source http://gravatar.com/site/implement/images/php/
-    */
+    /**
+     * Returns a user json found by the OAuth user_id
+     * @param string $oauth_user_id the unqiue identifier of the oauth provider
+     * @return string a JSON-encoded user object
+     */
     public function getUserByOAuthUserId($oauth_user_id)
     {
         $this->getDbProxy()->setWhere("oauth_user_id = '". $oauth_user_id . "'");
@@ -104,17 +100,17 @@ class UserGetHandler extends DbProxyHandler
     /**
     * Get either a Gravatar URL or complete image tag for a specified email address.
     *
-    * @param  Size in pixels, defaults to 80px [ 1 - 2048 ]
-    * @param  Default imageset to use [ 404 | mm | identicon | monsterid | wavatar ]
-    * @param  Maximum rating (inclusive) [ g | pg | r | x ]
-    * @return String containing the URL
-    * @source http://gravatar.com/site/implement/images/php/
+    * @param $size Size in pixels, defaults to 200px [ 1 - 2048 ]
+    * @param $imageSet Default imageset to use [ 404 | mm | identicon | monsterid | wavatar ]
+    * @param $rating Maximum rating (inclusive) [ g | pg | r | x ]
+    * @return string containing the URL
+    * @see http://gravatar.com/site/implement/images/php/
     */
-    protected function getGravatarUrl ($email, $sizeInPixel = 200, $imageSet = 'mm', $rating = 'r')
+    protected function getGravatarUrl ($email, $size = 200, $imageSet = 'mm', $rating = 'r')
     {
         $url = 'http://www.gravatar.com/avatar/';
         $url .= \md5(\strtolower(\trim($email)));
-        $url .= "?s=$sizeInPixel&d=$imageSet&r=$rating";
+        $url .= "?s=$size&d=$imageSet&r=$rating";
         return $url;
     }
 }
