@@ -63,6 +63,7 @@ class Reward
     * Return the amount of koins of this reward
     * @return int the amount of koins of this reward
     */
+    protected function getKoinCountNew()
     {
         return $this->koinCountNew;
     }
