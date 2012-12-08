@@ -29,6 +29,7 @@ matrix:
 before_script:
   - gem install sass
   - gem install compass
+  - gem install jsduck
   - wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh >/dev/null 2>&1
   - sudo npm install -g grunt >/dev/null 2>&1
   - pear install PHP_CodeSniffer && phpenv rehash
