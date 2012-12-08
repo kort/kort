@@ -1,10 +1,37 @@
 <?php
+/**
+ * kort - the ClassLoader class
+ */
+
 namespace Kort;
 
 use Helper\StringHelper;
 
+/**
+ * The ClassLoader class is used throughout the application to locate classes.
+ *
+ * Therefore this classloader is registered and used at runtime whenever a
+ * unknown class is used for the first time. Initially some libraries are loaded
+ * to be available immediatly. For all further classes the Namespace hierarchy
+ * is assumed to reflect in the folder structure, the classes are loaded accordingly.
+ *
+ * This means that:
+ * <ul>
+ *   <li>The namespace of a class must match the path of the file</li>
+ *   <li>Filenames and class names <b>must</b> match</li>
+ * </ul>
+ *
+ * @see http://php.net/manual/en/language.oop5.autoload.php PHP Autoload manual
+ */
 class ClassLoader
 {
+    /**
+     * This function is called whenever a yet unknown class is requested.
+     *
+     * If the class is found it get loaded immediately.
+     *
+     * @param string $className name of the requested class
+     */
     public static function autoload($className)
     {
         $classPath = __DIR__."/".str_replace("\\", "/", $className).".php";
@@ -13,12 +40,18 @@ class ClassLoader
         }
     }
 
+    /**
+     * Loads common libraries at startup
+     */
     protected static function loadLibraries()
     {
         //Slim
         require_once(dirname(__FILE__) . '/../../lib/Slim-2.1.0/Slim/Slim.php');
     }
 
+    /**
+     * Loads test libraries
+     */
     protected static function loadTestLibraries()
     {
         //SimpleTest
@@ -33,6 +66,15 @@ class ClassLoader
         $loader->register();
     }
 
+    /**
+     * Imports a class by name or path.
+     *
+     * The full path is either provided in the $path argument or
+     * constructued using the $path and $className.
+     *
+     * @param string $path the path to the class
+     * @param string $className the name of the class
+     */
     public static function importClass($path, $className)
     {
         if (StringHelper::endsWith($path, ".php")) {
@@ -42,6 +84,12 @@ class ClassLoader
         }
     }
 
+    /**
+     * This method must be called by a client in order to use the ClassLoader.
+     *
+     * @param string $mode indicates wheter the ClassLoader is used for
+     * production (the default) or a testing environment.
+     */
     public static function registerAutoLoader($mode = "production")
     {
         self::loadLibraries();
