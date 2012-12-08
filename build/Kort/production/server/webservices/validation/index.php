@@ -8,17 +8,19 @@ Kort\ClassLoader::registerAutoLoader();
 
 // create Slim app
 $app = new \Slim\Slim();
+$slim = new \Helper\SlimHelper($app);
 
 $validationHandler = new \Webservice\Validation\ValidationHandler();
 $voteHandler = new \Webservice\Vote\VoteHandler();
 
 $app->get(
     '/position/:lat,:lng',
-    function ($lat, $lng) use ($validationHandler, $app) {
+    function ($lat, $lng) use ($validationHandler, $app, $slim) {
         $limit = $app->request()->params('limit');
         $radius = $app->request()->params('radius');
 
-        $app->response()->write($validationHandler->getValidationsByOwnPosition($lat, $lng, $limit, $radius));
+        $validationData = $validationHandler->getValidationsByOwnPosition($lat, $lng, $limit, $radius);
+        $slim->returnData($validationData);
     }
 );
 
@@ -47,6 +49,11 @@ $app->post(
         }
     }
 );
+
+if (!isset($_SESSION)) {
+    session_cache_limiter(false);
+    session_start();
+}
 
 // start Slim app
 $app->run();

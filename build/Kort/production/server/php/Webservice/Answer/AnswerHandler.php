@@ -15,16 +15,14 @@ class AnswerHandler extends DbProxyHandler
         return array('id', 'value', 'title', 'sorting', 'type');
     }
 
-    public function getAllAnswers($limit)
+    public function getAllAnswers()
     {
-        $this->getDbProxy()->setLimit($limit);
         $this->getDbProxy()->setOrderBy('sorting');
         return $this->getDbProxy()->select();
     }
 
-    public function getSpecificAnswers($type, $limit)
+    public function getSpecificAnswers($type)
     {
-        $this->getDbProxy()->setLimit($limit);
         $this->getDbProxy()->setWhere("type = '" . $type ."'");
         $this->getDbProxy()->setOrderBy('sorting');
         return $this->getDbProxy()->select();

@@ -16,6 +16,16 @@ class DbHandler
         }
     }
 
+    public function doSql($sql)
+    {
+        $result = $this->db->doQuery($sql);
+        if (!$result) {
+            return $result;
+        } else {
+            return json_encode($result);
+        }
+    }
+
     public function doSelect($fields, $table, $where, $orderBy, $limit)
     {
         if (!$limit || $limit > 500) {
@@ -37,15 +47,60 @@ class DbHandler
         }
     }
 
-    public function doUpdate($fields, $table, $data, $where, $returnFields)
+    public function doUpdate($fields, $table, $data, $where, $returnFields, $passthru = false)
     {
         $data = $this->reduceData($fields, $data);
-        $updatedData = $this->db->doUpdateQuery($data, $table, $where, $returnFields);
+        $updatedData = $this->db->doUpdateQuery($data, $table, $where, $returnFields, $passthru);
         if (!$updatedData) {
             return $updatedData;
         } else {
             return json_encode($updatedData);
         }
+    }
+
+    public function doTransaction($statements)
+    {
+        $returnValue = "";
+        $returnValues = array();
+        $this->db->beginTransaction();
+        foreach ($statements as $params) {
+            switch($params['type']) {
+                case "SQL":
+                    $result = $this->doSql($params['sql']);
+                    if ($params['return']) {
+                        $returnValue = $result;
+                    }
+                    break;
+                case "INSERT":
+                    $result = $this->doInsert($params['fields'], $params['table'], $params['data'], $params['returnFields']);
+                    if ($params['return']) {
+                        $returnValue = $result;
+                    }
+                    break;
+                case "UPDATE":
+                    $result = $this->doUpdate($params['fields'], $params['table'], $params['data'], $params['where'], $params['returnFields'], true);
+                    if ($params['return']) {
+                        $returnValue = $result;
+                    }
+                    break;
+                case "SELECT":
+                    $result = $this->doSelect($params['fields'], $params['table'], $params['where'], $params['orderBy'], $params['limit']);
+                    if ($params['return']) {
+                        $returnValue = $result;
+                    }
+                    break;
+                default:
+                    $returnValue = false;
+            }
+            if ($returnValue === false) {
+                $this->db->rollbackTransaction();
+                return "Transaction has been rollbacked!";
+            } else {
+                $returnValues[] = $returnValue;
+            }
+        }
+        $this->db->commitTransaction();
+        return json_encode($returnValues);
     }
 
     protected function reduceData($fields, $data)

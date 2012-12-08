@@ -34,13 +34,33 @@ $app->post(
         $request = $app->request();
         if (!$dbHandler->checkAuth($request->params('key'))) {
             $app->response()->status(403);
-        } else {
-            $fields = (isset($fields) ? explode(",", $fields) : null);
-            $returnFields = $request->params('return');
-            $returnFields = $returnFields ? explode(",", $returnFields) : $fields;
-
-            $app->response()->write($dbHandler->doInsert($fields, $table, $request->post(), $returnFields));
+            return;
         }
+
+        $fields = (isset($fields) ? explode(",", $fields) : null);
+        $returnFields = $request->params('return');
+        $returnFields = $returnFields ? explode(",", $returnFields) : $fields;
+
+        $app->response()->write($dbHandler->doInsert($fields, $table, $request->post(), $returnFields));
+    }
+);
+
+$app->post(
+    '/transaction',
+    function () use ($dbHandler, $app) {
+        $request = $app->request();
+        if (!$dbHandler->checkAuth($request->params('key'))) {
+            $app->response()->status(403);
+            return;
+        }
+
+        $statements = json_decode($request->getBody(), true);
+        $dbResult = $dbHandler->doTransaction($statements);
+        if (!$dbResult) {
+            $request->status(404);
+            return;
+        }
+        $app->response()->write($dbResult);
     }
 );
 
@@ -59,6 +79,11 @@ $app->put(
         }
     }
 );
+
+if (!isset($_SESSION)) {
+    session_cache_limiter(false);
+    session_start();
+}
 
 // start Slim app
 $app->run();
