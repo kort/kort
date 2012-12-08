@@ -3,7 +3,7 @@ create sequence kort.validation_id;
 create sequence kort.user_id;
 
 create table kort.error_type (
-    error_type_id integer not null,
+    error_type_id integer primary key,
     type character varying(20) not null,
     description character varying(255),
     view_type character varying(50),
@@ -11,10 +11,8 @@ create table kort.error_type (
     vote_question character varying(255),
     vote_koin_count integer not null,
     fix_koin_count integer not null,
-    required_validations integer not null,
-    PRIMARY KEY (error_type_id)
+    required_validations integer not null
 );
-
 
 create table kort.fix (
     fix_id integer primary key default nextval('kort.fix_id'),
@@ -24,7 +22,8 @@ create table kort.fix (
     schema character varying(50) not null,
     osm_id integer not null,
     message text,
-    complete boolean default false
+    complete boolean default false,
+    UNIQUE(user_id, error_id, schema, osm_id)
 );
 
 create table kort.user (
@@ -35,7 +34,8 @@ create table kort.user (
     token varchar(255),
     oauth_provider varchar(100),
     oauth_user_id varchar(100),
-    secret varchar(100)
+    secret varchar(100) unique,
+    UNIQUE(oauth_provider, oauth_user_id)
 );
 
 create table kort.badge (
@@ -68,6 +68,7 @@ create table kort.validation (
     user_id integer,
     fix_id integer,
     valid boolean,
-    create_date timestamp not null default now()
+    create_date timestamp not null default now(),
+    UNIQUE(user_id, fix_id)
 );
 
