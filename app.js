@@ -267,7 +267,8 @@ Ext.application({
                 ]
             }
         });
-
+        
+        Ext.Msg.defaultAllowedConfig.zIndex = 1600;
         Ext.Msg.confirm(
             "Neue App-Version",
             "Die App wurde auf die neuste Version aktualisiert. App neu laden?",
