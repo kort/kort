@@ -1,16 +1,30 @@
 <?php
+/**
+ * kort - Webservice\Bug\BugHandler class
+ */
 namespace Webservice\Bug;
 
 use Webservice\DbProxyHandler;
 use Helper\PostGisSqlHelper;
 
+/**
+ * The BugHandler class is used to handle request to the bug webservices
+ */
 class BugHandler extends DbProxyHandler
 {
+    /**
+     * Returns the table used by this handler.
+     * @return string the table name used by this handler.
+     */
     protected function getTable()
     {
         return 'kort.errors';
     }
 
+    /**
+     * Returns the table fields used by this handler.
+     * @return array the table fields used by this handler.
+     */
     protected function getFields()
     {
         return array(
@@ -34,6 +48,14 @@ class BugHandler extends DbProxyHandler
         );
     }
 
+    /**
+     * Returns bugs around the users position
+     * @param float $lat latitide of the user position
+     * @param floar $lng longitude of the user position
+     * @param int $limit amount of bugs to return
+     * @param int $radius the radius around the users psotion to look for
+     * @return string JSON-formatted bugs
+     */
     public function getBugsByOwnPosition($lat, $lng, $limit, $radius)
     {
         $limit = empty($limit) ? 20 : $limit;
@@ -47,6 +69,10 @@ class BugHandler extends DbProxyHandler
         return $this->select();
     }
 
+    /**
+     * Returns the selected bugs
+     * @return string JSON-encoded bugs
+     */
     protected function select()
     {
         $data = json_decode($this->getDbProxy()->select(), true);
@@ -54,12 +80,22 @@ class BugHandler extends DbProxyHandler
         return json_encode($data);
     }
 
+    /**
+     * Return a bug with a specific id
+     * @param int $id the id of the bug
+     * @return string JSON-encoded bug
+     */
     public function getById($id)
     {
         $this->getDbProxy()->setWhere("id = " . $id);
         return $this->select();
     }
 
+    /**
+     * Translate all texts of a bug
+     * @param array $bug the bug to translate
+     * @return array the translated bug
+     */
     public function translateBug($bug)
     {
         $bug['description'] = $this->translate($bug['description']);

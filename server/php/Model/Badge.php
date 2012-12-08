@@ -31,7 +31,10 @@ class Badge
     );
 
     /**
-     *
+     * Returns a new Badge object for the given $id
+     * @param $id the id of a badge
+     * @return Badge|null a new Badge object identified by $id
+     * or null if not found
      */
     public static function findById($id)
     {
@@ -39,25 +42,6 @@ class Badge
             return new Badge(self::$names[$id]);
         }
         return null;
-    }
-
-    /**
-    * Creates a new instance of Badge
-    * @param the name of the badge
-    * @return a new instance of Badge
-    */
-    public function __construct($name)
-    {
-        $this->name = $name;
-    }
-
-    /**
-    * Returns the badge's name
-    * @return string containing the badge's name
-    */
-    public function getName()
-    {
-        return $this->name;
     }
 
     /**
@@ -79,5 +63,24 @@ class Badge
     private static function getValue($badge)
     {
         return array("name" => $badge->getName());
+    }
+
+    /**
+    * Creates a new instance of Badge
+    * @param the name of the badge
+    * @return a new instance of Badge
+    */
+    public function __construct($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+    * Returns the badge's name
+    * @return string containing the badge's name
+    */
+    public function getName()
+    {
+        return $this->name;
     }
 }
