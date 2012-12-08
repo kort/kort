@@ -26,6 +26,7 @@ class Reward
     * @param $badges array of Badges of this Reward
     * @return a new instance of Reward
     */
+    public function __construct($koinCountTotal, $koinCountNew = 0, $badges = array())
     {
         $this->koinCountTotal = $koinCountTotal;
         $this->koinCountNew = $koinCountNew;
@@ -68,6 +69,10 @@ class Reward
         return $this->koinCountNew;
     }
 
+    /**
+    * Return the amount total koins of the user after receiving this reward
+    * @return int the total amount of koins of the user
+    */
     protected function getKoinCountTotal()
     {
         return $this->koinCountTotal;
