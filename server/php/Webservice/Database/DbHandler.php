@@ -35,6 +35,16 @@ class DbHandler
         return (count($result) > 0) ? json_encode($result) : false;
     }
 
+    protected function doSelectWithParams($params)
+    {
+        $fields = $params['fields'];
+        $table = $params['table'];
+        $where = $params['where'];
+        $orderBy = $params['orderBy'];
+        $limit = $params['limit'];
+        return $this->doSelect($fields, $table, $where, $orderBy, $limit);
+    }
+
     public function doInsert($fields, $table, $data, $returnFields)
     {
         $data = $this->reduceData($fields, $data);
@@ -46,15 +56,34 @@ class DbHandler
         }
     }
 
-    public function doUpdate($fields, $table, $data, $where, $returnFields, $passthru = false)
+    protected function doInsertWithParams($params)
+    {
+        $fields = $params['fields'];
+        $table = $params['table'];
+        $data = $params['data'];
+        $returnFields = $params['returnFields'];
+        return $this->doInsert($fields, $table, $data, $returnFields);
+    }
+
+    public function doUpdate($fields, $table, $data, $where, $returnFields)
     {
         $data = $this->reduceData($fields, $data);
-        $updatedData = $this->db->doUpdateQuery($data, $table, $where, $returnFields, $passthru);
+        $updatedData = $this->db->doUpdateQuery($data, $table, $where, $returnFields);
         if (!$updatedData) {
             return $updatedData;
         } else {
             return json_encode($updatedData);
         }
+    }
+
+    protected function doUpdateWithParams($params)
+    {
+        $fields = $params['fields'];
+        $table = $params['table'];
+        $data = $params['data'];
+        $where = $params['where'];
+        $returnFields = $params['returnFields'];
+        return $this->doUpdate($fields, $table, $data, $where, $returnFields);
     }
 
     public function doTransaction($statements)
@@ -68,13 +97,13 @@ class DbHandler
                     $returnValue = $this->doSql($params['sql']);
                     break;
                 case "INSERT":
-                    $returnValue = $this->doInsert($params['fields'], $params['table'], $params['data'], $params['returnFields']);
+                    $returnValue = $this->doInsertWithParams($params);
                     break;
                 case "UPDATE":
-                    $returnValue = $this->doUpdate($params['fields'], $params['table'], $params['data'], $params['where'], $params['returnFields'], true);
+                    $returnValue = $this->doUpdateWithParams($params);
                     break;
                 case "SELECT":
-                    $returnValue = $this->doSelect($params['fields'], $params['table'], $params['where'], $params['orderBy'], $params['limit']);
+                    $returnValue = $this->doSelectWithParams($params);
                     break;
                 default:
                     $returnValue = false;

@@ -41,7 +41,9 @@ class VoteHandler extends DbProxyHandler
         $sql .= "from   kort.highscore h ";
         $sql .= "inner join kort.badge b on b.name = 'highscore_place_' || h.ranking ";
         $sql .= "where  h.user_id = " . $data['user_id'] . " ";
-        $sql .= "and not exists (select 1 from kort.user_badge ub where ub.user_id = h.user_id and ub.badge_id = b.badge_id)";
+        $sql .= "and not exists ";
+        $sql .= " (select 1 from kort.user_badge ub ";
+        $sql .= " where ub.user_id = h.user_id and ub.badge_id = b.badge_id)";
         $sql .= "returning badge_id";
 
         $params = array();
@@ -59,7 +61,9 @@ class VoteHandler extends DbProxyHandler
         $sql .= "where  u.id = " . $data['user_id'] . " ";
         $sql .= "and b.compare_value <= u.vote_count ";
         $sql .= "and b.name like 'vote_count_%' ";
-        $sql .= "and not exists (select 1 from kort.user_badge ub where ub.user_id = u.id and ub.badge_id = b.badge_id)";
+        $sql .= "and not exists ";
+        $sql .= " (select 1 from kort.user_badge ub ";
+        $sql .= " where ub.user_id = u.id and ub.badge_id = b.badge_id)";
         $sql .= "returning badge_id";
 
         $params = array();
@@ -78,7 +82,9 @@ class VoteHandler extends DbProxyHandler
         $sql .= "where  u.id = " . $data['user_id'] . " ";
         $sql .= "and b.compare_value <= u.fix_count ";
         $sql .= "and b.name like 'fix_count_%' ";
-        $sql .= "and not exists (select 1 from kort.user_badge ub where ub.user_id = u.id and ub.badge_id = b.badge_id)";
+        $sql .= "and not exists ";
+        $sql .= " (select 1 from kort.user_badge ub ";
+        $sql .= " where ub.user_id = u.id and ub.badge_id = b.badge_id)";
         $sql .= "returning badge_id";
 
         $params = array();
@@ -91,7 +97,9 @@ class VoteHandler extends DbProxyHandler
     protected function getCompletedParams($data)
     {
         $sql  = "update kort.fix set ";
-        $sql .= "complete = (select required_validations - upratings + downratings >= 0 from kort.validations where id = " . $data['fix_id'] . ") ";
+        $sql .= "complete = ";
+        $sql .= "(select required_validations - upratings + downratings >= 0 from kort.validations ";
+        $sql .= " where id = " . $data['fix_id'] . ") ";
         $sql .= "where  fix_id = " . $data['fix_id'] . " ";
         $sql .= "returning complete";
 

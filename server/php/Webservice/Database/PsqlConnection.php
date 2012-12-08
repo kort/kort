@@ -42,30 +42,26 @@ class PsqlConnection
         return $this->db->fetchRow($result);
     }
 
-    public function doUpdateQuery($dataArr, $table, $where, $returnFields, $passthru = false)
+    public function doUpdateQuery($dataArr, $table, $where, $returnFields)
     {
-        if ($passthru) {
-            $updateSql = $this->generatePassthruUpdateSql($dataArr, $table, $where, $returnFields);
-            $result = $this->db->query($updateSql);
-            return $result[0];
-        } else {
-            $updateSql = $this->generateUpdateSql(array_keys($dataArr), $table, $where, $returnFields);
-            $this->db->prepare("update-kort", $updateSql);
-            $result = $this->db->execute("update-kort", array_values($dataArr));
-            return $this->db->fetchRow($result);
-        }
-
+        $updateSql = $this->generateUpdateSql(array_keys($dataArr), $table, $where, $returnFields);
+        $this->db->prepare("update-kort", $updateSql);
+        $result = $this->db->execute("update-kort", array_values($dataArr));
+        return $this->db->fetchRow($result);
     }
 
-    public function beginTransaction() {
+    public function beginTransaction()
+    {
         $this->db->begin();
     }
 
-    public function commitTransaction() {
+    public function commitTransaction()
+    {
         $this->db->commit();
     }
 
-    public function rollbackTransaction() {
+    public function rollbackTransaction()
+    {
         $this->db->rollback();
     }
 
