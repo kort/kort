@@ -8,10 +8,12 @@
     <property name="uml.dir" value="_DOCUMENTATION/03_Model" />
     <property name="php.dir" value="server" />
     <property name="php.test.dir" value="server/php" />
+    <property name="js.dir" value="app" />
+    <property name="js.doc.dir" value="docs/Kort"/>
     <property name="test.dir" value="test" />
 
 
-	<target name="build" depends="generate_css,lint,test">
+	<target name="build" depends="generate_css,lint,docs,test">
 		<echo message="BUILD FINISHED!"/>
 	</target>
 
@@ -20,9 +22,13 @@
         <antcall target="php-test"/>
     </target>
 
-     <target name="lint">
+    <target name="lint">
         <antcall target="js-lint"/>
         <antcall target="php-lint"/>
+    </target>
+
+    <target name="docs">
+        <antcall target="js-docs"/>
     </target>
 
     <target name="php-test">
@@ -58,6 +64,15 @@
             <arg value="--standard=PSR2"/>
             <arg value="--report-width=60"/>
             <arg value="${php.dir}"/>
+        </exec>
+    </target>
+
+    <target name="js-doc">
+        <echo message="Generating JavaScript documentation"/>
+        <exec executable="jsduck">
+            <arg value="${js.dir}"/>
+            <arg value="--output"/>
+            <arg value="${js.doc.dir}"/>
         </exec>
     </target>
 
