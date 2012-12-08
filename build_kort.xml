@@ -30,6 +30,7 @@
 
     <target name="docs">
         <antcall target="js-docs"/>
+        <antcall target="php-docs"/>
     </target>
 
     <target name="php-test">
@@ -39,16 +40,6 @@
 				<fileset dir="${php.test.dir}" includes="**/Test*.php"/>
 			</path>
 		</foreach>
-    </target>
-
-    <target name="php-docs">
-        <echo message="Generating PHPDocs"/>
-        <exec executable="phpdoc">
-            <arg value="-d"/>
-            <arg value="${php.dir}"/>
-            <arg value="-t"/>
-            <arg value="${php.doc.dir}"/>
-        </exec>
     </target>
 
 	<target name="js-test">
@@ -79,13 +70,23 @@
     </target>
 
     <target name="js-doc">
-        <echo message="Generating JavaScript documentation"/>
+        <echo message="Generating JavaScript docs (JSDuck)"/>
         <exec executable="jsduck">
             <arg value="${js.dir}"/>
             <arg value="--output"/>
             <arg value="${js.doc.dir}"/>
         </exec>
     </target>
+
+   <target name="php-docs">
+       <echo message="Generating PHPDocs"/>
+       <exec executable="phpdoc">
+           <arg value="-d"/>
+           <arg value="${php.dir}"/>
+           <arg value="-t"/>
+           <arg value="${php.doc.dir}"/>
+       </exec>
+   </target>
 
 	<target name="generate_css">
 		<echo message="Compile sass files to css"/>
