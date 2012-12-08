@@ -17,18 +17,8 @@ class Badge
     /** The name of the badge */
     protected $name;
 
-    public static function findById($id)
-    {
-        $names = self::getNames();
-        if (array_key_exists($id, $names)) {
-            return new Badge($names[$id]);
-        }
-        return null;
-    }
-
-    protected static function getNames()
-    {
-        return array(
+     /** The array of all names and ids of all badges */
+    protected static $names = array(
             1 => 'highscore_place_1',
             2 => 'highscore_place_2',
             3 => 'highscore_place_3',
@@ -38,7 +28,17 @@ class Badge
             7 => 'vote_count_1000',
             8 => 'vote_count_100',
             9 => 'vote_count_10'
-        );
+    );
+
+    /**
+     *
+     */
+    public static function findById($id)
+    {
+        if (array_key_exists($id, self::$names)) {
+            return new Badge(self::$names[$id]);
+        }
+        return null;
     }
 
     /**
