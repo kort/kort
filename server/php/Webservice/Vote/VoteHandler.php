@@ -19,22 +19,16 @@ class VoteHandler extends DbProxyHandler
 
     protected function updateKoinCointParams($data)
     {
+
         $voteKoinCount = "(select vote_koin_count from kort.validations where id = " . $data['fix_id'] . ")";
 
-        $params = array();
-        $params['table'] = "kort.user";
-        $params['fields'] = array("koin_count");
-        $params['data'] = array(
-            "koin_count" => "koin_count + " . $voteKoinCount
-        );
-        $params['returnFields'] = array(
-            "koin_count koin_count_total",
-            $voteKoinCount. " koin_count_new"
-        );
-        $params['where'] = "user_id = " . $data['user_id'];
+        $sql  = "update kort.user set koin_count = koin_count + " . $voteKoinCount . " ";
+        $sql .= "where user_id = ". $data['user_id'] . " ";
+        $sql .= "returning koin_count koin_count_total, " . $voteKoinCount . " koin_count_new";
 
-        $params['return'] = true;
-        $params['type'] = "UPDATE";
+        $params = array();
+        $params['sql'] = $sql;
+        $params['type'] = "SQL";
 
         return $params;
 
@@ -52,7 +46,6 @@ class VoteHandler extends DbProxyHandler
 
         $params = array();
         $params['sql'] = $sql;
-        $params['return'] = true;
         $params['type'] = "SQL";
 
         return $params;
@@ -90,7 +83,6 @@ class VoteHandler extends DbProxyHandler
 
         $params = array();
         $params['sql'] = $sql;
-        $params['return'] = true;
         $params['type'] = "SQL";
 
         return $params;
@@ -100,12 +92,11 @@ class VoteHandler extends DbProxyHandler
     {
         $sql  = "update kort.fix set ";
         $sql .= "complete = (select required_validations - upratings + downratings >= 0 from kort.validations where id = " . $data['fix_id'] . ") ";
-        $sql .= "where  u.fix_id = " . $data['fix_id'] . " ";
+        $sql .= "where  fix_id = " . $data['fix_id'] . " ";
         $sql .= "returning complete";
 
         $params = array();
         $params['sql'] = $sql;
-        $params['return'] = true;
         $params['type'] = "SQL";
 
         return $params;
@@ -128,28 +119,28 @@ class VoteHandler extends DbProxyHandler
         $transProxy->addToTransaction($voteCountBadgesParams);
         $transProxy->addToTransaction($updateKoinCountParams);
         $transProxy->addToTransaction($completedParams);
-        $result = json_decode($transProxy->sendTransaction());
+        $result = json_decode($transProxy->sendTransaction(), true);
+        //$result = $transProxy->sendTransaction();
 
-        $insertedHighscoreBadges = (!empty($result[1])) ? json_decode($result[1], true) : null;
-        $highscoreBadgeId = $insertedHighscoreBadges[0]['badge_id'];
-        $insertedFixCountBadges = (!empty($result[2])) ? json_decode($result[2], true) : null;
-        $fixCountBadgeId = $insertedFixCountBadges[0]['badge_id'];
-        $insertedVoteCountBadges = (!empty($result[3])) ? json_decode($result[3], true) : null;
-        $voteCountBadgeId = $insertedVoteCountBadges[0]['badge_id'];
-        $koins = json_decode($result[4], true);
+        //return print_r($result);
 
         $badges = array();
-        if (!empty($highscoreBadgeId)) {
+        if (count($result[1]) > 0) {
+            $highscoreBadgeId = $result[1][0]['badge_id'];
             $badges[] = Badge::findById($highscoreBadgeId);
         }
-        if (!empty($fixCountBadgeId)) {
+        if (count($result[2]) > 0) {
+            $fixCountBadgeId = $result[2][0]['badge_id'];
             $badges[] = Badge::findById($fixCountBadgeId);
         }
-        if (!empty($voteCountBadgeId)) {
+        if (count($result[3]) > 0) {
+            $voteCountBadgeId = $result[3][0]['badge_id'];
             $badges[] = Badge::findById($voteCountBadgeId);
         }
-        $koinCountTotal = $koins['koin_count_total'];
-        $koinCountNew = $koins['koin_count_new'];
+
+        $koinCountTotal = $result[4][0]['koin_count_total'];
+        $koinCountNew = $result[4][0]['koin_count_new'];
+
         $reward = new Reward($koinCountTotal, $koinCountNew, $badges);
         return $reward->toJson();
     }

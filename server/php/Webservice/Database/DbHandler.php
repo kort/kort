@@ -32,18 +32,17 @@ class DbHandler
             $limit = 500;
         }
         $result = $this->db->doSelectQuery($fields, $table, $where, $orderBy, $limit);
-        return (count($result) > 0) ? json_encode($result) : "";
+        return (count($result) > 0) ? json_encode($result) : false;
     }
 
     public function doInsert($fields, $table, $data, $returnFields)
     {
         $data = $this->reduceData($fields, $data);
         $insertedData = $this->db->doInsertQuery($data, $table, $returnFields);
-        return json_encode($insertedData);
         if (!$insertedData) {
             return $insertedData;
         } else {
-            json_encode($insertedData);
+            return json_encode($insertedData);
         }
     }
 
@@ -66,36 +65,27 @@ class DbHandler
         foreach ($statements as $params) {
             switch($params['type']) {
                 case "SQL":
-                    $result = $this->doSql($params['sql']);
-                    if ($params['return']) {
-                        $returnValue = $result;
-                    }
+                    $returnValue = $this->doSql($params['sql']);
                     break;
                 case "INSERT":
-                    $result = $this->doInsert($params['fields'], $params['table'], $params['data'], $params['returnFields']);
-                    if ($params['return']) {
-                        $returnValue = $result;
-                    }
+                    $returnValue = $this->doInsert($params['fields'], $params['table'], $params['data'], $params['returnFields']);
                     break;
                 case "UPDATE":
-                    $result = $this->doUpdate($params['fields'], $params['table'], $params['data'], $params['where'], $params['returnFields'], true);
-                    if ($params['return']) {
-                        $returnValue = $result;
-                    }
+                    $returnValue = $this->doUpdate($params['fields'], $params['table'], $params['data'], $params['where'], $params['returnFields'], true);
                     break;
                 case "SELECT":
-                    $result = $this->doSelect($params['fields'], $params['table'], $params['where'], $params['orderBy'], $params['limit']);
-                    if ($params['return']) {
-                        $returnValue = $result;
-                    }
+                    $returnValue = $this->doSelect($params['fields'], $params['table'], $params['where'], $params['orderBy'], $params['limit']);
                     break;
                 default:
                     $returnValue = false;
             }
             if ($returnValue === false) {
                 $this->db->rollbackTransaction();
-                return "Transaction has been rollbacked!";
+                return "Transaction has been rollbacked! Params: " . json_encode($params);
             } else {
+                if (!is_array($returnValue)) {
+                    $returnValue = json_decode($returnValue, true);
+                }
                 $returnValues[] = $returnValue;
             }
         }
