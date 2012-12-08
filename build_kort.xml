@@ -79,7 +79,7 @@
     </target>
 
    <target name="php-docs">
-       <echo message="Generating PHPDocs"/>
+       <echo message="Generating PHP docs (phpDocumentor)"/>
        <exec executable="phpdoc">
            <arg value="-d"/>
            <arg value="${php.dir}"/>
