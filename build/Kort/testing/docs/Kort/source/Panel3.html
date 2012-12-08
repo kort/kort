@@ -15,60 +15,66 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js"><span id='Kort-view-overlay-login-Panel'>/**
-</span> * Login panel which overlays main panel if user isn't logged in
+  <pre class="prettyprint lang-js"><span id='Kort-view-overlay-firststeps-Panel'>/**
+</span> * First steps panel which overlays main panel if no username is given
  */
-Ext.define('Kort.view.overlay.login.Panel', {
+Ext.define('Kort.view.overlay.firststeps.Panel', {
 	extend: 'Ext.Panel',
-	alias: 'widget.loginpanel',
+	alias: 'widget.firststepspanel',
     requires: [
-        'Ext.Button'
+        'Ext.form.Panel',
+        'Ext.Button',
+        'Ext.field.Text'
     ],
 
 	config: {
-<span id='Kort-view-overlay-login-Panel-cfg-id'>		id: 'loginPanel',
-</span><span id='Kort-view-overlay-login-Panel-cfg-layout'>		layout: 'vbox',
-</span><span id='Kort-view-overlay-login-Panel-cfg-modal'>        modal: true,
-</span><span id='Kort-view-overlay-login-Panel-cfg-scrollable'>        scrollable: true,
-</span><span id='Kort-view-overlay-login-Panel-cfg-cls'>        cls: 'overlayLeafletMap',
-</span><span id='Kort-view-overlay-login-Panel-cfg-items'>		items: [
+<span id='Kort-view-overlay-firststeps-Panel-cfg-id'>		id: 'firststepsPanel',
+</span><span id='Kort-view-overlay-firststeps-Panel-cfg-layout'>		layout: 'vbox',
+</span><span id='Kort-view-overlay-firststeps-Panel-cfg-modal'>        modal: true,
+</span><span id='Kort-view-overlay-firststeps-Panel-cfg-scrollable'>        scrollable: true,
+</span><span id='Kort-view-overlay-firststeps-Panel-cfg-cls'>        cls: 'overlayLeafletMap',
+</span>        
+<span id='Kort-view-overlay-firststeps-Panel-cfg-showAnimation'>        showAnimation: {
+</span>            type: 'slideIn',
+            direction: 'down'
+        },
+<span id='Kort-view-overlay-firststeps-Panel-cfg-hideAnimation'>        hideAnimation: {
+</span>            type: 'slideOut',
+            direction: 'up'
+        },
+        
+<span id='Kort-view-overlay-firststeps-Panel-cfg-items'>		items: [
 </span>			{
                 html:   '&lt;div class=&quot;overlay-content&quot;&gt;' +
                             '&lt;div class=&quot;logo&quot;&gt;' +
                                 '&lt;img src=&quot;./resources/images/kort-logo.png&quot; /&gt;' +
                             '&lt;/div&gt;' +
-                            '&lt;ul class=&quot;kort-description&quot;&gt;' +
-                                '&lt;li&gt;' + Ext.i18n.Bundle.message('login.kort.description.1') + '&lt;/li&gt;' +
-                                '&lt;li&gt;' + Ext.i18n.Bundle.message('login.kort.description.2') + '&lt;/li&gt;' +
-                                '&lt;li&gt;' + Ext.i18n.Bundle.message('login.kort.description.3') + '&lt;/li&gt;' +
-                            '&lt;/ul&gt;' +
                             '&lt;div class=&quot;introduction&quot;&gt;' +
-                                Ext.i18n.Bundle.message('login.introduction.1') +
+                                Ext.i18n.Bundle.message('firststeps.introduction.1') +
                                 Kort.util.Config.getKortTitle() +
-                                Ext.i18n.Bundle.message('login.introduction.2') +
+                                Ext.i18n.Bundle.message('firststeps.introduction.2') +
                             '&lt;/div&gt;' +
                         '&lt;/div&gt;'
 			},
             {
-                xtype: 'container',
-                layout: 'vbox',
+                xtype: 'formpanel',
+                id: 'usernameForm',
                 scrollable: false,
-                cls: 'loginButtons',
+                layout: 'vbox',
                 items: [
                     {
-                        xtype: 'button',
-                        text: Ext.i18n.Bundle.message('login.button.google'),
-                        id: 'loginButtonGoogle',
-                        baseCls: Ext.baseCSSPrefix + 'zocial-button',
-                        cls: 'zocial google'
-                    }/*,
+                        xtype: 'textfield',
+                        cls: 'usernameTextfield',
+                        name: 'username',
+                        // i18n bundle doens't work for placeholders -&gt; get text from config
+                        placeHolder: Kort.util.Config.getFormPlaceholders().username
+                    },
                     {
                         xtype: 'button',
-                        text: Ext.i18n.Bundle.message('login.button.osm'),
-                        id: 'loginButtonOsm',
-                        baseCls: Ext.baseCSSPrefix + 'zocial-button',
-                        cls: 'zocial pinboard'
-                    }*/
+                        ui: 'confirm',
+                        id: 'firststepsFormSubmitButton',
+                        text: Ext.i18n.Bundle.message('firststeps.form.button.submit')
+                    }
                 ]
             }
 		]
