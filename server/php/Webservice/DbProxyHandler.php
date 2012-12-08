@@ -30,7 +30,11 @@ abstract class DbProxyHandler
         $this->dbProxy = $proxy;
     }
 
-    protected function insertParams($data, $returnValues = false) {
+    abstract protected function getFields();
+    abstract protected function getTable();
+
+    protected function insertParams($data, $returnValues = false)
+    {
         $params = array();
         $params['table'] = $this->getTable();
         $params['fields'] = $this->getFields();
@@ -43,11 +47,8 @@ abstract class DbProxyHandler
         return $params;
     }
 
-
-    abstract protected function getFields();
-    abstract protected function getTable();
-
-    protected function getReturnFields() {
+    protected function getReturnFields()
+    {
         return $this->getFields();
     }
 }

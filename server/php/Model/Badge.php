@@ -26,7 +26,8 @@ class Badge
         return null;
     }
 
-    protected static function getNames() {
+    protected static function getNames()
+    {
         return array(
             1 => 'highscore_place_1',
             2 => 'highscore_place_2',
@@ -75,7 +76,8 @@ class Badge
     * @param $badge whose value should be returned
     * @return an array of values of the given badges
     */
-    private static function getValue($badge) {
+    private static function getValue($badge)
+    {
         return array("name" => $badge->getName());
     }
 }

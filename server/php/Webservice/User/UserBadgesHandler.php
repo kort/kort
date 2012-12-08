@@ -25,15 +25,18 @@ class UserBadgesHandler extends DbProxyHandler
     public function getUserBadges($user_id)
     {
         $fields = $this->getFields();
-        $fields[] = urlencode('exists(select 1 from kort.user_badge ub where ub.user_id = ' . $user_id . ' and ub.badge_id = id) as won');
+        $wonFieldSql  = "exists(select 1 from kort.user_badge ub ";
+        $wonFieldSql .= "where ub.user_id = " . $user_id . " and ub.badge_id = id) as won";
+        $fields[] = urlencode($wonFieldSql);
         $this->getDbProxy()->setFields($fields);
-        
+
         $userBadges = json_decode($this->getDbProxy()->select(), true);
-        $userBadges = array_map(array($this, 'convertBoolean'), $userBadges);
+        $userBadges = array_map(array($this, "convertBoolean"), $userBadges);
         return json_encode($userBadges);
     }
-    
-    public function convertBoolean($badge) {
+
+    public function convertBoolean($badge)
+    {
         $badge['won'] = ($badge['won'] == 't') ? true : false;
         return $badge;
     }
