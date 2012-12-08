@@ -1,4 +1,7 @@
 <?php
+/**
+ * kort - Helper\LocaleHelper class
+ */
 
 namespace Helper;
 

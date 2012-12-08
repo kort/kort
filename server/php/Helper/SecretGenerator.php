@@ -1,17 +1,33 @@
 <?php
+/**
+ * kort - Helper\SecretGenerator class
+ */
 
 namespace Helper;
 
+/**
+ * The SecretGenerator class is responsible to generate unique user secrets to identify
+ * a user in the application.
+ *
+ * The used algorithm is a double-salted SHA-1 hash based on the time.
+ */
 class SecretGenerator
 {
+    /**
+     * Returns a unique secret to identify a user
+     * @return string a double-salted SHA1 hash
+     */
     public function getSecret()
     {
         $salt = $this->generateSalt();
         $value = time();
-        //double salted hash
         return sha1($salt . sha1($salt . sha1($value)));
     }
 
+    /**
+     * Randomly generates a salt value for the secret to use.
+     * @return string a random salt for the user secret
+     */
     private function generateSalt()
     {
         $dummy = array_merge(range('0', '9'));
