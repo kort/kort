@@ -15,22 +15,22 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js"><span id='Kort-store-UserLocal'>/**
-</span> * Store for user secret
+  <pre class="prettyprint lang-js"><span id='Kort-model-UserLocal'>/**
+</span> * Model for the users secret which gets stored in local storage
  */
-Ext.define('Kort.store.UserLocal', {
-    extend: 'Ext.data.Store',
-
-	config: {
-<span id='Kort-store-UserLocal-cfg-model'>		model: 'Kort.model.UserLocal',
-</span><span id='Kort-store-UserLocal-cfg-autoSync'>        autoSync: true,
+Ext.define('Kort.model.UserLocal', {
+    extend: 'Ext.data.Model',
+    requires: [
+        'Ext.data.identifier.Uuid'
+    ],
+    
+    config: {
+<span id='Kort-model-UserLocal-cfg-identifier'>        identifier: 'uuid',
 </span>
-<span id='Kort-store-UserLocal-cfg-proxy'>		proxy: {
-</span>            type: 'localstorage',
-            id: 'kort-user'
-        }
-	}
-});
-</pre>
+<span id='Kort-model-UserLocal-cfg-fields'>        fields: [
+</span>			{ name: 'secret', type: 'string' }
+        ]
+    }
+});</pre>
 </body>
 </html>
