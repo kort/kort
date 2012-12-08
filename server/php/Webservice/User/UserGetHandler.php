@@ -104,7 +104,7 @@ class UserGetHandler extends DbProxyHandler
     * @param $imageSet Default imageset to use [ 404 | mm | identicon | monsterid | wavatar ]
     * @param $rating Maximum rating (inclusive) [ g | pg | r | x ]
     * @return string containing the URL
-    * @see http://gravatar.com/site/implement/images/php/
+    * @link http://gravatar.com/site/implement/images/php/
     */
     protected function getGravatarUrl ($email, $size = 200, $imageSet = 'mm', $rating = 'r')
     {

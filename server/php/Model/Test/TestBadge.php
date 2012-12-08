@@ -11,7 +11,8 @@ class TestBadge extends AbstractKortUnitTestCase
         parent::__construct("kort - TestBadge");
     }
 
-    public function testGetName() {
+    public function testGetName()
+    {
         $badge = new Badge("myTestBadgeName");
         $this->assertEqual("myTestBadgeName", $badge->getName(), "Input name should match the output");
     }
