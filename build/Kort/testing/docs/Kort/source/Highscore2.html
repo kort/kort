@@ -15,26 +15,67 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js"><span id='Kort-store-Highscore'>/**
-</span> * Store for highscore entries
+  <pre class="prettyprint lang-js"><span id='Kort-controller-Highscore'>/**
+</span> * Controller for highscore tab
  */
-Ext.define('Kort.store.Highscore', {
-    extend: 'Ext.data.Store',
-	
-	config: {
-<span id='Kort-store-Highscore-cfg-model'>		model: 'Kort.model.HighscoreEntry',
-</span>		
-<span id='Kort-store-Highscore-cfg-proxy'>		proxy: {
-</span>			type: 'rest',
-            url: './server/webservices/highscore/',
-            sorters: 'place',
-            reader: {
-                type: 'json',
-                rootProperty: 'return'
+Ext.define('Kort.controller.Highscore', {
+    extend: 'Ext.app.Controller',
+    
+    config: {
+<span id='Kort-controller-Highscore-cfg-views'>        views: [
+</span>            'highscore.Container',
+            'highscore.List'
+        ],
+<span id='Kort-controller-Highscore-cfg-refs'>        refs: {
+</span>            mainTabPanel: '#mainTabPanel',
+            highscoreContainer: '#highscoreContainer',
+            highscoreList: '.highscorelist',
+            highscoreRefreshButton: '#highscoreContainer .button[cls=highscoreRefreshButton]'
+        },
+<span id='Kort-controller-Highscore-cfg-control'>        control: {
+</span>            highscoreRefreshButton: {
+                tap: 'onHighscoreRefreshButtonTap'
             }
-		}
-	}
-});
-</pre>
+        }
+    },
+    
+<span id='Kort-controller-Highscore-method-init'>    /**
+</span>     * @private
+     * Initilizes the controller
+     */
+    init: function() {
+        var me = this;
+        me.callParent(arguments);
+        
+        me.getApplication().on({
+            votesend: { fn: me.refreshView, scope: me },
+            fixsend: { fn: me.refreshView, scope: me },
+            userchange: { fn: me.refreshView, scope: me }
+        });
+    },
+    
+<span id='Kort-controller-Highscore-method-onHighscoreRefreshButtonTap'>    // @private
+</span>    onHighscoreRefreshButtonTap: function() {
+        this.refreshView();
+    },
+    
+<span id='Kort-controller-Highscore-method-refreshView'>    /**
+</span>     * @private
+     * Refreshs highscore
+     */
+    refreshView: function() {
+        var me = this,
+            highscoreStore = Ext.getStore('Highscore');
+        
+        if(me.getHighscoreList()) {
+            me.getHighscoreList().mask();
+            
+            highscoreStore.load(function(records, operation, success) {
+                me.getHighscoreList().refresh();
+                me.getHighscoreList().unmask();
+            });
+        }
+    }
+});</pre>
 </body>
 </html>

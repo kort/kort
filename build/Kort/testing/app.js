@@ -71442,7 +71442,8 @@ Ext.define('Kort.view.RewardMessageBox', {
                             '</p>',
                         '</div>',
                     '</div>',
-                    '<tpl if="badges.length &gt 0">',
+                    // TODO don't print badges message when no badges were won
+                    //'<tpl if="badges.length &gt 0">',
                         '<div class="text">',
                             '<div class="content">',
                                 '<h1> ' + Ext.i18n.Bundle.message('reward.alert.badges.title') + ' </h1>',
@@ -71456,7 +71457,7 @@ Ext.define('Kort.view.RewardMessageBox', {
                                 '</p>',
                             '</div>',
                         '</div>',
-                    '</tpl>',
+                    //'</tpl>',
                 '</div>'
             )
     }
@@ -71610,7 +71611,13 @@ Ext.define('Kort.controller.Fix', {
 
         if (fixFieldValue && fixFieldValue !== '') {
             me.showSendMask();
-            fix = Ext.create('Kort.model.Fix', { error_id: detailComponent.getRecord().get('id'), user_id: userId, message: fixFieldValue });
+            fix = Ext.create('Kort.model.Fix', {
+                error_id: detailComponent.getRecord().get('id'),
+                schema: detailComponent.getRecord().get('schema'),
+                osm_id: detailComponent.getRecord().get('osm_id'),
+                user_id: userId,
+                message: fixFieldValue
+            });
             fix.save({
                 success: function(records, operation) {
                     me.hideSendMask();
@@ -73276,6 +73283,8 @@ Ext.define('Kort.model.Fix', {
 			{ name: 'id', type: 'auto' },
 			{ name: 'user_id', type: 'int' },
 			{ name: 'error_id', type: 'string' },
+			{ name: 'schema', type: 'string' },
+			{ name: 'osm_id', type: 'int' },
 			{ name: 'message', type: 'string' }
         ],
         
