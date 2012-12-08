@@ -118,7 +118,7 @@
         ".htaccess",
         "index.php",
         "resources/images",
-        "resources/styles",
+        "resources/styles/styles.css",
         "resources/i18n",
         "resources/stores",
         "lib/Leaflet-0.4.5/dist/images",
