@@ -11,7 +11,8 @@ create table kort.error_type (
     vote_question character varying(255),
     vote_koin_count integer not null,
     fix_koin_count integer not null,
-    required_validations integer not null
+    required_validations integer not null,
+    unique(type)
 );
 
 create table kort.fix (
@@ -23,7 +24,8 @@ create table kort.fix (
     osm_id integer not null,
     message text,
     complete boolean default false,
-    UNIQUE(user_id, error_id, schema, osm_id)
+    unique(user_id, error_id, schema, osm_id),
+    foreign key (error_id, schema, osm_id) references keepright.errors (error_id, schema, object_id)
 );
 
 create table kort.user (
@@ -35,7 +37,7 @@ create table kort.user (
     oauth_provider varchar(100),
     oauth_user_id varchar(100),
     secret varchar(100) unique,
-    UNIQUE(oauth_provider, oauth_user_id)
+    unique(oauth_provider, oauth_user_id)
 );
 
 create table kort.badge (
@@ -52,7 +54,9 @@ create table kort.user_badge (
     user_id integer,
     badge_id integer,
     create_date timestamp not null,
-    primary key (user_id, badge_id)
+    primary key (user_id, badge_id),
+    foreign key (badge_id) references kort.badge (badge_id),
+    foreign key (user_id) references kort.user (user_id)
 );
 
 create table kort.answer (
@@ -60,7 +64,8 @@ create table kort.answer (
     type varchar(100),
     value varchar(100) unique not null,
     title varchar(100) not null,
-    sorting integer not null
+    sorting integer not null,
+    foreign key (type) references kort.error_type (type)
 );
 
 create table kort.validation (
@@ -69,6 +74,8 @@ create table kort.validation (
     fix_id integer,
     valid boolean,
     create_date timestamp not null default now(),
-    UNIQUE(user_id, fix_id)
+    unique(user_id, fix_id),
+    foreign key (user_id) references kort.user (user_id),
+    foreign key (fix_id) references kort.fix (fix_id)
 );
 
