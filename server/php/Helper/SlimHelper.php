@@ -9,7 +9,7 @@ namespace Helper;
  * The SlimHelper class is a helper for the Slim Framework and provides
  * common functions, which are used in the webservices.
  *
- * @see http://www.slimframework.com/ Slim PHP micro framework
+ * @link http://www.slimframework.com/
  *
  */
 class SlimHelper

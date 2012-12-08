@@ -1,29 +1,55 @@
 <?php
+/**
+ * kort - TestHelper\KortTestRunner class
+ */
 namespace TestHelper;
 
 use Helper\StringHelper;
 
+/**
+ * The KortTestRunner class is a helper class to run all tests of the project.
+ */
 class KortTestRunner
 {
+    /**
+     * Runs the tests of an AbstractKortUnitTestCase
+     * @param string $file the path to a file which contains a sub-class of AbstractKortUnitTestCase
+     *
+     * @see AbstractKortUnitTestCase
+     */
     public static function runTestFile($file)
     {
         require_once($file);
-        $className = self::findClass(basename($file, ".php"));
+        $className = self::findClass($file);
         $refClass = new \ReflectionClass($className);
         $unitTestCase = $refClass->newInstance();
         $unitTestCase->report();
     }
 
-    private static function findClass($className)
+    /**
+     * Finds the class name of a file
+     * @param string $filename the filename of PHP file
+     * @return string the class name
+     * @throws \Exception if the class could not be found
+     */
+    private static function findClass($filename)
     {
+        $classFileName = basename($filename, ".php");
         foreach (get_declared_classes() as $declaredClass) {
-            if (StringHelper::endsWith($declaredClass, $className)) {
+            if (StringHelper::endsWith($declaredClass, $classFileName)) {
                 return $declaredClass;
             }
         }
-        throw new \Exception($className." not found. Maybe you are missing a require() statement.");
+        throw new \Exception($classFileName." not found. Maybe you are missing a require() statement.");
     }
 
+    /**
+     * Finds all Test* files in $dir and runs them.
+     * @param string $dir the directory to look into for all tests
+     * @param TestSuite $suite the TestSuite to add all found test files
+     *
+     * @see KortAllTests
+     */
     public static function runTestDirectory($dir, $suite)
     {
         $dir_handle = opendir($dir);
