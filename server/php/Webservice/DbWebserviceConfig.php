@@ -13,7 +13,7 @@ class DbWebserviceConfig
         return getenv('KORT_DB_API_KEY');
     }
 
-     public function getUrl()
+    public function getUrl()
     {
         return $this->url;
     }

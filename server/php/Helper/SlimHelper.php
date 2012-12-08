@@ -1,7 +1,8 @@
 <?php
 namespace Helper;
 
-class SlimHelper {
+class SlimHelper
+{
     protected $app;
 
     public function __construct($app)
@@ -11,7 +12,7 @@ class SlimHelper {
 
     public function returnData($data)
     {
-        if(empty($data)) {
+        if (empty($data)) {
             $data = '[]';
         }
         $this->app->response()->write("{\"return\": ". $data . "}");
