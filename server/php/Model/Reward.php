@@ -4,8 +4,6 @@
  */
 namespace Model;
 
-use Badge;
-
 /**
  * The Reward class represents the entity, which a user can win.
  *
@@ -41,7 +39,7 @@ class Reward
     {
         $response = array();
         if (count($this->getBadges()) > 0) {
-            $response["badges"] = array_map(Badge::getValueFn(), $this->getBadges());
+            $response["badges"] = Badge::getValues($this->getBadges());
         } else {
             $response["badges"] = array();
         }
