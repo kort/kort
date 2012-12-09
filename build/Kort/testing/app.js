@@ -70500,14 +70500,6 @@ Ext.define('Kort.util.Config', {
         timeout: 10000,
         
         /**
-         * @cfg {Object} bugs Configuration for bug to load
-         * @cfg {Object} [bugs.radius=5000] (required) Radius for bug selection
-         */
-        bugs: {
-            radius: 5000
-        },
-        
-        /**
          * @cfg {Object} zIndex zIndex for components
          * @cfg {Number} [zIndex.overlayLeafletMap=1500] (required) zIndex for panel to overlay leaflet map components
          * @cfg {Number} [zIndex.overlayOverlayPanel=1600] (required) zIndex for panel to overlay another overlay panel
@@ -70553,6 +70545,74 @@ Ext.define('Kort.util.Config', {
          */
         formPlaceholders: {
             username: 'Benutzername'
+        },
+        
+        /**
+         * @cfg {Object} webservices Configuration of webservices
+         * @cfg {Object} webservices.bug Configuration of bug webservice
+         * @cfg {Function} webservices.bug.getUrl (required) Returns url of bug webservice with given position (latitude, longitude)
+         * @cfg {Number} webservices.bug.radius (required) Limit of bug selection
+         * @cfg {Object} webservices.validation Configuration of validation webservice
+         * @cfg {Function} webservices.validation.getUrl (required) Returns url of validation webservice with given position (latitude, longitude)
+         * @cfg {Object} webservices.user Configuration of user webservice
+         * @cfg {Object} webservices.user.url Url of user webservice
+         * @cfg {Object} webservices.userLogout Configuration of userlogout webservice
+         * @cfg {Function} webservices.userLogout.getUrl (required) Returns url of userlogout webservice with given userid
+         * @cfg {Object} webservices.userBadges Configuration of userbadges webservice
+         * @cfg {Function} webservices.userBadges.getUrl (required) Returns url of userbadges webservice with given userid
+         * @cfg {Object} webservices.highscore Configuration of highscore webservice
+         * @cfg {Object} webservices.highscore.url Url of highscore webservice
+         * @cfg {Object} webservices.answer Configuration of answer webservice
+         * @cfg {Object} webservices.answer.url Url of answer webservice
+         * @cfg {Object} webservices.fix Configuration of fix webservice
+         * @cfg {Object} webservices.fix.url Url of fix webservice
+         * @cfg {Object} webservices.vote Configuration of vote webservice
+         * @cfg {Object} webservices.vote.url Url of vote webservice
+         * @cfg {Object} webservices.osm Configuration of osm webservice
+         * @cfg {Function} webservices.osm.getUrl (required) Returns url of osm webservice with given osm object(id, type)
+         */
+        webservices: {
+            bug: {
+                getUrl: function(latitude, longitude) {
+                    return './server/webservices/bug/position/' + latitude + ',' + longitude
+                },
+                radius: 5000
+            },
+            validation: {
+                getUrl: function(latitude, longitude) {
+                    return './server/webservices/validation/position/' + latitude + ',' + longitude
+                }
+            },
+            user: {
+                url: './server/webservices/user/'
+            },
+            userLogout: {
+                getUrl: function(userid) {
+                    return './server/webservices/user/' + userid + '/logout'
+                }
+            },
+            userBadges: {
+                getUrl: function(userid) {
+                    return './server/webservices/user/' + userid + '/badges'
+                }
+            },
+            highscore: {
+                url: './server/webservices/highscore/'
+            },
+            answer: {
+                url: './server/webservices/answer/'
+            },
+            fix: {
+                url: './server/webservices/bug/fix'
+            },
+            vote: {
+                url: './server/webservices/validation/vote'
+            },
+            osm: {
+                getUrl: function(objectId, objectType) {
+                    return './server/webservices/osm/' + objectType + '/' + objectId
+                } 
+            }
         }
 	},
 	
@@ -70737,12 +70797,153 @@ Ext.define('Kort.view.bugmap.NavigationView', {
 });
 
 /**
+ * Select answer type for fix view
+ */
+Ext.define('Kort.view.bugmap.fix.type.Select', {
+	extend: 'Ext.field.Select',
+    
+	config: {
+        store: 'SelectAnswers',
+        
+        // always use Ext.picker.Picker
+        usePicker: true,
+        autoSelect: false,
+        valueField: 'value',
+        displayField: 'title',
+        defaultPhonePickerConfig: {
+            cancelButton: Ext.i18n.Bundle.message('picker.cancel'),
+            doneButton: Ext.i18n.Bundle.message('picker.done')
+        },
+        defaultTabletPickerConfig: {
+            cancelButton: Ext.i18n.Bundle.message('picker.cancel'),
+            doneButton: Ext.i18n.Bundle.message('picker.done')
+        },
+        type: ''
+	},
+    
+    initialize: function() {
+        this.callParent(arguments);
+        
+        // filter answers for given type
+        this.getStore().filter('type', this.getType());
+    }
+});
+
+/**
+ * Answer form for fix view
+ */
+Ext.define('Kort.view.bugmap.fix.Form', {
+	extend: 'Ext.Container',
+	alias: 'widget.fixform',
+    requires: [
+        'Ext.form.Panel',
+        'Ext.Button',
+        'Ext.field.Select',
+        'Ext.field.Number',
+        'Ext.field.Text',
+        'Kort.view.bugmap.fix.type.Select'
+    ],
+    
+	config: {
+		layout: 'vbox',
+        cls: 'fixform',
+        scrollable: true,
+        title: Ext.i18n.Bundle.message('fix.form.title'),
+        fullscreen: true
+	},
+    
+    initialize: function () {
+        var fixContentComponent,
+            fixFormPanel,
+            fixField;
+        
+        this.callParent(arguments);
+        
+        fixContentComponent = {
+            xtype: 'component',
+            cls: 'fixContentComponent',
+            record: this.getRecord(),
+            tpl:    new Ext.Template(
+                        '<div class="fix-content">',
+                            '<div class="textpic">',
+                                '<div class="image">',
+                                    '<img class="koin-image" src="./resources/images/koins/koin_no_value.png" />',
+                                '</div>',
+                                '<div class="content">',
+                                    '<p>',
+                                        Ext.i18n.Bundle.message('fix.form.koins.earn'),
+                                        ' <span class="important">{fix_koin_count}</span> ',
+                                        Ext.i18n.Bundle.message('fix.form.koins.name'),
+                                    '</p>',
+                                '</div>',
+                            '</div>',
+                            '<div class="textpic">',
+                                '<div class="image">',
+                                    '<img class="bugtype-image" src="./resources/images/marker_icons/{type}.png" />',
+                                '</div>',
+                                '<div class="content">',
+                                    '<p>{description}</p>',
+                                '</div>',
+                            '</div>',
+                        '</div>'
+                    )
+        };
+        
+        fixField = this.createFixField(this.getRecord());
+        
+        fixFormPanel = {
+            xtype: 'formpanel',
+            cls: 'fixFormPanel',
+            scrollable: false,
+            flex: 1,
+            items: [
+                fixField,
+                {
+                    xtype: 'button',
+                    cls: 'fixSubmitButton',
+                    ui: 'confirm',
+                    id: 'fixFormSubmitButton',
+                    text: Ext.i18n.Bundle.message('fix.form.button.submit')
+                }
+            ]
+        };
+        
+        this.add([fixContentComponent, fixFormPanel]);
+    },
+    
+    createFixField: function(bug) {
+        var fixField,
+            fieldConfig = {
+                name: 'fixfield',
+                cls: 'fixfield'
+            };
+        
+        if(bug.get('view_type') === 'select') {
+            fieldConfig = Ext.merge(fieldConfig, {
+                type: bug.get('type')
+            });
+            
+            fixField = Ext.create('Kort.view.bugmap.fix.type.Select', fieldConfig);
+        } else if(bug.get('view_type') === 'number') {
+            fixField = Ext.create('Ext.field.Number', fieldConfig);
+        } else {
+            fixField = Ext.create('Ext.field.Text', fieldConfig);
+        }
+        
+        fixField.setPlaceHolder(this.getRecord().get('answer_placeholder'));
+        
+        return fixField;
+    }
+});
+
+/**
  * Main tab panel for fix view
  */
 Ext.define('Kort.view.bugmap.fix.TabPanel', {
 	extend: 'Ext.tab.Panel',
 	alias: 'widget.fixtabpanel',
     requires: [
+        'Kort.view.bugmap.fix.Form',
         'Kort.view.LeafletMap'
     ],
     
@@ -70929,11 +71130,10 @@ Ext.define('Kort.controller.Bugmap', {
         var me = this,
             mapCmp = me.getMapCmp(),
             bugsStore = me.getBugsStore(),
-            url, currentLatLng;
+            currentLatLng;
         
         currentLatLng = me.getCurrentLocationLatLng(mapCmp);
-        url = './server/webservices/bug/position/' + currentLatLng.lat + ',' + currentLatLng.lng;
-        bugsStore.getProxy().setUrl(url);
+        bugsStore.getProxy().setUrl(Kort.util.Config.getWebservices().bug.getUrl(currentLatLng.lat, currentLatLng.lng));
 
         me.showLoadMask();
 
@@ -71060,7 +71260,6 @@ Ext.define('Kort.controller.Bugmap', {
     // @private
     markerConfirmHandler: function(buttonId, value, opt) {
         if(buttonId === 'yes') {
-            console.log('Open fix (id: ' + this.getActiveBug().data.id + ')');
             this.showFix(this.getActiveBug());
         }
 
@@ -71262,146 +71461,6 @@ Ext.define('Kort.controller.Firststeps', {
 });
 
 /**
- * Select answer type for fix view
- */
-Ext.define('Kort.view.bugmap.fix.type.Select', {
-	extend: 'Ext.field.Select',
-    
-	config: {
-        store: 'SelectAnswers',
-        
-        // always use Ext.picker.Picker
-        usePicker: true,
-        autoSelect: false,
-        valueField: 'value',
-        displayField: 'title',
-        defaultPhonePickerConfig: {
-            cancelButton: Ext.i18n.Bundle.message('picker.cancel'),
-            doneButton: Ext.i18n.Bundle.message('picker.done')
-        },
-        defaultTabletPickerConfig: {
-            cancelButton: Ext.i18n.Bundle.message('picker.cancel'),
-            doneButton: Ext.i18n.Bundle.message('picker.done')
-        },
-        type: ''
-	},
-    
-    initialize: function() {
-        this.callParent(arguments);
-        
-        // filter answers for given type
-        this.getStore().filter('type', this.getType());
-    }
-});
-
-/**
- * Answer form for fix view
- */
-Ext.define('Kort.view.bugmap.fix.Form', {
-	extend: 'Ext.Container',
-	alias: 'widget.fixform',
-    requires: [
-        'Ext.form.Panel',
-        'Ext.Button',
-        'Ext.field.Select',
-        'Ext.field.Number',
-        'Ext.field.Text',
-        'Kort.view.bugmap.fix.type.Select'
-    ],
-    
-	config: {
-		layout: 'vbox',
-        cls: 'fixform',
-        scrollable: true,
-        title: Ext.i18n.Bundle.message('fix.form.title'),
-        fullscreen: true
-	},
-    
-    initialize: function () {
-        var fixContentComponent,
-            fixFormPanel,
-            fixField;
-        
-        this.callParent(arguments);
-        
-        fixContentComponent = {
-            xtype: 'component',
-            cls: 'fixContentComponent',
-            record: this.getRecord(),
-            tpl:    new Ext.Template(
-                        '<div class="fix-content">',
-                            '<div class="textpic">',
-                                '<div class="image">',
-                                    '<img class="koin-image" src="./resources/images/koins/koin_no_value.png" />',
-                                '</div>',
-                                '<div class="content">',
-                                    '<p>',
-                                        Ext.i18n.Bundle.message('fix.form.koins.earn'),
-                                        ' <span class="important">{fix_koin_count}</span> ',
-                                        Ext.i18n.Bundle.message('fix.form.koins.name'),
-                                    '</p>',
-                                '</div>',
-                            '</div>',
-                            '<div class="textpic">',
-                                '<div class="image">',
-                                    '<img class="bugtype-image" src="./resources/images/marker_icons/{type}.png" />',
-                                '</div>',
-                                '<div class="content">',
-                                    '<p>{description}</p>',
-                                '</div>',
-                            '</div>',
-                        '</div>'
-                    )
-        };
-        
-        fixField = this.createFixField(this.getRecord());
-        
-        fixFormPanel = {
-            xtype: 'formpanel',
-            cls: 'fixFormPanel',
-            scrollable: false,
-            flex: 1,
-            items: [
-                fixField,
-                {
-                    xtype: 'button',
-                    cls: 'fixSubmitButton',
-                    ui: 'confirm',
-                    id: 'fixFormSubmitButton',
-                    text: Ext.i18n.Bundle.message('fix.form.button.submit')
-                }
-            ]
-        };
-        
-        this.add([fixContentComponent, fixFormPanel]);
-    },
-    
-    createFixField: function(bug) {
-        var fixField,
-            fieldConfig = {
-                name: 'fixfield',
-                cls: 'fixfield'
-            };
-        
-        if(bug.get('view_type') === 'select') {
-            fieldConfig = Ext.merge(fieldConfig, {
-                type: bug.get('type')
-            });
-            
-            fixField = Ext.create('Kort.view.bugmap.fix.type.Select', fieldConfig);
-        } else if(bug.get('view_type') === 'number') {
-            fixField = Ext.create('Ext.field.Number', fieldConfig);
-        } else {
-            fixField = Ext.create('Ext.field.Text', fieldConfig);
-        }
-        
-        fixField.setPlaceHolder(this.getRecord().get('answer_placeholder'));
-        
-        return fixField;
-    }
-});
-
-/**
  * Notification messagebox with overlays all panels
  */
 Ext.define('Kort.view.NotificationMessageBox', {
@@ -71442,8 +71501,7 @@ Ext.define('Kort.view.RewardMessageBox', {
                             '</p>',
                         '</div>',
                     '</div>',
-                    // TODO don't print badges message when no badges were won
-                    //'<tpl if="badges.length &gt 0">',
+                    '<tpl if="this.hasBadges(badges)">',
                         '<div class="text">',
                             '<div class="content">',
                                 '<h1> ' + Ext.i18n.Bundle.message('reward.alert.badges.title') + ' </h1>',
@@ -71457,8 +71515,13 @@ Ext.define('Kort.view.RewardMessageBox', {
                                 '</p>',
                             '</div>',
                         '</div>',
-                    //'</tpl>',
-                '</div>'
+                    '</tpl>',
+                '</div>',
+                {
+                    hasBadges: function(badges) {
+                        return badges.length > 0;
+                    }
+                }
             )
     }
 });
@@ -71495,7 +71558,9 @@ Ext.define('Kort.controller.OsmMap', {
      */
     renderOsmElement: function(record) {
         var me = this,
-            url = './server/webservices/osm/' + record.get('osm_type') + '/' + record.get('osm_id');
+            url;
+                
+        url = Kort.util.Config.getWebservices().osm.getUrl(record.get('osm_id'), record.get('osm_type'));
 
         Ext.Ajax.request({
             url: url,
@@ -71941,10 +72006,6 @@ Ext.define('Kort.plugin.PullRefresh', {
 Ext.define('Kort.view.highscore.PullRefreshPlugin', {
     extend: 'Kort.plugin.PullRefresh',
     alias: 'plugin.highscorepullrefresh',
-    
-    requires: [
-        'Kort.plugin.PullRefresh'
-    ],
 	
 	config: {
        refreshFn: function() {
@@ -72253,10 +72314,6 @@ Ext.define('Kort.controller.Login', {
 Ext.define('Kort.view.validation.PullRefreshPlugin', {
     extend: 'Kort.plugin.PullRefresh',
     alias: 'plugin.validationpullrefresh',
-    
-    requires: [
-        'Kort.plugin.PullRefresh'
-    ],
 	
 	config: {
        refreshFn: function(callbackFn, scope) {
@@ -72485,6 +72542,7 @@ Ext.define('Kort.view.profile.Container', {
 			}
 		]
 	},
+    
     initialize: function () {
         var profileContentComponent,
             badgesDataView;
@@ -72510,7 +72568,14 @@ Ext.define('Kort.view.Main', {
     extend: 'Ext.tab.Panel',
     xtype: 'main',
     id: 'mainTabPanel',
-
+    requires: [
+        'Kort.view.bugmap.NavigationView',
+        'Kort.view.validation.NavigationView',
+        'Kort.view.highscore.Container',
+        'Kort.view.profile.Container',
+        'Kort.view.about.Container'
+    ],
+    
     config: {
         tabBar: {
             docked: 'bottom',
@@ -72583,7 +72648,6 @@ Ext.define('Kort.controller.Main', {
     },
     
     /**
-     * @private
      * redirects to about tab
      */
     showAbout: function() {
@@ -72591,7 +72655,6 @@ Ext.define('Kort.controller.Main', {
     },
     
     /**
-     * @private
      * redirects to bugmap tab
      */
     showBugmap: function() {
@@ -72599,7 +72662,6 @@ Ext.define('Kort.controller.Main', {
     },
     
     /**
-     * @private
      * redirects to highscore tab
      */
     showHighscore: function() {
@@ -72607,7 +72669,6 @@ Ext.define('Kort.controller.Main', {
     },
     
     /**
-     * @private
      * redirects to profile tab
      */
     showProfile: function() {
@@ -72615,7 +72676,6 @@ Ext.define('Kort.controller.Main', {
     },
     
     /**
-     * @private
      * redirects to validation tab
      */
     showValidation: function() {
@@ -72822,7 +72882,7 @@ Ext.define('Kort.controller.Profile', {
 
         me.showLoadMask(Ext.i18n.Bundle.message('profile.logout.loadmask.message'));
         Ext.Ajax.request({
-            url: './server/webservices/user/' + Kort.user.get('id') + '/logout',
+            url: Kort.util.Config.getWebservices().userLogout.getUrl(Kort.user.get('id')),
             success: function(response){
                 userLocalStore.removeAll();
                 
@@ -73040,6 +73100,9 @@ Ext.define('Kort.controller.Validation', {
 Ext.define('Kort.view.validation.vote.AnswerActionSheet', {
     extend: 'Ext.ActionSheet',
     xtype: 'voteansweractionsheet',
+    requires: [
+        'Ext.Button'
+    ],
 
     config: {
         zIndex: Kort.util.Config.getZIndex().overlayLeafletMap,
@@ -73290,7 +73353,7 @@ Ext.define('Kort.model.Fix', {
         
 		proxy: {
 			type: 'rest',
-            url: './server/webservices/bug/fix'
+            url: Kort.util.Config.getWebservices().fix.url
 		}
     }
 });
@@ -73325,8 +73388,8 @@ Ext.define('Kort.model.Reward', {
 		
         fields: [
 			{ name: 'id', type: 'auto' },
-			{ name: 'koin_count_new', type: 'string' },
-			{ name: 'koin_count_total', type: 'string' },
+			{ name: 'koin_count_new', type: 'int' },
+			{ name: 'koin_count_total', type: 'int' },
             { name: 'badges', type: 'array' }
         ],
         
@@ -73347,7 +73410,7 @@ Ext.define('Kort.model.SelectAnswer', {
 			{ name: 'value', type: 'string' },
 			{ name: 'title', type: 'string' },
 			{ name: 'type', type: 'string' },
-			{ name: 'sorting', type: 'integer' }
+			{ name: 'sorting', type: 'int' }
         ]
     }
 });
@@ -73378,7 +73441,7 @@ Ext.define('Kort.model.User', {
         
 		proxy: {
 			type: 'rest',
-            url: './server/webservices/user',
+            url: Kort.util.Config.getWebservices().user.url,
             reader: {
                 type: 'json',
                 rootProperty: 'return'
@@ -73400,7 +73463,7 @@ Ext.define('Kort.model.User', {
                     }
 
                     // loading badges of user
-                    userBadges.getProxy().setUrl('./server/webservices/user/' + user.get('id') + '/badges');
+                    userBadges.getProxy().setUrl(Kort.util.Config.getWebservices().userBadges.getUrl(user.get('id')));
                     userBadges.load();
                     if(typeof callback === 'function') {
                         scope = scope || this;
@@ -73475,7 +73538,7 @@ Ext.define('Kort.model.Vote', {
         
 		proxy: {
 			type: 'rest',
-            url: './server/webservices/validation/vote'
+            url: Kort.util.Config.getWebservices().vote.url
 		}
     }
 });
@@ -73493,7 +73556,7 @@ Ext.define('Kort.store.Bugs', {
 			type: 'rest',
             url: './resources/stores/bugs.json',
             extraParams: {
-                'radius': Kort.util.Config.getBugs().radius
+                'radius': Kort.util.Config.getWebservices().bug.radius
             },
             reader: {
                 type: 'json',
@@ -73514,7 +73577,7 @@ Ext.define('Kort.store.Highscore', {
 		
 		proxy: {
 			type: 'rest',
-            url: './server/webservices/highscore/',
+            url: Kort.util.Config.getWebservices().highscore.url,
             sorters: 'place',
             reader: {
                 type: 'json',
@@ -73535,7 +73598,7 @@ Ext.define('Kort.store.SelectAnswers', {
 
 		proxy: {
 			type: 'rest',
-            url: './server/webservices/answer',
+            url: Kort.util.Config.getWebservices().answer.url,
             sorters: 'sorting',
             reader: {
                 type: 'json',
@@ -73704,6 +73767,13 @@ Ext.application({
         'Ext.i18n.Bundle',
         'Kort.util.Config',
         'Kort.util.Geolocation'
+    ],
+    
+    views: [,
+        'Main',
+        'overlay.login.Panel',
+        'overlay.geolocationerror.Panel',
+        'overlay.firststeps.Panel'
     ],
 
     controllers: [
@@ -73879,7 +73949,7 @@ Ext.application({
 
         mainPanel.show();
 
-        validationsStore.getProxy().setUrl('./server/webservices/validation/position/' + geo.getLatitude() + ',' + geo.getLongitude());
+        validationsStore.getProxy().setUrl(Kort.util.Config.getWebservices().validation.getUrl(geo.getLatitude(), geo.getLongitude()));
 
         validationsStore.load(function(records, operation, success) {
             console.log('validationStores load');
@@ -73889,7 +73959,7 @@ Ext.application({
         geo.setAutoUpdate(true);
 
         // loading badges of user
-        userBadges.getProxy().setUrl('./server/webservices/user/' + Kort.user.get('id') + '/badges');
+        userBadges.getProxy().setUrl(Kort.util.Config.getWebservices().userBadges.getUrl(Kort.user.get('id')));
         userBadges.load();
 
         // loading highscore
@@ -73954,7 +74024,8 @@ Ext.application({
                 ]
             }
         });
-
+        
+        Ext.Msg.defaultAllowedConfig.zIndex = 1600;
         Ext.Msg.confirm(
             "Neue App-Version",
             "Die App wurde auf die neuste Version aktualisiert. App neu laden?",
