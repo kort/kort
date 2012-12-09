@@ -11,29 +11,69 @@ use Helper\CurlHelper;
  */
 class DbProxy
 {
-    /** @var DbWebserviceConfig database webservice configuration */
+    /**
+     * Database webservice configuration.
+     *
+     * @var DbWebserviceConfig
+     */
     protected $wsConfig;
-    /** @var string database table */
+
+    /**
+     * Database table name.
+     *
+     * @var string
+     */
     protected $table;
-    /** @var array database table fields */
+
+    /**
+     * Database table field names.
+     *
+     * @var array
+     */
     protected $fields = array();
-    /** @var string where clause (condition) */
+
+    /**
+     * WHERE clause (condition).
+     *
+     * @var string
+     */
     protected $where;
-    /** @var string order by clause (sorting) */
+
+    /**
+     * ORDER BY clause (sorting).
+     *
+     * @var string
+     */
     protected $orderBy;
-    /** @var int amount of records to return */
+
+    /**
+     * Amount of records to return.
+     *
+     * @var integer
+     */
     protected $limit;
-    /** @var array fields to return */
+
+    /**
+     * Fields to return.
+     *
+     * @var array
+     */
     protected $returnFields;
-    /** @var CurlHelper curl wrapper object */
+
+    /**
+     * Curl wrapper object.
+     *
+     * @var CurlHelper
+     */
     protected $curl;
 
     /**
-     * Create a new DbProxy object for a request
-     * @param string $table database table
-     * @param array $fields database table fields
+     * Create a new DbProxy object for a request.
+     *
+     * @param string $table  Database table.
+     * @param array  $fields Database table fields.
      */
-    public function __construct($table, $fields)
+    public function __construct($table, array $fields)
     {
         $this->wsConfig = new DbWebserviceConfig();
         $this->table = $table;
@@ -42,7 +82,8 @@ class DbProxy
     }
 
     /**
-     * Indicates wheter the requests runs in a transaction or not
+     * Indicates wheter the requests runs in a transaction or not.
+     *
      * @return bool true if the request runs in a transation, false otherwise
      */
     public function isTransaction()
@@ -51,7 +92,8 @@ class DbProxy
     }
 
     /**
-     * Getter for $wsConfig
+     * Getter for $wsConfig.
+     *
      * @return DbWebserviceConfig the database webservice configuration
      */
     public function getDbWebserviceConfig()
@@ -60,35 +102,47 @@ class DbProxy
     }
 
     /**
-     * Setter for curl wrapper (only used by unit tests)
-     * @param CurlHelper $curl a curl wrapper object
+     * Setter for curl wrapper (only used by unit tests).
+     *
+     * @param CurlHelper $curl Curl wrapper object.
+     *
+     * @return void
      */
-    public function setCurl($curl)
+    public function setCurl(CurlHelper $curl)
     {
         $this->curl = $curl;
     }
 
     /**
-     * Setter for $fields
-     * @param array $fields database table fields
+     * Setter for $fields.
+     *
+     * @param array $fields Database table fields.
+     *
+     * @return void
      */
-    public function setFields($fields)
+    public function setFields(array $fields)
     {
          $this->fields = $fields;
     }
 
     /**
-     * Setter for $returnFields
-     * @param array $returnFields the database table fields to return from the request
+     * Setter for $returnFields.
+     *
+     * @param array $returnFields The database table fields to return from the request.
+     *
+     * @return void
      */
-    public function setReturnFields($returnFields)
+    public function setReturnFields(array $returnFields)
     {
         $this->returnFields = $returnFields;
     }
 
     /**
-     * Setter for $where
-     * @param string $where the condition of the request
+     * Setter for $where.
+     *
+     * @param string $where The condition of the request.
+     *
+     * @return void
      */
     public function setWhere($where)
     {
@@ -96,8 +150,11 @@ class DbProxy
     }
 
     /**
-     * Setter for $orderBy
-     * @param string $orderBy the sorting of the result
+     * Setter for $orderBy.
+     *
+     * @param string $orderBy The sorting of the result.
+     *
+     * @return void
      */
     public function setOrderBy($orderBy)
     {
@@ -105,8 +162,11 @@ class DbProxy
     }
 
     /**
-     * Setter for $limit
-     * @param int $limit amount of records to return
+     * Setter for $limit.
+     *
+     * @param integer $limit Amount of records to return.
+     *
+     * @return void
      */
     public function setLimit($limit)
     {
@@ -114,7 +174,8 @@ class DbProxy
     }
 
     /**
-     * Make a select request
+     * Make a select request.
+     *
      * @return mixed the result from the database
      */
     public function select()
@@ -137,11 +198,13 @@ class DbProxy
     }
 
     /**
-     * Make an insert request
-     * @param array $data the data to insert
+     * Make an insert request.
+     *
+     * @param array $data The data to insert.
+     *
      * @return mixed the result from the database (defined by $returnFields)
      */
-    public function insert($data)
+    public function insert(array $data)
     {
         $path  = "/" . $this->table;
         $path .= "/" . implode(",", $this->fields);
@@ -154,11 +217,13 @@ class DbProxy
     }
 
     /**
-     * Make an update request
-     * @param array $data the data to update
+     * Make an update request.
+     *
+     * @param array $data The data to update.
+     *
      * @return mixed the result from the database (defined by $returnFields)
      */
-    public function update($data)
+    public function update(array $data)
     {
         $path  = "/" . $this->table;
         $path .= "/" . implode(",", $this->fields);
@@ -176,13 +241,15 @@ class DbProxy
     }
 
     /**
-     * Make a request to the database webservice
-     * @param string $method the HTTP method to use [POST, PUT, GET]
-     * @param string $url the URL to send the request to
-     * @param array $data the data to send along with the request
+     * Make a request to the database webservice.
+     *
+     * @param string $method The HTTP method to use [POST, PUT, GET].
+     * @param string $url    The URL to send the request to.
+     * @param array  $data   The data to send along with the request.
+     *
      * @return mixed the answer from the database webservice
      */
-    protected function request($method, $url, $data = false)
+    protected function request($method, $url, array $data = false)
     {
         switch ($method)
         {

@@ -8,12 +8,13 @@ use Webservice\DbProxyHandler;
 use Helper\PostGisSqlHelper;
 
 /**
- * The BugHandler class is used to handle request to the bug webservices
+ * The BugHandler class is used to handle request to the bug webservices.
  */
 class BugHandler extends DbProxyHandler
 {
     /**
      * Returns the table used by this handler.
+     *
      * @return string the table name used by this handler.
      */
     protected function getTable()
@@ -23,6 +24,7 @@ class BugHandler extends DbProxyHandler
 
     /**
      * Returns the table fields used by this handler.
+     *
      * @return array the table fields used by this handler.
      */
     protected function getFields()
@@ -49,11 +51,13 @@ class BugHandler extends DbProxyHandler
     }
 
     /**
-     * Returns bugs around the users position
-     * @param float $lat latitide of the user position
-     * @param float $lng longitude of the user position
-     * @param int $limit amount of bugs to return
-     * @param int $radius the radius around the users psotion to look for
+     * Returns bugs around the users position.
+     *
+     * @param float   $lat    Latitide of the user position.
+     * @param float   $lng    Longitude of the user position.
+     * @param integer $limit  Amount of bugs to return.
+     * @param integer $radius Radius around the users psotion to look for.
+     *
      * @return string JSON-formatted bugs
      */
     public function getBugsByOwnPosition($lat, $lng, $limit, $radius)
@@ -70,7 +74,8 @@ class BugHandler extends DbProxyHandler
     }
 
     /**
-     * Returns the selected bugs
+     * Returns the selected bugs.
+     *
      * @return string JSON-encoded bugs
      */
     protected function select()
@@ -81,8 +86,10 @@ class BugHandler extends DbProxyHandler
     }
 
     /**
-     * Return a bug with a specific id
-     * @param int $id the id of the bug
+     * Return a bug with a specific id.
+     *
+     * @param integer $id The id of the bug.
+     *
      * @return string JSON-encoded bug
      */
     public function getById($id)
@@ -92,11 +99,13 @@ class BugHandler extends DbProxyHandler
     }
 
     /**
-     * Translate all texts of a bug
-     * @param array $bug the bug to translate
+     * Translate all texts of a bug.
+     *
+     * @param array $bug The bug to translate.
+     *
      * @return array the translated bug
      */
-    public function translateBug($bug)
+    public function translateBug(array $bug)
     {
         $bug['description'] = $this->translate($bug['description']);
         $search = array("\$1", "\$2", "\$3", "\$4", "\$5");
