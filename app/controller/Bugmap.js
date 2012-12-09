@@ -152,11 +152,10 @@ Ext.define('Kort.controller.Bugmap', {
         var me = this,
             mapCmp = me.getMapCmp(),
             bugsStore = me.getBugsStore(),
-            url, currentLatLng;
+            currentLatLng;
         
         currentLatLng = me.getCurrentLocationLatLng(mapCmp);
-        url = './server/webservices/bug/position/' + currentLatLng.lat + ',' + currentLatLng.lng;
-        bugsStore.getProxy().setUrl(url);
+        bugsStore.getProxy().setUrl(Kort.util.Config.getWebservices().bug.getUrl(currentLatLng.lat, currentLatLng.lng));
 
         me.showLoadMask();
 
@@ -283,7 +282,6 @@ Ext.define('Kort.controller.Bugmap', {
     // @private
     markerConfirmHandler: function(buttonId, value, opt) {
         if(buttonId === 'yes') {
-            console.log('Open fix (id: ' + this.getActiveBug().data.id + ')');
             this.showFix(this.getActiveBug());
         }
 

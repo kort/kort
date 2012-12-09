@@ -84,7 +84,7 @@ Ext.define('Kort.controller.Profile', {
 
         me.showLoadMask(Ext.i18n.Bundle.message('profile.logout.loadmask.message'));
         Ext.Ajax.request({
-            url: './server/webservices/user/' + Kort.user.get('id') + '/logout',
+            url: Kort.util.Config.getWebservices().userLogout.getUrl(Kort.user.get('id')),
             success: function(response){
                 userLocalStore.removeAll();
                 

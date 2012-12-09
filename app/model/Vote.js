@@ -15,7 +15,7 @@ Ext.define('Kort.model.Vote', {
         
 		proxy: {
 			type: 'rest',
-            url: './server/webservices/validation/vote'
+            url: Kort.util.Config.getWebservices().vote.url
 		}
     }
 });
