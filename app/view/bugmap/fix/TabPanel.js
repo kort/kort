@@ -5,6 +5,7 @@ Ext.define('Kort.view.bugmap.fix.TabPanel', {
 	extend: 'Ext.tab.Panel',
 	alias: 'widget.fixtabpanel',
     requires: [
+        'Kort.view.bugmap.fix.Form',
         'Kort.view.LeafletMap'
     ],
     

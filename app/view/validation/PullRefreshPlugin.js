@@ -4,10 +4,6 @@
 Ext.define('Kort.view.validation.PullRefreshPlugin', {
     extend: 'Kort.plugin.PullRefresh',
     alias: 'plugin.validationpullrefresh',
-    
-    requires: [
-        'Kort.plugin.PullRefresh'
-    ],
 	
 	config: {
        refreshFn: function(callbackFn, scope) {

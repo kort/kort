@@ -18,6 +18,13 @@ Ext.application({
         'Kort.util.Config',
         'Kort.util.Geolocation'
     ],
+    
+    views: [,
+        'Main',
+        'overlay.login.Panel',
+        'overlay.geolocationerror.Panel',
+        'overlay.firststeps.Panel'
+    ],
 
     controllers: [
         'About',
