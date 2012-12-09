@@ -49,6 +49,7 @@ fix.form.title=Auftrag
 fix.form.koins.earn=Hol dir die
 fix.form.koins.name=koins!
 fix.form.message.placeholder=Deine Antwort...
+fix.form.button.showonmap=Auf der Karte anzeigen
 fix.form.button.submit=Auftrag abschliessen
 fix.form.loadmask.message=Lade Antworten...
 fix.map.title=Karte

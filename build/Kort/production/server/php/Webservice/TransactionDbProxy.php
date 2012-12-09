@@ -17,7 +17,9 @@ class TransactionDbProxy extends DbProxy
         $path  = "/transaction";
         $path .= "?";
         $path .= "key=" . $this->getDbWebserviceConfig()->getApiKey();
-        $result = $this->request("POST", $this->getDbWebserviceConfig()->getUrl() . $path, json_encode($this->statements));
+
+        $encodedStatements = json_encode($this->statements);
+        $result = $this->request("POST", $this->getDbWebserviceConfig()->getUrl() . $path, $encodedStatements);
         $this->clearTransaction();
 
         return $result;

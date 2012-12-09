@@ -4,8 +4,6 @@
  */
 namespace Model;
 
-use Badge;
-
 /**
  * The Reward class represents the entity, which a user can win.
  *
@@ -22,8 +20,9 @@ class Reward
 
     /**
     * Creates a new instance of Reward
-    * @param $koinCount amount of koins for this Reward
-    * @param $badges array of Badges of this Reward
+    * @param int $koinCountTotal amount of koins that the user has
+    * @param int $koinCountNew amount of koins for this Reward
+    * @param array $badges array of Badges of this Reward
     * @return a new instance of Reward
     */
     public function __construct($koinCountTotal, $koinCountNew = 0, $badges = array())
@@ -41,7 +40,7 @@ class Reward
     {
         $response = array();
         if (count($this->getBadges()) > 0) {
-            $response["badges"] = array_map(Badge::getValueFn(), $this->getBadges());
+            $response["badges"] = Badge::getValues($this->getBadges());
         } else {
             $response["badges"] = array();
         }
