@@ -17,8 +17,7 @@ Ext.define('Kort.view.bugmap.fix.Form', {
 		layout: 'vbox',
         cls: 'fixform',
         scrollable: true,
-        title: Ext.i18n.Bundle.message('fix.form.title'),
-        fullscreen: true
+        title: Ext.i18n.Bundle.message('fix.form.title')
 	},
     
     initialize: function () {
@@ -31,6 +30,7 @@ Ext.define('Kort.view.bugmap.fix.Form', {
         fixContentComponent = {
             xtype: 'component',
             cls: 'fixContentComponent',
+            scrollable: false,
             record: this.getRecord(),
             tpl:    new Ext.Template(
                         '<div class="fix-content">',
@@ -64,14 +64,18 @@ Ext.define('Kort.view.bugmap.fix.Form', {
             xtype: 'formpanel',
             cls: 'fixFormPanel',
             scrollable: false,
-            flex: 1,
             items: [
                 fixField,
                 {
                     xtype: 'button',
+                    cls: 'fixShowOnMapButton',
+                    ui: 'action',
+                    text: Ext.i18n.Bundle.message('fix.form.button.showonmap')
+                },
+                {
+                    xtype: 'button',
                     cls: 'fixSubmitButton',
                     ui: 'confirm',
-                    id: 'fixFormSubmitButton',
                     text: Ext.i18n.Bundle.message('fix.form.button.submit')
                 }
             ]
