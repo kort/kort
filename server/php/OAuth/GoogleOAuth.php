@@ -7,7 +7,7 @@ namespace OAuth;
 /**
  * The GoogleOAuth class takes care about the login with Google
  */
-class GoogleOAuth extends OAuthCallback
+class GoogleOAuth implements IOAuthCallback
 {
     //put your code here
 }
