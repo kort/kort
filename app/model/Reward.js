@@ -8,8 +8,8 @@ Ext.define('Kort.model.Reward', {
 		
         fields: [
 			{ name: 'id', type: 'auto' },
-			{ name: 'koin_count_new', type: 'string' },
-			{ name: 'koin_count_total', type: 'string' },
+			{ name: 'koin_count_new', type: 'int' },
+			{ name: 'koin_count_total', type: 'int' },
             { name: 'badges', type: 'array' }
         ],
         
