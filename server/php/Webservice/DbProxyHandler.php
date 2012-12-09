@@ -67,12 +67,6 @@ abstract class DbProxyHandler
     abstract protected function getFields();
 
     /**
-     * Returns the table fields used by this handler.
-     * @return array the table fields used by this handler.
-     */
-    abstract protected function getFields();
-
-    /**
      * Return the returnFields for this handler
      * @return array database table fields
      */
