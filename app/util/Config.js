@@ -128,13 +128,13 @@ Ext.define('Kort.util.Config', {
         webservices: {
             bug: {
                 getUrl: function(latitude, longitude) {
-                    return './server/webservices/bug/position/' + latitude + ',' + longitude
+                    return './server/webservices/bug/position/' + latitude + ',' + longitude;
                 },
                 radius: 5000
             },
             validation: {
                 getUrl: function(latitude, longitude) {
-                    return './server/webservices/validation/position/' + latitude + ',' + longitude
+                    return './server/webservices/validation/position/' + latitude + ',' + longitude;
                 }
             },
             user: {
@@ -142,12 +142,12 @@ Ext.define('Kort.util.Config', {
             },
             userLogout: {
                 getUrl: function(userid) {
-                    return './server/webservices/user/' + userid + '/logout'
+                    return './server/webservices/user/' + userid + '/logout';
                 }
             },
             userBadges: {
                 getUrl: function(userid) {
-                    return './server/webservices/user/' + userid + '/badges'
+                    return './server/webservices/user/' + userid + '/badges';
                 }
             },
             highscore: {
@@ -164,8 +164,8 @@ Ext.define('Kort.util.Config', {
             },
             osm: {
                 getUrl: function(objectId, objectType) {
-                    return './server/webservices/osm/' + objectType + '/' + objectId
-                } 
+                    return './server/webservices/osm/' + objectType + '/' + objectId;
+                }
             }
         }
 	},

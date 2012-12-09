@@ -19,7 +19,7 @@ Ext.application({
         'Kort.util.Geolocation'
     ],
     
-    views: [,
+    views: [
         'Main',
         'overlay.login.Panel',
         'overlay.geolocationerror.Panel',
