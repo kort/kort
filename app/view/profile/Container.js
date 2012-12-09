@@ -47,6 +47,7 @@ Ext.define('Kort.view.profile.Container', {
 			}
 		]
 	},
+    
     initialize: function () {
         var profileContentComponent,
             badgesDataView;

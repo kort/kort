@@ -4,6 +4,9 @@
 Ext.define('Kort.view.validation.vote.AnswerActionSheet', {
     extend: 'Ext.ActionSheet',
     xtype: 'voteansweractionsheet',
+    requires: [
+        'Ext.Button'
+    ],
 
     config: {
         zIndex: Kort.util.Config.getZIndex().overlayLeafletMap,
