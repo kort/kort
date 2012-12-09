@@ -7,12 +7,13 @@ namespace Webservice\User;
 use Webservice\DbProxyHandler;
 
 /**
- * The UserHandler class handles all POST and PUT requests to the user webservice
+ * The UserHandler class handles all POST and PUT requests to the user webservice.
  */
 class UserHandler extends DbProxyHandler
 {
     /**
     * Returns the database table to be used with this Handler.
+     *
     * @return the database table as a string
     */
     protected function getTable()
@@ -22,6 +23,7 @@ class UserHandler extends DbProxyHandler
 
     /**
      * Returns the database fields to be used with this Handler.
+     *
      * @return an array of database fields
      */
     protected function getFields()
@@ -38,7 +40,8 @@ class UserHandler extends DbProxyHandler
     }
 
     /**
-     * Return the database fields to return when executing insert or update
+     * Return the database fields to return when executing insert or update.
+     *
      * @return array of database fields
      */
     protected function getReturnFields()
@@ -53,12 +56,14 @@ class UserHandler extends DbProxyHandler
     }
 
     /**
-     * Updates a user with newer data
-     * @param int $id the user id
-     * @param array $data the user data
+     * Updates a user with newer data.
+     *
+     * @param integer $id   The user id.
+     * @param array   $data The user data.
+     *
      * @return string JSON-encoded updated user
      */
-    public function updateUser($id, $data)
+    public function updateUser($id, array $data)
     {
         $this->getDbProxy()->setReturnFields($this->getReturnFields());
         $this->getDbProxy()->setWhere("user_id = " . $id);
@@ -66,11 +71,13 @@ class UserHandler extends DbProxyHandler
     }
 
     /**
-     * Insert a new user
-     * @param array $data the user data
+     * Insert a new user.
+     *
+     * @param array $data The user data.
+     *
      * @return string JSON-encoded user
      */
-    public function insertUser($data)
+    public function insertUser(array $data)
     {
         $this->getDbProxy()->setReturnFields($this->getReturnFields());
         return $this->getDbProxy()->insert($data);

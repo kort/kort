@@ -7,12 +7,13 @@ namespace Webservice\User;
 use Webservice\DbProxyHandler;
 
 /**
- * The UserGetHandler class handles all GET requests to the user webservice
+ * The UserGetHandler class handles all GET requests to the user webservice.
  */
 class UserGetHandler extends DbProxyHandler
 {
     /**
      * Returns the database table to be used with this Handler.
+     *
      * @return the database table as a string
      */
     protected function getTable()
@@ -22,6 +23,7 @@ class UserGetHandler extends DbProxyHandler
 
     /**
      * Returns the database fields to be used with this Handler.
+     *
      * @return an array of database fields
      */
     protected function getFields()
@@ -41,9 +43,10 @@ class UserGetHandler extends DbProxyHandler
     }
 
     /**
-     * Returns a user identified by his specific secret
+     * Returns a user identified by his specific secret.
      *
-     * @param $secret the user's secret
+     * @param string $secret The user's secret.
+     *
      * @return the JSON encoded user information
      */
     public function getUserBySecret($secret)
@@ -68,8 +71,10 @@ class UserGetHandler extends DbProxyHandler
     }
 
     /**
-     * Returns a user json found by the OAuth user_id
-     * @param string $oauth_user_id the unqiue identifier of the oauth provider
+     * Returns a user json found by the OAuth user_id.
+     *
+     * @param string $oauth_user_id The unqiue identifier of the oauth provider.
+     *
      * @return string|bool a JSON-encoded user object if successfull, false otherwise
      */
     public function getUserByOAuthUserId($oauth_user_id)
@@ -91,6 +96,7 @@ class UserGetHandler extends DbProxyHandler
 
     /**
      * Returns a default user, which is used when the user is not yet logged in.
+     *
      * @return string the JSON-encoded default user object
      */
     protected function getDefaultUserJson()
@@ -115,10 +121,11 @@ class UserGetHandler extends DbProxyHandler
     /**
     * Get either a Gravatar URL or complete image tag for a specified email address.
     *
-    * @param $email the email address of the user
-    * @param $size Size in pixels, defaults to 200px [ 1 - 2048 ]
-    * @param $imageSet Default imageset to use [ 404 | mm | identicon | monsterid | wavatar ]
-    * @param $rating Maximum rating (inclusive) [ g | pg | r | x ]
+    * @param string  $email    The email address of the user.
+    * @param integer $size     Size in pixels, defaults to 200px [ 1 - 2048 ].
+    * @param string  $imageSet Default imageset to use [ 404 | mm | identicon | monsterid | wavatar ].
+    * @param string  $rating   Maximum rating (inclusive) [ g | pg | r | x ].
+    *
     * @return string containing the URL
     * @link http://gravatar.com/site/implement/images/php/
     */
