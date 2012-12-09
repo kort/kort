@@ -24,7 +24,7 @@ Ext.define('Kort.model.User', {
         
 		proxy: {
 			type: 'rest',
-            url: './server/webservices/user',
+            url: Kort.util.Config.getWebservices().user.url,
             reader: {
                 type: 'json',
                 rootProperty: 'return'
@@ -46,7 +46,7 @@ Ext.define('Kort.model.User', {
                     }
 
                     // loading badges of user
-                    userBadges.getProxy().setUrl('./server/webservices/user/' + user.get('id') + '/badges');
+                    userBadges.getProxy().setUrl(Kort.util.Config.getWebservices().userBadges.getUrl(user.get('id')));
                     userBadges.load();
                     if(typeof callback === 'function') {
                         scope = scope || this;

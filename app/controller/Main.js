@@ -42,7 +42,6 @@ Ext.define('Kort.controller.Main', {
     },
     
     /**
-     * @private
      * redirects to about tab
      */
     showAbout: function() {
@@ -50,7 +49,6 @@ Ext.define('Kort.controller.Main', {
     },
     
     /**
-     * @private
      * redirects to bugmap tab
      */
     showBugmap: function() {
@@ -58,7 +56,6 @@ Ext.define('Kort.controller.Main', {
     },
     
     /**
-     * @private
      * redirects to highscore tab
      */
     showHighscore: function() {
@@ -66,7 +63,6 @@ Ext.define('Kort.controller.Main', {
     },
     
     /**
-     * @private
      * redirects to profile tab
      */
     showProfile: function() {
@@ -74,7 +70,6 @@ Ext.define('Kort.controller.Main', {
     },
     
     /**
-     * @private
      * redirects to validation tab
      */
     showValidation: function() {
