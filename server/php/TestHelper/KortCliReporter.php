@@ -5,13 +5,12 @@
 namespace TestHelper;
 
 /**
- * The KortCliReporter is a kort-specifc TestReporter which is used when the test
- * are run from command line (CLI).
+ * The KortCliReporter is a kort-specifc TestReporter for the command line (CLI).
  */
 class KortCliReporter extends \SimpleReporter
 {
     /**
-     * Creates a new KortCliReporter instance
+     * Creates a new KortCliReporter instance.
      */
     public function __construct()
     {
@@ -20,8 +19,11 @@ class KortCliReporter extends \SimpleReporter
     }
 
     /**
-     * Paints the header of the test
-     * @param string $test_name the name of the test
+     * Paints the header of the test.
+     *
+     * @param string $test_name The name of the test.
+     *
+     * @return void
      */
     public function paintHeader($test_name)
     {
@@ -30,8 +32,11 @@ class KortCliReporter extends \SimpleReporter
     }
 
     /**
-     * Paints the footer of the test
-     * @param string $test_name the name of the test
+     * Paints the footer of the test.
+     *
+     * @param string $test_name The name of the test.
+     *
+     * @return void
      */
     public function paintFooter($test_name)
     {
@@ -51,8 +56,11 @@ class KortCliReporter extends \SimpleReporter
     }
 
     /**
-     * Paints the header of the test case
-     * @param string $case the name of the test case
+     * Paints the header of the test case.
+     *
+     * @param string $case The name of the test case.
+     *
+     * @return void
      */
     public function paintCaseStart($case)
     {
@@ -61,8 +69,11 @@ class KortCliReporter extends \SimpleReporter
     }
 
     /**
-     * Paints the footer of the test case
-     * @param string $case the name of the test case
+     * Paints the footer of the test case.
+     *
+     * @param string $case The name of the test case.
+     *
+     * @return void
      */
     public function paintCaseEnd($case)
     {
@@ -70,8 +81,11 @@ class KortCliReporter extends \SimpleReporter
     }
 
     /**
-     * Paints the header of the test method
-     * @param string $test the name of the test method
+     * Paints the header of the test method.
+     *
+     * @param string $test The name of the test method.
+     *
+     * @return void
      */
     public function paintMethodStart($test)
     {
@@ -80,8 +94,11 @@ class KortCliReporter extends \SimpleReporter
     }
 
     /**
-     * Paints the footer of the test method
-     * @param string $test the name of the test method
+     * Paints the footer of the test method.
+     *
+     * @param string $test The name of the test method.
+     *
+     * @return void
      */
     public function paintMethodEnd($test)
     {
@@ -90,8 +107,11 @@ class KortCliReporter extends \SimpleReporter
     }
 
     /**
-     * Paints a failing test
-     * @param string $message the message of the failing test
+     * Paints a failing test.
+     *
+     * @param string $message The message of the failing test.
+     *
+     * @return void
      */
     public function paintFail($message)
     {
@@ -100,8 +120,11 @@ class KortCliReporter extends \SimpleReporter
     }
 
     /**
-     * Paints a test exception
-     * @param string $exception the message of the test exception
+     * Paints a test exception.
+     *
+     * @param string $exception The message of the test exception.
+     *
+     * @return void
      */
     public function paintException($exception)
     {
@@ -110,8 +133,11 @@ class KortCliReporter extends \SimpleReporter
     }
 
     /**
-     * Paints a test error
-     * @param string $message the message of the test error
+     * Paints a test error.
+     *
+     * @param string $message The message of the test error.
+     *
+     * @return void
      */
     public function paintError($message)
     {

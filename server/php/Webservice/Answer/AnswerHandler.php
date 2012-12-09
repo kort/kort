@@ -7,12 +7,13 @@ namespace Webservice\Answer;
 use Webservice\DbProxyHandler;
 
 /**
- * The AnswerHandler class is used to handle requests to the answer webservices
+ * The AnswerHandler class is used to handle requests to the answer webservices.
  */
 class AnswerHandler extends DbProxyHandler
 {
     /**
      * Returns the table used by this handler.
+     *
      * @return string the table name used by this handler.
      */
     protected function getTable()
@@ -22,6 +23,7 @@ class AnswerHandler extends DbProxyHandler
 
     /**
      * Returns the table fields used by this handler.
+     *
      * @return array the table fields used by this handler.
      */
     protected function getFields()
@@ -30,7 +32,8 @@ class AnswerHandler extends DbProxyHandler
     }
 
     /**
-     * Returns all answers of all types
+     * Returns all answers of all types.
+     *
      * @return string all answers of all types
      */
     public function getAllAnswers()
@@ -40,8 +43,10 @@ class AnswerHandler extends DbProxyHandler
     }
 
     /**
-     * Returns all answers of a specific type
-     * @param string $type the type of answer
+     * Returns all answers of a specific type.
+     *
+     * @param string $type The type of answer.
+     * 
      * @return string ll answers of the specific type
      */
     public function getSpecificAnswers($type)
