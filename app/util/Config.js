@@ -54,14 +54,6 @@ Ext.define('Kort.util.Config', {
         timeout: 10000,
         
         /**
-         * @cfg {Object} bugs Configuration for bug to load
-         * @cfg {Object} [bugs.radius=5000] (required) Radius for bug selection
-         */
-        bugs: {
-            radius: 5000
-        },
-        
-        /**
          * @cfg {Object} zIndex zIndex for components
          * @cfg {Number} [zIndex.overlayLeafletMap=1500] (required) zIndex for panel to overlay leaflet map components
          * @cfg {Number} [zIndex.overlayOverlayPanel=1600] (required) zIndex for panel to overlay another overlay panel
@@ -107,6 +99,74 @@ Ext.define('Kort.util.Config', {
          */
         formPlaceholders: {
             username: 'Benutzername'
+        },
+        
+        /**
+         * @cfg {Object} webservices Configuration of webservices
+         * @cfg {Object} webservices.bug Configuration of bug webservice
+         * @cfg {Function} webservices.bug.getUrl (required) Returns url of bug webservice with given position (latitude, longitude)
+         * @cfg {Number} webservices.bug.radius (required) Limit of bug selection
+         * @cfg {Object} webservices.validation Configuration of validation webservice
+         * @cfg {Function} webservices.validation.getUrl (required) Returns url of validation webservice with given position (latitude, longitude)
+         * @cfg {Object} webservices.user Configuration of user webservice
+         * @cfg {Object} webservices.user.url Url of user webservice
+         * @cfg {Object} webservices.userLogout Configuration of userlogout webservice
+         * @cfg {Function} webservices.userLogout.getUrl (required) Returns url of userlogout webservice with given userid
+         * @cfg {Object} webservices.userBadges Configuration of userbadges webservice
+         * @cfg {Function} webservices.userBadges.getUrl (required) Returns url of userbadges webservice with given userid
+         * @cfg {Object} webservices.highscore Configuration of highscore webservice
+         * @cfg {Object} webservices.highscore.url Url of highscore webservice
+         * @cfg {Object} webservices.answer Configuration of answer webservice
+         * @cfg {Object} webservices.answer.url Url of answer webservice
+         * @cfg {Object} webservices.fix Configuration of fix webservice
+         * @cfg {Object} webservices.fix.url Url of fix webservice
+         * @cfg {Object} webservices.vote Configuration of vote webservice
+         * @cfg {Object} webservices.vote.url Url of vote webservice
+         * @cfg {Object} webservices.osm Configuration of osm webservice
+         * @cfg {Function} webservices.osm.getUrl (required) Returns url of osm webservice with given osm object(id, type)
+         */
+        webservices: {
+            bug: {
+                getUrl: function(latitude, longitude) {
+                    return './server/webservices/bug/position/' + latitude + ',' + longitude
+                },
+                radius: 5000
+            },
+            validation: {
+                getUrl: function(latitude, longitude) {
+                    return './server/webservices/validation/position/' + latitude + ',' + longitude
+                }
+            },
+            user: {
+                url: './server/webservices/user/'
+            },
+            userLogout: {
+                getUrl: function(userid) {
+                    return './server/webservices/user/' + userid + '/logout'
+                }
+            },
+            userBadges: {
+                getUrl: function(userid) {
+                    return './server/webservices/user/' + userid + '/badges'
+                }
+            },
+            highscore: {
+                url: './server/webservices/highscore/'
+            },
+            answer: {
+                url: './server/webservices/answer/'
+            },
+            fix: {
+                url: './server/webservices/bug/fix'
+            },
+            vote: {
+                url: './server/webservices/validation/vote'
+            },
+            osm: {
+                getUrl: function(objectId, objectType) {
+                    return './server/webservices/osm/' + objectType + '/' + objectId
+                } 
+            }
         }
 	},
 	

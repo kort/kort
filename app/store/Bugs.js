@@ -11,7 +11,7 @@ Ext.define('Kort.store.Bugs', {
 			type: 'rest',
             url: './resources/stores/bugs.json',
             extraParams: {
-                'radius': Kort.util.Config.getBugs().radius
+                'radius': Kort.util.Config.getWebservices().bug.radius
             },
             reader: {
                 type: 'json',

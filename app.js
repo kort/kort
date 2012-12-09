@@ -192,7 +192,7 @@ Ext.application({
 
         mainPanel.show();
 
-        validationsStore.getProxy().setUrl('./server/webservices/validation/position/' + geo.getLatitude() + ',' + geo.getLongitude());
+        validationsStore.getProxy().setUrl(Kort.util.Config.getWebservices().validation.getUrl(geo.getLatitude(), geo.getLongitude()));
 
         validationsStore.load(function(records, operation, success) {
             console.log('validationStores load');
@@ -202,7 +202,7 @@ Ext.application({
         geo.setAutoUpdate(true);
 
         // loading badges of user
-        userBadges.getProxy().setUrl('./server/webservices/user/' + Kort.user.get('id') + '/badges');
+        userBadges.getProxy().setUrl(Kort.util.Config.getWebservices().userBadges.getUrl(Kort.user.get('id')));
         userBadges.load();
 
         // loading highscore

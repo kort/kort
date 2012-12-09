@@ -9,7 +9,7 @@ Ext.define('Kort.store.SelectAnswers', {
 
 		proxy: {
 			type: 'rest',
-            url: './server/webservices/answer',
+            url: Kort.util.Config.getWebservices().answer.url,
             sorters: 'sorting',
             reader: {
                 type: 'json',

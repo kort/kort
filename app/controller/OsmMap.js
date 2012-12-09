@@ -30,7 +30,9 @@ Ext.define('Kort.controller.OsmMap', {
      */
     renderOsmElement: function(record) {
         var me = this,
-            url = './server/webservices/osm/' + record.get('osm_type') + '/' + record.get('osm_id');
+            url;
+                
+        url = Kort.util.Config.getWebservices().osm.getUrl(record.get('osm_id'), record.get('osm_type'));
 
         Ext.Ajax.request({
             url: url,

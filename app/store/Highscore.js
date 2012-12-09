@@ -9,7 +9,7 @@ Ext.define('Kort.store.Highscore', {
 		
 		proxy: {
 			type: 'rest',
-            url: './server/webservices/highscore/',
+            url: Kort.util.Config.getWebservices().highscore.url,
             sorters: 'place',
             reader: {
                 type: 'json',
