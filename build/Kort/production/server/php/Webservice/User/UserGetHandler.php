@@ -1,23 +1,29 @@
 <?php
+/**
+ * kort - Webservice\User\UserGetHandler class
+ */
 namespace Webservice\User;
 
 use Webservice\DbProxyHandler;
 
+/**
+ * The UserGetHandler class handles all GET requests to the user webservice
+ */
 class UserGetHandler extends DbProxyHandler
 {
     /**
-    * Returns the database table to be used with this Handler.
-    * @return the database table as a string
-    */
+     * Returns the database table to be used with this Handler.
+     * @return the database table as a string
+     */
     protected function getTable()
     {
         return 'kort.user_model';
     }
 
     /**
-    * Returns the database fields to be used with this Handler.
-    * @return an array of database fields
-    */
+     * Returns the database fields to be used with this Handler.
+     * @return an array of database fields
+     */
     protected function getFields()
     {
         return array(
@@ -35,11 +41,11 @@ class UserGetHandler extends DbProxyHandler
     }
 
     /**
-    * Returns a user identified by his specific secret
-    *
-    * @param $secret the user's secret
-    * @return the JSON encoded user information
-    */
+     * Returns a user identified by his specific secret
+     *
+     * @param $secret the user's secret
+     * @return the JSON encoded user information
+     */
     public function getUserBySecret($secret)
     {
         if (!empty($secret)) {
@@ -64,13 +70,18 @@ class UserGetHandler extends DbProxyHandler
     /**
      * Returns a user json found by the OAuth user_id
      * @param string $oauth_user_id the unqiue identifier of the oauth provider
-     * @return string a JSON-encoded user object
+     * @return string|bool a JSON-encoded user object if successfull, false otherwise
      */
     public function getUserByOAuthUserId($oauth_user_id)
     {
         $this->getDbProxy()->setWhere("oauth_user_id = '". $oauth_user_id . "'");
 
-        $userData = json_decode($this->getDbProxy()->select(), true);
+        $userData = $this->getDbProxy()->select();
+        if (!$userData) {
+            return false;
+        }
+
+        $userData = json_decode($userData, true);
         if (count($userData) > 0) {
             $userData = $userData[0];
         }
@@ -78,6 +89,10 @@ class UserGetHandler extends DbProxyHandler
         return json_encode($userData);
     }
 
+    /**
+     * Returns a default user, which is used when the user is not yet logged in.
+     * @return string the JSON-encoded default user object
+     */
     protected function getDefaultUserJson()
     {
         $user = array();
@@ -100,6 +115,7 @@ class UserGetHandler extends DbProxyHandler
     /**
     * Get either a Gravatar URL or complete image tag for a specified email address.
     *
+    * @param $email the email address of the user
     * @param $size Size in pixels, defaults to 200px [ 1 - 2048 ]
     * @param $imageSet Default imageset to use [ 404 | mm | identicon | monsterid | wavatar ]
     * @param $rating Maximum rating (inclusive) [ g | pg | r | x ]

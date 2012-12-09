@@ -1,7 +1,13 @@
 <?php
+/**
+ * kort - OAuth\GoogleOAuth class
+ */
 namespace OAuth;
 
-class GoogleOAuth extends OAuthCallback
+/**
+ * The GoogleOAuth class takes care about the login with Google
+ */
+class GoogleOAuth implements IOAuthCallback
 {
     //put your code here
 }

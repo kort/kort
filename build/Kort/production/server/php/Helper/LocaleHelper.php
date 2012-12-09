@@ -5,16 +5,30 @@
 
 namespace Helper;
 
+/**
+ * The LocaleHelper class helps to translate text in the application.
+ *
+ * All text must be provided in a *.props file containing the key and the translation.
+ */
 class LocaleHelper
 {
+    /** Defines all currently supported languages */
     protected $supported_langs = array("de", "en-US");
+    /** The properties array are the core of this class, it contains all available translation */
     protected $properties = array();
+    /** The detected or requested lanugage */
     protected $language;
 
+    /**
+     * Creates a new instance of LocaleHelper
+     * @param string $lang the requested language,
+     * if this parameter is omitted, the language is guess based on the browser settings
+     * @param string $localeFile defines a specific *.props file to use
+     */
     public function __construct($lang = null, $localeFile = null)
     {
         if (empty($lang)) {
-            $this->language = $this->getLang();
+            $this->language = $this->guessLang();
         } else {
             $this->language = $lang;
         }
@@ -25,6 +39,11 @@ class LocaleHelper
         $this->parseFile($localeFile);
     }
 
+    /**
+     * Returns the traslated value if available
+     * @param string $key an entry in the props file
+     * @return string the translated string if available, $key otherwise
+     */
     public function getValue($key)
     {
         if (array_key_exists($key, $this->properties)) {
@@ -33,7 +52,14 @@ class LocaleHelper
         return $key;
     }
 
-    protected function getLang()
+    /**
+     * This function tries to guess the best translation for the user.
+     *
+     * This is based on the users browser settings and the available languages.
+     *
+     * @return string the guessed language or empty string if it can not be detected.
+     */
+    protected function guessLang()
     {
         $userLangs = $this->getUserLanguages();
 
@@ -45,6 +71,10 @@ class LocaleHelper
         return "";
     }
 
+    /**
+     * Returns the accepted languages of the users with priority
+     * @return array all supported languages of the user sorted by priority
+     */
     protected function getUserLanguages()
     {
         $langs = array();
@@ -67,6 +97,10 @@ class LocaleHelper
         return $langs;
     }
 
+    /**
+     * Reads a *.props file and saves the content in $properties
+     * @param type $file the filename of the *.props file
+     */
     protected function parseFile($file)
     {
         $result = array();
