@@ -1,4 +1,7 @@
 <?php
+/**
+ * kort - Helper\PgHelper class
+ */
 
 namespace Helper;
 

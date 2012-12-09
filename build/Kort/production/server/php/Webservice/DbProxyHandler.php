@@ -1,4 +1,7 @@
 <?php
+/**
+ * kort - Webservice\DbProxyHandler class
+ */
 namespace Webservice;
 
 use Helper\LocaleHelper;
@@ -30,7 +33,20 @@ abstract class DbProxyHandler
         $this->dbProxy = $proxy;
     }
 
-    protected function insertParams($data, $returnValues = false) {
+    /**
+     * Returns the table fields used by this handler.
+     * @return array the table fields used by this handler.
+     */
+    abstract protected function getTable();
+
+    /**
+     * Returns the table fields used by this handler.
+     * @return array the table fields used by this handler.
+     */
+    abstract protected function getFields();
+
+    protected function insertParams($data, $returnValues = false)
+    {
         $params = array();
         $params['table'] = $this->getTable();
         $params['fields'] = $this->getFields();
@@ -43,11 +59,8 @@ abstract class DbProxyHandler
         return $params;
     }
 
-
-    abstract protected function getFields();
-    abstract protected function getTable();
-
-    protected function getReturnFields() {
+    protected function getReturnFields()
+    {
         return $this->getFields();
     }
 }

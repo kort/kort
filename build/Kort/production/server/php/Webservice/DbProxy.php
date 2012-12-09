@@ -27,7 +27,8 @@ class DbProxy
         return false;
     }
 
-    public function getDbWebserviceConfig() {
+    public function getDbWebserviceConfig()
+    {
         return $this->wsConfig;
     }
 
