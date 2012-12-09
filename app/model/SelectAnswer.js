@@ -11,7 +11,7 @@ Ext.define('Kort.model.SelectAnswer', {
 			{ name: 'value', type: 'string' },
 			{ name: 'title', type: 'string' },
 			{ name: 'type', type: 'string' },
-			{ name: 'sorting', type: 'integer' }
+			{ name: 'sorting', type: 'int' }
         ]
     }
 });
