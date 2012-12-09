@@ -52,8 +52,7 @@
         },
         {
             "path": "app.js",
-            "bundle": true,  /* Indicates that all class dependencies are concatenated into this file when build */
-            "update": "delta"
+            "bundle": true  /* Indicates that all class dependencies are concatenated into this file when build */
         }
     ],
 
@@ -75,8 +74,7 @@
      */
     "css": [
         {
-            "path": "resources/css/app.css",
-            "update": "delta"
+            "path": "resources/css/app.css"
         },
         {
             "path": "lib/Leaflet-0.4.5/dist/leaflet.css"
