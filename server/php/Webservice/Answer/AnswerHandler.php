@@ -31,7 +31,7 @@ class AnswerHandler extends DbProxyHandler
 
     /**
      * Returns all answers of all types
-     * @return all answers of all types
+     * @return string all answers of all types
      */
     public function getAllAnswers()
     {
@@ -42,7 +42,7 @@ class AnswerHandler extends DbProxyHandler
     /**
      * Returns all answers of a specific type
      * @param string $type the type of answer
-     * @return all answers of the specific type
+     * @return string ll answers of the specific type
      */
     public function getSpecificAnswers($type)
     {
