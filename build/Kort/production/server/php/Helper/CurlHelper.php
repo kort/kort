@@ -2,7 +2,6 @@
 /**
  * kort - Helper\CurlHelper class
  */
-
 namespace Helper;
 
 /**

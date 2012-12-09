@@ -1,15 +1,29 @@
 <?php
+/**
+ * kort - Webservice\User\UserHandler class
+ */
 namespace Webservice\User;
 
 use Webservice\DbProxyHandler;
 
+/**
+ * The UserHandler class handles all POST and PUT requests to the user webservice
+ */
 class UserHandler extends DbProxyHandler
 {
+    /**
+    * Returns the database table to be used with this Handler.
+    * @return the database table as a string
+    */
     protected function getTable()
     {
         return 'kort.user';
     }
 
+    /**
+     * Returns the database fields to be used with this Handler.
+     * @return an array of database fields
+     */
     protected function getFields()
     {
         return array(
@@ -23,6 +37,10 @@ class UserHandler extends DbProxyHandler
         );
     }
 
+    /**
+     * Return the database fields to return when executing insert or update
+     * @return array of database fields
+     */
     protected function getReturnFields()
     {
         return array(
@@ -34,6 +52,12 @@ class UserHandler extends DbProxyHandler
         );
     }
 
+    /**
+     * Updates a user with newer data
+     * @param int $id the user id
+     * @param array $data the user data
+     * @return string JSON-encoded updated user
+     */
     public function updateUser($id, $data)
     {
         $this->getDbProxy()->setReturnFields($this->getReturnFields());
@@ -41,6 +65,11 @@ class UserHandler extends DbProxyHandler
         return $this->getDbProxy()->update($data);
     }
 
+    /**
+     * Insert a new user
+     * @param array $data the user data
+     * @return string JSON-encoded user
+     */
     public function insertUser($data)
     {
         $this->getDbProxy()->setReturnFields($this->getReturnFields());

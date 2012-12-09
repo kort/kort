@@ -1,22 +1,41 @@
 <?php
+/**
+ * kort - Webservice\Vote\VoteHandler class
+ */
 namespace Webservice\Vote;
 
 use Webservice\DbProxyHandler;
 use Model\Badge;
 use Model\Reward;
 
+/**
+ * The VoteHandler class handles requests to the vote webservice
+ */
 class VoteHandler extends DbProxyHandler
 {
+    /**
+     * Returns the database table to be used with this Handler.
+     * @return the database table as a string
+     */
     protected function getTable()
     {
         return 'kort.validation';
     }
 
+    /**
+     * Returns the database fields to be used with this Handler.
+     * @return an array of database fields
+     */
     protected function getFields()
     {
         return array('fix_id', 'user_id', 'valid');
     }
 
+    /**
+     * Return sql statements parameter to update the koin_count of a user
+     * @param array $data the vote data
+     * @return array parameter array
+     */
     protected function updateKoinCointParams($data)
     {
 
@@ -34,6 +53,11 @@ class VoteHandler extends DbProxyHandler
 
     }
 
+    /**
+     * Return sql statements parameter to check for the highscore* badges
+     * @param array $data the vote data
+     * @return array parameter array
+     */
     protected function getHighscoreBadgesParams($data)
     {
         $sql  = "insert into kort.user_badge (user_id, badge_id) ";
@@ -53,6 +77,11 @@ class VoteHandler extends DbProxyHandler
         return $params;
     }
 
+    /**
+     * Return sql statements parameter to check for the vote_count* badges
+     * @param array $data the vote data
+     * @return array parameter array
+     */
     protected function getVoteCountBadgesParams($data)
     {
         $sql  = "insert into kort.user_badge (user_id, badge_id) ";
@@ -74,6 +103,11 @@ class VoteHandler extends DbProxyHandler
         return $params;
     }
 
+    /**
+     * Return sql statements parameter to check for the fix_count* badges
+     * @param array $data the vote data
+     * @return array parameter array
+     */
     protected function getFixCountBadgesParams($data)
     {
         $sql  = "insert into kort.user_badge (user_id, badge_id) ";
@@ -94,6 +128,11 @@ class VoteHandler extends DbProxyHandler
         return $params;
     }
 
+    /**
+     * Return sql statements parameter to set fixes to completed if they reached the threshold
+     * @param array $data the vote data
+     * @return array parameter array
+     */
     protected function getCompletedParams($data)
     {
         $sql  = "update kort.fix set ";
@@ -110,6 +149,11 @@ class VoteHandler extends DbProxyHandler
         return $params;
     }
 
+    /**
+     * Insert a new vote and handle the corresponding changes (koin_count, badges, completed etc.)
+     * @param array $data the vote data
+     * @return string JSON-encoded reward for the user
+     */
     public function insertVote($data)
     {
         $transProxy = new \Webservice\TransactionDbProxy();
@@ -128,9 +172,6 @@ class VoteHandler extends DbProxyHandler
         $transProxy->addToTransaction($updateKoinCountParams);
         $transProxy->addToTransaction($completedParams);
         $result = json_decode($transProxy->sendTransaction(), true);
-        //$result = $transProxy->sendTransaction();
-
-        //return print_r($result);
 
         $badges = array();
         if (count($result[1]) > 0) {
