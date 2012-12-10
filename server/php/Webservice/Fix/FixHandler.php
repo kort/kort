@@ -5,6 +5,7 @@
 namespace Webservice\Fix;
 
 use Webservice\DbProxyHandler;
+use Webservice\RewardHandler;
 use Model\Badge;
 use Model\Reward;
 
@@ -42,16 +43,66 @@ class FixHandler extends DbProxyHandler
      */
     public function insertFix(array $data)
     {
-        $insertedFix = $this->getDbProxy()->insert($data);
+        $transProxy = new \Webservice\TransactionDbProxy();
 
-        if (!$insertedFix) {
-            return false;
+        $insertFixParams = $this->insertParams($data);
+        $highscoreBadgesParams = RewardHandler::getHighscoreBadgesParams($data);
+        $fixCountBadgesParams = RewardHandler::getFixCountBadgesParams($data);
+        $voteCountBadgesParams = RewardHandler::getVoteCountBadgesParams($data);
+
+        $koinCountQuery = $this->getKoinCountQuery($data);
+        $updateKoinCountParams = RewardHandler::updateKoinCointParams($data['user_id'], $koinCountQuery);
+
+        $transProxy->addToTransaction($insertFixParams);
+        $transProxy->addToTransaction($highscoreBadgesParams);
+        $transProxy->addToTransaction($fixCountBadgesParams);
+        $transProxy->addToTransaction($voteCountBadgesParams);
+        $transProxy->addToTransaction($updateKoinCountParams);
+        $result = json_decode($transProxy->sendTransaction(), true);
+
+        $badges = array();
+        if (count($result[1]) > 0) {
+            $highscoreBadgeId = $result[1][0]['badge_id'];
+            $highscoreCreateDate = $result[1][0]['create_date'];
+            $badge = Badge::findById($highscoreBadgeId);
+            $badge->setCreateDate($highscoreCreateDate);
+            $badges[] = $badge;
+        }
+        if (count($result[2]) > 0) {
+            $fixCountBadgeId = $result[2][0]['badge_id'];
+            $fixCountCreateDate = $result[2][0]['create_date'];
+            $badge = Badge::findById($fixCountBadgeId);
+            $badge->setCreateDate($fixCountCreateDate);
+            $badges[] = $badge;
+        }
+        if (count($result[3]) > 0) {
+            $voteCountBadgeId = $result[3][0]['badge_id'];
+            $voteCountCreateDate = $result[3][0]['create_date'];
+            $badge = Badge::findById($voteCountBadgeId);
+            $badge->setCreateDate($voteCountCreateDate);
+            $badges[] = $badge;
         }
 
-        $koinCount = 100;
-        $firstBadge = new Badge("highscore_place_1");
-        $voteBadge = new Badge("vote_count_10");
-        $reward = new Reward($koinCount, array($firstBadge, $voteBadge));
+        $koinCountTotal = $result[4][0]['koin_count_total'];
+        $koinCountNew = $result[4][0]['koin_count_new'];
+
+        $reward = new Reward($koinCountTotal, $koinCountNew, $badges);
         return $reward->toJson();
+    }
+
+    /**
+     * Returns the query to find the koinCount for votes.
+     *
+     * @param array $data The inserted data.
+     *
+     * @return string query to find the koinCount for votes
+     */
+    protected function getKoinCountQuery(array $data)
+    {
+        $sql  = "select fix_koin_count from kort.error_koin_count ";
+        $sql .= "where osm_id = " . $data['osm_id'] . " ";
+        $sql .= "and schema = '" . $data['schema'] . "' ";
+        $sql .= "and id = " . $data['error_id'];
+        return $sql;
     }
 }

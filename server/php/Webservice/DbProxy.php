@@ -243,13 +243,13 @@ class DbProxy
     /**
      * Make a request to the database webservice.
      *
-     * @param string $method The HTTP method to use [POST, PUT, GET].
-     * @param string $url    The URL to send the request to.
-     * @param array  $data   The data to send along with the request.
+     * @param string       $method The HTTP method to use [POST, PUT, GET].
+     * @param string       $url    The URL to send the request to.
+     * @param array|string $data   The data to send along with the request.
      *
      * @return mixed the answer from the database webservice
      */
-    protected function request($method, $url, array $data = null)
+    protected function request($method, $url, $data = null)
     {
         switch ($method)
         {
