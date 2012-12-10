@@ -42,7 +42,7 @@ package/native & Mit diesen Builds lassen sich native Apps für die verschiedene
 \label{table-sencha-cmd-build}
 \end{table}
 
-Durch den Einsatz von Sencha Cmd wird es möglich mit einem geringen Mehraufwand, eine native App zu generieren und diese in den verschiedenen App-Stores (Apples AppStore, Google Play Store) anzubieten.
+Durch den Einsatz von Sencha Cmd wird es möglich mit einem geringen Mehraufwand, eine native App zu generieren und diese in den verschiedenen \gls{App-Store}s anzubieten.
 
 \subsubsection{Konfiguration}
 Der Buildprozess wird in der Datei \inlinecode{app.json} konfiguriert.
@@ -77,6 +77,30 @@ Der Build kann von der Konsole aus gestartet werden. Dazu muss in das Root-Verze
 Die erstellt App wird dann in dem entsprechenden Verzeichnis abgelegt:
 
 \inlinecode{/build/Kort/<environment>}
+
+
+\subsection{Cross-platform Unterstützung}
+\label{cross-platform}
+Grundsätzlich unterstützt \textsc{Kort} alle Plattformen (bzw. Browser), welche vom Sencha Touch 2 Framework unterstützt werden.
+Eine Liste davon findet man auf der Produkt-Homepage\footnote{\url{http://www.sencha.com/products/touch/features/}}.
+
+Trotzdem kann es bei einigen Geräten aufgrund unterschiedlicher Browserversionen zu Anzeigeprobleme kommen.
+
+Getestet wurde die App mit folgenden Geräten:
+
+\begin{itemize}
+	\item Smartphones
+	\begin{itemize}
+		\item Apple iPhone 4, 4s
+		\item Samsung Galaxy S2, S3
+	\end{itemize}
+	\item Tablets
+	\begin{itemize}
+		\item iPad 2
+		\item Asus Nexus 7
+		\item Asus Transformer
+	\end{itemize}
+\end{itemize}
 
 \subsection{Internernationalisierung (i18n)}
 \label{i18n}
