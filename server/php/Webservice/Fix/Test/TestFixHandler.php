@@ -31,7 +31,13 @@ class TestFixHandler extends AbstractKortUnitTestCase
 
     public function testInsertFix()
     {
-        $data = array("test" => "data");
+        $data = array(
+            "test" => "data",
+            "user_id" => 0,
+            "error_id" => 0,
+            "schema" => "95",
+            "osm_id" => 898213791823
+        );
         $this->mockProxy->shouldReceive('insert');
         $this->assertNotNull($this->handler->insertFix($data));
     }
