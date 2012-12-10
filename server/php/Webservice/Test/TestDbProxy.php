@@ -10,7 +10,7 @@ class TestDbProxy extends AbstractKortUnitTestCase
     public function __construct()
     {
         parent::__construct("kort - TestDbProxy");
-        $this->mockCurl = M::mock('CurlHelper');
+        $this->mockCurl = M::mock('Helper\CurlHelper');
     }
 
     public function testGetFromDb()

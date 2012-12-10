@@ -14,7 +14,7 @@ class TestDbHandler extends AbstractKortUnitTestCase
 
     public function setUp()
     {
-        $this->mockDb = M::mock('PsqlConnection');
+        $this->mockDb = M::mock('Webservice\Database\PsqlConnection');
         $this->handler = new DbHandler($this->mockDb);
 
         $this->fields = array("id", "title");

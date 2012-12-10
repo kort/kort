@@ -249,7 +249,7 @@ class DbProxy
      *
      * @return mixed the answer from the database webservice
      */
-    protected function request($method, $url, array $data)
+    protected function request($method, $url, array $data = null)
     {
         switch ($method)
         {
