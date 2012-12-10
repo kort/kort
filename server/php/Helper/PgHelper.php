@@ -77,11 +77,11 @@ class PgHelper
     /**
      * Fetches a row from the database based on a query resource.
      *
-     * @param resource $result Query result resource.
+     * @param mixed $result Query result resource.
      *
      * @return array the response form the database
      */
-    public function fetchRow(resource $result)
+    public function fetchRow($result)
     {
         return pg_fetch_array($result, null, PGSQL_ASSOC);
     }
