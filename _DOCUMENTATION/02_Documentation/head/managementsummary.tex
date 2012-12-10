@@ -54,10 +54,29 @@ Diese flexible Aufteilung ermöglicht es sehr einfach die Systeme umzuziehen ode
 
 
 \section*{Ausblick}
-- robuster
-- schneller
-- Native Building (AppStore)
-- Camera Support
-- time-based Challanges
-- Push-Notifications
-- Social Media Integration (Facebook, Twitter)
+Die App hat ein grosses Potential um Personen, welche sich bislang nicht mit der Thematik OpenStreetMap befasst haben, für das Projekt zu begeistern. 
+Dabei ist es wichtig, dass dieses Zielpublikum nicht auf den Augen verloren wird, weshalb in diesem Bereich noch viele Verbesserung möglich sind.
+
+Ganz allgemein ist es wichtig die Robustheit und Geschwindikeit der App zu verbessern. 
+Gerade weil es sich um eine \gls{WebApp} handelt ist dies besonders kritisch. 
+Im Idealfall sollte sich die App nicht von einer native App unterscheiden.
+Es ist zu prüfen, ob es sich lohnt, die App native zu builden\footnote{z.B. mit Apache Cordova oder Sencha Packager}.
+Dies hätte den weiteren Vorteil, dass die App über die bekannten \gls{App-Store}s zum User gebracht werden kann.
+
+Beim Login wäre es wünschenswert noch weitere \gls{OAuth} Dienste anzubieten, um so weitere Personen anzusprechen und die Akzeptanz zu steigern.
+Schliesslich verfügt nicht jeder über ein Google-Konto oder ist bereit dies preiszugeben.
+Mögliche Dienste wären dabei Facebook, Twitter oder OpenStreetMap selbst, welche alle \gls{OAuth}-Dienste anbieten.
+
+In der Konzeption der App haben wir uns ursprünglich das Ziel gesetzt, das \gls{Camera API} zu verwenden. 
+So könnten Benutzer beim Eintragen von Lösungsvorschlägen direkt ein \emph{Fotobeweis} anbringen. 
+Dies würde einerseits die Validierung vereinfachen, zum anderen könnte dieser Zusatzaufwand entsprechend mit \emph{koins} belohnt werden.
+
+Als zusätzliche Motivation für die Benutzer sollen zeitlich begrenzte Aktionen durchgeführt werden.
+Dies soll Benutzer animieren die App immer wieder zu verwenden. 
+Mögliche Aktionen wären beispielsweise die Konzentration auf einen Fehlertyp (\emph{"Gib allen Restaurants in deiner Umgebung einen Namen und erhalte diese Woche den Restaurant-Badge"}) oder auf eine Region (\emph{"Korrigiere jeden Tag im Dezember Fehler in Zürich und erhalte den Zürich-Silvester-Badge"}).
+Bestehende Spieler können beispielsweise über Push-Notifikationen über solche Aktionen oder sonstige Neuerungen informiert werden. Dies soll Benutzer regelmässig animieren, die App mal wieder zu verwenden.
+
+Um längerfristig die App am laufen zu halten ist es unumgänglich weitere Fehlertypen und -quellen einzubinden. 
+Keepright bietet zwar eine grosse Menge an Fehlerdaten, jedoch ist nur ein geringer Teil davon für unsere App nutzbar.
+
+Die Bekanntheit der App muss durch geeignete Massnahmen gesteigert werden, dazu gehört die Integration in Social Media Dienste wie Facebook und Twitter. Dies kann einerseits genutzt werden um Werbung zu machen, anderseits können aber Benutzer auch auf ihre Fortschritte aufmerksam machen und so weitere Benutzer anlocken.
