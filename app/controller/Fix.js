@@ -102,12 +102,11 @@ Ext.define('Kort.controller.Fix', {
             reward = Ext.create('Kort.model.Reward', rewardConfig),
             bugmapNavigationView = this.getBugmapNavigationView();
         
-        this.getApplication().fireEvent('fixsend');
-        
         this.showRewardMessageBox(reward);
         // remove detail panel
         bugmapNavigationView.pop();
         bugmapNavigationView.fireEvent('back', bugmapNavigationView);
+        this.getApplication().fireEvent('fixsend');
     },
     
     // @private
