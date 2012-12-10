@@ -23,6 +23,27 @@ from    keepright.errors e,
 where   e.error_type_id = t.error_type_id
 and     not exists (select 1 from kort.fix f where f.error_id = e.error_id);
 
+create or replace view kort.error_koin_count as
+select  e.error_id id,
+        e.schema,
+        t.type,
+        e.object_id osm_id,
+        e.object_type osm_type,
+        t.description title,
+        t.view_type,
+        t.answer_placeholder,
+        e.msgid description,
+        t.fix_koin_count,
+        t.vote_koin_count,
+        e.txt1,
+        e.txt2,
+        e.txt3,
+        e.txt4,
+        e.txt5
+from    keepright.errors e,
+        kort.error_type t
+where   e.error_type_id = t.error_type_id;
+
 create or replace view kort.validations as
 select  f.fix_id id,
         f.user_id fix_user_id,
