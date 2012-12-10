@@ -75,7 +75,7 @@ class RewardHandler
         $sql .= "and not exists ";
         $sql .= " (select 1 from kort.user_badge ub ";
         $sql .= " where ub.user_id = u.id and ub.badge_id = b.badge_id)";
-        $sql .= "returning badge_id";
+        $sql .= "returning badge_id, create_date";
 
         $params = array();
         $params['sql'] = $sql;
@@ -103,7 +103,7 @@ class RewardHandler
         $sql .= "and not exists ";
         $sql .= " (select 1 from kort.user_badge ub ";
         $sql .= " where ub.user_id = u.id and ub.badge_id = b.badge_id)";
-        $sql .= "returning badge_id";
+        $sql .= "returning badge_id, create_date";
 
         $params = array();
         $params['sql'] = $sql;
