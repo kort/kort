@@ -61,7 +61,7 @@ class VoteHandler extends DbProxyHandler
      * Return sql statements parameter to check for the highscore* badges.
      *
      * @param array $data Vote data.
-     * 
+     *
      * @return array Parameter array.
      */
     protected function getHighscoreBadgesParams(array $data)
@@ -149,7 +149,7 @@ class VoteHandler extends DbProxyHandler
     {
         $sql  = "update kort.fix set ";
         $sql .= "complete = ";
-        $sql .= "(select required_validations - upratings + downratings >= 0 from kort.validations ";
+        $sql .= "(select required_validations - upratings + downratings <= 0 from kort.validations ";
         $sql .= " where id = " . $data['fix_id'] . ") ";
         $sql .= "where  fix_id = " . $data['fix_id'] . " ";
         $sql .= "returning complete";
