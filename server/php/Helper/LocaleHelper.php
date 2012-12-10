@@ -12,18 +12,31 @@ namespace Helper;
  */
 class LocaleHelper
 {
-    /** Defines all currently supported languages */
+    /**
+     * Defines all currently supported languages.
+     *
+     * @var array(string)
+     */
     protected $supported_langs = array("de", "en-US");
-    /** The properties array are the core of this class, it contains all available translation */
+    /**
+     * The properties array are the core of this class, it contains all available translation.
+     *
+     * @var array
+     */
     protected $properties = array();
-    /** The detected or requested lanugage */
+
+    /**
+     * The detected or requested lanugage.
+     *
+     * @var string
+     */
     protected $language;
 
     /**
-     * Creates a new instance of LocaleHelper
-     * @param string $lang the requested language,
-     * if this parameter is omitted, the language is guess based on the browser settings
-     * @param string $localeFile defines a specific *.props file to use
+     * Creates a new instance of LocaleHelper.
+     *
+     * @param string $lang       The requested language.
+     * @param string $localeFile Defines a specific *.props file to use.
      */
     public function __construct($lang = null, $localeFile = null)
     {
@@ -40,8 +53,10 @@ class LocaleHelper
     }
 
     /**
-     * Returns the traslated value if available
-     * @param string $key an entry in the props file
+     * Returns the traslated value if available.
+     *
+     * @param string $key An entry in the props file.
+     *
      * @return string the translated string if available, $key otherwise
      */
     public function getValue($key)
@@ -72,7 +87,8 @@ class LocaleHelper
     }
 
     /**
-     * Returns the accepted languages of the users with priority
+     * Returns the accepted languages of the users with priority.
+     *
      * @return array all supported languages of the user sorted by priority
      */
     protected function getUserLanguages()
@@ -98,8 +114,11 @@ class LocaleHelper
     }
 
     /**
-     * Reads a *.props file and saves the content in $properties
-     * @param type $file the filename of the *.props file
+     * Reads a *.props file and saves the content in $properties.
+     *
+     * @param string $file The filename of the *.props file.
+     *
+     * @return void
      */
     protected function parseFile($file)
     {

@@ -50,13 +50,13 @@ class KortTestRunner
     /**
      * Finds all Test* files in $dir and runs them.
      *
-     * @param string    $dir   The directory to look into for all tests.
-     * @param TestSuite $suite The TestSuite to add all found test files.
+     * @param string $dir   The directory to look into for all tests.
+     * @param mixed  $suite The TestSuite to add all found test files.
      *
      * @return void
      * @see    KortAllTests
      */
-    public static function runTestDirectory($dir, TestSuite $suite)
+    public static function runTestDirectory($dir, $suite)
     {
         $dir_handle = opendir($dir);
         while (false !== ($file = readdir($dir_handle))) {

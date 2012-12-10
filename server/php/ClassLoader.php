@@ -20,8 +20,6 @@ use Helper\StringHelper;
  *   <li>The namespace of a class must match the path of the file</li>
  *   <li>Filenames and class names <b>must</b> match</li>
  * </ul>
- *
- * @see http://php.net/manual/en/language.oop5.autoload.php PHP Autoload manual
  */
 class ClassLoader
 {
@@ -30,7 +28,9 @@ class ClassLoader
      *
      * If the class is found it get loaded immediately.
      *
-     * @param string $className name of the requested class
+     * @param string $className Name of the requested class.
+     *
+     * @return void
      */
     public static function autoload($className)
     {
@@ -41,7 +41,9 @@ class ClassLoader
     }
 
     /**
-     * Loads common libraries at startup
+     * Loads common libraries at startup.
+     *
+     * @return void
      */
     protected static function loadLibraries()
     {
@@ -50,7 +52,9 @@ class ClassLoader
     }
 
     /**
-     * Loads test libraries
+     * Loads test libraries.
+     *
+     * @return void
      */
     protected static function loadTestLibraries()
     {
@@ -72,8 +76,10 @@ class ClassLoader
      * The full path is either provided in the $path argument or
      * constructued using the $path and $className.
      *
-     * @param string $path the path to the class
-     * @param string $className the name of the class
+     * @param string $path      The path to the class.
+     * @param string $className The name of the class.
+     *
+     * @return void
      */
     public static function importClass($path, $className)
     {
@@ -87,8 +93,9 @@ class ClassLoader
     /**
      * This method must be called by a client in order to use the ClassLoader.
      *
-     * @param string $mode indicates wheter the ClassLoader is used for
-     * production (the default) or a testing environment.
+     * @param string $mode Indicates the environment of the ClassLoader.
+     *
+     * @return void
      */
     public static function registerAutoLoader($mode = "production")
     {
