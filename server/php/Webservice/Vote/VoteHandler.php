@@ -74,7 +74,7 @@ class VoteHandler extends DbProxyHandler
         $sql .= "and not exists ";
         $sql .= " (select 1 from kort.user_badge ub ";
         $sql .= " where ub.user_id = h.user_id and ub.badge_id = b.badge_id)";
-        $sql .= "returning badge_id";
+        $sql .= "returning badge_id, create_date";
 
         $params = array();
         $params['sql'] = $sql;
@@ -190,15 +190,24 @@ class VoteHandler extends DbProxyHandler
         $badges = array();
         if (count($result[1]) > 0) {
             $highscoreBadgeId = $result[1][0]['badge_id'];
-            $badges[] = Badge::findById($highscoreBadgeId);
+            $highscoreCreateDate = $result[1][0]['create_date'];
+            $badge = Badge::findById($highscoreBadgeId);
+            $badge->setCreateDate($highscoreCreateDate);
+            $badges[] = $badge;
         }
         if (count($result[2]) > 0) {
             $fixCountBadgeId = $result[2][0]['badge_id'];
-            $badges[] = Badge::findById($fixCountBadgeId);
+            $fixCountCreateDate = $result[2][0]['create_date'];
+            $badge = Badge::findById($fixCountBadgeId);
+            $badge->setCreateDate($fixCountCreateDate);
+            $badges[] = $badge;
         }
         if (count($result[3]) > 0) {
             $voteCountBadgeId = $result[3][0]['badge_id'];
-            $badges[] = Badge::findById($voteCountBadgeId);
+            $voteCountCreateDate = $result[3][0]['create_date'];
+            $badge = Badge::findById($voteCountBadgeId);
+            $badge->setCreateDate($voteCountCreateDate);
+            $badges[] = $badge;
         }
 
         $koinCountTotal = $result[4][0]['koin_count_total'];
