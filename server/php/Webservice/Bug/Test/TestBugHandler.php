@@ -14,7 +14,7 @@ class TestBugHandler extends AbstractKortUnitTestCase
 
     public function setUp()
     {
-        $this->mockProxy = M::mock('DbProxy');
+        $this->mockProxy = M::mock('Webservice\DbProxy');
         $this->handler = new BugHandler();
         $this->handler->setDbProxy($this->mockProxy);
     }

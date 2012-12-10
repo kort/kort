@@ -14,7 +14,7 @@ class TestFixHandler extends AbstractKortUnitTestCase
 
     public function setUp()
     {
-        $this->mockProxy = M::mock('DbProxy');
+        $this->mockProxy = M::mock('\Webservice\DbProxy');
         $this->handler = new FixHandler();
         $this->handler->setDbProxy($this->mockProxy);
     }

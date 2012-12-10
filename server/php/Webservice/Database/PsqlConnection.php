@@ -39,7 +39,9 @@ class PsqlConnection
      */
     public function __destruct()
     {
-        $this->db->close();
+        if ($this->db) {
+            $this->db->close();
+        }
     }
 
     /**
