@@ -1,0 +1,3 @@
+OpenStreetMap ist ein freies Projekt, welches jedermann ermöglicht, Kartendaten anzuzeigen und zu editieren. Durch diesen öffentlichen Charakter ist es nicht ausgeschlossen, dass fehlerhafte bzw. unvollständige Daten eingetragen werden.
+
+Es gibt verschiedene Tools welche es sich zum Ziel gesetzt haben, solche Fehler zu finden und aufzubereiten. Diese Fehlerdaten können dann entweder manuell oder automatisiert korrigiert werden.
