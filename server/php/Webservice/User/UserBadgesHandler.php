@@ -48,9 +48,15 @@ class UserBadgesHandler extends DbProxyHandler
     public function getUserBadges($user_id)
     {
         $fields = $this->getFields();
+
         $wonFieldSql  = "exists(select 1 from kort.user_badge ub ";
         $wonFieldSql .= "where ub.user_id = " . $user_id . " and ub.badge_id = id) as won";
         $fields[] = urlencode($wonFieldSql);
+
+        $createDateFieldSql  = "(select create_date from kort.user_badge ub ";
+        $createDateFieldSql .= "where ub.user_id = " . $user_id . " and ub.badge_id = id) as create_date";
+        $fields[] = urlencode($createDateFieldSql);
+
         $this->getDbProxy()->setFields($fields);
 
         $badgeData = $this->getDbProxy()->select();
