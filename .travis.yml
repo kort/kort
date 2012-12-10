@@ -41,6 +41,7 @@ before_script:
   - sudo apt-get install graphviz
   - export PATH="$PATH:$CI_HOME:/usr/local/heroku/bin"
   - curl http://kort.rdmr.ch/webservices/update/git
+  - mv $CI_HOME/server/php/Webservice/Database/DbConfig.example.php $CI_HOME/server/php/Webservice/Database/DbConfig.php
 
 script: ant -f build_kort.xml build
 
