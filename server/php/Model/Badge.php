@@ -40,7 +40,9 @@ class Badge
             6 => 'fix_count_10',
             7 => 'vote_count_1000',
             8 => 'vote_count_100',
-            9 => 'vote_count_10'
+            9 => 'vote_count_10',
+            10 => 'fix_count_1',
+            11 => 'vote_count_1'
     );
 
     /**
