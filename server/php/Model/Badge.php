@@ -55,7 +55,7 @@ class Badge
     /**
     * Returns an array of values of the given badges.
      *
-    * @param array(Badge) $badges Values should be returned.
+    * @param array $badges Values should be returned.
      *
     * @return an array of values of the given badges
     */
