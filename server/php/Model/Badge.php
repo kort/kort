@@ -19,6 +19,13 @@ class Badge
      */
     protected $name;
 
+    /**
+     * The date when this badge has been given to the user.
+     *
+     * @var string
+     */
+    protected $create_date;
+
      /**
       * The array of all names and ids of all badges.
       *
@@ -94,5 +101,27 @@ class Badge
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+    * Returns the date when this badge has been given to the user.
+     *
+    * @return string containing the date when this badge has been given to the user
+    */
+    public function getCreateDate()
+    {
+        return $this->createDate;
+    }
+
+    /**
+    * Sets the date when this badge has been given to the user.
+    *
+    * @param string $createDate The date when this badge has been given to the user.
+    *
+    * @return void
+    */
+    public function setCreateDate($createDate)
+    {
+        $this->createDate = $createDate;
     }
 }
