@@ -516,18 +516,18 @@ $label-background-color: #46578D;
         text-align: center;
         padding: $panel-padding;
         
+        .badge-recieved {
+            font-size: 0.7em;
+            margin-bottom: 0.4em;
+        }
         h1 {
             font-weight: bold;
             margin-bottom: 0.5em;
         }
-        .badge-image {
+        img.badge-image {
             $carousel-badge-image-size: 220px;
             width: $carousel-badge-image-size/2;
-            
-            img {
-                width: $carousel-badge-image-size/2;
-                height: $carousel-badge-image-size/2;
-            }
+            width: $carousel-badge-image-size/2;
         }
         .badge-description {
             font-size: $default-font-size;
