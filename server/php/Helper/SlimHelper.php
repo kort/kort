@@ -2,26 +2,28 @@
 /**
  * kort - Helper\SlimHelper class
  */
-
 namespace Helper;
 
 /**
- * The SlimHelper class is a helper for the Slim Framework and provides
- * common functions, which are used in the webservices.
+ * The SlimHelper class is a helper for the Slim Framework.
  *
- * @link http://www.slimframework.com/
- *
+ * It provides common functions, which are used in the webservices.
  */
 class SlimHelper
 {
-    /** the Slim application object */
+    /**
+     * The Slim application object.
+     *
+     * @var Slim\Slim
+     */
     protected $app;
 
     /**
-     * Creates a new instance of SlimHelper
-     * @param Slim\Slim the Slim application object
+     * Creates a new instance of SlimHelper.
+     *
+     * @param Slim\Slim $app The Slim application object.
      */
-    public function __construct($app)
+    public function __construct(Slim\Slim $app)
     {
         $this->app = $app;
     }
@@ -31,7 +33,9 @@ class SlimHelper
      *
      * This function takes care of if $data is empty or not.
      *
-     * @param string $data data to return to the client in JSON-format
+     * @param string $data Data to return to the client in JSON-format.
+     *
+     * @return void
      */
     public function returnData($data)
     {
@@ -42,8 +46,10 @@ class SlimHelper
     }
 
     /**
-     * Check if the provided $user_id matches the logged-in user
-     * @param mixed $user_id
+     * Check if the provided $user_id matches the logged-in user.
+     *
+     * @param mixed $user_id The user id.
+     *
      * @return bool true if it's the logged in user, false otherwise.
      */
     public function checkUserId($user_id)

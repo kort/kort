@@ -97,12 +97,11 @@ abstract class DbProxyHandler
     /**
      * Returns a parameter object to insert $data in a transaction.
      *
-     * @param array $data         Data to insert.
-     * @param array $returnValues Fields to return from the request.
+     * @param array $data Data to insert.
      *
      * @return array the parameter object for the request
      */
-    protected function insertParams(array $data, array $returnValues = false)
+    protected function insertParams(array $data)
     {
         $params = array();
         $params['table'] = $this->getTable();
@@ -110,7 +109,6 @@ abstract class DbProxyHandler
         $params['returnFields'] = $this->getReturnFields();
         $params['data'] = $data;
 
-        $params['return'] = $returnValues;
         $params['type'] = "INSERT";
 
         return $params;

@@ -12,14 +12,17 @@ namespace Helper;
  */
 class PgHelper
 {
-    /** A PostgreSQL database connection */
+    /**
+     * A PostgreSQL database connection.
+     *
+     * @var mixed
+     */
     protected $dbConn;
 
     /**
-     * Creates a new PgHelper object and connects to the database using the $connectionString
-     * @param string $connectionString details how to connect to the database
+     * Creates a new PgHelper object and connects to the database using the $connectionString.
      *
-     * @see pg_connect
+     * @param string $connectionString Details how to connect to the database.
      */
     public function __construct($connectionString)
     {
@@ -27,8 +30,10 @@ class PgHelper
     }
 
     /**
-     * Run a query against the database
-     * @param string $sql an arbitrary sql statement
+     * Run a query against the database.
+     *
+     * @param string $sql Arbitrary sql statement.
+     *
      * @return array the result of the query
      */
     public function query($sql)
@@ -46,8 +51,10 @@ class PgHelper
      *
      * This can be used for security or performance issues.
      *
-     * @param string $name the name of the statement
-     * @param string $preparedStatement the sql statement to prepare
+     * @param string $name              The name of the statement.
+     * @param string $preparedStatement The sql statement to prepare.
+     *
+     * @return void
      */
     public function prepare($name, $preparedStatement)
     {
@@ -55,28 +62,33 @@ class PgHelper
     }
 
     /**
-     * Executes a previoulsy prepared query
-     * @param string $name the name of the query
-     * @param array $parameter an array containing substitustions for the bind variables.
+     * Executes a previoulsy prepared query.
+     *
+     * @param string $name      The name of the query.
+     * @param array  $parameter An array containing substitustions for the bind variables.
+     *
      * @return resource|false a query resource on success, false otherwise.
      */
-    public function execute($name, $parameter)
+    public function execute($name, array $parameter)
     {
         return pg_execute($this->dbConn, $name, $parameter);
     }
 
     /**
      * Fetches a row from the database based on a query resource.
-     * @param resource $result a query result resource
+     *
+     * @param resource $result Query result resource.
+     *
      * @return array the response form the database
      */
-    public function fetchRow($result)
+    public function fetchRow(resource $result)
     {
         return pg_fetch_array($result, null, PGSQL_ASSOC);
     }
 
     /**
-     * Begin a transation
+     * Begin a transation.
+     *
      * @return resource|false a query resource on success, false otherwise
      */
     public function begin()
@@ -86,6 +98,7 @@ class PgHelper
 
      /**
      * Commit a transation.
+      *
      * @return resource|false a query resource on success, false otherwise
      */
     public function commit()
@@ -95,6 +108,7 @@ class PgHelper
 
      /**
      * Rollback a transation.
+      *
      * @return resource|false a query resource on success, false otherwise
      */
     public function rollback()
@@ -104,6 +118,8 @@ class PgHelper
 
     /**
      * Closes the datbase connection.
+     *
+     * @return void
      */
     public function close()
     {
