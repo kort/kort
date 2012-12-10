@@ -21,9 +21,9 @@ class SlimHelper
     /**
      * Creates a new instance of SlimHelper.
      *
-     * @param Slim\Slim $app The Slim application object.
+     * @param mixed $app The Slim application object.
      */
-    public function __construct(Slim\Slim $app)
+    public function __construct($app)
     {
         $this->app = $app;
     }
