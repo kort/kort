@@ -8,75 +8,103 @@
 \section*{Ausgangslage}
 Das OpenStreetMap-Projekt beinhaltet eine sehr grosse Menge an Daten, welche frei zugänglich ist.
 Für die Pflege dieser Daten ist es daher naheliegend auf unterstützende Software zurückzugreifen.
-Zu diesem Zweck gibt es eine Reihe von Applikationen, welche sich grob in zwei Kategorien aufteilen lassen:
+Zu diesem Zweck gibt es eine Reihe von Applikationen, welche sich grob in zwei Kategorien einteilen lassen:
 Editoren und Qualitätssicherung
 
-Mit den Editoren lässt sich direkt oder indirekt die OpenStreetMap Karte verändern und ergänzen.
+Mit den Editoren lässt sich direkt oder indirekt die OpenStreetMap-Karte verändern und ergänzen.
 Die Qualitätssicherung hat sich zum Ziel gesetzt fehlende oder falsche Daten aufzuspüren.
-Diese wiederum werden dann entweder automatisiert korrigiert oder einen Benutzer übersichtlich dargestellt um eine manuelle Korrektur zu ermöglichen.
+Diese werden dann entweder automatisiert korrigiert oder übersichtlich dargestellt, um eine manuelle Korrektur zu ermöglichen.
 
-Einige Tools wie Keepright oder Osmose berechnen aus den Karten-Rohdaten die vorhanden Fehler.
+Einige Tools wie Keepright\footnote{\url{http://keepright.ipax.at/}} oder Osmose\footnote{\url{http://osmose.openstreetmap.fr/map/}} berechnen aus den Karten-Rohdaten die vorhanden Fehler.
 Dazu werden einige Heuristiken verwenden oder einfache Plausibilitätsprüfungen durchgeführt.
 Typische Fehler aus diesen Quellen sind \gls{POI}s ohne Namen oder Wege ohne eingetragenen Typ.
 
-Andere Lösungen setzen eher darauf, dass Fehler manuell von einer Person erfasst werden und diese dann detailliertere Angaben zu einem Fehler machen kann. 
-So gibt es Navigationsgeräte-Herstellen welche die Daten aus OpenStreetMap verwenden und dabei auch ihren Benutzern ermöglichen falsche Routen zu melden. 
-Falls ein \gls{Mapper} einen Fehler markieren will, so kann er dies direkt in den Metadaten der Karte hinterlegen. Jedes Objekt auf der Karte (Punkte, Wege und Relationen) kann durch beliebige sogenannte  \emph{Tags} ergänzt werden.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{images/managementsummary/osmose-screenshot}
+	\caption{Anzeige von generierten Fehlern in Osmose}
+	\label{image-osmose-screenshot}
+\end{figure}
+
+Andere Lösungen setzen darauf, dass Fehler manuell von einer Person erfasst werden. Dadurch ist es möglich den Fehler detaillierter zu beschreiben. 
+So gibt es Navigationsgeräte-Herstellen welche die Daten aus OpenStreetMap zur Routenberechnung verwenden und dabei ihren Benutzern ermöglichen falsche Routen zu melden.
+Falls ein \gls{Mapper} einen Fehler markieren will, so kann er dies direkt in den Metadaten der Karte hinterlegen. Jedes Objekt auf der Karte (Punkte, Wege und Relationen) kann durch beliebige, sogenannte  \emph{Tags} ergänzt werden.
 Um auf einem Objekt Fehler zu markieren, hat sich die Community darauf geeinigt \inlinecode{FIXME}-Tags zu verwenden.
 
-Quellen für solche Fehler sind beispielsweise OpenStreetBug oder die FIXME-Tags aus Keepright.
-
+Quellen für solche Fehler sind beispielsweise OpenStreetBugs\footnote{\url{http://openstreetbugs.schokokeks.org/}} oder die \inlinecode{FIXME}-Tags aus Keepright.
 
 \section*{Ergebnisse}
 Das Ziel, eine cross-platform fähige \gls{WebApp} zu erstellen mit geeignetem Backend für die Verwaltung der Daten wurde klar erreicht.
-Die App bietet alle Grundfunktionalität welche nötig ist um Fehler anzuzeigen, zu validieren und an OpenStreetMap zurückzuschicken.
-Daneben sind einige Anwendungen der Gamification implementiert, so beispielsweise das Sammeln von Punkten oder die Highscore, auf der sich Benutzer miteinander messen können.
-Gerade dieser Bereich ist aber sehr offen und lässt Raum für viele weitere Konzepte. Schlussendlich ist klar, dass \textsc{Kort} noch ein grosses Stück davon entfernt ist ein Game zu sein.
+Die App bietet alle Grundfunktionalität welche nötig ist um Fehler anzuzeigen, zu lösen und gegebene Lösungen zu validieren.
+Daneben sind einige Elemente der Gamification implementiert. So kann man beispielsweise durch das Lösen von Fehlern Punkte (sogenannte \emph{koins}) sammeln und sich über eine Highscore, mit anderen Spielern messen.
+Zudem gibt es für speziellen Einsatz Auszeichnungen zu gewinnen.
 
-Das Themengebiet der Gamification bietet viele Ansätze um eine ansonsten \emph{langweilige} Aufgabe spannend zu machen.
-Dadurch bekommen diese Aufgaben einen ganz neuen Reiz und sprechen direkt den Spieltrieb des Menschen an.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{images/gamification/gamification-badges}
+	\caption{Auszeichnungen in Kort}
+	\label{image-kort-badges}
+\end{figure}
+
+Der Bereich der Gamification ist aber sehr offen und lässt Raum für viele weitere Konzepte. Schlussendlich ist klar, dass \textsc{Kort} noch ein grosses Stück davon entfernt ist ein "`echtes"' Game zu sein.
+
+Das Themengebiet der Gamification bietet viele Ansätze um eine normalerweise \emph{uninteressante} Aufgabe spannend zu machen.
+Dadurch erhalten diese Aufgaben einen ganz neuen Reiz und sprechen direkt den Spieltrieb des Menschen an.
 Konkret auf OpenStreetMap angewendet, finden sich auch dort beliebtere und weniger beliebte Aufgaben.
-Da es sich dabei auch noch um eine Community von (grösstenteils) Freiwilligen handelt, verschärft dieses Problem zusätzlich.
-Die mangelnden Resourcen können am effektivsten bekämpft werden, in dem zusätzliche Personen für das Thema begeistert werden.
-Es ist wichtig, die Einstiegsschwelle tief zu halten und einen unerfahrenen Benutzer Werkzeuge zu geben, die einen gewissen Spass vermitteln, jedoch keine Daten zerstören.
+Da es sich bei dabei zusätzlich um eine Community von (grösstenteils) freiwilligen Personen handelt, verschärft sich dieses Problem.
+Das Problem der mangelnden Ressourcen kann dabei am effektivsten bekämpft werden, indem zusätzliche Personen für das Thema begeistert werden.
+Es ist wichtig, die Einstiegsschwelle tief zu halten und auch einem unerfahrenen Benutzer Werkzeuge zu geben, die einen gewissen Spass vermitteln.
 
-Das Frontend ist mit dem HTML5/JavaScript Framework Sencha Touch 2 erstellt worden und orientiert sich vom Look and Feel an einer iPhone App.
-Die App bietet für die verschiedenen Funktionen unterschiedliche Tabs an, auf welchen der Benutzer Fehler beheben oder prüfen, die Highscore oder sein Profil anschauen kann.
+\subsection*{Frontend}
+Das Frontend basiert auf dem HTML5/JavaScript Framework Sencha Touch 2 und orientiert sich vom Look and Feel an einer iPhone-App.
+Die App bietet für die verschiedenen Funktionen unterschiedliche Tabs an, auf welchen der Benutzer Fehler beheben oder prüfen und die Highscore oder sein Profil anschauen kann.
+
+\begin{figure}[H]
+\subfigure{\includegraphics[width=0.3\textwidth]{images/screenshots/kort-screenshot-login}}
+\hfill
+\subfigure{\includegraphics[width=0.3\textwidth]{images/screenshots/kort-screenshot-bugmap}}
+\hfill
+\subfigure{\includegraphics[width=0.3\textwidth]{images/screenshots/kort-screenshot-profile}}
+\caption{Kort App}
+\label{image-kort-screenshots}
+\end{figure}
 
 Für die Authentifizierung kommt \gls{OAuth} zum Einsatz.
-Dieses Protokoll sorgt dafür, dass sich der Benutzer mit seinem gewohnten Benutzerkonto bei \textsc{Kort} anmwelden kann.
-Derzeit sind als OAuth-Provider Google und OpenStreetMap verfügbar.
+Dir Standard sorgt dafür, dass sich der Benutzer mit einem bereits bestehenden Benutzerkonto bei \textsc{Kort} anmwelden kann.
+Derzeit wird dafür der OAuth-Provider \emph{Google} verwendet.
 
+\subsection*{Backend}
 Das Backend ist in PHP geschrieben und basiert auf der Kommunikation über \gls{REST}-Schnittstellen.
-Die eigenen Schnittstellen sind alle mit dem Slim Framework erstellt.
+Die eigenen Schnittstellen sind alle mit dem Slim-Framework\footnote{\url{http://www.slimframework.com/}} erstellt.
 Da die Datenbank und der Webserver auf zwei verschiedenen Servern laufen, bietet auch die Datenbank eine REST-Schnittstelle an, über welche sich beliebige SQL-Abfrage absetzen lassen.
 Diese flexible Aufteilung ermöglicht es sehr einfach die Systeme umzuziehen oder weitere hinzuzufügen.
 
-
 \section*{Ausblick}
 Die App hat ein grosses Potential um Personen, welche sich bislang nicht mit der Thematik OpenStreetMap befasst haben, für das Projekt zu begeistern. 
-Dabei ist es wichtig, dass dieses Zielpublikum nicht auf den Augen verloren wird, weshalb in diesem Bereich noch viele Verbesserung möglich sind.
+Dabei ist es wichtig, dass dieses Zielpublikum nicht aus den Augen verloren wird, weshalb in diesem Bereich noch viele Verbesserung möglich sind.
 
 Ganz allgemein ist es wichtig die Robustheit und Geschwindikeit der App zu verbessern. 
-Gerade weil es sich um eine \gls{WebApp} handelt ist dies besonders kritisch. 
-Im Idealfall sollte sich die App nicht von einer native App unterscheiden.
+Gerade weil es sich um eine \gls{WebApp} handelt, ist dies besonders kritisch. 
+Im Idealfall sollte sich die App nicht von einer nativen App unterscheiden.
 Es ist zu prüfen, ob es sich lohnt, die App native zu builden\footnote{z.B. mit Apache Cordova oder Sencha Packager}.
 Dies hätte den weiteren Vorteil, dass die App über die bekannten \gls{App-Store}s zum User gebracht werden kann.
 
-Beim Login wäre es wünschenswert noch weitere \gls{OAuth} Dienste anzubieten, um so weitere Personen anzusprechen und die Akzeptanz zu steigern.
-Schliesslich verfügt nicht jeder über ein Google-Konto oder ist bereit dies preiszugeben.
+Beim Login wäre es wünschenswert noch weitere \gls{OAuth}-Dienste anzubieten, um so weitere Personen anzusprechen und die Akzeptanz zu steigern.
+Schliesslich verfügt nicht jeder über ein Google-Konto oder ist bereit sich über dieses anzumelden.
 Mögliche Dienste wären dabei Facebook, Twitter oder OpenStreetMap selbst, welche alle \gls{OAuth}-Dienste anbieten.
 
 In der Konzeption der App haben wir uns ursprünglich das Ziel gesetzt, das \gls{Camera API} zu verwenden. 
 So könnten Benutzer beim Eintragen von Lösungsvorschlägen direkt ein \emph{Fotobeweis} anbringen. 
-Dies würde einerseits die Validierung vereinfachen, zum anderen könnte dieser Zusatzaufwand entsprechend mit \emph{koins} belohnt werden.
+Dies würde die Validierung der eingetragenen Lösungen für andere Benutzer vereinfachen.
 
-Als zusätzliche Motivation für die Benutzer sollen zeitlich begrenzte Aktionen durchgeführt werden.
+Als zusätzliche Motivation könnten zeitlich begrenzte Aktionen durchgeführt werden.
 Dies soll Benutzer animieren die App immer wieder zu verwenden. 
-Mögliche Aktionen wären beispielsweise die Konzentration auf einen Fehlertyp (\emph{"Gib allen Restaurants in deiner Umgebung einen Namen und erhalte diese Woche den Restaurant-Badge"}) oder auf eine Region (\emph{"Korrigiere jeden Tag im Dezember Fehler in Zürich und erhalte den Zürich-Silvester-Badge"}).
-Bestehende Spieler können beispielsweise über Push-Notifikationen über solche Aktionen oder sonstige Neuerungen informiert werden. Dies soll Benutzer regelmässig animieren, die App mal wieder zu verwenden.
+Mögliche Aktionen wären beispielsweise die Konzentration auf einen Fehlertyp (\emph{"Gib allen Restaurants in deiner Umgebung einen Namen und erhalte diese Woche die spezielle Restaurant-Auszeichnung"}) oder auf eine Region (\emph{"Korrigiere jeden Tag im Dezember Fehler in Zürich und erhalte die Zürich-Silvester-Auszeichnung"}).
+Bestehende Spieler können beispielsweise über Push-Notifikationen über solche Aktionen oder sonstige Neuerungen informiert werden.
+Dies soll Benutzer regelmässig animieren, die App zu verwenden.
 
 Um längerfristig die App am laufen zu halten ist es unumgänglich weitere Fehlertypen und -quellen einzubinden. 
 Keepright bietet zwar eine grosse Menge an Fehlerdaten, jedoch ist nur ein geringer Teil davon für unsere App nutzbar.
 
-Die Bekanntheit der App muss durch geeignete Massnahmen gesteigert werden, dazu gehört die Integration in Social Media Dienste wie Facebook und Twitter. Dies kann einerseits genutzt werden um Werbung zu machen, anderseits können aber Benutzer auch auf ihre Fortschritte aufmerksam machen und so weitere Benutzer anlocken.
+Die Bekanntheit der App muss durch geeignete Massnahmen gesteigert werden, dazu gehört die Integration von Social Media Diensten wie Facebook und Twitter.
+Dies kann einerseits genutzt werden um Werbung zu machen, anderseits können Benutzer auch auf ihre gewonnenen Auszeichnungen aufmerksam machen und so andere bereits bestehende Benutzer dazu animieren diese Auszeichnungen ebenfalls zu gewinnen.

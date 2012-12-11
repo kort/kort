@@ -1,0 +1,85 @@
+\chapter{Informationen zum Projekt}
+\label{informationen-projekt}
+
+
+\section{Problemstellung}
+OpenStreetMap ist ein freies Projekt, welches jedermann ermöglicht, Kartendaten anzuzeigen und zu editieren.
+Durch diesen öffentlichen Charakter ist es nicht ausgeschlossen, dass fehlerhafte bzw. unvollständige Daten eingetragen werden.
+
+Aus diesem Grund kam die Idee mit einer mobilen Applikation eine Möglichkeit anzubieten die Fehler zu erkennen und zu korrigieren.
+Um die Motivation für die Verwendung der App aufrecht zu erhalten, soll diese mit Spiel-Elementen versehen werden.
+
+\section{Aufgabenstellung}
+Im Rahmen dieser Arbeit soll eine HTML5 \gls{WebApp} entwickelt werden, welche es ermöglicht, unvollständige bzw. fehlerhafte Daten in der OpenStreetMap-Datenbank zu korrigieren oder zu vervollständigen.
+
+Die App soll nicht als herkömmlicher Editor implementiert werden, sondern einen gewissen Gamecharakter aufweisen.
+Dieser zeichnet sich dadurch aus, dass die Benutzer für ihre Änderungsvorschläge belohnt werden.
+So können sie beispielsweise in der Rangierung (Ranking) aufsteigen oder Abzeichen (sog. Badges) gewinnen.
+Dieses Prinzip ist unter dem Stichwort \emph{Gamification} bekannt.
+Das ist die Anwendung von Game-Elementen in einer nicht-typischen Spieldomäne.
+Es soll untersucht werden, ob und wie sich dies für OpenStreetMap umsetzen lässt.
+
+Eingetragene Änderungsvorschläge können anschliessend von weiteren Benutzern kontrolliert und bewertet werden.
+Mehrfach validierte Änderungen sollen ins OpenStreetMap-Projekt zurückgeführt werden.
+
+Mit der Integration von Social Media-Diensten (Facebook, Twitter) soll die Bekanntheit der App gefördert und die Motivation der Benutzer gesteigert werden.
+
+\section{Ziele}
+In der Aufgabenstellung der Arbeit wurden folgende Ziele definiert:
+\begin{itemize}
+	\item Erstellen einer Cross-platform HTML5 WebApp mit JavaScript
+	\item Einsatz von JavaScript APIs zur Verwendung von Hardwarekomponenten (z.B. Kamera, GPS)
+	\item Es soll geprüft werden, ob die WebApp auch als native App für die Plattformen iOS und Android zur Verfügung gestellt werden kann 
+	\item Als Basis sollen Daten und Webdienste des OpenStreetMap-Projekts verwendet werden
+	\begin{itemize}
+		\item Quellen für bekannte Fehler: OSM Bug Reports, FIXME und TODO
+		\item Unterstützung von POI-, Linestring- und Polygon-Objekten
+	\end{itemize}
+	\item Verwendung einer vorhanden User-Basis für die Authentifizierung (OAuth)
+	\item Integration von Social Media zum Austausch von Aktivitäten
+	\item Konzept für Gamification von OpenStreetMap erarbeiten
+	\begin{itemize}
+		\item Highscores / Rankings
+		\item Badges / Achievements
+		\item Aufgaben mit verschiedenen Schwierigkeitsstufen
+	\end{itemize}
+	\item Verschiedene Modi
+	\begin{itemize}
+		\item Erfassen von Daten, Aufnahme von Fotos (ortsbezogen)
+		\item Verifikation von eingegebenen Daten (ortsunabhängig)
+	\end{itemize}
+	\item Das User Interface soll primär auf Deutsch erstellt werden. Es sollen jedoch Vorkehrungen getroffen werden, um eine Übersetzung einfach zu ermöglichen (Internationalisierung).
+\end{itemize}
+
+\section{Rahmenbedingungen}
+\begin{itemize}
+\item Es gelten die Rahmenbedingungen, Vorgaben und Termine der HSR
+\item Die Projektabwicklung orientiert sich an einer iterativen, agilen Vorgehensweise. Als Vorgabe dient dabei Scrum, wobei bedingt durch das kleine Projektteam gewisse Vereinfachungen vorgenommen werden. Meilensteine werden bezüglich Termin und Inhalt mit dem Betreuer vereinbart.
+\item Die Kommunikation in der Projektgruppe, in der Dokumentation und an den Präsentationen erfolgt auf Deutsch.
+\item Je nach Zeitplanung soll ein Video gemäss den Vorgaben des Studiengangs realisiert und publiziert werden.
+\end{itemize}
+
+\section{Vorgehen / Aufbau der Arbeit}
+\todo{Vorgehen beschreiben}
+Vorgehen: Was wurde gemacht? In welchen Teilschritten? Risiken der Arbeit? Wer war involviert (Durchführung, Entscheide usw.)? Details in anderen Kapiteln.
+Einführung in die Problem- und Aufgabenstellung. Übersicht über die übrigen Teile der Abgabe. 
+
+
+Die Arbeit ist in vier Teile gegliedert. Im ersten Teil erfolgt eine Einleitung mit allgemeinen Informationen zum Projekt und dessen Umsetzung (siehe Kapitel \ref{informationen-projekt} und \ref{umsetzung}). Darauf folgt eine theoretische Einführung in das Thema (siehe Kapitel \ref{einfuehrung}) sowie unserer verwendeten Infrastruktur (siehe Kapitel \ref{infrastruktur}). Der dritte Teil behandelt die erstellten Arbeitsresultate (siehe Kapitel XXXXXXXXXX) und im vierten Teil befinden sich Informationen zum Projektmanagement (siehe Kapitel \ref{projektmanagement} und \ref{projektmonitoring}).
+
+Neben diesem Dokument umfasst diese Arbeit eine implementierte Webapplikationen, welche im Internet verfügbar ist. Der dazugehörige Source Code ist ebenfalls frei im Internet zugänglich sowie auf der beigelegten CD zu finden.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.3\twocelltabwidth}|p{0.7\twocelltabwidth}|}
+\hline 
+\textbf{Arbeitsresultat} & \textbf{URL} \\ 
+\hline 
+\textsc{Kort} (WebApp) & \url{http://kort.herokuapp.com} \\ 
+\hline 
+Repository & \url{https://github.com/odi86/kort} \\ 
+\hline 
+\end{tabular}
+\label{arbeitsresultate}
+\caption{Übersicht der Arbeitsresultate}
+\end{table} 
