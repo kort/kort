@@ -3,9 +3,7 @@
  * kort - the /answer webservices
  */
 
-/** Load Slim Framework*/
 require_once('../../../lib/Slim-2.1.0/Slim/Slim.php');
-/** Load the ClassLoader */
 require_once('../../../server/php/ClassLoader.php');
 
 // Load Slim library

@@ -15,8 +15,10 @@
  <rule ref="Squiz.Commenting.ClassComment">
      <exclude-pattern>*/Test/*</exclude-pattern>
  </rule>
- <!-- <rule ref="Squiz.Commenting.FileComment" /> -->
  <rule ref="Squiz.Commenting.VariableComment">
+     <exclude-pattern>*/Test/*</exclude-pattern>
+ </rule>
+ <rule ref="Squiz.Commenting.DocCommentAlignment">
      <exclude-pattern>*/Test/*</exclude-pattern>
  </rule>
 

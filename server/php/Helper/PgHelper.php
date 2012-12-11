@@ -96,9 +96,9 @@ class PgHelper
         return pg_query($this->dbConn, "BEGIN;");
     }
 
-     /**
+    /**
      * Commit a transation.
-      *
+     *
      * @return resource|false a query resource on success, false otherwise
      */
     public function commit()
@@ -106,9 +106,9 @@ class PgHelper
         return pg_query($this->dbConn, "COMMIT;");
     }
 
-     /**
+    /**
      * Rollback a transation.
-      *
+     *
      * @return resource|false a query resource on success, false otherwise
      */
     public function rollback()
