@@ -157,7 +157,7 @@ Ext.define('Kort.util.Config', {
             },
             highscore: {
                 url: './server/webservices/highscore/',
-                limit: 25
+                limit: 10
             },
             answer: {
                 url: './server/webservices/answer/'
