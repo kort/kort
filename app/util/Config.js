@@ -105,9 +105,11 @@ Ext.define('Kort.util.Config', {
          * @cfg {Object} webservices Configuration of webservices
          * @cfg {Object} webservices.bug Configuration of bug webservice
          * @cfg {Function} webservices.bug.getUrl (required) Returns url of bug webservice with given position (latitude, longitude)
-         * @cfg {Number} webservices.bug.radius (required) Limit of bug selection
+         * @cfg {Number} webservices.bug.radius (required) Maximum range for bugs selection
+         * @cfg {Number} webservices.bug.limit (required) Limits bugs to given number
          * @cfg {Object} webservices.validation Configuration of validation webservice
          * @cfg {Function} webservices.validation.getUrl (required) Returns url of validation webservice with given position (latitude, longitude)
+         * @cfg {Number} webservices.validation.limit (required) Limits validations to given number
          * @cfg {Object} webservices.user Configuration of user webservice
          * @cfg {Object} webservices.user.url Url of user webservice
          * @cfg {Object} webservices.userLogout Configuration of userlogout webservice
@@ -116,6 +118,7 @@ Ext.define('Kort.util.Config', {
          * @cfg {Function} webservices.userBadges.getUrl (required) Returns url of userbadges webservice with given userid
          * @cfg {Object} webservices.highscore Configuration of highscore webservice
          * @cfg {Object} webservices.highscore.url Url of highscore webservice
+         * @cfg {Number} webservices.highscore.limit (required) Limits highscore entries to given number
          * @cfg {Object} webservices.answer Configuration of answer webservice
          * @cfg {Object} webservices.answer.url Url of answer webservice
          * @cfg {Object} webservices.fix Configuration of fix webservice
