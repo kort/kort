@@ -130,12 +130,14 @@ Ext.define('Kort.util.Config', {
                 getUrl: function(latitude, longitude) {
                     return './server/webservices/bug/position/' + latitude + ',' + longitude;
                 },
-                radius: 5000
+                radius: 5000,
+                limit: 25
             },
             validation: {
                 getUrl: function(latitude, longitude) {
                     return './server/webservices/validation/position/' + latitude + ',' + longitude;
-                }
+                },
+                limit: 25
             },
             user: {
                 url: './server/webservices/user/'
@@ -151,7 +153,8 @@ Ext.define('Kort.util.Config', {
                 }
             },
             highscore: {
-                url: './server/webservices/highscore/'
+                url: './server/webservices/highscore/',
+                limit: 25
             },
             answer: {
                 url: './server/webservices/answer/'
