@@ -25,6 +25,9 @@ Ext.define('Kort.model.User', {
 		proxy: {
 			type: 'rest',
             url: Kort.util.Config.getWebservices().user.url,
+            pageParam: false,
+            startParam: false,
+            limitParam: false,
             reader: {
                 type: 'json',
                 rootProperty: 'return'

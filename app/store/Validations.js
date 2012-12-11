@@ -28,6 +28,11 @@ Ext.define('Kort.store.Validations', {
 		proxy: {
 			type: 'rest',
             url: './resources/stores/validations.json',
+            pageParam: false,
+            startParam: false,
+            extraParams: {
+                'limit': Kort.util.Config.getWebservices().validation.limit
+            },
             reader: {
                 type: 'json',
                 rootProperty: 'return'
