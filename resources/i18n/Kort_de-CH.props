@@ -43,6 +43,8 @@ bugmap.title=Aufträge in deiner Nähe
 bugmap.loadmask.message=Lade Auträge...
 bugmap.messagebox.koins.earn=Verdiene dir
 bugmap.messagebox.koins.name=koins
+bugmap.messagebox.yes=Beantworten
+bugmap.messagebox.no=Weiss nicht
 
 ## Fix
 fix.form.title=Auftrag
