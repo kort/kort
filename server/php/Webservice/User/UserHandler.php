@@ -12,10 +12,10 @@ use Webservice\DbProxyHandler;
 class UserHandler extends DbProxyHandler
 {
     /**
-    * Returns the database table to be used with this Handler.
+     * Returns the database table to be used with this Handler.
      *
-    * @return the database table as a string
-    */
+     * @return the database table as a string
+     */
     protected function getTable()
     {
         return 'kort.user';
