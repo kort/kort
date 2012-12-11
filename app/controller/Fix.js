@@ -23,15 +23,11 @@ Ext.define('Kort.controller.Fix', {
         refs: {
             bugmapNavigationView: '#bugmapNavigationView',
             detailComponent: '.fixtabpanel',
-            fixFormShowOnMapButton: '.fixtabpanel .formpanel .button[cls=fixShowOnMapButton]',
             fixFormSubmitButton: '.fixtabpanel .formpanel .button[cls=fixSubmitButton]',
             fixField: '.fixtabpanel .formpanel .field',
             fixmap: '.fixtabpanel .kortleafletmap[cls=fixMap]'
         },
         control: {
-            fixFormShowOnMapButton: {
-                tap: 'onFixFormShowOnMapButtonTap'
-            },
             fixFormSubmitButton: {
                 tap: 'onFixFormSubmitButtonTap'
             },
@@ -42,11 +38,6 @@ Ext.define('Kort.controller.Fix', {
                 maprender: 'onMaprender'
             }
         }
-    },
-    
-    // @private
-    onFixFormShowOnMapButtonTap: function() {
-        this.getDetailComponent().setActiveItem(this.getFixmap());
     },
     
     // @private
