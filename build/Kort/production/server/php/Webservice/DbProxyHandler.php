@@ -7,18 +7,28 @@ namespace Webservice;
 use Helper\LocaleHelper;
 
 /**
- * The DbProxyHandler class defines the functionality of a webservice handler,
- * which uses the DbProxy to relay it's requests.
+ * The DbProxyHandler class defines the functionality of a webservice handler.
+ *
+ * DbProxyHandler relies on the DbProxy to relay it's requests.
  */
 abstract class DbProxyHandler
 {
-    /** @var DbProxy the datbase proxy object */
+    /**
+     * The datbase proxy object.
+     *
+     * @var DbProxy
+     */
     private $dbProxy;
-    /** @var LocaleHelper the translation helper object */
+
+    /**
+     * The translation helper object.
+     *
+     * @var LocaleHelper
+     */
     private $reader;
 
     /**
-     * Initialized the DbProxyHandler object
+     * Initialized the DbProxyHandler object.
      */
     public function __construct()
     {
@@ -27,17 +37,22 @@ abstract class DbProxyHandler
     }
 
     /**
-     * Setter for $dbProxy (only used for unit tests)
-     * @param DbProxy $proxy a new DbProxy object
+     * Setter for $dbProxy (only used for unit tests).
+     *
+     * @param DbProxy $proxy New DbProxy object.
+     *
+     * @return void
      */
-    public function setDbProxy($proxy)
+    public function setDbProxy(DbProxy $proxy)
     {
         $this->dbProxy = $proxy;
     }
 
     /**
-     * Translate a value to the users language
-     * @param string $key the string to translate
+     * Translate a value to the users language.
+     *
+     * @param string $key The string to translate.
+     *
      * @return string the translated string
      */
     protected function translate($key)
@@ -46,7 +61,8 @@ abstract class DbProxyHandler
     }
 
     /**
-     * Getter for $dbProxy
+     * Getter for $dbProxy.
+     *
      * @return DbProxy the dbProxy object
      */
     protected function getDbProxy()
@@ -56,18 +72,21 @@ abstract class DbProxyHandler
 
     /**
      * Returns the table fields used by this handler.
+     *
      * @return array the table fields used by this handler.
      */
     abstract protected function getTable();
 
     /**
      * Returns the table fields used by this handler.
+     *
      * @return array the table fields used by this handler.
      */
     abstract protected function getFields();
 
     /**
-     * Return the returnFields for this handler
+     * Return the returnFields for this handler.
+     *
      * @return array database table fields
      */
     protected function getReturnFields()
@@ -76,12 +95,13 @@ abstract class DbProxyHandler
     }
 
     /**
-     * Returns a parameter object to insert $data in a transaction
-     * @param array $data data to insert
-     * @param array $returnValues fields to return from the request
+     * Returns a parameter object to insert $data in a transaction.
+     *
+     * @param array $data Data to insert.
+     *
      * @return array the parameter object for the request
      */
-    protected function insertParams($data, $returnValues = false)
+    protected function insertParams(array $data)
     {
         $params = array();
         $params['table'] = $this->getTable();
@@ -89,7 +109,6 @@ abstract class DbProxyHandler
         $params['returnFields'] = $this->getReturnFields();
         $params['data'] = $data;
 
-        $params['return'] = $returnValues;
         $params['type'] = "INSERT";
 
         return $params;

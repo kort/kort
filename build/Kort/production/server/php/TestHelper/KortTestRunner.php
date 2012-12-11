@@ -12,10 +12,12 @@ use Helper\StringHelper;
 class KortTestRunner
 {
     /**
-     * Runs the tests of an AbstractKortUnitTestCase
-     * @param string $file the path to a file which contains a sub-class of AbstractKortUnitTestCase
+     * Runs the tests of an AbstractKortUnitTestCase.
      *
-     * @see AbstractKortUnitTestCase
+     * @param string $file The path to a file which contains a sub-class of AbstractKortUnitTestCase.
+     *
+     * @return void
+     * @see    AbstractKortUnitTestCase
      */
     public static function runTestFile($file)
     {
@@ -27,10 +29,12 @@ class KortTestRunner
     }
 
     /**
-     * Finds the class name of a file
-     * @param string $filename the filename of PHP file
+     * Finds the class name of a file.
+     *
+     * @param string $filename The filename of PHP file.
+     *
      * @return string the class name
-     * @throws \Exception if the class could not be found
+     * @throws \Exception If the class could not be found.
      */
     private static function findClass($filename)
     {
@@ -45,10 +49,12 @@ class KortTestRunner
 
     /**
      * Finds all Test* files in $dir and runs them.
-     * @param string $dir the directory to look into for all tests
-     * @param TestSuite $suite the TestSuite to add all found test files
      *
-     * @see KortAllTests
+     * @param string $dir   The directory to look into for all tests.
+     * @param mixed  $suite The TestSuite to add all found test files.
+     *
+     * @return void
+     * @see    KortAllTests
      */
     public static function runTestDirectory($dir, $suite)
     {

@@ -7,19 +7,24 @@ namespace Webservice\Database;
 use Helper\PgHelper;
 
 /**
- *The PsqlConnection class is an abstraction of a PostgreSQL database connection
+ *The PsqlConnection class is an abstraction of a PostgreSQL database connection.
  */
 class PsqlConnection
 {
-    /** A PostgreSQL-specific helper object to run queries on the database */
+    /**
+     * A PostgreSQL-specific helper object to run queries on the database.
+     *
+     * @var PgHelper
+     */
     protected $db = null;
 
     /**
-     * Create a new database connection wrapped in a PsqlConnection object
-     * @param DbConfig $dbConfig the configuration for the connection
-     * @param PgHelper $db parameter to inject a different PgHelper (used for unit testing only)
+     * Create a new database connection wrapped in a PsqlConnection object.
+     *
+     * @param DbConfig $dbConfig The configuration for the connection.
+     * @param PgHelper $db       Parameter to inject a different PgHelper (used for unit testing only).
      */
-    public function __construct($dbConfig, $db = null)
+    public function __construct(DbConfig $dbConfig, PgHelper $db = null)
     {
         if (!empty($db)) {
             $this->db = $db;
@@ -34,12 +39,16 @@ class PsqlConnection
      */
     public function __destruct()
     {
-        $this->db->close();
+        if ($this->db) {
+            $this->db->close();
+        }
     }
 
     /**
-     * Run any kind of query (passthrough) on the database
-     * @param string $sql an arbitrary sql statement
+     * Run any kind of query (passthrough) on the database.
+     *
+     * @param string $sql Arbitrary sql statement.
+     *
      * @return array the result of the query from the database
      */
     public function doQuery($sql)
@@ -48,28 +57,32 @@ class PsqlConnection
     }
 
     /**
-     * Run a select query
-     * @param array $fieldsArr fields of the table
-     * @param string $table table name
-     * @param string $where where clause (condition)
-     * @param string $orderBy order by clause (sorting)
-     * @param int $limit amount of records to return
+     * Run a select query.
+     *
+     * @param array   $fieldsArr Fields of the table.
+     * @param string  $table     Table name.
+     * @param string  $where     Where clause (condition).
+     * @param string  $orderBy   Order by clause (sorting).
+     * @param integer $limit     Amount of records to return.
+     *
      * @return array result of the query from the database
      */
-    public function doSelectQuery($fieldsArr, $table, $where, $orderBy = '', $limit = null)
+    public function doSelectQuery(array $fieldsArr, $table, $where, $orderBy = '', $limit = null)
     {
         $selectSql = $this->generateSelectSql($fieldsArr, $table, $where, $orderBy, $limit);
         return $this->db->query($selectSql);
     }
 
     /**
-     * Run a insert query on the database
-     * @param array $dataArr key/value (field/data) pairs for all fields
-     * @param string $table table name
-     * @param array $returnFields fields to return from this query
+     * Run a insert query on the database.
+     *
+     * @param array  $dataArr      Key/value (field/data) pairs for all fields.
+     * @param string $table        Table name.
+     * @param array  $returnFields Fields to return from this query.
+     *
      * @return array result of the query from the database
      */
-    public function doInsertQuery($dataArr, $table, $returnFields)
+    public function doInsertQuery(array $dataArr, $table, array $returnFields)
     {
         $insertSql = $this->generateInsertSql(array_keys($dataArr), $table, $returnFields);
         $this->db->prepare("insert-kort", $insertSql);
@@ -79,14 +92,16 @@ class PsqlConnection
     }
 
     /**
-     * Run a update query on the database
-     * @param array $dataArr key/value (field/data) pairs for all fields
-     * @param string $table table name
-     * @param string $where where clause (condition)
-     * @param array $returnFields fields to return from this query
+     * Run a update query on the database.
+     *
+     * @param array  $dataArr      Key/value (field/data) pairs for all fields.
+     * @param string $table        Table name.
+     * @param string $where        Where clause (condition).
+     * @param array  $returnFields Fields to return from this query.
+     *
      * @return array result of the query from the database
      */
-    public function doUpdateQuery($dataArr, $table, $where, $returnFields)
+    public function doUpdateQuery(array $dataArr, $table, $where, array $returnFields)
     {
         $updateSql = $this->generateUpdateSql(array_keys($dataArr), $table, $where, $returnFields);
         $this->db->prepare("update-kort", $updateSql);
@@ -95,7 +110,9 @@ class PsqlConnection
     }
 
     /**
-     * Indicate the begin of a transaction
+     * Indicate the begin of a transaction.
+     *
+     * @return void
      */
     public function beginTransaction()
     {
@@ -103,7 +120,9 @@ class PsqlConnection
     }
 
     /**
-     * Indicate the end of a transaction
+     * Indicate the end of a transaction.
+     *
+     * @return void
      */
     public function commitTransaction()
     {
@@ -111,7 +130,9 @@ class PsqlConnection
     }
 
     /**
-     * Rollback the transaction
+     * Rollback the transaction.
+     *
+     * @return void
      */
     public function rollbackTransaction()
     {
@@ -119,11 +140,13 @@ class PsqlConnection
     }
 
     /**
-     * Creates a database connection string based on the given configuration
-     * @param DbConfig $dbConfig the configuration of the database connection
+     * Creates a database connection string based on the given configuration.
+     *
+     * @param DbConfig $dbConfig The configuration of the database connection.
+     *
      * @return string the connection string
      */
-    protected function createConnectionString($dbConfig)
+    protected function createConnectionString(DbConfig $dbConfig)
     {
         $conn_string  = 'host='.$dbConfig->host;
         $conn_string .= ' port='.$dbConfig->port;
@@ -134,13 +157,15 @@ class PsqlConnection
     }
 
     /**
-     * Generates a insert statement using placeholders
-     * @param array $fields fields of the table
-     * @param string $table table name
-     * @param array $returnFields fields to return from this query
+     * Generates a insert statement using placeholders.
+     *
+     * @param array  $fields       Fields of the table.
+     * @param string $table        Table name.
+     * @param array  $returnFields Fields to return from this query.
+     *
      * @return string the generated sql statement
      */
-    protected function generateInsertSql($fields, $table, $returnFields)
+    protected function generateInsertSql(array $fields, $table, array $returnFields)
     {
         $numbers = range(1, count($fields));
         $sql  = "INSERT INTO " . $table;
@@ -166,14 +191,16 @@ class PsqlConnection
     }
 
     /**
-     * Generates a update statement using placeholders
-     * @param array $fields fields of the table
-     * @param string $table table name
-     * @param string $where where clause (condition)
-     * @param array $returnFields fields to return from this query
+     * Generates a update statement using placeholders.
+     *
+     * @param array  $fields       Fields of the table.
+     * @param string $table        Table name.
+     * @param string $where        Where clause (condition).
+     * @param array  $returnFields Fields to return from this query.
+     *
      * @return string the generated sql statement
      */
-    protected function generateUpdateSql($fields, $table, $where, $returnFields)
+    protected function generateUpdateSql(array $fields, $table, $where, array $returnFields)
     {
         $numbers = range(1, count($fields));
         $sql = "UPDATE " . $table . " set ";
@@ -202,15 +229,17 @@ class PsqlConnection
     }
 
     /**
-     * Generate a select statement
-     * @param array $fields fields of the table
-     * @param string $table table name
-     * @param string $where where clause (condition)
-     * @param string $orderBy order by clause (sorting)
-     * @param int $limit amount of records to return
+     * Generate a select statement.
+     *
+     * @param array   $fields  Fields of the table.
+     * @param string  $table   Table name.
+     * @param string  $where   Where clause (condition).
+     * @param string  $orderBy Order by clause (sorting).
+     * @param integer $limit   Amount of records to return.
+     *
      * @return string the generated sql statement
      */
-    protected function generateSelectSql($fields, $table, $where, $orderBy, $limit)
+    protected function generateSelectSql(array $fields, $table, $where, $orderBy, $limit)
     {
         $sql = "SELECT ";
         if (count($fields) == 0) {

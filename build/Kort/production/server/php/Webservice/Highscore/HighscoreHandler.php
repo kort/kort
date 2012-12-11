@@ -8,12 +8,13 @@ use Webservice\DbProxyHandler;
 use Helper\PostGisSqlHelper;
 
 /**
- * The HighscoreHandler handles request to the highscore webservice
+ * The HighscoreHandler handles request to the highscore webservice.
  */
 class HighscoreHandler extends DbProxyHandler
 {
     /**
      * Returns the table used by this handler.
+     *
      * @return string the table name used by this handler.
      */
     protected function getTable()
@@ -23,6 +24,7 @@ class HighscoreHandler extends DbProxyHandler
 
     /**
      * Returns the table fields used by this handler.
+     *
      * @return array the table fields used by this handler.
      */
     protected function getFields()
@@ -39,6 +41,7 @@ class HighscoreHandler extends DbProxyHandler
 
     /**
      * Return the current highscore with users, points etc.
+     *
      * @return string|bool the JSON-encoded highscore if successful, false otherwise
      */
     public function getHighscore()
@@ -54,10 +57,12 @@ class HighscoreHandler extends DbProxyHandler
 
     /**
      * Adds a field to a score to indicate wheter a user is the currently logged in user or not.
-     * @param array $score the score data
+     *
+     * @param array $score The score data.
+     *
      * @return array the $score array with an additional field "you"
      */
-    protected static function isYourScore($score)
+    protected static function isYourScore(array $score)
     {
         if (isset($_SESSION['user_id'])) {
             $score['you'] = ($score['user_id'] == $_SESSION['user_id']);

@@ -11,7 +11,11 @@ use Webservice\DbWebserviceConfig;
  */
 class DbHandler
 {
-    /** the database connection */
+    /**
+     * The database connection.
+     *
+     * @var PsqlConnection
+     */
     protected $db;
 
     /**
@@ -20,11 +24,9 @@ class DbHandler
      * The parameter is only used for unit testing.
      * Normally the database gets initialized by a DbConfig object.
      *
-     * @param PsqlConnection $db a database connection object
-     *
-     * @see DbConfig
+     * @param PsqlConnection $db Database connection object.
      */
-    public function __construct($db = null)
+    public function __construct(PsqlConnection $db = null)
     {
         if (empty($db)) {
             $this->db = new PsqlConnection(new DbConfig());
@@ -35,7 +37,9 @@ class DbHandler
 
     /**
      * Run SQL statement on the database.
-     * @param string $sql an arbitrary sql statement
+     *
+     * @param string $sql Arbitrary sql statement.
+     *
      * @return string|false if the sql statements succeeds,
      * this method return the results as JSON-encoded string, false otherwise
      */
@@ -50,16 +54,18 @@ class DbHandler
     }
 
     /**
-     * Run a select query on the database
-     * @param array $fields fields of the table
-     * @param string $table table name
-     * @param string $where where clause (condition)
-     * @param string $orderBy order by clause (sorting)
-     * @param int $limit amount of records to return
+     * Run a select query on the database.
+     *
+     * @param array   $fields  Fields of the table.
+     * @param string  $table   Table name.
+     * @param string  $where   Where clause (condition).
+     * @param string  $orderBy Order by clause (sorting).
+     * @param integer $limit   Amount of records to return.
+     *
      * @return string|false if the sql statements succeeds,
      * this method return the results as JSON-encoded string, false otherwise
      */
-    public function doSelect($fields, $table, $where, $orderBy, $limit)
+    public function doSelect(array $fields, $table, $where, $orderBy, $limit)
     {
         if (!$limit || $limit > 500) {
             $limit = 500;
@@ -70,13 +76,13 @@ class DbHandler
 
     /**
      * The same as doSelect, but the parameter is an array.
-     * @param array $params an array with parameters.
-     * @return string|false if the sql statements succeeds,
-     * this method return the results as JSON-encoded string, false otherwise
      *
-     * @see doSelect
+     * @param array $params Array with parameters.
+     *
+     * @return string|false JSON-encoded string if successful, false otherwise
+     * @see    doSelect
      */
-    protected function doSelectWithParams($params)
+    protected function doSelectWithParams(array $params)
     {
         $fields = $params['fields'];
         $table = $params['table'];
@@ -87,15 +93,17 @@ class DbHandler
     }
 
     /**
-     * Run a insert query on the database
-     * @param array $fields fields of the table
-     * @param string $table table name
-     * @param array $data key/value (field/data) pairs for all fields
-     * @param array $returnFields fields to return from this query
+     * Run a insert query on the database.
+     *
+     * @param array  $fields       Fields of the table.
+     * @param string $table        Table name.
+     * @param array  $data         Key/value (field/data) pairs for all fields.
+     * @param array  $returnFields Fields to return from this query.
+     *
      * @return string|false if the sql statements succeeds,
      * this method returns the results as JSON-encoded string, false otherwise
      */
-    public function doInsert($fields, $table, $data, $returnFields)
+    public function doInsert(array $fields, $table, array $data, array $returnFields)
     {
         $data = $this->reduceData($fields, $data);
         $insertedData = $this->db->doInsertQuery($data, $table, $returnFields);
@@ -108,13 +116,13 @@ class DbHandler
 
     /**
      * The same as doInsert, but the parameter is an array.
-     * @param array $params an array with parameters.
-     * @return string|false if the sql statements succeeds,
-     * this method returns the results as JSON-encoded string, false otherwise
      *
-     * @see doInsert
+     * @param array $params Array with parameters.
+     *
+     * @return string|false JSON-encoded string if successful, false otherwise
+     * @see    doInsert
      */
-    protected function doInsertWithParams($params)
+    protected function doInsertWithParams(array $params)
     {
         $fields = $params['fields'];
         $table = $params['table'];
@@ -124,16 +132,17 @@ class DbHandler
     }
 
     /**
-     * Run a update query on the database
-     * @param array $fields fields of the table
-     * @param string $table table name
-     * @param array $data key/value (field/data) pairs for all fields
-     * @param string $where where clause (condition)
-     * @param array $returnFields fields to return from this query
-     * @return string|false if the sql statements succeeds,
-     * this method returns the results as JSON-encoded string, false otherwise
+     * Run a update query on the database.
+     *
+     * @param array  $fields       Fields of the table.
+     * @param string $table        Table name.
+     * @param array  $data         Key/value (field/data) pairs for all fields.
+     * @param string $where        Where clause (condition).
+     * @param array  $returnFields Fields to return from this query.
+     *
+     * @return string|false JSON-encoded string if successful, false otherwise
      */
-    public function doUpdate($fields, $table, $data, $where, $returnFields)
+    public function doUpdate(array $fields, $table, array $data, $where, array $returnFields)
     {
         $data = $this->reduceData($fields, $data);
         $updatedData = $this->db->doUpdateQuery($data, $table, $where, $returnFields);
@@ -146,13 +155,13 @@ class DbHandler
 
     /**
      * The same as doUpdate, but the parameter is an array.
-     * @param array $params an array with parameters.
-     * @return string|false if the sql statements succeeds,
-     * this method returns the results as JSON-encoded string, false otherwise
      *
-     * @see doUpdate
+     * @param array $params Array with parameters.
+     *
+     * @return string|false JSON-encoded string if successful, false otherwise
+     * @see    doUpdate
      */
-    protected function doUpdateWithParams($params)
+    protected function doUpdateWithParams(array $params)
     {
         $fields = $params['fields'];
         $table = $params['table'];
@@ -163,13 +172,15 @@ class DbHandler
     }
 
     /**
-     * Run multiple sql statements in a transaction
-     * @param array $statements multiple statements, each entry containing a param array
+     * Run multiple sql statements in a transaction.
+     *
+     * @param array $statements Multiple statements, each entry containing a param array.
+     *
      * @return array|string an array where each entry is the result of the corresponding
      * sql statement. If one query fails, the transaction is rollbacked and an error
      * message is returned.
      */
-    public function doTransaction($statements)
+    public function doTransaction(array $statements)
     {
         $returnValue = "";
         $returnValues = array();
@@ -206,14 +217,15 @@ class DbHandler
     }
 
     /**
-     * Helper method to remove entries from $data that are not included in $fields
-     * @param array $fields the requested fields
-     * @param array $data the data to reduce
-     * @return array the $data array filter by the requested fields
+     * Helper method to remove entries from $data that are not included in $fields.
      *
-     * @see doInsert
+     * @param array $fields The requested fields.
+     * @param array $data   The data to reduce.
+     *
+     * @return array the $data array filter by the requested fields
+     * @see    doInsert
      */
-    protected function reduceData($fields, $data)
+    protected function reduceData(array $fields, array $data)
     {
         $reducedData = array();
         foreach ($fields as $key) {
@@ -226,7 +238,9 @@ class DbHandler
 
     /**
      * Checks if the call to the webservice is made with a valid API key.
-     * @param string $apiKey the API key sent by the client
+     *
+     * @param string $apiKey The API key sent by the client.
+     *
      * @return bool true if the key is correct, false otherwise
      */
     public function checkAuth($apiKey)
