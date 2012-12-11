@@ -10,6 +10,9 @@ Ext.define('Kort.store.SelectAnswers', {
 		proxy: {
 			type: 'rest',
             url: Kort.util.Config.getWebservices().answer.url,
+            pageParam: false,
+            startParam: false,
+            limitParam: false,
             sorters: 'sorting',
             reader: {
                 type: 'json',
