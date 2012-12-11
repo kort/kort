@@ -5,14 +5,16 @@
 namespace TestHelper;
 
 /**
- * The KortHTMLReporter class is a kort-specific implementation of a HTML reporter
- * for SimpleTest. It defines how tests should be painted.
+ * The KortHTMLReporter class is a kort-specific implementation of a HTML reporter.
  */
 class KortHTMLReporter extends \HtmlReporter
 {
     /**
-     * Paints a passing test
-     * @param string $message the message of the passed test
+     * Paints a passing test.
+     *
+     * @param string $message The message of the passed test.
+     *
+     * @return void
      */
     public function paintPass($message)
     {
@@ -26,7 +28,10 @@ class KortHTMLReporter extends \HtmlReporter
 
     /**
      * Paints a header for the test case.
-     * @param string $test_name the name of the test
+     *
+     * @param string $test_name The name of the test.
+     *
+     * @return void
      */
     public function paintHeader($test_name)
     {

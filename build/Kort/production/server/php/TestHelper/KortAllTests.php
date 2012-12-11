@@ -5,15 +5,19 @@
 namespace TestHelper;
 
 /**
- * The KortAllTests is a TestSuite that contains all tests of the project
+ * The KortAllTests is a TestSuite that contains all tests of the project.
  */
 class KortAllTests extends \TestSuite
 {
-    /** The reporter instance to use for displaying the tests */
+    /**
+     * The reporter instance to use for displaying the tests.
+     *
+     * @var SimpleReporter
+     */
     protected $reporter;
 
     /**
-     * Create a new KortAllTest test suite
+     * Create a new KortAllTest test suite.
      */
     public function __construct()
     {
@@ -23,7 +27,10 @@ class KortAllTests extends \TestSuite
 
     /**
      * Runs all tests that have previouly been added to the suite.
-     * @param Reporter $reporter a reporter instance to use to display the test results.
+     *
+     * @param mixed $reporter Reporter instance to use to display the test results.
+     *
+     * @return void
      */
     public function run($reporter = null)
     {

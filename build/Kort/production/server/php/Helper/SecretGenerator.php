@@ -6,15 +6,17 @@
 namespace Helper;
 
 /**
- * The SecretGenerator class is responsible to generate unique user secrets to identify
- * a user in the application.
+ * The SecretGenerator class is responsible to generate unique user secrets.
+ *
+ * This secret is used to initially identify a user in the application.
  *
  * The used algorithm is a double-salted SHA-1 hash based on the time.
  */
 class SecretGenerator
 {
     /**
-     * Returns a unique secret to identify a user
+     * Returns a unique secret to identify a user.
+     * 
      * @return string a double-salted SHA1 hash
      */
     public function getSecret()
@@ -26,6 +28,7 @@ class SecretGenerator
 
     /**
      * Randomly generates a salt value for the secret to use.
+     *
      * @return string a random salt for the user secret
      */
     private function generateSalt()

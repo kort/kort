@@ -6,16 +6,17 @@
 namespace Helper;
 
 /**
- * The StringHelper class implements some common string functions that
- * are missing in standard PHP.
+ * The StringHelper class implements some common string functions.
  */
 class StringHelper
 {
     /**
-     * Checks if $haystack ends with the string $needle
-     * @param string $haystack the input string
-     * @param string $needle the string to look for
-     * @return bool true of $haystack ends with $needle
+     * Checks if $haystack ends with the string $needle.
+     *
+     * @param string $haystack The input string.
+     * @param string $needle   The string to look for.
+     *
+     * @return booleam true of $haystack ends with $needle
      */
     public static function endsWith($haystack, $needle)
     {
@@ -23,9 +24,11 @@ class StringHelper
     }
 
     /**
-     * Checks if $haystack start with $needle
-     * @param string $haystack the input string
-     * @param string $needle the string to look for
+     * Checks if $haystack start with $needle.
+     *
+     * @param string $haystack The input string.
+     * @param string $needle   The string to look for.
+     *
      * @return bool true if $haystack starts with $needle, false otherwise
      */
     public function startsWith($haystack, $needle)
