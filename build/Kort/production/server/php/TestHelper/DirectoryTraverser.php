@@ -5,18 +5,23 @@
 namespace TestHelper;
 
 /**
- * The DirectoryTraverser class provides functionality to traverse over a directory
- * structure and apply a function to each file.
+ * The DirectoryTraverser class provides functionality apply a function to each file in a directory.
  */
 class DirectoryTraverser
 {
-    /** Function object to be applied to a directory structure */
+    /**
+     * Function object to be applied to a directory structure.
+     *
+     * @var callback
+     */
     protected $block;
 
     /**
-     * Create a new DirectoryTraverser object
-     * @param callback $block a function to be applied to a directory structure
-     * @throws \Exception if $block is not a callable object
+     * Create a new DirectoryTraverser object.
+     *
+     * @param callback|Closure $block Function to be applied to a directory structure.
+     *
+     * @throws \Exception If $block is not a callable object.
      */
     public function __construct($block)
     {
@@ -27,8 +32,11 @@ class DirectoryTraverser
     }
 
     /**
-     * Traverse over directory $dir and apply $block to each found file
-     * @param string $dir the directory to traverse over
+     * Traverse over directory $dir and apply $block to each found file.
+     *
+     * @param string $dir The directory to traverse over.
+     *
+     * @return void
      */
     public function traverse($dir)
     {

@@ -7,16 +7,19 @@ namespace Webservice;
 use Webservice\DbProxy;
 
 /**
- * The TransactionDbProxy class is a special DbProxy which runs several statements
- * in one request in one transaction
+ * The TransactionDbProxy class runs several statements in one request in one transaction.
  */
 class TransactionDbProxy extends DbProxy
 {
-    /** @var array the different statements to run in the transaction */
+    /**
+     * Statements to run in the transaction.
+     *
+     * @var array
+     */
     protected $statements = array();
 
     /**
-     * Creates a new TransactionDbProxy object
+     * Creates a new TransactionDbProxy object.
      */
     public function __construct()
     {
@@ -24,7 +27,8 @@ class TransactionDbProxy extends DbProxy
     }
 
     /**
-     * Makes a request for the whole transaction
+     * Makes a request for the whole transaction.
+     *
      * @return array array with an entry for each statments result.
      */
     public function sendTransaction()
@@ -41,7 +45,8 @@ class TransactionDbProxy extends DbProxy
     }
 
     /**
-     * Indicates wheter the requests runs in a transaction or not
+     * Indicates wheter the requests runs in a transaction or not.
+     *
      * @return bool true if the request runs in a transation, false otherwise
      */
     public function isTransaction()
@@ -50,7 +55,9 @@ class TransactionDbProxy extends DbProxy
     }
 
     /**
-     * Removed all statements from this object
+     * Removes all statements from this object.
+     *
+     * @return void
      */
     protected function clearTransaction()
     {
@@ -58,10 +65,13 @@ class TransactionDbProxy extends DbProxy
     }
 
     /**
-     * Adds a new statement as a parameter array to the transaction
-     * @param array $params a parameter object describing the statement to execute
+     * Adds a new statement as a parameter array to the transaction.
+     *
+     * @param array $params Parameter object describing the statement to execute.
+     *
+     * @return void
      */
-    public function addToTransaction($params)
+    public function addToTransaction(array $params)
     {
         $this->statements[] = $params;
     }

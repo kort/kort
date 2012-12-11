@@ -7,12 +7,13 @@ namespace Webservice\User;
 use Webservice\DbProxyHandler;
 
 /**
- * The UserBadgesHandler class handles requests to the user/badges webservice
+ * The UserBadgesHandler class handles requests to the user/badges webservice.
  */
 class UserBadgesHandler extends DbProxyHandler
 {
     /**
      * Returns the table used by this handler.
+     *
      * @return string the table name used by this handler.
      */
     protected function getTable()
@@ -22,6 +23,7 @@ class UserBadgesHandler extends DbProxyHandler
 
     /**
      * Returns the table fields used by this handler.
+     *
      * @return array the table fields used by this handler.
      */
     protected function getFields()
@@ -37,16 +39,24 @@ class UserBadgesHandler extends DbProxyHandler
     }
 
     /**
-     * Returns all badges and marks the won badges for the user
-     * @param int $user_id the users id
+     * Returns all badges and marks the won badges for the user.
+     *
+     * @param integer $user_id The users id.
+     *
      * @return string|bool the JSON-encoded badges is successful, false otherwise
      */
     public function getUserBadges($user_id)
     {
         $fields = $this->getFields();
+
         $wonFieldSql  = "exists(select 1 from kort.user_badge ub ";
         $wonFieldSql .= "where ub.user_id = " . $user_id . " and ub.badge_id = id) as won";
         $fields[] = urlencode($wonFieldSql);
+
+        $createDateFieldSql  = "(select create_date from kort.user_badge ub ";
+        $createDateFieldSql .= "where ub.user_id = " . $user_id . " and ub.badge_id = id) as create_date";
+        $fields[] = urlencode($createDateFieldSql);
+
         $this->getDbProxy()->setFields($fields);
 
         $badgeData = $this->getDbProxy()->select();
@@ -60,11 +70,13 @@ class UserBadgesHandler extends DbProxyHandler
     }
 
     /**
-     * Converts the string values from the database to "real" boolean values
-     * @param array $badge the badge data
+     * Converts the string values from the database to "real" boolean values.
+     *
+     * @param array $badge The badge data.
+     *
      * @return array the $badge data with fixed boolean values
      */
-    public function convertBoolean($badge)
+    public function convertBoolean(array $badge)
     {
         $badge['won'] = ($badge['won'] == 't') ? true : false;
         return $badge;

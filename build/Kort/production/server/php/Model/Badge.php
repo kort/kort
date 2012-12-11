@@ -9,15 +9,28 @@ namespace Model;
  * The Badge class represents an achievment, that user can win.
  *
  * It is part of the reward that user gets for playing kort.
- *
- * @see Model\Reward
  */
 class Badge
 {
-    /** The name of the badge */
+    /**
+     * The name of the badge.
+     *
+     * @var string
+     */
     protected $name;
 
-     /** The array of all names and ids of all badges */
+    /**
+     * The date when this badge has been given to the user.
+     *
+     * @var string
+     */
+    protected $create_date;
+
+     /**
+      * The array of all names and ids of all badges.
+      *
+      * @var array
+      */
     protected static $names = array(
             1 => 'highscore_place_1',
             2 => 'highscore_place_2',
@@ -27,12 +40,16 @@ class Badge
             6 => 'fix_count_10',
             7 => 'vote_count_1000',
             8 => 'vote_count_100',
-            9 => 'vote_count_10'
+            9 => 'vote_count_10',
+            10 => 'fix_count_1',
+            11 => 'vote_count_1'
     );
 
     /**
-     * Returns a new Badge object for the given $id
-     * @param $id the id of a badge
+     * Returns a new Badge object for the given $id.
+     *
+     * @param integer $id The id of a badge.
+     *
      * @return Badge|null a new Badge object identified by $id
      * or null if not found
      */
@@ -45,30 +62,33 @@ class Badge
     }
 
     /**
-    * Returns an array of values of the given badges
-    * @static
-    * @param $badges whose values should be returned
+    * Returns an array of values of the given badges.
+     *
+    * @param array $badges Values should be returned.
+     *
     * @return an array of values of the given badges
     */
-    public static function getValues($badges)
+    public static function getValues(array $badges)
     {
         return array_map("self::getValue", $badges);
     }
 
     /**
-    * Returns an array of properties representing the 'value' of a badge
-    * @param $badge whose value should be returned
+    * Returns an array of properties representing the 'value' of a badge.
+     *
+    * @param Badge $badge Value should be returned.
+     *
     * @return an array of values of the given badges
     */
-    private static function getValue($badge)
+    private static function getValue(Badge $badge)
     {
         return array("name" => $badge->getName());
     }
 
     /**
-    * Creates a new instance of Badge
-    * @param the name of the badge
-    * @return a new instance of Badge
+    * Creates a new instance of Badge.
+     *
+    * @param string $name The name of the badge.
     */
     public function __construct($name)
     {
@@ -76,11 +96,34 @@ class Badge
     }
 
     /**
-    * Returns the badge's name
+    * Returns the badge's name.
+     *
     * @return string containing the badge's name
     */
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+    * Returns the date when this badge has been given to the user.
+     *
+    * @return string containing the date when this badge has been given to the user
+    */
+    public function getCreateDate()
+    {
+        return $this->createDate;
+    }
+
+    /**
+    * Sets the date when this badge has been given to the user.
+    *
+    * @param string $createDate The date when this badge has been given to the user.
+    *
+    * @return void
+    */
+    public function setCreateDate($createDate)
+    {
+        $this->createDate = $createDate;
     }
 }

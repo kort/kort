@@ -5,15 +5,21 @@
 namespace Webservice;
 
 /**
- * setup the url path to the db webservice
+ * Setup the url path to the db webservice.
  */
 class DbWebserviceConfig
 {
-    /** @var string the URL of the database webservice */
+    /**
+     * The URL of the database webservice.
+     * 
+     * @var string
+     */
     protected $url = "http://kort.rdmr.ch/webservices/db";
+    //protected $url = "http://localhost/kort/server/webservices/db";
 
     /**
-     * Getter for the API key (which must be set in the environment
+     * Getter for the API key (which must be set in the environment.
+     *
      * @return string the API key
      */
     public function getApiKey()
@@ -22,7 +28,8 @@ class DbWebserviceConfig
     }
 
     /**
-     * Getter for $url
+     * Getter for $url.
+     *
      * @return string the url of the database webservice
      */
     public function getUrl()

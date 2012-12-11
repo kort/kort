@@ -16,7 +16,7 @@ class TestAnswerHandler extends AbstractKortUnitTestCase
     public function setUp()
     {
         $this->mockProxy = M::mock(
-            'DbProxy',
+            'Webservice\DbProxy',
             array(
                 "setLimit" => null,
                 "setOrderBy" => null,
