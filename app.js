@@ -74,7 +74,8 @@ Ext.application({
 
     viewport: {
         // hide navigation bar of browser
-        autoMaximize: true
+        // TODO reactivate autoMaximize (disabled for iPhone simulator)
+        autoMaximize: false
     },
 
     // launch function is called as soon as app is ready
