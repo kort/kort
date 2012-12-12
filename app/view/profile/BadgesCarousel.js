@@ -12,7 +12,7 @@ Ext.define('Kort.view.profile.BadgesCarousel', {
         itemTpl: new Ext.XTemplate(
                     '<div class="carouselitem-content">' +
                         '<tpl if="won">' +
-                            '<p class="badge-recieved">' + Ext.i18n.Bundle.message('profile.badges.recieved') + ' {create_date:date("d.m.Y H:i")}</p>' +
+                            '<p class="badge-recieved">' + Ext.i18n.Bundle.message('profile.badges.recieved') + ' {create_date}</p>' +
                         '</tpl>' +
                         '<h1 class="badge-title">{title}</h1>' +
                         '<img class="badge-image" src="./resources/images/badges/<tpl if="won">{name}<tpl else>locked</tpl>.png" />' +
