@@ -94,9 +94,7 @@
         /**
          * List of items in the CACHE MANIFEST section
          */
-        "cache": [
-            "index.html"
-        ],
+        "cache": [],
         /**
          * List of items in the NETWORK section
          */
