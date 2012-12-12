@@ -5,14 +5,16 @@
 namespace Webservice\Vote;
 
 use Webservice\DbProxyHandler;
+use Webservice\IKoinCount;
 use Webservice\RewardHandler;
+use Webservice\TransactionDbProxy;
 use Model\Badge;
 use Model\Reward;
 
 /**
  * The VoteHandler class handles requests to the vote webservice.
  */
-class VoteHandler extends DbProxyHandler
+class VoteHandler extends DbProxyHandler implements IKoinCount
 {
     /**
      * Returns the database table to be used with this Handler.
@@ -66,51 +68,17 @@ class VoteHandler extends DbProxyHandler
      */
     public function insertVote(array $data)
     {
-        $transProxy = new \Webservice\TransactionDbProxy();
+        $transProxy = new TransactionDbProxy();
+        $rewardHandler = new RewardHandler($transProxy, $this);
 
         $insertVoteParams = $this->insertParams($data);
-        $highscoreBadgesParams = RewardHandler::getHighscoreBadgesParams($data);
-        $fixCountBadgesParams = RewardHandler::getFixCountBadgesParams($data);
-        $voteCountBadgesParams = RewardHandler::getVoteCountBadgesParams($data);
-        $koinCountQuery = $this->getKoinCountQuery($data);
-        $updateKoinCountParams = RewardHandler::updateKoinCointParams($data['user_id'], $koinCountQuery);
-        $completedParams = $this->getCompletedParams($data);
-
         $transProxy->addToTransaction($insertVoteParams);
-        $transProxy->addToTransaction($highscoreBadgesParams);
-        $transProxy->addToTransaction($fixCountBadgesParams);
-        $transProxy->addToTransaction($voteCountBadgesParams);
-        $transProxy->addToTransaction($updateKoinCountParams);
+        $rewardHandler->applyRewards($data);
+        $completedParams = $this->getCompletedParams($data);
         $transProxy->addToTransaction($completedParams);
+
         $result = json_decode($transProxy->sendTransaction(), true);
-
-        $badges = array();
-        if (count($result[1]) > 0) {
-            $highscoreBadgeId = $result[1][0]['badge_id'];
-            $highscoreCreateDate = $result[1][0]['create_date'];
-            $badge = Badge::findById($highscoreBadgeId);
-            $badge->setCreateDate($highscoreCreateDate);
-            $badges[] = $badge;
-        }
-        if (count($result[2]) > 0) {
-            $fixCountBadgeId = $result[2][0]['badge_id'];
-            $fixCountCreateDate = $result[2][0]['create_date'];
-            $badge = Badge::findById($fixCountBadgeId);
-            $badge->setCreateDate($fixCountCreateDate);
-            $badges[] = $badge;
-        }
-        if (count($result[3]) > 0) {
-            $voteCountBadgeId = $result[3][0]['badge_id'];
-            $voteCountCreateDate = $result[3][0]['create_date'];
-            $badge = Badge::findById($voteCountBadgeId);
-            $badge->setCreateDate($voteCountCreateDate);
-            $badges[] = $badge;
-        }
-
-        $koinCountTotal = $result[4][0]['koin_count_total'];
-        $koinCountNew = $result[4][0]['koin_count_new'];
-
-        $reward = new Reward($koinCountTotal, $koinCountNew, $badges);
+        $reward = $rewardHandler->extractReward($result);
         return $reward->toJson();
     }
 
@@ -121,7 +89,7 @@ class VoteHandler extends DbProxyHandler
      *
      * @return string query to find the koinCount for votes
      */
-    protected function getKoinCountQuery(array $data)
+    public function getKoinCountQuery(array $data)
     {
         return "select vote_koin_count from kort.validations where id = " . $data['fix_id'];
     }

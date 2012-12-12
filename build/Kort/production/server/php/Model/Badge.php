@@ -29,6 +29,8 @@ class Badge
      /**
       * The array of all names and ids of all badges.
       *
+      * TODO: get rid of this array, query the database instead
+      *
       * @var array
       */
     protected static $names = array(
@@ -62,66 +64,66 @@ class Badge
     }
 
     /**
-    * Returns an array of values of the given badges.
+     * Returns an array of values of the given badges.
      *
-    * @param array $badges Values should be returned.
+     * @param array $badges Values should be returned.
      *
-    * @return an array of values of the given badges
-    */
+     * @return an array of values of the given badges
+     */
     public static function getValues(array $badges)
     {
         return array_map("self::getValue", $badges);
     }
 
     /**
-    * Returns an array of properties representing the 'value' of a badge.
+     * Returns an array of properties representing the 'value' of a badge.
      *
-    * @param Badge $badge Value should be returned.
+     * @param Badge $badge Value should be returned.
      *
-    * @return an array of values of the given badges
-    */
+     * @return an array of values of the given badges
+     */
     private static function getValue(Badge $badge)
     {
         return array("name" => $badge->getName());
     }
 
     /**
-    * Creates a new instance of Badge.
+     * Creates a new instance of Badge.
      *
-    * @param string $name The name of the badge.
-    */
+     * @param string $name The name of the badge.
+     */
     public function __construct($name)
     {
         $this->name = $name;
     }
 
     /**
-    * Returns the badge's name.
+     * Returns the badge's name.
      *
-    * @return string containing the badge's name
-    */
+     * @return string containing the badge's name
+     */
     public function getName()
     {
         return $this->name;
     }
 
     /**
-    * Returns the date when this badge has been given to the user.
+     * Returns the date when this badge has been given to the user.
      *
-    * @return string containing the date when this badge has been given to the user
-    */
+     * @return string containing the date when this badge has been given to the user
+     */
     public function getCreateDate()
     {
         return $this->createDate;
     }
 
     /**
-    * Sets the date when this badge has been given to the user.
-    *
-    * @param string $createDate The date when this badge has been given to the user.
-    *
-    * @return void
-    */
+     * Sets the date when this badge has been given to the user.
+     *
+     * @param string $createDate The date when this badge has been given to the user.
+     *
+     * @return void
+     */
     public function setCreateDate($createDate)
     {
         $this->createDate = $createDate;

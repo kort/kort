@@ -26,12 +26,12 @@ class Reward
     protected $koinCount = 0;
 
     /**
-    * Creates a new instance of Reward.
+     * Creates a new instance of Reward.
      *
-    * @param integer $koinCountTotal Amount of koins that the user has.
-    * @param integer $koinCountNew   Amount of koins for this Reward.
-    * @param array   $badges         Array of Badges of this Reward.
-    */
+     * @param integer $koinCountTotal Amount of koins that the user has.
+     * @param integer $koinCountNew   Amount of koins for this Reward.
+     * @param array   $badges         Array of Badges of this Reward.
+     */
     public function __construct($koinCountTotal, $koinCountNew = 0, array $badges = array())
     {
         $this->koinCountTotal = $koinCountTotal;
@@ -40,10 +40,10 @@ class Reward
     }
 
     /**
-    * Return the reward in JSON format.
+     * Return the reward in JSON format.
      *
-    * @return the reward in JSON format
-    */
+     * @return the reward in JSON format
+     */
     public function toJson()
     {
         $response = array();
@@ -59,30 +59,30 @@ class Reward
     }
 
     /**
-    * Return the badges of this rewards.
+     * Return the badges of this rewards.
      *
-    * @return the badges of this rewards
-    */
+     * @return the badges of this rewards
+     */
     protected function getBadges()
     {
         return $this->badges;
     }
 
     /**
-    * Return the amount of koins of this reward.
+     * Return the amount of koins of this reward.
      *
-    * @return int the amount of koins of this reward
-    */
+     * @return int the amount of koins of this reward
+     */
     protected function getKoinCountNew()
     {
         return $this->koinCountNew;
     }
 
     /**
-    * Return the amount total koins of the user after receiving this reward.
+     * Return the amount total koins of the user after receiving this reward.
      *
-    * @return integer the total amount of koins of the user
-    */
+     * @return integer the total amount of koins of the user
+     */
     protected function getKoinCountTotal()
     {
         return $this->koinCountTotal;
