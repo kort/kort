@@ -654,7 +654,11 @@ Ext.apply(Ext, {
         else {
             addMeta('viewport', 'initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0');
         }
-        addMeta('apple-mobile-web-app-capable', 'yes');
+        /**
+         * WORKAROUND FOR iOS6 Bug - Add to homescreen doesn't work correctly
+         * see: http://www.sencha.com/forum/showthread.php?246317-2.1.0-RC1-Save-to-home-screen-Geolocation-not-working
+         */
+        //addMeta('apple-mobile-web-app-capable', 'yes');
         addMeta('apple-touch-fullscreen', 'yes');
 
         // status bar style
