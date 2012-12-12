@@ -69,10 +69,11 @@ class TransactionDbProxy extends DbProxy
      *
      * @param array $params Parameter object describing the statement to execute.
      *
-     * @return void
+     * @return the position in the transaction
      */
     public function addToTransaction(array $params)
     {
         $this->statements[] = $params;
+        return count($this->statements);
     }
 }
