@@ -19,8 +19,8 @@ class CurlHelper
     protected $curl;
 
     /**
-    * Creates a new instance of CurlHelper.
-    */
+     * Creates a new instance of CurlHelper.
+     */
     public function __construct()
     {
         $this->curl = \curl_init();

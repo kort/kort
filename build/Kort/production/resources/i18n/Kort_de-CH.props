@@ -3,7 +3,7 @@ tab.bugmap=Aufträge
 tab.validation=Prüfen
 tab.highscore=Highscore
 tab.profile=Profil
-tab.about=Über KORT
+tab.about=Über Kort
 button.back=Zurück
 
 # Submitted Popup
@@ -43,6 +43,8 @@ bugmap.title=Aufträge in deiner Nähe
 bugmap.loadmask.message=Lade Auträge...
 bugmap.messagebox.koins.earn=Verdiene dir
 bugmap.messagebox.koins.name=koins
+bugmap.messagebox.yes=Beantworten
+bugmap.messagebox.no=Weiss nicht
 
 ## Fix
 fix.form.title=Auftrag
@@ -109,7 +111,7 @@ profile.badges.emptytext=Deine Auszeichnungen konnten nicht geladen werden.
 profile.badges.button.close=Schliessen
 
 # About
-about.title=Über KORT
+about.title=Über Kort
 about.version.title=Version
 about.authors.title=Autoren
 about.project.title=Projekt
