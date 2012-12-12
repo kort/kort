@@ -21,7 +21,11 @@
             i, ln, path;
 
         meta('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no');
-        meta('apple-mobile-web-app-capable', 'yes');
+        /**
+         * WORKAROUND FOR iOS6 Bug - Add to homescreen doesn't work correctly
+         * see: http://www.sencha.com/forum/showthread.php?246317-2.1.0-RC1-Save-to-home-screen-Geolocation-not-working
+         */
+        //meta('apple-mobile-web-app-capable', 'yes');
         meta('apple-touch-fullscreen', 'yes');
 
         for (i = 0,ln = styleSheets.length; i < ln; i++) {
