@@ -29,6 +29,8 @@ class Badge
      /**
       * The array of all names and ids of all badges.
       *
+      * TODO: get rid of this array, query the database instead
+      *
       * @var array
       */
     protected static $names = array(
