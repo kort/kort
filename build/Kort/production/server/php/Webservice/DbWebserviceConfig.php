@@ -14,7 +14,8 @@ class DbWebserviceConfig
      * 
      * @var string
      */
-    protected $url = "http://kort.rdmr.ch/webservices/db";
+    //protected $url = "http://kort.rdmr.ch/webservices/db";
+    protected $url = "http://localhost/kort/server/webservices/db";
 
     /**
      * Getter for the API key (which must be set in the environment.
