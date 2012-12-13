@@ -3,7 +3,9 @@
  * kort - the /highscore webservices
  */
 
+/** Load Slim library */
 require_once('../../../lib/Slim-2.1.0/Slim/Slim.php');
+/** Load ClassLoader */
 require_once('../../../server/php/ClassLoader.php');
 
 use Webservice\Highscore\HighscoreHandler;
