@@ -66,7 +66,7 @@ Auf der \emph{Über Kort}-Seite werden allgemeine Informationen zur Applikation 
 
 \subsection{Bekannte Fehler}
 
-\subsubsection{iOS - Add to homescreen}
+\subsubsection{iOS6 - Add to homescreen}
 Eine sehr nützliche Funktionalität, welche Apple im Mobile Safari-Browser anbietet ist die \emph{Add to homescreen}-Funktion.
 
 \begin{figure}[H]
@@ -82,10 +82,34 @@ Eine sehr nützliche Funktionalität, welche Apple im Mobile Safari-Browser anbi
 
 Dadurch wird ein App-ähnlicher Bookmark der aktuellen Webseite auf dem Homescreen erstellt.
 Dieser erhält ein hinterlegtes Icon und einen Titel.
-Beim Starten der App erscheint ein Splashscreen, welchen man ebenfalls in der Webseite definieren kann. Zudem öffnet sich der Browser ohne jegliche Toolbars wie der Adressleiste oder der Navigationsbar.
+Beim Starten der App erscheint ein Splashscreen, welchen man ebenfalls in der Webseite definieren kann.
+Zudem öffnet sich der Browser ohne jegliche Toolbars wie der Adressleiste oder der Navigationsbar.
 
-Leider hat die verwendete Version (2.1.0) des Sencha Touch Frameworks Fehler bei der Anzeige von einigen GUI-Komponenten.
-So werden in unserem Fall nach dem Splashscreen lediglich ein weisser Bildschirm angezeigt.
+Leider befindet in iOS6 ein Bug, welcher den Zugriff auf die Geolocation verhindert, wenn die \gls{WebApp} vom Homescreen aus gestartet wird.
+Auf Stack Overflow\footnote{\url{http://stackoverflow.com/questions/12503815/ios-6-breaks-geolocation-in-webapps-apple-mobile-web-app-capable}} wird der Bug genauer beschrieben.
+
+\textbf{Workaround}
+
+Im Sencha Fourm\footnote{\url{http://www.sencha.com/forum/showthread.php?246317-2.1.0-RC1-Save-to-home-screen-Geolocation-not-working}} wird als Workaround vorgeschlagen die Generierung des folgenden Metatags (siehe Code-Ausschnitt \ref{code-ios6-homescreen-metatag}) in der Sencha Touch Library zu deaktivieren.
+
+\lstset{language=HTML}
+\begin{lstlisting}[caption=Metatag für iOS6 Workaround, label=code-ios6-homescreen-metatag]
+<meta content="yes" name="apple-mobile-web-app-capable" />
+\end{lstlisting}
+
+Diese befindet sich in folgenden Dateien:
+
+\begin{itemize}
+\item \inlinecode{/touch/microloader/development.js} Zeile 24
+\item \inlinecode{/touch/microloader/production.js} Zeile 564
+\item \inlinecode{/touch/microloader/testing.js} Zeile 24
+\item \inlinecode{/touch/sencha-touch-all-debug.js} Zeile 9345
+\item \inlinecode{/touch/sencha-touch-debug.js} Zeile 9345
+\item \inlinecode{/touch/src/core/Ext-more.js} Zeile 657
+\end{itemize}
+
+Das Deaktivieren dieser Zeile hat aber zur Folge, dass der native Rahmen des Browsers (Adressleiste, Navigationsbar) wieder angezeigt wird.
+Dies ist zwar unschön löst aber das Problem mit dem Zugriff auf die Geolocation.
 
 \subsubsection{App Build}
 Wie in Abschnitt \ref{sencha-cmd} beschrieben, basiert die App vollständig auf dem Sencha-eigenen Build-Tool \emph{Sencha Cmd 3.0.0.250}. Darin sind aber noch einige Bugs vorhanden.
@@ -100,9 +124,7 @@ Um diese Problem zu umgehen, mussten wir das Build-Skript von Sencha Cmd minimal
 So mussten wir die Zeile, welche den \gls{Microloader} komprimiert auskommentieren (siehe Code-Ausschnitt \ref{senchacmd-workaround}).
 Diese befindet sich in folgender Datei:
 
-\inlinecode{/<Sencha Cmd Verzeichnis>/plugins/touch/current/app-build.js}
-
-\inlinecode{Zeile 362: //content = compressor.compress(content);}
+\inlinecode{/<Sencha Cmd Verzeichnis>/plugins/touch/current/app-build.js} Zeile 362
 
 \lstset{language=JavaScript}
 \begin{lstlisting}[float, caption=Sencha Cmd Workaround, label=senchacmd-workaround]
