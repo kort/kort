@@ -8,7 +8,7 @@ Ext.define('Kort.util.Config', {
         /**
          * @cfg {String} version Current version number of application
          */
-        version: '0.5.0',
+        version: '1.0.0',
         
         /**
          * @cfg {Object} leafletMap Configuration for {@link Ext.ux.LeafletMap} component

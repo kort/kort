@@ -3,7 +3,7 @@ tab.bugmap=Aufträge
 tab.validation=Prüfen
 tab.highscore=Highscore
 tab.profile=Profil
-tab.about=Über Kort
+tab.about=Über
 button.back=Zurück
 
 # Submitted Popup
@@ -111,7 +111,7 @@ profile.badges.emptytext=Deine Auszeichnungen konnten nicht geladen werden.
 profile.badges.button.close=Schliessen
 
 # About
-about.title=Über Kort
+about.title=Über
 about.version.title=Version
 about.information.title=Weitere Informationen
 about.information.homepage=Webseite:
