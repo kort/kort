@@ -24,7 +24,7 @@ create table kort.fix (
     osm_id integer not null,
     message text,
     complete boolean default false,
-    unique(user_id, error_id, schema, osm_id),
+    unique(error_id, schema, osm_id),
     foreign key (error_id, schema, osm_id) references keepright.errors (error_id, schema, object_id)
 );
 
@@ -79,3 +79,16 @@ create table kort.validation (
     foreign key (fix_id) references kort.fix (fix_id)
 );
 
+create or replace function reset_kort() returns boolean as $$
+begin
+    update kort.user set koin_count = 0;
+    delete from kort.user_badge;
+    delete from kort.validation;
+    delete from kort.fix;
+
+    return true;
+exception
+    when others then
+       return false;
+end;
+$$ language plpgsql;
