@@ -159,8 +159,8 @@ class RewardHandler
      */
     public function applyRewards(array $data)
     {
-        $this->updateBadges($data);
         $this->updateKoinCount($data);
+        $this->updateBadges($data);
     }
 
     /**
