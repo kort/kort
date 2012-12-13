@@ -44,8 +44,9 @@ class HighscoreHandler extends DbProxyHandler
      *
      * @return string|bool the JSON-encoded highscore if successful, false otherwise
      */
-    public function getHighscore()
+    public function getHighscore($limit)
     {
+        $this->getDbProxy()->setLimit($limit);
         $scoreData = $this->getDbProxy()->select();
         if (!$scoreData) {
             return false;

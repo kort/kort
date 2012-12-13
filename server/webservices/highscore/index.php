@@ -21,8 +21,9 @@ $highscoreHandler = new HighscoreHandler();
 // define REST resources
 $app->get(
     '/',
-    function () use ($highscoreHandler, $slim) {
-        $highscoreData = $highscoreHandler->getHighscore();
+    function () use ($highscoreHandler, $app, $slim) {
+        $limit = $app->request()->params('limit');
+        $highscoreData = $highscoreHandler->getHighscore($limit);
         $slim->returnData($highscoreData);
     }
 );
