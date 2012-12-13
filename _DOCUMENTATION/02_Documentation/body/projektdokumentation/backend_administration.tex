@@ -79,14 +79,66 @@ createFixField: function(bug) {
 Die bereits vorhandenen Auszeichnungen sind in Tabelle \ref{kort-badges} beschrieben. Um weitere Auszeichnungen hinzuzufügen, muss folgendermassen vorgegangen werden:
 
 \begin{enumerate}
-\item Es muss ein neuer Badge in der Tabelle \inlinecode{kort.badge} erstellt werden
-\item Zusätzlich muss die Regel für das Gewinnen des Badges in der Abfrage XY definiert werden. \todo[inline]{Abfrage erstellen und einfügen}
-\item Für das Frontend muss ein Bild erstellt werden, welches dem Namen (Tabellenattribut \inlinecode{kort.badge.name}) des Badges entspricht. Dieses Bild muss in folgendem Pfad gespeichert werden \inlinecode{/resources/images/badges/<badgename>.png}.
+\item Es muss ein neuer \gls{Badge} in der Tabelle \inlinecode{kort.badge} erstellt werden
+\item Zusätzlich muss eine Regel für das Gewinnen des \gls{Badge}s in der Methode \inlinecode{RewardHandler::updateBadges()}\footnote{\url{http://kort.herokuapp.com/docs/Kort-backend/classes/Webservice.RewardHandler.html\#method_updateBadges}} hinzugefügt werden.
+\item Für das Frontend muss ein Bild erstellt werden, welches dem Namen (Tabellenattribut \inlinecode{kort.badge.name}) des \gls{Badge}s entspricht. Dieses Bild muss in folgendem Pfad gespeichert werden \inlinecode{/resources/images/badges/<badgename>.png}.
 \end{enumerate}
 
-Sind alle Punkte abgearbeitet ist der Badge im Frontend ersichtlich und kann von den Benutzern gewonnen werden.
+Sind alle Punkte abgearbeitet ist der \gls{Badge} im Frontend ersichtlich und kann von den Benutzern gewonnen werden.
+
+\section{Hinzufügen von OAuth Anbietern}
+\label{kort-additional-oauth-provider}
+Derzeit ist der Login über Googles \gls{OAuth}-Dienst möglich, um zukünftig weitere Login-Dienste anbieten zu können müssen einige Schritte beachtet werden.
+Der Dienst muss folgende Anforderungen erfüllen:
+\begin{itemize}
+\item Unterstützung für OAuth 1.0 oder 2.0
+\item Offline-Zugang, d.h. es müssen Aktionen ohne den Benutzer möglich sein
+\item Ein längerfristig gültiges Token, welches als \emph{Refresh Token} bezeichnet wird
+\item Der Dienst muss eine Registrierung der Applikation ermöglichen
+\end{itemize}
+
+Wenn ein Dienst diese Anforderung erfüllt, muss die Applikation registriert werden.
+Die Angaben für Google sind dabei im Kapitel \ref{oauth} vermerkt.
+
+Im Backend kann eine entsprechende Subklasse von \inlinecode{AbstractOAuthCallback}\footnote{\url{http://kort.herokuapp.com/docs/Kort-backend/classes/OAuth.AbstractOAuthCallback.html}} erstellt werden. 
+Eine so erstellte OAuthCallback-Klasse nimmt dann einen Callback des entsprechenden Anbieters entgegen und authentifiziert den Benutzer.
+Das zugehörige Callback-Script wird im Order \inlinecode{/server/oauth2callback} gespeichert.
+
+Schlussendlich muss das Frontend noch angepasst werden.
+Dazu gehört, dass der neue Dienst in der Konfiguration (siehe Kapitel \ref{frontend-config}) eingetragen werden muss.
+Um einen neuen Login-Button anzuzeigen muss dieser auch noch auf dem Login-Panel (\inlinecode{/app/view/overlay/login/Panel.js}) hinzugefügt werden.
+Die zugehörige Logik befindet sich im Login-Controller (\inlinecode{/app/controller/Login.js}).
+\begin{figure}[H]
+\subfigure{\includegraphics[scale=0.3]{images/screenshots/kort-screenshot-login}}
+\caption{Login-Button des OAuth-Anbieters}
+\end{figure}
+
+
+\section{Reset der Applikation}
+\label{kort-reset}
+Um die Applikation zurückzusetzen kann die Stored Procedure \inlinecode{reset\_kort()} verwendet werden. 
+Die Prozedur löscht alle laufenden Daten aus der Datenbank, so dass wieder der Ursprungszustand hergestellt ist:
+\begin{itemize}
+\item Die Punkte (\emph{\gls{koins}}) aller Benutzer werden auf 0 zurückgesetzt
+\item Die \gls{Badge}s aller Benutzer werden entfernt
+\item Alle Lösungsvorschläge von Benutzern werden entfernt
+\item Alle Überprüfungen von Lösungsvorschlägen werden entfernt
+\end{itemize}
+
+Auf Aufruf der Prozedur sieht wiefolgt aus:
+\begin{lstlisting}[float, caption=Aufruf von reset\_kort() um die Applikation zurückzusetzen, label=kort-reset-cmd]
+select reset_kort();
+
+ reset_kort 
+------------
+ t
+(1 row)
+\end{lstlisting}
+
+Die Prozedur liefert \inlinecode{true} wenn alles geklappt hat, ansonsten \inlinecode{false}.
 
 \section{Frontend Kofiguration}
+\label{frontend-config}
 Die Konfiguration des Frontends befindet sich in der Datei \inlinecode{/app/util/Config.js}.
 Darin sind alle Parameter definiert, welche die Applikation für den Betrieb benötigt.
 
