@@ -1,0 +1,1 @@
+phpdoc -d server -t docs/Kort-backend
