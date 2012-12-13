@@ -1,15 +1,10 @@
-create or replace view kort.errors as
-select  e.error_id id,
+create or replace view kort.all_errors as
+select  e.error_id,
         e.schema,
-        t.type,
+        e.error_type_id,
         e.object_id osm_id,
         e.object_type osm_type,
-        t.description title,
-        t.view_type,
-        t.answer_placeholder,
         e.msgid description,
-        t.fix_koin_count,
-        t.vote_koin_count,
         CAST(e.lat AS NUMERIC)/10000000 latitude,
         CAST(e.lon AS NUMERIC)/10000000 longitude,
         e.geom,
@@ -18,37 +13,38 @@ select  e.error_id id,
         e.txt3,
         e.txt4,
         e.txt5
-from    keepright.errors e,
-        kort.error_type t
-where   e.error_type_id = t.error_type_id
-and     not exists (select 1 from kort.fix f where f.error_id = e.error_id);
+from    keepright.errors e;
 
-create or replace view kort.error_koin_count as
+create or replace view kort.errors as
 select  e.error_id id,
         e.schema,
         t.type,
-        e.object_id osm_id,
-        e.object_type osm_type,
+        e.osm_id,
+        e.osm_type,
         t.description title,
         t.view_type,
         t.answer_placeholder,
-        e.msgid description,
+        e.description,
         t.fix_koin_count,
         t.vote_koin_count,
+        e.latitude,
+        e.longitude,
+        e.geom,
         e.txt1,
         e.txt2,
         e.txt3,
         e.txt4,
         e.txt5
-from    keepright.errors e,
+from    kort.all_errors e,
         kort.error_type t
-where   e.error_type_id = t.error_type_id;
+where   e.error_type_id = t.error_type_id
+and     not exists (select 1 from kort.fix f where f.error_id = e.error_id);
 
 create or replace view kort.validations as
 select  f.fix_id id,
         f.user_id fix_user_id,
-        e.object_id osm_id,
-        e.object_type osm_type,
+        e.osm_id,
+        e.osm_type,
         t.description title,
         t.type,
         t.view_type,
@@ -58,16 +54,16 @@ select  f.fix_id id,
        (select count(1) from kort.validation v where v.fix_id = f.fix_id and v.valid) upratings,
        (select count(1) from kort.validation v where v.fix_id = f.fix_id and not v.valid) downratings,
         t.required_validations,
-        CAST(e.lat AS NUMERIC)/10000000 latitude,
-        CAST(e.lon AS NUMERIC)/10000000 longitude,
+        e.latitude,
+        e.longitude,
         e.geom
-from    keepright.errors e,
+from    kort.all_errors e,
         kort.error_type t,
         kort.fix f
 where   e.error_type_id = t.error_type_id
 and     f.error_id = e.error_id
 and     f.schema = e.schema
-and     f.osm_id = e.object_id
+and     f.osm_id = e.osm_id
 and     not f.complete;
 
 create or replace view kort.tracktype as
