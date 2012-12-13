@@ -27,7 +27,10 @@ Ext.define('Kort.store.Bugs', {
 <span id='Kort-store-Bugs-cfg-proxy'>		proxy: {
 </span>			type: 'rest',
             url: './resources/stores/bugs.json',
+            pageParam: false,
+            startParam: false,
             extraParams: {
+                'limit': Kort.util.Config.getWebservices().bug.limit,
                 'radius': Kort.util.Config.getWebservices().bug.radius
             },
             reader: {

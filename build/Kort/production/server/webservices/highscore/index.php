@@ -3,7 +3,9 @@
  * kort - the /highscore webservices
  */
 
+/** Load Slim library */
 require_once('../../../lib/Slim-2.1.0/Slim/Slim.php');
+/** Load ClassLoader */
 require_once('../../../server/php/ClassLoader.php');
 
 use Webservice\Highscore\HighscoreHandler;
@@ -21,8 +23,9 @@ $highscoreHandler = new HighscoreHandler();
 // define REST resources
 $app->get(
     '/',
-    function () use ($highscoreHandler, $slim) {
-        $highscoreData = $highscoreHandler->getHighscore();
+    function () use ($highscoreHandler, $app, $slim) {
+        $limit = $app->request()->params('limit');
+        $highscoreData = $highscoreHandler->getHighscore($limit);
         $slim->returnData($highscoreData);
     }
 );

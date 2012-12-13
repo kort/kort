@@ -21,6 +21,9 @@
 Ext.define('Kort.view.validation.vote.AnswerActionSheet', {
     extend: 'Ext.ActionSheet',
     xtype: 'voteansweractionsheet',
+    requires: [
+        'Ext.Button'
+    ],
 
     config: {
 <span id='Kort-view-validation-vote-AnswerActionSheet-cfg-zIndex'>        zIndex: Kort.util.Config.getZIndex().overlayLeafletMap,

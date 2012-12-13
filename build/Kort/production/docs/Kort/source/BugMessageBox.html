@@ -25,7 +25,35 @@ Ext.define('Kort.view.bugmap.BugMessageBox', {
     config: {
 <span id='Kort-view-bugmap-BugMessageBox-cfg-cls'>        cls: 'bugMessageBox',
 </span><span id='Kort-view-bugmap-BugMessageBox-cfg-zIndex'>        zIndex: Kort.util.Config.getZIndex().overlayLeafletMap
-</span>    }
+</span>    },
+    
+    statics: {
+<span id='Kort-view-bugmap-BugMessageBox-property-YESNO'>        YESNO: [
+</span>            { text: Ext.i18n.Bundle.message('bugmap.messagebox.yes'), itemId: 'yes', ui: 'action'},
+            { text: Ext.i18n.Bundle.message('bugmap.messagebox.no'), itemId: 'no'}
+        ]
+    },
+    
+<span id='Kort-view-bugmap-BugMessageBox-method-confirm'>    /**
+</span>     * @inheritdoc
+	 * OVERRIDEN SENCHA TOUCH FUNCTION
+	 * CHANGE: use own yes/no labels
+	 */
+    confirm: function(title, message, fn, scope) {
+        return this.show({
+            title       : title || null,
+            message     : message || null,
+            // use own yes/no labels
+            buttons     : Kort.view.bugmap.BugMessageBox.YESNO,
+            promptConfig: false,
+            scope       : scope,
+            fn: function() {
+                if (fn) {
+                    fn.apply(scope, arguments);
+                }
+            }
+        });
+    }
 });</pre>
 </body>
 </html>
