@@ -68,11 +68,13 @@ Ext.define('Kort.controller.Vote', {
     
     // @private
     onVoteAnswerCancelButtonTap: function() {
+        var validationNavigationView = this.getValidationNavigationView();
         if(this.getAnswerActionSheet()) {
             this.getAnswerActionSheet().hide();
         }
         // remove detail panel
-        this.getValidationNavigationView().pop();
+        validationNavigationView.pop();
+        validationNavigationView.fireEvent('detailpop', validationNavigationView);
     },
     
     /**

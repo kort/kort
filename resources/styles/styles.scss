@@ -283,7 +283,7 @@ $label-background-color: #46578D;
    ----------------------- */
 .voteContainer {
     .vote-content {
-        padding: $panel-padding;
+        padding: $panel-padding $panel-padding 0 $panel-padding;
         
         .question {
             margin: 0.5em 0;
