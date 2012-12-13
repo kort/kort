@@ -55,6 +55,14 @@ Ext.define('Kort.view.validation.vote.Container', {
                     )
         };
         
+        voteAnswerButton = {
+            xtype: 'button',
+            iconMask: true,
+            ui: 'confirm',
+            cls: 'voteAnswerButton',
+            text: Ext.i18n.Bundle.message('vote.container.button.answer')
+        };
+        
         voteMap = {
             xtype: 'kortleafletmap',
             cls: 'voteMap',
@@ -64,14 +72,6 @@ Ext.define('Kort.view.validation.vote.Container', {
             }
         };
         
-        voteAnswerButton = {
-            xtype: 'button',
-            iconMask: true,
-            ui: 'confirm',
-            cls: 'voteAnswerButton',
-            text: Ext.i18n.Bundle.message('vote.container.button.answer')
-        };
-        
-        this.add([voteContentContainer, voteMap, voteAnswerButton]);
+        this.add([voteContentContainer, voteAnswerButton, voteMap]);
     }
 });
