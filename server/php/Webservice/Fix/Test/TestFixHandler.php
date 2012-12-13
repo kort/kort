@@ -25,16 +25,17 @@ class TestFixHandler extends AbstractKortUnitTestCase
             "osm_id"   => 898213791823,
             "message"  => "grade4"
         );
-        $this->sendTransResult[1] = array();
-        $this->sendTransResult[2][0] = array(
-            "badge_id" => 10,
-            "create_date" => "2012-12-13 00:22:12.300417"
-        );
-        $this->sendTransResult[3] = array();
-        $this->sendTransResult[4][0] = array(
+        $this->sendTransResult[1][0] = array(
             "koin_count_total" => 260,
             "koin_count_new"   => 5
         );
+        $this->sendTransResult[2] = array();
+        $this->sendTransResult[3][0] = array(
+            "badge_id" => 10,
+            "create_date" => "2012-12-13 00:22:12.300417"
+        );
+        $this->sendTransResult[4] = array();
+
         $this->sendTransResultJson = json_encode($this->sendTransResult);
 
         $this->reward = array();
