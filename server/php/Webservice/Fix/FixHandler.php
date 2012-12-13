@@ -16,6 +16,22 @@ use Model\Reward;
  */
 class FixHandler extends DbProxyHandler implements IKoinCount
 {
+
+    /**
+     * Initialized the FixHandler object.
+     *
+     * @param TransactionDbProxy The database proxy object.
+     */
+    public function __construct($dbProxy = null)
+    {
+        parent::__construct();
+        if (empty($dbProxy)) {
+            $this->setDbProxy(new TransactionDbProxy());
+        } else {
+            $this->setDbProxy($dbProxy);
+        }
+    }
+
     /**
      * Returns the table used by this handler.
      *
@@ -45,14 +61,13 @@ class FixHandler extends DbProxyHandler implements IKoinCount
      */
     public function insertFix(array $data)
     {
-        $transProxy = new TransactionDbProxy();
-        $rewardHandler = new RewardHandler($transProxy, $this);
+        $rewardHandler = new RewardHandler($this->getDbProxy(), $this);
 
         $insertVoteParams = $this->insertParams($data);
-        $transProxy->addToTransaction($insertVoteParams);
+        $this->getDbProxy()->addToTransaction($insertVoteParams);
         $rewardHandler->applyRewards($data);
 
-        $result = json_decode($transProxy->sendTransaction(), true);
+        $result = json_decode($this->getDbProxy()->sendTransaction(), true);
         $reward = $rewardHandler->extractReward($result);
         return $reward->toJson();
     }
