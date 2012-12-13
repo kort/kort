@@ -16,13 +16,12 @@ use Model\Reward;
  */
 class FixHandler extends DbProxyHandler implements IKoinCount
 {
-
     /**
      * Initialized the FixHandler object.
      *
-     * @param TransactionDbProxy The database proxy object.
+     * @param TransactionDbProxy $dbProxy The database proxy object.
      */
-    public function __construct($dbProxy = null)
+    public function __construct(TransactionDbProxy $dbProxy = null)
     {
         parent::__construct();
         if (empty($dbProxy)) {
