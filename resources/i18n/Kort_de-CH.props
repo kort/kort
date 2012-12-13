@@ -113,11 +113,19 @@ profile.badges.button.close=Schliessen
 # About
 about.title=Über Kort
 about.version.title=Version
-about.authors.title=Autoren
+about.information.title=Weitere Informationen
+about.information.homepage=Webseite:
+about.information.bugs=Fehler melden:
+about.developers.title=Entwickler
 about.project.title=Projekt
-about.partners.title=Industriepartner
+about.project.advisor=Leitung:
+about.credits.title=Credits
+about.credits.partner=Partner:
+about.credits.mapdata=Geodaten:
+about.credits.tiledata=Kartenkacheln:
+about.credits.markers=Marker Icons:
 about.legal.title=Rechtliche Hinweise
-about.legal.message=Wir bitten dich die OpenStreetMap Regeln einzuhalten.
+about.legal.message=Halte die Richtlinien von OpenStreetMap ein und verwende z.B. keine urheberrechtlich geschützten Quellen ohne Erlaubnis.
 
 # MessageBox
 messagebox.ok=OK
