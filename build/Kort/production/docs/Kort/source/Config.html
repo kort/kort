@@ -122,9 +122,11 @@ Ext.define('Kort.util.Config', {
 </span>         * @cfg {Object} webservices Configuration of webservices
          * @cfg {Object} webservices.bug Configuration of bug webservice
          * @cfg {Function} webservices.bug.getUrl (required) Returns url of bug webservice with given position (latitude, longitude)
-         * @cfg {Number} webservices.bug.radius (required) Limit of bug selection
+         * @cfg {Number} webservices.bug.radius (required) Maximum range for bugs selection
+         * @cfg {Number} webservices.bug.limit (required) Limits bugs to given number
          * @cfg {Object} webservices.validation Configuration of validation webservice
          * @cfg {Function} webservices.validation.getUrl (required) Returns url of validation webservice with given position (latitude, longitude)
+         * @cfg {Number} webservices.validation.limit (required) Limits validations to given number
          * @cfg {Object} webservices.user Configuration of user webservice
          * @cfg {Object} webservices.user.url Url of user webservice
          * @cfg {Object} webservices.userLogout Configuration of userlogout webservice
@@ -133,6 +135,7 @@ Ext.define('Kort.util.Config', {
          * @cfg {Function} webservices.userBadges.getUrl (required) Returns url of userbadges webservice with given userid
          * @cfg {Object} webservices.highscore Configuration of highscore webservice
          * @cfg {Object} webservices.highscore.url Url of highscore webservice
+         * @cfg {Number} webservices.highscore.limit (required) Limits highscore entries to given number
          * @cfg {Object} webservices.answer Configuration of answer webservice
          * @cfg {Object} webservices.answer.url Url of answer webservice
          * @cfg {Object} webservices.fix Configuration of fix webservice
@@ -145,30 +148,33 @@ Ext.define('Kort.util.Config', {
         webservices: {
             bug: {
                 getUrl: function(latitude, longitude) {
-                    return './server/webservices/bug/position/' + latitude + ',' + longitude
+                    return './server/webservices/bug/position/' + latitude + ',' + longitude;
                 },
-                radius: 5000
+                radius: 5000,
+                limit: 25
             },
             validation: {
                 getUrl: function(latitude, longitude) {
-                    return './server/webservices/validation/position/' + latitude + ',' + longitude
-                }
+                    return './server/webservices/validation/position/' + latitude + ',' + longitude;
+                },
+                limit: 25
             },
             user: {
                 url: './server/webservices/user/'
             },
             userLogout: {
                 getUrl: function(userid) {
-                    return './server/webservices/user/' + userid + '/logout'
+                    return './server/webservices/user/' + userid + '/logout';
                 }
             },
             userBadges: {
                 getUrl: function(userid) {
-                    return './server/webservices/user/' + userid + '/badges'
+                    return './server/webservices/user/' + userid + '/badges';
                 }
             },
             highscore: {
-                url: './server/webservices/highscore/'
+                url: './server/webservices/highscore/',
+                limit: 10
             },
             answer: {
                 url: './server/webservices/answer/'
@@ -181,8 +187,8 @@ Ext.define('Kort.util.Config', {
             },
             osm: {
                 getUrl: function(objectId, objectType) {
-                    return './server/webservices/osm/' + objectType + '/' + objectId
-                } 
+                    return './server/webservices/osm/' + objectType + '/' + objectId;
+                }
             }
         }
 	},

@@ -22,7 +22,14 @@ Ext.define('Kort.view.Main', {
     extend: 'Ext.tab.Panel',
     xtype: 'main',
 <span id='Kort-view-Main-property-id'>    id: 'mainTabPanel',
-</span>
+</span>    requires: [
+        'Kort.view.bugmap.NavigationView',
+        'Kort.view.validation.NavigationView',
+        'Kort.view.highscore.Container',
+        'Kort.view.profile.Container',
+        'Kort.view.about.Container'
+    ],
+    
     config: {
 <span id='Kort-view-Main-cfg-tabBar'>        tabBar: {
 </span>            docked: 'bottom',

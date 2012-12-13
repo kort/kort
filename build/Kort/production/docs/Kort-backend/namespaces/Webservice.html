@@ -1,0 +1,374 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>kort - Backend » Webservice</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">kort - Backend</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Namespaces</a></li>
+<li><a href="../namespaces/Helper.html"><i class="icon-th"></i> Helper</a></li>
+<li><a href="../namespaces/Kort.html"><i class="icon-th"></i> Kort</a></li>
+<li><a href="../namespaces/Model.html"><i class="icon-th"></i> Model</a></li>
+<li><a href="../namespaces/OAuth.html"><i class="icon-th"></i> OAuth</a></li>
+<li><a href="../namespaces/TestHelper.html"><i class="icon-th"></i> TestHelper</a></li>
+<li><a href="../namespaces/Webservice.html"><i class="icon-th"></i> Webservice</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">0</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul><li>todo 
+                <span class="label label-info">2</span>
+</li></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-map-marker"></i> Namespaces</li>
+<li>
+<a href="../namespaces/Webservice.html" title="Webservice"><i class="icon-th"></i>Webservice</a><ul class="nav nav-list nav-namespaces">
+<li>
+<a href="../namespaces/Webservice.Answer.html" title="Answer"><i class="icon-th"></i>Answer</a><ul class="nav nav-list nav-namespaces"></ul>
+</li>
+<li>
+<a href="../namespaces/Webservice.Bug.html" title="Bug"><i class="icon-th"></i>Bug</a><ul class="nav nav-list nav-namespaces"></ul>
+</li>
+<li>
+<a href="../namespaces/Webservice.Database.html" title="Database"><i class="icon-th"></i>Database</a><ul class="nav nav-list nav-namespaces"></ul>
+</li>
+<li>
+<a href="../namespaces/Webservice.Fix.html" title="Fix"><i class="icon-th"></i>Fix</a><ul class="nav nav-list nav-namespaces"></ul>
+</li>
+<li>
+<a href="../namespaces/Webservice.Highscore.html" title="Highscore"><i class="icon-th"></i>Highscore</a><ul class="nav nav-list nav-namespaces"></ul>
+</li>
+<li>
+<a href="../namespaces/Webservice.Osm.html" title="Osm"><i class="icon-th"></i>Osm</a><ul class="nav nav-list nav-namespaces"></ul>
+</li>
+<li>
+<a href="../namespaces/Webservice.User.html" title="User"><i class="icon-th"></i>User</a><ul class="nav nav-list nav-namespaces"></ul>
+</li>
+<li>
+<a href="../namespaces/Webservice.Validation.html" title="Validation"><i class="icon-th"></i>Validation</a><ul class="nav nav-list nav-namespaces"></ul>
+</li>
+<li>
+<a href="../namespaces/Webservice.Vote.html" title="Vote"><i class="icon-th"></i>Vote</a><ul class="nav nav-list nav-namespaces"></ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8 namespace-contents">
+<ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-th"></i></a><span class="divider">\</span>
+</li>
+<li class="active"><a href="../namespaces/Webservice.html">Webservice</a></li>
+</ul>
+<div class="namespace-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="IKoinCount" class="element ajax clickable interface">
+<h1>IKoinCount<a href="../classes/Webservice.IKoinCount.html">¶</a>
+</h1>
+<p class="short_description">This interface describes common methods for koin count manipulating webservice handlers.</p>
+<div class="details collapse"></div>
+<a href="../classes/Webservice.IKoinCount.html" class="more">« More »</a>
+</div>
+<div id="DbProxy" class="element ajax clickable class">
+<h1>DbProxy<a href="../classes/Webservice.DbProxy.html">¶</a>
+</h1>
+<p class="short_description">The DbProxy class is used wrap database request in REST calls to the datbase webservice.</p>
+<div class="details collapse"></div>
+<a href="../classes/Webservice.DbProxy.html" class="more">« More »</a>
+</div>
+<div id="DbProxyHandler" class="element ajax clickable class">
+<h1>DbProxyHandler<a href="../classes/Webservice.DbProxyHandler.html">¶</a>
+</h1>
+<p class="short_description">The DbProxyHandler class defines the functionality of a webservice handler.</p>
+<div class="details collapse"></div>
+<a href="../classes/Webservice.DbProxyHandler.html" class="more">« More »</a>
+</div>
+<div id="DbWebserviceConfig" class="element ajax clickable class">
+<h1>DbWebserviceConfig<a href="../classes/Webservice.DbWebserviceConfig.html">¶</a>
+</h1>
+<p class="short_description">Setup the url path to the db webservice.</p>
+<div class="details collapse"></div>
+<a href="../classes/Webservice.DbWebserviceConfig.html" class="more">« More »</a>
+</div>
+<div id="RewardHandler" class="element ajax clickable class">
+<h1>RewardHandler<a href="../classes/Webservice.RewardHandler.html">¶</a>
+</h1>
+<p class="short_description">The RewardHandler class takes care of webservices that return rewards to the user.</p>
+<div class="details collapse"></div>
+<a href="../classes/Webservice.RewardHandler.html" class="more">« More »</a>
+</div>
+<div id="TransactionDbProxy" class="element ajax clickable class">
+<h1>TransactionDbProxy<a href="../classes/Webservice.TransactionDbProxy.html">¶</a>
+</h1>
+<p class="short_description">The TransactionDbProxy class runs several statements in one request in one transaction.</p>
+<div class="details collapse"></div>
+<a href="../classes/Webservice.TransactionDbProxy.html" class="more">« More »</a>
+</div>
+<ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-th"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/Webservice.html">Webservice</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../namespaces/Webservice.Answer.html">Answer</a>
+</li>
+</ul>
+<div class="namespace-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="AnswerHandler" class="element ajax clickable class">
+<h1>AnswerHandler<a href="../classes/Webservice.Answer.AnswerHandler.html">¶</a>
+</h1>
+<p class="short_description">The AnswerHandler class is used to handle requests to the answer webservices.</p>
+<div class="details collapse"></div>
+<a href="../classes/Webservice.Answer.AnswerHandler.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-th"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/Webservice.html">Webservice</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../namespaces/Webservice.Bug.html">Bug</a>
+</li>
+</ul>
+<div class="namespace-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="BugHandler" class="element ajax clickable class">
+<h1>BugHandler<a href="../classes/Webservice.Bug.BugHandler.html">¶</a>
+</h1>
+<p class="short_description">The BugHandler class is used to handle request to the bug webservices.</p>
+<div class="details collapse"></div>
+<a href="../classes/Webservice.Bug.BugHandler.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-th"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/Webservice.html">Webservice</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../namespaces/Webservice.Database.html">Database</a>
+</li>
+</ul>
+<div class="namespace-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="DbConfig" class="element ajax clickable class">
+<h1>DbConfig<a href="../classes/Webservice.Database.DbConfig.html">¶</a>
+</h1>
+<p class="short_description">This is an example for the DbConfig class.</p>
+<div class="details collapse"></div>
+<a href="../classes/Webservice.Database.DbConfig.html" class="more">« More »</a>
+</div>
+<div id="DbConfig" class="element ajax clickable class">
+<h1>DbConfig<a href="../classes/Webservice.Database.DbConfig.html">¶</a>
+</h1>
+<p class="short_description">This is an example for the DbConfig class.</p>
+<div class="details collapse"></div>
+<a href="../classes/Webservice.Database.DbConfig.html" class="more">« More »</a>
+</div>
+<div id="DbHandler" class="element ajax clickable class">
+<h1>DbHandler<a href="../classes/Webservice.Database.DbHandler.html">¶</a>
+</h1>
+<p class="short_description">The DbHandler class takes care of all requests to the db webservice.</p>
+<div class="details collapse"></div>
+<a href="../classes/Webservice.Database.DbHandler.html" class="more">« More »</a>
+</div>
+<div id="PsqlConnection" class="element ajax clickable class">
+<h1>PsqlConnection<a href="../classes/Webservice.Database.PsqlConnection.html">¶</a>
+</h1>
+<p class="short_description">The PsqlConnection class is an abstraction of a PostgreSQL database connection.</p>
+<div class="details collapse"></div>
+<a href="../classes/Webservice.Database.PsqlConnection.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-th"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/Webservice.html">Webservice</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../namespaces/Webservice.Fix.html">Fix</a>
+</li>
+</ul>
+<div class="namespace-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="FixHandler" class="element ajax clickable class">
+<h1>FixHandler<a href="../classes/Webservice.Fix.FixHandler.html">¶</a>
+</h1>
+<p class="short_description">The FixHandler handles request to the fix webservice.</p>
+<div class="details collapse"></div>
+<a href="../classes/Webservice.Fix.FixHandler.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-th"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/Webservice.html">Webservice</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../namespaces/Webservice.Highscore.html">Highscore</a>
+</li>
+</ul>
+<div class="namespace-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="HighscoreHandler" class="element ajax clickable class">
+<h1>HighscoreHandler<a href="../classes/Webservice.Highscore.HighscoreHandler.html">¶</a>
+</h1>
+<p class="short_description">The HighscoreHandler handles request to the highscore webservice.</p>
+<div class="details collapse"></div>
+<a href="../classes/Webservice.Highscore.HighscoreHandler.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-th"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/Webservice.html">Webservice</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../namespaces/Webservice.Osm.html">Osm</a>
+</li>
+</ul>
+<div class="namespace-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="OsmHandler" class="element ajax clickable class">
+<h1>OsmHandler<a href="../classes/Webservice.Osm.OsmHandler.html">¶</a>
+</h1>
+<p class="short_description">The OsmHandler class handles the requests to the osm webservice.</p>
+<div class="details collapse"></div>
+<a href="../classes/Webservice.Osm.OsmHandler.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-th"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/Webservice.html">Webservice</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../namespaces/Webservice.User.html">User</a>
+</li>
+</ul>
+<div class="namespace-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="UserBadgesHandler" class="element ajax clickable class">
+<h1>UserBadgesHandler<a href="../classes/Webservice.User.UserBadgesHandler.html">¶</a>
+</h1>
+<p class="short_description">The UserBadgesHandler class handles requests to the user/badges webservice.</p>
+<div class="details collapse"></div>
+<a href="../classes/Webservice.User.UserBadgesHandler.html" class="more">« More »</a>
+</div>
+<div id="UserGetHandler" class="element ajax clickable class">
+<h1>UserGetHandler<a href="../classes/Webservice.User.UserGetHandler.html">¶</a>
+</h1>
+<p class="short_description">The UserGetHandler class handles all GET requests to the user webservice.</p>
+<div class="details collapse"></div>
+<a href="../classes/Webservice.User.UserGetHandler.html" class="more">« More »</a>
+</div>
+<div id="UserHandler" class="element ajax clickable class">
+<h1>UserHandler<a href="../classes/Webservice.User.UserHandler.html">¶</a>
+</h1>
+<p class="short_description">The UserHandler class handles all POST and PUT requests to the user webservice.</p>
+<div class="details collapse"></div>
+<a href="../classes/Webservice.User.UserHandler.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-th"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/Webservice.html">Webservice</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../namespaces/Webservice.Validation.html">Validation</a>
+</li>
+</ul>
+<div class="namespace-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="ValidationHandler" class="element ajax clickable class">
+<h1>ValidationHandler<a href="../classes/Webservice.Validation.ValidationHandler.html">¶</a>
+</h1>
+<p class="short_description">The ValidationHandler class handles requests to the validation webservice.</p>
+<div class="details collapse"></div>
+<a href="../classes/Webservice.Validation.ValidationHandler.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-th"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/Webservice.html">Webservice</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../namespaces/Webservice.Vote.html">Vote</a>
+</li>
+</ul>
+<div class="namespace-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="VoteHandler" class="element ajax clickable class">
+<h1>VoteHandler<a href="../classes/Webservice.Vote.VoteHandler.html">¶</a>
+</h1>
+<p class="short_description">The VoteHandler class handles requests to the vote webservice.</p>
+<div class="details collapse"></div>
+<a href="../classes/Webservice.Vote.VoteHandler.html" class="more">« More »</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2012-12-13T11:19:15+01:00.<br></footer></div>
+</div>
+</body>
+</html>

@@ -131,11 +131,10 @@ Ext.define('Kort.controller.Vote', {
         var rewardConfig = Ext.decode(responseText),
             reward = Ext.create('Kort.model.Reward', rewardConfig);
         
-        this.getApplication().fireEvent('votesend');
-        
         this.showRewardMessageBox(reward);
         // remove detail panel
         this.getValidationNavigationView().pop();
+        this.getApplication().fireEvent('votesend');
     },
     
 <span id='Kort-controller-Vote-method-showSendMask'>    // @private

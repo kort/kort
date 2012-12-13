@@ -3,6 +3,7 @@
  * kort - the /update webservices
  */
 
+/** Load Slim library */
 require_once('../../../lib/Slim-2.1.0/Slim/Slim.php');
 
 // Load Slim library

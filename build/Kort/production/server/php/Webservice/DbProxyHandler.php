@@ -37,7 +37,7 @@ abstract class DbProxyHandler
     }
 
     /**
-     * Setter for $dbProxy (only used for unit tests).
+     * Setter for $dbProxy.
      *
      * @param DbProxy $proxy New DbProxy object.
      *
