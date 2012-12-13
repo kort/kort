@@ -15,11 +15,6 @@ Unsere eigenen Server haben wir entsprechend angepasst und auch via REST zugäng
 	\label{deplyoyment-diagram}
 \end{figure}
 
-\subsection{REST-Schnittellen}
-Die Entscheidung \gls{REST}-Schnittstellen zu verwenden haben wir schnell gefasst. 
-Zum einen ist damit eine einheitliche Schnittstelle im gesamten System vorhanden, so dass immer klar ist über welchen Kanal eine Kommunikation passiert.
-Zum anderen sind \gls{REST}-Schnittellen für Webapplikation sehr einfach zu verwenden, da entsprechende Bibliotheksfunktionen bereits vorhanden sind.
-Schlussendlich ist entscheidend, dass \gls{REST}-Schnittstellen ein grosses Mass an Plattformunabhängigkeit bieten und so die räumliche Teilung der Systeme erleichtert.
 
 \section{Datenbankserver}
 
@@ -42,6 +37,9 @@ Beim Datenbankserver handelt es sich um einen virtuellen Server, den uns die Hoc
 \label{infrastruktur-datenbankserver-tabelle}
 \end{table}
 
+\subsection{Backup}
+\todo[inline]{Backup-Section schreiben (DB-Server)}
+
 \section{Webserver (Heroku)}
 
 Bei Heroku\footnote{\url{http://www.heroku.com/}} handelt es sich um einen kostenlosen Dienst, welcher für verschiedenste Plattformen eine Deploymentumgebung anbietet. 
@@ -63,6 +61,12 @@ Der Dienst hat eine Schnittstelle über welche sich automatisiert Applikationen 
 \caption{Server bei Heroku}
 \label{infrastruktur-heroku-tabelle}
 \end{table}
+
+Die Entscheidung den Webserver von Heroku zu wählen ist dadurch begründet, dass uns dies die grösstmögliche Freiheit bietet. 
+Heroku bietet bereits eine hervoragende \gls{API} welche sich über das Kommandozeilen-Toolset \emph{Heroku-Toolbelt} steuern lässt.
+Dies erlaubt es beliebig viele Applikationen automatisiert zu erstellen.
+Auch für den Betrieb bietet das API viele Möglichkeiten zur Fernwartung an (SSH-Zugang, Logs, Prozessorauslastung).
+Alle diese Faktoren zusammen ergeben die ideale Lösung für 
 
 \section{Deployment}
 Am Deployment der Applikation sind mehrere Systeme beteiligt. 
