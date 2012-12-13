@@ -44,7 +44,7 @@ class RewardHandler
      *
      * @return array Parameter array.
      */
-    public static function updateKoinCointParams($user_id, $koinCountQuery)
+    public static function updateKoinCountParams($user_id, $koinCountQuery)
     {
         $sql  = "update kort.user set koin_count = koin_count + (" . $koinCountQuery . ") ";
         $sql .= "where user_id = ". $user_id . " ";
@@ -191,7 +191,7 @@ class RewardHandler
     protected function updateKoinCount(array $data)
     {
         $koinCountQuery = $this->koinCountHandler->getKoinCountQuery($data);
-        $updateKoinCountParams = RewardHandler::updateKoinCointParams($data['user_id'], $koinCountQuery);
+        $updateKoinCountParams = RewardHandler::updateKoinCountParams($data['user_id'], $koinCountQuery);
 
         $this->position["koinCount"] = $this->transProxy->addToTransaction($updateKoinCountParams);
     }
