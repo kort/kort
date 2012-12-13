@@ -544,11 +544,17 @@ $label-background-color: #46578D;
     $about-dl-title-width: 6em;
     $about-dl-margin-top: 0.3em;
     
+    .x-title {
+        .version {
+            font-size: 0.8em;
+        }
+    }
+    
     .about-content {
         padding: $panel-padding;
         
         dt {
-            margin-top: 1em;
+            margin-top: 1.5em;
         }
         dd {
             font-size: 0.8em;

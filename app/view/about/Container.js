@@ -9,7 +9,7 @@ Ext.define('Kort.view.about.Container', {
     ],
 	
 	config: {
-		title: Ext.i18n.Bundle.message('tab.about'),
+		title: Ext.i18n.Bundle.message('tab.about') + ' ' + Kort.util.Config.getKortTitle(),
 		url: 'about',
 		id: 'aboutContainer',
 		iconCls: 'info',
@@ -20,7 +20,7 @@ Ext.define('Kort.view.about.Container', {
 				xtype: 'titlebar',
 				cls: 'titlebar',
 				docked: 'top',
-				title: Ext.i18n.Bundle.message('about.title')
+				title: Ext.i18n.Bundle.message('about.title') + ' ' + Kort.util.Config.getKortTitle() + ' <span class="version">(v' + Kort.util.Config.getVersion() + ')</span>'
 			},
 			{
                 html:   '<div class="about-content">' +
