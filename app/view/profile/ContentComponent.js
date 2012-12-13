@@ -25,7 +25,7 @@ Ext.define('Kort.view.profile.ContentComponent', {
                             '<dd>{vote_count}</dd>',
                         '</dl>',
                     '</div>',
-                    // TODO small hack to recieve sencha list header styling
+                    // add divs with sencha classes to recieve sencha list header styling
                     '<div class="profile-header x-list-normal">',
                         '<div class="x-list-header">' + Ext.i18n.Bundle.message('profile.content.koins.header') + '</div>',
                     '</div>',
@@ -36,7 +36,7 @@ Ext.define('Kort.view.profile.ContentComponent', {
                             '<span class="koins-title">' + Ext.i18n.Bundle.message('profile.content.koins.title') + '</span>',
                         '</div>',
                     '</div>',
-                    // TODO small hack to recieve sencha list header styling
+                    // add divs with sencha classes to recieve sencha list header styling
                     '<div class="profile-header x-list-normal">',
                         '<div class="x-list-header">' + Ext.i18n.Bundle.message('profile.content.badges.header') + '</div>',
                     '</div>',
