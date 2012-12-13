@@ -34,8 +34,7 @@ Ext.define('Kort.view.bugmap.fix.Form', {
 <span id='Kort-view-bugmap-fix-Form-cfg-layout'>		layout: 'vbox',
 </span><span id='Kort-view-bugmap-fix-Form-cfg-cls'>        cls: 'fixform',
 </span><span id='Kort-view-bugmap-fix-Form-cfg-scrollable'>        scrollable: true,
-</span><span id='Kort-view-bugmap-fix-Form-cfg-title'>        title: Ext.i18n.Bundle.message('fix.form.title'),
-</span><span id='Kort-view-bugmap-fix-Form-cfg-fullscreen'>        fullscreen: true
+</span><span id='Kort-view-bugmap-fix-Form-cfg-title'>        title: Ext.i18n.Bundle.message('fix.form.title')
 </span>	},
     
 <span id='Kort-view-bugmap-fix-Form-method-initialize'>    initialize: function () {
@@ -48,6 +47,7 @@ Ext.define('Kort.view.bugmap.fix.Form', {
         fixContentComponent = {
             xtype: 'component',
             cls: 'fixContentComponent',
+            scrollable: false,
             record: this.getRecord(),
             tpl:    new Ext.Template(
                         '&lt;div class=&quot;fix-content&quot;&gt;',
@@ -81,14 +81,12 @@ Ext.define('Kort.view.bugmap.fix.Form', {
             xtype: 'formpanel',
             cls: 'fixFormPanel',
             scrollable: false,
-            flex: 1,
             items: [
                 fixField,
                 {
                     xtype: 'button',
                     cls: 'fixSubmitButton',
                     ui: 'confirm',
-                    id: 'fixFormSubmitButton',
                     text: Ext.i18n.Bundle.message('fix.form.button.submit')
                 }
             ]

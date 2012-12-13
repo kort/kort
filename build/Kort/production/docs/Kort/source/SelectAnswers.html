@@ -27,6 +27,9 @@ Ext.define('Kort.store.SelectAnswers', {
 <span id='Kort-store-SelectAnswers-cfg-proxy'>		proxy: {
 </span>			type: 'rest',
             url: Kort.util.Config.getWebservices().answer.url,
+            pageParam: false,
+            startParam: false,
+            limitParam: false,
             sorters: 'sorting',
             reader: {
                 type: 'json',

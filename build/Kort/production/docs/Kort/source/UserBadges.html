@@ -27,6 +27,9 @@ Ext.define('Kort.store.UserBadges', {
 <span id='Kort-store-UserBadges-cfg-proxy'>		proxy: {
 </span>			type: 'rest',
             url: '',
+            pageParam: false,
+            startParam: false,
+            limitParam: false,
             sorters: 'sorting',
             reader: {
                 type: 'json',
