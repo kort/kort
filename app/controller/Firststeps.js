@@ -5,11 +5,6 @@ Ext.define('Kort.controller.Firststeps', {
     extend: 'Ext.app.Controller',
 
     config: {
-        /**
-         * @event userchange
-         * Fired when user gets changed
-         */
-        
         views: [
             'overlay.firststeps.Panel'
         ],
