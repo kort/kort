@@ -1,9 +1,30 @@
 \chapter{Backend-Administration}
-\label{backend_administration}
+\label{backend-administration}
 
 \section{Hinzufügen von Fehler-Datenquellen}
+\label{additional-error-source}
+Die Applikation benutzt die View \inlinecode{kort.all\_errors} als Schnittstelle zu allen Fehlerdaten.
+Wenn neue Fehlerquellen an das System angeschlossen werden sollen, dann muss entsprechend diese View angepasst werden.
+Die jetzige View ist auf die Fehlerquelle Keepright (siehe Kapitel \ref{datenquellen-keepright}) angepasst.
+
+Es werden einige Anforderungen an eine neue Fehlerquelle gestellt:
+\begin{itemize}
+\item Ein Fehler muss sich konkret auf ein OpenStreetMap-Objekt beziehen (Node, Way oder Relation)
+\item Für die Darstellung auf der Karte muss ein einzelne Koordinate angegeben werden können (keine Flächen oder Wege)
+\item Zu einem Fehler gibt es eine aussagekräftige Fehlermeldung
+\end{itemize}
+
+Die Fehler einer neuen Quelle müssen auf die bestehenden Fehlertypen gemappt werden.
+Falls dies nicht geht oder es sich um neue Arten von Fehlern handelt, so müssen zusätzliche Fehlertypen eingeführt werden (siehe unten).
 
 \section{Hinzufügen von Fehlertypen}
+\label{additional-error-type}
+Um neue Fehlertypen hinzuzufügen gibt es sowohl technische wie auch fachliche Anpassungen vorzunehmen.
+Wichtig ist dabei den Endbenutzer nicht aus den Augen zu verlieren.
+Alle aufgeführten Fehler sollten sich mit wenigen Eingaben lösen lassen.
+Die bisher implementierten Fehlertypen benötigen alle nur eine einzige Eingabe.
+Für neue Typen ist zu prüfen ob diese sich bereits mit den bestehenden Views abbilden lassen (siehe Kapitel \ref{view-types}).
+Ist dies nicht der Fall, so muss eine neue View erstellt werden.
 
 \subsection{Fehlertypen}
 In der App sind bereits folgende Fehlertypen implementiert:
@@ -19,17 +40,26 @@ In der App sind bereits folgende Fehlertypen implementiert:
 \item Strasse ohne Namen
 \end{itemize}
 
-Diese Typen sind in der Tabelle \inlinecode{keepright.error\_type} definiert.
+Diese Typen sind in der Tabelle \inlinecode{kort.error\_type} definiert.
 Im Feld \inlinecode{type} dieser Tabelle befindet sich die eindeutige Identifikation eines Typs.
-Diese wird beispielsweise für die Anzeige eines passenden Marker-Icons und der Verbindung zu einem passenden View-Typ (siehe Abschnitt \ref{view_types}) verwendet.
+Diese wird beispielsweise für die Anzeige eines passenden Marker-Icons (für die Karte) und der Verbindung zu einem passenden View-Typ (siehe Abschnitt \ref{view_types}) verwendet.
 
 % IMAGE keepright.error_type
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{images/backend/table-error-type}
+	\caption{Die Tabelle \inlinecode{kort.error\_type}}
+\end{figure}
 
 \subsubsection{Erstellen eines neuen Fehlertyps}
-
+\label{create-new-error-type}
+Ein neuer Fehlertyp muss in der Tabelle \inlinecode{kort.error\_type} hinzugefügt werden.
+Sobald Fehler als \inlinecode{type} den neuen Typ eingetragen haben, wird dieser auch angezeigt.
+Jeder Fehlertyp hat ein zugehörige Marker-Icon welches beispielsweise auf der Karte angezeigt wird.
+Die Bilddatei hat den gleichen Namen wie das Attribut \inlinecode{type} und befindet sich im Ordner \inlinecode{/resources/images/marker\_icons}.
 
 \subsection{View-Typen}
-\label{view_types}
+\label{view-types}
 All diese Typen werden dann wiederum einem spezifischen View-Typen zugeordnet.
 Dieser bestimmt, wie das Formular zum Lösen des Fehlers in der Benutzeroberfläche aussieht.
 
@@ -109,8 +139,9 @@ Dazu gehört, dass der neue Dienst in der Konfiguration (siehe Kapitel \ref{fron
 Um einen neuen Login-Button anzuzeigen muss dieser auch noch auf dem Login-Panel (\inlinecode{/app/view/overlay/login/Panel.js}) hinzugefügt werden.
 Die zugehörige Logik befindet sich im Login-Controller (\inlinecode{/app/controller/Login.js}).
 \begin{figure}[H]
-\subfigure{\includegraphics[scale=0.3]{images/screenshots/kort-screenshot-login}}
-\caption{Login-Button des OAuth-Anbieters}
+	\centering
+	\includegraphics[scale=0.5]{images/screenshots/kort-screenshot-login}
+	\caption{Login-Button des OAuth-Anbieters}
 \end{figure}
 
 
