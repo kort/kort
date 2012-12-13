@@ -173,11 +173,12 @@ class RewardHandler
     protected function updateBadges(array $data)
     {
         $highscoreBadgesParams = self::getHighscoreBadgesParams($data);
-        $fixCountBadgesParams = self::getFixCountBadgesParams($data);
-        $voteCountBadgesParams = self::getVoteCountBadgesParams($data);
-
         $this->position["badge"][] = $this->transProxy->addToTransaction($highscoreBadgesParams);
+
+        $fixCountBadgesParams = self::getFixCountBadgesParams($data);
         $this->position["badge"][] = $this->transProxy->addToTransaction($fixCountBadgesParams);
+
+        $voteCountBadgesParams = self::getVoteCountBadgesParams($data);
         $this->position["badge"][] = $this->transProxy->addToTransaction($voteCountBadgesParams);
     }
 
