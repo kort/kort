@@ -39,6 +39,11 @@ Ext.define('Kort.controller.Validation', {
             },
             validationRefreshButton: {
                 tap: 'onValidationRefreshButtonTap'
+            },
+            validationNavigationView: {
+                detailpush: 'onValidationNavigationViewDetailPush',
+                detailpop: 'onValidationNavigationViewBack',
+                back: 'onValidationNavigationViewBack'
             }
         },
         
@@ -85,6 +90,7 @@ Ext.define('Kort.controller.Validation', {
      */
     onValidationListItemTap: function(list, index, target, record, e) {
         var me = this,
+            validationNavigationView = me.getValidationNavigationView(),
             voteTabPanel;
         
         if(!me.getItemTapDisabled()) {
@@ -93,11 +99,22 @@ Ext.define('Kort.controller.Validation', {
                 record: record,
                 title: record.get('title')
             });
-            me.getValidationNavigationView().push(voteTabPanel);
+            validationNavigationView.push(voteTabPanel);
+            validationNavigationView.fireEvent('detailpush', validationNavigationView);
         }
         Ext.defer(function() {
             me.setItemTapDisabled(false);
         }, 200);
+    },
+    
+<span id='Kort-controller-Validation-method-onValidationNavigationViewDetailPush'>    // @private
+</span>    onValidationNavigationViewDetailPush: function(cmp, view, opts) {
+        this.getValidationRefreshButton().hide();
+    },
+    
+<span id='Kort-controller-Validation-method-onValidationNavigationViewBack'>    // @private
+</span>    onValidationNavigationViewBack: function(cmp, view, opts) {
+        this.getValidationRefreshButton().show();
     }
 });</pre>
 </body>

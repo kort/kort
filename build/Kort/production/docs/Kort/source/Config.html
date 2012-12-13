@@ -25,7 +25,7 @@ Ext.define('Kort.util.Config', {
 <span id='Kort-util-Config-cfg-version'>        /**
 </span>         * @cfg {String} version Current version number of application
          */
-        version: '0.5.0',
+        version: '1.0.0',
         
 <span id='Kort-util-Config-cfg-leafletMap'>        /**
 </span>         * @cfg {Object} leafletMap Configuration for {@link Ext.ux.LeafletMap} component
@@ -97,17 +97,34 @@ Ext.define('Kort.util.Config', {
         
 <span id='Kort-util-Config-cfg-about'>        /**
 </span>         * @cfg {Object} about Labels for about page
-         * @cfg {String[]} about.authors (required) Authors of application
-         * @cfg {String} [about.project=&quot;HSR Bachelorarbeit HS2012/13&quot;] (required) Title of project
-         * @cfg {String[]} about.partners (required) Project partners
+         * @cfg {String[]} about.information (required) Information about Kort
+         * @cfg {String[]} about.developers (required) Developers of application
+         * @cfg {Object} about.project (required) Information about the project
+         * @cfg {String} about.project.title (required) Title of project
+         * @cfg {String} about.project.school (required) Name of school
+         * @cfg {String} about.project.advisor (required) Advisor
+         * @cfg {Object} about.credits (required) Other credits
          */
         about: {
-            authors: [
-                'Stefan Oderbolz',
-                'Jürg Hunziker'
+            information: [
+                '&lt;a href=&quot;http://wiki.openstreetmap.org/wiki/DE:Kort_App&quot; target=&quot;_blank&quot;&gt;OpenStreetMap Wiki&lt;/a&gt;',
+                '&lt;a href=&quot;https://github.com/odi86/kort/issues&quot; target=&quot;_blank&quot;&gt;GitHub&lt;/a&gt;'
             ],
-            project: 'HSR Bachelorarbeit HS2012/13',
-            partners: ['bitforge AG (&lt;a href=&quot;http://bitforge.ch&quot; target=&quot;_blank&quot;&gt;http://bitforge.ch&lt;/a&gt;)']
+            developers: [
+                'Jürg Hunziker',
+                'Stefan Oderbolz'
+            ],
+            project: {
+                title: 'HSR Bachelorarbeit HS2012/13',
+                school: 'HSR Hochschule für Technik Rapperswil',
+                advisor: 'Prof. Stefan Keller, &lt;a href=&quot;http://wiki.hsr.ch/StefanKeller/wiki.cgi?GeometaLab&quot; target=&quot;_blank&quot;&gt;Geometa Lab&lt;/a&gt;'
+            },
+            credits: {
+                partner: '&lt;a href=&quot;http://bitforge.ch&quot; target=&quot;_blank&quot;&gt;bitforge AG&lt;/a&gt;',
+                mapdata: '&lt;a href=&quot;http://www.openstreetmap.org/copyright&quot; target=&quot;_blank&quot;&gt;OpenStreetMap-Mitwirkende&lt;/a&gt; (ODbL)',
+                tiledata: '&lt;a href=&quot;http://cloudmade.com&quot; target=&quot;_blank&quot;&gt;CloudMade&lt;/a&gt;',
+                markers: '&lt;a href=&quot;http://mapicons.nicolasmollet.com&quot; target=&quot;_blank&quot;&gt;mapicons collection&lt;/a&gt;'
+            }
         },
         
 <span id='Kort-util-Config-cfg-formPlaceholders'>        /**
