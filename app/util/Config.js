@@ -80,17 +80,34 @@ Ext.define('Kort.util.Config', {
         
         /**
          * @cfg {Object} about Labels for about page
-         * @cfg {String[]} about.authors (required) Authors of application
-         * @cfg {String} [about.project="HSR Bachelorarbeit HS2012/13"] (required) Title of project
-         * @cfg {String[]} about.partners (required) Project partners
+         * @cfg {String[]} about.information (required) Information about Kort
+         * @cfg {String[]} about.developers (required) Developers of application
+         * @cfg {Object} about.project (required) Information about the project
+         * @cfg {String} about.project.title (required) Title of project
+         * @cfg {String} about.project.school (required) Name of school
+         * @cfg {String} about.project.advisor (required) Advisor
+         * @cfg {Object} about.credits (required) Other credits
          */
         about: {
-            authors: [
-                'Stefan Oderbolz',
-                'Jürg Hunziker'
+            information: [
+                '<a href="http://wiki.openstreetmap.org/wiki/DE:Kort_App" target="_blank">OpenStreetMap Wiki</a>',
+                '<a href="https://github.com/odi86/kort/issues" target="_blank">GitHub</a>'
             ],
-            project: 'HSR Bachelorarbeit HS2012/13',
-            partners: ['bitforge AG (<a href="http://bitforge.ch" target="_blank">http://bitforge.ch</a>)']
+            developers: [
+                'Jürg Hunziker',
+                'Stefan Oderbolz'
+            ],
+            project: {
+                title: 'HSR Bachelorarbeit HS2012/13',
+                school: 'HSR Hochschule für Technik Rapperswil',
+                advisor: 'Prof. Stefan Keller, <a href="http://wiki.hsr.ch/StefanKeller/wiki.cgi?GeometaLab" target="_blank">Geometa Lab</a>'
+            },
+            credits: {
+                partner: '<a href="http://bitforge.ch" target="_blank">bitforge AG</a>',
+                mapdata: '<a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap-Mitwirkende</a> (ODbL)',
+                tiledata: '<a href="http://cloudmade.com" target="_blank">CloudMade</a>',
+                markers: '<a href="http://mapicons.nicolasmollet.com" target="_blank">mapicons collection</a>'
+            }
         },
         
         /**
