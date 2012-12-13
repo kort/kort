@@ -5,14 +5,6 @@ Ext.define('Kort.controller.Fix', {
     extend: 'Kort.controller.OsmMap',
 
     config: {
-        /**
-         * @event fixsend
-         * Fired when fix was sent
-         * @param {Ext.ux.LeafletMap} this
-         * @param {L.Map} map The rendered L.Map instance
-         * @param {L.TileLayer} tileLayer The rendered L.TileLayer instance
-         */
-        
         views: [
             'bugmap.NavigationView',
             'bugmap.fix.TabPanel',
