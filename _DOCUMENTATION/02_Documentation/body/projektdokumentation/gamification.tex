@@ -8,7 +8,7 @@ Während unserer Arbeit hatten wir verschiedene Partner, welche uns bei der Gami
 So ist einer unserer Industriepartner Mitinhaber der Firma bitforge AG, welche sich auf Games im mobilen Umfeld spezialisiert hat.
 Er konnte uns vor und während der Entwicklung viele Tipps zur Verbesserung des Spielgefühls geben.
 
-\section{Gamification in kort}
+\section{Gamification in Kort}
 Einige Ideen konnten wir direkt in unserer App umsetzen.
 
 \subsection{Sprache}
@@ -16,7 +16,8 @@ Gamification findet sich nicht nur in schönen Grafiken und Spiel-Elementen.
 Sie beginnt bereits bei der Sprachwahl von Texten.
 Beim Lesen der Texte sollte beispielsweise eine gewisse Spannung aufgebaut werden.
 Dadurch erhöht sich die Motivation die anstehende Aktion durchzuführen.
-Ein Beispiel dafür findet sich in der Button-Bezeichnung bei der Eingabe des eigenen Benutzernamens.
+
+In \textsc{Kort} findet sich dafür ein Beispiel in der Button-Bezeichnung bei der Eingabe des eigenen Benutzernamens.
 Zu Beginn war dieser mit "`App starten"' beschriftet.
 Wir haben ihn aber später mit dem Text "`Mission beginnen!"' ersetzt.
 Weiter wurde der Button grün eingefärbt, um ihn zusätzlich vom Text und vom Hintergrund abzuheben.
@@ -32,7 +33,9 @@ Zusätzlich zur gewählten Ausdrucksweise sollte die Sprache dem Zielpublikum an
 Wir mussten dafür viele Begriffe aus dem Mapping-Vokabular für unserer breite Zielgruppe durch allgemeinere Wörter ersetzen.
 
 \subsection{Punktesystem "`koins"'}
-Eines der wichtigsten Elemente im Spiel bildet das Punktesystem. Dieses findet sicht bei beinahe allen Aktionen der App wieder. So gewinnt ein Spieler für gelöste Aufgaben oder getätigte Prüfungen eine Anzahl an sogenannten \emph{koins}. Über die Anzahl \emph{koins} kann er sich wiederum in der Highscore mit den anderen Spieler vergleichen.
+Eines der wichtigsten Elemente im Spiel bildet das Punktesystem. Dieses findet sich in beinahe allen Aktionen der App wieder.
+So gewinnt ein Spieler für gelöste Aufgaben oder getätigte Prüfungen eine Anzahl an sogenannten \emph{koins}.
+Über die Anzahl \emph{koins} kann er sich wiederum in der Highscore mit den anderen Spieler vergleichen.
 
 \begin{figure}[H]
 	\centering
@@ -42,24 +45,24 @@ Eines der wichtigsten Elemente im Spiel bildet das Punktesystem. Dieses findet s
 \end{figure}
 
 \subsection{Auszeichnungen}
-Zusätzlich zu den koins kann ein Spieler Auszeichnungen gewinnen. Diese erhält man durch besonders engagierten Einsatz. In \emph{kort} sind momentan folgende Auszeichnungen implementiert:
+Zusätzlich zu den koins kann ein Spieler Auszeichnungen gewinnen. Diese erhält man durch besondere Leistungen. In \textsc{Kort} sind momentan folgende Auszeichnungen implementiert:
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|p{0.3\twocelltabwidth}|p{0.7\twocelltabwidth}|}
+\begin{tabular}{|p{0.25\twocelltabwidth}|p{0.75\twocelltabwidth}|}
 \hline 
 \textbf{Auszeichnungstyp} & \textbf{Beschreibung} \\ 
 \hline 
 Anfänger & Eine Auszeichnungen für das Lösen vom 1. Auftrag und eine für das Überprüfen der 1. Antwort. \\ 
 \hline 
-Rangierung & Drei Auszeichnungen für das Erreichen des 1., 2. und 3. Rangs in der Highscore. \\ 
+Platzierung & Drei Auszeichnungen für das Erreichen des 1., 2. und 3. Rangs in der Highscore. \\ 
 \hline 
-Aufträge & Vier Auszeichnungen für das Lösen von 10, 50 und 100 Auträgen. \\ 
+Aufträge & Drei Auszeichnungen für das Lösen von 10, 50 und 100 Auträgen. \\ 
 \hline 
 Prüfungen & Drei Auszeichnungen für 10, 10 und 1000 geprüfte Antworten. \\ 
 \hline 
 \end{tabular} 
-\caption{kort Auszeichnungen}
+\caption{Auszeichnungen in Kort}
 \label{kort-badges}
 \end{table}
 
@@ -73,39 +76,48 @@ Prüfungen & Drei Auszeichnungen für 10, 10 und 1000 geprüfte Antworten. \\
 Das Hinzufügen von zusätzlichen Auszeichnungen ist in Abschnitt \ref{kort-additional-badges} beschrieben.
 
 \subsection{Highscore}
-Über die Highscore haben die Benutzer der App die Möglichkeit sich mit den anderen Spielern zu vergleichen. Dazu werden sie nach Anzahl gewonnener \emph{koins} in einer Rangliste eingestuft.
+Über die Highscore haben die Benutzer der App die Möglichkeit sich mit den anderen Spielern zu vergleichen.
+Dazu werden sie nach Anzahl gewonnener \emph{koins} in einer Rangliste eingestuft.
 
 \section{Weitere mögliche Elemente}
-Neben den verwendeten Gamification-Elementen in kort gibt es noch eine Vielzahl weiterer Elemente, welche sich für diesen Anwendungszweck eigenen würden.
+Neben den verwendeten Gamification-Elementen in \textsc{Kort} gibt es noch eine Vielzahl weiterer Elemente, welche sich für diesen Anwendungszweck eigenen würden.
+Diese konnten während der Arbeit aber nicht implementiert werden.
 
 \subsection{Erste Schritte}
-Um den Einstieg in die Verwendung der App weiter zu vereinfachen würde sich beim ersten Start eine kurze Einführung anbieten. So könnte man dem Benutzer für die einzelnen Masken jeweils Tipps einblenden oder gar eine geführte Tour durch die App und deren Möglichkeiten anbieten.
+Um den Einstieg in die Verwendung der App weiter zu vereinfachen wäre es sinnvoll beim ersten Start eine kurze Einführung anzuzeigen.
+So könnte man dem Benutzer für die einzelnen Masken jeweils Tipps einblenden oder gar eine geführte Tour durch die App und deren Möglichkeiten anbieten.
 
 \subsection{Zeitlich begrenze Aktionen}
-Durch das Anbieten von zeitlich begrenzten Aktionen kann man Benutzer dazu motivieren die App erneut zu verwenden.
+Durch das Einführen von zeitlich begrenzten Aktionen kann man Benutzer dazu motivieren die App erneut zu verwenden.
 So könnte man Tage definieren, an denen man die doppelte Anzahl an Punkten gewinnt.
-Zusätzlich könnte man Aktionen starten, bei denen man einen speziellen Badge gewinnen kann.\footnote{Biespiel einer zeitlich begrenzen Aktion in OpenStreetMap: Das \emph{big baseball project 2011} \url{http://wiki.openstreetmap.org/wiki/Big_baseball_project_2011}}
+Zusätzlich könnte man Aktionen starten, bei denen man spezielle Auszeichnungen gewinnen kann.\footnote{Biespiel einer zeitlich begrenzen Aktion in OpenStreetMap: Das \emph{big baseball project 2011} \url{http://wiki.openstreetmap.org/wiki/Big_baseball_project_2011}}
 
 \subsection{Den Benutzer bei der Stange halten}
-Um den Benutzer dazu zu animieren die App zu starten, könnte man per Push-Meldungen auf aktuelle Aktionen oder Ereignisse aufmerksam machen.
+Um den Benutzer dazu zu animieren die App erneut zu starten, könnte man per Push-Meldungen auf aktuelle Aktionen oder Ereignisse aufmerksam machen.
 
 \subsection{Weitere Auszeichnungen hinzufügen}
-\todo[inline]{es sollte für jede Art von Benutzer einen Badge zu gewinnen geben}
+Bei der Auswahl an verfügbaren Auszeichnungen sollte man darauf achten, dass es für jeden Spielertyp geeignete Auszeichnungen zu gewinnen gibt.
+
+Eine Einteilung von verschiedenen Spielertypen wird auf \emph{Gamasutra}\footnote{\url{http://www.gamasutra.com/view/feature/6474/personality_and_play_styles_a_.php}} beschrieben.
 
 \subsection{Verschiedene Highscores}
 Durch das bereitstellen von verschiedenen Highscores (Bsp. Regional, Nach Fehlertyp) gibt man allen Benutzern die Chance irgendwo den ersten Platz zu erreichen.
-Dadurch verhindert man eine mögliche Demotivation beim Vergleich mit Powerusern.
+Dadurch verhindert man eine mögliche Demotivation beim Vergleich mit Langzeitspielern, welche bereits eine grosse Anzahl an Punkten gesammelt haben.
 
 \subsection{Erhöhen von Berechtigungen}
-Man könnte als Belohnung für viele gelöste Fehler die Berechtigungen des Benutzers erhöhen. So könnte beispielsweise seine Stimme bei einer Überprüfung einer Lösung doppelt zählen. 
+Man könnte als Belohnung für viele gelöste Fehler die Berechtigungen des Benutzers erhöhen.
+So könnte beispielsweise seine Stimme bei einer Überprüfung einer Lösung doppelt zählen.
+
+Dieses Prinzip wird auch von der Frage/Antwort-Plattform \emph{Stack Overflow}\footnote{\url{http://stackoverflow.com/}} angewendet.
 
 \subsection{Schwierigkeitsstufen}
-Beim Erreichen einer gewissen Punktzahl könnte man dem Benutzer schwierigere Fehler anzeigen.
+Um erfahrene Spieler nicht zu unterfordern, könnte man ihm beim Erreichen einer gewissen Punktzahl schwieriger zu lösende Fehler anzeigen.
 
 \subsection{Einbinden in Apple Game Center}
 Apple bietet mit dem \emph{Game Center} einen zentralen Ort an, Punkte und Auszeichnungen von Game-Apps zu speichern.
 Dadurch entsteht für die Spieler die Möglichkeit sich direkt mit anderen Spielern und Kollegen, die ebenfalls diese App verwenden, zu vergleichen.
-Eine grosse Einschränkung dabei ist aber, dass man lediglich iOS Games für das Game Center anmelden kann.
+Dadurch, dass das \emph{Game Center} bereits eine grosse Community an Spielern aufweist, wäre es von Vorteil, die App darin einzubinden.
+Leider besteht dabei die Einschränkung, dass man lediglich iOS-Games für das Game Center anmelden kann.
 
 \subsection{Design}
 Natürlich könnte man auch noch am Design einiges verändern, um den Spielspass zu erhöhen.
