@@ -1,11 +1,10 @@
 % Resultate
 \section{Resultate}
 
-\subsection{Kort}
 \textsc{Kort} besteht aus fünf verschiedenen Hauptmasken.
 Diese sind in der Applikation über die Tabs im unteren Bereich erreichbar.
 
-\subsubsection{Maske: Aufträge}
+\subsection{Maske: Aufträge}
 In dieser Maske werden dem Benutzer alle noch nicht gelösten Fehler in seiner Umgebung als Markierungen auf der Karte angezeigt.
 Die Fehleranzahl ist dabei auf die 25 nächstgelegenen Fehler limitiert.
 
@@ -26,7 +25,7 @@ Eine Strasse wird dabei beispielsweise als Linie dargestellt und ein Gelände al
 \caption{Maske: Aufträge}
 \end{figure}
 
-\subsubsection{Maske: Prüfen}
+\subsection{Maske: Prüfen}
 In der Prüfen-Maske werden dem Benutzer die Lösungen angezeigt, welche noch zu überprüfen sind.
 Diese sind dabei nach der Anzahl noch nötiger positiver Überprüfungen gruppiert.
 So soll erreicht werden, dass Lösungen die schon bald an OpenStreetMap zurückgesendet werden können bevorzugt behandelt werden.
@@ -44,15 +43,15 @@ Er kann nun beurteilen, ob ihm diese Lösung korrekt oder eher falsch erscheint.
 \caption{Maske: Prüfen}
 \end{figure}
 
-\subsubsection{Maske: Highscore}
+\subsection{Maske: Highscore}
 In der Highscore werden die Benutzer abhängig der Anzahl von ihnen gewonnener Punkte (sog. \emph{koins}) sortiert.
 Es werden jeweils die ersten zehn Platzierungen angezeigt. Falls man selbst nicht zu diesen gehört wird zusätzlich eine Zeile mit seiner eigenen Platzierung angezeigt.
 
-\subsubsection{Maske: Profil}
+\subsection{Maske: Profil}
 Im Profil findet man eine Zusammenfassung seiner persönlichen Spielaktivitäten.
 Man sieht die Gesamtanzahl der gesammelten \emph{koins} und eine Übersicht der gewonnen Auszeichnungen
 
-\subsubsection{Maske: Über Kort}
+\subsection{Maske: Über Kort}
 Auf der \emph{Über Kort}-Seite werden allgemeine Informationen zur Applikation angezeigt.
 
 \begin{figure}[H]
@@ -64,9 +63,9 @@ Auf der \emph{Über Kort}-Seite werden allgemeine Informationen zur Applikation 
 \caption{Masken: Highscore / Profil / Über Kort}
 \end{figure}
 
-\subsection{Bekannte Fehler}
+\section{Bekannte Fehler}
 
-\subsubsection{iOS6 - Add to homescreen}
+\subsection{iOS6 - Add to homescreen}
 Eine sehr nützliche Funktionalität, welche Apple im Mobile Safari-Browser anbietet ist die \emph{Add to homescreen}-Funktion.
 
 \begin{figure}[H]
@@ -111,16 +110,16 @@ Diese befindet sich in folgenden Dateien:
 Das Deaktivieren dieser Zeile hat aber zur Folge, dass der native Rahmen des Browsers (Adressleiste, Navigationsbar) wieder angezeigt wird.
 Dies ist zwar unschön löst aber das Problem mit dem Zugriff auf die Geolocation.
 
-\subsubsection{App Build}
+\subsection{App Build}
 Wie in Abschnitt \ref{sencha-cmd} beschrieben, basiert die App vollständig auf dem Sencha-eigenen Build-Tool \emph{Sencha Cmd 3.0.0.250}. Darin sind aber noch einige Bugs vorhanden.
 
 Bei \textsc{Kort} besteht dabei ein Problem bei der fest eingebauten Komprimierung der JavaScript-Sourcen.
 Während diesem Prozess werden lokale Variablennamen mit einzelnen Buchstaben abgekürzt.
-Dabei treten Konflikte mit der Leaflet-Library auf, welche den Buchstaben \emph{L} als Namespace verwendet.
+Dabei treten Konflikte mit der \emph{Leaflet}-Library auf, welche den Buchstaben \emph{L} als Namespace verwendet.
 
 \textbf{Workaround}
 
-Um diese Problem zu umgehen, mussten wir das Build-Skript von Sencha Cmd minimal anpassen.
+Um diese Problem zu umgehen, mussten wir das Build-Skript von \emph{Sencha Cmd} minimal anpassen.
 So mussten wir die Zeile, welche den \gls{Microloader} komprimiert auskommentieren (siehe Code-Ausschnitt \ref{senchacmd-workaround}).
 Diese befindet sich in folgender Datei:
 

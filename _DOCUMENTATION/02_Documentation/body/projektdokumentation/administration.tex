@@ -14,8 +14,13 @@ Es werden einige Anforderungen an eine neue Fehlerquelle gestellt:
 \item Zu einem Fehler gibt es eine aussagekräftige Fehlermeldung
 \end{itemize}
 
+
+\todo[inline]{Bild kort all\_errors einfuegen}
+
 Die Fehler einer neuen Quelle müssen auf die bestehenden Fehlertypen gemappt werden.
 Falls dies nicht geht oder es sich um neue Arten von Fehlern handelt, so müssen zusätzliche Fehlertypen eingeführt werden (siehe unten).
+
+\todo[inline]{Internationalisierung Fehler-Texte beschreiben}
 
 \section{Hinzufügen von Fehlertypen}
 \label{additional-error-type}
@@ -42,7 +47,9 @@ In der App sind bereits folgende Fehlertypen implementiert:
 
 Diese Typen sind in der Tabelle \inlinecode{kort.error\_type} definiert.
 Im Feld \inlinecode{type} dieser Tabelle befindet sich die eindeutige Identifikation eines Typs.
-Diese wird beispielsweise für die Anzeige eines passenden Marker-Icons (für die Karte) und der Verbindung zu einem passenden View-Typ (siehe Abschnitt \ref{view_types}) verwendet.
+Diese wird beispielsweise für die Anzeige eines passenden Marker-Icons (für die Karte) und der Verbindung zu einem passenden View-Typ (siehe Abschnitt \ref{view-types}) verwendet.
+
+\todo[inline]{Bild keepright error\_type einfügen}
 
 % IMAGE keepright.error_type
 \begin{figure}[H]
@@ -141,7 +148,7 @@ Die zugehörige Logik befindet sich im Login-Controller (\inlinecode{/app/contro
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.5]{images/screenshots/kort-screenshot-login}
-	\caption{Login-Button des OAuth-Anbieters}
+	\caption{Login-Button in Kort}
 \end{figure}
 
 

@@ -107,6 +107,9 @@
 % Für Tabellen, welche über mehrere Seiten gehen
 \usepackage{longtable}
 
+% Mehrere Spalten zusammenfassen
+\usepackage{hhline}
+
 % Padding links und rechts von Zelle
 \setlength{\tabcolsep}{5px}
 % Padding oben und unten (mittels arraystretch)
@@ -134,7 +137,7 @@
 % Syntaxhighlighter (benoetigt color und xcolor package)
 \usepackage{listings}
 \renewcommand{\lstlistingname}{Code-Ausschnitt}
- 
+
 \lstset{ %
   language=HTML,                % the language of the code
   basicstyle=\footnotesize,           % the size of the fonts that are used for the code
@@ -189,6 +192,9 @@
 	aboveskip=\bigskipamount,
 	belowskip=\bigskipamount
 }
+
+\lstdefinestyle{examples}
+{numbers=none, frame=none}
 
 % Inline Code-Formatierung
 \newcommand{\inlinecode}{\texttt}
