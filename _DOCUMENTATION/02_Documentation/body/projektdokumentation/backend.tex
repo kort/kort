@@ -1,70 +1,17 @@
 \chapter{Backend}
 \label{backend}
 
-\section{Architektur}
-Das Backend besteht aus zwei logisch und derzeit auch physisch getrennten Servern. 
-Der Webserver liefert die \gls{WebApp} aus und ist auch der einzige Kommunikationspartner für das Frontend. Dies ist zum einen eine architektonische, zum anderen eine technische Entscheidung.
+% Architektur
+\input{body/projektdokumentation/backend/architektur.tex}
 
-\begin{itemize}
-\item Das Frontend muss sich nicht darum kümmern woher es welchen Dienst bezieht
-\item Die Same-Origin-Policy\cite{sop} einiger Server lässt keine direkte Kommunikation zwischen \emph{fremdem} JavaScript und dem Server zu
-\end{itemize}
+% REST Webservices
+\input{body/projektdokumentation/backend/rest.tex}
 
-Der Webserver ist somit der Dreh- und Angelpunkt der Applikation, jegliche Informationen von und zum Frontend durchläuft diese zentrale Komponente.
+% Datenbank
+\input{body/projektdokumentation/backend/datenbank.tex}
 
-\section{Fehlerdaten laden}
+% Kommunikation
+\input{body/projektdokumentation/backend/kommunikation.tex}
 
-\subsection{REST-Schnittellen}
-Die Entscheidung \gls{REST}-Schnittstellen zu verwenden haben wir schnell gefasst. 
-Zum einen ist damit eine einheitliche Schnittstelle im gesamten System vorhanden, so dass immer klar ist über welchen Kanal eine Kommunikation passiert.
-Zum anderen sind \gls{REST}-Schnittellen für Webapplikation sehr einfach zu verwenden, da entsprechende Bibliotheksfunktionen bereits vorhanden sind.
-Schlussendlich ist entscheidend, dass \gls{REST}-Schnittstellen ein grosses Mass an Plattformunabhängigkeit bieten und so die räumliche Teilung der Systeme erleichtert.
-
-\todo[inline]{Slim}
-
-\section{Kommunikation/Transaktionen}
-
-\todo[inline]{Kommunikation/Transaktionen}
-
-\section{Datenbank}
-
-\todo[inline]{Datenbank-Section (Schema, Views etc.)}
-
-\section{Login mit OAuth}
-\label{oauth}
-
-\todo[inline]{OAuth (Login-Flow I und II)}
-
-Die Idee hinter OAuth ist bestechend einfach: eine Applikation möchte auf Resourcen eines Benutzers bei einem anderen Dienst zugreifen.
-Der Benutzer will der Applikation aber nicht sein Passwort verraten, sondern lediglich einige wenige Resourcen freigeben.
-Da sowohl der Benutzer als auch die Applikation dem Anbieter der Resource vertrauen, kann der Benutzer seinen Anbieter anweisen der Applikation Zugriff zu gewähren.
-Der Anbieter erstellt dazu ein sogenanntes Access Token, welches er der Applikation zur Verfügung stellt.
-
-Dieses Prinzip hat auf den ersten Blick nichts mit einem Login zu tun, jedoch kann das Vertrauensverhältnis des Benutzers zum Anbieter und der Applikation zum Anbieter genau dazu genutzt werden einen Benutzer einzuloggen ohne von ihm ein Passwort zu verlangen. 
-Die Resource ist in diesem Fall lediglich die Bestätigung der erfolgreichen Authentifizierung allenfalls weitere Angaben zum Benutzer wie Namen oder ein Profilfoto.
-
-\todo[inline]{OAuth Flow 1 Bild einfügen}
-
-In unserem Fall ist \textsc{Kort} die Applikation und Google der Anbieter der \emph{Benutzer}-Resource.
-Um dem Benutzer zu ersparen sich bei jedem Besuch erneut via OAuth anzumelden, wird auf dem Server ein \emph{Secret} generiert.
-Dieses wird lokal beim Benutzer gespeichert und ermöglicht es dem Benutzer beim nächsten Login direkt dieses Geheimnis zu übermitteln um Zugriff zu bekommen.
-Diese Übertragung sollte wenn möglich über SSL/TSL erfolgen.
-
-Wenn der Benutzer erfolgreich eingeloggt wurde, wird dies direkt in der Session des Benutzers gespeichert.
-Auf die entsprechenden Werte wird dann bei sicherheits-kritischen Abfragen zurückgegriffen.
-So ist sichergestellt, dass ein Benutzer auch wirklich nur seine eigenen Daten manipulieren kann.
-
-\todo[inline]{OAuth Flow 2 Bild einfügen}
-
-\subsection{Registrierung der Applikation bei Google}
-Um den Google OAuth Dienst zu nutzen, muss diese zuerst registriert werden.
-Um einen Benutzer einzuloggen wird er von \textsc{Kort} zu Google weitergeleitet.
-Von dort wird er dann nach erfolgter Authentifizierung wieder zurückgeleitet.
-
-Dieses "Zurückleiten" wird auch als \emph{Callback} bezeichnet.
-Bei der Tegistrierung müssen die gültigen Werte für den Callback definiert werden.
-
-\begin{figure}[H]
-\subfigure{\includegraphics[scale=0.5]{images/backend/oauth-google-settings}}
-\caption{OAuth Einstellungen}
-\end{figure}
+% Testing
+\input{body/projektdokumentation/backend/testing.tex}
