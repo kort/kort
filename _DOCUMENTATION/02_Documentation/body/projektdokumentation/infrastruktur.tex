@@ -75,7 +75,7 @@ In unserem Fall haben wir das Skript auf unseren Laptops eingerichtet und so tä
 \section{Webserver (Heroku)}
 
 Bei Heroku\footnote{\url{http://www.heroku.com/}} handelt es sich um einen kostenlosen Dienst, welcher für verschiedenste Plattformen eine Deploymentumgebung anbietet. 
-Der Dienst hat eine Schnittstelle über welche sich automatisiert Applikationen erstellen lassen, die Datenübertragung läuft dann über \gls{git}.
+Der Dienst hat eine Schnittstelle über welche sich automatisiert Applikationen erstellen lassen, die Datenübertragung läuft dann über \gls{Git}.
 
 \begin{table}[H]
 \centering
@@ -85,7 +85,7 @@ Der Dienst hat eine Schnittstelle über welche sich automatisiert Applikationen 
 \hline 
 \small{\textbf{Betriebsystem}} & Ubuntu \\
 \hline 
-\small{\textbf{Zugriff}} & Daten via \gls{git}, Befehle via Kommandozeilen-API (Heroku Toolbelt) \\
+\small{\textbf{Zugriff}} & Daten via \gls{Git}, Befehle via Kommandozeilen-API (Heroku Toolbelt) \\
 \hline 
 \small{\textbf{Installierte Software}} & Apache, kort Applikation \\
 \hline 
@@ -102,7 +102,7 @@ Alle diese Faktoren zusammen ergeben die ideale Lösung für
 
 \section{Deployment}
 Am Deployment der Applikation sind mehrere Systeme beteiligt. 
-Alle Änderungen werden von den Entwicklern via \gls{git} zu GitHub\footnote{\url{http://github.com}} übertragen. 
+Alle Änderungen werden von den Entwicklern via \gls{Git} zu GitHub\footnote{\url{http://github.com}} übertragen. 
 Auf GitHub gibt es sogenannte Hooks die man aktivieren kann. 
 Dabei handelt es sich um weitere Aktionen welche durch verschiedene Ereignisse ausgelöst werden können. 
 In unserem Fall haben wir einen \emph{post-commit Hook} aktiviert, welcher dem \gls{ci} Dienst Travis-CI\footnote{\url{http://travis-ci.org}} Bescheid gibt, wenn ein neue Änderungen auf GitHub eingetroffen sind.
