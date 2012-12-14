@@ -73,8 +73,10 @@ Ext.application({
     },
 
     viewport: {
-        // hide navigation bar of browser
-        autoMaximize: true
+        // attempt to stop zooming when you double tap on the screen on mobile devices, typically HTC devices with HTC Sense UI
+        preventZooming: true,
+        // hide navigation bar of iOS browsers
+        autoMaximize: (navigator.userAgent.search("Safari") != -1 && (!Ext.browser.is.Standalone && Ext.os.is.iOS && Ext.browser.version.isGreaterThan(3) ) ? true : false)
     },
 
     // launch function is called as soon as app is ready
