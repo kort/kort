@@ -80,7 +80,7 @@ class FixHandler extends DbProxyHandler implements IKoinCount
      */
     public function getKoinCountQuery(array $data)
     {
-        $sql  = "select fix_koin_count from kort.error_koin_count ";
+        $sql  = "select fix_koin_count from kort.all_errors ";
         $sql .= "where osm_id = " . $data['osm_id'] . " ";
         $sql .= "and schema = '" . $data['schema'] . "' ";
         $sql .= "and id = " . $data['error_id'];

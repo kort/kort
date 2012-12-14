@@ -26,10 +26,9 @@ class Badge
      */
     protected $create_date;
 
+    //TODO: get rid of this array, query the database instead
      /**
       * The array of all names and ids of all badges.
-      *
-      * TODO: get rid of this array, query the database instead
       *
       * @var array
       */

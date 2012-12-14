@@ -49,7 +49,7 @@ class KortCliReporter extends \SimpleReporter
         print "Duration:  ".$duration."\n";
         echo "\n";
         if ($totalTests == $this->getPassCount()) {
-            print "Tests SUCESSFUL\n";
+            print "Tests SUCCESSFUL\n";
         } else {
             print "Tests FAILED\n";
         }
