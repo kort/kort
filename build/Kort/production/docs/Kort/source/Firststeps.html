@@ -40,8 +40,11 @@ Ext.define('Kort.controller.Firststeps', {
         }
     },
 
-<span id='Kort-controller-Firststeps-method-onFirststepsFormSubmitButtonTap'>    onFirststepsFormSubmitButtonTap: function() {
-</span>        var me = this,
+<span id='Kort-controller-Firststeps-method-onFirststepsFormSubmitButtonTap'>    /**
+</span>     * Called when submit button of firststeps form gets pressed
+     */
+    onFirststepsFormSubmitButtonTap: function() {
+        var me = this,
             usernameValue = me.getUsernameTextfield().getValue(),
             messageBox;
 
@@ -69,13 +72,17 @@ Ext.define('Kort.controller.Firststeps', {
         }
     },
 
-<span id='Kort-controller-Firststeps-method-userSuccessfullSavedHandler'>    userSuccessfullSavedHandler: function(store, operation) {
-</span>        this.getApplication().fireEvent('userchange');
+<span id='Kort-controller-Firststeps-method-userSuccessfullSavedHandler'>    /**
+</span>     * Called when user was successfull saved
+     */
+    userSuccessfullSavedHandler: function(store, operation) {
+        this.getApplication().fireEvent('userchange');
         this.getFirststepsPanel().hide();
     },
 
-<span id='Kort-controller-Firststeps-method-onUsernameTextfieldKeyUp'>    onUsernameTextfieldKeyUp: function(field, e) {
-</span>        // submit form if return key was pressed
+<span id='Kort-controller-Firststeps-method-onUsernameTextfieldKeyUp'>    // @private
+</span>    onUsernameTextfieldKeyUp: function(field, e) {
+        // submit form if return key was pressed
         if (e.event.keyCode === 13){
             this.onFirststepsFormSubmitButtonTap();
         }
