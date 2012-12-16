@@ -31,8 +31,10 @@ Ext.define('Kort.util.Config', {
          * @cfg {Object} oAuth.google (required) Configuration for Google OAuth
          * @cfg {String} [oAuth.google.url="https://accounts.google.com/o/oauth2/auth"] (required) URL to Google OAuth
          * @cfg {String[]} oAuth.google.scopes (required) Configuration for Google OAuth
-         * @cfg {String} [oAuth.google.redirect_path="server/oauth2callback"] (required) Redirect path after login
+         * @cfg {String} [oAuth.google.redirect_path="server/oauth2callback/google"] (required) Redirect path after login
          * @cfg {String} [oAuth.google.client_id="653755350671.apps.googleusercontent.com"] (required) Google OAuth client id
+         * @cfg {Object} oAuth.osm (required) Configuration for OpenStreetMap OAuth
+         * @cfg {String} [oAuth.osm.url="./server/oauth2callback/osm/authorize.php"] (required) URL to OpenStreetMap OAuth
          */
         oAuth: {
             google: {
@@ -41,7 +43,7 @@ Ext.define('Kort.util.Config', {
                     'https://www.googleapis.com/auth/userinfo.profile',
                     'https://www.googleapis.com/auth/userinfo.email'
                 ],
-                redirect_path: 'server/oauth2callback/google',
+                redirect_path: 'server/oauth2callback',
                 response_type: 'code',
                 access_type: 'offline',
                 client_id: '653755350671.apps.googleusercontent.com'
