@@ -122,6 +122,7 @@
         "lib/Leaflet-0.4.5/dist/images",
         "lib/Slim-2.1.0/Slim",
         "lib/google-api-php-client/src",
+        "lib/oauth-php/library",
         "lib/qunit",
         "lib/simpletest",
         "lib/zocial",
