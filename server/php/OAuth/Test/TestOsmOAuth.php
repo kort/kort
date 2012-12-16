@@ -44,5 +44,4 @@ class TestOsmOAuth extends AbstractKortUnitTestCase
     {
         $this->assertEqual("secret_kort.php", OsmOAuth::getSecretFile("kort.herokuapp.com"));
     }
-
 }
