@@ -18,6 +18,7 @@ Ext.define('Kort.controller.Profile', {
             profileContentComponent: '.profilecontentcomponent',
             profileBadgesDataView: '.profilebadgesdataview',
             profileRefreshButton: '#profileContainer .button[cls=profileRefreshButton]',
+            profileSettingsButton: '#profileContainer .button[cls=profileSettingsButton]',
             profileLogoutButton: '#profileContainer .button[cls=profileLogoutButton]',
             badgesContainerBackButton: '.badgescontainer .button[cls=badgesContainerBackButton]'
         },
@@ -30,6 +31,9 @@ Ext.define('Kort.controller.Profile', {
             },
             profileRefreshButton: {
                 tap: 'onProfileRefreshButtonTap'
+            },
+            profileSettingsButton: {
+                tap: 'onProfileSettingsButtonTap'
             },
             profileLogoutButton: {
                 tap: 'onProfileLogoutButtonTap'
@@ -97,6 +101,66 @@ Ext.define('Kort.controller.Profile', {
     // @private
     onProfileRefreshButtonTap: function() {
         this.refreshProfile();
+    },
+    
+    // @private
+    onProfileSettingsButtonTap: function() {
+        Ext.Msg.prompt(
+            Ext.i18n.Bundle.message('profile.settings.messagebox.title'),
+            Ext.i18n.Bundle.message('profile.settings.messagebox.message'),
+            this.settingsSaveHandler,
+            this,
+            false,
+            Kort.user.get('username'),
+            {
+                name: 'profileSettingsUsername'
+            }
+        );
+    },
+    
+    /**
+     * @private
+     * Called when settings prompt gets closed
+     */
+    settingsSaveHandler: function(buttonId, value) {
+        var me = this,
+            messageBox;
+
+        if(buttonId === 'ok') {
+            if(value !== '') {
+                if(value.search(/^[a-zA-Z0-9]+$/) === -1) {
+                    messageBox = Ext.create('Kort.view.NotificationMessageBox');
+                    messageBox.alert(Ext.i18n.Bundle.message('profile.alert.username.specialchars.title'), Ext.i18n.Bundle.message('profile.alert.username.specialchars.message'), Ext.emptyFn);
+                } else {
+                    // if username is different
+                    if(value !== Kort.user.get('username')) {
+                        Kort.user.set('username', value);
+                        me.showLoadMask(Ext.i18n.Bundle.message('profile.username.loadmask.message'));
+                        Kort.user.save({
+                            success: function() {
+                                me.userSuccessfullSavedHandler();
+                            },
+                            failure: function() {
+                                messageBox = Ext.create('Kort.view.NotificationMessageBox');
+                                messageBox.alert(Ext.i18n.Bundle.message('profile.alert.submit.failure.title'), Ext.i18n.Bundle.message('profile.alert.submit.failure.message'), Ext.emptyFn);
+                            }
+                        }, me);
+                    }
+                }
+            } else {
+                messageBox = Ext.create('Kort.view.NotificationMessageBox');
+                messageBox.alert(Ext.i18n.Bundle.message('profile.alert.username.empty.title'), Ext.i18n.Bundle.message('profile.alert.username.empty.message'), Ext.emptyFn);
+            }
+        }
+    },
+    
+    /**
+     * @private
+     * Called when user was successfull saved
+     */
+    userSuccessfullSavedHandler: function(store, operation) {
+        this.getApplication().fireEvent('userchange');
+        this.hideLoadMask();
     },
     
     /**
