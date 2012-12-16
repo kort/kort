@@ -73,8 +73,6 @@ Daten konnten erfolgreich geladen werden. Der Webservice liefert die Benutzerdat
 \hline 
 \small{\textbf{Antwort}} & \inlinecode{200 OK} & 
 Daten konnten erfolgreich geladen werden. Der Webservice liefert alle Badges zurück mit der Angabe, ob der Benutzer ihn gewonnen hat oder nicht. \\
-\hhline{~--} & \inlinecode{403 Forbidden} & 
-Der Benutzer ist nicht korrekt eingeloggt und kann damit keine Benutzerdaten vom Server beziehen. \\
 \hline 
 \small{\textbf{Antworttyp}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{\inlinecode{JSON}} \\
 \hline 
@@ -84,7 +82,7 @@ Der Benutzer ist nicht korrekt eingeloggt und kann damit keine Benutzerdaten vom
 
 \textbf{Beispiel:}
 
-\inlinecode{GET http://kort.herokuapp.com/server/webservices/user/<id>/badges}
+\inlinecode{GET http://kort.herokuapp.com/server/webservices/user/3/badges}
 
 \textbf{Antwort:}
 
@@ -101,7 +99,8 @@ Der Benutzer ist nicht korrekt eingeloggt und kann damit keine Benutzerdaten vom
 			"sorting":"110",
 			"won":true,
 			"create_date":"13.12.2012 18:56"
-		}
+		},
+		{ ... }
 	]
 }
 \end{lstlisting}
