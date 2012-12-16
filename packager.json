@@ -5,13 +5,13 @@
 	 * This is the name of your application, which is displayed on the device when the app is installed. On IOS, this should match
 	 * the name of your application in the Apple Provisioning Portal.
 	 */
-	"applicationName":"kort",
+	"applicationName":"Kort",
 
 	/**
 	 * @cfg {String} applicationId
 	 * This is the name namespace for your application. On IOS, this should match the name of your application in the Apple Provisioning Portal.
 	 */
-	"applicationId":"com.mycompany.myAppID",
+	"applicationId":"com.herokuapp.kort",
 
 	/**
 	 * @cfg {String} bundleSeedId
@@ -24,7 +24,7 @@
 	 * @required
 	 * This is the version of your application.
 	 */
-	"versionString":"1.0",
+	"versionString":"1.0.0",
 
 	/**
 	 * @cfg {Integer} versionCode
@@ -57,7 +57,7 @@
 	 * @required
 	 * This is where the built application file with be saved. Make sure that output path is not in your input path, you may get into endless recursive copying
 	 */
-	"outputPath":"../build/",
+	"outputPath":"build/Kort/packager/",
 
 	/**
 	 * @cfg {String} configuration
@@ -76,7 +76,7 @@
 	 *  - Android
 	 *  - AndroidEmulator
 	 */
-	"platform":"iOSSimulator",
+	"platform":"AndroidEmulator",
 
 	/**
 	 * @cfg {String} deviceType
@@ -97,7 +97,7 @@
 	 * This is the location of your certificate.
 	 * This is required when you are developing for Android or you are developing on Windows.
 	 */
-	"certificatePath":"/path/to/certificate.file",
+	"certificatePath":"kort.keystore",
 
 	/**
 	 * @cfg {String} certificateAlias
@@ -110,23 +110,25 @@
 	 *
 	 * When using a certificatePath on Windows, you do not need to specify this.
 	 */
-	"certificatePassword":"",
+	"certificateAlias":"kort",
+    
 	/**
 	 * @cfg {String} certificatePassword
 	 * The password which was specified during certificate export
 	 */
-	"provisionProfile":"",
+	"certificatePassword":"osm2012",
+    
 	/**
 	 * @cfg {String} provisionProfile
 	 * The path to the provision profile (APP_NAME.mobileprovision) which you can create and then download from Apple's provisioning portal
 	 */
-	"sdkPath":"/path/to/android-sdk",
+	"provisionProfile":"",
 
 	/**
 	 * @cfg {String} sdkPath
 	 * This is the path to the Android SDK, if you are developing an Android application.
 	 */
-	"sdkPath":"/path/to/android-sdk",
+	"sdkPath":"C:\\AndroidSDK\\sdk",
 
 	/**
 	/**
@@ -134,7 +136,7 @@
 	 * This is android API level, the version of Android SDK to use, you can read more about it here: http://developer.android.com/guide/appendix/api-levels.html.
 	 * Be sure to install corresponding platform API in android SDK manager (android_sdk/tools/android)
 	 */
-	"androidAPILevel":"8",
+	"androidAPILevel":"17",
 
 	/**
 	/**
