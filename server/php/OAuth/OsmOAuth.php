@@ -4,8 +4,6 @@
  */
 namespace OAuth;
 
-use Helper\HttpHelper;
-
 /**
  * The OsmOAuth class takes care about the login with OpenStreetMap.
  */
@@ -16,21 +14,41 @@ class OsmOAuth extends AbstractOAuthCallback
      *
      * @var array
      */
-    protected $user = null;
+    protected $user = array();
+    protected $userUrl = "http://api.openstreetmap.org/api/0.6/user/details";
 
-    protected $http;
-
-    //protected $requestTokenUrl = "http://api06.dev.openstreetmap.org/oauth/request_token";
+    protected $serverUrl = "http://www.openstreetmap.org";
+    protected $authorizeUrl = "http://www.openstreetmap.org/oauth/authorize";
+    protected $accessTokenUrl = "http://www.openstreetmap.org/oauth/access_token";
     protected $requestTokenUrl = "http://www.openstreetmap.org/oauth/request_token";
-    protected $accessTokenUrl = "http://api06.dev.openstreetmap.org/oauth/access_token";
-    protected $authorizeUrl = "http://api06.dev.openstreetmap.org/oauth/authorize";
+
+    protected $key;
+    protected $secret;
+    protected $oauthToken;
 
     /**
      * Creates a new instance of GoogleOAuth.
      */
-    public function __construct()
+    public function __construct($key, $secret, $unitTest = false)
     {
-        $this->http = new HttpHelper();
+        $this->key = $key;
+        $this->secret = $secret;
+        if (!$unitTest) {
+            \OAuthStore::instance("Session", $this->getOAuthOptions());
+        }
+    }
+
+    protected function getOAuthOptions()
+    {
+        $options = array(
+            'consumer_key'      => $this->key,
+            'consumer_secret'   => $this->secret,
+            'server_uri'        => $this->serverUrl,
+            'request_token_uri' => $this->requestTokenUrl,
+            'authorize_uri'     => $this->authorizeUrl,
+            'access_token_uri'  => $this->accessTokenUrl
+        );
+        return $options;
     }
 
     /**
@@ -40,9 +58,16 @@ class OsmOAuth extends AbstractOAuthCallback
      *
      * @return void
      */
-    public function authenticate($code)
+    public function authenticate($oauthToken)
     {
-        $this->client->authenticate($code);
+        $this->oauthToken = $oauthToken;
+        try {
+            \OAuthRequester::requestAccessToken($this->key, $oauthToken, 0, 'POST', $_GET);
+        } catch (\OAuthException2 $e) {
+            echo "authenticate Exception:<pre>";
+            print_r($e);
+            echo "</pre>";
+        }
     }
 
     /**
@@ -52,7 +77,7 @@ class OsmOAuth extends AbstractOAuthCallback
      */
     protected function getAccessToken()
     {
-        return $this->client->getAccessToken();
+        return $this->oauthToken;
     }
 
     /**
@@ -62,11 +87,9 @@ class OsmOAuth extends AbstractOAuthCallback
      */
     public function getRefreshToken()
     {
-        $authObj = json_decode($this->getAccessToken());
-        if (isset($authObj->refresh_token)) {
-            return $authObj->refresh_token;
-        }
-        return null;
+        // currently OSM does not distinguish between refresh and access token,
+        // i.e the access token never expires.
+        return $this->getAccessToken();
     }
 
     /**
@@ -77,7 +100,15 @@ class OsmOAuth extends AbstractOAuthCallback
     public function getOAuthUser()
     {
         if (empty($this->user)) {
-            $this->user = $this->oAuthService->userinfo->get();
+            $request = new \OAuthRequester($this->userUrl, "GET", $_GET);
+            $result = $request->doRequest();
+
+            $doc = new \DOMDocument();
+            $doc->loadXML($result['body']);
+            $userTag = $doc->getElementsByTagName("user")->item(0);
+
+            $this->user['name'] = $userTag->getAttribute('display_name');
+            $this->user['id'] = $userTag->getAttribute('id');
         }
         return $this->user;
     }
@@ -90,7 +121,7 @@ class OsmOAuth extends AbstractOAuthCallback
     protected function getOAuthUserId()
     {
         $user = $this->getOAuthUser();
-        return $user['email'];
+        return $user['id'];
     }
 
     /**
@@ -103,35 +134,31 @@ class OsmOAuth extends AbstractOAuthCallback
         return "OpenStreetMap";
     }
 
-
-    public function getAccessTokenUrl()
-    {
-        return $this->accessTokenUrl;
-    }
-
-    public function getRequestTokenUrl()
-    {
-        return $this->requestTokenUrl;
-    }
-
     public function getAuthorizeUrl()
     {
         $token = $this->getRequestToken();
-
-        return $token;
-
-        //return $this->authorizeUrl . '?oauth_token=' . $token->oauth_token;
+        return $this->authorizeUrl . "?oauth_token=" . $token['token'];
     }
 
     protected function getRequestToken()
     {
-        $url = $this->requestTokenUrl;
-        $urlParts = parse_url($url);
+        $result = \OAuthRequester::requestRequestToken($this->key, 0, null);
+        return $result;
+    }
 
-        $headers = array('Expect:');
-        $headers[] = 'Authorization: OAuth realm="' . $urlParts['path'] . '",';
-        $this->http->setOption(CURLOPT_HTTPHEADER, $headers);
+    public static function getSecretFile($host = null)
+    {
+        if (empty($host)) {
+            $host = $_SERVER['HTTP_HOST'];
+        }
 
-        return $this->http->get($this->requestTokenUrl);
+        if ($host == "localhost") {
+            $env = $host;
+        } else {
+            $matches = array();
+            preg_match("/([a-z-]*)\.(.*)/", $host, $matches);
+            $env = $matches[1];
+        }
+        return "secret_" . $env . ".php";
     }
 }

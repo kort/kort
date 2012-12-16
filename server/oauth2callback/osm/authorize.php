@@ -1,6 +1,6 @@
 <?php
 /**
- * kort - The OAuth callback for OpenStreetMap
+ * kort - This script redirects to the authorize URL of OpenStreetMap
  */
 
 /** Load the PHP OAuth store*/
@@ -17,14 +17,4 @@ Kort\ClassLoader::registerAutoLoader();
 require_once(\OAuth\OsmOAuth::getSecretFile());
 
 $osmOAuth = new \OAuth\OsmOAuth($consumerKey, $consumersecret);
-
-if (isset($_GET['oauth_token'])) {
-
-    $osmOAuth->authenticate($_GET['oauth_token']);
-    $dbUser = $osmOAuth->saveApplicationUser();
-
-    $_SESSION['secret'] = $dbUser['secret'];
-    $_SESSION['user_id'] = $dbUser['user_id'];
-}
-
-header('Location: ' . $osmOAuth->getApplicationUrl());
+header('Location: ' . $osmOAuth->getAuthorizeUrl());
