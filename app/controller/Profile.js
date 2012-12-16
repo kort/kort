@@ -43,7 +43,8 @@ Ext.define('Kort.controller.Profile', {
             }
         },
 
-        badgesContainer: null
+        badgesContainer: null,
+        itemTapDisabled: false
     },
     
     // @private
@@ -68,12 +69,22 @@ Ext.define('Kort.controller.Profile', {
 
     // @private
     onProfileBadgesDataViewItemTap: function(dataViewCmp, index, target, record, e) {
-        var badgesContainer = Ext.create('Kort.view.profile.BadgesContainer', {
-            selectedBadgeIndex: index
-        });
-        this.setBadgesContainer(badgesContainer);
-        Ext.Viewport.add(badgesContainer);
-        badgesContainer.show();
+        var me = this;
+
+        if(!me.getItemTapDisabled()) {
+            // disable fast tapping
+            me.setItemTapDisabled(true);
+            Ext.defer(function() {
+                me.setItemTapDisabled(false);
+            }, 500);
+            
+            var badgesContainer = Ext.create('Kort.view.profile.BadgesContainer', {
+                selectedBadgeIndex: index
+            });
+            me.setBadgesContainer(badgesContainer);
+            Ext.Viewport.add(badgesContainer);
+            badgesContainer.show();
+        }
     },
 
     // @private
