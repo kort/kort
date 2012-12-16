@@ -31,11 +31,11 @@ Dieses bietet verschiedene Build-Möglichkeiten an:
 \hline
 \textbf{Build} & \textbf{Beschreibung} \\
 \hline
-testing & Bei diesem Build werden die JavaScript-Quelldateien in einer Datei zusammengefasst. Zusätzlich werden lediglich die verwendeten Dateien kopiert. \\
+\inlinecode{testing} & Bei diesem Build werden die JavaScript-Quelldateien in einer Datei zusammengefasst. Zusätzlich werden lediglich die verwendeten Dateien kopiert. \\
 \hline
-production & Der Production-Build entspricht grundsätzlich dem Testing-Build. Zusätzlich werden aber noch die JavaScript-Quelldateien komprimiert. \\
+\inlinecode{production} & Der Production-Build entspricht grundsätzlich dem Testing-Build. Zusätzlich werden aber noch die JavaScript-Quelldateien komprimiert. \\
 \hline
-package/native & Mit diesen Builds lassen sich native Apps für die verschiedenen mobilen Betriebssysteme generieren. \\
+\inlinecode{package/native} & Mit diesen Builds lassen sich native Apps für die verschiedenen mobilen Betriebssysteme generieren. \\
 \hline
 \end{tabular}
 \caption{Verschiedene Build-Möglichkeiten mit Sencha Cmd}
@@ -124,3 +124,15 @@ prepareI18n: function() {
 Hier kann über das \inlinecode{language}-Property die Sprache konfiguriert werden.
 Falls das Property weggelassen wird, wird die aktuelle Spracheinstellung des Browsers verwendet.
 Wird dabei die entsprechende Datei nicht gefunden, verwendet das Plugin die Datei \inlinecode{Kort.props}.
+
+\subsection{Dokumentation}
+
+Das Frontend von \textsc{Kort} ist durchgängig mit der Sencha-eigenen JavaScript-Dokumentationsprache \emph{JSDuck}\footnote{\url{https://github.com/senchalabs/jsduck}} dokumentiert.
+Die Dokumentation findet sich unter: \url{http://kort.herokuapp.com/docs/Kort}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{images/implementation/frontend/kort-documentation}
+	\caption{Kort Frontend Dokumentation mit jsDuck}
+	\label{image-kort-documentation}
+\end{figure}

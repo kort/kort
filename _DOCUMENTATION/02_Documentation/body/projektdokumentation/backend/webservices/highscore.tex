@@ -1,0 +1,50 @@
+% /highscore
+\subsection{Webservice: Highscore \emph{/highscore}}
+Über den Highscore-Webservice können die Benutzer sortiert nach Anzahl \emph{koins} geladen werden.
+
+\subsubsection{Highscore laden}
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.15\threecelltabwidth}|p{0.25\threecelltabwidth}|p{0.6\threecelltabwidth}|}
+\hline 
+\small{\textbf{URL}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}
+{
+\inlinecode{http://kort.herokuapp.com/server/webservices/highscore}
+} \\ 
+\hline 
+\small{\textbf{Methode}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{\inlinecode{GET}} \\ 
+\hline 
+\small{\textbf{Parameter}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{\inlinecode{limit} Maximale Anzahl der Benutzer} \\ 
+\hline 
+\small{\textbf{Antwort}} & \inlinecode{200 OK} & 
+Daten konnten erfolgreich geladen werden. \\
+\hline 
+\small{\textbf{Antworttyp}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{\inlinecode{JSON}} \\
+\hline 
+\end{tabular} 
+\caption{Webservice Antworten (/highscore)}
+\end{table}
+
+\textbf{Beispiel:}
+
+\inlinecode{GET http://kort.herokuapp.com/server/webservices/highscore?limit=10}
+
+\textbf{Antwort:}
+
+\lstset{language=JavaScript}
+\begin{lstlisting}[style=examples]
+{
+	"return": [
+		{
+			"user_id":"3",
+			"username":"tschortsch",
+			"koin_count":"140",
+			"fix_count":"12",
+			"vote_count":"4",
+			"ranking":"1",
+			"you":true
+		},
+		{ ... }
+	]
+}
+\end{lstlisting}

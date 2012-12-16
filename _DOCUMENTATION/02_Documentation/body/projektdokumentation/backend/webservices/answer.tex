@@ -1,0 +1,52 @@
+% /answer
+\subsection{Webservice: Antworten \emph{/answer}}
+Bei einigen Fehlertypen wird eine Auswahl an möglichen Antworten vorgegeben.
+Um diese Antworten vorzuladen, wird der \emph{Antworten}-Webservice verwendet.
+Dieser liefert alle Antworten von allen verschiedenen Fehlertypen zurück.
+
+\subsubsection{Antworten laden}
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.15\threecelltabwidth}|p{0.25\threecelltabwidth}|p{0.6\threecelltabwidth}|}
+\hline 
+\small{\textbf{URL}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}
+{
+\inlinecode{http://kort.herokuapp.com/server/webservices/answer[/<type>]}
+\newline \newline
+\inlinecode{<type>} (optional) Antworten auf Typ beschränken
+} \\ 
+\hline 
+\small{\textbf{Methode}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{\inlinecode{GET}} \\ 
+\hline 
+\small{\textbf{Parameter}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{-} \\ 
+\hline 
+\small{\textbf{Antwort}} & \inlinecode{200 OK} & 
+Daten konnten erfolgreich geladen werden. \\
+\hline 
+\small{\textbf{Antworttyp}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{\inlinecode{JSON}} \\
+\hline 
+\end{tabular} 
+\caption{Webservice Antworten (/answer)}
+\end{table}
+
+\textbf{Beispiel:}
+
+\inlinecode{GET http://kort.herokuapp.com/server/webservices/answer/missing\_track\_type}
+
+\textbf{Antwort:}
+
+\lstset{language=JavaScript}
+\begin{lstlisting}[style=examples]
+{
+	"return": [
+		{
+			"id":"1",
+			"value":"grade1",
+			"title":"Asphalt, Beton oder Pflastersteine",
+			"sorting":"110",
+			"type":"missing_track_type"
+		},
+		{ ... }
+	]
+}
+\end{lstlisting}

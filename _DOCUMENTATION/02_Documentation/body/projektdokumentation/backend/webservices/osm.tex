@@ -1,0 +1,47 @@
+% /osm
+\subsection{Webservice: OpenStreetMap \emph{/osm}}
+Um OpenStreetMap-Objekte auf der Karte anzuzeigen, werden über den \inlinecode{/osm}-Webservice die entsprechenden OSM-Daten geladen.
+Der Webservice leitet den Request an das OSM API\footnote{\url{http://wiki.openstreetmap.org/wiki/API_v0.6}} weiter und sendet das Resultat an die Webapplikation zurück.
+
+\subsubsection{OpenStreetMap Objekt laden}
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.15\threecelltabwidth}|p{0.25\threecelltabwidth}|p{0.6\threecelltabwidth}|}
+\hline 
+\small{\textbf{URL}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}
+{
+\inlinecode{http://kort.herokuapp.com/server/webservices/osm/<type>/<id>} 
+\newline \newline
+\inlinecode{<type>} OSM-Objekttyp
+\newline
+\inlinecode{<id>} ID des OSM-Objekts
+} \\ 
+\hline 
+\small{\textbf{Methode}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{\inlinecode{GET}} \\ 
+\hline 
+\small{\textbf{Parameter}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{-} \\ 
+\hline 
+\small{\textbf{Antwort}} & \inlinecode{200 OK} & 
+Daten konnten erfolgreich geladen werden. \\
+\hline 
+\small{\textbf{Antworttyp}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{\inlinecode{XML}} \\
+\hline 
+\end{tabular} 
+\caption{Webservice OpenStreetMap (/osm)}
+\end{table}
+
+\textbf{Beispiel:}
+
+\inlinecode{GET http://kort.herokuapp.com/server/webservices/osm/node/1658024260}
+
+\textbf{Antwort:}
+
+\lstset{language=XML}
+\begin{lstlisting}[style=examples]
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="OpenStreetMap server" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+  <node id="1658024260" version="1" changeset="10861664" lat="47.5114378" lon="8.5443127" user="pfrauenf" uid="479871" visible="true" timestamp="2012-03-03T20:05:48Z">
+    <tag k="amenity" v="fast_food"/>
+  </node>
+</osm>
+\end{lstlisting}

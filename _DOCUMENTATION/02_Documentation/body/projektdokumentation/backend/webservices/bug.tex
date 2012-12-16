@@ -1,0 +1,130 @@
+% /bug
+\subsection{Webservice: Fehler \emph{/bug}}
+Die Fehler werden über den \inlinecode{/bug}-Webservice geladen.
+Diesem muss die aktuelle Position mitgeliefert werden.
+Dadurch ist es möglich lediglich die Fehler in der Umgebung zu laden.
+
+Zusätzlich kann über diesen Webservice eine Lösung zu einem Fehler eingetragen werden.
+
+\subsubsection{Fehler laden}
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.15\threecelltabwidth}|p{0.25\threecelltabwidth}|p{0.6\threecelltabwidth}|}
+\hline 
+\small{\textbf{URL}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}
+{
+\inlinecode{http://kort.herokuapp.com/server/webservices/bug/position/ <lat>,<lng>}
+\newline \newline
+\inlinecode{<lat>} Latitude der aktuellen Position 
+\newline
+\inlinecode{<lng>} Longitude der aktuellen Position
+} \\ 
+\hline 
+\small{\textbf{Methode}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{\inlinecode{GET}} \\ 
+\hline 
+\small{\textbf{Parameter}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}
+{
+\inlinecode{limit} Maximale Anzahl der zu ladenden Fehler \newline
+\inlinecode{radius} Radius in dem sich die Fehler befinden müssen
+} \\ 
+\hline 
+\small{\textbf{Antwort}} & \inlinecode{200 OK} & 
+Daten konnten erfolgreich geladen werden. \\
+\hline 
+\small{\textbf{Antworttyp}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{\inlinecode{JSON}} \\
+\hline 
+\end{tabular} 
+\caption{Webservice Fehler (GET /bug)}
+\end{table}
+
+\textbf{Beispiel:}
+
+\inlinecode{GET http://kort.herokuapp.com/server/webservices/bug/position/47.1,8.1?\\limit=1\&radius=5000}
+
+\textbf{Antwort:}
+
+\lstset{language=JavaScript}
+\begin{lstlisting}[style=examples]
+{
+	"return": [
+		{
+			"id":"32621371",
+			"schema":"95",
+			"type":"missing_track_type",
+			"osm_id":"119068810",
+			"osm_type":"way",
+			"title":"Typ des Wegs unbekannt",
+			"description":"Um welchen Weg-Typ handelt es sich hier?",
+			"latitude":"47.0995850000000000",
+			"longitude":"8.0979140000000000",
+			"view_type":"select",
+			"answer_placeholder":"Typ",
+			"fix_koin_count":"5",
+			"txt1":"",
+			"txt2":"",
+			"txt3":"",
+			"txt4":"",
+			"txt5":""
+		},
+		{ ... }
+	]
+}
+\end{lstlisting}
+
+\subsubsection{Lösung senden}
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.15\threecelltabwidth}|p{0.25\threecelltabwidth}|p{0.6\threecelltabwidth}|}
+\hline 
+\small{\textbf{URL}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}
+{
+\inlinecode{http://kort.herokuapp.com/server/webservices/bug/fix}
+} \\ 
+\hline 
+\small{\textbf{Methode}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{\inlinecode{POST}} \\ 
+\hline 
+\small{\textbf{Parameter}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}
+{Die zu sendende Antwort muss als \inlinecode{JSON}-Objekt im Body gesendet werden.} \\ 
+\hline 
+\small{\textbf{Antwort}} & \inlinecode{200 OK} & 
+Die Lösung konnte erfolgreich gesendet werden. Als Antwort werden die erspielten Punkte und Auszeichnungen zurückgeliefert. \\
+\hhline{~--} & \inlinecode{403 Forbidden} & 
+Der Benutzer ist nicht korrekt eingeloggt und kann somit keine Daten an den Server senden. \\
+\hhline{~--} & \inlinecode{400 Bad request} & 
+Das gesendete JSON ist nicht valide oder es gab einen Fehler beim Schreiben der Daten in die Datenbank. \\
+\hline 
+\small{\textbf{Antworttyp}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{\inlinecode{JSON}} \\
+\hline 
+\end{tabular} 
+\caption{Webservice Fehler (POST /bug)}
+\end{table}
+
+\textbf{Beispiel:}
+
+\inlinecode{POST http://kort.herokuapp.com/server/webservices/bug/fix}
+\lstset{language=JavaScript}
+\begin{lstlisting}[style=examples]
+{
+	"id":"ext-record-230",
+	"user_id":3,
+	"error_id":"28704192",
+	"schema":"95",
+	"osm_id":1611867263,
+	"message":"McDonalds"
+}
+\end{lstlisting}
+
+\textbf{Antwort:}
+
+\lstset{language=JavaScript}
+\begin{lstlisting}[style=examples]
+{
+	"badges": [
+		{
+			"name": "highscore_place_1"
+		}
+	],
+	"koin_count_new":"15",
+	"koin_count_total":"55"
+}
+\end{lstlisting}

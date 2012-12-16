@@ -1,0 +1,230 @@
+% /user
+\subsection{Webservice: Benutzer \emph{/user}}
+Der Benutzer-Webservice dient zur Authentifizierung des Benutzers.
+Über ihn können sich die Benutzer an- und abmelden.
+Zudem werden die Benutzerdaten über ihn geladen.
+
+\subsubsection{Benutzerdaten laden}
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.15\threecelltabwidth}|p{0.25\threecelltabwidth}|p{0.6\threecelltabwidth}|}
+\hline 
+\small{\textbf{URL}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}
+{
+\inlinecode{http://kort.herokuapp.com/server/webservices/user/[<secret>]} 
+\newline \newline
+\inlinecode{<secret>} (optional) User Secret wird gesendet falls der Benutzer bereits eingeloggt ist.
+} \\ 
+\hline 
+\small{\textbf{Methode}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{\inlinecode{GET}} \\ 
+\hline 
+\small{\textbf{Parameter}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{-} \\ 
+\hline 
+\small{\textbf{Antwort}} & \inlinecode{200 OK} & 
+Daten konnten erfolgreich geladen werden. Der Webservice liefert die Benutzerdaten zurück. \\
+\hline 
+\small{\textbf{Antworttyp}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{\inlinecode{JSON}} \\
+\hline 
+\end{tabular} 
+\caption{Webservice Benutzer (/user)}
+\end{table}
+
+\textbf{Beispiel:}
+
+\inlinecode{GET http://kort.herokuapp.com/server/webservices/user}
+
+\textbf{Antwort:}
+
+\lstset{language=JavaScript}
+\begin{lstlisting}[style=examples]
+{
+	"return": {
+		"id":"3",
+		"name":"J\u00fcrg Hunziker",
+		"username":"tschortsch",
+		"oauth_user_id":"email@host.com",
+		"oauth_provider":"Google",
+		"token":null,
+		"fix_count":"2",
+		"vote_count":"4",
+		"koin_count":"40",
+		"secret":"secret",
+		"pic_url":"http:\/\/www.gravatar.com\/avatar\/secret?s=200&d=mm&r=r",
+		"logged_in":true
+	}
+}
+\end{lstlisting}
+
+\subsubsection{Badges eines Benutzers laden}
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.15\threecelltabwidth}|p{0.25\threecelltabwidth}|p{0.6\threecelltabwidth}|}
+\hline 
+\small{\textbf{URL}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}
+{
+\inlinecode{http://kort.herokuapp.com/server/webservices/user/<id>/badges} 
+\newline \newline
+\inlinecode{<id>} ID des Benutzers
+} \\ 
+\hline 
+\small{\textbf{Methode}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{\inlinecode{GET}} \\ 
+\hline 
+\small{\textbf{Parameter}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{-} \\ 
+\hline 
+\small{\textbf{Antwort}} & \inlinecode{200 OK} & 
+Daten konnten erfolgreich geladen werden. Der Webservice liefert alle Badges zurück mit der Angabe, ob der Benutzer ihn gewonnen hat oder nicht. \\
+\hhline{~--} & \inlinecode{403 Forbidden} & 
+Der Benutzer ist nicht korrekt eingeloggt und kann damit keine Benutzerdaten vom Server beziehen. \\
+\hline 
+\small{\textbf{Antworttyp}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{\inlinecode{JSON}} \\
+\hline 
+\end{tabular} 
+\caption{Webservice Benutzer (/user/<id>/badges)}
+\end{table}
+
+\textbf{Beispiel:}
+
+\inlinecode{GET http://kort.herokuapp.com/server/webservices/user/<id>/badges}
+
+\textbf{Antwort:}
+
+\lstset{language=JavaScript}
+\begin{lstlisting}[style=examples]
+{
+	"return": [
+		{
+			"id":"1",
+			"name":"highscore_place_1",
+			"title":"1. Rang",
+			"description":"Erster Rang in der Highscore erreicht.",
+			"color":"#FFFBCB",
+			"sorting":"110",
+			"won":true,
+			"create_date":"13.12.2012 18:56"
+		}
+	]
+}
+\end{lstlisting}
+
+\subsubsection{Logout}
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.15\threecelltabwidth}|p{0.25\threecelltabwidth}|p{0.6\threecelltabwidth}|}
+\hline 
+\small{\textbf{URL}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}
+{
+\inlinecode{http://kort.herokuapp.com/server/webservices/user/<id>/logout} 
+\newline \newline
+\inlinecode{<id>} ID des Benutzers
+} \\ 
+\hline 
+\small{\textbf{Methode}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{\inlinecode{GET}} \\ 
+\hline 
+\small{\textbf{Parameter}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{-} \\ 
+\hline 
+\small{\textbf{Antwort}} & \inlinecode{200 OK} & 
+Der Benutzer wurde erfolgreich ausgeloggt. \\
+\hline 
+\small{\textbf{Antworttyp}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{\inlinecode{Text}} \\
+\hline 
+\end{tabular} 
+\caption{Webservice Benutzer (/user/<id>/logout)}
+\end{table}
+
+\textbf{Beispiel:}
+
+\inlinecode{GET http://kort.herokuapp.com/server/webservices/user/<id>/logout}
+
+\textbf{Antwort:}
+
+\inlinecode{Congratulations! You've now officially logged out!}
+
+\subsubsection{Neuen Benutzer hinzufügen}
+\todo[inline]{Wird dieser Webservice verwendet??}
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.15\threecelltabwidth}|p{0.25\threecelltabwidth}|p{0.6\threecelltabwidth}|}
+\hline 
+\small{\textbf{URL}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}
+{
+\inlinecode{http://kort.herokuapp.com/server/webservices/user} 
+} \\ 
+\hline 
+\small{\textbf{Methode}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{\inlinecode{POST}} \\ 
+\hline 
+\small{\textbf{Parameter}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{-} \\ 
+\hline 
+\small{\textbf{Antwort}} & \inlinecode{200 OK} & 
+Der Benutzer wurde erfolgreich erstellt. \\
+\hline 
+\small{\textbf{Antworttyp}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{\inlinecode{-}} \\
+\hline 
+\end{tabular} 
+\caption{Webservice Benutzer erstellen (/user)}
+\end{table}
+
+\textbf{Beispiel:}
+
+\inlinecode{POST http://kort.herokuapp.com/server/webservices/user}
+
+\textbf{Antwort:}
+
+\inlinecode{-}
+
+\subsubsection{Benutzerdaten ändern}
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.15\threecelltabwidth}|p{0.25\threecelltabwidth}|p{0.6\threecelltabwidth}|}
+\hline 
+\small{\textbf{URL}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}
+{
+\inlinecode{http://kort.herokuapp.com/server/webservices/user/[<id>]} 
+\newline \newline
+\inlinecode{<id>} ID des Benutzers
+} \\ 
+\hline 
+\small{\textbf{Methode}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{\inlinecode{PUT}} \\ 
+\hline 
+\small{\textbf{Parameter}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{Die neuen Benutzerdaten müssen als \inlinecode{JSON}-Objekt im Body gesendet werden.} \\ 
+\hline 
+\small{\textbf{Antwort}} & \inlinecode{200 OK} & 
+Der Benutzer wurde erfolgreich aktualisiert. \\
+\hline 
+\small{\textbf{Antworttyp}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{\inlinecode{-}} \\
+\hline 
+\end{tabular} 
+\caption{Webservice Benutzer erstellen (/user)}
+\end{table}
+
+\textbf{Beispiel:}
+
+\inlinecode{PUT http://kort.herokuapp.com/server/webservices/user/3}
+\lstset{language=JavaScript}
+\begin{lstlisting}[style=examples]
+{
+	"logged_in":true,
+	"id":"3",
+	"username":"tschortsch",
+	"oauth_user_id":"user@oauth.com",
+	"oauth_provider":"Google",
+	"pic_url":"http://www.gravatar.com/avatar/1234?s=200&d=mm&r=r",
+	"name":"J\u00fcrg Hunziker",
+	"token":null,
+	"fix_count":4,
+	"vote_count":7,
+	"koin_count":85,
+	"secret":"secret"
+}
+\end{lstlisting}
+
+\textbf{Antwort:}
+\lstset{language=JavaScript}
+\begin{lstlisting}[style=examples]
+{
+	"user_id":"3",
+	"name":"J\u00fcrg Hunziker",
+	"username":"tschortsch",
+	"oauth_user_id":"user@oauth.com",
+	"secret":"secret"
+}
+\end{lstlisting}
