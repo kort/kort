@@ -9,7 +9,7 @@ Ext.define('Kort.util.Config', {
          * @cfg {String} version Current version number of application
          */
         version: '1.0.0',
-        
+
         /**
          * @cfg {Object} leafletMap Configuration for {@link Ext.ux.LeafletMap} component
          * @cfg {Number} [leafletMap.zoom=15] (required) Default zoom level of leaflet map
@@ -25,7 +25,7 @@ Ext.define('Kort.util.Config', {
 			apiKey: '729242682cb24de8aa825c8aed993cba',
             styleId: 997
 		},
-        
+
         /**
          * @cfg {Object} oAuth Configuration for OAuth
          * @cfg {Object} oAuth.google (required) Configuration for Google OAuth
@@ -45,14 +45,19 @@ Ext.define('Kort.util.Config', {
                 response_type: 'code',
                 access_type: 'offline',
                 client_id: '653755350671.apps.googleusercontent.com'
+            },
+            osm: {
+                url: 'http://localhost/kort/server/oauth2callback/osm?redirectToOsm=true',
+                redirect_path: 'server/oauth2callback/osm',
+                consumer_key: 'Frdp15ZtblQIpnGTnhEt87LkqtA11svhLcAz3A6V'
             }
         },
-        
+
         /**
          * @cfg {Number} timeout Default timeout for load tasks in ms
          */
         timeout: 10000,
-        
+
         /**
          * @cfg {Object} zIndex zIndex for components
          * @cfg {Number} [zIndex.overlayLeafletMap=1500] (required) zIndex for panel to overlay leaflet map components
@@ -62,7 +67,7 @@ Ext.define('Kort.util.Config', {
             overlayLeafletMap: 1500,
             overlayOverlayPanel: 1600
         },
-        
+
         /**
          * @cfg {Object} osmMap Style configuration for osm objects
          * @cfg {String} [osmMap.featureColor="#FF0000"] (required) Color of features
@@ -72,12 +77,12 @@ Ext.define('Kort.util.Config', {
             featureColor: '#FF0000',
             featureOpacity: 0.7
         },
-        
+
         /**
          * @cfg {String} kortTitle App title which can be used in content
          */
         kortTitle: '<span class="kort-title"><span class="kort-k">K</span><span class="kort-ort">ORT</span></span>',
-        
+
         /**
          * @cfg {Object} about Labels for about page
          * @cfg {String[]} about.information (required) Information about Kort
@@ -109,7 +114,7 @@ Ext.define('Kort.util.Config', {
                 markers: '<a href="http://mapicons.nicolasmollet.com" target="_blank">mapicons collection</a>'
             }
         },
-        
+
         /**
          * @cfg {Object} formPlaceholders Ext.i18n.bundle plugin doesn't work for form placeholders so these are stored in config file
          * @cfg {String} [formPlaceholders.username="Benutzername"] (required) Translation of username
@@ -117,7 +122,7 @@ Ext.define('Kort.util.Config', {
         formPlaceholders: {
             username: 'Benutzername'
         },
-        
+
         /**
          * @cfg {Object} webservices Configuration of webservices
          * @cfg {Object} webservices.bug Configuration of bug webservice
@@ -192,7 +197,7 @@ Ext.define('Kort.util.Config', {
             }
         }
 	},
-	
+
     /**
      * @private
      * initializes the configuration
@@ -201,7 +206,7 @@ Ext.define('Kort.util.Config', {
 		this.initConfig(config);
 		return this;
 	},
-    
+
     /**
      * Returns a Leaflet marker icon for a given type
      * @param {String} type Type of marker
