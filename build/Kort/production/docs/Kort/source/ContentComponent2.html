@@ -15,17 +15,17 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js"><span id='Kort-view-highscore-user-ContentComponent'>/**
+  <pre class="prettyprint lang-js"><span id='Kort-view-profile-ContentComponent'>/**
 </span> * Component which shows user content
  */
-Ext.define('Kort.view.highscore.user.ContentComponent', {
+Ext.define('Kort.view.profile.ContentComponent', {
 	extend: 'Ext.Component',
-	alias: 'widget.highscoreusercontentcomponent',
+	alias: 'widget.profilecontentcomponent',
 	
 	config: {
-<span id='Kort-view-highscore-user-ContentComponent-cfg-cls'>        cls: 'highscoreUserContentComponent',
+<span id='Kort-view-profile-ContentComponent-cfg-cls'>        cls: 'profileContentComponent',
 </span>        
-<span id='Kort-view-highscore-user-ContentComponent-cfg-tpl'>        tpl: new Ext.XTemplate(
+<span id='Kort-view-profile-ContentComponent-cfg-tpl'>        tpl: new Ext.XTemplate(
 </span>                '&lt;div class=&quot;user-content&quot;&gt;',
                     '&lt;div class=&quot;info&quot;&gt;',
                         '&lt;div class=&quot;picture&quot;&gt;',
@@ -34,6 +34,8 @@ Ext.define('Kort.view.highscore.user.ContentComponent', {
                         '&lt;dl class=&quot;kort-definitionlist text&quot;&gt;',
                             '&lt;dt&gt;' + Ext.i18n.Bundle.message('profile.content.username') + '&lt;/dt&gt;',
                             '&lt;dd&gt;{username}&lt;/dd&gt;',
+                            '&lt;dt&gt;' + Ext.i18n.Bundle.message('profile.content.oauthprovider') + '&lt;/dt&gt;',
+                            '&lt;dd&gt;{oauth_provider}&lt;/dd&gt;',
                             '&lt;dt&gt;' + Ext.i18n.Bundle.message('profile.content.fixes') + '&lt;/dt&gt;',
                             '&lt;dd&gt;{fix_count}&lt;/dd&gt;',
                             '&lt;dt&gt;' + Ext.i18n.Bundle.message('profile.content.votes') + '&lt;/dt&gt;',
