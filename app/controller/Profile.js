@@ -1,3 +1,5 @@
+/*jshint maxcomplexity:10 */
+
 /**
  * Controller for profile tab
  */
@@ -69,7 +71,8 @@ Ext.define('Kort.controller.Profile', {
 
     // @private
     onProfileBadgesDataViewItemTap: function(dataViewCmp, index, target, record, e) {
-        var me = this;
+        var me = this,
+            badgesContainer;
 
         if(!me.getItemTapDisabled()) {
             // disable fast tapping
@@ -78,7 +81,7 @@ Ext.define('Kort.controller.Profile', {
                 me.setItemTapDisabled(false);
             }, 500);
             
-            var badgesContainer = Ext.create('Kort.view.profile.BadgesContainer', {
+            badgesContainer = Ext.create('Kort.view.profile.BadgesContainer', {
                 selectedBadgeIndex: index
             });
             me.setBadgesContainer(badgesContainer);
