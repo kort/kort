@@ -40,9 +40,6 @@ $app->get(
 $app->get(
     '/:id/badges',
     function ($id) use ($userBadgesHandler, $slim) {
-        if (!$slim->checkUserId($id)) {
-            return;
-        }
         $userBadges = $userBadgesHandler->getUserBadges($id);
         $slim->returnData($userBadges);
     }

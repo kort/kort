@@ -23,21 +23,31 @@ Ext.define('Kort.controller.Highscore', {
     
     config: {
 <span id='Kort-controller-Highscore-cfg-views'>        views: [
-</span>            'highscore.Container',
-            'highscore.List'
+</span>            'highscore.NavigationView',
+            'highscore.List',
+            'highscore.user.Container'
         ],
 <span id='Kort-controller-Highscore-cfg-refs'>        refs: {
 </span>            mainTabPanel: '#mainTabPanel',
-            highscoreContainer: '#highscoreContainer',
+            highscoreNavigationView: '#highscoreNavigationView',
             highscoreList: '.highscorelist',
-            highscoreRefreshButton: '#highscoreContainer .button[cls=highscoreRefreshButton]'
+            highscoreRefreshButton: '#highscoreNavigationView .button[cls=highscoreRefreshButton]'
         },
 <span id='Kort-controller-Highscore-cfg-control'>        control: {
 </span>            highscoreRefreshButton: {
                 tap: 'onHighscoreRefreshButtonTap'
+            },
+            highscoreNavigationView: {
+                detailpush: 'onHighscoreNavigationViewDetailPush',
+                back: 'onHighscoreNavigationViewBack'
+            },
+            highscoreList: {
+                itemtap: 'onHighscoreListItemTap'
             }
-        }
-    },
+        },
+        
+<span id='Kort-controller-Highscore-cfg-itemTapDisabled'>        itemTapDisabled: false
+</span>    },
     
 <span id='Kort-controller-Highscore-method-init'>    /**
 </span>     * @private
@@ -59,6 +69,35 @@ Ext.define('Kort.controller.Highscore', {
         this.refreshView();
     },
     
+<span id='Kort-controller-Highscore-method-onHighscoreListItemTap'>    /**
+</span>     * @private
+     * Displays highscore user panel for given user
+     */
+    onHighscoreListItemTap: function(list, index, target, record, e) {
+        var me = this,
+            highscoreUserBadgesStore = Ext.getStore('HighscoreUserBadges'),
+            highscoreNavigationView = me.getHighscoreNavigationView(),
+            highscoreUserContainer;
+        
+        if(!me.getItemTapDisabled()) {
+            me.setItemTapDisabled(true);
+            
+            // loading badges of user
+            highscoreUserBadgesStore.getProxy().setUrl(Kort.util.Config.getWebservices().userBadges.getUrl(record.get('user_id')));
+            highscoreUserBadgesStore.load();
+        
+            highscoreUserContainer = Ext.create('Kort.view.highscore.user.Container', {
+                record: record,
+                title: record.get('username')
+            });
+            highscoreNavigationView.push(highscoreUserContainer);
+            highscoreNavigationView.fireEvent('detailpush', highscoreNavigationView);
+        }
+        Ext.defer(function() {
+            me.setItemTapDisabled(false);
+        }, 200);
+    },
+    
 <span id='Kort-controller-Highscore-method-refreshView'>    /**
 </span>     * @private
      * Refreshs highscore
@@ -75,6 +114,16 @@ Ext.define('Kort.controller.Highscore', {
                 me.getHighscoreList().unmask();
             });
         }
+    },
+    
+<span id='Kort-controller-Highscore-method-onHighscoreNavigationViewDetailPush'>    // @private
+</span>    onHighscoreNavigationViewDetailPush: function(cmp, view, opts) {
+        this.getHighscoreRefreshButton().hide();
+    },
+    
+<span id='Kort-controller-Highscore-method-onHighscoreNavigationViewBack'>    // @private
+</span>    onHighscoreNavigationViewBack: function(cmp, view, opts) {
+        this.getHighscoreRefreshButton().show();
     }
 });</pre>
 </body>

@@ -15,45 +15,41 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js"><span id='Kort-view-highscore-Container'>/**
-</span> * Main container for highscore tab
+  <pre class="prettyprint lang-js"><span id='Kort-view-highscore-user-Container'>/**
+</span> * Main container for vote view
  */
-Ext.define('Kort.view.highscore.Container', {
+Ext.define('Kort.view.highscore.user.Container', {
 	extend: 'Ext.Container',
-	alias: 'widget.highscorecontainer',
+	alias: 'widget.usercontainer',
     requires: [
-        'Ext.TitleBar',
-        'Kort.view.highscore.List'
+        'Ext.Button',
+        'Kort.view.highscore.user.ContentComponent',
+        'Kort.view.highscore.user.BadgesDataView'
     ],
 	
 	config: {
-<span id='Kort-view-highscore-Container-cfg-title'>		title: Ext.i18n.Bundle.message('tab.highscore'),
-</span><span id='Kort-view-highscore-Container-cfg-url'>		url: 'highscore',
-</span><span id='Kort-view-highscore-Container-cfg-id'>		id: 'highscoreContainer',
-</span><span id='Kort-view-highscore-Container-cfg-iconCls'>		iconCls: 'list',
-</span><span id='Kort-view-highscore-Container-cfg-layout'>		layout: 'fit',
-</span><span id='Kort-view-highscore-Container-cfg-items'>		items: [
-</span>			{
-				xtype: 'titlebar',
-				cls: 'titlebar',
-				docked: 'top',
-				title: Ext.i18n.Bundle.message('highscore.title'),
-                
-                items: [
-                    {
-                        xtype: 'button',
-                        cls: 'highscoreRefreshButton',
-                        iconCls: 'refresh',
-                        iconMask: true,
-                        align: 'right'
-                    }
-                ]
-			},
-			{
-                xtype: 'highscorelist'
-			}
-		]
-	}
+<span id='Kort-view-highscore-user-Container-cfg-cls'>        cls: 'highscoreUserContainer',
+</span><span id='Kort-view-highscore-user-Container-cfg-scrollable'>        scrollable: true,
+</span><span id='Kort-view-highscore-user-Container-cfg-layout'>        layout: 'vbox'
+</span>	},
+    
+<span id='Kort-view-highscore-user-Container-method-initialize'>    initialize: function () {
+</span>        var highscoreUserContentComponent,
+            highscoreUserBadgesDataView;
+
+        this.callParent(arguments);
+
+        highscoreUserContentComponent = {
+            xtype: 'highscoreusercontentcomponent',
+            record: this.getRecord()
+        };
+        
+        highscoreUserBadgesDataView = {
+            xtype: 'highscoreuserbadgesdataview'
+        };
+        
+        this.add([highscoreUserContentComponent, highscoreUserBadgesDataView]);
+    }
 });</pre>
 </body>
 </html>
