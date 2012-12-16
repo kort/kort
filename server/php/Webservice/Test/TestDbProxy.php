@@ -10,20 +10,15 @@ class TestDbProxy extends AbstractKortUnitTestCase
     public function __construct()
     {
         parent::__construct("kort - TestDbProxy");
-        $this->mockCurl = M::mock('Helper\CurlHelper');
+        $this->mockHttp = M::mock('Helper\HttpHelper');
     }
 
     public function testGetFromDb()
     {
         $dbProxy = new DbProxy("test_table", array("id", "title"));
-        $dbProxy->setCurl($this->mockCurl);
-
-        $this->mockCurl->shouldReceive('setOption');
-        $this->mockCurl->shouldReceive('execute')
-                ->andReturn("returnValue");
-        $this->mockCurl->shouldReceive('close');
+        $dbProxy->setHttp($this->mockHttp);
+        $this->mockHttp->shouldReceive('get')->andReturn("returnValue");
 
         $this->assertEqual("returnValue", $dbProxy->select());
-
     }
 }
