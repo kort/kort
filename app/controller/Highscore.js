@@ -14,7 +14,8 @@ Ext.define('Kort.controller.Highscore', {
             mainTabPanel: '#mainTabPanel',
             highscoreNavigationView: '#highscoreNavigationView',
             highscoreList: '.highscorelist',
-            highscoreRefreshButton: '#highscoreNavigationView .button[cls=highscoreRefreshButton]'
+            highscoreRefreshButton: '#highscoreNavigationView .button[cls=highscoreRefreshButton]',
+            profileContainer: '#profileContainer'
         },
         control: {
             highscoreRefreshButton: {
@@ -65,16 +66,20 @@ Ext.define('Kort.controller.Highscore', {
         if(!me.getItemTapDisabled()) {
             me.setItemTapDisabled(true);
             
-            // loading badges of user
-            highscoreUserBadgesStore.getProxy().setUrl(Kort.util.Config.getWebservices().userBadges.getUrl(record.get('user_id')));
-            highscoreUserBadgesStore.load();
-        
-            highscoreUserContainer = Ext.create('Kort.view.highscore.user.Container', {
-                record: record,
-                title: record.get('username')
-            });
-            highscoreNavigationView.push(highscoreUserContainer);
-            highscoreNavigationView.fireEvent('detailpush', highscoreNavigationView);
+            if(record.get('you')) {
+                me.getMainTabPanel().setActiveItem(me.getProfileContainer());
+            } else {
+                // loading badges of user
+                highscoreUserBadgesStore.getProxy().setUrl(Kort.util.Config.getWebservices().userBadges.getUrl(record.get('user_id')));
+                highscoreUserBadgesStore.load();
+
+                highscoreUserContainer = Ext.create('Kort.view.highscore.user.Container', {
+                    record: record,
+                    title: record.get('username')
+                });
+                highscoreNavigationView.push(highscoreUserContainer);
+                highscoreNavigationView.fireEvent('detailpush', highscoreNavigationView);
+            }
         }
         Ext.defer(function() {
             me.setItemTapDisabled(false);
