@@ -96,6 +96,10 @@ highscore.votecount=Prüfungen:
 # Profil
 profile.title=Profil
 profile.button.logout=Logout
+profile.button.changeusername=Benutzername ändern
+profile.settings.messagebox.title=Einstellungen
+profile.settings.messagebox.message=Gib deinen neuen Benutzernamen ein
+profile.username.loadmask.message=Benutzername wird gespeichert
 profile.content.username=Benutzername
 profile.content.oauthprovider=Eingeloggt über
 profile.content.fixes=Erledigte Aufträge
@@ -109,6 +113,12 @@ profile.badges.title=Deine Auszeichnungen
 profile.badges.recieved=Erhalten am:
 profile.badges.emptytext=Deine Auszeichnungen konnten nicht geladen werden.
 profile.badges.button.close=Schliessen
+profile.alert.username.empty.title=Benutzernamen eingeben
+profile.alert.username.empty.message=Bitte gib einen Benutzernamen ein.
+profile.alert.username.specialchars.title=Zeichenproblem
+profile.alert.username.specialchars.message=Verwende bitte nur Buchstaben und Zahlen für deinen Benutzernamen.
+profile.alert.submit.failure.title=Fehler beim Senden
+profile.alert.submit.failure.message=Beim Übertragen deines Benutzernamens ist ein Fehler aufgetretten. Bitte versuche es später noch einmal.
 
 # About
 about.title=Über

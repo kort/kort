@@ -23,6 +23,9 @@ Ext.define('Kort.controller.Firststeps', {
         }
     },
 
+    /**
+     * Called when submit button of firststeps form gets pressed
+     */
     onFirststepsFormSubmitButtonTap: function() {
         var me = this,
             usernameValue = me.getUsernameTextfield().getValue(),
@@ -52,11 +55,15 @@ Ext.define('Kort.controller.Firststeps', {
         }
     },
 
+    /**
+     * Called when user was successfull saved
+     */
     userSuccessfullSavedHandler: function(store, operation) {
         this.getApplication().fireEvent('userchange');
         this.getFirststepsPanel().hide();
     },
 
+    // @private
     onUsernameTextfieldKeyUp: function(field, e) {
         // submit form if return key was pressed
         if (e.event.keyCode === 13){
