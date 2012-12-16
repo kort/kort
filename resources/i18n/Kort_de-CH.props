@@ -92,6 +92,7 @@ highscore.you=Das bist du!
 highscore.koins=koins
 highscore.fixcount=Aufträge:
 highscore.votecount=Prüfungen:
+highscore.user.badges.emptytext=Die Auszeichnungen konnten nicht geladen werden.
 
 # Profil
 profile.title=Profil
