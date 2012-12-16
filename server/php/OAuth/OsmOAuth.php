@@ -15,19 +15,69 @@ class OsmOAuth extends AbstractOAuthCallback
      * @var array
      */
     protected $user = array();
+
+    /**
+     * The url of the user webservice of OpenStreetMap.
+     *
+     * @var string
+     */
     protected $userUrl = "http://api.openstreetmap.org/api/0.6/user/details";
 
+    /**
+     * The server url of OpenStreetMap.
+     *
+     * @var string
+     */
     protected $serverUrl = "http://www.openstreetmap.org";
+
+    /**
+     * The authorize url of OpenStreetMap.
+     *
+     * @var string
+     */
     protected $authorizeUrl = "http://www.openstreetmap.org/oauth/authorize";
+
+    /**
+     * The access token url of OpenStreetMap.
+     *
+     * @var string
+     */
     protected $accessTokenUrl = "http://www.openstreetmap.org/oauth/access_token";
+
+    /**
+     * The request token url of OpenStreetMap.
+     *
+     * @var string
+     */
     protected $requestTokenUrl = "http://www.openstreetmap.org/oauth/request_token";
 
+    /**
+     * The consumer key.
+     *
+     * @var string
+     */
     protected $key;
+
+    /**
+     * The consumer secret.
+     *
+     * @var string
+     */
     protected $secret;
+
+    /**
+     * The received OAuthToken.
+     *
+     * @var string
+     */
     protected $oauthToken;
 
     /**
-     * Creates a new instance of GoogleOAuth.
+     * Creates a new instance of OsmOAuth.
+     *
+     * @param string  $key      The consumer key.
+     * @param string  $secret   The consumer secret.
+     * @param boolean $unitTest Determines wheter this call is made from a unit test or not.
      */
     public function __construct($key, $secret, $unitTest = false)
     {
@@ -38,6 +88,11 @@ class OsmOAuth extends AbstractOAuthCallback
         }
     }
 
+    /**
+     * Returns an array of options for OAuth.
+     *
+     * @return array Options for OAuth
+     */
     protected function getOAuthOptions()
     {
         $options = array(
@@ -54,7 +109,7 @@ class OsmOAuth extends AbstractOAuthCallback
     /**
      * Authenticate against the OAuth provider.
      *
-     * @param string $code The autentication code from Google.
+     * @param string $oauthToken The autentication code from Google.
      *
      * @return void
      */
@@ -134,18 +189,35 @@ class OsmOAuth extends AbstractOAuthCallback
         return "OpenStreetMap";
     }
 
+    /**
+     * Returns the URL where a user must authorize.
+     *
+     * @return string URL to authorize the user
+     */
     public function getAuthorizeUrl()
     {
         $token = $this->getRequestToken();
         return $this->authorizeUrl . "?oauth_token=" . $token['token'];
     }
 
+    /**
+     * Returns the request token.
+     *
+     * @return string The request token.
+     */
     protected function getRequestToken()
     {
         $result = \OAuthRequester::requestRequestToken($this->key, 0, null);
         return $result;
     }
 
+    /**
+     * Returns the file name of the correct secret file based on the environment.
+     *
+     * @param string $host The current host (only used in unit testing).
+     *
+     * @return string the file name of the correct secret file.
+     */
     public static function getSecretFile($host = null)
     {
         if (empty($host)) {

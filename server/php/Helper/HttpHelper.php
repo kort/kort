@@ -1,26 +1,65 @@
 <?php
-
+/**
+ * kort - Helper\HttpHelper class
+ */
 namespace Helper;
 
+/**
+ * The HttpHelper class is a helper class for common http requests.
+ *
+ * Currently GET, POST and PUT are supported.
+ */
 class HttpHelper
 {
+    /**
+     * A wrapper object around the curl functions.
+     *
+     * @var CurlHelper
+     */
     protected $curl;
 
+    /**
+     * Creates a new instance of HttpHelper.
+     */
     public function __construct()
     {
         $this->curl = new CurlHelper();
     }
 
+    /**
+     * Makes a GET request to the given url with the given data.
+     *
+     * @param string       $url  The url of the request.
+     * @param array|string $data The data to send along with this request.
+     *
+     * @return string Returns the servers response
+     */
     public function get($url, $data = null)
     {
         return $this->request("GET", $url, $data);
     }
 
+    /**
+     * Makes a PUT request to the given url with the given data.
+     *
+     * @param string       $url  The url of the request.
+     * @param array|string $data The data to send along with this request.
+     *
+     * @return string Returns the servers response
+     */
     public function put($url, $data = null)
     {
         return $this->request("PUT", $url, $data);
     }
 
+    /**
+     * Makes a POST request to the given url with the given data.
+     *
+     * @param string       $url  The url of the request.
+     * @param array|string $data The data to send along with this request.
+     *
+     * @return string Returns the servers response
+     */
     public function post($url, $data = null)
     {
         return $this->request("POST", $url, $data);
