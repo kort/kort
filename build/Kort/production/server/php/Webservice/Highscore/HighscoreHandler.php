@@ -57,7 +57,7 @@ class HighscoreHandler extends DbProxyHandler
         $scoreList = json_decode($scoreData, true);
         $scoreList = array_map("self::isYourScore", $scoreList);
         $scoreList = array_map("self::setGravatarUrl", $scoreList);
-        
+
         return json_encode($scoreList);
     }
 
@@ -75,9 +75,9 @@ class HighscoreHandler extends DbProxyHandler
         }
         return $score;
     }
-    
+
     /**
-     * Replaces field "oauth_user_id" with "pic_url"
+     * Replaces field "oauth_user_id" with "pic_url".
      *
      * @param array $score The score data.
      *
@@ -89,7 +89,7 @@ class HighscoreHandler extends DbProxyHandler
         unset($score['oauth_user_id']);
         return $score;
     }
-    
+
     /**
      * Get either a Gravatar URL or complete image tag for a specified email address.
      *

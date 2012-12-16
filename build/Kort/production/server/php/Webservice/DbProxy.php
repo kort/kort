@@ -4,7 +4,7 @@
  */
 namespace Webservice;
 
-use Helper\CurlHelper;
+use Helper\HttpHelper;
 
 /**
  * The DbProxy class is used wrap database request in REST calls to the datbase webservice.
@@ -61,11 +61,11 @@ class DbProxy
     protected $returnFields;
 
     /**
-     * Curl wrapper object.
+     * Http helper object to make requests.
      *
-     * @var CurlHelper
+     * @var HttpHelper
      */
-    protected $curl;
+    protected $http;
 
     /**
      * Create a new DbProxy object for a request.
@@ -78,7 +78,7 @@ class DbProxy
         $this->wsConfig = new DbWebserviceConfig();
         $this->table = $table;
         $this->fields = $fields;
-        $this->curl = new CurlHelper();
+        $this->http = new HttpHelper();
     }
 
     /**
@@ -102,15 +102,15 @@ class DbProxy
     }
 
     /**
-     * Setter for curl wrapper (only used by unit tests).
+     * Setter for http wrapper (only used by unit tests).
      *
-     * @param CurlHelper $curl Curl wrapper object.
+     * @param HttpHelper $http HTTP wrapper object.
      *
      * @return void
      */
-    public function setCurl(CurlHelper $curl)
+    public function setHttp(HttpHelper $http)
     {
-        $this->curl = $curl;
+        $this->http = $http;
     }
 
     /**
@@ -194,7 +194,7 @@ class DbProxy
             $path .= "limit=" . $this->limit . "&";
         }
         $path .= "key=" . $this->wsConfig->getApiKey();
-        return $this->request("GET", $this->wsConfig->getUrl() . $path);
+        return $this->http->get($this->wsConfig->getUrl() . $path);
     }
 
     /**
@@ -213,7 +213,7 @@ class DbProxy
         if ($this->returnFields) {
             $data['return'] = implode(",", $this->returnFields);
         }
-        return $this->request("POST", $this->wsConfig->getUrl() . $path, $data);
+        return $this->http->post($this->wsConfig->getUrl() . $path, $data);
     }
 
     /**
@@ -237,48 +237,6 @@ class DbProxy
         if ($this->returnFields) {
             $data['return'] = implode(",", $this->returnFields);
         }
-        return $this->request("PUT", $this->wsConfig->getUrl() . $path, $data);
-    }
-
-    /**
-     * Make a request to the database webservice.
-     *
-     * @param string       $method The HTTP method to use [POST, PUT, GET].
-     * @param string       $url    The URL to send the request to.
-     * @param array|string $data   The data to send along with the request.
-     *
-     * @return mixed the answer from the database webservice
-     */
-    protected function request($method, $url, $data = null)
-    {
-        switch ($method)
-        {
-            case "POST":
-                $this->curl->setOption(CURLOPT_POST, 1);
-
-                if ($data) {
-                    $this->curl->setOption(CURLOPT_POSTFIELDS, $data);
-                }
-                break;
-            case "PUT":
-                $this->curl->setOption(CURLOPT_CUSTOMREQUEST, "PUT");
-
-                if ($data) {
-                    $this->curl->setOption(CURLOPT_POSTFIELDS, http_build_query($data));
-                }
-                break;
-            default:
-                if ($data) {
-                    $url = sprintf("%s?%s", $url, http_build_query($data));
-                }
-        }
-
-        $this->curl->setOption(CURLOPT_URL, $url);
-        $this->curl->setOption(CURLOPT_RETURNTRANSFER, 1);
-
-        $result = $this->curl->execute();
-        $this->curl->close();
-
-        return $result;
+        return $this->http->put($this->wsConfig->getUrl() . $path, $data);
     }
 }
