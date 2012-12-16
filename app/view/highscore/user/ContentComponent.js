@@ -1,12 +1,12 @@
 /**
  * Component which shows user content
  */
-Ext.define('Kort.view.profile.ContentComponent', {
+Ext.define('Kort.view.highscore.user.ContentComponent', {
 	extend: 'Ext.Component',
-	alias: 'widget.profilecontentcomponent',
+	alias: 'widget.highscoreusercontentcomponent',
 	
 	config: {
-        cls: 'profileContentComponent',
+        cls: 'highscoreUserContentComponent',
         
         tpl: new Ext.XTemplate(
                 '<div class="user-content">',
@@ -17,8 +17,6 @@ Ext.define('Kort.view.profile.ContentComponent', {
                         '<dl class="kort-definitionlist text">',
                             '<dt>' + Ext.i18n.Bundle.message('profile.content.username') + '</dt>',
                             '<dd>{username}</dd>',
-                            '<dt>' + Ext.i18n.Bundle.message('profile.content.oauthprovider') + '</dt>',
-                            '<dd>{oauth_provider}</dd>',
                             '<dt>' + Ext.i18n.Bundle.message('profile.content.fixes') + '</dt>',
                             '<dd>{fix_count}</dd>',
                             '<dt>' + Ext.i18n.Bundle.message('profile.content.votes') + '</dt>',

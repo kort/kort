@@ -10,6 +10,7 @@ Ext.define('Kort.model.HighscoreEntry', {
 			{ name: 'user_id', type: 'auto' },
             { name: 'you', type: 'boolean' },
 			{ name: 'username', type: 'string' },
+            { name: 'pic_url', type: 'string' },
             { name: 'fix_count', type: 'int' },
             { name: 'vote_count', type: 'int' },
 			{ name: 'koin_count', type: 'int' },
