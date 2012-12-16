@@ -14,6 +14,7 @@ else
     mkdir -p $BUILD_DIR/lib/Leaflet-0.4.5
     mkdir -p $BUILD_DIR/lib/Slim-2.1.0
     mkdir -p $BUILD_DIR/lib/google-api-php-client
+    mkdir -p $BUILD_DIR/lib/oauth-php
     mkdir -p $BUILD_DIR/server
 
     cp $SOURCE_DIR/index*.* $BUILD_DIR
@@ -29,6 +30,7 @@ else
     cp -r $SOURCE_DIR/lib/Leaflet-0.4.5/dist/ $BUILD_DIR/lib/Leaflet-0.4.5/
     cp -r $SOURCE_DIR/lib/Slim-2.1.0/Slim/ $BUILD_DIR/lib/Slim-2.1.0/
     cp -r $SOURCE_DIR/lib/google-api-php-client/src $BUILD_DIR/lib/google-api-php-client/
+    cp -r $SOURCE_DIR/lib/oauth-php/library $BUILD_DIR/lib/oauth-php/
     cp -r $SOURCE_DIR/lib/kort-libs $BUILD_DIR/lib
     cp -r $SOURCE_DIR/lib/qunit $BUILD_DIR/lib
     cp -r $SOURCE_DIR/lib/simpletest $BUILD_DIR/lib
