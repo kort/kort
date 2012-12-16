@@ -32,6 +32,7 @@ class HighscoreHandler extends DbProxyHandler
         return array(
             'user_id',
             'username',
+            'oauth_user_id',
             'koin_count',
             'fix_count',
             'vote_count',
@@ -55,6 +56,8 @@ class HighscoreHandler extends DbProxyHandler
         }
         $scoreList = json_decode($scoreData, true);
         $scoreList = array_map("self::isYourScore", $scoreList);
+        $scoreList = array_map("self::setGravatarUrl", $scoreList);
+        
         return json_encode($scoreList);
     }
 
@@ -71,5 +74,38 @@ class HighscoreHandler extends DbProxyHandler
             $score['you'] = ($score['user_id'] == $_SESSION['user_id']);
         }
         return $score;
+    }
+    
+    /**
+     * Replaces field "oauth_user_id" with "pic_url"
+     *
+     * @param array $score The score data.
+     *
+     * @return array the $score array with the replaced field
+     */
+    protected static function setGravatarUrl(array $score)
+    {
+        $score['pic_url'] = self::getGravatarUrl($score['oauth_user_id']);
+        unset($score['oauth_user_id']);
+        return $score;
+    }
+    
+    /**
+     * Get either a Gravatar URL or complete image tag for a specified email address.
+     *
+     * @param string  $email    The email address of the user.
+     * @param integer $size     Size in pixels, defaults to 200px [ 1 - 2048 ].
+     * @param string  $imageSet Default imageset to use [ 404 | mm | identicon | monsterid | wavatar ].
+     * @param string  $rating   Maximum rating (inclusive) [ g | pg | r | x ].
+     *
+     * @return string containing the URL
+     * @link http://gravatar.com/site/implement/images/php/
+     */
+    protected static function getGravatarUrl ($email, $size = 200, $imageSet = 'mm', $rating = 'r')
+    {
+        $url = 'http://www.gravatar.com/avatar/';
+        $url .= \md5(\strtolower(\trim($email)));
+        $url .= "?s=$size&d=$imageSet&r=$rating";
+        return $url;
     }
 }

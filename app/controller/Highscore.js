@@ -6,20 +6,30 @@ Ext.define('Kort.controller.Highscore', {
     
     config: {
         views: [
-            'highscore.Container',
-            'highscore.List'
+            'highscore.NavigationView',
+            'highscore.List',
+            'highscore.user.Container'
         ],
         refs: {
             mainTabPanel: '#mainTabPanel',
-            highscoreContainer: '#highscoreContainer',
+            highscoreNavigationView: '#highscoreNavigationView',
             highscoreList: '.highscorelist',
-            highscoreRefreshButton: '#highscoreContainer .button[cls=highscoreRefreshButton]'
+            highscoreRefreshButton: '#highscoreNavigationView .button[cls=highscoreRefreshButton]'
         },
         control: {
             highscoreRefreshButton: {
                 tap: 'onHighscoreRefreshButtonTap'
+            },
+            highscoreNavigationView: {
+                detailpush: 'onHighscoreNavigationViewDetailPush',
+                back: 'onHighscoreNavigationViewBack'
+            },
+            highscoreList: {
+                itemtap: 'onHighscoreListItemTap'
             }
-        }
+        },
+        
+        itemTapDisabled: false
     },
     
     /**
@@ -44,6 +54,35 @@ Ext.define('Kort.controller.Highscore', {
     
     /**
      * @private
+     * Displays highscore user panel for given user
+     */
+    onHighscoreListItemTap: function(list, index, target, record, e) {
+        var me = this,
+            highscoreUserBadgesStore = Ext.getStore('HighscoreUserBadges'),
+            highscoreNavigationView = me.getHighscoreNavigationView(),
+            highscoreUserContainer;
+        
+        if(!me.getItemTapDisabled()) {
+            me.setItemTapDisabled(true);
+            
+            // loading badges of user
+            highscoreUserBadgesStore.getProxy().setUrl(Kort.util.Config.getWebservices().userBadges.getUrl(record.get('user_id')));
+            highscoreUserBadgesStore.load();
+        
+            highscoreUserContainer = Ext.create('Kort.view.highscore.user.Container', {
+                record: record,
+                title: record.get('username')
+            });
+            highscoreNavigationView.push(highscoreUserContainer);
+            highscoreNavigationView.fireEvent('detailpush', highscoreNavigationView);
+        }
+        Ext.defer(function() {
+            me.setItemTapDisabled(false);
+        }, 200);
+    },
+    
+    /**
+     * @private
      * Refreshs highscore
      */
     refreshView: function() {
@@ -58,5 +97,15 @@ Ext.define('Kort.controller.Highscore', {
                 me.getHighscoreList().unmask();
             });
         }
+    },
+    
+    // @private
+    onHighscoreNavigationViewDetailPush: function(cmp, view, opts) {
+        this.getHighscoreRefreshButton().hide();
+    },
+    
+    // @private
+    onHighscoreNavigationViewBack: function(cmp, view, opts) {
+        this.getHighscoreRefreshButton().show();
     }
 });

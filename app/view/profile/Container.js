@@ -15,10 +15,7 @@ Ext.define('Kort.view.profile.Container', {
 		title: Ext.i18n.Bundle.message('tab.profile'),
 		url: 'profile',
 		id: 'profileContainer',
-        scrollable: {
-            direction: 'vertical',
-            directionLock: true
-        },
+        scrollable: true,
 		iconCls: 'user',
 		layout: 'vbox',
         
@@ -44,24 +41,13 @@ Ext.define('Kort.view.profile.Container', {
                         align: 'right'
                     }
                 ]
-			}
+			},
+            {
+                xtype: 'profilecontentcomponent'
+            },
+            {
+                xtype: 'profilebadgesdataview'
+            }
 		]
-	},
-    
-    initialize: function () {
-        var profileContentComponent,
-            badgesDataView;
-
-        this.callParent(arguments);
-
-        profileContentComponent = {
-            xtype: 'profilecontentcomponent'
-        };
-        
-        badgesDataView = {
-            xtype: 'profilebadgesdataview'
-        };
-        
-        this.add([profileContentComponent, badgesDataView]);
-    }
+	}
 });

@@ -8,7 +8,7 @@ Ext.define('Kort.view.Main', {
     requires: [
         'Kort.view.bugmap.NavigationView',
         'Kort.view.validation.NavigationView',
-        'Kort.view.highscore.Container',
+        'Kort.view.highscore.NavigationView',
         'Kort.view.profile.Container',
         'Kort.view.about.Container'
     ],
@@ -29,7 +29,7 @@ Ext.define('Kort.view.Main', {
                 xtype: 'validationnavigationview'
             },
             {
-                xtype: 'highscorecontainer'
+                xtype: 'highscorenavigationview'
             },
             {
                 xtype: 'profilecontainer'

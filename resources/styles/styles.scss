@@ -318,7 +318,7 @@ $label-background-color: #46578D;
 /* -----------------------
    Highscore
    ----------------------- */
-#highscoreContainer {
+#highscoreNavigationView {
     .x-list-item-body {
         padding: 0;
     }
@@ -421,9 +421,10 @@ $label-background-color: #46578D;
 }
 
 /* -----------------------
-   Profile
+   Highscore / Profile
    ----------------------- */
-.profileContentComponent {
+.profileContentComponent,
+.highscoreUserContentComponent {
     .info {
         padding: $panel-padding;
         overflow: hidden;
@@ -449,7 +450,7 @@ $label-background-color: #46578D;
         }
     }
     
-    .profile-header {
+    .user-header {
         font-size: 0.9em;
         margin: 0.5em 0;
         text-transform: uppercase;
@@ -487,7 +488,8 @@ $label-background-color: #46578D;
     }
 }
 
-.profileBadgesDataView {
+.profileBadgesDataView,
+.highscoreUserBadgesDataView {
     padding: $panel-padding;
     
     .badge {
@@ -511,6 +513,9 @@ $label-background-color: #46578D;
     }
 }
 
+/* -----------------------
+   Profile
+   ----------------------- */
 .profileBadgesCarousel {
     .carouselitem-content {
         text-align: center;

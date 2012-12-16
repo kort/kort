@@ -57,6 +57,7 @@ Ext.application({
     stores: [
         'Bugs',
         'Highscore',
+        'HighscoreUserBadges',
         'SelectAnswers',
         'UserBadges',
         'UserLocal',
