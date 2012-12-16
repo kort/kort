@@ -133,6 +133,7 @@ create or replace view kort.highscore as
 select rank() over (order by u.koin_count desc) ranking,
        u.user_id user_id,
        u.username,
+       u.oauth_user_id,
        u.koin_count,
        (select count(1) from kort.fix f where f.user_id = u.user_id) fix_count,
        (select count(1) from kort.validation v where v.user_id = u.user_id) vote_count
