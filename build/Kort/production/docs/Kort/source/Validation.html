@@ -91,15 +91,15 @@ Ext.define('Kort.controller.Validation', {
     onValidationListItemTap: function(list, index, target, record, e) {
         var me = this,
             validationNavigationView = me.getValidationNavigationView(),
-            voteTabPanel;
+            voteContainer;
         
         if(!me.getItemTapDisabled()) {
             me.setItemTapDisabled(true);
-            voteTabPanel = Ext.create('Kort.view.validation.vote.Container', {
+            voteContainer = Ext.create('Kort.view.validation.vote.Container', {
                 record: record,
                 title: record.get('title')
             });
-            validationNavigationView.push(voteTabPanel);
+            validationNavigationView.push(voteContainer);
             validationNavigationView.fireEvent('detailpush', validationNavigationView);
         }
         Ext.defer(function() {

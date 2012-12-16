@@ -14,7 +14,7 @@ Ext.define('Kort.controller.Main', {
             mainTabPanel: '#mainTabPanel',
             aboutContainer: '#aboutContainer',
             bugmapNavigationView: '#bugmapNavigationView',
-            highscoreContainer: '#highscoreContainer',
+            highscoreNavigationView: '#highscoreNavigationView',
             profileContainer: '#profileContainer',
             validationNavigationView: '#validationNavigationView'
         },
@@ -59,7 +59,7 @@ Ext.define('Kort.controller.Main', {
      * redirects to highscore tab
      */
     showHighscore: function() {
-        this.showView(this.getHighscoreContainer());
+        this.showView(this.getHighscoreNavigationView());
     },
     
     /**

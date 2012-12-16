@@ -32,11 +32,8 @@ Ext.define('Kort.view.profile.Container', {
 <span id='Kort-view-profile-Container-cfg-title'>		title: Ext.i18n.Bundle.message('tab.profile'),
 </span><span id='Kort-view-profile-Container-cfg-url'>		url: 'profile',
 </span><span id='Kort-view-profile-Container-cfg-id'>		id: 'profileContainer',
-</span><span id='Kort-view-profile-Container-cfg-scrollable'>        scrollable: {
-</span>            direction: 'vertical',
-            directionLock: true
-        },
-<span id='Kort-view-profile-Container-cfg-iconCls'>		iconCls: 'user',
+</span><span id='Kort-view-profile-Container-cfg-scrollable'>        scrollable: true,
+</span><span id='Kort-view-profile-Container-cfg-iconCls'>		iconCls: 'user',
 </span><span id='Kort-view-profile-Container-cfg-layout'>		layout: 'vbox',
 </span>        
 <span id='Kort-view-profile-Container-cfg-items'>		items: [
@@ -61,26 +58,15 @@ Ext.define('Kort.view.profile.Container', {
                         align: 'right'
                     }
                 ]
-			}
+			},
+            {
+                xtype: 'profilecontentcomponent'
+            },
+            {
+                xtype: 'profilebadgesdataview'
+            }
 		]
-	},
-    
-<span id='Kort-view-profile-Container-method-initialize'>    initialize: function () {
-</span>        var profileContentComponent,
-            badgesDataView;
-
-        this.callParent(arguments);
-
-        profileContentComponent = {
-            xtype: 'profilecontentcomponent'
-        };
-        
-        badgesDataView = {
-            xtype: 'profilebadgesdataview'
-        };
-        
-        this.add([profileContentComponent, badgesDataView]);
-    }
+	}
 });</pre>
 </body>
 </html>

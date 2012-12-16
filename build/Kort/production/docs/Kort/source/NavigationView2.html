@@ -15,29 +15,29 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js"><span id='Kort-view-validation-NavigationView'>/**
-</span> * Main navigation view for validation tab
+  <pre class="prettyprint lang-js"><span id='Kort-view-highscore-NavigationView'>/**
+</span> * Main navigation view for highscore tab
  */
-Ext.define('Kort.view.validation.NavigationView', {
+Ext.define('Kort.view.highscore.NavigationView', {
 	extend: 'Ext.navigation.View',
-	alias: 'widget.validationnavigationview',
+	alias: 'widget.highscorenavigationview',
     requires: [
-        'Ext.Button',
-        'Kort.view.validation.List'
+        'Ext.TitleBar',
+        'Kort.view.highscore.List'
     ],
 	
 	config: {
-<span id='Kort-view-validation-NavigationView-cfg-title'>        title: Ext.i18n.Bundle.message('tab.validation'),
-</span><span id='Kort-view-validation-NavigationView-cfg-url'>		url: 'validation',
-</span><span id='Kort-view-validation-NavigationView-cfg-id'>		id: 'validationNavigationView',
-</span><span id='Kort-view-validation-NavigationView-cfg-iconCls'>		iconCls: 'check_black2',
-</span><span id='Kort-view-validation-NavigationView-cfg-defaultBackButtonText'>        defaultBackButtonText: Ext.i18n.Bundle.message('button.back'),
+<span id='Kort-view-highscore-NavigationView-cfg-title'>		title: Ext.i18n.Bundle.message('tab.highscore'),
+</span><span id='Kort-view-highscore-NavigationView-cfg-url'>		url: 'highscore',
+</span><span id='Kort-view-highscore-NavigationView-cfg-id'>		id: 'highscoreNavigationView',
+</span><span id='Kort-view-highscore-NavigationView-cfg-iconCls'>		iconCls: 'list',
+</span><span id='Kort-view-highscore-NavigationView-cfg-defaultBackButtonText'>        defaultBackButtonText: Ext.i18n.Bundle.message('button.back'),
 </span>        
-<span id='Kort-view-validation-NavigationView-cfg-navigationBar'>        navigationBar: {
+<span id='Kort-view-highscore-NavigationView-cfg-navigationBar'>        navigationBar: {
 </span>            items: [
                 {
                     xtype: 'button',
-                    cls: 'validationRefreshButton',
+                    cls: 'highscoreRefreshButton',
                     iconCls: 'refresh',
                     iconMask: true,
                     align: 'right'
@@ -45,10 +45,10 @@ Ext.define('Kort.view.validation.NavigationView', {
             ]
         },
         
-<span id='Kort-view-validation-NavigationView-cfg-items'>		items: [
+<span id='Kort-view-highscore-NavigationView-cfg-items'>		items: [
 </span>			{
-                title: Ext.i18n.Bundle.message('validation.title'),
-                xtype: 'validationlist'
+                title: Ext.i18n.Bundle.message('highscore.title'),
+                xtype: 'highscorelist'
 			}
 		]
 	}
