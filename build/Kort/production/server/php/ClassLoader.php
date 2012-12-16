@@ -81,7 +81,7 @@ class ClassLoader
      *
      * @return void
      */
-    public static function importClass($path, $className)
+    public static function importClass($path, $className = null)
     {
         if (StringHelper::endsWith($path, ".php")) {
             require_once($path);
