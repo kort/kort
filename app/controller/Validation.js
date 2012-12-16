@@ -77,7 +77,12 @@ Ext.define('Kort.controller.Validation', {
             voteContainer;
         
         if(!me.getItemTapDisabled()) {
+            // disable fast tapping
             me.setItemTapDisabled(true);
+            Ext.defer(function() {
+                me.setItemTapDisabled(false);
+            }, 500);
+            
             voteContainer = Ext.create('Kort.view.validation.vote.Container', {
                 record: record,
                 title: record.get('title')
@@ -85,9 +90,6 @@ Ext.define('Kort.controller.Validation', {
             validationNavigationView.push(voteContainer);
             validationNavigationView.fireEvent('detailpush', validationNavigationView);
         }
-        Ext.defer(function() {
-            me.setItemTapDisabled(false);
-        }, 200);
     },
     
     // @private
