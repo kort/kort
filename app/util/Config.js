@@ -41,15 +41,13 @@ Ext.define('Kort.util.Config', {
                     'https://www.googleapis.com/auth/userinfo.profile',
                     'https://www.googleapis.com/auth/userinfo.email'
                 ],
-                redirect_path: 'server/oauth2callback',
+                redirect_path: 'server/oauth2callback/google',
                 response_type: 'code',
                 access_type: 'offline',
                 client_id: '653755350671.apps.googleusercontent.com'
             },
             osm: {
-                url: 'http://localhost/kort/server/oauth2callback/osm?redirectToOsm=true',
-                redirect_path: 'server/oauth2callback/osm',
-                consumer_key: 'Frdp15ZtblQIpnGTnhEt87LkqtA11svhLcAz3A6V'
+                url: './server/oauth2callback/osm/authorize.php'
             }
         },
 
