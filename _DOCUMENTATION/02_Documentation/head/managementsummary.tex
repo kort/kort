@@ -73,7 +73,7 @@ Derzeit werden dafür die OAuth-Provider \emph{\gls{OpenStreetMap}} und \emph{Go
 
 \subsection*{Backend}
 Das Backend ist in PHP geschrieben und basiert auf der Kommunikation über \gls{REST}-Schnittstellen.
-Die eigenen Schnittstellen sind alle mit dem Slim-Framework\footnote{\url{http://www.slimframework.com/}} erstellt.
+Die eigenen Schnittstellen sind alle mit dem \emph{Slim-Framework}\footnote{\url{http://www.slimframework.com/}} erstellt.
 Da die Datenbank und der Webserver auf zwei verschiedenen Servern laufen, bietet auch die Datenbank eine \gls{REST}-Schnittstelle an, über welche sich beliebige SQL-Abfrage absetzen lassen.
 Diese flexible Aufteilung ermöglicht es sehr einfach die Systeme umzuziehen oder weitere hinzuzufügen.
 
@@ -85,25 +85,26 @@ Ganz allgemein ist es wichtig die Robustheit und Geschwindikeit der App zu verbe
 Gerade weil es sich um eine \gls{WebApp} handelt, ist dies besonders kritisch. 
 Im Idealfall sollte sich die App nicht von einer nativen App unterscheiden.
 Es ist zu prüfen, ob es sich lohnt, die App native zu builden\footnote{z.B. mit Apache Cordova oder Sencha Packager}.
-Dies hätte den weiteren Vorteil, dass die App über die bekannten \gls{App-Store}s zum User gebracht werden kann.
+Dies hätte den weiteren Vorteil, dass die App über die bekannten \glspl{App-Store} zum User gebracht werden kann.
 
 Beim Login wäre es wünschenswert noch weitere \gls{OAuth}-Dienste anzubieten, um so weitere Personen anzusprechen und die Akzeptanz zu steigern.
-Schliesslich verfügt nicht jeder über ein Google-Konto oder ist bereit sich über dieses anzumelden.
-Mögliche Dienste wären dabei Facebook, Twitter oder \gls{OpenStreetMap} selbst, welche alle \gls{OAuth}-Dienste anbieten.
+Schliesslich verfügt nicht jeder über ein \gls{OpenStreetMap}- oder ein Google-Konto.
+Mögliche Dienste wären dabei beispielweise Facebook oder Twitter, welche beide \gls{OAuth}-Dienste anbieten.
 
 In der Konzeption der App haben wir uns ursprünglich das Ziel gesetzt, das \gls{Camera API} zu verwenden. 
-So könnten Benutzer beim Eintragen von Lösungsvorschlägen direkt ein \emph{Fotobeweis} anbringen. 
-Dies würde die Validierung der eingetragenen Lösungen für andere Benutzer vereinfachen.
+So könnten Benutzer beim Eintragen von Lösungsvorschlägen direkt einen \emph{Fotobeweis} anbringen. 
+Dies würde die Validierung der eingetragenen Lösungen für andere Benutzer stark vereinfachen.
 
 Als zusätzliche Motivation könnten zeitlich begrenzte Aktionen durchgeführt werden.
 Dies soll Benutzer animieren die App immer wieder zu verwenden. 
-Mögliche Aktionen wären beispielsweise die Konzentration auf einen Fehlertyp (\emph{"Gib allen Restaurants in deiner Umgebung einen Namen und erhalte diese Woche die spezielle Restaurant-Auszeichnung"}) oder auf eine Region (\emph{"Korrigiere jeden Tag im Dezember Fehler in Zürich und erhalte die Zürich-Silvester-Auszeichnung"}).
-Bestehende Spieler können beispielsweise über Push-Notifikationen über solche Aktionen oder sonstige Neuerungen informiert werden.
-Dies soll Benutzer regelmässig animieren, die App zu verwenden.
+Mögliche Aktionen wären beispielsweise die Konzentration auf einen Fehlertyp (\emph{"`Gib allen Restaurants in deiner Umgebung einen Namen und erhalte diese Woche die spezielle Restaurant-Auszeichnung"'}) oder auf eine Region (\emph{"`Korrigiere jeden Tag im Dezember Fehler in Zürich und erhalte die Zürich-Silvester-Auszeichnung"'}).
+Bestehende Spieler könnten beispielsweise über Push-Notifikationen über solche Aktionen oder sonstige Neuerungen informiert werden.
 
-Um längerfristig die App am laufen zu halten ist es unumgänglich weitere Fehlertypen und -quellen einzubinden. 
+Um die App längerfristig am Laufen zu halten ist es unumgänglich weitere Fehlertypen und -quellen einzubinden. 
 Keepright bietet zwar eine grosse Menge an Fehlerdaten, jedoch ist nur ein geringer Teil davon für unsere App nutzbar.
 
 Die Bekanntheit der App muss durch geeignete Massnahmen gesteigert werden, dazu gehört die Integration von Social Media Diensten wie Facebook und Twitter.
 Dies kann einerseits genutzt werden um Werbung zu machen, anderseits können Benutzer auch auf ihre gewonnenen Auszeichnungen aufmerksam machen und so andere bereits bestehende Benutzer dazu animieren diese Auszeichnungen ebenfalls zu gewinnen.
-\todo[inline]{Ziel "Daten zu OSM senden" nicht erreicht}
+
+Die wichtige noch offene Erweiterung findet sich aber im fehlenden Zurückschreiben der eingetragenen Lösungen zu \gls{OpenStreetMap}.
+Diese Funktionalität ist für die Akzeptanz der App von der \gls{OpenStreetMap}-Community sehr wichtig.
