@@ -1,9 +1,1 @@
-Mit Kort soll das Verbessern von Karten-Daten auf unterhaltsame Weise ermöglicht werden. Dem Benutzer werden dazu die OpenStreetMap-Fehler übersichtlich auf einer Karte angezeigt. Falls er die Lösung für einen dieser Fehler kennt, kann er einen entsprechenden Lösungvorschlag abgeben.
-
-Weitere Benutzer der App überprüfen daraufhin den Vorschlag auf seine Gültigkeit und können damit beeinflussen, ob eine Korrektur an OpenStreetMap zurückgesendet wird oder nicht.
-
-Um die Benutzer längerfristig zu motivieren die App regelmässig zu verwenden, wurden zahlreiche Spiel-Elemente eingesetzt. So erhält ein Benutzer für alle Aktionen Punkte (sogenannte <em>koins</em>) sowie Auszeichnungen für besondere Leistungen. Dies ist bekannt unter dem Begriff <em>Gamification</em>.
-
-Die Arbeit beinhaltet unter anderem auch ein Gamification-Konzept für OpenStreetMap, welches beschreibt wie solche Spiel-Elemente konkret eingesetzt werden können.
-
-Die App soll in einer Folgearbeit für einen produktiven Release finalisiert werden.
+Mit Kort soll das Verbessern von Karten-Daten auf unterhaltsame Weise ermöglicht werden. Dem Benutzer werden dazu die OpenStreetMap-Fehler direkt auf einer Karte angezeigt. Falls er die Lösung für einen dieser Fehler kennt, kann er einen entsprechenden Lösungvorschlag abgeben. Weitere Spieler der App überprüfen daraufhin den Vorschlag auf seine Gültigkeit. Um die Benutzer zu motivieren, die App regelmässig zu verwenden, wurden zahlreiche Spiel-Elemente eingesetzt. So erhält ein Benutzer für alle Aktionen Punkte (sogenannte koins) sowie Auszeichnungen für besondere Leistungen, die dann in einer Rangliste zum Vergleich dargestellt werden. Dieser Ansatz ist bekannt unter dem Begriff Gamification. Die Arbeit beinhaltet unter anderem auch ein Gamification-Konzept für OpenStreetMap, welches beschreibt wie solche Spiel-Elemente konkret eingesetzt werden können. Die App ist ein Prototyp der zurzeit auf den deutschsprachigen Raum beschränkt ist. Jetzt spielen und koins sammeln: http://kort.herokuapp.com
