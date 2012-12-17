@@ -140,3 +140,15 @@ select rank() over (order by u.koin_count desc) ranking,
 from   kort.user u
 where  u.username is not null
 order by ranking;
+
+create or replace view kort.error_types as
+select t.error_type_id,
+       t.type,
+       t.description,
+       t.view_type,
+       t.answer_placeholder,
+       t.vote_question,
+       t.vote_koin_count,
+       t.fix_koin_count,
+       t.required_validations
+from   kort.error_type t;
