@@ -1,1 +1,1 @@
-phpdoc -d server -t docs/Kort-backend
+php ../../php/phpdoc.php -d server -t docs/Kort-backend
