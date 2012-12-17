@@ -51,6 +51,22 @@ $app->post(
     }
 );
 
+$app->put(
+    '/:table/:fields',
+    function ($table, $fields) use ($dbHandler, $app) {
+        $request = $app->request();
+        if (!$dbHandler->checkAuth($request->params('key'))) {
+            $app->response()->status(403);
+        } else {
+            $fields = (isset($fields) ? explode(",", $fields) : null);
+            $returnFields = $request->params('return');
+            $returnFields = $returnFields ? explode(",", $returnFields) : $fields;
+            $where = $request->params('where');
+            $app->response()->write($dbHandler->doUpdate($fields, $table, $request->put(), $where, $returnFields));
+        }
+    }
+);
+
 $app->post(
     '/transaction',
     function () use ($dbHandler, $app) {
@@ -70,21 +86,6 @@ $app->post(
     }
 );
 
-$app->put(
-    '/:table/:fields',
-    function ($table, $fields) use ($dbHandler, $app) {
-        $request = $app->request();
-        if (!$dbHandler->checkAuth($request->params('key'))) {
-            $app->response()->status(403);
-        } else {
-            $fields = (isset($fields) ? explode(",", $fields) : null);
-            $returnFields = $request->params('return');
-            $returnFields = $returnFields ? explode(",", $returnFields) : $fields;
-            $where = $request->params('where');
-            $app->response()->write($dbHandler->doUpdate($fields, $table, $request->put(), $where, $returnFields));
-        }
-    }
-);
 
 if (!isset($_SESSION)) {
     session_cache_limiter(false);
