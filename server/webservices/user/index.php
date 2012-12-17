@@ -65,7 +65,7 @@ $app->put(
         $allowedAttributes = array("username");
         $allowedData = array();
         foreach ($allowedAttributes as $attribute) {
-            $allowedData[$attribute] = $data[$attriute];
+            $allowedData[$attribute] = $data[$attribute];
         }
         $app->response()->write($userHandler->updateUser($id, $allowedData));
     }
