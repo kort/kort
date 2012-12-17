@@ -19,17 +19,19 @@ Durch die Anforderungen an die Applikation ergaben sich folgende Bedingungen, we
 Wir untersuchten deshalb mehrere Fehlerdatenquellen auf deren Qualität.
 
 \subsection{FIXME-Tags in OpenStreetMap}
-Die Objekte in OpenStreetMap können von Benutzern direkt mit einem FIXME-Tag versehen werden, wenn sie einen Fehler aufweisen.
+Fehlerhafte Objekte in OpenStreetMap können von Benutzern direkt mit einem FIXME-Tag versehen werden, wenn sie einen Fehler aufweisen.
+Darin wird der eigentliche Fehler beschrieben.
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|p{0.25\twocelltabwidth}|p{0.75\twocelltabwidth}|}
+\begin{tabular}{|p{0.3\twocelltabwidth}|p{0.7\twocelltabwidth}|}
 \hline 
 \small{\textbf{URL}} & \url{http://wiki.openstreetmap.org/wiki/DE:Key:fixme} \\
 \hline 
 \small{\textbf{Erfasser}} & OpenStreetMap-Benutzer \\
 \hline 
-\small{\textbf{API verfügbar?}} & Ja (API oder Datenbankzugriff) \\
+\small{\textbf{API verfügbar?}} & Ja (API oder Datenbankzugriff) \newline
+\url{http://wiki.openstreetmap.org/wiki/API_v0.6} \\
 \hline 
 \small{\textbf{Lösung zurückschreiben}} & Lösung könnte via API an OSM gesendet werden. \\
 \hline
@@ -45,13 +47,14 @@ Mit der Applikation OpenStreetBugs ist es für die Benutzer möglich Fehler in d
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|p{0.25\twocelltabwidth}|p{0.75\twocelltabwidth}|}
+\begin{tabular}{|p{0.3\twocelltabwidth}|p{0.7\twocelltabwidth}|}
 \hline 
 \small{\textbf{URL}} & \url{http://openstreetbugs.schokokeks.org/} \\
 \hline 
 \small{\textbf{Erfasser}} & OpenStreetBugs-Benutzer \\
 \hline 
-\small{\textbf{API verfügbar?}} & ??????? \\
+\small{\textbf{API verfügbar?}} & Ja (REST API oder Fehlerdaten als Dump-File downloadbar) \newline
+\url{http://wiki.openstreetmap.org/wiki/OpenStreetBugs/API_0.6} \\
 \hline 
 \small{\textbf{Lösung zurückschreiben}} & Lösung müsste an OpenStreetMaps gesendet werden. Zusätzlich  müsste der Bug auf OpenStreetBugs als gelöst markiert werden. \\
 \hline
@@ -67,13 +70,13 @@ keepright ist ein Dienst, welcher jeweils über Nacht, Fehler in OSM-Objekten su
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|p{0.25\twocelltabwidth}|p{0.75\twocelltabwidth}|}
+\begin{tabular}{|p{0.3\twocelltabwidth}|p{0.7\twocelltabwidth}|}
 \hline 
 \small{\textbf{URL}} & \url{http://keepright.ipax.at} \\
 \hline 
 \small{\textbf{Erfasser}} & Automatisiert durch nächtlichen Job \\
 \hline 
-\small{\textbf{API verfügbar?}} & Fehlerdaten werden als Dump-File zum Download angeboten. \\
+\small{\textbf{API verfügbar?}} & Ja (Fehlerdaten werden als Dump-File zum Download angeboten) \newline \url{http://keepright.ipax.at/interfacing.php} \\
 \hline 
 \small{\textbf{Lösung zurückschreiben}} & Lösung müssten lediglich an OpenStreetMap gesendet werden. keepright baut seine Fehlerdatenbank jeweils über Nacht aus dem OSM-Daten neu auf. \\
 \hline
@@ -85,13 +88,16 @@ keepright ist ein Dienst, welcher jeweils über Nacht, Fehler in OSM-Objekten su
 \end{table}
 
 \section{Entscheid: Fehlerdaten von keepright}
-Durch die gute Eignung der Fehlerdaten vom keepright-Dienst, haben wir uns dazu entschieden deren Daten als Basis für unsere Fehler zu verwenden.
+Durch die gute Eignung der Fehlerdaten vom \emph{keepright}-Dienst, haben wir uns dazu entschieden deren Daten als Basis für unsere Fehler zu verwenden.
 
 \section{Fehlerdaten in die Datenbank laden}
 Um stets aktuelle Daten für die App anzuzeigen, wird der Dump von Keepright jede Nacht mit einem Shellskript in die Datenbank geladen.
-Das Shellskript befindet sich unter \inlinecode{/server/database/keepright\_setup.sh}.
+Das Shellskript befindet sich unter:
+
+\inlinecode{/server/database/keepright\_setup.sh}
 
 Mittels Cronjob wird folgender Befehl aufgerufen:
+
 \inlinecode{\$ setup\_keepright\_db.sh -o osm -n osm\_bugs -s keepright}
 
 \begin{table}[H]
@@ -120,42 +126,42 @@ Auf der Webseite von Keepright ist ersichtlich\footnote{\url{http://www.keeprigh
 \hline 
 \small{\textbf{Feld}} & \small{\textbf{Bedeutung}} \\
 \hline 
-schema & Schemabezeichner welcher die Region gemäss Platet-Karte angibt  \\
+\inlinecode{schema} & Schemabezeichner welcher die Region gemäss Platet-Karte angibt  \\
 \hline
-error\_id & Fehler-ID pro Schema  \\
+\inlinecode{error\_id} & Fehler-ID pro Schema  \\
 \hline
-error\_type & Typisierung des Fehlers  \\
+\inlinecode{error\_type} & Typisierung des Fehlers  \\
 \hline
-error\_name & Name des Fehlertyps  \\
+\inlinecode{error\_name} & Name des Fehlertyps  \\
 \hline
-object\_type & OpenStreetMap-Typ des Objekts (\gls{Node}, \gls{Way} oder \gls{Relation})  \\ 
+\inlinecode{object\_type} & OpenStreetMap-Typ des Objekts (\gls{Node}, \gls{Way} oder \gls{Relation})  \\ 
 \hline
-object\_id & OpenStreetMap-ID des Objekts  \\
+\inlinecode{object\_id} & OpenStreetMap-ID des Objekts  \\
 \hline
-state & Status des Fehlers (new, reopened, ignore\_temporarily, ignore)  \\
+\inlinecode{state} & Status des Fehlers (new, reopened, ignore\_temporarily, ignore)  \\
 \hline
-msgid & Fehlermeldung mit Platzhaltern (\$1 - \$5)  \\
+\inlinecode{msgid} & Fehlermeldung mit Platzhaltern (\$1 - \$5)  \\
 \hline
-txt1\newline
-txt2\newline
-txt3\newline
-txt4\newline
-txt5 & Texte für Platzhalter in msgid  \\
+\inlinecode{txt1}\newline
+\inlinecode{txt2}\newline
+\inlinecode{txt3}\newline
+\inlinecode{txt4}\newline
+\inlinecode{txt5} & Texte für Platzhalter in msgid  \\
 \hline
-first\_occurrence & Zeitpunkt, an dem dieser Fehler das erste Mal entdeckt wurde (MESZ)  \\
+\inlinecode{first\_occurrence} & Zeitpunkt, an dem dieser Fehler das erste Mal entdeckt wurde (MESZ)  \\
 \hline
-last\_checked & Zeitpunkt an dem dieser Fehler das letzte Mal entdeckt wurde (MESZ)  \\
+\inlinecode{last\_checked} & Zeitpunkt an dem dieser Fehler das letzte Mal entdeckt wurde (MESZ)  \\
 \hline
-object\_timestamp & Letzter Änderungzeitpunkt am Objekt  \\
+\inlinecode{object\_timestamp} & Letzter Änderungzeitpunkt am Objekt  \\
 \hline
-user\_name & Benutzer, welcher das Objekt zuletzt verändert hat  \\
+\inlinecode{user\_name} & Benutzer, welcher das Objekt zuletzt verändert hat  \\
 \hline
-lat\newline
-lon & Längen- und Breitengrad des Fehlers  \\
+\inlinecode{lat}\newline
+\inlinecode{lon} & Längen- und Breitengrad des Fehlers  \\
 \hline
-comment & Kommentar zum Fehler  \\
+\inlinecode{comment} & Kommentar zum Fehler  \\
 \hline
-comment\_timestamp & Zeitpunkt des Kommentars zum Fehler  \\
+\inlinecode{comment\_timestamp} & Zeitpunkt des Kommentars zum Fehler  \\
 \hline
 \end{tabular}
 \caption{Datenformat der Keepright-Daten}
