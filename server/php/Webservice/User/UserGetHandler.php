@@ -5,6 +5,7 @@
 namespace Webservice\User;
 
 use Webservice\DbProxyHandler;
+use Helper\GravatarHelper;
 
 /**
  * The UserGetHandler class handles all GET requests to the user webservice.
@@ -62,7 +63,7 @@ class UserGetHandler extends DbProxyHandler
                 }
                 $_SESSION['secret'] = $secret;
                 $_SESSION['user_id'] = $userData['id'];
-                $userData['pic_url'] = $this->getGravatarUrl($userData['oauth_user_id']);
+                $userData['pic_url'] = GravatarHelper::getGravatarUrl($userData['oauth_user_id']);
                 $userData['logged_in'] = true;
                 return json_encode($userData);
             }
@@ -116,24 +117,5 @@ class UserGetHandler extends DbProxyHandler
         $user["secret"] = "";
 
         return json_encode($user);
-    }
-
-    /**
-     * Get either a Gravatar URL or complete image tag for a specified email address.
-     *
-     * @param string  $email    The email address of the user.
-     * @param integer $size     Size in pixels, defaults to 200px [ 1 - 2048 ].
-     * @param string  $imageSet Default imageset to use [ 404 | mm | identicon | monsterid | wavatar ].
-     * @param string  $rating   Maximum rating (inclusive) [ g | pg | r | x ].
-     *
-     * @return string containing the URL
-     * @link http://gravatar.com/site/implement/images/php/
-     */
-    protected function getGravatarUrl ($email, $size = 200, $imageSet = 'mm', $rating = 'r')
-    {
-        $url = 'http://www.gravatar.com/avatar/';
-        $url .= \md5(\strtolower(\trim($email)));
-        $url .= "?s=$size&d=$imageSet&r=$rating";
-        return $url;
     }
 }
