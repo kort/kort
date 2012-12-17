@@ -18,7 +18,7 @@ Eine sehr nützliche Funktionalität, welche Apple im Mobile Safari-Browser anbi
 Dadurch wird ein App-ähnlicher Bookmark der aktuellen Webseite auf dem Homescreen erstellt.
 Dieser erhält ein hinterlegtes Icon und einen Titel.
 Beim Starten der App erscheint ein Splashscreen, welchen man ebenfalls in der Webseite definieren kann.
-Zudem öffnet sich der Browser ohne jegliche Toolbars wie der Adressleiste oder der Navigationsbar.
+Zudem öffnet sich der Browser ohne jegliche Toolbars wie der Adress- oder der Navigationsleiste.
 
 Leider befindet in iOS6 ein Bug, welcher den Zugriff auf die Geolocation verhindert, wenn die \gls{WebApp} vom Homescreen aus gestartet wird.
 Auf Stack Overflow\footnote{\url{http://stackoverflow.com/questions/12503815/ios-6-breaks-geolocation-in-webapps-apple-mobile-web-app-capable}} wird der Bug genauer beschrieben.
@@ -43,7 +43,7 @@ Diese befindet sich in folgenden Dateien:
 \item \inlinecode{/touch/src/core/Ext-more.js} Zeile 657
 \end{itemize}
 
-Das Deaktivieren dieser Zeile hat aber zur Folge, dass der native Rahmen des Browsers (Adressleiste, Navigationsbar) wieder angezeigt wird.
+Das Deaktivieren dieser Zeile hat aber zur Folge, dass der native Rahmen des Browsers (Adressleiste, Navigationsleiste) wieder angezeigt wird.
 Dies ist zwar unschön löst aber das Problem mit dem Zugriff auf die Geolocation.
 
 \subsection{App Build}

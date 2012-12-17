@@ -4,13 +4,13 @@
 \subsection{Package-Struktur}
 
 Die Package-Struktur wird vom Sencha Touch 2 Framework vorgegeben. Sie entspricht grundsätzlich dem MVC-Layout.
-Speziell daran ist aber das Konzept der \emph{Stores}, welche einen beliebigen Datenspeicher abstrahieren.
+Speziell daran ist das Konzept der \emph{Stores}, welche einen beliebigen Datenspeicher abstrahieren.
 Stores sind an ein \emph{Model} gebunden, welches die Struktur der gespeicherten Daten vorgibt.
 
 Zusätzlich sind sie über einen \emph{Proxy} mit der Datenquelle verbunden.
 Dabei kann es sich beispielsweise um einen \gls{REST}-Webservice handeln oder den \gls{Local Storage} des Browsers.
 
-In Abbildung \ref{image-kort-packagediagram} ist die Package-Struktur von \textsc{Kort} dargestellt.
+In Abbildung \ref{image-kort-packagediagram} wird die Package-Struktur von \textsc{Kort} mit deren Abhängigkeiten gezeigt.
 
 \begin{figure}[H]
 	\centering
@@ -24,10 +24,10 @@ In Abbildung \ref{image-kort-packagediagram} ist die Package-Struktur von \texts
 Die App wurde so gestaltet, dass jede Hauptansicht seinen eigenen Controller besitzt.
 Dieser ist für die Steuerung der Benutzeroberfläche zuständig.
 
-Die Controller lassen sich wiederum in drei Klasen einteilen.
+Die verschiedenen Controller lassen sich grob in drei Klassen einteilen.
 Zum einen gibt es Controller für die einzelnen Tabs der Applikation (siehe Abbildung \ref{image-kort-classdiagram-controller} $\rightarrow$ \emph{main tab controllers}).
 Zusätzlich haben einige Tabs eine Detailansicht, welche ebenfalls von einem eigenen Controller gesteuert wird (siehe Abbildung \ref{image-kort-classdiagram-controller} $\rightarrow$ \emph{detail controllers}).
-Zuletzt gibt es noch eigenständige Controller für die Overlay-Komponenten, welche die gesamte Oberfläche der App verdecken (siehe Abbildung \ref{image-kort-classdiagram-controller} $\rightarrow$ \emph{overlay controllers}).
+Zuletzt gibt es eigenständige Controller für die Overlay-Komponenten, welche die gesamte Oberfläche der App verdecken (siehe Abbildung \ref{image-kort-classdiagram-controller} $\rightarrow$ \emph{overlay controllers}).
 
 \begin{figure}[H]
 	\centering
@@ -53,7 +53,7 @@ Im Falle von \textsc{Kort} wurden dafür ausschliesslich REST-Ressourcen verwend
 \subsubsection{Models ohne Store}
 
 Falls die Applikation jeweils nur eine Instanz eines \emph{Models} verwendet, können diese ohne einen Store direkt mit einem Proxy verbunden werden.
-In \textsc{Kort} wurde dies für den eingeloggten Benutzer sowie für die zu sendenden Datenpakete wie der Lösung (Fix) und der Validierung (Vote) verwendet.
+In \textsc{Kort} wurde dies für den eingeloggten Benutzer (User) sowie für die zu sendenden Datenpakete wie der Fehler-Lösung (Fix) und der Validierung (Vote) verwendet.
 
 \begin{figure}[H]
 	\centering
