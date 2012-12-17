@@ -3,9 +3,9 @@
 
 % User Szenarien
 \subsection{User Szenarien}
+\label{kort-user-szenarien}
 
 Um die Anforderungen an die App genauer zu definieren, wurden im Vorfeld des Projektes einige Szenarien erstellt.
-Gegen diese Szenarien kann die finale Applikation später getestet werden.
 
 \subsubsection{Szenario 1: Zeitvertreib an der Bushaltestelle}
 
@@ -87,7 +87,7 @@ Auch in der Highscoreliste steht Edi nun zuoberst.
 % Subfigure counter zuruecksetzen
 \setcounter{subfigure}{0}
 
-Vor der Implementation der Oberfläche wurde ein Paper-Prototype des GUI-Designs erstellt.
+Aus den gesetzten Projektzielen und den Anforderungen aus den erstellten Szenarien (siehe Abschnitt \ref{kort-user-szenarien}) wurde vor der Implementation der Oberfläche ein Paper-Prototype des GUI-Designs erstellt.
 Der Prototype besteht aus vier Hauptmasken und einem Overlay für den Login.
 
 \subsubsection{Overlay: Login}
@@ -101,14 +101,14 @@ Beim Klick auf den jeweiligen Anbieter wird man zu diesem Weitergeleitet und kan
 \end{figure}
 
 \subsubsection{Maske: Aufträge}
-Ist der Login erfolgt erscheint die Maske mit den Aufträgen.
-Darauf ist werden die bestehenden Fehler auf einer Karte angezeigt.
+Wenn der Benutzer erfolgreich angemeldet wurde erscheint die Maske mit den Aufträgen.
+Darauf werden die vorhandenen Fehler auf einer Karte angezeigt.
 Es werden jeweils nur die Fehler angezeigt, welche sich in unmittelbarer Nähe vom eigenen Standort befinden.
 Die Fehler werden mit einer Markierung auf der Karte dargestellt.
 
 Durch Anklicken einer solchen Markierung öffnet sich die Detailansicht des Fehlers, worin sich der Fehler direkt beheben lässt.
 Neben der Möglichkeit einen Lösungstext einzugeben, soll es auch möglich sein ein Beweis-Foto dazu hochzuladen.
-Mit einem Klick auf Senden schliesst sich die Detailansicht und man sieht wieder die Karte.
+Mit einem Klick auf Senden schliesst sich die Detailansicht und man gelangt zur Karte mit den Aufträgen zurück.
 
 \begin{figure}[H]
 \subfigure[Aufträge - Karte mit Fehlern]{\includegraphics[width=0.43\textwidth]{images/paperprototype/kort-pp-bugs}}
@@ -118,7 +118,7 @@ Mit einem Klick auf Senden schliesst sich die Detailansicht und man sieht wieder
 
 \subsubsection{Maske: Verifizieren}
 Auf der Verifikationsmaske werden die bereits gelösten Fehler in der Nähe angezeigt.
-Sie sind gruppiert nach Anzahl nötigen Verifikationen, um sie zu \gls{OpenStreetMap} zurückzusenden.
+Sie sind gruppiert nach Anzahl nötigen Verifikationen, um sie an \gls{OpenStreetMap} zurückzusenden.
 
 Per Klick auf einen Eintrag öffnet sich die Verifikationsmaske.
 Darin wird der Fehlerlösungstext und das Beweis-Foto angezeigt.
@@ -131,11 +131,12 @@ Man hat die Möglichkeit die Problemlösung als \emph{Korrekt} oder \emph{Falsch
 \subfigure[Verifizieren - Detailansicht einer Fehlerlösung]{\includegraphics[width=0.43\textwidth]{images/paperprototype/kort-pp-verify_detail}}
 \end{figure}
 
-\subsubsection{Masken: Highscore / Profil}
-In der Highscore-Maske hat man die Möglichkeit sich mit anderen Spielern vergleichen.
+\subsubsection{Maske: Highscore}
+In der Highscore-Maske hat man die Möglichkeit sich mit anderen Spielern zu messen.
 Man sieht seine eigene und die Platzierungen der anderen Spieler.
 Es werden Highscores für verschiedene Kategorien (z.B. Regional, Weltweit) angezeigt.
 
+\subsubsection{Maske: Profil}
 Im Profil sieht man einen Steckbrief seines eigenen Benutzers.
 Es wird angezeigt wieviele Aufträge man gelöst und wieviele Verifikationen man getätigt hat.
 Zusätzlich werden die Gesamtanzahl der gesammelten Punkte und die gewonnenen Badges angezeigt.
