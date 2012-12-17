@@ -92,6 +92,7 @@ Auf GitHub gibt es sogenannte Hooks die man aktivieren kann.
 Dabei handelt es sich um weitere Aktionen welche durch verschiedene Ereignisse ausgelöst werden können. 
 In unserem Fall haben wir einen \emph{post-commit Hook} aktiviert, welcher dem \gls{ci} Dienst Travis-CI\footnote{\url{http://travis-ci.org}} Bescheid gibt, wenn ein neue Änderungen auf GitHub eingetroffen sind.
 
+\subsection{Travis CI}
 Auf Travis läuft dann der Build, welcher durch die Konfigurationsdatei \inlinecode{.travis.yml} gesteuert ist. Darin lassen wir die Schritte sowie die Umgebung für Builds definieren. Für jede Umgebung wird dann ein separater Build ausgelöst. Somit lassen sich bequem verschiedene Versionen mit unterschiedlichen Umgebungen testen.
 Daraus entsteht dann eine sogenannte Build-Matrix welche bei jedem Build durchlaufen wird (siehe Tabelle \ref{infrastruktur-build-matrix}).
 
@@ -115,6 +116,106 @@ Am Ende des Build-Vorgangs wird die \gls{WebApp} schliesslich zu Heroku übertra
 \label{infrastruktur-build-matrix}
 \end{table}
 
-\todo[inline]{gruntjs, ant, secure ENV, }
-\todo[inline]{PHPDoc, PHPCS}
-\todo[inline]{Update-Service}
+\subsection{travis.yml}
+Die \inlinecode{.travis.yml} Datei ist die Konfigurationsdatei von Travis CI.
+Darin wird die Build-Matrix festgelegt sowie die die einzelnen Schritte des Builds definiert.
+
+\subsubsection{Build-Matrix}
+Die Build-Matrix wird über verschiedene Parameter definiert, grundsätzlich über die Sprachumgebung und die Umgebungsvariablen:
+
+\lstset{language=XML}
+\begin{lstlisting}[float, caption=Build-Matrix definiert in .travis.yml, label=travis-yml-build-matrix]
+php: 5.3
+
+env:
+  matrix:
+  - DEPLOY="false" TARGET_ENV="dev" CI_HOME=`pwd`/odi86/kort
+  - DEPLOY="false" TARGET_ENV="prod" CI_HOME=`pwd`/odi86/kort
+\end{lstlisting}
+
+Dies ergibt zwei Builds. Da wir nur zwei Heroku-Instanzen verwenden, sind die zugehörigen Builds separat definiert:
+
+\lstset{language=XML}
+\begin{lstlisting}[float, caption=Zusätzliche Builds für Heroku, label=travis-yml-heroku]
+matrix:
+  include:
+    - php: 5.4
+      env:
+        - DEPLOY="true"
+        - TARGET_ENV="prod"
+        - BUILD_DIR=`pwd`/build_heroku
+        - CI_HOME=`pwd`/odi86/kort
+        - secure: "EIn+Rm7OxX8OKygBRBCaSTOqFGcBMWu5kHdKqSxOmHRJYjxuMOJpKV+rnyep\n+RsyFDx2Z9yKlqRRS4cpZh7M6wwC63EV46+7aWtzzTjnbMZfVzLQA9EmaEU4\nYMsKGtpQk2mhvaNKd3UbEpDl0Zq74NnAY0zipx0l02UymcFnZEc="
+        - secure: "cOmMBP4UyklRC0nfeTZsX/NV4GhMBT+AntUmlWxXS5Rj2yrNcmNc7320gNm5\nCLSVRYyk7/8feyUEMznWrUn/62htZp0tEBAWtXg86dgIZgH4HPy9l2pKuSsH\nxZTHgjUJI7JOuyLG4ID9D5maVLE35UWag/NEtcRVy5QXLZOrs0M="
+    - php: 5.4
+      env:
+        - DEPLOY="true"
+        - TARGET_ENV="dev"
+        - BUILD_DIR=`pwd`/build_heroku
+        - CI_HOME=`pwd`/odi86/kort
+        - secure: "EIn+Rm7OxX8OKygBRBCaSTOqFGcBMWu5kHdKqSxOmHRJYjxuMOJpKV+rnyep\n+RsyFDx2Z9yKlqRRS4cpZh7M6wwC63EV46+7aWtzzTjnbMZfVzLQA9EmaEU4\nYMsKGtpQk2mhvaNKd3UbEpDl0Zq74NnAY0zipx0l02UymcFnZEc="
+        - secure: "cOmMBP4UyklRC0nfeTZsX/NV4GhMBT+AntUmlWxXS5Rj2yrNcmNc7320gNm5\nCLSVRYyk7/8feyUEMznWrUn/62htZp0tEBAWtXg86dgIZgH4HPy9l2pKuSsH\nxZTHgjUJI7JOuyLG4ID9D5maVLE35UWag/NEtcRVy5QXLZOrs0M="
+\end{lstlisting}
+
+Die Einträge mit \emph{secure} sind verschlüsselte Einträge welche bei der Ausführung des Builds wieder entschlüsselt werden\footnote{\url{http://about.travis-ci.org/docs/user/build-configuration/\#Secure-environment-variables}}.
+Auf diese Art lassen sich geheime Informationen wie API-Schlüssel schützen.
+
+\subsubsection{Vor dem Build}
+Bevor das eigentlich Build-Skript gestartet wird, wird die Umgebung aufgesetzt und die benötigte Software installiert:
+
+\lstset{language=XML}
+\begin{lstlisting}[float, caption=before\_script in .travis.yml, label=travis-yml-before-script]
+before_script:
+  - gem install sass
+  - gem install compass
+  - gem install jsduck
+  - wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh >/dev/null 2>&1
+  - sudo npm install -g grunt >/dev/null 2>&1
+  - pear install PHP_CodeSniffer && phpenv rehash
+  - sudo pear channel-discover pear.survivethedeepend.com
+  - sudo pear channel-discover hamcrest.googlecode.com/svn/pear
+  - sudo pear channel-discover pear.phpdoc.org
+  - sudo pear install --alldeps deepend/Mockery
+  - sudo pear install phpdoc/phpDocumentor-alpha && phpenv rehash
+  - sudo apt-get install graphviz
+  - export PATH="$PATH:$CI_HOME:/usr/local/heroku/bin"
+  - curl http://kort.rdmr.ch/webservices/update/git
+  - mv $CI_HOME/server/php/Webservice/Database/DbConfig.example.php $CI_HOME/server/php/Webservice/Database/DbConfig.php
+\end{lstlisting}
+
+\subsubsection{Apache Ant}
+Das Build-Skript ist mit Apache Ant geschrieben.
+Es beinhaltet alle Targets und Kombinationen davon um einen kompletten oder teilweisen Build durchzuführen.
+
+\begin{lstlisting}[float, caption=Build-Skript in .travis.yml, label=travis-yml-build-script]
+script: ant -f build_kort.xml build
+\end{lstlisting}
+
+\subsubsection{GruntJS}
+Die JavaScript spezifischen Build-Aufgaben werden von Ant an GruntJS\footnote{\url{http://gruntjs.com/}} abgegeben.
+Dieses Tool hat wiederum sein eigenen Konfigurationsfile \inlinecode{grunt.js}.
+Darin sind sogenannte Tasks beschrieben, welche auf den Code angewendet werden sollen.
+
+In unserem Fall brauchen wir Grunt für zwei Aufgaben: JavaScript-Tests durchführen und JSHint auf sämlichen JavaScript Quellcode anwenden.
+
+Bei JSHint\footnote{\url{http://www.jshint.com/docs/}} handelt es sich um ein Linting-Werkzeug, welches mit divesen Optionen konfiguriert werden kann.
+Das Ziel ist, dass der Code einheitlich wird und ein minimaler Code-Standard eingehalten wird.
+Der Code wird dadurch besser lesbar und weniger fehleranfällig.
+
+Die Unit Tests sind mit QUnit\footnote{\url{http://qunitjs.com/}} erstellt und werden mit dem headless Browser PhantomJS\footnote{\url{http://phantomjs.org/}} durchgeführt.
+Dies ermöglicht es auf einfache Art und Weise Frontend-Tests während dem Build durchzuführen.
+
+\subsubsection{Nach dem Build}
+Nach einem erfolgreichen Build wird der after\_script Block ausgeführt.
+Dieser kümmert sich um das Zusammenstellen und Übertragen der Dateien für Heroku.
+
+\begin{lstlisting}[float, caption=after\_script in travis.yml, label=travis-yml-after-script]
+after_script: bash $CI_HOME/server/heroku/heroku.sh
+\end{lstlisting}
+
+\subsection{PHP\_CodeSniffer (PHPCS)}
+Der PHP\_CodeSniffer\footnote{\url{http://pear.php.net/manual/en/package.php.php-codesniffer.php}} ist ein Linting-Tool für PHP.
+Unser Code verwendet den Standard PSR-2\footnote{\url{https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md}}, welcher noch mit einigen Regeln zu PHPDoc-Kommentaren angereichert wurde.
+
+Dadurch ist sichergestellt, dass der Code sauber ist und keine unerwarteten Side-Effects auftreten.
+PHPCS lässt sich direkt in die Entwicklungsumgebung integrieren, so dass direkt beim Schreiben des Codes der Style überprüft werden kann.

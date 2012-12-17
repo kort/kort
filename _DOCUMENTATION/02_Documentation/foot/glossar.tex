@@ -36,7 +36,7 @@
 
 \newglossaryentry{REST} {
 	name = REST,
-	description = {Representational State Transfer\cite{rest} ist ein Programmierparadigma, welches besagt, dass sich der Zustand einer Webapplikation als Ressource in Form einer URL beschreiben lässt. Auf eine solche Ressourcen können folgende Befehle angewendet werden: \inlinecode{GET}, \inlinecode{POST}, \inlinecode{PUT},\inlinecode{PATCH}, \inlinecode{DELETE}, \inlinecode{HEAD} und \inlinecode{OPTIONS}. 
+	description = {Representational State Transfer\cite{rest} ist ein Programmierparadigma, welches besagt, dass sich der Zustand einer Webapplikation als Ressource in Form einer URL beschreiben lässt. Auf eine solche Ressourcen können folgende Befehle angewendet werden: \inlinecode{GET}, \inlinecode{POST}, \inlinecode{PUT},\inlinecode{PATCH}, \inlinecode{DELETE}, \inlinecode{HEAD} und \inlinecode{OPTIONS}.
 	HTTP ist ein Protokoll welches REST implementiert}
 }
 
@@ -87,12 +87,17 @@
 
 \newglossaryentry{Node} {
 	name = Node,
-	description = {Ein Node ist das grundlegenste Objekt in OpenStreetMap, es wird durch seine Attribute (genannt \glspl{Tags}) genauer bestimmt. Nodes können Teil eines \gls{Way} sein.}
+	description = {Ein Node ist das grundlegenste Objekt in OpenStreetMap, es wird durch seine Attribute (genannt \glspl{Tag}) genauer bestimmt. Nodes können Teil eines \gls{Way} sein.}
 }
 
 \newglossaryentry{Way} {
 	name = Way,
 	description = {Ein Weg oder eine Strasse wird in OpenStreetMap als \emph{Way} bezeichnet. Es handelt sich dabei um eine Serie von miteinander verbundenen Nodes.}
+}
+
+\newglossaryentry{Relation} {
+	name = Relation,
+	description = {Eine Relation stellt eine Verbindung zwischen anderen OSM-Objekten dar. Relationen werden meist gebraucht über übergeordnete Beziehungen darzustellen, welche sich nicht direkt geografisch ergibt. Beispielsweise können alle Bushaltestellen einer Buslinie über eine Relation miteinander verknüpft sein.}
 }
 
 \newglossaryentry{Tag} {

@@ -5,7 +5,19 @@ Zum anderen sind \gls{REST}-Schnittellen für Webapplikation sehr einfach zu ver
 Schlussendlich ist entscheidend, dass \gls{REST}-Schnittstellen ein grosses Mass an Plattformunabhängigkeit bieten und so die räumliche Teilung der Systeme erleichtert.
 
 \subsection{Slim Framework}
-\todo[inline]{Slim}
+Für die Erstellung der REST-Webservices wurde das PHP Microframework Slim\footnote{\url{http://www.slimframework.com/}}.
+Das Framework ist sehr klein und beinhaltet nur gerade was nötig ist um die Webservices zu implementieren.
+Bereits mit wenigen Zeilen Code lässt sich ein Webservice erstellen (siehe Code-Abschnitt \ref{slim-example}).
+
+\lstset{language=PHP}
+\begin{lstlisting}[float, caption=Beispiel REST-Webservice in Slim, label=slim-example]
+<?php
+$app = new \Slim\Slim();
+$app->get('/hello/:name', function ($name) {
+    echo "Hello, $name";
+});
+$app->run();
+\end{lstlisting}
 
 % Webservice /answer
 \input{body/projektdokumentation/backend/webservices/answer.tex}

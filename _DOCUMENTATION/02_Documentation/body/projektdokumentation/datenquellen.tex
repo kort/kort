@@ -88,6 +88,79 @@ keepright ist ein Dienst, welcher jeweils über Nacht, Fehler in OSM-Objekten su
 Durch die gute Eignung der Fehlerdaten vom keepright-Dienst, haben wir uns dazu entschieden deren Daten als Basis für unsere Fehler zu verwenden.
 
 \section{Fehlerdaten in die Datenbank laden}
-\todo[inline]{Fehlerdaten laden (Shell-Skripts etc.) beschreiben}
+Um stets aktuelle Daten für die App anzuzeigen, wird der Dump von Keepright jede Nacht mit einem Shellskript in die Datenbank geladen.
+Das Shellskript befindet sich unter \inlinecode{/server/database/keepright\_setup.sh}.
+
+Mittels Cronjob wird folgender Befehl aufgerufen:
+\inlinecode{\$ setup\_keepright\_db.sh -o osm -n osm\_bugs -s keepright}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.25\twocelltabwidth}|p{0.75\twocelltabwidth}|}
+\hline 
+\small{\textbf{Parameter}} & \small{\textbf{Bedeutung}} \\
+\hline 
+\inlinecode{-o osm} & Datenbankbenutzer welcher das Schema besitzen soll (\emph{Owner})  \\
+\hline
+\inlinecode{-n osm\_bugs} & Name der Datenbank  \\
+\hline
+\inlinecode{-s keepright} & Name des Schemas  \\
+\hline
+\end{tabular}
+\caption{Parameter für setup\_keepright.sh}
+\label{parameter-setup-keepright}
+\end{table}
 
 \subsection{Datenformat}
+Auf der Webseite von Keepright ist ersichtlich\footnote{\url{http://www.keepright.at/interfacing.php}}, welche Daten im Dump enthalten sind.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.25\twocelltabwidth}|p{0.75\twocelltabwidth}|}
+\hline 
+\small{\textbf{Feld}} & \small{\textbf{Bedeutung}} \\
+\hline 
+schema & Schemabezeichner welcher die Region gemäss Platet-Karte angibt  \\
+\hline
+error\_id & Fehler-ID pro Schema  \\
+\hline
+error\_type & Typisierung des Fehlers  \\
+\hline
+error\_name & Name des Fehlertyps  \\
+\hline
+object\_type & OpenStreetMap-Typ des Objekts (\gls{Node}, \gls{Way} oder \gls{Relation})  \\ 
+\hline
+object\_id & OpenStreetMap-ID des Objekts  \\
+\hline
+state & Status des Fehlers (new, reopened, ignore\_temporarily, ignore)  \\
+\hline
+msgid & Fehlermeldung mit Platzhaltern (\$1 - \$5)  \\
+\hline
+txt1\newline
+txt2\newline
+txt3\newline
+txt4\newline
+txt5 & Texte für Platzhalter in msgid  \\
+\hline
+first\_occurrence & Zeitpunkt, an dem dieser Fehler das erste Mal entdeckt wurde (MESZ)  \\
+\hline
+last\_checked & Zeitpunkt an dem dieser Fehler das letzte Mal entdeckt wurde (MESZ)  \\
+\hline
+object\_timestamp & Letzter Änderungzeitpunkt am Objekt  \\
+\hline
+user\_name & Benutzer, welcher das Objekt zuletzt verändert hat  \\
+\hline
+lat\newline
+lon & Längen- und Breitengrad des Fehlers  \\
+\hline
+comment & Kommentar zum Fehler  \\
+\hline
+comment\_timestamp & Zeitpunkt des Kommentars zum Fehler  \\
+\hline
+\end{tabular}
+\caption{Datenformat der Keepright-Daten}
+\label{keepright-daten}
+\end{table}
+
+Diese Daten sind in der Tabelle \inlinecode{keepright.errors} enthalten.
+Ein Subset davon wird für die Applikation benötigt.
