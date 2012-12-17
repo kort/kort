@@ -53,14 +53,6 @@ $app->get(
     }
 );
 
-$app->post(
-    '/',
-    function () use ($userHandler, $app) {
-        $data = json_decode($app->request()->getBody(), true);
-        $app->response()->write($userHandler->insertUser(), $data);
-    }
-);
-
 $app->put(
     '/(:id)',
     function ($id = null) use ($userHandler, $app) {
@@ -68,7 +60,14 @@ $app->put(
             $id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : -1;
         }
         $data = json_decode($app->request()->getBody(), true);
-        $app->response()->write($userHandler->updateUser($id, $data));
+
+        //only allow certain attributes to be set via the webservice
+        $allowedAttributes = array("username");
+        $allowedData = array();
+        foreach ($allowedAttributes as $attribute) {
+            $allowedData[$attribute] = $data[$attriute];
+        }
+        $app->response()->write($userHandler->updateUser($id, $allowedData));
     }
 );
 
