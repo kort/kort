@@ -39,7 +39,7 @@
                 <span class="label label-info">0</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
-                <span class="label label-info">2</span>
+                <span class="label label-info">3</span>
 </li></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
                 <span class="label label-info">0</span></a></li>
@@ -76,6 +76,7 @@
 <li class="method protected "><a href="#method_getTable" title="getTable :: Returns the table used by this handler."><span class="description">Returns the table used by this handler.</span><pre>getTable()</pre></a></li>
 <li class="method protected inherited"><a href="#method_insertParams" title="insertParams :: Returns a parameter object to insert $data in a transaction."><span class="description">Returns a parameter object to insert $data in a transaction.</span><pre>insertParams()</pre></a></li>
 <li class="method protected "><a href="#method_isYourScore" title="isYourScore :: Adds a field to a score to indicate wheter a user is the currently logged in user or not."><span class="description">Adds a field to a score to indicate wheter a user is the currently logged in user or not.</span><pre>isYourScore()</pre></a></li>
+<li class="method protected "><a href="#method_setGravatarUrl" title='setGravatarUrl :: Replaces field "oauth_user_id" with "pic_url".'><span class="description">Replaces field "oauth_user_id" with "pic_url".</span><pre>setGravatarUrl()</pre></a></li>
 <li class="method protected inherited"><a href="#method_translate" title="translate :: Translate a value to the users language."><span class="description">Translate a value to the users language.</span><pre>translate()</pre></a></li>
 </ul>
 </li>
@@ -239,6 +240,21 @@
 <code>array</code>the $score array with an additional field "you"</div>
 </div></div>
 </div>
+<a id="method_setGravatarUrl"></a><div class="element clickable method protected method_setGravatarUrl" data-toggle="collapse" data-target=".method_setGravatarUrl .collapse">
+<h2>Replaces field "oauth_user_id" with "pic_url".</h2>
+<pre>setGravatarUrl(array $score) : array</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$score</h4>
+<code>array</code><p>The score data.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>the $score array with the replaced field</div>
+</div></div>
+</div>
 <a id="method_translate"></a><div class="element clickable method protected method_translate" data-toggle="collapse" data-target=".method_translate .collapse">
 <h2>Translate a value to the users language.</h2>
 <pre>translate(string $key) : string</pre>
@@ -291,7 +307,7 @@
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
-            generated on 2012-12-13T11:19:15+01:00.<br></footer></div>
+            generated on 2012-12-17T17:51:47+01:00.<br></footer></div>
 </div>
 </body>
 </html>

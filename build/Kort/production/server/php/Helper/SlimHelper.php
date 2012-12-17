@@ -42,7 +42,7 @@ class SlimHelper
         if (empty($data)) {
             $data = '[]';
         }
-        $this->app->response()->write("{\"return\": ". $data . "}");
+        $this->app->response()->write("{\"return\":". $data . "}");
     }
 
     /**

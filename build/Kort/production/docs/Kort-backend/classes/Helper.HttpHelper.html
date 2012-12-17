@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <meta charset="utf-8">
-<title>kort - Backend » \Webservice\DbProxyHandler</title>
+<title>kort - Backend » \Helper\HttpHelper</title>
 <meta name="author" content="Mike van Riel">
 <meta name="description" content="">
 <link href="../css/template.css" rel="stylesheet" media="all">
@@ -63,151 +63,146 @@
 <li class="nav-header">
 <i class="icon-custom icon-method"></i> Methods
                     <ul>
-<li class="method public "><a href="#method___construct" title="__construct :: Initialized the DbProxyHandler object."><span class="description">Initialized the DbProxyHandler object.</span><pre>__construct()</pre></a></li>
-<li class="method public "><a href="#method_setDbProxy" title="setDbProxy :: Setter for $dbProxy."><span class="description">Setter for $dbProxy.</span><pre>setDbProxy()</pre></a></li>
+<li class="method public "><a href="#method___construct" title="__construct :: Creates a new instance of HttpHelper."><span class="description">Creates a new instance of HttpHelper.</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_get" title="get :: Makes a GET request to the given url with the given data."><span class="description">Makes a GET request to the given url with the given data.</span><pre>get()</pre></a></li>
+<li class="method public "><a href="#method_post" title="post :: Makes a POST request to the given url with the given data."><span class="description">Makes a POST request to the given url with the given data.</span><pre>post()</pre></a></li>
+<li class="method public "><a href="#method_put" title="put :: Makes a PUT request to the given url with the given data."><span class="description">Makes a PUT request to the given url with the given data.</span><pre>put()</pre></a></li>
+<li class="method public "><a href="#method_setOption" title="setOption :: Sets a curl option."><span class="description">Sets a curl option.</span><pre>setOption()</pre></a></li>
 </ul>
 </li>
 <li class="nav-header protected">» Protected
-                    <ul>
-<li class="method protected "><a href="#method_getDbProxy" title="getDbProxy :: Getter for $dbProxy."><span class="description">Getter for $dbProxy.</span><pre>getDbProxy()</pre></a></li>
-<li class="method protected "><a href="#method_getFields" title="getFields :: Returns the table fields used by this handler."><span class="description">Returns the table fields used by this handler.</span><pre>getFields()</pre></a></li>
-<li class="method protected "><a href="#method_getReturnFields" title="getReturnFields :: Return the returnFields for this handler."><span class="description">Return the returnFields for this handler.</span><pre>getReturnFields()</pre></a></li>
-<li class="method protected "><a href="#method_getTable" title="getTable :: Returns the table fields used by this handler."><span class="description">Returns the table fields used by this handler.</span><pre>getTable()</pre></a></li>
-<li class="method protected "><a href="#method_insertParams" title="insertParams :: Returns a parameter object to insert $data in a transaction."><span class="description">Returns a parameter object to insert $data in a transaction.</span><pre>insertParams()</pre></a></li>
-<li class="method protected "><a href="#method_translate" title="translate :: Translate a value to the users language."><span class="description">Translate a value to the users language.</span><pre>translate()</pre></a></li>
-</ul>
+                    <ul><li class="method protected "><a href="#method_request" title="request :: Make a request to the database webservice."><span class="description">Make a request to the database webservice.</span><pre>request()</pre></a></li></ul>
 </li>
 <li class="nav-header">
 <i class="icon-custom icon-property"></i> Properties
                     <ul></ul>
 </li>
-<li class="nav-header private">» Private
-                    <ul>
-<li class="property private "><a href="#property_dbProxy" title="$dbProxy :: The datbase proxy object."><span class="description"></span><pre>$dbProxy</pre></a></li>
-<li class="property private "><a href="#property_reader" title="$reader :: The translation helper object."><span class="description"></span><pre>$reader</pre></a></li>
-</ul>
+<li class="nav-header protected">» Protected
+                    <ul><li class="property protected "><a href="#property_curl" title="$curl :: A wrapper object around the curl functions."><span class="description"></span><pre>$curl</pre></a></li></ul>
 </li>
 </ul>
 </div>
 <div class="span8">
-<a id="\Webservice\DbProxyHandler"></a><ul class="breadcrumb">
+<a id="\Helper\HttpHelper"></a><ul class="breadcrumb">
 <li>
 <a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
 </li>
-<li><a href="../namespaces/Webservice.html">Webservice</a></li>
+<li><a href="../namespaces/Helper.html">Helper</a></li>
 <li class="active">
-<span class="divider">\</span><a href="../classes/Webservice.DbProxyHandler.html">DbProxyHandler</a>
+<span class="divider">\</span><a href="../classes/Helper.HttpHelper.html">HttpHelper</a>
 </li>
 </ul>
 <div class="element class">
-<p class="short_description">The DbProxyHandler class defines the functionality of a webservice handler.</p>
+<p class="short_description">The HttpHelper class is a helper class for common http requests.</p>
 <div class="details">
-<div class="long_description"><p>DbProxyHandler relies on the DbProxy to relay it's requests.</p></div>
+<div class="long_description"><p>Currently GET, POST and PUT are supported.</p></div>
 <h3>
 <i class="icon-custom icon-method"></i> Methods</h3>
 <a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
-<h2>Initialized the DbProxyHandler object.</h2>
+<h2>Creates a new instance of HttpHelper.</h2>
 <pre>__construct() </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
-<a id="method_setDbProxy"></a><div class="element clickable method public method_setDbProxy" data-toggle="collapse" data-target=".method_setDbProxy .collapse">
-<h2>Setter for $dbProxy.</h2>
-<pre>setDbProxy(\Webservice\DbProxy $proxy) : void</pre>
+<a id="method_get"></a><div class="element clickable method public method_get" data-toggle="collapse" data-target=".method_get .collapse">
+<h2>Makes a GET request to the given url with the given data.</h2>
+<pre>get(string $url, array | string $data) : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$proxy</h4>
-<code><a href="../classes/Webservice.DbProxy.html">\Webservice\DbProxy</a></code><p>New DbProxy object.</p></div>
-</div></div>
-</div>
-<a id="method_getDbProxy"></a><div class="element clickable method protected method_getDbProxy" data-toggle="collapse" data-target=".method_getDbProxy .collapse">
-<h2>Getter for $dbProxy.</h2>
-<pre>getDbProxy() : <a href="../classes/Webservice.DbProxy.html">\Webservice\DbProxy</a></pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code><a href="../classes/Webservice.DbProxy.html">\Webservice\DbProxy</a></code>the dbProxy object</div>
-</div></div>
-</div>
-<a id="method_getFields"></a><div class="element clickable method protected method_getFields" data-toggle="collapse" data-target=".method_getFields .collapse">
-<h2>Returns the table fields used by this handler.</h2>
-<pre>getFields() : array</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>array</code>the table fields used by this handler.</div>
-</div></div>
-</div>
-<a id="method_getReturnFields"></a><div class="element clickable method protected method_getReturnFields" data-toggle="collapse" data-target=".method_getReturnFields .collapse">
-<h2>Return the returnFields for this handler.</h2>
-<pre>getReturnFields() : array</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>array</code>database table fields</div>
-</div></div>
-</div>
-<a id="method_getTable"></a><div class="element clickable method protected method_getTable" data-toggle="collapse" data-target=".method_getTable .collapse">
-<h2>Returns the table fields used by this handler.</h2>
-<pre>getTable() : array</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>array</code>the table fields used by this handler.</div>
-</div></div>
-</div>
-<a id="method_insertParams"></a><div class="element clickable method protected method_insertParams" data-toggle="collapse" data-target=".method_insertParams .collapse">
-<h2>Returns a parameter object to insert $data in a transaction.</h2>
-<pre>insertParams(array $data) : array</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<h3>Parameters</h3>
+<h4>$url</h4>
+<code>string</code><p>The url of the request.</p></div>
 <div class="subelement argument">
 <h4>$data</h4>
-<code>array</code><p>Data to insert.</p></div>
+<code>array</code><code>string</code><p>The data to send along with this request.</p></div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>array</code>the parameter object for the request</div>
+<code>string</code>Returns the servers response</div>
 </div></div>
 </div>
-<a id="method_translate"></a><div class="element clickable method protected method_translate" data-toggle="collapse" data-target=".method_translate .collapse">
-<h2>Translate a value to the users language.</h2>
-<pre>translate(string $key) : string</pre>
+<a id="method_post"></a><div class="element clickable method public method_post" data-toggle="collapse" data-target=".method_post .collapse">
+<h2>Makes a POST request to the given url with the given data.</h2>
+<pre>post(string $url, array | string $data) : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$key</h4>
-<code>string</code><p>The string to translate.</p></div>
+<h4>$url</h4>
+<code>string</code><p>The url of the request.</p></div>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><code>string</code><p>The data to send along with this request.</p></div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>string</code>the translated string</div>
+<code>string</code>Returns the servers response</div>
+</div></div>
+</div>
+<a id="method_put"></a><div class="element clickable method public method_put" data-toggle="collapse" data-target=".method_put .collapse">
+<h2>Makes a PUT request to the given url with the given data.</h2>
+<pre>put(string $url, array | string $data) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$url</h4>
+<code>string</code><p>The url of the request.</p></div>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><code>string</code><p>The data to send along with this request.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>Returns the servers response</div>
+</div></div>
+</div>
+<a id="method_setOption"></a><div class="element clickable method public method_setOption" data-toggle="collapse" data-target=".method_setOption .collapse">
+<h2>Sets a curl option.</h2>
+<pre>setOption(integer $option, mixed $value) : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$option</h4>
+<code>integer</code><p>A curl option.</p></div>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>mixed</code><p>The corresponding value.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>bool</code>true on success or false on failure.</div>
+</div></div>
+</div>
+<a id="method_request"></a><div class="element clickable method protected method_request" data-toggle="collapse" data-target=".method_request .collapse">
+<h2>Make a request to the database webservice.</h2>
+<pre>request(string $method, string $url, array | string $data) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$method</h4>
+<code>string</code><p>The HTTP method to use [POST, PUT, GET].</p>
+</div>
+<div class="subelement argument">
+<h4>$url</h4>
+<code>string</code><p>The URL to send the request to.</p></div>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><code>string</code><p>The data to send along with the request.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>the answer from the database webservice</div>
 </div></div>
 </div>
 <h3>
 <i class="icon-custom icon-property"></i> Properties</h3>
-<a id="property_dbProxy"> </a><div class="element clickable property private property_dbProxy" data-toggle="collapse" data-target=".property_dbProxy .collapse">
+<a id="property_curl"> </a><div class="element clickable property protected property_curl" data-toggle="collapse" data-target=".property_curl .collapse">
 <h2></h2>
-<pre>$dbProxy : <a href="../classes/Webservice.DbProxy.html">\Webservice\DbProxy</a></pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
-</div>
-<a id="property_reader"> </a><div class="element clickable property private property_reader" data-toggle="collapse" data-target=".property_reader .collapse">
-<h2></h2>
-<pre>$reader : <a href="../classes/Helper.LocaleHelper.html">\Helper\LocaleHelper</a></pre>
+<pre>$curl : <a href="../classes/Helper.CurlHelper.html">\Helper\CurlHelper</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>

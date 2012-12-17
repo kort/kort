@@ -39,7 +39,7 @@
                 <span class="label label-info">0</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
-                <span class="label label-info">2</span>
+                <span class="label label-info">3</span>
 </li></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
                 <span class="label label-info">0</span></a></li>
@@ -63,10 +63,9 @@
 <i class="icon-custom icon-method"></i> Methods
                     <ul>
 <li class="method public "><a href="#method___construct" title="__construct :: Create a new UnitTestCase with a label."><span class="description">Create a new UnitTestCase with a label.</span><pre>__construct()</pre></a></li>
-<li class="method public "><a href="#method_getOutput" title="getOutput :: Returns the printed output of a test."><span class="description">Returns the printed output of a test.</span><pre>getOutput()</pre></a></li>
+<li class="method public "><a href="#method_assertEmpty" title="assertEmpty :: Passes if the given $value is empty."><span class="description">Passes if the given $value is empty.</span><pre>assertEmpty()</pre></a></li>
+<li class="method public "><a href="#method_assertNotEmpty" title="assertNotEmpty :: Passes if the given $value is not empty."><span class="description">Passes if the given $value is not empty.</span><pre>assertNotEmpty()</pre></a></li>
 <li class="method public "><a href="#method_report" title="report :: Genereates a nice report of the test."><span class="description">Genereates a nice report of the test.</span><pre>report()</pre></a></li>
-<li class="method public "><a href="#method_setUp" title="setUp :: Sets up a unit test case with variables, resources, data etc."><span class="description">Sets up a unit test case with variables, resources, data etc.</span><pre>setUp()</pre></a></li>
-<li class="method public "><a href="#method_tearDown" title="tearDown :: Cleans up after each unit test case."><span class="description">Cleans up after each unit test case.</span><pre>tearDown()</pre></a></li>
 </ul>
 </li></ul>
 </div>
@@ -101,15 +100,42 @@ class. This ensures that they can be run together easily.</p></div>
 <code>string</code><p>Label for the test case.</p></div>
 </div></div>
 </div>
-<a id="method_getOutput"></a><div class="element clickable method public method_getOutput" data-toggle="collapse" data-target=".method_getOutput .collapse">
-<h2>Returns the printed output of a test.</h2>
-<pre>getOutput() : \TestHelper\saved</pre>
+<a id="method_assertEmpty"></a><div class="element clickable method public method_assertEmpty" data-toggle="collapse" data-target=".method_assertEmpty .collapse">
+<h2>Passes if the given $value is empty.</h2>
+<pre>assertEmpty(mixed $value, string $message) : boolean</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<div class="long_description"><p>Works only if setUp() and tearDown() have been used</p></div>
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>mixed</code><p>Value to check for it's emptiness.</p>
+</div>
+<div class="subelement argument">
+<h4>$message</h4>
+<code>string</code><p>Message to display describing the test state.</p></div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>\TestHelper\saved</code>output of the test</div>
+<code>boolean</code>True on pass</div>
+</div></div>
+</div>
+<a id="method_assertNotEmpty"></a><div class="element clickable method public method_assertNotEmpty" data-toggle="collapse" data-target=".method_assertNotEmpty .collapse">
+<h2>Passes if the given $value is not empty.</h2>
+<pre>assertNotEmpty(mixed $value, string $message) : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>mixed</code><p>Value to check for it's emptiness.</p>
+</div>
+<div class="subelement argument">
+<h4>$message</h4>
+<code>string</code><p>Message to display describing the test state.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>True on pass</div>
 </div></div>
 </div>
 <a id="method_report"></a><div class="element clickable method public method_report" data-toggle="collapse" data-target=".method_report .collapse">
@@ -135,22 +161,6 @@ This method is typically called by a TestRunner.</p></div>
 </table>
 </div></div>
 </div>
-<a id="method_setUp"></a><div class="element clickable method public method_setUp" data-toggle="collapse" data-target=".method_setUp .collapse">
-<h2>Sets up a unit test case with variables, resources, data etc.</h2>
-<pre>setUp() : void</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"><p>This method is typically overridden by it's subclass. If you want to use
-the getOutput() functionality, you should make sure to call this method in
-your own setUp() method using parent::setUp()</p></div></div></div>
-</div>
-<a id="method_tearDown"></a><div class="element clickable method public method_tearDown" data-toggle="collapse" data-target=".method_tearDown .collapse">
-<h2>Cleans up after each unit test case.</h2>
-<pre>tearDown() : void</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"><p>This method is typically overridden by it's subclass. If you want to use
-the getOutput() functionality, you should make sure to call this method in
-your own tearDown() method using parent::tearDown()</p></div></div></div>
-</div>
 </div>
 </div>
 </div>
@@ -158,7 +168,7 @@ your own tearDown() method using parent::tearDown()</p></div></div></div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
-            generated on 2012-12-13T11:19:15+01:00.<br></footer></div>
+            generated on 2012-12-17T17:51:47+01:00.<br></footer></div>
 </div>
 </body>
 </html>
