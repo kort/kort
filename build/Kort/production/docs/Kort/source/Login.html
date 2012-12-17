@@ -31,11 +31,15 @@ Ext.define('Kort.controller.Login', {
 <span id='Kort-controller-Login-cfg-refs'>        refs: {
 </span>            loginPanel: '#loginPanel',
             mainTabPanel: '#mainTabPanel',
-            loginButtonGoogle: '#loginButtonGoogle'
+            loginButtonGoogle: '#loginButtonGoogle',
+            loginButtonOsm: '#loginButtonOsm'
         },
 <span id='Kort-controller-Login-cfg-control'>        control: {
 </span>            loginButtonGoogle: {
                 tap: 'onLoginButtonGoogleTap'
+            },
+            loginButtonOsm: {
+                tap: 'onLoginButtonOsmTap'
             }
         }
     },
@@ -46,6 +50,14 @@ Ext.define('Kort.controller.Login', {
         this.showLoadMask();
         // redirect to google login page
         document.location.href = this.buildGoogleUrl(Kort.util.Config.getOAuth().google);
+    },
+
+<span id='Kort-controller-Login-method-onLoginButtonOsmTap'>    // @private
+</span>    onLoginButtonOsmTap: function() {
+        console.log('loginButtonOsm tapped');
+        this.showLoadMask();
+        // redirect to osm login page
+        document.location.href = Kort.util.Config.getOAuth().osm.url;
     },
 
 <span id='Kort-controller-Login-method-showLoadMask'>    // @private

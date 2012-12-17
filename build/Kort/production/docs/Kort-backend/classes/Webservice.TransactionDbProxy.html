@@ -39,7 +39,7 @@
                 <span class="label label-info">0</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
-                <span class="label label-info">2</span>
+                <span class="label label-info">3</span>
 </li></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
                 <span class="label label-info">0</span></a></li>
@@ -70,8 +70,8 @@
 <li class="method public "><a href="#method_isTransaction" title="isTransaction :: Indicates wheter the requests runs in a transaction or not."><span class="description">Indicates wheter the requests runs in a transaction or not.</span><pre>isTransaction()</pre></a></li>
 <li class="method public inherited"><a href="#method_select" title="select :: Make a select request."><span class="description">Make a select request.</span><pre>select()</pre></a></li>
 <li class="method public "><a href="#method_sendTransaction" title="sendTransaction :: Makes a request for the whole transaction."><span class="description">Makes a request for the whole transaction.</span><pre>sendTransaction()</pre></a></li>
-<li class="method public inherited"><a href="#method_setCurl" title="setCurl :: Setter for curl wrapper (only used by unit tests)."><span class="description">Setter for curl wrapper (only used by unit tests).</span><pre>setCurl()</pre></a></li>
 <li class="method public inherited"><a href="#method_setFields" title="setFields :: Setter for $fields."><span class="description">Setter for $fields.</span><pre>setFields()</pre></a></li>
+<li class="method public inherited"><a href="#method_setHttp" title="setHttp :: Setter for http wrapper (only used by unit tests)."><span class="description">Setter for http wrapper (only used by unit tests).</span><pre>setHttp()</pre></a></li>
 <li class="method public inherited"><a href="#method_setLimit" title="setLimit :: Setter for $limit."><span class="description">Setter for $limit.</span><pre>setLimit()</pre></a></li>
 <li class="method public inherited"><a href="#method_setOrderBy" title="setOrderBy :: Setter for $orderBy."><span class="description">Setter for $orderBy.</span><pre>setOrderBy()</pre></a></li>
 <li class="method public inherited"><a href="#method_setReturnFields" title="setReturnFields :: Setter for $returnFields."><span class="description">Setter for $returnFields.</span><pre>setReturnFields()</pre></a></li>
@@ -80,10 +80,7 @@
 </ul>
 </li>
 <li class="nav-header protected">» Protected
-                    <ul>
-<li class="method protected "><a href="#method_clearTransaction" title="clearTransaction :: Removes all statements from this object."><span class="description">Removes all statements from this object.</span><pre>clearTransaction()</pre></a></li>
-<li class="method protected inherited"><a href="#method_request" title="request :: Make a request to the database webservice."><span class="description">Make a request to the database webservice.</span><pre>request()</pre></a></li>
-</ul>
+                    <ul><li class="method protected "><a href="#method_clearTransaction" title="clearTransaction :: Removes all statements from this object."><span class="description">Removes all statements from this object.</span><pre>clearTransaction()</pre></a></li></ul>
 </li>
 <li class="nav-header">
 <i class="icon-custom icon-property"></i> Properties
@@ -91,8 +88,8 @@
 </li>
 <li class="nav-header protected">» Protected
                     <ul>
-<li class="property protected inherited"><a href="#property_curl" title="$curl :: Curl wrapper object."><span class="description"></span><pre>$curl</pre></a></li>
 <li class="property protected inherited"><a href="#property_fields" title="$fields :: Database table field names."><span class="description"></span><pre>$fields</pre></a></li>
+<li class="property protected inherited"><a href="#property_http" title="$http :: Http helper object to make requests."><span class="description"></span><pre>$http</pre></a></li>
 <li class="property protected inherited"><a href="#property_limit" title="$limit :: Amount of records to return."><span class="description"></span><pre>$limit</pre></a></li>
 <li class="property protected inherited"><a href="#property_orderBy" title="$orderBy :: ORDER BY clause (sorting)."><span class="description"></span><pre>$orderBy</pre></a></li>
 <li class="property protected inherited"><a href="#property_returnFields" title="$returnFields :: Fields to return."><span class="description"></span><pre>$returnFields</pre></a></li>
@@ -212,22 +209,6 @@
 <code>array</code>array with an entry for each statments result.</div>
 </div></div>
 </div>
-<a id="method_setCurl"></a><div class="element clickable method public method_setCurl" data-toggle="collapse" data-target=".method_setCurl .collapse">
-<h2>Setter for curl wrapper (only used by unit tests).</h2>
-<pre>setCurl(\Helper\CurlHelper $curl) : void</pre>
-<div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<table class="table table-bordered"><tr>
-<th>inherited_from</th>
-<td>\Webservice\DbProxy::setCurl()</td>
-</tr></table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$curl</h4>
-<code><a href="../classes/Helper.CurlHelper.html">\Helper\CurlHelper</a></code><p>Curl wrapper object.</p></div>
-</div></div>
-</div>
 <a id="method_setFields"></a><div class="element clickable method public method_setFields" data-toggle="collapse" data-target=".method_setFields .collapse">
 <h2>Setter for $fields.</h2>
 <pre>setFields(array $fields) : void</pre>
@@ -242,6 +223,22 @@
 <div class="subelement argument">
 <h4>$fields</h4>
 <code>array</code><p>Database table fields.</p></div>
+</div></div>
+</div>
+<a id="method_setHttp"></a><div class="element clickable method public method_setHttp" data-toggle="collapse" data-target=".method_setHttp .collapse">
+<h2>Setter for http wrapper (only used by unit tests).</h2>
+<pre>setHttp(\Helper\HttpHelper $http) : void</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Webservice\DbProxy::setHttp()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$http</h4>
+<code><a href="../classes/Helper.HttpHelper.html">\Helper\HttpHelper</a></code><p>HTTP wrapper object.</p></div>
 </div></div>
 </div>
 <a id="method_setLimit"></a><div class="element clickable method public method_setLimit" data-toggle="collapse" data-target=".method_setLimit .collapse">
@@ -333,46 +330,8 @@
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
-<a id="method_request"></a><div class="element clickable method protected method_request" data-toggle="collapse" data-target=".method_request .collapse">
-<h2>Make a request to the database webservice.</h2>
-<pre>request(string $method, string $url, array | string $data) : mixed</pre>
-<div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<table class="table table-bordered"><tr>
-<th>inherited_from</th>
-<td>\Webservice\DbProxy::request()</td>
-</tr></table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$method</h4>
-<code>string</code><p>The HTTP method to use [POST, PUT, GET].</p>
-</div>
-<div class="subelement argument">
-<h4>$url</h4>
-<code>string</code><p>The URL to send the request to.</p></div>
-<div class="subelement argument">
-<h4>$data</h4>
-<code>array</code><code>string</code><p>The data to send along with the request.</p></div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>mixed</code>the answer from the database webservice</div>
-</div></div>
-</div>
 <h3>
 <i class="icon-custom icon-property"></i> Properties</h3>
-<a id="property_curl"> </a><div class="element clickable property protected property_curl" data-toggle="collapse" data-target=".property_curl .collapse">
-<h2></h2>
-<pre>$curl : <a href="../classes/Helper.CurlHelper.html">\Helper\CurlHelper</a></pre>
-<div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<table class="table table-bordered"><tr>
-<th>inherited_from</th>
-<td>\Webservice\DbProxy::$$curl</td>
-</tr></table>
-</div></div>
-</div>
 <a id="property_fields"> </a><div class="element clickable property protected property_fields" data-toggle="collapse" data-target=".property_fields .collapse">
 <h2></h2>
 <pre>$fields : array</pre>
@@ -382,6 +341,18 @@
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
 <td>\Webservice\DbProxy::$$fields</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_http"> </a><div class="element clickable property protected property_http" data-toggle="collapse" data-target=".property_http .collapse">
+<h2></h2>
+<pre>$http : <a href="../classes/Helper.HttpHelper.html">\Helper\HttpHelper</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Webservice\DbProxy::$$http</td>
 </tr></table>
 </div></div>
 </div>
@@ -470,7 +441,7 @@
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
-            generated on 2012-12-13T11:19:15+01:00.<br></footer></div>
+            generated on 2012-12-17T17:51:47+01:00.<br></footer></div>
 </div>
 </body>
 </html>

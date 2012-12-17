@@ -26,7 +26,7 @@ Ext.define('Kort.util.Config', {
 </span>         * @cfg {String} version Current version number of application
          */
         version: '1.0.0',
-        
+
 <span id='Kort-util-Config-cfg-leafletMap'>        /**
 </span>         * @cfg {Object} leafletMap Configuration for {@link Ext.ux.LeafletMap} component
          * @cfg {Number} [leafletMap.zoom=15] (required) Default zoom level of leaflet map
@@ -42,14 +42,16 @@ Ext.define('Kort.util.Config', {
 			apiKey: '729242682cb24de8aa825c8aed993cba',
             styleId: 997
 		},
-        
+
 <span id='Kort-util-Config-cfg-oAuth'>        /**
 </span>         * @cfg {Object} oAuth Configuration for OAuth
          * @cfg {Object} oAuth.google (required) Configuration for Google OAuth
          * @cfg {String} [oAuth.google.url=&quot;https://accounts.google.com/o/oauth2/auth&quot;] (required) URL to Google OAuth
          * @cfg {String[]} oAuth.google.scopes (required) Configuration for Google OAuth
-         * @cfg {String} [oAuth.google.redirect_path=&quot;server/oauth2callback&quot;] (required) Redirect path after login
+         * @cfg {String} [oAuth.google.redirect_path=&quot;server/oauth2callback/google&quot;] (required) Redirect path after login
          * @cfg {String} [oAuth.google.client_id=&quot;653755350671.apps.googleusercontent.com&quot;] (required) Google OAuth client id
+         * @cfg {Object} oAuth.osm (required) Configuration for OpenStreetMap OAuth
+         * @cfg {String} [oAuth.osm.url=&quot;./server/oauth2callback/osm/authorize.php&quot;] (required) URL to OpenStreetMap OAuth
          */
         oAuth: {
             google: {
@@ -62,14 +64,17 @@ Ext.define('Kort.util.Config', {
                 response_type: 'code',
                 access_type: 'offline',
                 client_id: '653755350671.apps.googleusercontent.com'
+            },
+            osm: {
+                url: './server/oauth2callback/osm/authorize.php'
             }
         },
-        
+
 <span id='Kort-util-Config-cfg-timeout'>        /**
 </span>         * @cfg {Number} timeout Default timeout for load tasks in ms
          */
         timeout: 10000,
-        
+
 <span id='Kort-util-Config-cfg-zIndex'>        /**
 </span>         * @cfg {Object} zIndex zIndex for components
          * @cfg {Number} [zIndex.overlayLeafletMap=1500] (required) zIndex for panel to overlay leaflet map components
@@ -79,7 +84,7 @@ Ext.define('Kort.util.Config', {
             overlayLeafletMap: 1500,
             overlayOverlayPanel: 1600
         },
-        
+
 <span id='Kort-util-Config-cfg-osmMap'>        /**
 </span>         * @cfg {Object} osmMap Style configuration for osm objects
          * @cfg {String} [osmMap.featureColor=&quot;#FF0000&quot;] (required) Color of features
@@ -89,12 +94,12 @@ Ext.define('Kort.util.Config', {
             featureColor: '#FF0000',
             featureOpacity: 0.7
         },
-        
+
 <span id='Kort-util-Config-cfg-kortTitle'>        /**
 </span>         * @cfg {String} kortTitle App title which can be used in content
          */
         kortTitle: '&lt;span class=&quot;kort-title&quot;&gt;&lt;span class=&quot;kort-k&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;kort-ort&quot;&gt;ORT&lt;/span&gt;&lt;/span&gt;',
-        
+
 <span id='Kort-util-Config-cfg-about'>        /**
 </span>         * @cfg {Object} about Labels for about page
          * @cfg {String[]} about.information (required) Information about Kort
@@ -126,7 +131,7 @@ Ext.define('Kort.util.Config', {
                 markers: '&lt;a href=&quot;http://mapicons.nicolasmollet.com&quot; target=&quot;_blank&quot;&gt;mapicons collection&lt;/a&gt;'
             }
         },
-        
+
 <span id='Kort-util-Config-cfg-formPlaceholders'>        /**
 </span>         * @cfg {Object} formPlaceholders Ext.i18n.bundle plugin doesn't work for form placeholders so these are stored in config file
          * @cfg {String} [formPlaceholders.username=&quot;Benutzername&quot;] (required) Translation of username
@@ -134,7 +139,7 @@ Ext.define('Kort.util.Config', {
         formPlaceholders: {
             username: 'Benutzername'
         },
-        
+
 <span id='Kort-util-Config-cfg-webservices'>        /**
 </span>         * @cfg {Object} webservices Configuration of webservices
          * @cfg {Object} webservices.bug Configuration of bug webservice
@@ -209,7 +214,7 @@ Ext.define('Kort.util.Config', {
             }
         }
 	},
-	
+
 <span id='Kort-util-Config-method-constructor'>    /**
 </span>     * @private
      * initializes the configuration
@@ -218,7 +223,7 @@ Ext.define('Kort.util.Config', {
 		this.initConfig(config);
 		return this;
 	},
-    
+
 <span id='Kort-util-Config-method-getMarkerIcon'>    /**
 </span>     * Returns a Leaflet marker icon for a given type
      * @param {String} type Type of marker
