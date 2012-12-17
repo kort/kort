@@ -1,5 +1,3 @@
-/*jshint maxcomplexity:10 */
-
 /**
  * Controller for profile tab
  */
@@ -139,32 +137,34 @@ Ext.define('Kort.controller.Profile', {
     settingsSaveHandler: function(buttonId, value) {
         var me = this,
             messageBox;
-
-        if(buttonId === 'ok') {
-            if(value !== '') {
-                if(value.search(/^[a-zA-Z0-9]+$/) === -1) {
+            
+        if(buttonId !== 'ok') {
+            return;
+        }
+        if(value === '') {
+            messageBox = Ext.create('Kort.view.NotificationMessageBox');
+            messageBox.alert(Ext.i18n.Bundle.message('profile.alert.username.empty.title'), Ext.i18n.Bundle.message('profile.alert.username.empty.message'), Ext.emptyFn);
+            return;
+        }
+        if(value.search(/^[a-zA-Z0-9]+$/) === -1) {
+            messageBox = Ext.create('Kort.view.NotificationMessageBox');
+            messageBox.alert(Ext.i18n.Bundle.message('profile.alert.username.specialchars.title'), Ext.i18n.Bundle.message('profile.alert.username.specialchars.message'), Ext.emptyFn);
+            return;
+        }
+        
+        // if username is different
+        if(value !== Kort.user.get('username')) {
+            Kort.user.set('username', value);
+            me.showLoadMask(Ext.i18n.Bundle.message('profile.username.loadmask.message'));
+            Kort.user.save({
+                success: function() {
+                    me.userSuccessfullSavedHandler();
+                },
+                failure: function() {
                     messageBox = Ext.create('Kort.view.NotificationMessageBox');
-                    messageBox.alert(Ext.i18n.Bundle.message('profile.alert.username.specialchars.title'), Ext.i18n.Bundle.message('profile.alert.username.specialchars.message'), Ext.emptyFn);
-                } else {
-                    // if username is different
-                    if(value !== Kort.user.get('username')) {
-                        Kort.user.set('username', value);
-                        me.showLoadMask(Ext.i18n.Bundle.message('profile.username.loadmask.message'));
-                        Kort.user.save({
-                            success: function() {
-                                me.userSuccessfullSavedHandler();
-                            },
-                            failure: function() {
-                                messageBox = Ext.create('Kort.view.NotificationMessageBox');
-                                messageBox.alert(Ext.i18n.Bundle.message('profile.alert.submit.failure.title'), Ext.i18n.Bundle.message('profile.alert.submit.failure.message'), Ext.emptyFn);
-                            }
-                        }, me);
-                    }
+                    messageBox.alert(Ext.i18n.Bundle.message('profile.alert.submit.failure.title'), Ext.i18n.Bundle.message('profile.alert.submit.failure.message'), Ext.emptyFn);
                 }
-            } else {
-                messageBox = Ext.create('Kort.view.NotificationMessageBox');
-                messageBox.alert(Ext.i18n.Bundle.message('profile.alert.username.empty.title'), Ext.i18n.Bundle.message('profile.alert.username.empty.message'), Ext.emptyFn);
-            }
+            }, me);
         }
     },
     
