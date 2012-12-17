@@ -3,7 +3,12 @@
  <description>The kort-specific coding standard (fully includes PSR-2).</description>
 
  <!-- Include the whole PSR-2 standard -->
- <rule ref="PSR2"/>
+ <rule ref="PSR2" />
+
+ <!-- Ignore camel case rule for mocks (to allow to override built-in functions) -->
+ <rule ref="Generic.NamingConventions.CamelCapsFunctionName">
+     <exclude-pattern>*/Test/Mock*</exclude-pattern>
+ </rule>
 
  <!-- Include PHPDoc rules -->
  <rule ref="Squiz.Commenting.FunctionComment">

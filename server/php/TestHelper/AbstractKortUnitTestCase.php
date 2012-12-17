@@ -48,42 +48,28 @@ abstract class AbstractKortUnitTestCase extends \UnitTestCase
     }
 
     /**
-     * Sets up a unit test case with variables, resources, data etc.
+     * Passes if the given $value is empty.
      *
-     * This method is typically overridden by it's subclass. If you want to use
-     * the getOutput() functionality, you should make sure to call this method in
-     * your own setUp() method using parent::setUp()
+     * @param mixed  $value   Value to check for it's emptiness.
+     * @param string $message Message to display describing the test state.
      *
-     * @return void
+     * @return boolean True on pass
      */
-    public function setUp()
+    public function assertEmpty($value, $message = "")
     {
-        ob_start();
+        return $this->assertTrue(empty($value), $message);
     }
 
     /**
-     * Cleans up after each unit test case.
+     * Passes if the given $value is not empty.
      *
-     * This method is typically overridden by it's subclass. If you want to use
-     * the getOutput() functionality, you should make sure to call this method in
-     * your own tearDown() method using parent::tearDown()
+     * @param mixed  $value   Value to check for it's emptiness.
+     * @param string $message Message to display describing the test state.
      *
-     * @return void
+     * @return boolean True on pass
      */
-    public function tearDown()
+    public function assertNotEmpty($value, $message = "")
     {
-        ob_end_flush();
-    }
-
-    /**
-     * Returns the printed output of a test.
-     *
-     * Works only if setUp() and tearDown() have been used
-     *
-     * @return saved output of the test
-     */
-    public function getOutput()
-    {
-        return ob_get_contents();
+        return $this->assertTrue(!empty($value), $message);
     }
 }
