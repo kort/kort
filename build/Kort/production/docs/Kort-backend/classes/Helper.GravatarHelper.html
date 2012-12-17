@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <meta charset="utf-8">
-<title>kort - Backend » \TestHelper\KortHTMLReporter</title>
+<title>kort - Backend » \Helper\GravatarHelper</title>
 <meta name="author" content="Mike van Riel">
 <meta name="description" content="">
 <link href="../css/template.css" rel="stylesheet" media="all">
@@ -61,50 +61,54 @@
 </div>
 <ul class="side-nav nav nav-list"><li class="nav-header">
 <i class="icon-custom icon-method"></i> Methods
-                    <ul>
-<li class="method public "><a href="#method_paintHeader" title="paintHeader :: Paints a header for the test case."><span class="description">Paints a header for the test case.</span><pre>paintHeader()</pre></a></li>
-<li class="method public "><a href="#method_paintPass" title="paintPass :: Paints a passing test."><span class="description">Paints a passing test.</span><pre>paintPass()</pre></a></li>
-</ul>
+                    <ul><li class="method public "><a href="#method_getGravatarUrl" title="getGravatarUrl :: Get either a Gravatar URL or complete image tag for a specified email address."><span class="description">Get either a Gravatar URL or complete image tag for a specified email address.</span><pre>getGravatarUrl()</pre></a></li></ul>
 </li></ul>
 </div>
 <div class="span8">
-<a id="\TestHelper\KortHTMLReporter"></a><ul class="breadcrumb">
+<a id="\Helper\GravatarHelper"></a><ul class="breadcrumb">
 <li>
 <a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
 </li>
-<li><a href="../namespaces/TestHelper.html">TestHelper</a></li>
+<li><a href="../namespaces/Helper.html">Helper</a></li>
 <li class="active">
-<span class="divider">\</span><a href="../classes/TestHelper.KortHTMLReporter.html">KortHTMLReporter</a>
+<span class="divider">\</span><a href="../classes/Helper.GravatarHelper.html">GravatarHelper</a>
 </li>
 </ul>
 <div class="element class">
-<p class="short_description">The KortHTMLReporter class is a kort-specific implementation of a HTML reporter.</p>
+<p class="short_description">The GravatarHelper class is a helper to get Gravatar pictures.</p>
 <div class="details">
 <div class="long_description"></div>
 <h3>
 <i class="icon-custom icon-method"></i> Methods</h3>
-<a id="method_paintHeader"></a><div class="element clickable method public method_paintHeader" data-toggle="collapse" data-target=".method_paintHeader .collapse">
-<h2>Paints a header for the test case.</h2>
-<pre>paintHeader(string $test_name) : void</pre>
-<div class="labels"></div>
+<a id="method_getGravatarUrl"></a><div class="element clickable method public method_getGravatarUrl" data-toggle="collapse" data-target=".method_getGravatarUrl .collapse">
+<h2>Get either a Gravatar URL or complete image tag for a specified email address.</h2>
+<pre>getGravatarUrl(string $email, integer $size, string $imageSet, string $rating) : string</pre>
+<div class="labels"><span class="label">Static</span></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>link</th>
+<td><a href="http://gravatar.com/site/implement/images/php/">http://gravatar.com/site/implement/images/php/</a></td>
+</tr></table>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$test_name</h4>
-<code>string</code><p>The name of the test.</p></div>
-</div></div>
+<h4>$email</h4>
+<code>string</code><p>The email address of the user.</p></div>
+<div class="subelement argument">
+<h4>$size</h4>
+<code>integer</code><p>Size in pixels, defaults to 200px [ 1 - 2048 ].</p>
 </div>
-<a id="method_paintPass"></a><div class="element clickable method public method_paintPass" data-toggle="collapse" data-target=".method_paintPass .collapse">
-<h2>Paints a passing test.</h2>
-<pre>paintPass(string $message) : void</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$message</h4>
-<code>string</code><p>The message of the passed test.</p></div>
+<h4>$imageSet</h4>
+<code>string</code><p>Default imageset to use [ 404 | mm | identicon | monsterid | wavatar ].</p>
+</div>
+<div class="subelement argument">
+<h4>$rating</h4>
+<code>string</code><p>Maximum rating (inclusive) [ g | pg | r | x ].</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>containing the URL</div>
 </div></div>
 </div>
 </div>

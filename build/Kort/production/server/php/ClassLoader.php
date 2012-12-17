@@ -86,7 +86,7 @@ class ClassLoader
         if (StringHelper::endsWith($path, ".php")) {
             require_once($path);
         } else {
-                require_once($path."/".$className);
+                require_once($path . "/" . $className . ".php");
         }
     }
 

@@ -48,28 +48,30 @@ Ext.define('Kort.controller.Firststeps', {
             usernameValue = me.getUsernameTextfield().getValue(),
             messageBox;
 
-        if(usernameValue !== '') {
-            if(usernameValue.search(/^[a-zA-Z0-9]+$/) === -1) {
-                messageBox = Ext.create('Kort.view.NotificationMessageBox');
-                messageBox.alert(Ext.i18n.Bundle.message('firststeps.alert.username.specialchars.title'), Ext.i18n.Bundle.message('firststeps.alert.username.specialchars.message'), Ext.emptyFn);
-            } else {
-                me.getFirststepsFormSubmitButton().disable();
-                Kort.user.set('username', usernameValue);
-                Kort.user.save({
-                    success: function() {
-                        me.userSuccessfullSavedHandler();
-                    },
-                    failure: function() {
-                        me.getFirststepsFormSubmitButton().enable();
-                        messageBox = Ext.create('Kort.view.NotificationMessageBox');
-                        messageBox.alert(Ext.i18n.Bundle.message('firststeps.alert.submit.failure.title'), Ext.i18n.Bundle.message('firststeps.alert.submit.failure.message'), Ext.emptyFn);
-                    }
-                }, me);
-            }
-        } else {
+        if(usernameValue === '') {
             messageBox = Ext.create('Kort.view.NotificationMessageBox');
             messageBox.alert(Ext.i18n.Bundle.message('firststeps.alert.username.empty.title'), Ext.i18n.Bundle.message('firststeps.alert.username.empty.message'), Ext.emptyFn);
+            return;
         }
+        if(usernameValue.search(/^[a-zA-Z0-9]+$/) === -1) {
+            messageBox = Ext.create('Kort.view.NotificationMessageBox');
+            messageBox.alert(Ext.i18n.Bundle.message('firststeps.alert.username.specialchars.title'), Ext.i18n.Bundle.message('firststeps.alert.username.specialchars.message'), Ext.emptyFn);
+            return;
+        }
+        
+        // saving username
+        me.getFirststepsFormSubmitButton().disable();
+        Kort.user.set('username', usernameValue);
+        Kort.user.save({
+            success: function() {
+                me.userSuccessfullSavedHandler();
+            },
+            failure: function() {
+                me.getFirststepsFormSubmitButton().enable();
+                messageBox = Ext.create('Kort.view.NotificationMessageBox');
+                messageBox.alert(Ext.i18n.Bundle.message('firststeps.alert.submit.failure.title'), Ext.i18n.Bundle.message('firststeps.alert.submit.failure.message'), Ext.emptyFn);
+            }
+        }, me);
     },
 
 <span id='Kort-controller-Firststeps-method-userSuccessfullSavedHandler'>    /**

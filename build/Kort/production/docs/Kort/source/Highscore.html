@@ -81,7 +81,11 @@ Ext.define('Kort.controller.Highscore', {
             highscoreUserContainer;
         
         if(!me.getItemTapDisabled()) {
+            // disable fast tapping
             me.setItemTapDisabled(true);
+            Ext.defer(function() {
+                me.setItemTapDisabled(false);
+            }, 500);
             
             if(record.get('you')) {
                 me.getMainTabPanel().setActiveItem(me.getProfileContainer());
@@ -98,9 +102,6 @@ Ext.define('Kort.controller.Highscore', {
                 highscoreNavigationView.fireEvent('detailpush', highscoreNavigationView);
             }
         }
-        Ext.defer(function() {
-            me.setItemTapDisabled(false);
-        }, 200);
     },
     
 <span id='Kort-controller-Highscore-method-refreshView'>    /**
