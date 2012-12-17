@@ -1,113 +1,115 @@
 % /db
 \subsection{Webservice: Datenbank \emph{/db}}
 \label{webservice-database}
-\todo[inline]{DB Webservice dokumentieren}
-Die eingetragenen Lösungen werden über den \inlinecode{/validation}-Webservice geladen.
-Diesem muss die aktuelle Position mitgeliefert werden, um lediglich die Lösungen in der Umgebung zu laden.
+Die Kommunikation vom Webserver zum Datenbankserver geschieht über den \inlinecode{/db}-Webservice.
+Als zugehörige Ressource kann eine Tabelle und deren Felder angegeben werden.
 
-Zusätzlich kann über diesen Webservice eine Überprüfung zu einer Lösung gesendet werden.
+Alternativ können sich beliebig viele Statements in einer Transaktion auf der Datenbank laufen gelassen werden, dazu gibt es die spezielle \emph{transaction}-Ressource.
 
-\subsubsection{Lösungen laden}
+Da dieser Webservice direkt die Daten auf der Datenbank verändern kann, ist er durch einen API-Schlüssel vor fremden Zugriffen geschützt. 
+Der API-Key muss sowohl auf dem Webserver wie auch auf dem Datenbankserver in der Umgebungsvariable \inlinecode{KORT\_DB\_API\_KEY}.
+
+\subsubsection{SELECT-Abfrage}
 \begin{table}[H]
 \centering
 \begin{tabular}{|p{0.15\threecelltabwidth}|p{0.25\threecelltabwidth}|p{0.6\threecelltabwidth}|}
 \hline 
 \small{\textbf{URL}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}
 {
-\inlinecode{http://kort.herokuapp.com/server/webservices/validation/\newline position/<lat>,<lng>}
+\inlinecode{http://kort.rdmr.ch/webservices/db/<table>/<fields>}
 \newline \newline
-\inlinecode{<lat>} Latitude der aktuellen Position 
+\inlinecode{<table>} Datenbank-Tabellenname (inkl. Schema)
 \newline
-\inlinecode{<lng>} Longitude der aktuellen Position
+\inlinecode{<fields>} Komma-separierte Liste von Feldern der Tabelle
 } \\ 
 \hline 
 \small{\textbf{Methode}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{\inlinecode{GET}} \\ 
 \hline 
 \small{\textbf{Parameter}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}
 {
-\inlinecode{limit} Maximale Anzahl der zu ladenden Lösungen \newline
-\inlinecode{radius} Radius in dem sich die Lösungen befinden müssen
+\inlinecode{key} API Key \newline
+\inlinecode{where} WHERE-Klausel (Einschränkung) \newline
+\inlinecode{orderby} ORDER BY-Klausel (Sortierung) \newline
+\inlinecode{limit} Maximale Anzahl Records
 } \\ 
 \hline 
-\small{\textbf{Antwort}} & \inlinecode{200 OK} & 
-Die Lösungen konnten erfolgreich geladen werden. \\
-\hline 
+\small{\textbf{Antwort}} & \inlinecode{403 Forbidden} & 
+Der API Key ist nicht korrekt. \\
+\hhline{~--}
+ & \inlinecode{200 OK} & 
+Die Datenbankabfrage war erfolgreich. \\
+\hline
 \small{\textbf{Antworttyp}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{\inlinecode{JSON}} \\
 \hline 
 \end{tabular} 
-\caption{Webservice Überprüfung (GET /validation)}
+\caption{Webservice Datenbank (GET /db)}
 \end{table}
 
 \textbf{Beispiel:}
 
-\inlinecode{GET http://kort.herokuapp.com/server/webservices/validation/position/47.1,8.1?\\limit=1\&radius=5000}
+\inlinecode{GET http://kort.rdmr.ch/webservices/db/kort.answer/id,value,title?
+\\where=type='missing\_track\_type'}
 
 \textbf{Antwort:}
 
 \lstset{language=JavaScript}
 \begin{lstlisting}[style=examples]
 {
-	"return": [
+	[
 		{
-			"id":"186",
-			"type":"missing_maxspeed",
-			"view_type":"number",
-			"fix_user_id":"1",
-			"osm_id":"110725957",
-			"osm_type":"way",
-			"title":"Fehlendes Tempolimit",
-			"fixmessage":"50",
-			"question":"Darf man auf dieser Strasse mit dieser Geschwindigkeit fahren?",
-			"latitude":"47.3370456000000000",
-			"longitude":"8.5207856000000000",
-			"upratings":"0",
-			"downratings":"0",
-			"required_validations":"3"
+			"id":"1",
+			"value":"grade1",
+			"title":"Asphalt, Beton oder Pflastersteine"
 		},
 		{ ... }
 	]
 }
 \end{lstlisting}
 
-
-\subsubsection{Überprüfung eintragen}
+\subsubsection{UPDATE-Abfrage}
 \begin{table}[H]
 \centering
 \begin{tabular}{|p{0.15\threecelltabwidth}|p{0.25\threecelltabwidth}|p{0.6\threecelltabwidth}|}
 \hline 
 \small{\textbf{URL}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}
 {
-\inlinecode{http://kort.herokuapp.com/server/webservices/validation/vote}
+\inlinecode{http://kort.rdmr.ch/webservices/db/<table>/<fields>}
+\newline \newline
+\inlinecode{<table>} Datenbank-Tabellenname (inkl. Schema)
+\newline
+\inlinecode{<fields>} Komma-separierte Liste von Feldern der Tabelle
 } \\ 
 \hline 
-\small{\textbf{Methode}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{\inlinecode{POST}} \\ 
+\small{\textbf{Methode}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{\inlinecode{PUT}} \\ 
 \hline 
 \small{\textbf{Parameter}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}
-{Die zu sendende Überprüfung muss als \inlinecode{JSON}-Objekt im Body gesendet werden.} \\ 
+{
+\inlinecode{key} API Key \newline
+\inlinecode{where} WHERE-Klausel (Einschränkung) \newline
+\inlinecode{return} Komma-separierte Felder welche als Antwort geschicht werden
+} \\ 
 \hline 
-\small{\textbf{Antwort}} & \inlinecode{200 OK} & 
-Die Überprüfung konnte erfolgreich eingetragen werden. Als Antwort werden die erspielten Punkte und Auszeichnungen zurückgeliefert. \\
-\hhline{~--} & \inlinecode{403 Forbidden} & 
-Der Benutzer ist nicht korrekt eingeloggt und kann somit keine Daten an den Server senden. \\
-\hhline{~--} & \inlinecode{400 Bad request} & 
-Das gesendete JSON ist nicht valide oder es gab einen Fehler beim Schreiben der Daten in die Datenbank. \\
-\hline 
+\small{\textbf{Antwort}} & \inlinecode{403 Forbidden} & 
+Der API Key ist nicht korrekt. \\
+\hhline{~--}
+ & \inlinecode{200 OK} & 
+Die Datenbankabfrage war erfolgreich. \\
+\hline
 \small{\textbf{Antworttyp}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{\inlinecode{JSON}} \\
 \hline 
 \end{tabular} 
-\caption{Webservice Überprüfung (POST /validation/vote)}
+\caption{Webservice Datenbank (PUT /db)}
 \end{table}
 
-\subsubsection{Beispiel:}
+\textbf{Beispiel:}
 
-\inlinecode{POST http://kort.herokuapp.com/server/webservices/validation/vote}
-\lstset{language=JavaScript}
+\inlinecode{PUT http://kort.rdmr.ch/webservices/db/kort.user/user\_id,username?
+\\where=user\_id=3\&return=user\_id,username'}
 \begin{lstlisting}[style=examples]
 {
-	"id":"ext-record-177",
-	"fix_id":151,
-	"user_id":"3",
-	"valid":"true"
+	"user_id":3,
+	"username":"testuser"
+	
 }
 \end{lstlisting}
 
@@ -116,12 +118,151 @@ Das gesendete JSON ist nicht valide oder es gab einen Fehler beim Schreiben der 
 \lstset{language=JavaScript}
 \begin{lstlisting}[style=examples]
 {
-	"badges": [
+	[
 		{
-			"name": "vote_count_10"
+			"id":"3",
+			"username":"testuser"
 		}
-	],
-	"koin_count_new":"5",
-	"koin_count_total":"95"
+	]
+}
+\end{lstlisting}
+
+\subsubsection{INSERT-Abfrage}
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.15\threecelltabwidth}|p{0.25\threecelltabwidth}|p{0.6\threecelltabwidth}|}
+\hline 
+\small{\textbf{URL}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}
+{
+\inlinecode{http://kort.rdmr.ch/webservices/db/<table>/<fields>}
+\newline \newline
+\inlinecode{<table>} Datenbank-Tabellenname (inkl. Schema)
+\newline
+\inlinecode{<fields>} Komma-separierte Liste von Feldern der Tabelle
+} \\ 
+\hline 
+\small{\textbf{Methode}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{\inlinecode{POST}} \\ 
+\hline 
+\small{\textbf{Parameter}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}
+{
+\inlinecode{key} API Key \newline
+\inlinecode{return} Komma-separierte Felder welche als Antwort geschicht werden
+} \\ 
+\hline 
+\small{\textbf{Antwort}} & \inlinecode{403 Forbidden} & 
+Der API Key ist nicht korrekt. \\
+\hhline{~--}
+ & \inlinecode{200 OK} & 
+Die Datenbankabfrage war erfolgreich. \\
+\hline
+\small{\textbf{Antworttyp}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{\inlinecode{JSON}} \\
+\hline 
+\end{tabular} 
+\caption{Webservice Datenbank (POST /db)}
+\end{table}
+
+\textbf{Beispiel:}
+
+\inlinecode{POST http://kort.rdmr.ch/webservices/db/kort.fix/user\_id,error\_id,osm\_id,
+\\schema,message?return=fix\_id'}
+\begin{lstlisting}[style=examples]
+{
+	"user_id":5,
+	"error_id":8983274,
+	"osm_id":212342,
+	"schema":"95",
+	"message":"grade1"
+	
+}
+\end{lstlisting}
+
+\textbf{Antwort:}
+
+\lstset{language=JavaScript}
+\begin{lstlisting}[style=examples]
+{
+	[
+		{
+			"fix_id":43
+		}
+	]
+}
+\end{lstlisting}
+
+\subsubsection{Transaction}
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.15\threecelltabwidth}|p{0.25\threecelltabwidth}|p{0.6\threecelltabwidth}|}
+\hline 
+\small{\textbf{URL}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}
+{
+\inlinecode{http://kort.rdmr.ch/webservices/db/transaction}
+} \\ 
+\hline 
+\small{\textbf{Methode}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{\inlinecode{POST}} \\ 
+\hline 
+\small{\textbf{Parameter}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}
+{
+\inlinecode{key} API Key
+} \\ 
+\hline 
+\small{\textbf{Antwort}} & \inlinecode{403 Forbidden} & 
+Der API Key ist nicht korrekt. \\
+\hhline{~--}
+\small{\textbf{Antwort}} & \inlinecode{404 Not Found} & 
+Eine oder mehrere Abfragen der Transaktion waren fehlerhaft. \\
+\hhline{~--}
+ & \inlinecode{200 OK} & 
+Die Transaktion war erfolgreich. \\
+\hline
+\small{\textbf{Antworttyp}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}{\inlinecode{JSON}} \\
+\hline 
+\end{tabular} 
+\caption{Webservice Datenbank (POST /db/transaction)}
+\end{table}
+
+\textbf{Beispiel:}
+
+\inlinecode{POST http://kort.rdmr.ch/webservices/db/transaction}
+\begin{lstlisting}[style=examples]
+{
+	[
+		{
+			"type":"SQL",
+			"sql":"select vote_koin_count from kort.validations where required_validations > 1"
+		},
+		{
+			"type":"UPDATE",
+			"fields":"username",
+			"table":"kort.user",
+			"where":"user_id=7",
+			"returnFields":"user_id,username",
+			"data":	{
+						"username":"newUsername"
+					}
+		}
+	}
+}
+\end{lstlisting}
+
+\textbf{Antwort:}
+
+\lstset{language=JavaScript}
+\begin{lstlisting}[style=examples]
+{
+	[
+		{
+			[
+				{
+					"vote_koin_count":5
+				},
+				{ ...}
+			]
+		},
+		{
+			"user_id":7,
+			"username:"newUsername"
+		}
+	]
 }
 \end{lstlisting}
