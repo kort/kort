@@ -10,16 +10,16 @@ Es galt deshalb zuerst eine geeignete Quelle für Fehlerdaten in \gls{OpenStreet
 Durch die Anforderungen an die Applikation ergaben sich folgende Bedingungen, welche die Fehlerdaten erfüllen müssen:
 
 \begin{itemize}
-\item Die Fehler müssen auch für Nicht-Mapper lösbar sein. Sprich die Beschreibungen sollten kein Mapping-Vokabular enthalten.
+\item Die Fehler müssen auch für Nicht-\gls{Mapper} lösbar sein. Sprich die Beschreibungen sollten kein \glslink{Mapper}{Mapping}-Vokabular enthalten.
 \item Sie müssen auf Deutsch übersetzbar sein. Die Fehlerbeschreibungen sollten somit einem gegebenen Schema folgen und nicht Freitext beinhalten.
-\item Dadurch dass wir eine mobile App erstellen und keinen vollwertigen Karten-Editor, sollen die Fehler lediglich Tags betreffen. Das Lösen des Fehlers sollte also möglich sein, ohne das Geometrieobjekt (Strasse, Gebäude, usw.) zu verändern.
-\item Die Fehler sollten sich immer nur auf einen Tag des betroffenen OSM-Objekt beziehen. Dadurch vereinfacht sich das Zurückschreiben der Daten zu \gls{OpenStreetMap}.
+\item Dadurch dass wir eine mobile App erstellen und keinen vollwertigen Karten-Editor, sollen die Fehler lediglich \glslink{Tag}{Tags} betreffen. Das Lösen des Fehlers sollte also möglich sein, ohne das Geometrieobjekt (Strasse, Gebäude, usw.) zu verändern.
+\item Die Fehler sollten sich immer nur auf einen \gls{Tag} des betroffenen OSM-Objekt beziehen. Dadurch vereinfacht sich das Zurückschreiben der Daten zu \gls{OpenStreetMap}.
 \end{itemize}
 
 Wir untersuchten deshalb mehrere Fehlerdatenquellen auf deren Qualität.
 
 \subsection{FIXME-Tags in OpenStreetMap}
-Fehlerhafte Objekte in \gls{OpenStreetMap} können von Benutzern direkt mit einem FIXME-Tag versehen werden, wenn sie einen Fehler aufweisen.
+Fehlerhafte Objekte in \gls{OpenStreetMap} können von Benutzern direkt mit einem \inlinecode{FIXME}-\gls{Tag} versehen werden, wenn sie einen Fehler aufweisen.
 Darin wird der eigentliche Fehler beschrieben.
 
 \begin{table}[H]
@@ -30,12 +30,12 @@ Darin wird der eigentliche Fehler beschrieben.
 \hline 
 \small{\textbf{Erfasser}} & \gls{OpenStreetMap}-Benutzer \\
 \hline 
-\small{\textbf{API verfügbar?}} & Ja (API oder Datenbankzugriff) \newline
+\small{\textbf{API verfügbar?}} & Ja (\gls{REST} \gls{API}) \newline
 \url{http://wiki.openstreetmap.org/wiki/API_v0.6} \\
 \hline 
-\small{\textbf{Lösung zurückschreiben}} & Lösung könnte via API an OSM gesendet werden. \\
+\small{\textbf{Lösung zurückschreiben}} & Lösung könnte via \gls{API} an \gls{OpenStreetMap} gesendet werden. \\
 \hline
-\small{\textbf{Eignung}} & \textbf{tief} \linebreak Durch die manuelle Erfassung der Daten, ist es für uns nicht möglich ein spezifisches GUI für die Fehlerbehebung zu erstellen. \\ 
+\small{\textbf{Eignung}} & \textbf{tief} \linebreak Durch die manuelle Erfassung der Daten, ist es für uns nicht möglich automatisiert ein GUI für die Fehlerbehebung zu erstellen. \\ 
 \hline 
 \end{tabular} 
 \caption{FIXME-Tags in OpenStreetMap}
@@ -43,7 +43,7 @@ Darin wird der eigentliche Fehler beschrieben.
 \end{table}
 
 \subsection{OpenStreetBugs}
-Mit der Applikation OpenStreetBugs ist es für die Benutzer möglich Fehler in den Kartendaten als Bug zu erfassen.
+Mit der Applikation \emph{OpenStreetBugs} ist es für die Benutzer möglich Fehler in den Kartendaten als Bug zu erfassen.
 
 \begin{table}[H]
 \centering
@@ -53,20 +53,20 @@ Mit der Applikation OpenStreetBugs ist es für die Benutzer möglich Fehler in d
 \hline 
 \small{\textbf{Erfasser}} & OpenStreetBugs-Benutzer \\
 \hline 
-\small{\textbf{API verfügbar?}} & Ja (REST API oder Fehlerdaten als Dump-File downloadbar) \newline
+\small{\textbf{API verfügbar?}} & Ja (\gls{REST} \gls{API} oder Fehlerdaten als Dump-File downloadbar) \newline
 \url{http://wiki.openstreetmap.org/wiki/OpenStreetBugs/API_0.6} \\
 \hline 
 \small{\textbf{Lösung zurückschreiben}} & Lösung müsste an \gls{OpenStreetMap} gesendet werden. Zusätzlich  müsste der Bug auf OpenStreetBugs als gelöst markiert werden. \\
 \hline
-\small{\textbf{Eignung}} & \textbf{tief} \linebreak Durch die manuelle Erfassung der Daten, ist es für uns nicht möglich ein spezifisches GUI für die Fehlerbehebung zu erstellen. \\ 
+\small{\textbf{Eignung}} & \textbf{tief} \linebreak Durch die manuelle Erfassung der Daten, ist es für uns nicht möglich automatisiert ein GUI für die Fehlerbehebung zu erstellen. \\ 
 \hline 
 \end{tabular} 
 \caption{OpenStreetBugs}
 \label{datenquellen-openstreetbugs}
 \end{table}
 
-\subsection{Keepright}
-keepright ist ein Dienst, welcher jeweils über Nacht, Fehler in OSM-Objekten sucht und in einer eigenen Datenbank ablegt.
+\subsection{KeepRight}
+\emph{KeepRight} ist ein Dienst, welcher jeweils über Nacht, Fehler in OSM-Objekten sucht und in einer eigenen Datenbank ablegt.
 
 \begin{table}[H]
 \centering
@@ -78,20 +78,20 @@ keepright ist ein Dienst, welcher jeweils über Nacht, Fehler in OSM-Objekten su
 \hline 
 \small{\textbf{API verfügbar?}} & Ja (Fehlerdaten werden als Dump-File zum Download angeboten) \newline \url{http://keepright.ipax.at/interfacing.php} \\
 \hline 
-\small{\textbf{Lösung zurückschreiben}} & Lösung müssten lediglich an \gls{OpenStreetMap} gesendet werden. keepright baut seine Fehlerdatenbank jeweils über Nacht aus dem OSM-Daten neu auf. \\
+\small{\textbf{Lösung zurückschreiben}} & Lösung müssten lediglich an \gls{OpenStreetMap} gesendet werden. \emph{KeepRight} baut seine Fehlerdatenbank jeweils über Nacht aus dem \gls{OpenStreetMap}-Daten neu auf. \\
 \hline
 \small{\textbf{Eignung}} & \textbf{hoch} \linebreak Dadurch das die Fehlerdaten automatisiert erstellt werden, ist es gut möglich, für jeweilige Fehlertypen eine geeignete Maske für deren Behebung zur Verfügung zu stellen. \\
 \hline
 \end{tabular}
-\caption{keepright}
+\caption{KeepRight}
 \label{datenquellen-keepright}
 \end{table}
 
-\section{Entscheid: Fehlerdaten von keepright}
-Durch die gute Eignung der Fehlerdaten vom \emph{keepright}-Dienst, haben wir uns dazu entschieden deren Daten als Basis für unsere Fehler zu verwenden.
+\section{Entscheid: Fehlerdaten von KeepRight}
+Durch die gute Eignung der Fehlerdaten vom \emph{KeepRight}-Dienst, haben wir uns dazu entschieden deren Daten als Basis für unsere Fehler zu verwenden.
 
 \section{Fehlerdaten in die Datenbank laden}
-Um stets aktuelle Daten für die App anzuzeigen, wird der Dump von Keepright jede Nacht mit einem Shellskript in die Datenbank geladen.
+Um stets aktuelle Daten für die App anzuzeigen, wird der Dump von \emph{KeepRight} jede Nacht mit einem Shellskript in die Datenbank geladen.
 Das Shellskript befindet sich unter:
 
 \inlinecode{/server/database/keepright\_setup.sh}
@@ -118,7 +118,7 @@ Mittels Cronjob wird folgender Befehl aufgerufen:
 \end{table}
 
 \subsection{Datenformat}
-Auf der Webseite von Keepright ist ersichtlich\footnote{\url{http://www.keepright.at/interfacing.php}}, welche Daten im Dump enthalten sind.
+Auf der Webseite von \emph{KeepRight} ist ersichtlich\footnote{\url{http://www.keepright.at/interfacing.php}}, welche Daten im Dump enthalten sind.
 
 \begin{table}[H]
 \centering
@@ -164,7 +164,7 @@ Auf der Webseite von Keepright ist ersichtlich\footnote{\url{http://www.keeprigh
 \inlinecode{comment\_timestamp} & Zeitpunkt des Kommentars zum Fehler  \\
 \hline
 \end{tabular}
-\caption{Datenformat der Keepright-Daten}
+\caption{Datenformat der KeepRight-Daten}
 \label{keepright-daten}
 \end{table}
 

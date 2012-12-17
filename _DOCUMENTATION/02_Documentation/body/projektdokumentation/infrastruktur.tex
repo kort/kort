@@ -5,10 +5,9 @@
 
 Beim Datenbankserver handelt es sich um einen virtuellen Server, den uns die Hochschule für Technik Rapperswil (HSR) zur Verfügung gestellt hat für die Dauer dieser Arbeit.
 Dieser Server hält die Installation der \textsc{Kort}-Datenbank sowie das Projektmanagementtool Redmine.
-Letzteres ist die einzige kritische Anwendung auf dem Server, da der Rest sich über entsprechende Installationskripts sehr einfach und schnell neu aufbauen lässt.
+Letzteres ist die einzige kritische Anwendung auf dem Server, da sich der Rest über entsprechende Installationskripts sehr einfach und schnell neu aufbauen lässt.
 
 Die Installation der benötigten Software kann mit dem Ubuntu Standard-Mechanismus \inlinecode{apt-get install} durchgeführt werden.
-
 
 \begin{table}[H]
 \centering
@@ -26,24 +25,26 @@ Die Installation der benötigten Software kann mit dem Ubuntu Standard-Mechanism
 \hline 
 \small{\textbf{Installierte Software}} & PostgreSQL 9.1, PostGIS 2.0, Redmine 2.1, MySQL 5.5, Apache Websever mit PHP 5.4 \\
 \hline 
-\small{\textbf{Pfade}} & Repository: \inlinecode{/home/odi/kort} \\
+\small{\textbf{Pfade}} & Repository: \inlinecode{/home/odi/kort} \newline
 Redmine: \inlinecode{/home/redmine/redmine-2.1.0} \\
 \hline 
 \end{tabular} 
-\caption{Datenbankserver der Hochschule für Technik Rapperswil}
+\caption{Kort Datenbankserver}
 \label{infrastruktur-datenbankserver-tabelle}
 \end{table}
 
 \subsection{Datenbank-Webservice}
-Der Zugang auf die Datenbank von aussen läuft ausschliesslich über den REST-Webservice.
+Der Zugang auf die Datenbank von aussen läuft ausschliesslich über den \gls{REST}-Webservice.
 Für den Betrieb dieses Dienstes ist eine Apache Webserver Installation mit PHP-Unterstützung (mindestens PHP 5.3) erforderlich.
 
-Für den Betrieb der Webservice ist das \textsc{Kort}-Repository auf dem Server geklont.
+Für den Betrieb des Webservice ist das \textsc{Kort}-Repository auf dem Server geklont.
 Anschliessend muss noch ein Symlink angelegt werden um das Skript korrekt aufrufen zu können:
 
 \inlinecode{\$ ln -s /home/odi/kort/server/webservices /var/www/webservices}
 
-Damit der der REST-Endpunkt auf der Datenbank-Server unter der Adresse \url{http://kort.rdmr.ch/webservices/db} erreichbar.
+Der Webservice wird in Abschnitt \ref{webservice-database} genauer beschrieben.
+
+\todo[inline]{API Key beschreiben}
 
 \subsection{Redmine}
 Die Installation von Redmine verlangt es, einen neuen Benutzer \inlinecode{redmine} auf dem Server anzulegen.
@@ -52,14 +53,14 @@ Diese ist in unserem Repository zu finden: \url{https://github.com/odi86/kort/bl
 
 \subsubsection{Backup}
 Die Daten von Redmine werden über 2 Skripts täglich gesichert. 
-Das Skript \inlinecode{ŕedmine\_backup.sh} kümmert sich darum alle Backup-Daten täglich auf dem virtuellen Server zu sammeln und an einem zentralen Ort zu speichern.
+Das Skript \inlinecode{redmine\_backup.sh} kümmert sich darum alle Backup-Daten täglich auf dem virtuellen Server zu sammeln und an einem zentralen Ort zu speichern.
 Mit dem zweiten Skript \inlinecode{sync\_backup.sh} kann dann das zuvor erstellte Backup auf beliebige andere Systeme verteilt werden.
 In unserem Fall haben wir das Skript auf unseren Laptops eingerichtet und so täglich die aktuellen Daten gesichert.
 
 
 \section{Webserver (Heroku)}
 
-Bei Heroku\footnote{\url{http://www.heroku.com/}} handelt es sich um einen kostenlosen Dienst, welcher für verschiedenste Plattformen eine Deploymentumgebung anbietet. 
+Bei \emph{Heroku}\footnote{\url{http://www.heroku.com/}} handelt es sich um einen kostenlosen Dienst, welcher für verschiedenste Plattformen eine Deploymentumgebung anbietet. 
 Der Dienst hat eine Schnittstelle über welche sich automatisiert Applikationen erstellen lassen, die Datenübertragung läuft dann über \gls{Git}.
 
 \begin{table}[H]
@@ -70,7 +71,7 @@ Der Dienst hat eine Schnittstelle über welche sich automatisiert Applikationen 
 \hline 
 \small{\textbf{Betriebsystem}} & Ubuntu \\
 \hline 
-\small{\textbf{Zugriff}} & Daten via \gls{Git}, Befehle via Kommandozeilen-API (Heroku Toolbelt) \\
+\small{\textbf{Zugriff}} & Daten via \gls{Git}, Befehle via Kommandozeilen-\gls{API} (\emph{Heroku-Toolbelt}) \\
 \hline 
 \small{\textbf{Installierte Software}} & Apache, kort Applikation \\
 \hline 
@@ -79,31 +80,27 @@ Der Dienst hat eine Schnittstelle über welche sich automatisiert Applikationen 
 \label{infrastruktur-heroku-tabelle}
 \end{table}
 
-Die Entscheidung den Webserver von Heroku zu wählen ist dadurch begründet, dass uns dies die grösstmögliche Freiheit bietet. 
-Heroku bietet bereits eine hervoragende \gls{API} welche sich über das Kommandozeilen-Toolset \emph{Heroku-Toolbelt} steuern lässt.
+Die Entscheidung den Webserver von \emph{Heroku} zu wählen ist dadurch begründet, dass uns dies die grösstmögliche Freiheit bietet. 
+\emph{Heroku} bietet bereits eine hervoragende \gls{API} welche sich über das Kommandozeilen-Toolset \emph{Heroku-Toolbelt} steuern lässt.
 Dies erlaubt es beliebig viele Applikationen automatisiert zu erstellen.
-Auch für den Betrieb bietet das API viele Möglichkeiten zur Fernwartung an (SSH-Zugang, Logs, Prozessorauslastung).
-Alle diese Faktoren zusammen ergeben die ideale Lösung für 
+Auch für den Betrieb bietet das \gls{API} viele Möglichkeiten zur Fernwartung an (SSH-Zugang, Logs, Prozessorauslastung).
 
 \section{Deployment}
 Am Deployment der Applikation sind mehrere Systeme beteiligt. 
-Alle Änderungen werden von den Entwicklern via \gls{Git} zu GitHub\footnote{\url{http://github.com}} übertragen. 
-Auf GitHub gibt es sogenannte Hooks die man aktivieren kann. 
+Alle Änderungen werden von den Entwicklern via \gls{Git} zu \emph{GitHub}\footnote{\url{http://github.com}} übertragen. 
+Auf \emph{GitHub} gibt es sogenannte \emph{Hooks} die man aktivieren kann. 
 Dabei handelt es sich um weitere Aktionen welche durch verschiedene Ereignisse ausgelöst werden können. 
-In unserem Fall haben wir einen \emph{post-commit Hook} aktiviert, welcher dem \gls{ci} Dienst Travis-CI\footnote{\url{http://travis-ci.org}} Bescheid gibt, wenn ein neue Änderungen auf GitHub eingetroffen sind.
+In unserem Fall haben wir einen \emph{post-commit Hook} aktiviert, welcher dem \gls{ci} Dienst \emph{Travis-CI}\footnote{\url{http://travis-ci.org}} Bescheid gibt, wenn ein neue Änderungen auf \emph{GitHub} eingetroffen sind.
 
 \subsection{Travis CI}
-Auf Travis läuft dann der Build, welcher durch die Konfigurationsdatei \inlinecode{.travis.yml} gesteuert ist. Darin lassen wir die Schritte sowie die Umgebung für Builds definieren. Für jede Umgebung wird dann ein separater Build ausgelöst. Somit lassen sich bequem verschiedene Versionen mit unterschiedlichen Umgebungen testen.
+Auf \emph{Travis} läuft dann der Build, welcher durch die Konfigurationsdatei \inlinecode{.travis.yml} gesteuert ist. Darin lassen sich die Schritte sowie die Umgebung für Builds definieren.
+Für jede Umgebung wird dann ein separater Build ausgelöst.
+Somit lassen sich bequem verschiedene Versionen mit unterschiedlichen Umgebungen testen.
 Daraus entsteht dann eine sogenannte Build-Matrix welche bei jedem Build durchlaufen wird (siehe Tabelle \ref{infrastruktur-build-matrix}).
-
-Ein Travis-Build läuft immer in einer neuen virtuellen Umgebung, so dass strikt nach dem Prinzip des \emph{\glslink{Bootstrapping}{Bootstrappings}} vorgegangen werden muss. Das heisst, es muss möglich sein die Applikation ohne Vorkenntnisse zu installieren, alle benötigte Software und Konfiguration muss bei jedem Build vorgenommen werden.
-Dies hilft, den Installationprozess genau festzuhalten
-
-Am Ende des Build-Vorgangs wird die \gls{WebApp} schliesslich zu Heroku übertragen. 
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|p{0.2\threecelltabwidth}|p{0.4\threecelltabwidth}|p{0.4\threecelltabwidth}|}
+\begin{tabular}{|p{0.15\threecelltabwidth}|p{0.425\threecelltabwidth}|p{0.425\threecelltabwidth}|}
 \hline 
  & \textbf{Test} & \textbf{Produktion} \\
 \hline 
@@ -116,7 +113,14 @@ Am Ende des Build-Vorgangs wird die \gls{WebApp} schliesslich zu Heroku übertra
 \label{infrastruktur-build-matrix}
 \end{table}
 
-\subsection{travis.yml}
+Ein Travis-Build läuft immer in einer neuen virtuellen Umgebung, so dass strikt nach dem Prinzip des \emph{\glslink{Bootstrapping}{Bootstrappings}} vorgegangen werden muss.
+Das bedeutet, es muss möglich sein die Applikation ohne Vorkenntnisse zu installieren, alle benötigte Software und Konfiguration muss bei jedem Build vorgenommen werden.
+Dies hilft, den Installationprozess genau festzuhalten.
+
+Am Ende des Build-Vorgangs wird die \gls{WebApp} schliesslich zu Heroku übertragen.
+
+\subsection{Konfiguration über .travis.yml}
+\todo[inline]{.travis.yml aufräumen}
 Die \inlinecode{.travis.yml} Datei ist die Konfigurationsdatei von Travis CI.
 Darin wird die Build-Matrix festgelegt sowie die die einzelnen Schritte des Builds definiert.
 
@@ -196,17 +200,17 @@ Die JavaScript spezifischen Build-Aufgaben werden von Ant an GruntJS\footnote{\u
 Dieses Tool hat wiederum sein eigenen Konfigurationsfile \inlinecode{grunt.js}.
 Darin sind sogenannte Tasks beschrieben, welche auf den Code angewendet werden sollen.
 
-In unserem Fall brauchen wir Grunt für zwei Aufgaben: JavaScript-Tests durchführen und JSHint auf sämlichen JavaScript Quellcode anwenden.
+In unserem Fall brauchen wir Grunt für zwei Aufgaben: JavaScript-Tests ausführen und JSHint auf sämlichen JavaScript Quellcode anwenden.
 
 Bei JSHint\footnote{\url{http://www.jshint.com/docs/}} handelt es sich um ein Linting-Werkzeug, welches mit divesen Optionen konfiguriert werden kann.
-Das Ziel ist, dass der Code einheitlich wird und ein minimaler Code-Standard eingehalten wird.
+Das Ziel ist, dass der Code einheitlich wird und ein gewisser Code-Standard eingehalten wird.
 Der Code wird dadurch besser lesbar und weniger fehleranfällig.
 
 Die Unit Tests sind mit QUnit\footnote{\url{http://qunitjs.com/}} erstellt und werden mit dem headless Browser PhantomJS\footnote{\url{http://phantomjs.org/}} durchgeführt.
 Dies ermöglicht es auf einfache Art und Weise Frontend-Tests während dem Build durchzuführen.
 
 \subsubsection{Nach dem Build}
-Nach einem erfolgreichen Build wird der after\_script Block ausgeführt.
+Nach einem erfolgreichen Build wird der \inlinecode{after\_script}-Block ausgeführt.
 Dieser kümmert sich um das Zusammenstellen und Übertragen der Dateien für Heroku.
 
 \begin{lstlisting}[float, caption=after\_script in travis.yml, label=travis-yml-after-script]
