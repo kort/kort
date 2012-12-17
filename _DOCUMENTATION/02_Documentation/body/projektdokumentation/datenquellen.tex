@@ -4,7 +4,7 @@
 \todo[inline]{Fehlerdatenquellen überarbeiten}
 
 Die Grundlage unserer \gls{WebApp} bilden die Fehlerdaten, welche korrigiert werden sollen.
-Es galt deshalb zuerst eine geeignete Quelle für Fehlerdaten in OpenStreetMap zu finden.
+Es galt deshalb zuerst eine geeignete Quelle für Fehlerdaten in \gls{OpenStreetMap} zu finden.
 
 \section{Evaluation von geeigneten Datenquellen}
 Durch die Anforderungen an die Applikation ergaben sich folgende Bedingungen, welche die Fehlerdaten erfüllen müssen:
@@ -13,13 +13,13 @@ Durch die Anforderungen an die Applikation ergaben sich folgende Bedingungen, we
 \item Die Fehler müssen auch für Nicht-Mapper lösbar sein. Sprich die Beschreibungen sollten kein Mapping-Vokabular enthalten.
 \item Sie müssen auf Deutsch übersetzbar sein. Die Fehlerbeschreibungen sollten somit einem gegebenen Schema folgen und nicht Freitext beinhalten.
 \item Dadurch dass wir eine mobile App erstellen und keinen vollwertigen Karten-Editor, sollen die Fehler lediglich Tags betreffen. Das Lösen des Fehlers sollte also möglich sein, ohne das Geometrieobjekt (Strasse, Gebäude, usw.) zu verändern.
-\item Die Fehler sollten sich immer nur auf einen Tag des betroffenen OSM-Objekt beziehen. Dadurch vereinfacht sich das Zurückschreiben der Daten zu OpenStreetMap.
+\item Die Fehler sollten sich immer nur auf einen Tag des betroffenen OSM-Objekt beziehen. Dadurch vereinfacht sich das Zurückschreiben der Daten zu \gls{OpenStreetMap}.
 \end{itemize}
 
 Wir untersuchten deshalb mehrere Fehlerdatenquellen auf deren Qualität.
 
 \subsection{FIXME-Tags in OpenStreetMap}
-Fehlerhafte Objekte in OpenStreetMap können von Benutzern direkt mit einem FIXME-Tag versehen werden, wenn sie einen Fehler aufweisen.
+Fehlerhafte Objekte in \gls{OpenStreetMap} können von Benutzern direkt mit einem FIXME-Tag versehen werden, wenn sie einen Fehler aufweisen.
 Darin wird der eigentliche Fehler beschrieben.
 
 \begin{table}[H]
@@ -28,7 +28,7 @@ Darin wird der eigentliche Fehler beschrieben.
 \hline 
 \small{\textbf{URL}} & \url{http://wiki.openstreetmap.org/wiki/DE:Key:fixme} \\
 \hline 
-\small{\textbf{Erfasser}} & OpenStreetMap-Benutzer \\
+\small{\textbf{Erfasser}} & \gls{OpenStreetMap}-Benutzer \\
 \hline 
 \small{\textbf{API verfügbar?}} & Ja (API oder Datenbankzugriff) \newline
 \url{http://wiki.openstreetmap.org/wiki/API_v0.6} \\
@@ -56,7 +56,7 @@ Mit der Applikation OpenStreetBugs ist es für die Benutzer möglich Fehler in d
 \small{\textbf{API verfügbar?}} & Ja (REST API oder Fehlerdaten als Dump-File downloadbar) \newline
 \url{http://wiki.openstreetmap.org/wiki/OpenStreetBugs/API_0.6} \\
 \hline 
-\small{\textbf{Lösung zurückschreiben}} & Lösung müsste an OpenStreetMaps gesendet werden. Zusätzlich  müsste der Bug auf OpenStreetBugs als gelöst markiert werden. \\
+\small{\textbf{Lösung zurückschreiben}} & Lösung müsste an \gls{OpenStreetMap} gesendet werden. Zusätzlich  müsste der Bug auf OpenStreetBugs als gelöst markiert werden. \\
 \hline
 \small{\textbf{Eignung}} & \textbf{tief} \linebreak Durch die manuelle Erfassung der Daten, ist es für uns nicht möglich ein spezifisches GUI für die Fehlerbehebung zu erstellen. \\ 
 \hline 
@@ -78,7 +78,7 @@ keepright ist ein Dienst, welcher jeweils über Nacht, Fehler in OSM-Objekten su
 \hline 
 \small{\textbf{API verfügbar?}} & Ja (Fehlerdaten werden als Dump-File zum Download angeboten) \newline \url{http://keepright.ipax.at/interfacing.php} \\
 \hline 
-\small{\textbf{Lösung zurückschreiben}} & Lösung müssten lediglich an OpenStreetMap gesendet werden. keepright baut seine Fehlerdatenbank jeweils über Nacht aus dem OSM-Daten neu auf. \\
+\small{\textbf{Lösung zurückschreiben}} & Lösung müssten lediglich an \gls{OpenStreetMap} gesendet werden. keepright baut seine Fehlerdatenbank jeweils über Nacht aus dem OSM-Daten neu auf. \\
 \hline
 \small{\textbf{Eignung}} & \textbf{hoch} \linebreak Dadurch das die Fehlerdaten automatisiert erstellt werden, ist es gut möglich, für jeweilige Fehlertypen eine geeignete Maske für deren Behebung zur Verfügung zu stellen. \\
 \hline
@@ -134,9 +134,9 @@ Auf der Webseite von Keepright ist ersichtlich\footnote{\url{http://www.keeprigh
 \hline
 \inlinecode{error\_name} & Name des Fehlertyps  \\
 \hline
-\inlinecode{object\_type} & OpenStreetMap-Typ des Objekts (\gls{Node}, \gls{Way} oder \gls{Relation})  \\ 
+\inlinecode{object\_type} & \gls{OpenStreetMap}-Typ des Objekts (\gls{Node}, \gls{Way} oder \gls{Relation})  \\ 
 \hline
-\inlinecode{object\_id} & OpenStreetMap-ID des Objekts  \\
+\inlinecode{object\_id} & \gls{OpenStreetMap}-ID des Objekts  \\
 \hline
 \inlinecode{state} & Status des Fehlers (new, reopened, ignore\_temporarily, ignore)  \\
 \hline
