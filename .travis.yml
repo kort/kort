@@ -1,30 +1,19 @@
 language: php
 
-php: 5.3
+php: 
+  - 5.3
+  - 5.4
 
-env: 
+env:
+  global:
+    - CI_HOME=`pwd`/odi86/kort
+    - DEPLOY="true"
+    - BUILD_DIR=`pwd`/build_heroku 
+    - secure: "EIn+Rm7OxX8OKygBRBCaSTOqFGcBMWu5kHdKqSxOmHRJYjxuMOJpKV+rnyep\n+RsyFDx2Z9yKlqRRS4cpZh7M6wwC63EV46+7aWtzzTjnbMZfVzLQA9EmaEU4\nYMsKGtpQk2mhvaNKd3UbEpDl0Zq74NnAY0zipx0l02UymcFnZEc=" 
+    - secure: "cOmMBP4UyklRC0nfeTZsX/NV4GhMBT+AntUmlWxXS5Rj2yrNcmNc7320gNm5\nCLSVRYyk7/8feyUEMznWrUn/62htZp0tEBAWtXg86dgIZgH4HPy9l2pKuSsH\nxZTHgjUJI7JOuyLG4ID9D5maVLE35UWag/NEtcRVy5QXLZOrs0M="
   matrix:
-  - DEPLOY="false" TARGET_ENV="dev" CI_HOME=`pwd`/odi86/kort
-  - DEPLOY="false" TARGET_ENV="prod" CI_HOME=`pwd`/odi86/kort
-
-matrix:
-  include:
-    - php: 5.4
-      env:
-        - DEPLOY="true"
-        - TARGET_ENV="prod"
-        - BUILD_DIR=`pwd`/build_heroku 
-        - CI_HOME=`pwd`/odi86/kort
-        - secure: "EIn+Rm7OxX8OKygBRBCaSTOqFGcBMWu5kHdKqSxOmHRJYjxuMOJpKV+rnyep\n+RsyFDx2Z9yKlqRRS4cpZh7M6wwC63EV46+7aWtzzTjnbMZfVzLQA9EmaEU4\nYMsKGtpQk2mhvaNKd3UbEpDl0Zq74NnAY0zipx0l02UymcFnZEc=" 
-        - secure: "cOmMBP4UyklRC0nfeTZsX/NV4GhMBT+AntUmlWxXS5Rj2yrNcmNc7320gNm5\nCLSVRYyk7/8feyUEMznWrUn/62htZp0tEBAWtXg86dgIZgH4HPy9l2pKuSsH\nxZTHgjUJI7JOuyLG4ID9D5maVLE35UWag/NEtcRVy5QXLZOrs0M="
-    - php: 5.4
-      env:
-        - DEPLOY="true"
-        - TARGET_ENV="dev"
-        - BUILD_DIR=`pwd`/build_heroku 
-        - CI_HOME=`pwd`/odi86/kort
-        - secure: "EIn+Rm7OxX8OKygBRBCaSTOqFGcBMWu5kHdKqSxOmHRJYjxuMOJpKV+rnyep\n+RsyFDx2Z9yKlqRRS4cpZh7M6wwC63EV46+7aWtzzTjnbMZfVzLQA9EmaEU4\nYMsKGtpQk2mhvaNKd3UbEpDl0Zq74NnAY0zipx0l02UymcFnZEc=" 
-        - secure: "cOmMBP4UyklRC0nfeTZsX/NV4GhMBT+AntUmlWxXS5Rj2yrNcmNc7320gNm5\nCLSVRYyk7/8feyUEMznWrUn/62htZp0tEBAWtXg86dgIZgH4HPy9l2pKuSsH\nxZTHgjUJI7JOuyLG4ID9D5maVLE35UWag/NEtcRVy5QXLZOrs0M="
+    - TARGET_ENV="dev"
+    - TARGET_ENV="prod"
 
 before_script:
   - gem install sass
