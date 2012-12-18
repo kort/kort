@@ -1,5 +1,5 @@
 create sequence kort.fix_id;
-create sequence kort.validation_id;
+create sequence kort.vote_id;
 create sequence kort.user_id;
 
 create table kort.error_type (
@@ -11,7 +11,7 @@ create table kort.error_type (
     vote_question character varying(255),
     vote_koin_count integer not null,
     fix_koin_count integer not null,
-    required_validations integer not null,
+    required_votes integer not null,
     unique(type)
 );
 
@@ -68,8 +68,8 @@ create table kort.answer (
     foreign key (type) references kort.error_type (type)
 );
 
-create table kort.validation (
-    validation_id integer primary key default nextval('kort.validation_id'),
+create table kort.vote (
+    vote_id integer primary key default nextval('kort.vote_id'),
     user_id integer,
     fix_id integer,
     valid boolean,
@@ -83,7 +83,7 @@ create or replace function reset_kort() returns boolean as $$
 begin
     update kort.user set koin_count = 0;
     delete from kort.user_badge;
-    delete from kort.validation;
+    delete from kort.vote;
     delete from kort.fix;
 
     return true;
