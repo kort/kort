@@ -81,35 +81,47 @@ Dazu werden sie nach Anzahl gewonnener \emph{koins} in einer Rangliste eingestuf
 Neben den verwendeten Gamification-Elementen in \textsc{Kort} gibt es noch eine Vielzahl weiterer Elemente, welche sich für diesen Anwendungszweck eigenen würden.
 Diese konnten während der Arbeit aber nicht implementiert werden.
 
+Daneben gibt es aber auch noch Elemente welche zwar für OpenStreetMap als Projekt interessant wären, sich jedoch nicht mit \textsc{Kort} umsetzen lassen.
+
 \subsection{Erste Schritte}
 Um den Einstieg in die Verwendung der App weiter zu vereinfachen wäre es sinnvoll beim ersten Start eine kurze Einführung anzuzeigen.
 So könnte man dem Benutzer für die einzelnen Masken jeweils Tipps einblenden oder gar eine geführte Tour durch die App und deren Möglichkeiten anbieten.
 
+Wenn der Benutzer nicht weiss, welche Möglichkeiten er hat, kann dies dazu führen, dass er schnell wieder aufgibt oder nicht das volle Potential der App ausschöpfen kann.
+
 \subsection{Zeitlich begrenze Aktionen}
 Durch das Einführen von zeitlich begrenzten Aktionen kann man Benutzer dazu motivieren die App auch nach längerer Zeit noch zu verwenden.
 So könnte man Tage definieren, an denen man die doppelte Anzahl an Punkten gewinnt.
-Zusätzlich könnte man Aktionen starten, bei denen man spezielle Auszeichnungen gewinnen kann.\footnote{Biespiel einer zeitlich begrenzen Aktion in \gls{OpenStreetMap}: Das \emph{big baseball project 2011} \url{http://wiki.openstreetmap.org/wiki/Big_baseball_project_2011}}
+Zusätzlich könnte man Aktionen starten, bei denen man spezielle Auszeichnungen gewinnen kann.\footnote{Beispiel einer zeitlich begrenzen Aktion in \gls{OpenStreetMap}: Das \emph{big baseball project 2011} \url{http://wiki.openstreetmap.org/wiki/Big_baseball_project_2011}}
 
-\subsection{Den Benutzer bei der Stange halten}
 Um den Benutzer dazu zu animieren die App erneut zu starten, könnte man per Push-Meldungen auf aktuelle Aktionen, Updates oder Ereignisse aufmerksam machen.
 
 \subsection{Weitere Auszeichnungen hinzufügen}
 Bei der Auswahl an verfügbaren Auszeichnungen sollte man darauf achten, dass es für jeden Spielertyp geeignete Auszeichnungen zu gewinnen gibt.
-
+Die verschiedenen Typen haben eine ganz andere Herangehensweise und müssen deshalb auch mit verschiedenen Belohnungen motiviert werden.
 Eine Einteilung von verschiedenen Spielertypen wird auf \emph{Gamasutra}\footnote{\url{http://www.gamasutra.com/view/feature/6474/personality_and_play_styles_a_.php}} beschrieben.
+
+Es gibt bereits eine Liste von möglichen Badges im Wiki von OpenStreetMap\footnote{\url{https://wiki.openstreetmap.org/wiki/Badges}}.
 
 \subsection{Verschiedene Highscores}
 Durch das Bereitstellen von verschiedenen Highscores (Bsp. Regional, Nach Fehlertyp), gibt man allen Benutzern die Chance, irgendwo den ersten Platz zu erreichen.
 Dadurch verhindert man eine mögliche Demotivation beim Vergleich mit Langzeitspielern, welche bereits eine grosse Anzahl an Punkten gesammelt haben.
 
-\subsection{Erhöhen von Berechtigungen}
+\subsection{Erfahrene Spieler}
 Man könnte als Belohnung für viele gelöste Fehler die Berechtigungen des Benutzers erhöhen.
 So könnte beispielsweise seine Stimme bei einer Überprüfung einer Lösung doppelt zählen.
-
 Dieses Prinzip wird auch von der Frage/Antwort-Plattform \emph{Stack Overflow}\footnote{\url{http://stackoverflow.com/}} angewendet.
 
-\subsection{Schwierigkeitsstufen}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{images/gamification/so-privileges}
+	\caption{Zusätzliche Berechtigungen bei StackOverflow}
+	\label{gamification-so-privileges}
+\end{figure}
+
 Um erfahrene Spieler nicht zu unterfordern, könnte man ihm beim Erreichen einer gewissen Punktzahl, Fehler anzeigen, welche schwieriger zu lösen sind.
+Wichtig ist es dabei, dass das Spiel nicht plötzlich vorbei ist.
+Auch der Spieler der bereits die meisten Punkte hat, muss noch eine Motivation haben die App weiter zu verwenden.
 
 \subsection{Einbinden in Apple Game Center}
 Apple bietet mit dem \emph{Game Center} einen zentralen Ort an, Punkte und Auszeichnungen von Game-Apps zu speichern.
@@ -118,8 +130,22 @@ Dadurch, dass das \emph{Game Center} bereits eine grosse Community an Spielern a
 Leider besteht dabei die Einschränkung, dass man lediglich iOS-Games für das Game Center anmelden kann.
 
 \subsection{Design}
-Natürlich könnte man auch noch am Design einiges verändern, um den Spielspass zu erhöhen.
+Spiele habe viele Design-Eigenheiten, welche sich von reinen Business-Applikationen abheben.
+Dies kann durch geeignete Farben und UI-Elemente realisiert werden.
+Typischerweise wird ein Benutzer durch die Applikation geführt, so dass ihm immer klar ist wie es weiter geht.
 
-% Gamification von OpenStreetMap
-\section{Gamification von OpenStreetMap}
-\todo[inline]{Gamification von OpenStreetMap beschreiben}
+\subsection{Gamification von OpenStreetMap}
+In der OpenStreetMap Community gibt es bereits einige Ideen um Spiele-Konzepte für das Projekt zu verwenden.
+Beispielsweise gab es eine rege Diskussion auf der Geowanking-Mailingliste welche durch Prof. Stefan Keller initiiert wurde\footnote{\url{http://geowanking.org/pipermail/geowanking_geowanking.org/2012-September/thread.html\#26302}}.
+
+An der State Of The Map Konferenz 2011 (SotM 2011) hat Martijn van Exel  einen Vortrag zum Thema \emph{Can gaming concepts help make OpenStreetMap better?}\footnote{\url{http://wiki.openstreetmap.org/wiki/SotM_2011_session:_Insert_Coin_To_Play}} gehalten.
+
+Er beschreibt darin eines der Hauptprobleme von OpenStreetMap, dass es neuen Benutzern schwerfällt die \emph{erste Meile} zurückzulegen.
+Viele neue Benutzer haben Angst davor etwas falsch zu machen und müssen sich zuerst mit den vielfältigen Möglichkeiten des Karten-Editors vertraut machen.
+Die Statistik der Benutzer von OpenStreetMap bestätigt dieses Bild: fast Zweidrittel der Benutzer hat zwar ein Benutzerkonto, hat aber noch keine Änderungen vorgenommen.
+
+Martijn van Exel schlägt deshalb vor, dass das Recht die Karte zu editieren gestaffelt werden soll.
+So soll sich ein Benutzer das Recht \emph{verdienen} müssen, komplexere Änderungen an der Karte vorzunehmen.
+
+Dadurch kann der Spieltrieb des Menschen geweckt werden um sich weiterzuentwickeln.
+Nebenbei lernt der Benutzer dem Umgang mit dem Karteneditor und fühlt sich sicherer um überhaupt Änderungen vorzunehmen.
