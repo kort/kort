@@ -51,7 +51,10 @@ class ClassLoader
         require_once(dirname(__FILE__) . '/../../lib/Slim-2.1.0/Slim/Slim.php');
 
         //Load autoloader of Composer
-        require_once(dirname(__FILE__) . '/../../vendor/autoload.php');
+        $composerAutoloader = dirname(__FILE__) . '/../../vendor/autoload.php';
+        if (file_exists($composerAutoloader)) {
+            require_once($composerAutoloader);
+        }
     }
 
     /**
