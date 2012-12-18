@@ -38,3 +38,7 @@ server/php/Webservice/Database/DbConfig.php
 *.bak
 docs/Kort
 docs/Kort-backend
+composer.phar
+composer.lock
+vendor/
+bin/
