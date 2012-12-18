@@ -96,6 +96,7 @@ Ext.define('Kort.util.Config', {
         about: {
             information: [
                 '<a href="http://wiki.openstreetmap.org/wiki/DE:Kort_App" target="_blank">OpenStreetMap Wiki</a>',
+                '<a href="http://kort.uservoice.com" target="_blank">Uservoice Formular</a>',
                 '<a href="https://github.com/odi86/kort/issues" target="_blank">GitHub</a>'
             ],
             developers: [
