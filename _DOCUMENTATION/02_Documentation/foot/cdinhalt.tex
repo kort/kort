@@ -4,8 +4,46 @@
 % Kapitel in Inhaltsverzeichnis einfügen
 \addcontentsline{toc}{chapter}{Inhalt der CD}
 
-\todo[inline]{Inhalt der CD beschreiben}
-
-\begin{longtable}{|p{0.45\twocelltabwidth}|p{0.55\twocelltabwidth}|}
-\hline
-\end{longtable} 
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.35\twocelltabwidth}|p{0.65\twocelltabwidth}|}
+\hline 
+\textbf{Pfad} & \textbf{Beschreibung} \\ 
+\hline 
+\inlinecode{.sencha/} & Konfiguration für Sencha Cmd \\ 
+\hline 
+\inlinecode{\_DESIGN/} & Grafik-Rohdaten \\ 
+\hline 
+\inlinecode{\_DOCUMENTATION/} & Dokumentation der Arbeit \\ 
+\hline 
+\inlinecode{\_DOCUMENTATION/ba-kort-
+\newline jhunzike\_soderbol.pdf} & Dokumentation der Arbeit im PDF-Format \\ 
+\hline 
+\inlinecode{app/} & \textsc{Kort} Frontend \\ 
+\hline 
+\inlinecode{build/Kort/production/} & \textsc{Kort} Production Build (komprimierte JavaScript Sourcefiles) \\ 
+\hline 
+\inlinecode{docs/} & Generierte Code-Dokumentationen (\textsc{Kort} Frontend, \textsc{Kort} Backend, Ext.ux.LeafletMap) \\ 
+\hline 
+\inlinecode{i18n/} & Internationalisierungs-Plugin für Sencha Touch \\ 
+\hline 
+\inlinecode{jsduck/} & Konfiguration zur Gererierung der JSDuck Code-Dokumentation \\ 
+\hline 
+\inlinecode{lib/} & Verwendete Library-Pakete \\ 
+\hline 
+\inlinecode{resources/} & Ressourcen, welche von \textsc{Kort} verwendet werden (CSS, Bilder, Sprach-Property-Files) \\ 
+\hline 
+\inlinecode{server/} & \textsc{Kort} Backend \\ 
+\hline 
+\inlinecode{test/} & Tests der Use Cases und Libraries \\ 
+\hline 
+\inlinecode{touch/} & Sencha Touch 2 Library \\ 
+\hline 
+\inlinecode{ux/} & Sencha Touch Erweiterungs-Komponenten \\ 
+\hline 
+\inlinecode{app.js} & Einstiegspunkt des \textsc{Kort} Frontends \\ 
+\hline 
+\inlinecode{app.json} & Sencha Cmd Konfiguration von \textsc{Kort} \\ 
+\hline 
+\end{tabular}
+\end{table}
