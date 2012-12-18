@@ -170,3 +170,12 @@ Auf der Webseite von \emph{KeepRight} ist ersichtlich\footnote{\url{http://www.k
 
 Diese Daten sind in der Tabelle \inlinecode{keepright.errors} enthalten.
 Ein Subset davon wird für die Applikation benötigt.
+
+\section{Internationalisierung der Texte aus der Datenbank}
+\label{datenquellen-internationalisierung}
+Eine Anforderung an \textsc{Kort} war es, ein deutsches UI anzubieten und daneben die App soweiter vorzubereits, dass sich diese Internationalisieren lässt.
+
+Dies schliesst in diesem Fall die Texte aus der Datenbank mit ein.
+Alle Fehlerdaten werden ohne Übersetzung aus der Datenbank gelesen und anschliessend mit den Werten aus den Datenbank-spezifischen Properties-Files.
+
+Um die Texte zu ändern, können direkt die Dateien angepasst werden.
