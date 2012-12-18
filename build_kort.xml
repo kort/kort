@@ -62,7 +62,7 @@
 
     <target name="php-lint">
         <echo message="Linting PHP files"/>
-        <exec executable="phpcs">
+        <exec executable="bin/phpcs">
             <arg value="--standard=code_standard.xml"/>
             <arg value="--report-width=60"/>
             <arg value="${php.dir}"/>
