@@ -115,6 +115,7 @@
     "resources": [
         ".htaccess",
         "index.php",
+        "index_iphone.html",
         "resources/images",
         "resources/styles/styles.css",
         "resources/i18n",
