@@ -1,6 +1,33 @@
 \section{Testing}
-\todo[inline]{Backend Testing}
 
 \subsection{SimpleTest}
+SimpleTest\footnote{\url{http://simpletest.org/}} ist ein einfaches aber dennoch sehr flexibles Unit Testing Framework.
+Die bestehende Funktionalität lässt sich sehr einfach erweitern und auf die eigenen Bedürfnisse anpassen.
+Aus diesem Grund sind im Namespace \inlinecode{TestHelper}\footnote{\url{http://kort.herokuapp.com/docs/Kort-backend/namespaces/TestHelper.html}} einige Klassen entstanden als Erweiterung von SimpleTest.
+So ist es beispielsweise möglich, die Tests sowohl im Browser wie auch auf der Kommandozeile durchzuführen.
+
+Die Testresulte auf der Testumgebung befinden sich hier: \url{http://kort-dev.herokuapp.com/test}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{images/implementation/backend/simple-test}
+	\caption{Testresultate von SimpleTest im Browser}
+	\label{image-simple-test}
+\end{figure}
+
+Der derzeitige Build ist so eingestellt, dass der Build nicht durchläuft wenn die Tests nicht bestanden werden.
+Dies stellt sicher, dass sich nur stabile Versionen auf unserem Webserver befinden.
 
 \subsection{Integrationstests der Webservices mit QUnit}
+Neben den klassischen Unit Tests, waren für die verschiedenen \gls{REST}-Webservices auch noch Integrationstest nötig.
+Im Rahmen solcher Tests wird via QUnit (welches wir für das JavaScript Testing benötigen) eine Anfrage an die betreffende Ressource gestellt.
+Dessen Antwort lässt sich dann im Unit Test leicht prüfen.
+
+Die JavaScript Tests befinden sich auf der Entwicklungsumgebung: \url{http://kort-dev.herokuapp.com/test/client/}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{images/implementation/backend/qunit-skipped-test}
+	\caption{Testresultate der Integrationstests im Browser}
+	\label{image-qunit-skipped-test}
+\end{figure}
