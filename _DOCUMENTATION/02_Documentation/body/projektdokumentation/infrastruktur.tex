@@ -90,6 +90,16 @@ Auf \emph{GitHub} gibt es sogenannte \emph{Hooks} die man aktivieren kann.
 Dabei handelt es sich um weitere Aktionen welche durch verschiedene Ereignisse ausgelöst werden können. 
 In unserem Fall haben wir einen \emph{post-commit Hook} aktiviert, welcher dem \gls{ci} Dienst \emph{Travis-CI}\footnote{\url{http://travis-ci.org}} Bescheid gibt, wenn ein neue Änderungen auf \emph{GitHub} eingetroffen sind.
 
+Nach einem erfolgreichen Build werden die Resultate an \emph{Heroku} gesendet.
+Zusätzlich wird der Datenbankserver über die Änderungen notifiziert, worauf dieser sich selbst aktualisiert.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.35]{images/implementation/backend/kort-development}
+	\caption{Entwicklungsprozess von Kort}
+	\label{image-kort-development}
+\end{figure}
+
 \subsection{Travis CI}
 Auf \emph{Travis} läuft dann der Build, welcher durch die Konfigurationsdatei \inlinecode{.travis.yml} gesteuert ist. Darin lassen sich die Schritte sowie die Umgebung für Builds definieren.
 Für jede Umgebung wird dann ein separater Build ausgelöst.
