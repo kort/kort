@@ -23,7 +23,7 @@ class VoteHandler extends DbProxyHandler implements IKoinCount
      */
     protected function getTable()
     {
-        return 'kort.validation';
+        return 'kort.vote';
     }
 
     /**
@@ -47,7 +47,7 @@ class VoteHandler extends DbProxyHandler implements IKoinCount
     {
         $sql  = "update kort.fix set ";
         $sql .= "complete = ";
-        $sql .= "(select required_validations - upratings + downratings <= 0 from kort.validations ";
+        $sql .= "(select required_votes - upratings + downratings <= 0 from kort.validations ";
         $sql .= " where id = " . $data['fix_id'] . ") ";
         $sql .= "where  fix_id = " . $data['fix_id'] . " ";
         $sql .= "returning complete";

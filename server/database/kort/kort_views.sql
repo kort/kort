@@ -51,9 +51,9 @@ select  f.fix_id id,
         t.vote_question question,
         t.vote_koin_count,
         f.message fixmessage,
-       (select count(1) from kort.validation v where v.fix_id = f.fix_id and v.valid) upratings,
-       (select count(1) from kort.validation v where v.fix_id = f.fix_id and not v.valid) downratings,
-        t.required_validations,
+       (select count(1) from kort.vote v where v.fix_id = f.fix_id and v.valid) upratings,
+       (select count(1) from kort.vote v where v.fix_id = f.fix_id and not v.valid) downratings,
+        t.required_votes,
         e.latitude,
         e.longitude,
         e.geom
@@ -116,7 +116,7 @@ select u.user_id id,
        u.secret,
        u.koin_count,
        (select count(1) from kort.fix f where f.user_id = u.user_id) fix_count,
-       (select count(1) from kort.validation v where v.user_id = u.user_id) vote_count
+       (select count(1) from kort.vote v where v.user_id = u.user_id) vote_count
 from   kort.user u;
 
 create or replace view kort.user_badges as
@@ -136,7 +136,7 @@ select rank() over (order by u.koin_count desc) ranking,
        u.oauth_user_id,
        u.koin_count,
        (select count(1) from kort.fix f where f.user_id = u.user_id) fix_count,
-       (select count(1) from kort.validation v where v.user_id = u.user_id) vote_count
+       (select count(1) from kort.vote v where v.user_id = u.user_id) vote_count
 from   kort.user u
 where  u.username is not null
 order by ranking;
@@ -150,5 +150,5 @@ select t.error_type_id,
        t.vote_question,
        t.vote_koin_count,
        t.fix_koin_count,
-       t.required_validations
+       t.required_votes
 from   kort.error_type t;

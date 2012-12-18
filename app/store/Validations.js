@@ -9,7 +9,7 @@ Ext.define('Kort.store.Validations', {
         
 		grouper: {
             groupFn: function(record) {
-                var validationsLeft = record.get('required_validations') - record.get('upratings') + record.get('downratings');
+                var validationsLeft = record.get('required_votes') - record.get('upratings') + record.get('downratings');
                 return validationsLeft + ' <span class="text">' + Ext.i18n.Bundle.message('validation.list.header') + '</span>';
             }
         },
