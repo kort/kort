@@ -6,16 +6,12 @@ tab.profile=Profil
 tab.about=Über
 button.back=Zurück
 
-# Submitted Popup
-submitted.message.1=Du hast dir
-submitted.message.2=koins verdient!
-
 # Login
 login.kort.description.1=Löse Fehler
 login.kort.description.2=Sammle koins
-login.kort.description.3=Steige auf
+login.kort.description.3=Verbessere OpenStreetMap
 login.introduction.1=Um 
-login.introduction.2= nutzen zu können musst du dich aber zuerst einloggen:
+login.introduction.2= nutzen zu können, musst du dich zuerst einloggen:
 login.button.google=Login mit Google
 login.button.osm=Login mit OpenStreetMap
 login.loadmask.message=Login...
