@@ -3,19 +3,23 @@
 
 \section{Hinzufügen von Fehler-Datenquellen}
 \label{additional-error-source}
-Die Applikation benutzt die View \inlinecode{kort.all\_errors} als Schnittstelle zu allen Fehlerdaten.
+Die Applikation benutzt die View \inlinecode{kort.all\_errors} (siehe Abbildung \ref{image-kort-database-view-all_errors}) als Schnittstelle zu allen Fehlerdaten.
 Wenn neue Fehlerquellen an das System angeschlossen werden sollen, dann muss entsprechend diese View angepasst werden.
 Die jetzige View ist auf die Fehlerquelle \emph{KeepRight} (siehe Kapitel \ref{datenquellen-keepright}) angepasst.
 
 Es werden einige Anforderungen an eine neue Fehlerquelle gestellt:
 \begin{itemize}
-\item Ein Fehler muss sich konkret auf ein \gls{OpenStreetMap}-Objekt beziehen (Node, Way oder Relation)
+\item Ein Fehler muss sich konkret auf ein \gls{OpenStreetMap}-Objekt beziehen (\gls{Node}, \gls{Way} oder \gls{Relation})
 \item Für die Darstellung auf der Karte muss ein einzelne Koordinate angegeben werden können (keine Flächen oder Wege)
 \item Zu einem Fehler gibt es eine aussagekräftige Fehlermeldung
 \end{itemize}
 
-
-\todo[inline]{Bild kort all\_errors einfuegen}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{images/uml/kort-database-view-all_errors}
+	\caption{Die View kort.all\_errors}
+	\label{image-kort-database-view-all_errors}
+\end{figure}
 
 Die Fehler einer neuen Quelle müssen auf die bestehenden Fehlertypen gemappt werden.
 Falls dies nicht geht oder es sich um neue Arten von Fehlern handelt, so müssen zusätzliche Fehlertypen eingeführt werden (siehe unten).
@@ -45,17 +49,15 @@ In der App sind bereits folgende Fehlertypen implementiert:
 \item Strasse ohne Namen
 \end{itemize}
 
-Diese Typen sind in der Tabelle \inlinecode{kort.error\_type} definiert.
+Diese Typen sind in der Tabelle \inlinecode{kort.error\_type} (siehe Abbildung \ref{image-kort-database-table-error_type}) definiert.
 Im Feld \inlinecode{type} dieser Tabelle befindet sich die eindeutige Identifikation eines Typs.
 Diese wird beispielsweise für die Anzeige eines passenden Marker-Icons (für die Karte) und der Verbindung zu einem passenden View-Typ (siehe Abschnitt \ref{view-types}) verwendet.
 
-\todo[inline]{Bild keepright error\_type einfügen}
-
-% IMAGE keepright.error_type
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{images/implementation/backend/table-error-type}
-	\caption{Die Tabelle \inlinecode{kort.error\_type}}
+	\includegraphics[scale=0.7]{images/uml/kort-database-table-error_type}
+	\caption{Die Tabelle kort.error\_type}
+	\label{image-kort-database-table-error_type}
 \end{figure}
 
 \subsubsection{Erstellen eines neuen Fehlertyps}
@@ -74,7 +76,7 @@ In Tabelle \ref{kort-view-types-table} sind die bereits vorhandenen View-Typen b
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|p{0.15\twocelltabwidth}|p{0.85\twocelltabwidth}|}
+\begin{tabular}{|p{0.12\twocelltabwidth}|p{0.88\twocelltabwidth}|}
 \hline
 \textbf{Typ} & \textbf{Beschreibung} \\
 \hline
@@ -85,7 +87,7 @@ In Tabelle \ref{kort-view-types-table} sind die bereits vorhandenen View-Typen b
 \inlinecode{select} & Rendert eine Select-Box mit vorgefüllten Werten aus der Datenbank \\
 \hline
 \end{tabular}
-\caption{kort: View-Typen}
+\caption{View-Typen in Kort}
 \label{kort-view-types-table}
 \end{table}
 
@@ -94,10 +96,10 @@ Darin kann der eigentliche Wert des \gls{OpenStreetMap}-Tags und eine passende B
 Als \inlinecode{type} muss der jeweilige Typen-Bezeichner gewählt werden.
 
 \subsubsection{Erstellen eines neuen View-Typen}
-Um einen neuen View-Typen zu definieren muss wie in Code-Ausschnitt \ref{kort-add_view_type} beschrieben die Unterscheidung in der Klasse \inlinecode{Kort.view.bugmap.fix.Form} um den neuen Typen ergänzt werden.
+Um einen neuen View-Typen zu definieren muss wie in Code-Ausschnitt \ref{code-kort-add_view_type} beschrieben die Unterscheidung in der Klasse \inlinecode{Kort.view.bugmap.fix.Form} um den neuen Typen ergänzt werden.
 
 \lstset{language=JavaScript}
-\begin{lstlisting}[float, caption=Hinzufügen eines View-Typen in der Klasse Kort.view.bugmap.fix.Form, label=kort-add_view_type]
+\begin{lstlisting}[caption=Unterscheidung der View-Typen in Kort.view.bugmap.fix.Form, label=code-kort-add_view_type]
 createFixField: function(bug) {
 	[...]
 	
