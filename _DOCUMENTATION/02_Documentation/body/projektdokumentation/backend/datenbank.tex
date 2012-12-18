@@ -4,12 +4,12 @@ Das Schema \inlinecode{kort} beinhaltet die Daten und Views für die Applikation
 
 \subsection{Views}
 Um die Applikationslogik möglichst von der Datenbank unabhängig zu halten, wird aus dem Backend-Code heraus nur auf die Views aus dem Schema \inlinecode{kort} zugegriffen.
-Dies ermöglicht es später andere Schemas hinzuzufügen und wieder zu entfernen.
-Und auch Änderungen innerhalb des Schemas bedeuten keinen Bruch des View-\glspl{API}.
+Dies ermöglicht es weitere Schemas unabhängig voneinander hinzuzufügen und wieder zu entfernen.
+Auch Änderungen innerhalb des Schemas bedeuten keinen Bruch des View-\glspl{API}.
 
 \subsection{Applikationsschema kort}
 Als Grundregel verwenden wir immer Views als \gls{API} gegen das wir programmieren.
-So lassen sich Änderungen viel leichter einbringen, ohne gleich eine Tabelle anzupassen.
+So lassen sich Änderungen daran sehr leicht einbringen einbringen, ohne dafür eine Tabelle anzupassen.
 
 Jedes Model (siehe Abschnitt \ref{kort-store-model-package})  in der \gls{WebApp} hat seine eigene View in der Datenbank, welche genau die Daten liefert, welche es braucht.
 Dies reduziert den Code für das Frontend und verschiebt die Datenlogik in die Datenbank.
@@ -33,5 +33,5 @@ Dadurch, dass die Datenbank über eine \gls{REST}-Schnittstelle angesprochen wir
 Dadurch könnte die Datenbank aber zwischen den einzelnen Requests in einen nicht-definierten Zustand geraten.
 
 Um dies zu verhindern ist es notwendig Transaktionen über eine separate \gls{REST}-Ressource zu abstrahieren.
-Clients können dazu ihre Abfragen in einem einzigen Request schicken und diese werden dann in einer Datenbank-Transaktion ausgeführt (siehe Abschnitt \ref{webservice-database}).
+Clients können dazu ihre Abfragen in einem einzigen Request schicken. Diese werden dann in einer einzigen Datenbank-Transaktion ausgeführt (siehe Abschnitt \ref{webservice-database}).
 Falls eine Abfrage schief läuft, werden automatisch die Änderungen der Transaktion rückgängig gemacht (\emph{Alles oder nichts}).
