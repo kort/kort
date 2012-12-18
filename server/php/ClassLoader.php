@@ -49,6 +49,9 @@ class ClassLoader
     {
         //Slim
         require_once(dirname(__FILE__) . '/../../lib/Slim-2.1.0/Slim/Slim.php');
+
+        //Load autoloader of Composer
+        require_once(dirname(__FILE__) . '/../../vendor/autoload.php');
     }
 
     /**
@@ -62,12 +65,6 @@ class ClassLoader
         require_once(dirname(__FILE__) . '/../../lib/simpletest/reporter.php');
         require_once(dirname(__FILE__) . '/../../lib/simpletest/test_case.php');
         require_once(dirname(__FILE__) . '/../../lib/simpletest/unit_tester.php');
-
-        //Mockery
-        require_once 'Mockery/Loader.php';
-        require_once 'Hamcrest/Hamcrest.php';
-        $loader = new \Mockery\Loader;
-        $loader->register();
     }
 
     /**

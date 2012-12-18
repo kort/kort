@@ -22,14 +22,14 @@ before_script:
   - wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh >/dev/null 2>&1
   - sudo npm install -g grunt >/dev/null 2>&1
   - curl -s http://getcomposer.org/installer | php --
-  - php composer.phar install
-  - pear install PHP_CodeSniffer && phpenv rehash
+  - php composer.phar install --dev
   - sudo pear channel-discover pear.phpdoc.org
-  - sudo pear install phpdoc/phpDocumentor-alpha && phpenv rehash
+  - sudo pear install phpdoc/phpDocumentor-alpha
   - sudo apt-get install graphviz
   - export PATH="$PATH:$CI_HOME:/usr/local/heroku/bin"
   - curl http://kort.rdmr.ch/webservices/update/git
   - mv $CI_HOME/server/php/Webservice/Database/DbConfig.example.php $CI_HOME/server/php/Webservice/Database/DbConfig.php
+  - phpenv rehash
 
 script: ant -f build_kort.xml build
 
