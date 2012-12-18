@@ -21,11 +21,10 @@ before_script:
   - gem install jsduck
   - wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh >/dev/null 2>&1
   - sudo npm install -g grunt >/dev/null 2>&1
+  - curl -s http://getcomposer.org/installer | php --
+  - php composer.phar install
   - pear install PHP_CodeSniffer && phpenv rehash
-  - sudo pear channel-discover pear.survivethedeepend.com
-  - sudo pear channel-discover hamcrest.googlecode.com/svn/pear
   - sudo pear channel-discover pear.phpdoc.org
-  - sudo pear install --alldeps deepend/Mockery
   - sudo pear install phpdoc/phpDocumentor-alpha && phpenv rehash
   - sudo apt-get install graphviz
   - export PATH="$PATH:$CI_HOME:/usr/local/heroku/bin"
