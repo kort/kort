@@ -1,3 +1,37 @@
 \section{Datenbank}
+Die Datenbank ist in verschiedenen Schemas organisiert.
+Das Schema \inlinecode{kort} beinhaltet die Daten und Views für die Applikation.
 
-\todo[inline]{Datenbank-Section (Schema, Views etc.)}
+\subsection{Views}
+Um die Applikationslogik möglichst von der Datenbank unabhängig zu halten, wird aus dem Backend-Code heraus nur auf die Views aus dem Schema \inlinecode{kort} zugegriffen.
+Dies ermöglicht es später andere Schemas hinzuzufügen und wieder zu entfernen.
+Und auch Änderungen innerhalb des Schemas bedeuten keinen Bruch des View-\glspl{API}.
+
+\subsection{Applikationsschema kort}
+Als Grundregel verwenden wir immer Views als \gls{API} gegen das wir programmieren.
+So lassen sich Änderungen viel leichter einbringen, ohne gleich eine Tabelle anzupassen.
+
+Jedes Model (siehe Abschnitt \ref{kort-store-model-package})  in der \gls{WebApp} hat seine eigene View in der Datenbank, welche genau die Daten liefert, welche es braucht.
+Dies reduziert den Code für das Frontend und verschiebt die Datenlogik in die Datenbank.
+
+\subsection{Schema für Fehlerquellen}
+Jede Fehlerquelle sollte ein eigenes Schema besitzen.
+Jegliche Fehlerquellen-spezifischen Daten, Funktionen oder Types sind dann in diesem Schema.
+Dadurch lassen sich diese beliebig hinzufügen und entfernen.
+
+In unserem Fall kommt uns das zugute, da jede Nacht das \emph{KeepRight} Schema gelöscht wird und anschliessend mit den neuen Fehlerdaten neu angelegt wird.
+
+So ist sichergestellt, dass alle zugehörigen Informationen beieinander sind.
+Lediglich in der View \inlinecode{kort.all\_errors} werden die Fehlerdaten der verschiedenen Schemas zusammengezogen.
+Die Schemas für Fehlerquellen gehören somit nicht zum \gls{API} der Datenbank.
+
+\subsection{Transaktionen}
+Um die Konsistenz und Integrität der Daten zu wahren, war es eine wichtige Anforderung Transaktionen auf der Datenbank durchführen zu können.
+So sollten beispielsweise einem Benutzer \emph{koins} gutgeschrieben werden, wenn er einen Lösungsvorschlag abliefert.
+
+Dadurch, dass die Datenbank über eine \gls{REST}-Schnittstelle angesprochen wird, könnte man auf die Idee kommen, mehrere Datenbankabfragen mit nacheinander abgeschickten Requests zu realisieren.
+Dadurch könnte die Datenbank aber zwischen den einzelnen Requests in einen nicht-definierten Zustand geraten.
+
+Um dies zu verhindern ist es notwendig Transaktionen über eine separate \gls{REST}-Ressource zu abstrahieren.
+Clients können dazu ihre Abfragen in einem einzigen Request schicken und diese werden dann in einer Datenbank-Transaktion ausgeführt (siehe Abschnitt \ref{webservice-database}).
+Falls eine Abfrage schief läuft, werden automatisch die Änderungen der Transaktion rückgängig gemacht (\emph{Alles oder nichts}).

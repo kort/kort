@@ -133,25 +133,3 @@ Wenn die Datenmengen gering sind, fällt dies jedoch nicht stark ins Gewicht.
 Sobald Binärdaten übertragen werden müssen, könnte es sinnvoll sein, einige Komponenten über andere Schnittstellen anzusprechen.
 
 In unserem System spielt das kein Rolle, da unsere Requests durchschnittlich 10KB gross sind.
-
-\section{Datenbank}
-Die Datenbank ist in verschiedenen Schemas organisiert.
-Das Schema \inlinecode{kort} beinhaltet die Daten und Views für die Applikation.
-
-\subsection{Applikations-Schema kort}
-Als Grundregel verwenden wir immer Views als \gls{API} gegen das wir programmieren.
-So lassen sich Änderungen viel leichter einbringen, ohne gleich eine Tabelle anzupassen.
-
-Jedes Model (siehe Abschnitt \ref{kort-store-model-package})  in der \gls{WebApp} hat seine eigene View in der Datenbank, welche genau die Daten liefert, welche es braucht.
-Dies reduziert den Code für das Frontend und verschiebt die Datenlogik in die Datenbank.
-
-\subsection{Schema für Fehlerquellen}
-Jede Fehlerquelle sollte ein eigenes Schema besitzen.
-Jegliche Fehlerquellen-spezifischen Daten, Funktionen oder Types sind dann in diesem Schema.
-Dadurch lassen sich diese beliebig hinzufügen und entfernen.
-
-In unserem Fall kommt uns das zugute, da jede Nacht das \emph{KeepRight} Schema gelöscht wird und anschliessend mit den neuen Fehlerdaten neu angelegt wird.
-
-So ist sichergestellt, dass alle zugehörigen Informationen beieinander sind.
-Lediglich in der View \inlinecode{kort.all\_errors} werden die Fehlerdaten der verschiedenen Schemas zusammengezogen.
-Die Schemas für Fehlerquellen gehören somit nicht zum \gls{API} der Datenbank.

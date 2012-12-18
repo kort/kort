@@ -1,11 +1,4 @@
-\section{Kommunikation}
-
-\subsection{Transaktionen}
-\todo[inline]{Transaktionen}
-
-\subsection{Sicherheit}
-\todo[inline]{Sicherheit}
-
+\section{Sicherheit}
 \subsection{Authentifizierung mit OAuth}
 \label{oauth}
 
@@ -40,9 +33,9 @@ So ist sichergestellt, dass ein Benutzer auch wirklich nur seine eigenen Daten m
 	\label{image-kort-relogin}
 \end{figure}
 
-\subsection{Registrierung der Applikation bei Google}
+\subsubsection{Registrierung der Applikation bei Google}
 Um den Google \gls{OAuth} Dienst zu nutzen, muss diese zuerst registriert werden.
-Um einen Benutzer einzuloggen wird er von \textsc{Kort} zu Google weitergeleitet.
+Ein Benutzer, der sich einzuloggen will, wird er von \textsc{Kort} zu Google weitergeleitet.
 Von dort wird er nach erfolgter Authentifizierung wieder zurückgeleitet.
 
 Dieses "`Zurückleiten"' wird auch als \emph{Callback} bezeichnet.
@@ -51,5 +44,36 @@ Bei der Registrierung der Applikation müssen die gültigen Werte für den Callb
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.5]{images/implementation/backend/oauth-google-settings}
-	\caption{OAuth Einstellungen}
+	\caption{OAuth Einstellungen bei Google}
 \end{figure}
+
+\subsubsection{Registrierung der Applikation bei OpenStreetMap}
+Die Registrierung bei OpenStreetMap ist sehr ähnlich wie bei Google.
+Leider bietet aber OSM keine Möglichkeit an, bei einer Registrierung mehrere URLs anzugeben.
+Somit mussten wir für alle unsere Umgebungen (lokal, Entwicklung und Produktion) eine separate Registrierung vornehmen.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{images/implementation/backend/oauth-osm}
+	\caption{OAuth Einstellungen bei OpenStreetMap}
+\end{figure}
+
+\subsection{Übertragungssicherheit}
+\label{uebertragunssicherheit}
+Die App in der jetzigen Form bietet einige Angriffspunkte.
+Die Übertragung über HTTP ermöglicht es einen Angreifer Nachrichten mitzuhören.
+Damit kann er theoretisch die Daten welche von und zu der Applikation geschickt werden abfangen und ändern.
+
+Dies ist aus unserer Sicht aber kein grosses Problem, da es sich bei den Applikationsdaten weder um geheime noch besonders schützenswerte Informationen handelt.
+
+Das grösste Risiko ist, dass es unerlaubte Zugriffe auf die Datenbank gibt.
+Dazu müsste die Kommunikation zwischen dem Webserver und dem Datenbanksever abgefangen werden.
+Der in jedem Request enthaltene \gls{API}-Key für die Datenbank läuft derzeit nicht ab.
+
+Abhilfe würde hier eine Umstellung auf HTTPS (SSL/TLS) schaffen.
+Dies erschwert das Mitlesen der Daten erheblich.
+Des weiteren könnte die Kommunikation zwischen den Servern mit einem zeitlich generierten Token verbessert werden.
+So können auch einfach Replay-Attacken verhindert werden.
+
+Der Fokus dieser Arbeit lag aber nicht darauf, die Server-Server oder Server-Client Kommunikation sicher zu gestalten.
+Für den produktiven Einsatz der Applikation müssen in diesem Bereich aber noch Verbesserungen erfolgen.
