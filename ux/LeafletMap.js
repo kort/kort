@@ -1,5 +1,5 @@
 /**
- * Wraps a Leaflet map in an {@link Ext.Component} using the [Leaflet API](http://leaflet.cloudmade.com/reference.html).
+ * Wraps a Leaflet map in an {@link Ext.Component} using the [Leaflet API](http://leafletjs.com/reference.html).
  *
  * To use this component you must include an additional JavaScript an a CSS file from Leaflet:
  *
