@@ -38,8 +38,8 @@ server/php/Webservice/Database/DbConfig.php
 *.bak
 docs/Kort
 docs/Kort-backend
+docs/Ext.ux.LeafletMap
 composer.phar
 composer.lock
 vendor/
 bin/
-/docs/Ext.ux.LeafletMap/

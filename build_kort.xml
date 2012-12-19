@@ -73,6 +73,7 @@
 
     <target name="js-docs">
         <echo message="Generating JavaScript docs (JSDuck)"/>
+        <mkdir dir="${js.doc.dir}"/>
         <exec executable="jsduck">
             <arg value="${js.dir}"/>
             <arg value="--output"/>
@@ -91,6 +92,7 @@
 
    <target name="php-docs">
        <echo message="Generating PHP docs (phpDocumentor)"/>
+       <mkdir dir="${php.doc.dir}"/>
        <exec executable="phpdoc">
            <arg value="-d"/>
            <arg value="${php.dir}"/>
