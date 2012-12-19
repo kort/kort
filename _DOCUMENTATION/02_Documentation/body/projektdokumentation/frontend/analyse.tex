@@ -5,14 +5,14 @@
 \subsection{User Szenarien}
 \label{kort-user-szenarien}
 
-Um die Anforderungen an die App genauer zu definieren, wurden im Vorfeld des Projektes einige Szenarien erstellt.
+Um die Anforderungen an die App genauer zu definieren, wurden im Vorfeld des Projektes einige Szenarien erstellt, welche damit abgedeckt werden sollen.
 
 \subsubsection{Szenario 1: Zeitvertreib an der Bushaltestelle}
 
 Simon muss 15 Minuten an der Bushaltestelle auf den nächsten Bus warten.
 Um sich die Wartezeit zu verkürzen, nimmt er sein Smartphone hervor und startet die \textsc{Kort}-Applikation.
 
-Die App hat ihn bereits lokalisiert und zeigt ihm offene \gls{OpenStreetMap}-Aufträge, wahlweise als Liste oder auf der Karte, in der Nähe an.
+Die App hat ihn bereits lokalisiert und zeigt ihm offene \gls{OpenStreetMap}-Aufträge in der Nähe, wahlweise als Liste oder auf der Karte an.
 Für die Aufträge werden Simon verschiedene Belohnungen angeboten, je nach Schwierigkeitsgrad der Aufgabe.
 
 Simon entscheidet sich für einen Auftrag mit mittlerer Belohnung.
@@ -20,10 +20,10 @@ Die App zeigt ihm den Weg zum Auftrag und erklärt was zu tun ist. Beim Auftrag 
 
 Als Simon vor Ort ist, findet er sehr schnell ein Strassenschild.
 Er gibt den Namen in der App ein wofür er bereits 10 Punkte erhält.
-Da er zusätzlich sogar noch Foto hochlädt, bekommt er noch 5 Bonuspunkte.
+Da er zusätzlich sogar noch Foto hochlädt, bekommt er weitere 5 Punkte.
 
 Der Auftrag ist somit für ihn erledigt was ihm entsprechend von der App mitgeteilt wird.
-Danach verschwindet der Auftrag auch aus seiner Auftragsliste und von der Karte.
+Danach verschwindet der Auftrag aus seiner Auftragsliste und von der Karte.
 
 \textbf{Ziele}
 \begin{itemize}
@@ -34,7 +34,7 @@ Danach verschwindet der Auftrag auch aus seiner Auftragsliste und von der Karte.
 
 \subsubsection{Szenario 2: Validieren}
 
-Andy sitzt im Zug und langweilt sich. Er öffnet die \textsc{Kort}-App im Indoor-Modus und sieht sich die Liste der zu validieren Bugfixes an. Er sortiert die Liste um diejenigen Einträge zu sehen, welche nur noch einen Review benötigen um zu \gls{OpenStreetMap} gesendet zu werden.
+Andy sitzt im Zug und langweilt sich. Er öffnet die \textsc{Kort}-App im Indoor-Modus und sieht sich die Liste der zu validierenden Bugfixes an. Er sortiert die Liste, um diejenigen Einträge zu sehen, welche nur noch einen Review benötigen, um an \gls{OpenStreetMap} gesendet werden zu können.
 
 Er öffnet einen Bugfix für einen fehlenden Strassennamen in der Umgebung. Er kennt zwar die Gegend ist sich aber nicht 100\% sicher ob der Name stimmt. Um sicherzugehen öffnet er das Bild, welches dem Bugfix angehängt ist. Das Bild zeigt ein Strassenschild, welches mit dem eingegeben Namen übereinstimmt. Andy bestätigt somit die Änderung und schliesst den Bug damit ab.
 
@@ -46,14 +46,14 @@ Er öffnet einen Bugfix für einen fehlenden Strassennamen in der Umgebung. Er k
 
 \subsubsection{Szenario 3: Erster Kontakt zur App}
 
-Über den Kurznachrichtendienst Twitter sieht Monika, dass Ihre Kollegin gerade ein \textsc{Kort}-Konto erstellt hat.
+Über den Kurznachrichtendienst Twitter sieht Monika, dass Ihre Kollegin gerade das erste mal \textsc{Kort} gestartet hat.
 Als sie auf den Link klickt öffnet sich ihr Browser und die App wird angezeigt.
 Da es sich um ihren ersten Besuch auf der Seite handelt, wird ihr kurz erklärt um was es geht.
 
 Danach sieht sie die Karte mit den vorhandenen Fehlereinträgen.
 Bevor sie einen Eintrag bearbeiten kann, muss sie sich anmelden.
 Sie wählt dazu einen Benutzernamen und wird anschliessend auf die Seite von Google weitergeleitet, um sich anzumelden.
-Nach dem erfolgreichen Login wird Monika zurück zur \textsc{Kort}-App geleitet wo sie beginnen kann die ersten Aufträge zu erfüllen.
+Nach dem erfolgreichen Login wird Monika zurück zur \textsc{Kort}-App geleitet, wo sie beginnen kann die ersten Aufträge zu erfüllen.
 
 \textbf{Ziele}
 \begin{itemize}
@@ -65,10 +65,10 @@ Nach dem erfolgreichen Login wird Monika zurück zur \textsc{Kort}-App geleitet 
 
 \subsubsection{Szenario 4: Highscore-Anwärter}
 
-Edi benutzt schon seit einiger Zeit die \textsc{Kort}-App und hat sich in seinem Revier bereits auf Platz 2 der Highscore-Liste geschafft.
-Seine Rangierung überprüft er regelmässig auf der Highscore-Liste in der App.
+Edi benutzt schon seit einiger Zeit die \textsc{Kort}-App und hat in seinem Revier bereits den zweiten Platz der Highscore-Liste erreicht.
+Seine Platzierung überprüft er regelmässig auf der Highscore-Liste in der App.
 
-Heute möchte er endlich die Spitze erklimmen und den "Leader"-Badge erhalten.
+Heute möchte er endlich die Spitze erklimmen und den "`Leader"'-Badge erhalten.
 Dazu hat er sich einige Aufträge ausgesucht, welche er der Reihe nach abarbeiten will.
 Bei jedem Auftrag sieht Edi wieviele Punkte er sammeln kann.
 
@@ -87,12 +87,12 @@ Auch in der Highscoreliste steht Edi nun zuoberst.
 % Subfigure counter zuruecksetzen
 \setcounter{subfigure}{0}
 
-Aus den gesetzten Projektzielen und den Anforderungen aus den erstellten Szenarien (siehe Abschnitt \ref{kort-user-szenarien}) wurde vor der Implementation der Oberfläche ein Paper-Prototype des GUI-Designs erstellt.
+Aus den gesetzten Projektzielen und den Anforderungen der erstellten Szenarien (siehe Abschnitt \ref{kort-user-szenarien}) wurde vor der Implementation der Oberfläche ein Paper-Prototype des GUI-Designs erstellt.
 Der Prototype besteht aus vier Hauptmasken und einem Overlay für den Login.
 
 \subsubsection{Overlay: Login}
 Beim ersten Starten der \gls{WebApp} erhält man die Möglichkeit sich über verschiedene Dienste anzumelden.
-Beim Klick auf den jeweiligen Anbieter wird man zu diesem Weitergeleitet und kann sich dort anmelden.
+Mit einem Klick auf den jeweiligen Anbieter, wird man zu diesem Weitergeleitet und kann sich dort anmelden.
 
 \begin{figure}[H]
 \subfigure[Login - Anbieterauswahl]{\includegraphics[width=0.43\textwidth]{images/paperprototype/kort-pp-startscreen}}
@@ -101,14 +101,14 @@ Beim Klick auf den jeweiligen Anbieter wird man zu diesem Weitergeleitet und kan
 \end{figure}
 
 \subsubsection{Maske: Aufträge}
-Wenn der Benutzer erfolgreich angemeldet wurde erscheint die Maske mit den Aufträgen.
+Nachdem der Benutzer erfolgreich angemeldet wurde erscheint die Maske mit den Aufträgen.
 Darauf werden die vorhandenen Fehler auf einer Karte angezeigt.
-Es werden jeweils nur die Fehler angezeigt, welche sich in unmittelbarer Nähe vom eigenen Standort befinden.
+Es werden jeweils nur die Fehler angezeigt, welche sich in unmittelbarer Nähe des eigenen Standorts befinden.
 Die Fehler werden mit einer Markierung auf der Karte dargestellt.
 
 Durch Anklicken einer solchen Markierung öffnet sich die Detailansicht des Fehlers, worin sich der Fehler direkt beheben lässt.
-Neben der Möglichkeit einen Lösungstext einzugeben, soll es auch möglich sein ein Beweis-Foto dazu hochzuladen.
-Mit einem Klick auf Senden schliesst sich die Detailansicht und man gelangt zur Karte mit den Aufträgen zurück.
+Neben der Möglichkeit einen Lösungstext einzugeben, soll es auch möglich sein, ein Beweis-Foto dazu hochzuladen.
+Mit einem Klick auf den Senden-Knopf schliesst sich die Detailansicht und man gelangt zur Karte mit den Aufträgen zurück.
 
 \begin{figure}[H]
 \subfigure[Aufträge - Karte mit Fehlern]{\includegraphics[width=0.43\textwidth]{images/paperprototype/kort-pp-bugs}}
@@ -137,8 +137,8 @@ Man sieht seine eigene und die Platzierungen der anderen Spieler.
 Es werden Highscores für verschiedene Kategorien (z.B. Regional, Weltweit) angezeigt.
 
 \subsubsection{Maske: Profil}
-Im Profil sieht man einen Steckbrief seines eigenen Benutzers.
-Es wird angezeigt wieviele Aufträge man gelöst und wieviele Verifikationen man getätigt hat.
+Im Profil werden die Eckdaten des eigenen Benutzers angezeigt.
+Dazu gehören die Anzahl der gelösten Aufträge und die Anzahl der getätigten Verifikationen.
 Zusätzlich werden die Gesamtanzahl der gesammelten Punkte und die gewonnenen Badges angezeigt.
 Die Profil-Maske bietet zudem die Möglichkeit sich von der App abzumelden.
 
