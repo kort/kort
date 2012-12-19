@@ -1,0 +1,64 @@
+\section{Implementation}
+\label{backend-implementation}
+Das Backend besteht neben der Datenbank und den \gls{REST}-Schnittstellen vor allem aus PHP-Code.
+Der meiste Code entfällt auf das Handling von Webservice-Anfragen und die Authentifizierung mit \gls{OAuth}.
+
+\subsection{Gliederung}
+\label{backend-gliederung}
+Das Backend befindet sich im Verzeichnis \inlinecode{server/} im Repository.
+Das Backend teilt sich auf verschiedene Unterordner auf (siehe Tabelle \ref{table-backend-gliederung}).
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.25\twocelltabwidth}|p{0.75\twocelltabwidth}|}
+\hline 
+\textbf{Order} & \textbf{Inhalt} \\
+\hline 
+\inlinecode{database/} & SQL und Shell-Skripts für die Erstellung der Datenbank \\
+\hline 
+\inlinecode{heroku/} & Shell-Skripte für das Deployment auf Heroku \\
+\hline 
+\inlinecode{oauth2callback/} & Callback-Handler der verschiedenen \gls{OAuth}-Dienste \\
+\hline 
+\inlinecode{php/} & PHP-Klassen für das Backend \\
+\hline 
+\inlinecode{redmine/} & Skripts und Anleitung für Redmine \\
+\hline 
+\inlinecode{ssh\_pub\_keys/} & Öffentliche SSH-Schlüssel für das Deployment \\
+\hline 
+\inlinecode{webservices/} & \gls{REST}-Ressourcen (Endpunkte der Schnittstellen) \\
+\hline 
+\end{tabular}
+\caption{Gliederung des Backends}
+\label{table-backend-gliederung}
+\end{table}
+
+Speziell zu erwähnen sind dabei die PHP-Klassen welche die Logik des Backends abbilden.
+Sie sind über Namespaces aufgeteilt und liefern die Logik für alle anderen Teile des Backends.
+Um dies zu ermöglichen gibt es die \inlinecode{ClassLoader}-Klasse\footnote{\url{http://kort.herokuapp.com/docs/Kort-backend/classes/Kort.ClassLoader.html}}.
+Falls irgendwo eine PHP-Klasse gebraucht wird, muss nur diese Klasse geladen werden, diese wiederum kümmert sich darum, alle abhängigen Datei nachzuladen.
+
+Für die Klassen gibt es eine separate Dokumentation (siehe Abschnitt \ref{backend-dokumentation}).
+
+\subsection{Abhängigkeiten}
+\label{backend-abhaengigkeiten}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.35\threecelltabwidth}|p{0.15\threecelltabwidth}|p{0.50\threecelltabwidth}|}
+\hline 
+\textbf{Library} & \textbf{Version} & \textbf{Verwendung} \\
+\hline 
+Slim & 2.1.0 & Micro-Framework für die Implementation von \gls{REST}-Schnittstellen \\
+\hline 
+Google APIs Client Library & 0.6.0 & PHP-Library für Google \glspl{API} \\
+\hline 
+oauth-php & 175 & OAuth Library für PHP \\
+\hline 
+Ant-Contrib & 1.0b3 & Erweiterte Tasks für Apache Ant \\
+\hline 
+\end{tabular}
+\caption{Abhängigkeiten im Backend}
+\label{table-backend-dependencies}
+\end{table}
+
