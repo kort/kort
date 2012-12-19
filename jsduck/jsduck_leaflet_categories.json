@@ -1,0 +1,13 @@
+[
+	{
+		"name": "Components",
+		"groups": [
+			{
+				"name": "Map",
+				"classes": [
+					"Ext.ux.LeafletMap"
+				]
+			}
+		]
+	}
+]
