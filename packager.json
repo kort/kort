@@ -11,7 +11,7 @@
 	 * @cfg {String} applicationId
 	 * This is the name namespace for your application. On IOS, this should match the name of your application in the Apple Provisioning Portal.
 	 */
-	"applicationId":"com.herokuapp.kort",
+	"applicationId":"com.herokuapp.Kort",
 
 	/**
 	 * @cfg {String} bundleSeedId
@@ -76,7 +76,7 @@
 	 *  - Android
 	 *  - AndroidEmulator
 	 */
-	"platform":"AndroidEmulator",
+	"platform":"Android",
 
 	/**
 	 * @cfg {String} deviceType
@@ -147,11 +147,9 @@
 	"permissions":[
 					"INTERNET",
 					"ACCESS_NETWORK_STATE",
-					"CAMERA",
-    				"VIBRATE",
     				"ACCESS_FINE_LOCATION",
-    				"ACCESS_COARSE_LOCATION",
-    				"CALL_PHONE"],
+    				"ACCESS_COARSE_LOCATION"
+    ],
 
 	/**
 	 * @cfg {Array[String]} orientations

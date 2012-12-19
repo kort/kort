@@ -3,6 +3,7 @@
 //<debug>
 Ext.Loader.setPath({
     'Ext': 'touch/src',
+    'patch': 'patch',
     'Ext.i18n': 'i18n',
     'Ext.ux': 'ux',
     'Kort': 'app'
@@ -13,6 +14,7 @@ Ext.application({
     name: 'Kort',
 
     requires: [
+        'patch.AjaxProxy',
         'Ext.MessageBox',
         'Ext.i18n.Bundle',
         'Kort.util.Config',
@@ -241,7 +243,9 @@ Ext.application({
 
     configureMessageBox: function() {
         // Override MessageBox default messages
-        Ext.override(Ext.MessageBox, {
+        Ext.define('Kort.MessageBox', {
+            override: 'Ext.MessageBox',
+            
             statics: {
                 YES   : {text: Ext.i18n.Bundle.message('messagebox.yes'),    itemId: 'yes', ui: 'action'},
                 NO    : {text: Ext.i18n.Bundle.message('messagebox.no'),     itemId: 'no'},
@@ -266,7 +270,9 @@ Ext.application({
 
     onUpdated: function() {
         // Override MessageBox default messages
-        Ext.override(Ext.MessageBox, {
+        Ext.override('Kort.MessageBox', {
+            override: 'Ext.MessageBox',
+            
             statics: {
                 YES   : { text: 'Ja',   itemId: 'yes', ui: 'action'},
                 NO    : { text: 'Nein', itemId: 'no'},
