@@ -17,7 +17,7 @@ Die Resource ist in diesem Fall lediglich die Bestätigung der erfolgreichen Aut
 	\label{image-kort-login}
 \end{figure}
 
-In unserem Fall ist \textsc{Kort} die Applikation und Google der Anbieter der \emph{Benutzer}-Resource.
+In unserem Fall ist \kort die Applikation und Google der Anbieter der \emph{Benutzer}-Resource.
 Um dem Benutzer zu ersparen sich bei jedem Besuch erneut via \gls{OAuth} anzumelden, wird auf dem Server ein \emph{Secret} generiert.
 Dieses wird lokal beim Benutzer gespeichert (siehe Abbildung \ref{image-kort-login}) und ermöglicht es dem Benutzer beim nächsten Login direkt dieses Geheimnis zu übermitteln um Zugriff zu bekommen (siehe Abbildung \ref{image-kort-relogin}).
 Diese Übertragung sollte wenn möglich über SSL/TSL erfolgen.
@@ -35,7 +35,7 @@ So ist sichergestellt, dass ein Benutzer auch wirklich nur seine eigenen Daten m
 
 \subsubsection{Registrierung der Applikation bei Google}
 Um den Google \gls{OAuth} Dienst zu nutzen, muss diese zuerst registriert werden.
-Ein Benutzer, der sich einzuloggen will, wird er von \textsc{Kort} zu Google weitergeleitet.
+Ein Benutzer, der sich einzuloggen will, wird er von \kort zu Google weitergeleitet.
 Von dort wird er nach erfolgter Authentifizierung wieder zurückgeleitet.
 
 Dieses "`Zurückleiten"' wird auch als \emph{Callback} bezeichnet.

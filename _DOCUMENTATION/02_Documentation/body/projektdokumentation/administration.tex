@@ -159,7 +159,7 @@ Die zugehörige Logik befindet sich im Login-Controller (\inlinecode{/app/contro
 Um die Applikation zurückzusetzen kann die Stored Procedure \inlinecode{reset\_kort()} verwendet werden. 
 Die Prozedur löscht alle laufenden Daten aus der Datenbank, so dass wieder der Ursprungszustand hergestellt ist:
 \begin{itemize}
-\item Die Punkte (\emph{koins}) aller Benutzer werden auf 0 zurückgesetzt
+\item Die Punkte (\emph{Koins}) aller Benutzer werden auf 0 zurückgesetzt
 \item Die Badges aller Benutzer werden entfernt
 \item Alle Lösungsvorschläge von Benutzern werden entfernt
 \item Alle Überprüfungen von Lösungsvorschlägen werden entfernt
@@ -182,4 +182,4 @@ Die Prozedur liefert \inlinecode{true} wenn alles geklappt hat, ansonsten \inlin
 Die Konfiguration des Frontends befindet sich in der Datei \inlinecode{/app/util/Config.js}.
 Darin sind alle Parameter definiert, welche die Applikation für den Betrieb benötigt.
 
-In der \textsc{Kort}-Dokumentaton sind alle Parameter detailliert beschrieben: \url{http://kort.herokuapp.com/docs/Kort/#!/api/Kort.util.Config}
+In der \kort-Dokumentaton sind alle Parameter detailliert beschrieben: \url{http://kort.herokuapp.com/docs/Kort/#!/api/Kort.util.Config}

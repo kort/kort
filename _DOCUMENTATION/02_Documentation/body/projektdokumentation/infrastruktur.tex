@@ -4,7 +4,7 @@
 \section{Datenbankserver}
 
 Beim Datenbankserver handelt es sich um einen virtuellen Server, den uns die Hochschule für Technik Rapperswil (HSR) zur Verfügung gestellt hat für die Dauer dieser Arbeit.
-Dieser Server hält die Installation der \textsc{Kort}-Datenbank sowie das Projektmanagementtool Redmine.
+Dieser Server hält die Installation der \kort-Datenbank sowie das Projektmanagementtool Redmine.
 Letzteres ist die einzige kritische Anwendung auf dem Server, da sich der Rest über entsprechende Installationskripts sehr einfach und schnell neu aufbauen lässt.
 
 Die Installation der benötigten Software kann mit dem Ubuntu Standard-Mechanismus \inlinecode{apt-get install} durchgeführt werden.
@@ -37,7 +37,7 @@ Redmine: \inlinecode{/home/redmine/redmine-2.1.0} \\
 Der Zugang auf die Datenbank von aussen läuft ausschliesslich über den \gls{REST}-Webservice.
 Für den Betrieb dieses Dienstes ist eine Apache Webserver Installation mit PHP-Unterstützung (mindestens PHP 5.3) erforderlich.
 
-Für den Betrieb des Webservice ist das \textsc{Kort}-Repository auf dem Server geklont.
+Für den Betrieb des Webservice ist das \kort-Repository auf dem Server geklont.
 Anschliessend muss noch ein Symlink angelegt werden um das Skript korrekt aufrufen zu können:
 
 \inlinecode{\$ ln -s /home/odi/kort/server/webservices /var/www/webservices}

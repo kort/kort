@@ -1,7 +1,7 @@
 % Implementation
 \section{Implementation}
 
-\textsc{Kort} wurde mit dem \emph{Sencha Touch 2-Framework}\footnote{\url{http://www.sencha.com/products/touch/}} erstellt. Zusätzlich wurden verschiedene Libraries und Community-Plugins eingesetzt, welche in der Tabelle \ref{table-kort-dependencies} beschrieben sind. 
+\kort wurde mit dem \emph{Sencha Touch 2-Framework}\footnote{\url{http://www.sencha.com/products/touch/}} erstellt. Zusätzlich wurden verschiedene Libraries und Community-Plugins eingesetzt, welche in der Tabelle \ref{table-kort-dependencies} beschrieben sind. 
 
 \emph{Leaflet}\footnote{\url{http://leafletjs.com/}} wurde eingesetzt, um \gls{OpenStreetMap}-Daten auf der Karte anzuzeigen. Zusätzlich wurde das \emph{leaflet-osm}\footnote{\url{https://github.com/jfirebaugh/leaflet-osm}}-Plugin für Leaflet verwendet, um \gls{OpenStreetMap}-Objekte als \inlinecode{XML}-Code direkt auf der Karte darzustellen.
 
@@ -101,8 +101,8 @@ Dieser wird für das Finden der abhängigen Ressourcen der App verwendet.
 Weitere Informationen zur Konfiguration findet man im entsprechendem Guide der Sencha Docs\footnote{\url{http://docs.sencha.com/touch/2-1/\#!/guide/command\_app}}.
 
 \subsubsection{App Build starten}
-Zur Erstellung eines \textsc{Kort}-Builds muss \emph{Sencha Cmd} in der Version 3.0.0.250 installiert sein.
-Der Build kann von der Konsole aus gestartet werden. Dazu muss in das \emph{Root-Verzeichnis} von \textsc{Kort} gewechselt werden und folgender Befehl eingegeben werden:
+Zur Erstellung eines \kort-Builds muss \emph{Sencha Cmd} in der Version 3.0.0.250 installiert sein.
+Der Build kann von der Konsole aus gestartet werden. Dazu muss in das \emph{Root-Verzeichnis} von \kort gewechselt werden und folgender Befehl eingegeben werden:
 
 \inlinecode{sencha app build <environment>}
 
@@ -112,7 +112,7 @@ Die erstellt App wird dann in dem entsprechenden Verzeichnis abgelegt:
 
 \subsection{Cross-platform Unterstützung}
 \label{cross-platform}
-Grundsätzlich unterstützt \textsc{Kort} alle Plattformen (bzw. Browser), welche vom Sencha Touch 2 Framework unterstützt werden.
+Grundsätzlich unterstützt \kort alle Plattformen (bzw. Browser), welche vom Sencha Touch 2 Framework unterstützt werden.
 Eine Liste davon findet man auf der Produkt-Homepage\footnote{\url{http://www.sencha.com/products/touch/features/}} von Sencha Touch.
 
 Trotzdem kann es bei einigen Geräten aufgrund unterschiedlicher Browserversionen zu Anzeigeprobleme kommen.
@@ -136,11 +136,11 @@ Getestet wurde die App mit folgenden Geräten:
 
 \subsection{Internernationalisierung}
 \label{i18n}
-Die Oberfläche von \textsc{Kort} wurde bereits für eine mögliche Übersetzung vorbereitet.
+Die Oberfläche von \kort wurde bereits für eine mögliche Übersetzung vorbereitet.
 Dazu wurde das Plugin \emph{Ext.i18n.Bundle-touch}\footnote{\url{https://github.com/elmasse/Ext.i18n.Bundle-touch}} für Sencha Touch eingesetzt.
 Dieses ermöglicht es einzelne Texte in externen Sprach-Property-Dateien auszulagern.
 
-Bei \textsc{Kort} befinden sich diese Files im Verzeichnis \inlinecode{/resources/i18n/} und müssen nach folgendem Schema benannt werden: \inlinecode{Kort\_<locale>.props}.
+Bei \kort befinden sich diese Files im Verzeichnis \inlinecode{/resources/i18n/} und müssen nach folgendem Schema benannt werden: \inlinecode{Kort\_<locale>.props}.
 Die verwendete Sprache ist in der Funktion \inlinecode{prepareI18n()} der Datei \inlinecode{app.js} festgelegt.
 
 \lstset{language=JavaScript}
