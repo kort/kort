@@ -15,9 +15,9 @@ Mit den Editoren lässt sich direkt oder indirekt die \gls{OpenStreetMap}-Karte 
 Die Qualitätssicherungstools haben sich zum Ziel gesetzt fehlende oder falsche Daten aufzuspüren.
 Diese werden dann entweder automatisiert korrigiert oder übersichtlich dargestellt, um eine manuelle Korrektur zu ermöglichen.
 
-Einige Tools wie KeepRight\footnote{\url{http://keepright.ipax.at/}} oder Osmose\footnote{\url{http://osmose.openstreetmap.fr/map/}} berechnen aus den Karten-Rohdaten die vorhanden Fehler.
+Einige Tools wie \emph{KeepRight}\footnote{\url{http://keepright.ipax.at/}} oder \emph{Osmose}\footnote{\url{http://osmose.openstreetmap.fr/map/}} berechnen aus den Karten-Rohdaten die vorhanden Fehler.
 Dazu werden einige Heuristiken verwenden oder einfache Plausibilitätsprüfungen durchgeführt.
-Typische Fehler aus diesen Quellen sind \gls{POI}s ohne Namen oder Strassen ohne definiertem Geschwindigkeitslimit.
+Typische Fehler aus diesen Quellen sind \glspl{POI} ohne Namen oder Strassen ohne definiertem Geschwindigkeitslimit.
 
 \begin{figure}[H]
 	\centering
@@ -27,17 +27,18 @@ Typische Fehler aus diesen Quellen sind \gls{POI}s ohne Namen oder Strassen ohne
 \end{figure}
 
 Andere Lösungen setzen darauf, dass Fehler manuell von einer Person erfasst werden. Dadurch ist es möglich den Fehler detaillierter zu beschreiben. 
-So gibt es Navigationsgeräte-Herstellen welche die Daten aus \gls{OpenStreetMap} zur Routenberechnung verwenden und dabei ihren Benutzern ermöglichen falsche Routen zu melden.
-Falls ein \gls{Mapper} einen Fehler markieren will, so kann er dies direkt in den Metadaten der Karte hinterlegen. Jedes Objekt auf der Karte (Punkte, Wege und Relationen) kann durch beliebige, sogenannte  \emph{Tags} ergänzt werden.
-Um auf einem Objekt Fehler zu markieren, hat sich die Community darauf geeinigt \inlinecode{FIXME}-Tags zu verwenden.
+So gibt es Navigationsgeräte-Herstellen welche die Daten aus \gls{OpenStreetMap} zur Routenberechnung verwenden und dabei ihren Benutzern ermöglichen, falsche Routen zu melden.
 
-Quellen für solche Fehler sind beispielsweise OpenStreetBugs\footnote{\url{http://openstreetbugs.schokokeks.org/}} oder die \inlinecode{FIXME}-Tags aus KeepRight.
+Falls ein \gls{Mapper} einen Fehler melden will, so kann er diesen direkt in den Metadaten der Karte hinterlegen. Alle Objekte auf der Karte (Punkte, Wege und Relationen) können durch beliebige, sogenannte  \glspl{Tag} ergänzt werden.
+Um auf einem Objekt Fehler zu markieren, hat sich die Community darauf geeinigt, dafür \inlinecode{FIXME}-\glspl{Tag} zu verwenden.
+
+Quellen für derartige Fehler sind beispielsweise \emph{OpenStreetBugs}\footnote{\url{http://openstreetbugs.schokokeks.org/}} oder die \inlinecode{FIXME}-\glspl{Tag} aus \emph{KeepRight}.
 
 \section*{Ergebnisse}
 Das Ziel, eine cross-platform fähige \gls{WebApp} zu erstellen mit geeignetem Backend für die Verwaltung der Daten wurde klar erreicht.
 Die App bietet alle Grundfunktionalitäten, welche nötig sind, um Fehler anzuzeigen, zu lösen und gegebene Lösungen zu validieren.
-Daneben sind einige Elemente der Gamification implementiert. So kann man beispielsweise durch das Lösen von Fehlern Punkte (sogenannte \emph{koins}) sammeln und sich über eine Highscore, mit anderen Spielern messen.
-Zudem gibt es für speziellen Einsatz Auszeichnungen zu gewinnen.
+Daneben sind einige Elemente der \gls{Gamification} implementiert. So ist es beispielsweise möglich, durch das Lösen von Fehlern Punkte (sogenannte \emph{koins}) zu sammeln und sich über eine Highscore, mit anderen Spielern zu messen.
+Zudem gibt es für speziellen Einsatz, Auszeichnungen zu gewinnen.
 
 \begin{figure}[H]
 	\centering
@@ -46,17 +47,17 @@ Zudem gibt es für speziellen Einsatz Auszeichnungen zu gewinnen.
 	\label{image-kort-badges}
 \end{figure}
 
-Der Bereich der Gamification ist aber sehr offen und lässt Raum für viele weitere Konzepte. Schlussendlich ist klar, dass \textsc{Kort} noch ein grosses Stück davon entfernt ist ein "`echtes"' Game zu sein.
+Der Bereich der \gls{Gamification} ist aber sehr offen und lässt Raum für viele weitere Konzepte. Schlussendlich ist klar, dass \textsc{Kort} noch ein grosses Stück davon entfernt ist ein "`echtes"' Game zu sein.
 
-Das Themengebiet der Gamification bietet viele Ansätze um eine normalerweise "`uninteressante"' Aufgabe spannend zu gestalten.
-Dadurch erhalten diese Aufgaben einen ganz neuen Reiz und sprechen direkt den Spieltrieb des Menschen an.
+Das Themengebiet der \gls{Gamification} bietet viele Ansätze um eine normalerweise "`uninteressante"' Aufgabe spannend zu gestalten.
+Dadurch erhält diese Aufgabe einen ganz neuen Reiz und spricht direkt den Spieltrieb des Menschen an.
 Konkret auf \gls{OpenStreetMap} angewendet, finden sich auch dort beliebtere und weniger beliebte Aufgaben.
 Da es sich dabei zusätzlich um eine Community von (grösstenteils) freiwilligen Personen handelt, verschärft sich dieses Problem.
 Das Problem der mangelnden Ressourcen kann dabei am effektivsten bekämpft werden, indem zusätzliche Personen für das Thema begeistert werden.
-Es ist wichtig, die Einstiegsschwelle tief zu halten und auch einem unerfahrenen Benutzer Werkzeuge zu geben, die einen gewissen Spass vermitteln.
+Es ist wichtig, die Einstiegsschwelle tief zu halten und auch einem unerfahrenen Benutzer Werkzeuge zu geben, die einen gewissen Spass vermitteln.\todo{Abschnitt überarbeiten}
 
 \subsection*{Frontend}
-Das Frontend basiert auf dem HTML5/JavaScript Framework Sencha Touch 2 und orientiert sich vom Look and Feel an einer iPhone-App.
+Das Frontend basiert auf dem HTML5/JavaScript Framework \emph{Sencha Touch 2} und orientiert sich vom Look and Feel an einer iPhone-App.
 Die App bietet für die verschiedenen Funktionen unterschiedliche Tabs an, auf welchen der Benutzer Fehler beheben oder prüfen und die Highscore oder sein Profil anschauen kann.
 
 \begin{figure}[H]
@@ -70,20 +71,19 @@ Die App bietet für die verschiedenen Funktionen unterschiedliche Tabs an, auf w
 \end{figure}
 
 Für die Authentifizierung kommt \gls{OAuth} zum Einsatz.
-Dir Standard sorgt dafür, dass sich der Benutzer mit einem bereits bestehenden Benutzerkonto bei \textsc{Kort} anmwelden kann.
-Derzeit werden dafür die OAuth-Provider \emph{\gls{OpenStreetMap}} und \emph{Google} verwendet.
+Dir Standard sorgt dafür, dass sich der Benutzer mit einem bereits bestehenden Benutzerkonto bei \textsc{Kort} anmelden kann.
+Derzeit werden dafür die \gls{OAuth}-Provider \gls{OpenStreetMap} und \emph{Google} verwendet.
 
 \subsection*{Backend}
 Das Backend ist in PHP geschrieben und basiert auf der Kommunikation über \gls{REST}-Schnittstellen.
 Die eigenen Schnittstellen sind alle mit dem \emph{Slim-Framework}\footnote{\url{http://www.slimframework.com/}} erstellt.
 Da die Datenbank und der Webserver auf zwei verschiedenen Servern laufen, bietet auch die Datenbank eine \gls{REST}-Schnittstelle an, über welche sich beliebige SQL-Abfrage absetzen lassen.
-Diese flexible Aufteilung ermöglicht es sehr einfach die Systeme umzuziehen oder weitere hinzuzufügen.
+Diese flexible Aufteilung ermöglicht es sehr einfach, die Systeme umzuziehen oder weitere hinzuzufügen.
 
 \section*{Ausblick}
-Die App hat ein grosses Potential um Personen, welche sich bislang nicht mit der Thematik \gls{OpenStreetMap} befasst haben, für das Projekt zu begeistern. 
-Dabei ist es wichtig, dass dieses Zielpublikum nicht aus den Augen verloren wird, weshalb in diesem Bereich noch viele Verbesserung möglich sind.
+Die App hat ein grosses Potential Personen, welche sich bislang nicht mit der Thematik \gls{OpenStreetMap} befasst haben, für das Projekt zu begeistern.
 
-Ganz allgemein ist es wichtig die Robustheit und Geschwindikeit der App zu verbessern. 
+Ganz allgemein ist es aber wichtig die Robustheit und Geschwindikeit der App zu verbessern. 
 Gerade weil es sich um eine \gls{WebApp} handelt, ist dies besonders kritisch. 
 Im Idealfall sollte sich die App nicht von einer nativen App unterscheiden.
 Es ist zu prüfen, ob es sich lohnt, die App native zu builden\footnote{z.B. mit Apache Cordova oder Sencha Packager}.
@@ -98,15 +98,15 @@ So könnten Benutzer beim Eintragen von Lösungsvorschlägen direkt einen \emph{
 Dies würde die Validierung der eingetragenen Lösungen für andere Benutzer stark vereinfachen.
 
 Als zusätzliche Motivation könnten zeitlich begrenzte Aktionen durchgeführt werden.
-Dies soll Benutzer animieren die App immer wieder zu verwenden. 
+Dies soll Benutzer dazu animieren, die App immer wieder zu verwenden. 
 Mögliche Aktionen wären beispielsweise die Konzentration auf einen Fehlertyp (\emph{"`Gib allen Restaurants in deiner Umgebung einen Namen und erhalte diese Woche die spezielle Restaurant-Auszeichnung"'}) oder auf eine Region (\emph{"`Korrigiere jeden Tag im Dezember Fehler in Zürich und erhalte die Zürich-Silvester-Auszeichnung"'}).
-Bestehende Spieler könnten beispielsweise über Push-Notifikationen über solche Aktionen oder sonstige Neuerungen informiert werden.
+Die Spieler könnten beispielsweise mittels Push-Notifikationen über solche Aktionen oder sonstige Neuerungen informiert werden.
 
-Um die App längerfristig am Laufen zu halten ist es unumgänglich weitere Fehlertypen und -quellen einzubinden. 
-KeepRight bietet zwar eine grosse Menge an Fehlerdaten, jedoch ist nur ein geringer Teil davon für unsere App nutzbar.
+Um die App längerfristig am Laufen zu halten ist es unumgänglich, weitere Fehlertypen und -quellen einzubinden. 
+\emph{KeepRight} bietet zwar eine grosse Menge an Fehlerdaten, jedoch ist nur ein geringer Teil davon für unsere App nutzbar.
 
-Die Bekanntheit der App muss durch geeignete Massnahmen gesteigert werden, dazu gehört die Integration von Social Media Diensten wie Facebook und Twitter.
+Die Bekanntheit der App muss durch geeignete Massnahmen gesteigert werden. Dazu gehört die Integration von Social Media-Diensten wie Facebook und Twitter.
 Dies kann einerseits genutzt werden um Werbung zu machen, anderseits können Benutzer auch auf ihre gewonnenen Auszeichnungen aufmerksam machen und so andere bereits bestehende Benutzer dazu animieren diese Auszeichnungen ebenfalls zu gewinnen.
 
-Die wichtige noch offene Erweiterung findet sich aber im fehlenden Zurückschreiben der eingetragenen Lösungen zu \gls{OpenStreetMap}.
-Diese Funktionalität ist für die Akzeptanz der App von der \gls{OpenStreetMap}-Community sehr wichtig.
+Die wichtigste noch offene Erweiterung stellt aber das noch fehlenden Zurückschreiben der eingetragenen Lösungen zu \gls{OpenStreetMap} dar.
+Diese Funktionalität wirkt sich stark auf die Akzeptanz der App seitens der \gls{OpenStreetMap}-Community aus.

@@ -7,38 +7,38 @@ Neben konventionellen Editoren gibt es auch Tools, welche sich explizit der Find
 Ein Beispiel davon ist der \emph{NoName-Layer} von Simon Poole\footnote{\url{http://wiki.openstreetmap.org/wiki/NoName}}. Dieser färbt Strassen, welche fälschlicherweise keinen Namen haben, rot ein.
 Daneben gibt es Dienste, welche Fehlerdaten sammeln und diese zur Verbesserung anbieten, wie beispielsweise \emph{KeepRight}\footnote{\url{http://www.keepright.at/}} oder \emph{OpenStreetBugs}\footnote{\url{http://openstreetbugs.schokokeks.org/}}.
 
-Die Gemeinsamkeit dieser Werkzeuge ist es, dass sie bereits ein gewisses Interesse an \gls{OpenStreetMap} und am Editieren der Karte voraussetzen.
-Karten-Fehler sind jedoch typische Beispiele welche sich durch die Mithilfe von möglichst vielen Personen lösen lassen (sogenanntes \emph{Crowdsourcing}).
-Die Voraussetzung für ein erfolgreiches Crowdsourcing ist es, möglichst kleine Hürden zu haben und eine einfach zu lösende Aufgabe bereit zu stellen.
+Die Gemeinsamkeit dieser Werkzeuge findet sich darin, dass sie bereits ein gewisses Interesse an \gls{OpenStreetMap} und am Editieren der Karte voraussetzen.
+Karten-Fehler sind jedoch typische Beispiele welche sich durch die Mithilfe von möglichst vielen Personen lösen lassen (sogenanntes \emph{Crowdsourcing})\todo{Crowdsourcing ins Glossar}.
+Die Voraussetzung für ein erfolgreiches Crowdsourcing ist es, möglichst kleine Hürden zu haben und einfach zu lösende Aufgaben bereit zu stellen.
 
-Das Konzept der Gamification bietet sich daher an.
-Dabei werden Spiel-Elemente in eine Applikation eingebaut und dadurch die Motivation der Benutzer gesteigert, diese Applikation dann längerfristig zu verwenden.
-Es gibt bereits einige Projekte, welche sich mit der Gamification von OpenStreetMap beschäftigen\footnote{\url{http://wiki.openstreetmap.org/wiki/Games\#Gamification_of_map_contributions}}.
+Das Konzept der \gls{Gamification} bietet sich daher an.
+Dabei werden Spiel-Elemente in eine Applikation eingebaut und dadurch die Motivation der Benutzer gesteigert, diese Applikation längerfristig zu verwenden.
+Es gibt bereits einige Projekte, welche sich mit der \gls{Gamification} von \gls{OpenStreetMap} beschäftigen\footnote{\url{http://wiki.openstreetmap.org/wiki/Games\#Gamification_of_map_contributions}}.
 
-MapRoulette\footnote{\url{http://wiki.openstreetmap.org/wiki/MapRoulette}} stellt dem Benutzer eine \emph{Challange}, welche es zu lösen gibt.
+\emph{MapRoulette}\footnote{\url{http://wiki.openstreetmap.org/wiki/MapRoulette}} stellt dem Benutzer eine \emph{Challange}, welche es zu lösen gibt.
 Ein Beispiel einer solchen Challange ist \emph{Connectivity}\footnote{\url{https://oegeo.wordpress.com/2012/10/29/new-maproulette-challenge-connectivity-bugs/}}, bei welcher Strassen, die sehr nahe beieinander liegen verbunden werden sollen.
 Der Benutzer hat die Wahl, ob er den Fehler korrigiert, ignoriert oder als \emph{false positive} markiert.
-Wenn der Benutzer einen Fehler gelöst hat, so wird ihm zufällig ein weiterer Fehler angezeigt.
+Wenn der Benutzer einen Fehler gelöst hat, wird ihm zufällig ein weiterer Fehler angezeigt.
 Die Challange ist dann fertig, wenn alle Fehler einer Kategorie behoben sind.
-Durch das Weiterleitung auf den nächsten Fehler entsteht ein beinahe endloses Spiel. Jede erledigte Aufgabe hat dabei den Charakter eines Levels.
+Durch die Weiterleitung auf den nächsten Fehler entsteht ein beinahe endloses Spiel. Jede erledigte Aufgabe hat dabei den Charakter eines Levels.
 
-Im Rahmen der Operation Cowboy\footnote{\url{http://wiki.openstreetmap.org/wiki/DE:Operation_Cowboy}} wurden unter anderem auch mit MapRoulette über 2000 Routing-Fehler pro Tag behoben\footnote{\url{https://twitter.com/opcowboy/status/272438199769501696}}.
+Im Rahmen der \emph{Operation Cowboy}\footnote{\url{http://wiki.openstreetmap.org/wiki/DE:Operation_Cowboy}} wurden unter anderem auch mit \emph{MapRoulette} über 2000 Routing-Fehler pro Tag behoben\footnote{\url{https://twitter.com/opcowboy/status/272438199769501696}}.
 
 \section{Vision}
-Die \gls{WebApp} \textsc{Kort} bietet dem Benutzer eine einfache Oberfläche um Fehler zu lokalisieren.
+Die \gls{WebApp} \textsc{Kort} bietet dem Benutzer eine einfache Oberfläche, Fehler zu lokalisieren.
 Das Zielpublikum hat keinerlei Vorwissen über Karten oder \gls{OpenStreetMap}.
-Da die App als Spiel konzipiert ist, werden dem Benutzer kleine einfach zu lösende Aufgaben gestellt.
-So generiert ein Benutzer Lösungvorschläge für Kartenfehler in seiner näheren geografischen Umgebung.
+Da die App als Spiel konzipiert ist, werden dem Benutzer kleine, einfach zu lösende Aufgaben gestellt.
+Diese Aufgaben beziehen sich alle auf Fehler in den Karten-Daten.
 
-Nebenbei bekommt der Benutzer Punkte für seine Aktionen und kann so im Highscore aufsteigen.
-Für besondere Leistungen werden dem Benutzer Auszeichnungen verliehen.
-Dieser Mix sorgt dafür, dass der Benutzer die App immer wieder öffnet um weitere Korrekturen vorzunehmen.
+Für das Lösen solcher Aufgaben, gewinnt er Punkte und kann so in der Highscore aufsteigen.
+Für besondere Leistungen werden dem Benutzer dabei auch Auszeichnungen verliehen.
+Dieser Mix sorgt dafür, dass der Benutzer die App immer wieder öffnet, um weitere Korrekturen vorzunehmen.
 
-Als Alternative zum Beantworten von Fragen, hat ein Benutzer auch die Möglichkeit, die Antworten von anderen Spielern zu validieren.
+Als Alternative zum Beantworten von Fragen, hat ein Benutzer die Möglichkeit, die Antworten von anderen Spielern zu validieren.
 Dazu soll er die gegebenen Antworten als richtig oder falsch markieren.
-Erreicht eine Antwort genügend Stimmen, welche die Richtigkeit bestätigen, gilt diese als abgeschlossen und kann anschliessend an \gls{OpenStreetMap} als Korrektur geschickt werden.
+Erreicht eine Antwort genügend Stimmen, welche deren Richtigkeit bestätigen, gilt diese als abgeschlossen und kann anschliessend als Korrektur an \gls{OpenStreetMap} gesendet werden.
 
-Durch die Implementation als cross-platform \gls{WebApp}, kann diese auf allen gängigen mobilen Betriebsystemen verwendet werden.
+Durch die Implementation als cross-platform \gls{WebApp}, kann diese auf allen gängigen mobilen Betriebssystemen verwendet werden.
 
 \section{Resultate der Arbeit}
 Wir konnten fast alle gesetzten Ziele erreichen.
@@ -48,33 +48,33 @@ Nach dem Login über \gls{OAuth} werden dem Benutzer Fehler in seiner Umgebung a
 Um das Spiel zu starten kann der Benutzer eine beliebige Aktionen durchführen.
 Wenn er beispielsweise einen Fehler auswählt, indem er auf dessen Markierung tippt, wird er gefragt, ob er die Lösung für den Fehler kennt.
 Dadurch soll die Neugier des Spielers geweckt werden.
-Alle abgeschlossenen Aufgaben werden mit Punkten (sogenannten \emph{koins}) belohnt.
+Alle abgeschlossenen Aufgaben werden mit Punkten (sogenannten \emph{koins}) belohnt.\todo{komischer Satz}
 
 Die Spielmechanik ist denkbar einfach, so dass das Spiel auch nur sekunden- aber auch  minutenlang gespielt werden kann.
 Der Benutzer erhält sofort ein Feedback und kann verfolgen, wie er sich gegenüber seinen Mitspielern verbessert.
 Eine zusätzliche Motivation wird über Auszeichnungen geschaffen.
-Diese werden für spezielle Leistungen vergeben und erscheinen auf der eigenen Profil-Seite.
+Diese werden für spezielle Leistungen vergeben und erscheinen auf der eigenen Profil-Seite.\todo{komischer Satz}
 
-Wir haben einige Gamificationkonzepte ausprobiert und direkt in die App eingebaut.
-Um das Spiel für möglichst viele Benutzer attraktiv zu machen, muss ein noch detaillierteres Konzept ausgearbeitet werden.
+Wir konnten einige Gamificationkonzepte direkt in der App umsetzen.
+Um das Spiel für möglichst viele Benutzer attraktiv zu machen, muss aber ein noch detaillierteres Konzept ausgearbeitet werden.
 Gerade mit den Badges lassen sich verschiedene Spielertypen ansprechen.
 Auch Schwierigkeitsstufen oder zusätzliche Berechtigungen für erfahrene Benutzer können den längerfristigen Erfolg der Applikation erhöhen.
 
-Auf der technischen Seite haben wir erfolgreich ein System entwickelt, welches stets mit neuen Fehlern \emph{gefüttert} wird.
-Die Architektur ist so flexibel gewählt, dass sich fast beliebig Komponenten hinzufügen oder entfernen lassen.
+Auf der technischen Seite haben wir erfolgreich ein System entwickelt, welches stets mit neuen Fehlern "`gefüttert"' wird.
+Die Architektur ist so flexibel gewählt, dass sich beinahe beliebig Komponenten hinzufügen oder entfernen lassen.
 Dies stellt sicher, dass zukünftig noch weitere Fehlerdatenquellen in \textsc{Kort} integriert werden können.
 
 \section{Schlussfolgerungen und Ausblick}
 Leider konnten nicht alle Punkte aus der Aufgabenstellung erfüllt werden.
-Wir hatten das Ziel, dass Benutzer neben einer textuellen Antwort auch ein Bild hochladen können, um eine Fehlerkorrektur zu melden.
+Wir hatten das Ziel, dass Benutzer neben einer textuellen Antwort auch ein Bild hochladen können, um einen Beweis für eine Fehlerkorrektur zu liefern.
 Dabei sind wir jedoch an einer technischen Limite des verwendeten Frontend-Frameworks \emph{Sencha Touch 2} gescheitert.
 Des weiteren sollten soziale Medien wie Facebook und Twitter integriert werden, um eine breitere Öffentlichkeit zu erreichen.
-Im Verlaufe der Arbeit haben sich die Prioritäten diesbezüglich geändert.
+Im Verlaufe der Arbeit haben sich die Prioritäten diesbezüglich aber geändert.
 
 Als letzter offener Punkt bleibt noch das Zurückschreiben der Korrekturen zu \gls{OpenStreetMap}.
 Da wir damit beschäftigt waren unser eigenes System fertig zu stellen, konnten wir dies schlussendlich aus Zeitgründen nicht mehr implementieren.
 
-Die App in der jetzigen Form ist also in sich geschlossen. Die getätigten Korrekturen werden in der eigenen Datenbank abgelegt, jedoch nicht zu \gls{OpenStreetMap} zurückgesendet.
+Die App in der jetzigen Form ist also in sich geschlossen. Die getätigten Korrekturen werden in der eigenen Datenbank abgelegt, jedoch noch nicht zu \gls{OpenStreetMap} zurückgesendet.
 
 Wir mussten in dieser Arbeit feststellen, dass zuerst eine solide Basis erstellt werden muss, auf der dann Weiterentwicklungen stattfinden können.
 Ursprünglich haben wir uns erhofft, tiefer in die Thematik der \gls{Gamification} einzusteigen und die App als \emph{echtes} Game zu gestalten.
