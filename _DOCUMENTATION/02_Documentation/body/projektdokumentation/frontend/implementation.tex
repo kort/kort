@@ -17,13 +17,15 @@ Für die Internationalisierung des Frontends wurde das \brand{Ext.i18n.Bundle-to
 \hline 
 Sencha Touch 2 & 2.1.0 & Framework zur Erstellung von mobilen \glspl{WebApp} \\
 \hline 
+Sencha Cmd 2 & 3.0.0.250 & Build-Tool von Sencha \\
+\hline 
 Leaflet & 0.4.5 & Anzeige von \brand{OpenStreetMap}-Daten auf der Karte \\
 \hline 
 leaflet-osm & Git Revision 38665cc6c0 & Leaflet-Plugin zur Anzeige von \brand{OpenStreetMap}-Objekten auf der Karte \\
 \hline 
 Ext.ux.LeafletMap & 1.0.1 & Sencha Touch-Plugin zur Einbindung einer Leaflet-Karte in Sencha Touch \\
 \hline 
-Ext.i18n.Bundle-touch & Git Branch css-content Revision 
+Ext.i18n.Bundle-touch & Git Revision 
 b4a0beaeb8 & Sencha Touch-Plugin zur Internationalisierung der Oberfläche \\
 \hline 
 \end{tabular}
@@ -37,10 +39,10 @@ Beim Starten der App wird durch mehrere Entscheidungen festgelegt, welche Maske 
 Schlussendlich wird dem Benutzer eine der folgenden Masken angezeigt:
 
 \begin{itemize}
-\item \textbf{Geolocation Fehler Maske}: Wenn keine Geolocation-Informationen verfügbar sind.
+\item \textbf{Hauptmaske}: Falls der Benutzer bereit ist, die App zu benutzen.
 \item \textbf{Login Maske}: Falls der Benutzer noch nicht eingeloggt ist.
 \item \textbf{Erste Schritte Maske}: Falls der Benutzer noch keinen Benutzernamen gewählt hat.
-\item \textbf{Hauptmaske}: Falls der Benutzer bereit ist, die \kort{} zu verwenden.
+\item \textbf{Geolocation Fehler Maske}: Wenn keine Geolocation-Informationen verfügbar sind.
 \end{itemize}
 
 \begin{figure}[H]
@@ -52,7 +54,7 @@ Schlussendlich wird dem Benutzer eine der folgenden Masken angezeigt:
 
 \subsection{Sencha Cmd}
 \label{sencha-cmd}
-Das Grundgerüst der App wurde komplett mit dem Sencha-eigenen Build-Tool \brand{Sencha Cmd 3.0.0.250}\footnote{\url{http://www.sencha.com/products/sencha-cmd}} generiert.
+Das Grundgerüst der App wurde komplett mit dem Sencha-eigenen Build-Tool \brand{Sencha Cmd}\footnote{\url{http://www.sencha.com/products/sencha-cmd}} generiert.
 Dieses bietet verschiedene Build-Möglichkeiten an:
 
 \begin{table}[H]
@@ -72,7 +74,7 @@ Dieses bietet verschiedene Build-Möglichkeiten an:
 \label{table-sencha-cmd-build}
 \end{table}
 
-Durch den Einsatz von Sencha Cmd ist es möglich mit geringen Mehraufwand, eine native App zu generieren und diese in den verschiedenen \glspl{App-Store} anzubieten.
+Durch den Einsatz von \brand{Sencha Cmd} ist es möglich mit geringen Mehraufwand, eine native App zu generieren und diese in den verschiedenen \glspl{App-Store} anzubieten.
 
 \subsubsection{Konfiguration}
 Der Buildprozess wird in der Datei \inlinecode{app.json} konfiguriert.
@@ -101,7 +103,6 @@ Dieser wird für das Finden der abhängigen Ressourcen der App verwendet.
 Weitere Informationen zur Konfiguration findet man im entsprechendem Guide der Sencha Docs\footnote{\url{http://docs.sencha.com/touch/2-1/\#!/guide/command\_app}}.
 
 \subsubsection{App Build starten}
-Zur Erstellung eines \kort{}-Builds muss \brand{Sencha Cmd} in der Version 3.0.0.250 installiert sein.
 Der Build kann von der Konsole aus gestartet werden. Dazu muss in das \emph{Root-Verzeichnis} von \kort{} gewechselt und folgender Befehl eingegeben werden:
 
 \inlinecode{sencha app build <environment>}
