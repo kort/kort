@@ -12,7 +12,7 @@ Eine sehr nützliche Funktionalität, welche Apple im Mobile Safari-Browser anbi
 \subfigure{\includegraphics[width=0.23\textwidth]{images/bugs/kort-add_to_homescreen_3}}
 \hfill
 \subfigure{\includegraphics[width=0.23\textwidth]{images/bugs/kort-add_to_homescreen_4}}
-\caption{iOS - "`Add to homescreen"'-Funktion}
+\caption{iOS - Add to homescreen-Funktion}
 \end{figure}
 
 Dadurch wird ein App-ähnlicher Bookmark der aktuellen Webseite auf dem Homescreen erstellt.
@@ -25,7 +25,7 @@ Auf Stack Overflow\footnote{\url{http://stackoverflow.com/questions/12503815/ios
 
 \textbf{Workaround}
 
-Im Sencha Fourm\footnote{\url{http://www.sencha.com/forum/showthread.php?246317-2.1.0-RC1-Save-to-home-screen-Geolocation-not-working}} wird als Workaround vorgeschlagen die Generierung des folgenden Metatags (siehe Code-Ausschnitt \ref{code-ios6-homescreen-metatag}) in der Sencha Touch Library zu deaktivieren.
+Im Sencha Fourm\footnote{\url{http://www.sencha.com/forum/showthread.php?246317-2.1.0-RC1-Save-to-home-screen-Geolocation-not-working}} wird als Workaround vorgeschlagen die Generierung des \newline \inlinecode{apple-mobile-web-app-capable} Metatags (siehe Code-Ausschnitt \ref{code-ios6-homescreen-metatag}) in der Sencha Touch Library zu deaktivieren.
 
 \lstset{language=HTML}
 \begin{lstlisting}[caption=Metatag für iOS6 Workaround, label=code-ios6-homescreen-metatag]
@@ -50,7 +50,7 @@ Dies ist zwar unschön löst aber das Problem mit dem Zugriff auf die Geolocatio
 Wie in Abschnitt \ref{sencha-cmd} beschrieben, basiert die App vollständig auf dem Sencha-eigenen Build-Tool \brand{Sencha Cmd 3.0.0.250}. Darin sind aber noch einige Bugs vorhanden.
 
 Bei \kort{} besteht dabei ein Problem bei der fest eingebauten Komprimierung der JavaScript-Sourcen.
-Während diesem Prozess werden lokale Variablennamen mit einzelnen Buchstaben abgekürzt.
+Während diesem Prozess werden lokale Variablennamen mit einzelnen Buchstaben abgekürzt, um die Dateigrösse zu reduzieren.
 Dabei treten Konflikte mit der \brand{Leaflet}-Library auf, welche den Buchstaben \emph{L} als Namespace verwendet.
 
 \textbf{Workaround}

@@ -32,7 +32,7 @@ b4a0beaeb8 & Sencha Touch-Plugin zur Internationalisierung der Oberfläche \\
 \end{table}
 
 \subsection{Starten der App}
-Beim Starten der App wird duch mehrere Entscheidungen festgelegt, welche Maske dem Benutzer angezeigt wird. In Abbildung \ref{image-kort-startup-activitydiagram} ist der Ablauf grob dargestellt.
+Beim Starten der App wird durch mehrere Entscheidungen festgelegt, welche Maske dem Benutzer angezeigt wird. In Abbildung \ref{image-kort-startup-activitydiagram} ist der Ablauf grob dargestellt.
 
 Schlussendlich wird dem Benutzer eine der folgenden Masken angezeigt:
 
@@ -40,7 +40,7 @@ Schlussendlich wird dem Benutzer eine der folgenden Masken angezeigt:
 \item \textbf{Geolocation Fehler Maske}: Wenn keine Geolocation-Informationen verfügbar sind.
 \item \textbf{Login Maske}: Falls der Benutzer noch nicht eingeloggt ist.
 \item \textbf{Erste Schritte Maske}: Falls der Benutzer noch keinen Benutzernamen gewählt hat.
-\item \textbf{Hauptmaske}: Falls der Benutzer bereit ist, die App zu benutzen.
+\item \textbf{Hauptmaske}: Falls der Benutzer bereit ist, die \kort{} zu verwenden.
 \end{itemize}
 
 \begin{figure}[H]
@@ -68,7 +68,7 @@ Dieses bietet verschiedene Build-Möglichkeiten an:
 \inlinecode{package/native} & Mit diesen Builds lassen sich native Apps für die verschiedenen mobilen Betriebssysteme generieren. \\
 \hline
 \end{tabular}
-\caption{Verschiedene Build-Möglichkeiten mit Sencha Cmd}
+\caption{Build-Möglichkeiten mit Sencha Cmd}
 \label{table-sencha-cmd-build}
 \end{table}
 
@@ -102,7 +102,7 @@ Weitere Informationen zur Konfiguration findet man im entsprechendem Guide der S
 
 \subsubsection{App Build starten}
 Zur Erstellung eines \kort{}-Builds muss \brand{Sencha Cmd} in der Version 3.0.0.250 installiert sein.
-Der Build kann von der Konsole aus gestartet werden. Dazu muss in das \emph{Root-Verzeichnis} von \kort{} gewechselt werden und folgender Befehl eingegeben werden:
+Der Build kann von der Konsole aus gestartet werden. Dazu muss in das \emph{Root-Verzeichnis} von \kort{} gewechselt und folgender Befehl eingegeben werden:
 
 \inlinecode{sencha app build <environment>}
 
@@ -140,8 +140,8 @@ Die Oberfläche von \kort{} wurde bereits für eine mögliche Übersetzung vorbe
 Dazu wurde das Plugin \brand{Ext.i18n.Bundle-touch}\footnote{\url{https://github.com/elmasse/Ext.i18n.Bundle-touch}} für Sencha Touch eingesetzt.
 Dieses ermöglicht es einzelne Texte in externen Sprach-Property-Dateien auszulagern.
 
-Bei \kort{} befinden sich diese Files im Verzeichnis \inlinecode{/resources/i18n/} und müssen nach folgendem Schema benannt werden: \inlinecode{Kort\_<locale>.props}.
-Die verwendete Sprache ist in der Funktion \inlinecode{prepareI18n()} der Datei \inlinecode{app.js} festgelegt.
+Bei \kort{} befinden sich diese Files im Verzeichnis \inlinecode{resources/i18n/} und müssen nach folgendem Schema benannt werden: \inlinecode{Kort\_<locale>.props}.
+Die verwendete Sprache wird in der Funktion \inlinecode{prepareI18n()} der Datei \inlinecode{app.js} festgelegt.
 
 \lstset{language=JavaScript}
 \begin{lstlisting}[caption=kort - Sprache definieren, label=kort-choose-language]

@@ -9,15 +9,15 @@ Durch die Anforderungen an die Applikation ergaben sich folgende Bedingungen, we
 \begin{itemize}
 \item Die Fehler müssen auch für Nicht-\gls{Mapper} lösbar sein.
 \item Sie müssen auf Deutsch übersetzbar sein. Die Fehlerbeschreibungen sollten somit einem gegebenen Schema folgen und nicht Freitext beinhalten.
-\item Die Fehler müssen sich einfach in einem UI abbilden lassen
+\item Die Fehler müssen sich einfach in einem UI abbilden lassen.
 \item Die Fehler sollen sich nur auf Metadaten beziehen und nicht auf Geometrieobjekte (Strasse, Gebäude, usw.) , da wir keinen vollwertigen Karten-Editor anbieten können.
-\item Die Fehler sollten sich immer nur auf einen \gls{Tag} des betroffenen OSM-Objekt beziehen. Dadurch vereinfacht sich das Zurückschreiben der Daten zu \brand{OpenStreetMap}.
+\item Die Fehler sollten sich immer nur auf einen \gls{Tag} des betroffenen \brand{OpenStreetMap}-Objekt beziehen. Dadurch vereinfacht sich das Zurückschreiben der Daten zu \brand{OpenStreetMap}.
 \end{itemize}
 
 Wir untersuchten mehrere mögliche Fehlerdatenquellen auf deren Qualität.
 
 \subsection{Fehler selbst aus OpenStreetMap extrahieren}
-Da die die Daten von OpenStreetMap frei verfügbar sind, steht es jedem offen diese Daten zu nutzen und selbst zu verarbeiten.
+Da die Daten von \brand{OpenStreetMap} frei verfügbar sind, steht es jedem offen diese Daten zu nutzen und selbst zu verarbeiten.
 Es wäre somit eine Möglichkeit sich selbst daran zu versuchen Fehler mit geeingeten Regeln zu finden und aus den Daten zu extrahieren.
 
 \begin{table}[H]
@@ -37,8 +37,8 @@ Es wäre somit eine Möglichkeit sich selbst daran zu versuchen Fehler mit geein
 Dies würde den Rahmen dieser Arbeit sprengen. \\ 
 \hline 
 \end{tabular} 
-\caption{FIXME-Tags in OpenStreetMap}
-\label{datenquellen-fixme_tags_osm}
+\caption{Fehler direkt aus OpenStreetMap}
+\label{datenquellen-osm_itself}
 \end{table}
 
 \subsection{FIXME-Tags in OpenStreetMap}
@@ -66,6 +66,7 @@ Darin wird der eigentliche Fehler beschrieben.
 \end{table}
 
 \subsection{OpenStreetBugs}
+\label{openstreetbugs}
 Mit der Applikation \brand{OpenStreetBugs} ist es für die Benutzer möglich Fehler in den Kartendaten als Bug zu erfassen.
 
 \begin{table}[H]
@@ -112,7 +113,7 @@ Mit der Applikation \brand{OpenStreetBugs} ist es für die Benutzer möglich Feh
 
 \subsection{MapDust}
 \brand{MapDust} ist ein Bug-Tracker der Firma skobbler.
-Er ist \brand{OpenStreetMap} sehr ähnlich, konzentriert sich aber mehr auf Fehler beim Routing.
+Er ist \brand{OpenStreetBugs} (siehe Abschnitt \ref{openstreetbugs}) sehr ähnlich, konzentriert sich aber mehr auf Fehler beim Routing\todo{Routing ins Glossar}.
 
 \begin{table}[H]
 \centering
@@ -122,7 +123,7 @@ Er ist \brand{OpenStreetMap} sehr ähnlich, konzentriert sich aber mehr auf Fehl
 \hline 
 \small{\textbf{Erfasser}} & Benutzer von skobbler \\
 \hline 
-\small{\textbf{API verfügbar?}} & Ja (Dump-File der Fehler sowie API) \newline siehe \url{http://wiki.openstreetmap.org/wiki/MapDust} \\
+\small{\textbf{API verfügbar?}} & Ja (Dump-File der Fehler sowie \gls{API}) \newline siehe \url{http://wiki.openstreetmap.org/wiki/MapDust} \\
 \hline 
 \small{\textbf{Lösung zurückschreiben}} & Korrekturen können direkt an \brand{OpenStreetMap} geschickt werden.
 Zusätzlich muss der Bug bei MapDust geschlossen werden. \\
@@ -130,8 +131,8 @@ Zusätzlich muss der Bug bei MapDust geschlossen werden. \\
 \small{\textbf{Eignung}} & \textbf{mittel} \linebreak Die Qualität der Fehler lässt sehr zu wünschen übrig, da sie meist von unerfahrenen Benutzern erstellt werden. Positiv ist, dass es eine Vielzahl von Fehlern gibt und auch ein API angeboten wird. \\
 \hline
 \end{tabular}
-\caption{KeepRight}
-\label{datenquellen-keepright}
+\caption{MapDust}
+\label{datenquellen-mapdust}
 \end{table}
 
 \subsection{Housenumbervalidator}
@@ -150,11 +151,11 @@ Die Fehler reichen von falschen Strassennamen bis zu Duplikaten von Hausnummern 
 \hline 
 \small{\textbf{Lösung zurückschreiben}} & Korrekturen können direkt an \brand{OpenStreetMap} geschickt werden. \\
 \hline
-\small{\textbf{Eignung}} & \textbf{mittel} \linebreak Es ist schade, dass es kein API des Housenumbervalidators gibt. Die Fehler sind zum Teil schwierig zu verstehen für Laien, was die Erstellung eines UIs schwierig macht. Zudem sind die Daten auf Deutschland und Österreich begrenzt. \\
+\small{\textbf{Eignung}} & \textbf{mittel} \linebreak Es ist schade, dass es kein \gls{API} des Housenumbervalidators gibt. Die Fehler sind zum Teil schwierig zu verstehen für Laien, was die Erstellung eines UIs schwierig macht. Zudem sind die Daten auf Deutschland und Österreich begrenzt. \\
 \hline
 \end{tabular}
-\caption{KeepRight}
-\label{datenquellen-keepright}
+\caption{Housenumbervalidator}
+\label{datenquellen-housenumbervalidator}
 \end{table}
 
 \section{Entscheid: Fehlerdaten von KeepRight}
