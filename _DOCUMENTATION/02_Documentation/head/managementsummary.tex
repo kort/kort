@@ -15,7 +15,7 @@ Mit den Editoren lässt sich direkt oder indirekt die \gls{OpenStreetMap}-Karte 
 Die Qualitätssicherungstools haben sich zum Ziel gesetzt fehlende oder falsche Daten aufzuspüren.
 Diese werden dann entweder automatisiert korrigiert oder übersichtlich dargestellt, um eine manuelle Korrektur zu ermöglichen.
 
-Einige Tools wie \emph{KeepRight}\footnote{\url{http://keepright.ipax.at/}} oder \emph{Osmose}\footnote{\url{http://osmose.openstreetmap.fr/map/}} (Abbildung \ref{image-osmose-screenshot}) berechnen aus den Karten-Rohdaten die vorhanden Fehler.
+Einige Tools wie \brand{KeepRight}\footnote{\url{http://keepright.ipax.at/}} oder \brand{Osmose}\footnote{\url{http://osmose.openstreetmap.fr/map/}} (Abbildung \ref{image-osmose-screenshot}) berechnen aus den Karten-Rohdaten die vorhanden Fehler.
 Dazu werden einige Heuristiken verwenden oder einfache Plausibilitätsprüfungen durchgeführt.
 Typische Fehler aus diesen Quellen sind \glspl{POI} ohne Namen oder Strassen ohne definiertem Geschwindigkeitslimit.
 
@@ -32,12 +32,12 @@ So gibt es Navigationsgeräte-Herstellen welche die Daten aus \gls{OpenStreetMap
 Falls ein \gls{Mapper} einen Fehler melden will, so kann er diesen direkt in den Metadaten der Karte hinterlegen. Alle Objekte auf der Karte (Punkte, Wege und Relationen) können durch beliebige, sogenannte  \glspl{Tag} ergänzt werden.
 Um auf einem Objekt Fehler zu markieren, hat sich die Community darauf geeinigt, dafür \inlinecode{FIXME}-\glspl{Tag} zu verwenden.
 
-Quellen für derartige Fehler sind beispielsweise \emph{OpenStreetBugs}\footnote{\url{http://openstreetbugs.schokokeks.org/}} oder die \inlinecode{FIXME}-\glspl{Tag} aus \emph{KeepRight}.
+Quellen für derartige Fehler sind beispielsweise \brand{OpenStreetBugs}\footnote{\url{http://openstreetbugs.schokokeks.org/}} oder die \inlinecode{FIXME}-\glspl{Tag} aus \brand{KeepRight}.
 
 \section*{Ergebnisse}
 Das Ziel, eine cross-platform fähige \gls{WebApp} zu erstellen mit geeignetem Backend für die Verwaltung der Daten wurde klar erreicht.
 Die App bietet alle Grundfunktionalitäten, welche nötig sind, um Fehler anzuzeigen, zu lösen und gegebene Lösungen zu validieren.
-Daneben sind einige Elemente der \gls{Gamification} implementiert. So ist es beispielsweise möglich, durch das Lösen von Fehlern Punkte (sogenannte \emph{koins}) zu sammeln und sich über eine Highscore, mit anderen Spielern zu messen.
+Daneben sind einige Elemente der \gls{Gamification} implementiert. So ist es beispielsweise möglich, durch das Lösen von Fehlern Punkte (sogenannte \emph{Koins}) zu sammeln und sich über eine Highscore, mit anderen Spielern zu messen.
 Zudem gibt es für speziellen Einsatz, Auszeichnungen zu gewinnen.
 
 \begin{figure}[H]
@@ -57,7 +57,7 @@ Das Problem der mangelnden Ressourcen kann dabei am effektivsten bekämpft werde
 Es ist wichtig, die Einstiegsschwelle tief zu halten und auch einem unerfahrenen Benutzer Werkzeuge zu geben, die einen gewissen Spass vermitteln.\todo{Abschnitt überarbeiten}
 
 \subsection*{Frontend}
-Das Frontend basiert auf dem HTML5/JavaScript Framework \emph{Sencha Touch 2} und orientiert sich vom Look and Feel an einer iPhone-App.
+Das Frontend basiert auf dem HTML5/JavaScript Framework \brand{Sencha Touch 2} und orientiert sich vom Look and Feel an einer iPhone-App.
 Die App bietet für die verschiedenen Funktionen unterschiedliche Tabs an, auf welchen der Benutzer Fehler beheben oder prüfen und die Highscore oder sein Profil anschauen kann.
 
 \begin{figure}[H]
@@ -72,11 +72,11 @@ Die App bietet für die verschiedenen Funktionen unterschiedliche Tabs an, auf w
 
 Für die Authentifizierung kommt \gls{OAuth} zum Einsatz.
 Dir Standard sorgt dafür, dass sich der Benutzer mit einem bereits bestehenden Benutzerkonto bei \textsc{Kort} anmelden kann.
-Derzeit werden dafür die \gls{OAuth}-Provider \gls{OpenStreetMap} und \emph{Google} verwendet.
+Derzeit werden dafür die \gls{OAuth}-Provider \gls{OpenStreetMap} und \brand{Google} verwendet.
 
 \subsection*{Backend}
 Das Backend ist in PHP geschrieben und basiert auf der Kommunikation über \gls{REST}-Schnittstellen.
-Die eigenen Schnittstellen sind alle mit dem \emph{Slim-Framework}\footnote{\url{http://www.slimframework.com/}} erstellt.
+Die eigenen Schnittstellen sind alle mit dem \brand{Slim-Framework}\footnote{\url{http://www.slimframework.com/}} erstellt.
 Da die Datenbank und der Webserver auf zwei verschiedenen Servern laufen, bietet auch die Datenbank eine \gls{REST}-Schnittstelle an, über welche sich beliebige SQL-Abfrage absetzen lassen.
 Diese flexible Aufteilung ermöglicht es sehr einfach, die Systeme umzuziehen oder weitere hinzuzufügen.
 
@@ -94,7 +94,7 @@ Schliesslich verfügt nicht jeder über ein \gls{OpenStreetMap}- oder ein Google
 Mögliche Dienste wären dabei beispielweise Facebook oder Twitter, welche beide \gls{OAuth}-Dienste anbieten.
 
 In der Konzeption der App haben wir uns ursprünglich das Ziel gesetzt, das \gls{Camera API} zu verwenden. 
-So könnten Benutzer beim Eintragen von Lösungsvorschlägen direkt einen \emph{Fotobeweis} anbringen. 
+So könnten Benutzer beim Eintragen von Lösungsvorschlägen direkt einen Fotobeweis anbringen. 
 Dies würde die Validierung der eingetragenen Lösungen für andere Benutzer stark vereinfachen.
 
 Als zusätzliche Motivation könnten zeitlich begrenzte Aktionen durchgeführt werden.
@@ -103,7 +103,7 @@ Mögliche Aktionen wären beispielsweise die Konzentration auf einen Fehlertyp (
 Die Spieler könnten beispielsweise mittels Push-Notifikationen über solche Aktionen oder sonstige Neuerungen informiert werden.
 
 Um die App längerfristig am Laufen zu halten ist es unumgänglich, weitere Fehlertypen und -quellen einzubinden. 
-\emph{KeepRight} bietet zwar eine grosse Menge an Fehlerdaten, jedoch ist nur ein geringer Teil davon für unsere App nutzbar.
+\brand{KeepRight} bietet zwar eine grosse Menge an Fehlerdaten, jedoch ist nur ein geringer Teil davon für unsere App nutzbar.
 
 Die Bekanntheit der App muss durch geeignete Massnahmen gesteigert werden. Dazu gehört die Integration von Social Media-Diensten wie Facebook und Twitter.
 Dies kann einerseits genutzt werden um Werbung zu machen, anderseits können Benutzer auch auf ihre gewonnenen Auszeichnungen aufmerksam machen und so andere bereits bestehende Benutzer dazu animieren diese Auszeichnungen ebenfalls zu gewinnen.
