@@ -11,6 +11,8 @@
     <property name="php.doc.dir" value="docs/Kort-backend" />
     <property name="js.dir" value="app" />
     <property name="js.doc.dir" value="docs/Kort"/>
+    <property name="js.leaflet.dir" value="ux" />
+    <property name="js.leaflet.doc.dir" value="docs/Ext.ux.LeafletMap"/>
     <property name="test.dir" value="test" />
 
 
@@ -76,7 +78,14 @@
             <arg value="--output"/>
             <arg value="${js.doc.dir}"/>
             <arg value="--config"/>
-            <arg value="jsduck/jsduck_config.json" />
+            <arg value="jsduck/jsduck_kort_config.json" />
+        </exec>
+        <exec executable="jsduck">
+            <arg value="${js.leaflet.dir}"/>
+            <arg value="--output"/>
+            <arg value="${js.leaflet.doc.dir}"/>
+            <arg value="--config"/>
+            <arg value="jsduck/jsduck_leaflet_config.json" />
         </exec>
     </target>
 

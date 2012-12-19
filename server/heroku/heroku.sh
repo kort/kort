@@ -6,9 +6,6 @@ if [[ $DEPLOY == "true" ]] ; then
     fi
     
     export SOURCE_DIR=$CI_HOME
-    if [[ $TARGET_ENV == "prod" ]] ; then
-        SOURCE_DIR="$CI_HOME/build/Kort/production"
-    fi
 
     yes | ruby $CI_HOME/server/heroku/heroku_prepare.rb
     bash $CI_HOME/server/heroku/heroku_keys.sh
