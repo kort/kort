@@ -58,7 +58,7 @@ Darin wird der eigentliche Fehler beschrieben.
 \hline 
 \small{\textbf{Lösung zurückschreiben}} & Lösung könnte via \gls{API} an \brand{OpenStreetMap} gesendet werden. \\
 \hline
-\small{\textbf{Eignung}} & \textbf{Schlecht} \linebreak Durch die manuelle Erfassung der Daten, ist es für uns nicht möglich automatisiert ein GUI für die Fehlerbehebung zu erstellen. \\ 
+\small{\textbf{Eignung}} & \textbf{schlecht} \linebreak Durch die manuelle Erfassung der Daten, ist es für uns nicht möglich automatisiert ein GUI für die Fehlerbehebung zu erstellen. \\ 
 \hline 
 \end{tabular} 
 \caption{FIXME-Tags in OpenStreetMap}
@@ -113,7 +113,7 @@ Mit der Applikation \brand{OpenStreetBugs} ist es für die Benutzer möglich Feh
 
 \subsection{MapDust}
 \brand{MapDust} ist ein Bug-Tracker der Firma skobbler.
-Er ist \brand{OpenStreetBugs} (siehe Abschnitt \ref{openstreetbugs}) sehr ähnlich, konzentriert sich aber mehr auf Fehler beim Routing\todo{Routing ins Glossar}.
+Er ist \brand{OpenStreetBugs} (siehe Abschnitt \ref{openstreetbugs}) sehr ähnlich, konzentriert sich aber mehr auf Fehler beim \gls{Routing}.
 
 \begin{table}[H]
 \centering
@@ -250,6 +250,6 @@ Ein Subset davon wird für die Applikation benötigt.
 \label{datenquellen-internationalisierung}
 Eine Anforderung an \kort{} war es, ein deutsches UI anzubieten und daneben die App soweit vorzubereiten, dass sich diese Internationalisieren lässt.
 
-Dies schliesst in diesem Fall die Texte aus der Datenbank mit ein.
+Dies schliesst selbstverständlich die Texte aus der Datenbank ein.
 Alle Fehlerdaten werden ohne Übersetzung aus der Datenbank gelesen und anschliessend mit den Werten aus den Datenbank-spezifischen Properties-Files ersetzt.
-Um die Texte zu ändern, können direkt die Dateien angepasst werden.
+Die Dateien befinden sich im Verzeichnis \inlinecode{resources/i18n/}.
