@@ -1,22 +1,45 @@
 \chapter{Fehler-Datenquellen}
 \label{datenquellen}
-
-\todo[inline]{Fehlerdatenquellen überarbeiten}
-
 Die Grundlage unserer \gls{WebApp} bilden die Fehlerdaten, welche korrigiert werden sollen.
-Es galt deshalb zuerst eine geeignete Quelle für Fehlerdaten in \gls{OpenStreetMap} zu finden.
+Es galt deshalb zuerst eine geeignete Quelle für Fehlerdaten von \gls{OpenStreetMap} zu finden.
 
 \section{Evaluation von geeigneten Datenquellen}
 Durch die Anforderungen an die Applikation ergaben sich folgende Bedingungen, welche die Fehlerdaten erfüllen müssen:
 
 \begin{itemize}
-\item Die Fehler müssen auch für Nicht-\gls{Mapper} lösbar sein. Sprich die Beschreibungen sollten kein \glslink{Mapper}{Mapping}-Vokabular enthalten.
+\item Die Fehler müssen auch für Nicht-\gls{Mapper} lösbar sein.
 \item Sie müssen auf Deutsch übersetzbar sein. Die Fehlerbeschreibungen sollten somit einem gegebenen Schema folgen und nicht Freitext beinhalten.
-\item Dadurch dass wir eine mobile App erstellen und keinen vollwertigen Karten-Editor, sollen die Fehler lediglich \glslink{Tag}{Tags} betreffen. Das Lösen des Fehlers sollte also möglich sein, ohne das Geometrieobjekt (Strasse, Gebäude, usw.) zu verändern.
+\item Die Fehler müssen sich einfach in einem UI abbilden lassen
+\item Die Fehler sollen sich nur auf Metadaten beziehen und nicht auf Geometrieobjekte (Strasse, Gebäude, usw.) , da wir keinen vollwertigen Karten-Editor anbieten können.
 \item Die Fehler sollten sich immer nur auf einen \gls{Tag} des betroffenen OSM-Objekt beziehen. Dadurch vereinfacht sich das Zurückschreiben der Daten zu \gls{OpenStreetMap}.
 \end{itemize}
 
-Wir untersuchten deshalb mehrere Fehlerdatenquellen auf deren Qualität.
+Wir untersuchten mehrere mögliche Fehlerdatenquellen auf deren Qualität.
+
+\subsection{Fehler selbst aus OpenStreetMap extrahieren}
+Da die die Daten von OpenStreetMap frei verfügbar sind, steht es jedem offen diese Daten zu nutzen und selbst zu verarbeiten.
+Es wäre somit eine Möglichkeit sich selbst daran zu versuchen Fehler mit geeingeten Regeln zu finden und aus den Daten zu extrahieren.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.3\twocelltabwidth}|p{0.7\twocelltabwidth}|}
+\hline 
+\small{\textbf{URL}} & \url{http://www.openstreetmap.org} \\
+\hline 
+\small{\textbf{Erfasser}} & Backend von \textsc{Kort} \\
+\hline 
+\small{\textbf{API verfügbar?}} & Ja (\gls{REST} \gls{API}) \newline
+\url{http://wiki.openstreetmap.org/wiki/API_v0.6} \\
+\hline 
+\small{\textbf{Lösung zurückschreiben}} & Lösung könnte via \gls{API} an \gls{OpenStreetMap} gesendet werden. \\
+\hline
+\small{\textbf{Eignung}} & \textbf{schlecht} \linebreak Das Finden von Fehlern ist komplex da es sehr viele Ausnahme zu beachten gibt.
+Dies würde den Rahmen dieser Arbeit sprengen. \\ 
+\hline 
+\end{tabular} 
+\caption{FIXME-Tags in OpenStreetMap}
+\label{datenquellen-fixme_tags_osm}
+\end{table}
 
 \subsection{FIXME-Tags in OpenStreetMap}
 Fehlerhafte Objekte in \gls{OpenStreetMap} können von Benutzern direkt mit einem \inlinecode{FIXME}-\gls{Tag} versehen werden, wenn sie einen Fehler aufweisen.
@@ -35,7 +58,7 @@ Darin wird der eigentliche Fehler beschrieben.
 \hline 
 \small{\textbf{Lösung zurückschreiben}} & Lösung könnte via \gls{API} an \gls{OpenStreetMap} gesendet werden. \\
 \hline
-\small{\textbf{Eignung}} & \textbf{tief} \linebreak Durch die manuelle Erfassung der Daten, ist es für uns nicht möglich automatisiert ein GUI für die Fehlerbehebung zu erstellen. \\ 
+\small{\textbf{Eignung}} & \textbf{Schlecht} \linebreak Durch die manuelle Erfassung der Daten, ist es für uns nicht möglich automatisiert ein GUI für die Fehlerbehebung zu erstellen. \\ 
 \hline 
 \end{tabular} 
 \caption{FIXME-Tags in OpenStreetMap}
@@ -58,7 +81,7 @@ Mit der Applikation \emph{OpenStreetBugs} ist es für die Benutzer möglich Fehl
 \hline 
 \small{\textbf{Lösung zurückschreiben}} & Lösung müsste an \gls{OpenStreetMap} gesendet werden. Zusätzlich  müsste der Bug auf OpenStreetBugs als gelöst markiert werden. \\
 \hline
-\small{\textbf{Eignung}} & \textbf{tief} \linebreak Durch die manuelle Erfassung der Daten, ist es für uns nicht möglich automatisiert ein GUI für die Fehlerbehebung zu erstellen. \\ 
+\small{\textbf{Eignung}} & \textbf{Schlecht} \linebreak Durch die manuelle Erfassung der Daten, ist es für uns nicht möglich automatisiert ein GUI für die Fehlerbehebung zu erstellen. \\ 
 \hline 
 \end{tabular} 
 \caption{OpenStreetBugs}
@@ -80,7 +103,54 @@ Mit der Applikation \emph{OpenStreetBugs} ist es für die Benutzer möglich Fehl
 \hline 
 \small{\textbf{Lösung zurückschreiben}} & Lösung müssten lediglich an \gls{OpenStreetMap} gesendet werden. \emph{KeepRight} baut seine Fehlerdatenbank jeweils über Nacht aus dem \gls{OpenStreetMap}-Daten neu auf. \\
 \hline
-\small{\textbf{Eignung}} & \textbf{hoch} \linebreak Dadurch das die Fehlerdaten automatisiert erstellt werden, ist es gut möglich, für jeweilige Fehlertypen eine geeignete Maske für deren Behebung zur Verfügung zu stellen. \\
+\small{\textbf{Eignung}} & \textbf{gut} \linebreak Dadurch das die Fehlerdaten automatisiert erstellt werden, ist es gut möglich, für jeweilige Fehlertypen eine geeignete Maske für deren Behebung zur Verfügung zu stellen. \\
+\hline
+\end{tabular}
+\caption{KeepRight}
+\label{datenquellen-keepright}
+\end{table}
+
+\subsection{MapDust}
+\emph{MapDust} ist ein Bug-Tracker der Firma skobbler.
+Er ist \emph{OpenStreetMap} sehr ähnlich, konzentriert sich aber mehr auf Fehler beim Routing.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.3\twocelltabwidth}|p{0.7\twocelltabwidth}|}
+\hline 
+\small{\textbf{URL}} & \url{http://www.mapdust.com/} \\
+\hline 
+\small{\textbf{Erfasser}} & Benutzer von skobbler \\
+\hline 
+\small{\textbf{API verfügbar?}} & Ja (Dump-File der Fehler sowie API) \newline siehe \url{http://wiki.openstreetmap.org/wiki/MapDust} \\
+\hline 
+\small{\textbf{Lösung zurückschreiben}} & Korrekturen können direkt an \gls{OpenStreetMap} geschickt werden.
+Zusätzlich muss der Bug bei MapDust geschlossen werden. \\
+\hline
+\small{\textbf{Eignung}} & \textbf{mittel} \linebreak Die Qualität der Fehler lässt sehr zu wünschen übrig, da sie meist von unerfahrenen Benutzern erstellt werden. Positiv ist, dass es eine Vielzahl von Fehlern gibt und auch ein API angeboten wird. \\
+\hline
+\end{tabular}
+\caption{KeepRight}
+\label{datenquellen-keepright}
+\end{table}
+
+\subsection{Housenumbervalidator}
+Der \emph{Housenumbervalidator} ist ein Quelle, welche die \gls{OpenStreetMap}-Daten automatisiert auf fehlerhafte Adressen prüft.
+Die Fehler reichen von falschen Strassennamen bis zu Duplikaten von Hausnummern in der gleichen Strasse.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.3\twocelltabwidth}|p{0.7\twocelltabwidth}|}
+\hline 
+\small{\textbf{URL}} & \url{http://gulp21.bplaced.net/osm/housenumbervalidator/} \\
+\hline 
+\small{\textbf{Erfasser}} & Berechnet aus \gls{OpenStreetMap} \\
+\hline 
+\small{\textbf{API verfügbar?}} & Nein, aber der Quellcode ist frei verfügbar. \\
+\hline 
+\small{\textbf{Lösung zurückschreiben}} & Korrekturen können direkt an \gls{OpenStreetMap} geschickt werden. \\
+\hline
+\small{\textbf{Eignung}} & \textbf{mittel} \linebreak Es ist schade, dass es kein API des Housenumbervalidators gibt. Die Fehler sind zum Teil schwierig zu verstehen für Laien, was die Erstellung eines UIs schwierig macht. Zudem sind die Daten auf Deutschland und Österreich begrenzt. \\
 \hline
 \end{tabular}
 \caption{KeepRight}
@@ -89,6 +159,10 @@ Mit der Applikation \emph{OpenStreetBugs} ist es für die Benutzer möglich Fehl
 
 \section{Entscheid: Fehlerdaten von KeepRight}
 Durch die gute Eignung der Fehlerdaten vom \emph{KeepRight}-Dienst, haben wir uns dazu entschieden deren Daten als Basis für unsere Fehler zu verwenden.
+Der Dienst liefert zuverlässig Daten in hoher Qualität.
+Die Fehlermeldungen sind klar und alle Fehler sind bereits Kategorisiert, so ist es einfach diese dann für die grafische Darstellung zu unterscheiden.
+
+Ein grosses Plus ist auch, dass sich die Daten auf \gls{OpenStreetMap} abstützen, so dass eine Korrektur nur an einer Stelle vorgenommen werden muss.
 
 \section{Fehlerdaten in die Datenbank laden}
 Um stets aktuelle Daten für die App anzuzeigen, wird der Dump von \emph{KeepRight} jede Nacht mit einem Shellskript in die Datenbank geladen.
