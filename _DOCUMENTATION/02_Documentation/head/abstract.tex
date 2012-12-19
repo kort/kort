@@ -9,22 +9,23 @@
 \begin{abstract}
 % Kopf- und Fusszeile auch auf Abstractseite
 \thispagestyle{scrheadings}
+\gls{OpenStreetMap} ist ein freies Projekt, welches jedermann ermöglicht, Kartendaten zu nutzen und zu editieren.
+Durch diesen öffentlichen Charakter ist es nicht ausgeschlossen, dass fehlerhafte bzw. unvollständige Daten eingetragen werden.
+Es gibt verschiedene Tools, die es sich zum Ziel gesetzt haben, solche Fehler zu finden und aufzubereiten.
+Die so aufbereiteten Daten mussten bisher anschliessend manuell verglichen und korrigiert werden.
 
-Das Ziel dieser Arbeit war das Erstellen einer cross-platform \gls{WebApp} zur Behebung von Fehlern in den \gls{OpenStreetMap}-Daten.
+Zur Behebung dieser Fehler ist die cross-platform \gls{WebApp} \textsc{Kort} entwickelt worden.
+Diese ist in JavaScript geschrieben und basiert auf dem \emph{Sencha Touch 2}-Framework.
+Im Backend kommt eine \emph{PostgreSQL}-Datenbank zum Einsatz. Die komplette Kommunikation ist mit \gls{REST}-Schnittstellen realisiert.
 
-Mit der App lassen sich verschiedene Typen von Fehlern beheben.
-Dies kann zum Beispiel ein fehlendes Geschwindigkeitslimit bei einer Strasse oder ein Point of Interest ohne Namen sein.
+Mit \textsc{Kort} soll das Verbessern von Karten-Daten auf unterhaltsame Weise ermöglicht werden.
+Dem Benutzer werden dazu die \gls{OpenStreetMap}-Fehler direkt auf einer Karte angezeigt.
+Falls er die Lösung für einen dieser Fehler kennt, kann er einen entsprechenden Lösungsvorschlag abgeben.
+Weitere Spieler der App überprüfen daraufhin den Vorschlag auf seine Gültigkeit.
+Um die Benutzer zu motivieren, die App regelmässig zu verwenden, wurden zahlreiche Spiel-Elemente eingesetzt.
+So erhält ein Benutzer für alle Aktionen Punkte (sogenannte \emph{koins}) die dann in einer Rangliste zum Vergleich dargestellt werden.
+Zudem können Auszeichnungen für besondere Leistungen gewonnen werden.
+Dieser Ansatz ist bekannt unter dem Begriff \emph{\gls{Gamification}}.
 
-Die Lösungsvorschläge der Benutzer werden dann von anderen Benutzern validiert.
-Damit lässt sich die Qualität der Daten sicherstellen.
-Wurde ein Lösungsvorschlag genügend oft positiv bewertet, so gilt dieser als akzeptiert. 
-Die Korrektur wird dann zurück zu \gls{OpenStreetMap} gesendet wodurch die Kartendaten nach und nach verbessert werden.
-
-Um einen Anreiz zu bieten, die App längerfristig zu verwenden, wurden verschiedene Game-Elemente eingebaut.
-So lassen sich beispielsweise mit dem Lösen von Fehlern Punkte sammeln und Auszeichnungen gewinnen.
-Zusätzlich kann man sich über eine Highscore mit den anderen Spielern messen.
-
-Dieses Konzept, welches auch als Gamification bezeichnet wird, wurde im Bericht noch weiter beschrieben.
-Es wurden weitere mögliche Elemente, welche in diesem Zusammenhang sinnvoll wären, untersucht und dokumentiert.
-
+Die App ist ein Prototyp der zurzeit auf den deutschsprachigen Raum beschränkt ist.
 \end{abstract}
