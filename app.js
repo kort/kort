@@ -18,7 +18,7 @@ Ext.application({
         'Kort.util.Config',
         'Kort.util.Geolocation'
     ],
-    
+
     views: [
         'Main',
         'overlay.login.Panel',
@@ -82,9 +82,6 @@ Ext.application({
 
     // launch function is called as soon as app is ready
     launch: function() {
-        // Destroy the #appStartscreen element
-        Ext.fly('appStartscreen').destroy();
-
         var selectAnswersStore = Ext.getStore('SelectAnswers'),
             mainPanel;
 
@@ -107,6 +104,7 @@ Ext.application({
 
         Kort.geolocation = Ext.create('Kort.util.Geolocation');
         Kort.geolocation.updateLocation(function(geo) {
+            Ext.fly('appStartscreen').destroy();
             if(geo) {
                 me.loadUserClientSecret(geo, mainPanel);
             } else {
@@ -277,7 +275,7 @@ Ext.application({
                 ]
             }
         });
-        
+
         Ext.Msg.defaultAllowedConfig.zIndex = 1600;
         Ext.Msg.confirm(
             "Neue App-Version",
