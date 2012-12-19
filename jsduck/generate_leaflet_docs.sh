@@ -1,0 +1,1 @@
+jsduck ../ux --o ../docs/Ext.ux.LeafletMap --config=./jsduck_leaflet_config.json
