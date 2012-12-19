@@ -8,7 +8,7 @@ button.back=Zurück
 
 # Login
 login.kort.description.1=Löse Fehler
-login.kort.description.2=Sammle koins
+login.kort.description.2=Sammle Koins
 login.kort.description.3=Verbessere OpenStreetMap
 login.introduction.1=Um 
 login.introduction.2= nutzen zu können, musst du dich zuerst einloggen:
@@ -38,14 +38,14 @@ geolocationerror.loadmask.message=Lade App neu...
 bugmap.title=Aufträge in deiner Nähe
 bugmap.loadmask.message=Lade Auträge...
 bugmap.messagebox.koins.earn=Verdiene dir
-bugmap.messagebox.koins.name=koins
+bugmap.messagebox.koins.name=Koins
 bugmap.messagebox.yes=Beantworten
 bugmap.messagebox.no=Weiss nicht
 
 ## Fix
 fix.form.title=Auftrag
 fix.form.koins.earn=Hol dir die
-fix.form.koins.name=koins!
+fix.form.koins.name=Koins!
 fix.form.message.placeholder=Deine Antwort...
 fix.form.button.showonmap=Auf der Karte anzeigen
 fix.form.button.submit=Auftrag abschliessen
@@ -85,7 +85,7 @@ highscore.title=Highscore
 highscore.loadmask.message=Lade Highscore...
 highscore.emptytext=Highscore kann nicht geladen werden.
 highscore.you=Das bist du!
-highscore.koins=koins
+highscore.koins=Koins
 highscore.fixcount=Aufträge:
 highscore.votecount=Prüfungen:
 highscore.user.badges.emptytext=Die Auszeichnungen konnten nicht geladen werden.
@@ -102,7 +102,7 @@ profile.content.oauthprovider=Eingeloggt über
 profile.content.fixes=Erledigte Aufträge
 profile.content.votes=Getätigte Überprüfungen
 profile.content.koins.header=Gesammelte Koins
-profile.content.koins.title=koins
+profile.content.koins.title=Koins
 profile.content.badges.header=Gewonnene Auszeichnungen
 profile.logout.loadmask.message=Logout...
 profile.refresh.loadmask.message=Lade Profil...
@@ -148,7 +148,7 @@ picker.cancel=Abbrechen
 # Reward
 reward.alert.title=Du wurdest stärker!
 reward.alert.koins.new.1=Bravo! Du hast
-reward.alert.koins.new.2=koins gewonnen.
+reward.alert.koins.new.2=Koins gewonnen.
 reward.alert.koins.total.1=Deine Gesamtpunktzahl beträgt nun
-reward.alert.koins.total.2=koins.
+reward.alert.koins.total.2=Koins.
 reward.alert.badges.title=Gewonnene Auszeichnungen
