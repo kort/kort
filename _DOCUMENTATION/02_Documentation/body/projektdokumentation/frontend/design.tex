@@ -10,7 +10,7 @@ Stores sind an ein \emph{Model} gebunden, welches die Struktur der gespeicherten
 Zusätzlich sind sie über einen \emph{Proxy} mit der Datenquelle verbunden.
 Dabei kann es sich beispielsweise um einen \gls{REST}-Webservice handeln oder den \gls{Local Storage} des Browsers.
 
-In Abbildung \ref{image-kort-packagediagram} wird die Package-Struktur von \kort mit deren Abhängigkeiten gezeigt.
+In Abbildung \ref{image-kort-packagediagram} wird die Package-Struktur von \kort{} mit deren Abhängigkeiten gezeigt.
 
 \begin{figure}[H]
 	\centering
@@ -42,7 +42,7 @@ Zuletzt gibt es eigenständige Controller für die Overlay-Komponenten, welche d
 Die \emph{Stores} bilden die Datenspeicher in einer Sencha Touch Applikation.
 Über ein \emph{Model} wird die jeweilige Struktur der gespeicherten Daten festgelegt.
 Stores sind zudem über einen \emph{Proxy} mit der Datenquelle verbunden.
-Im Falle von \kort wurden dafür ausschliesslich REST-Ressourcen verwendet.
+Im Falle von \kort{} wurden dafür ausschliesslich REST-Ressourcen verwendet.
 
 \begin{figure}[H]
 	\centering
@@ -54,7 +54,7 @@ Im Falle von \kort wurden dafür ausschliesslich REST-Ressourcen verwendet.
 \subsubsection{Models ohne Store}
 
 Falls die Applikation jeweils nur eine Instanz eines \emph{Models} verwendet, können diese ohne einen Store direkt mit einem Proxy verbunden werden.
-In \kort wurde dies für den eingeloggten Benutzer (User) sowie für die zu sendenden Datenpakete wie der Fehler-Lösung (Fix) und der Validierung (Vote) verwendet.
+In \kort{} wurde dies für den eingeloggten Benutzer (User) sowie für die zu sendenden Datenpakete wie der Fehler-Lösung (Fix) und der Validierung (Vote) verwendet.
 
 \begin{figure}[H]
 	\centering

@@ -4,7 +4,7 @@
 \section{Datenbankserver}
 
 Beim Datenbankserver handelt es sich um einen virtuellen Server, den uns die Hochschule für Technik Rapperswil (HSR) zur Verfügung gestellt hat für die Dauer dieser Arbeit.
-Dieser Server hält die Installation der \kort-Datenbank sowie das Projektmanagementtool Redmine.
+Dieser Server hält die Installation der \kort{}-Datenbank sowie das Projektmanagementtool Redmine.
 Letzteres ist die einzige kritische Anwendung auf dem Server, da sich der Rest über entsprechende Installationskripts sehr einfach und schnell neu aufbauen lässt.
 
 Die Installation der benötigten Software kann mit dem Ubuntu Standard-Mechanismus \inlinecode{apt-get install} durchgeführt werden.
@@ -37,7 +37,7 @@ Redmine: \inlinecode{/home/redmine/redmine-2.1.0} \\
 Der Zugang auf die Datenbank von aussen läuft ausschliesslich über den \gls{REST}-Webservice.
 Für den Betrieb dieses Dienstes ist eine Apache Webserver Installation mit PHP-Unterstützung (mindestens PHP 5.3) erforderlich.
 
-Für den Betrieb des Webservice ist das \kort-Repository auf dem Server geklont.
+Für den Betrieb des Webservice ist das \kort{}-Repository auf dem Server geklont.
 Anschliessend muss noch ein Symlink angelegt werden um das Skript korrekt aufrufen zu können:
 
 \inlinecode{\$ ln -s /home/odi/kort/server/webservices /var/www/webservices}
@@ -128,7 +128,7 @@ Dies hilft, den Installationprozess genau festzuhalten.
 Am Ende des Build-Vorgangs wird die \gls{WebApp} schliesslich zu Heroku übertragen.
 
 \subsection{Konfiguration über .travis.yml}
-Die \inlinecode{.travis.yml} Datei ist die Konfigurationsdatei von Travis CI.
+Die \inlinecode{.travis.yml} Datei ist die Konfigurationsdatei von \brand{Travis CI}.
 Darin wird die Build-Matrix festgelegt sowie die die einzelnen Schritte des Builds definiert.
 
 Vor dem eigentlichen Build wird die Umgebung aufgesetzt und die benötigte Software installiert (Zeilen 19-34 in Code-Aussschnit \ref{travis-yml}).
@@ -186,8 +186,8 @@ Auf diese Art lassen sich geheime Informationen wie API-Schlüssel schützen.
 
 In unserem \inlinecode{.travis.yml} kommt dies zweimal zum Einsatz:
 \begin{enumerate}
-\item Heroku API Key, mit welchem sich beliebige Aktionen auf Heroku durchführen lassen
-\item Kort DB API Key, welcher den Datenbank-Webservice (siehe Abschnitt \ref{webservice-database} vor fremden Zugriffen schützt
+\item \brand{Heroku} \gls{API}-Key, mit welchem sich beliebige Aktionen auf \brand{Heroku} durchführen lassen
+\item \kort{} DB \gls{API}-Key, welcher den Datenbank-Webservice (siehe Abschnitt \ref{webservice-database} vor fremden Zugriffen schützt
 \end{enumerate}
 
 \subsection{Apache Ant}
