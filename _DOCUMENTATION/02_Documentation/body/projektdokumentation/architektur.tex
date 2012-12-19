@@ -1,9 +1,9 @@
 \chapter{Architektur}
 \label{architektur}
 
-Das Gesamtsystem setzt sich aus insgesamt vier Komponenten zusammen: die Datenbank, der Webserver, die Fehlerquelle und das Zielsystem von \gls{OpenStreetMap}. 
+Das Gesamtsystem setzt sich aus insgesamt vier Komponenten zusammen: die Datenbank, der Webserver, die Fehlerquelle und das Zielsystem von \brand{OpenStreetMap}. 
 Die einzelnen Komponenten sind über \gls{REST}-Schnittstellen miteinander verbunden. 
-Dabei sind das Zielsystem (\gls{OpenStreetMap}) und die Fehlerquelle (\brand{KeepRight}, siehe Kapitel \ref{datenquellen}) Fremdsysteme, bei welchen die Schnittstellen gegeben waren. 
+Dabei sind das Zielsystem (\brand{OpenStreetMap}) und die Fehlerquelle (\brand{KeepRight}, siehe Kapitel \ref{datenquellen}) Fremdsysteme, bei welchen die Schnittstellen gegeben waren. 
 Unsere eigenen Server haben wir entsprechend angepasst und auch via \gls{REST} zugänglich gemacht.
 
 \begin{figure}[H]
@@ -47,7 +47,7 @@ Auf der Seite des Webservers ist dies das \gls{Bootstrapping} noch stärker anzu
 Somit müssen alle Informationen in Skripten hinterlegt sein, da sie sonst schlicht nicht zur Anwendung kommen.
 
 \section{Umsysteme}
-Zu unserem System gehören auch die Fehlerdatenquelle \brand{KeepRight} sowie \gls{OpenStreetMap} dazu.
+Zu unserem System gehören auch die Fehlerdatenquelle \brand{KeepRight} sowie \brand{OpenStreetMap} dazu.
 Unsere Applikation interagiert direkt mit diesen beiden Systemen, ohne eine Kontrollfunktion zu übernehmen.
 Es handelt sich somit um sogenannte Fremdsysteme.
 
@@ -66,17 +66,17 @@ Diese Daten werden jede Nacht heruntergeladen und in unsere Datenbank integriert
 Weitere Fehlerquellen lassen sich einfach einbinden (siehe Abschnitt \ref{additional-error-source}), da innerhalb der Applikation nur über eine View auf die Daten zugegriffen wird.
 
 \subsection{OpenStreetMap}
-Das System benötigt drei Schnittstellen zu \gls{OpenStreetMap}, wovon in dieser Arbeit zwei realisiert sind.
+Das System benötigt drei Schnittstellen zu \brand{OpenStreetMap}, wovon in dieser Arbeit zwei realisiert sind.
 
-\gls{OpenStreetMap} liefert die genauen Informationen über ein geografisches Objekt, um dieses auf einer Karte zeichnen zu können.
+\brand{OpenStreetMap} liefert die genauen Informationen über ein geografisches Objekt, um dieses auf einer Karte zeichnen zu können.
 Dies verwenden wir um Details zu einem Fehler anzuzeigen.
 Wenn beispielsweise der Name einer Strasse erfasst werden soll, kann sich der Benutzer vorher über die Detail-Karte darüber vergewissern, welche Strasse genau gemeint ist.
 
 Der zweite Dienst, den wir beanspruchen ist die Authentifizierung über \gls{OAuth}.
-So kann das \gls{OpenStreetMap}-Benutzerkonto direkt verwendet werden um \kort zu spielen.
+So kann das \brand{OpenStreetMap}-Benutzerkonto direkt verwendet werden um \kort zu spielen.
 
-Um den Kreis zu schliessen, sollen Korrekturen an \gls{OpenStreetMap} zurückgeschickt werden.
-Dieses Themengebiet ist sehr heikel, da die \gls{OpenStreetMap}-Community gegenüber technischen Benutzern sehr kritisch gegenübersteht.
+Um den Kreis zu schliessen, sollen Korrekturen an \brand{OpenStreetMap} zurückgeschickt werden.
+Dieses Themengebiet ist sehr heikel, da die \brand{OpenStreetMap}-Community gegenüber technischen Benutzern sehr kritisch gegenübersteht.
 Es gilt die Grundregel, dass alle Änderungen über persönliche Benutzerkonten gemacht werden müssen.
 
 Dies hat vor allem damit zu tun, dass Änderungen leicht nachvollziehbar sind.
@@ -85,7 +85,7 @@ In begründeten Fällen wird deshalb auch eine Ausnahme zugelassen.
 Beispielsweise hat die \brand{WheelMap}-Applikation\footnote{\url{http://wheelmap.org/}} offiziell die Erlaubnis mit einem technischen Benutzer Änderungen zu erfassen.
 
 Dies war unter anderem auch der Grund weshalb wir unser Projekt am OSM-Stammtisch in Zürich vorgestellt haben\footnote{\url{http://wiki.openstreetmap.org/wiki/DE:Switzerland:Z\%C3\%BCrich/OSM-Treffen\#36._OSM-Stammtisch}}.
-Das Feedback war durchaus positiv, jedoch gab es starke Vorbehalte gegenüber unserem Vorhaben, die korrigierten und validierten Lösungen automatisiert an \gls{OpenStreetMap} zu senden.
+Das Feedback war durchaus positiv, jedoch gab es starke Vorbehalte gegenüber unserem Vorhaben, die korrigierten und validierten Lösungen automatisiert an \brand{OpenStreetMap} zu senden.
 
 Das Thema ist also sowohl technisch als auch organisatorisch als komplex einzustufen.
 Dies war uns von Anfang an klar, weshalb wir diesen Punkt auch in unserem Risikomanagement (siehe Abschnitt \ref{risikomanagement}) behandelt haben.
@@ -110,7 +110,7 @@ Daher ist es auch naheliegend diese Daten wiederzuverwenden.
 Der Benutzer erspart sich dadurch einen weiteren Login, an den er sich erinnern muss und wir als Entwickler müssen uns nicht um die Anmeldung kümmern.
 
 \Gls{OAuth} ist mittlerweile ein gängiger Standard, um Applikationen Zugriff auf fremde Resourcen zu geben, ohne direkt den Benutzernamen und das Passwort preiszugeben.
-Auch \gls{OpenStreetMap} unterstützt \gls{OAuth} und so fiel die Entscheidung leicht, dieses Protokoll zu verwenden.
+Auch \brand{OpenStreetMap} unterstützt \gls{OAuth} und so fiel die Entscheidung leicht, dieses Protokoll zu verwenden.
 
 In unserem Fall ist die Resource jedoch "`nur"' die Benutzerinformationen.
 Das Protokoll basiert darauf, dass sowohl die Applikation, sowie der Benutzer dem jeweiligen \gls{OAuth}-Anbieter vertraut.

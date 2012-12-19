@@ -1,7 +1,7 @@
 \chapter{Fehler-Datenquellen}
 \label{datenquellen}
 Die Grundlage unserer \gls{WebApp} bilden die Fehlerdaten, welche korrigiert werden sollen.
-Es galt deshalb zuerst eine geeignete Quelle für Fehlerdaten von \gls{OpenStreetMap} zu finden.
+Es galt deshalb zuerst eine geeignete Quelle für Fehlerdaten von \brand{OpenStreetMap} zu finden.
 
 \section{Evaluation von geeigneten Datenquellen}
 Durch die Anforderungen an die Applikation ergaben sich folgende Bedingungen, welche die Fehlerdaten erfüllen müssen:
@@ -11,7 +11,7 @@ Durch die Anforderungen an die Applikation ergaben sich folgende Bedingungen, we
 \item Sie müssen auf Deutsch übersetzbar sein. Die Fehlerbeschreibungen sollten somit einem gegebenen Schema folgen und nicht Freitext beinhalten.
 \item Die Fehler müssen sich einfach in einem UI abbilden lassen
 \item Die Fehler sollen sich nur auf Metadaten beziehen und nicht auf Geometrieobjekte (Strasse, Gebäude, usw.) , da wir keinen vollwertigen Karten-Editor anbieten können.
-\item Die Fehler sollten sich immer nur auf einen \gls{Tag} des betroffenen OSM-Objekt beziehen. Dadurch vereinfacht sich das Zurückschreiben der Daten zu \gls{OpenStreetMap}.
+\item Die Fehler sollten sich immer nur auf einen \gls{Tag} des betroffenen OSM-Objekt beziehen. Dadurch vereinfacht sich das Zurückschreiben der Daten zu \brand{OpenStreetMap}.
 \end{itemize}
 
 Wir untersuchten mehrere mögliche Fehlerdatenquellen auf deren Qualität.
@@ -31,7 +31,7 @@ Es wäre somit eine Möglichkeit sich selbst daran zu versuchen Fehler mit geein
 \small{\textbf{API verfügbar?}} & Ja (\gls{REST} \gls{API}) \newline
 \url{http://wiki.openstreetmap.org/wiki/API_v0.6} \\
 \hline 
-\small{\textbf{Lösung zurückschreiben}} & Lösung könnte via \gls{API} an \gls{OpenStreetMap} gesendet werden. \\
+\small{\textbf{Lösung zurückschreiben}} & Lösung könnte via \gls{API} an \brand{OpenStreetMap} gesendet werden. \\
 \hline
 \small{\textbf{Eignung}} & \textbf{schlecht} \linebreak Das Finden von Fehlern ist komplex da es sehr viele Ausnahme zu beachten gibt.
 Dies würde den Rahmen dieser Arbeit sprengen. \\ 
@@ -42,7 +42,7 @@ Dies würde den Rahmen dieser Arbeit sprengen. \\
 \end{table}
 
 \subsection{FIXME-Tags in OpenStreetMap}
-Fehlerhafte Objekte in \gls{OpenStreetMap} können von Benutzern direkt mit einem \inlinecode{FIXME}-\gls{Tag} versehen werden, wenn sie einen Fehler aufweisen.
+Fehlerhafte Objekte in \brand{OpenStreetMap} können von Benutzern direkt mit einem \inlinecode{FIXME}-\gls{Tag} versehen werden, wenn sie einen Fehler aufweisen.
 Darin wird der eigentliche Fehler beschrieben.
 
 \begin{table}[H]
@@ -51,12 +51,12 @@ Darin wird der eigentliche Fehler beschrieben.
 \hline 
 \small{\textbf{URL}} & \url{http://wiki.openstreetmap.org/wiki/DE:Key:fixme} \\
 \hline 
-\small{\textbf{Erfasser}} & \gls{OpenStreetMap}-Benutzer \\
+\small{\textbf{Erfasser}} & \brand{OpenStreetMap}-Benutzer \\
 \hline 
 \small{\textbf{API verfügbar?}} & Ja (\gls{REST} \gls{API}) \newline
 \url{http://wiki.openstreetmap.org/wiki/API_v0.6} \\
 \hline 
-\small{\textbf{Lösung zurückschreiben}} & Lösung könnte via \gls{API} an \gls{OpenStreetMap} gesendet werden. \\
+\small{\textbf{Lösung zurückschreiben}} & Lösung könnte via \gls{API} an \brand{OpenStreetMap} gesendet werden. \\
 \hline
 \small{\textbf{Eignung}} & \textbf{Schlecht} \linebreak Durch die manuelle Erfassung der Daten, ist es für uns nicht möglich automatisiert ein GUI für die Fehlerbehebung zu erstellen. \\ 
 \hline 
@@ -79,7 +79,7 @@ Mit der Applikation \brand{OpenStreetBugs} ist es für die Benutzer möglich Feh
 \small{\textbf{API verfügbar?}} & Ja (\gls{REST} \gls{API} oder Fehlerdaten als Dump-File downloadbar) \newline
 \url{http://wiki.openstreetmap.org/wiki/OpenStreetBugs/API_0.6} \\
 \hline 
-\small{\textbf{Lösung zurückschreiben}} & Lösung müsste an \gls{OpenStreetMap} gesendet werden. Zusätzlich  müsste der Bug auf OpenStreetBugs als gelöst markiert werden. \\
+\small{\textbf{Lösung zurückschreiben}} & Lösung müsste an \brand{OpenStreetMap} gesendet werden. Zusätzlich  müsste der Bug auf OpenStreetBugs als gelöst markiert werden. \\
 \hline
 \small{\textbf{Eignung}} & \textbf{Schlecht} \linebreak Durch die manuelle Erfassung der Daten, ist es für uns nicht möglich automatisiert ein GUI für die Fehlerbehebung zu erstellen. \\ 
 \hline 
@@ -101,7 +101,7 @@ Mit der Applikation \brand{OpenStreetBugs} ist es für die Benutzer möglich Feh
 \hline 
 \small{\textbf{API verfügbar?}} & Ja (Fehlerdaten werden als Dump-File zum Download angeboten) \newline \url{http://keepright.ipax.at/interfacing.php} \\
 \hline 
-\small{\textbf{Lösung zurückschreiben}} & Lösung müssten lediglich an \gls{OpenStreetMap} gesendet werden. \brand{KeepRight} baut seine Fehlerdatenbank jeweils über Nacht aus dem \gls{OpenStreetMap}-Daten neu auf. \\
+\small{\textbf{Lösung zurückschreiben}} & Lösung müssten lediglich an \brand{OpenStreetMap} gesendet werden. \brand{KeepRight} baut seine Fehlerdatenbank jeweils über Nacht aus dem \brand{OpenStreetMap}-Daten neu auf. \\
 \hline
 \small{\textbf{Eignung}} & \textbf{gut} \linebreak Dadurch das die Fehlerdaten automatisiert erstellt werden, ist es gut möglich, für jeweilige Fehlertypen eine geeignete Maske für deren Behebung zur Verfügung zu stellen. \\
 \hline
@@ -112,7 +112,7 @@ Mit der Applikation \brand{OpenStreetBugs} ist es für die Benutzer möglich Feh
 
 \subsection{MapDust}
 \brand{MapDust} ist ein Bug-Tracker der Firma skobbler.
-Er ist \gls{OpenStreetMap} sehr ähnlich, konzentriert sich aber mehr auf Fehler beim Routing.
+Er ist \brand{OpenStreetMap} sehr ähnlich, konzentriert sich aber mehr auf Fehler beim Routing.
 
 \begin{table}[H]
 \centering
@@ -124,7 +124,7 @@ Er ist \gls{OpenStreetMap} sehr ähnlich, konzentriert sich aber mehr auf Fehler
 \hline 
 \small{\textbf{API verfügbar?}} & Ja (Dump-File der Fehler sowie API) \newline siehe \url{http://wiki.openstreetmap.org/wiki/MapDust} \\
 \hline 
-\small{\textbf{Lösung zurückschreiben}} & Korrekturen können direkt an \gls{OpenStreetMap} geschickt werden.
+\small{\textbf{Lösung zurückschreiben}} & Korrekturen können direkt an \brand{OpenStreetMap} geschickt werden.
 Zusätzlich muss der Bug bei MapDust geschlossen werden. \\
 \hline
 \small{\textbf{Eignung}} & \textbf{mittel} \linebreak Die Qualität der Fehler lässt sehr zu wünschen übrig, da sie meist von unerfahrenen Benutzern erstellt werden. Positiv ist, dass es eine Vielzahl von Fehlern gibt und auch ein API angeboten wird. \\
@@ -135,7 +135,7 @@ Zusätzlich muss der Bug bei MapDust geschlossen werden. \\
 \end{table}
 
 \subsection{Housenumbervalidator}
-Der \brand{Housenumbervalidator} ist ein Quelle, welche die \gls{OpenStreetMap}-Daten automatisiert auf fehlerhafte Adressen prüft.
+Der \brand{Housenumbervalidator} ist ein Quelle, welche die \brand{OpenStreetMap}-Daten automatisiert auf fehlerhafte Adressen prüft.
 Die Fehler reichen von falschen Strassennamen bis zu Duplikaten von Hausnummern in der gleichen Strasse.
 
 \begin{table}[H]
@@ -144,11 +144,11 @@ Die Fehler reichen von falschen Strassennamen bis zu Duplikaten von Hausnummern 
 \hline 
 \small{\textbf{URL}} & \url{http://gulp21.bplaced.net/osm/housenumbervalidator/} \\
 \hline 
-\small{\textbf{Erfasser}} & Berechnet aus \gls{OpenStreetMap} \\
+\small{\textbf{Erfasser}} & Berechnet aus \brand{OpenStreetMap} \\
 \hline 
 \small{\textbf{API verfügbar?}} & Nein, aber der Quellcode ist frei verfügbar. \\
 \hline 
-\small{\textbf{Lösung zurückschreiben}} & Korrekturen können direkt an \gls{OpenStreetMap} geschickt werden. \\
+\small{\textbf{Lösung zurückschreiben}} & Korrekturen können direkt an \brand{OpenStreetMap} geschickt werden. \\
 \hline
 \small{\textbf{Eignung}} & \textbf{mittel} \linebreak Es ist schade, dass es kein API des Housenumbervalidators gibt. Die Fehler sind zum Teil schwierig zu verstehen für Laien, was die Erstellung eines UIs schwierig macht. Zudem sind die Daten auf Deutschland und Österreich begrenzt. \\
 \hline
@@ -162,7 +162,7 @@ Durch die gute Eignung der Fehlerdaten vom \brand{KeepRight}-Dienst, haben wir u
 Der Dienst liefert zuverlässig Daten in hoher Qualität.
 Die Fehlermeldungen sind klar und alle Fehler sind bereits Kategorisiert, so ist es einfach diese dann für die grafische Darstellung zu unterscheiden.
 
-Ein grosses Plus ist auch, dass sich die Daten auf \gls{OpenStreetMap} abstützen, so dass eine Korrektur nur an einer Stelle vorgenommen werden muss.
+Ein grosses Plus ist auch, dass sich die Daten auf \brand{OpenStreetMap} abstützen, so dass eine Korrektur nur an einer Stelle vorgenommen werden muss.
 
 \section{Fehlerdaten in die Datenbank laden}
 Um stets aktuelle Daten für die App anzuzeigen, wird der Dump von \brand{KeepRight} jede Nacht mit einem Shellskript in die Datenbank geladen.
@@ -208,9 +208,9 @@ Auf der Webseite von \brand{KeepRight} ist ersichtlich\footnote{\url{http://www.
 \hline
 \inlinecode{error\_name} & Name des Fehlertyps  \\
 \hline
-\inlinecode{object\_type} & \gls{OpenStreetMap}-Typ des Objekts (\gls{Node}, \gls{Way} oder \gls{Relation})  \\ 
+\inlinecode{object\_type} & \brand{OpenStreetMap}-Typ des Objekts (\gls{Node}, \gls{Way} oder \gls{Relation})  \\ 
 \hline
-\inlinecode{object\_id} & \gls{OpenStreetMap}-ID des Objekts  \\
+\inlinecode{object\_id} & \brand{OpenStreetMap}-ID des Objekts  \\
 \hline
 \inlinecode{state} & Status des Fehlers (new, reopened, ignore\_temporarily, ignore)  \\
 \hline

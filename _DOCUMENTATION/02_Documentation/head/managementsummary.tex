@@ -6,12 +6,12 @@
 \todo[inline]{Gamification Konzept für OpenStreetMap aus Dokumentation entfernen}
 
 \section*{Ausgangslage}
-Das \gls{OpenStreetMap}-Projekt beinhaltet eine sehr grosse Menge an Daten, welche frei zugänglich ist.
+Das \brand{OpenStreetMap}-Projekt beinhaltet eine sehr grosse Menge an Daten, welche frei zugänglich ist.
 Für die Pflege dieser Daten ist es daher naheliegend auf unterstützende Software zurückzugreifen.
 Zu diesem Zweck gibt es eine Reihe von Applikationen, welche sich grob in zwei Kategorien einteilen lassen:
 Editoren und Tools zur Qualitätssicherung.
 
-Mit den Editoren lässt sich direkt oder indirekt die \gls{OpenStreetMap}-Karte verändern und ergänzen.
+Mit den Editoren lässt sich direkt oder indirekt die \brand{OpenStreetMap}-Karte verändern und ergänzen.
 Die Qualitätssicherungstools haben sich zum Ziel gesetzt fehlende oder falsche Daten aufzuspüren.
 Diese werden dann entweder automatisiert korrigiert oder übersichtlich dargestellt, um eine manuelle Korrektur zu ermöglichen.
 
@@ -27,7 +27,7 @@ Typische Fehler aus diesen Quellen sind \glspl{POI} ohne Namen oder Strassen ohn
 \end{figure}
 
 Andere Lösungen setzen darauf, dass Fehler manuell von einer Person erfasst werden. Dadurch ist es möglich den Fehler detaillierter zu beschreiben. 
-So gibt es Navigationsgeräte-Herstellen welche die Daten aus \gls{OpenStreetMap} zur Routenberechnung verwenden und dabei ihren Benutzern ermöglichen, falsche Routen zu melden.
+So gibt es Navigationsgeräte-Herstellen welche die Daten aus \brand{OpenStreetMap} zur Routenberechnung verwenden und dabei ihren Benutzern ermöglichen, falsche Routen zu melden.
 
 Falls ein \gls{Mapper} einen Fehler melden will, so kann er diesen direkt in den Metadaten der Karte hinterlegen. Alle Objekte auf der Karte (Punkte, Wege und Relationen) können durch beliebige, sogenannte  \glspl{Tag} ergänzt werden.
 Um auf einem Objekt Fehler zu markieren, hat sich die Community darauf geeinigt, dafür \inlinecode{FIXME}-\glspl{Tag} zu verwenden.
@@ -51,7 +51,7 @@ Der Bereich der \gls{Gamification} ist aber sehr offen und lässt Raum für viel
 
 Das Themengebiet der \gls{Gamification} bietet viele Ansätze um eine normalerweise "`uninteressante"' Aufgabe spannend zu gestalten.
 Dadurch erhält diese Aufgabe einen ganz neuen Reiz und spricht direkt den Spieltrieb des Menschen an.
-Konkret auf \gls{OpenStreetMap} angewendet, finden sich auch dort beliebtere und weniger beliebte Aufgaben.
+Konkret auf \brand{OpenStreetMap} angewendet, finden sich auch dort beliebtere und weniger beliebte Aufgaben.
 Da es sich dabei zusätzlich um eine Community von (grösstenteils) freiwilligen Personen handelt, verschärft sich dieses Problem.
 Das Problem der mangelnden Ressourcen kann dabei am effektivsten bekämpft werden, indem zusätzliche Personen für das Thema begeistert werden.
 Es ist wichtig, die Einstiegsschwelle tief zu halten und auch einem unerfahrenen Benutzer Werkzeuge zu geben, die einen gewissen Spass vermitteln.\todo{Abschnitt überarbeiten}
@@ -72,7 +72,7 @@ Die App bietet für die verschiedenen Funktionen unterschiedliche Tabs an, auf w
 
 Für die Authentifizierung kommt \gls{OAuth} zum Einsatz.
 Dir Standard sorgt dafür, dass sich der Benutzer mit einem bereits bestehenden Benutzerkonto bei \textsc{Kort} anmelden kann.
-Derzeit werden dafür die \gls{OAuth}-Provider \gls{OpenStreetMap} und \brand{Google} verwendet.
+Derzeit werden dafür die \gls{OAuth}-Provider \brand{OpenStreetMap} und \brand{Google} verwendet.
 
 \subsection*{Backend}
 Das Backend ist in PHP geschrieben und basiert auf der Kommunikation über \gls{REST}-Schnittstellen.
@@ -81,7 +81,7 @@ Da die Datenbank und der Webserver auf zwei verschiedenen Servern laufen, bietet
 Diese flexible Aufteilung ermöglicht es sehr einfach, die Systeme umzuziehen oder weitere hinzuzufügen.
 
 \section*{Ausblick}
-Die App hat ein grosses Potential Personen, welche sich bislang nicht mit der Thematik \gls{OpenStreetMap} befasst haben, für das Projekt zu begeistern.
+Die App hat ein grosses Potential Personen, welche sich bislang nicht mit der Thematik \brand{OpenStreetMap} befasst haben, für das Projekt zu begeistern.
 
 Ganz allgemein ist es aber wichtig die Robustheit und Geschwindikeit der App zu verbessern. 
 Gerade weil es sich um eine \gls{WebApp} handelt, ist dies besonders kritisch. 
@@ -90,7 +90,7 @@ Es ist zu prüfen, ob es sich lohnt, die App native zu builden\footnote{z.B. mit
 Dies hätte den weiteren Vorteil, dass die App über die bekannten \glspl{App-Store} zum User gebracht werden kann.
 
 Beim Login wäre es wünschenswert noch weitere \gls{OAuth}-Dienste anzubieten, um so weitere Personen anzusprechen und die Akzeptanz zu steigern.
-Schliesslich verfügt nicht jeder über ein \gls{OpenStreetMap}- oder ein Google-Konto.
+Schliesslich verfügt nicht jeder über ein \brand{OpenStreetMap}- oder ein Google-Konto.
 Mögliche Dienste wären dabei beispielweise Facebook oder Twitter, welche beide \gls{OAuth}-Dienste anbieten.
 
 In der Konzeption der App haben wir uns ursprünglich das Ziel gesetzt, das \gls{Camera API} zu verwenden. 
@@ -108,5 +108,5 @@ Um die App längerfristig am Laufen zu halten ist es unumgänglich, weitere Fehl
 Die Bekanntheit der App muss durch geeignete Massnahmen gesteigert werden. Dazu gehört die Integration von Social Media-Diensten wie Facebook und Twitter.
 Dies kann einerseits genutzt werden um Werbung zu machen, anderseits können Benutzer auch auf ihre gewonnenen Auszeichnungen aufmerksam machen und so andere bereits bestehende Benutzer dazu animieren diese Auszeichnungen ebenfalls zu gewinnen.
 
-Die wichtigste noch offene Erweiterung stellt aber das noch fehlenden Zurückschreiben der eingetragenen Lösungen zu \gls{OpenStreetMap} dar.
-Diese Funktionalität wirkt sich stark auf die Akzeptanz der App seitens der \gls{OpenStreetMap}-Community aus.
+Die wichtigste noch offene Erweiterung stellt aber das noch fehlenden Zurückschreiben der eingetragenen Lösungen zu \brand{OpenStreetMap} dar.
+Diese Funktionalität wirkt sich stark auf die Akzeptanz der App seitens der \brand{OpenStreetMap}-Community aus.
