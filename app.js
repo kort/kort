@@ -104,7 +104,9 @@ Ext.application({
 
         Kort.geolocation = Ext.create('Kort.util.Geolocation');
         Kort.geolocation.updateLocation(function(geo) {
+            // Destroy the #appStartscreen element
             Ext.fly('appStartscreen').destroy();
+
             if(geo) {
                 me.loadUserClientSecret(geo, mainPanel);
             } else {
