@@ -34,7 +34,7 @@ Der Webserver ist somit der Dreh- und Angelpunkt der Applikation, jegliche Infor
 Das \gls{Bootstrapping} ist ein sehr wichtiges Grundprinzip dieser Arbeit.
 Es besagt, dass sich das System selbst aufbauen kann.
 Konkret haben wir darauf geachtet, dass für alle Aktionen Skripte oder Build-Schritte vorhanden sind, um diese später nachzuvollziehen.
-Dies Ziel ist es, ein System zu entwickelt, dass sich möglichst einfach wieder aufbauen lässt.
+Das Ziel ist es, ein System zu entwickeln, dass sich möglichst einfach wieder aufbauen lässt.
 
 Auf der Seite des Datenbankserver geschieht dies so, dass die Datenbank jede Nacht neu aufgebaut wird.
 Zum einen werden dabei die neuesten Fehlerdaten von \brand{KeepRight} geladen, zum anderen alle Änderungen an der Datenbank nachvollzogen.
@@ -43,7 +43,7 @@ Dies hat den grossen Vorteil, dass stets ein konsistenter Zustand anzutreffen is
 Eine Ausnahme bilden dabei die laufenden Daten der Applikation (d.h. Userdaten, Lösungsvorschläge etc.), welche nicht jede Nacht zurückgesetzt werden.
 Dies hat aber eher praktische als technische Gründe.
 
-Auf der Seite des Webservers ist dies das \gls{Bootstrapping} noch stärker anzutreffen, da bei jedem Build tatsächlich das System komplett neuaufgebaut wird.
+Auf der Seite des Webservers ist das \gls{Bootstrapping} noch stärker anzutreffen, da bei jedem Build tatsächlich das System komplett neu aufgebaut wird.
 Somit müssen alle Informationen in Skripten hinterlegt sein, da sie sonst schlicht nicht zur Anwendung kommen.
 
 \section{Umsysteme}
@@ -51,7 +51,7 @@ Zu unserem System gehören auch die Fehlerdatenquelle \brand{KeepRight} sowie \b
 Unsere Applikation interagiert direkt mit diesen beiden Systemen, ohne eine Kontrollfunktion zu übernehmen.
 Es handelt sich somit um sogenannte Fremdsysteme.
 
-Bei der Gestaltung der Systemlandschaft war es uns wichtig, diese so flexibel und offen wie möglich zu gestalten.
+Bei der Gestaltung der Systemlandschaft war es uns wichtig, diese so flexibel und offen wie möglich zu halten.
 Weitere Systeme sollen sich einfach Einbinden lassen.
 Um dieses Ziel zu erreichen haben wir darauf geachten keine festen Verbindungen zwischen den Systemen zu schaffen.
 Solche lassen sich später nur schwer wieder entfernen oder ändern.
@@ -73,7 +73,7 @@ Dies verwenden wir um Details zu einem Fehler anzuzeigen.
 Wenn beispielsweise der Name einer Strasse erfasst werden soll, kann sich der Benutzer vorher über die Detail-Karte darüber vergewissern, welche Strasse genau gemeint ist.
 
 Der zweite Dienst, den wir beanspruchen ist die Authentifizierung über \gls{OAuth}.
-So kann das \brand{OpenStreetMap}-Benutzerkonto direkt verwendet werden um \kort{} zu spielen.
+So kann das \brand{OpenStreetMap}-Benutzerkonto direkt verwendet werden, um \kort{} zu spielen.
 
 Um den Kreis zu schliessen, sollen Korrekturen an \brand{OpenStreetMap} zurückgeschickt werden.
 Dieses Themengebiet ist sehr heikel, da die \brand{OpenStreetMap}-Community gegenüber technischen Benutzern sehr kritisch gegenübersteht.
@@ -103,7 +103,7 @@ Die wichtigsten Kriterien dabei sind:
 \end{itemize}
 
 Auf diese Kriterien hin, war für uns sofort klar, dass wir keine eigene Benutzerverwaltung machen wollten.
-Ein App, die primär eine Ablenkung für einige Minuten sein soll, kann es sich nicht leisten den Benutzer durch die Eingabe von Anmeldedaten abzuschrecken.
+Ein App, die primär eine Ablenkung für einige Minuten sein soll, kann es sich nicht leisten, den Benutzer durch die Eingabe von Anmeldedaten abzuschrecken.
 
 Daneben hat ein Benutzer bereits sehr viele Benutzerkonten bei verschiedensten Diensten.
 Daher ist es auch naheliegend diese Daten wiederzuverwenden.
@@ -116,7 +116,7 @@ In unserem Fall ist die Resource jedoch "`nur"' die Benutzerinformationen.
 Das Protokoll basiert darauf, dass sowohl die Applikation, sowie der Benutzer dem jeweiligen \gls{OAuth}-Anbieter vertraut.
 
 Vom authentisierten Benutzer werden dann die Benutzerinformationen (Name, ID, E-Mail) in unsere Datenbank übernommen.
-Jeder Benutzer erhält daraufhin ein sogenanntes \emph{secret}, welches ihm fortan erlaubt ohne erneuten Login die App zu nutzen.
+Jeder Benutzer erhält daraufhin ein sogenanntes \emph{secret}, welches ihm fortan erlaubt, ohne erneuten Login die App zu nutzen.
 Eine genaue Erklärung des Login-Ablaufs wird in Abschnitt \ref{oauth} beschrieben.
 
 \section{REST}
@@ -126,9 +126,9 @@ So lassen sich alle möglichen Entitäten als \emph{Resourcen} darstellen, welch
 Jede grössere Applikation kann von dieser Flexibilität profitieren.
 Sie ermöglicht es, dass Funktionalitäten mit beliebigen Technologien und Programmiersprachen entwickelt werden können.
 Dies ist besonders gut umsetzbar, wenn die Applikation bereits in Betrieb ist.
-So können einzelne Komponenten neu entwickelt werden und in das bestehende System integriert werden ohne eine nennenswerte Downtime.
+So können einzelne Komponenten neu entwickelt werden und in das bestehende System integriert werden, ohne eine nennenswerte Downtime.
 
-Beim Marshalling der Daten mag es effizientere Möglichkeiten geben als \inlinecode{JSON} und \inlinecode{XML}.
+Beim Marshalling\todo{Marshalling in Glossar} der Daten mag es effizientere Möglichkeiten geben als \inlinecode{JSON} und \inlinecode{XML}.
 Wenn die Datenmengen gering sind, fällt dies jedoch nicht stark ins Gewicht.
 Sobald Binärdaten übertragen werden müssen, könnte es sinnvoll sein, einige Komponenten über andere Schnittstellen anzusprechen.
 

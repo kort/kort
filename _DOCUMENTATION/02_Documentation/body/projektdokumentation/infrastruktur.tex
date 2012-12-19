@@ -3,7 +3,7 @@
 
 \section{Datenbankserver}
 
-Beim Datenbankserver handelt es sich um einen virtuellen Server, den uns die Hochschule für Technik Rapperswil (HSR) zur Verfügung gestellt hat für die Dauer dieser Arbeit.
+Beim Datenbankserver handelt es sich um einen virtuellen Server, den uns die HSR Hochschule für Technik Rapperswil zur Verfügung gestellt hat, für die Dauer dieser Arbeit.
 Dieser Server hält die Installation der \kort{}-Datenbank sowie das Projektmanagementtool Redmine.
 Letzteres ist die einzige kritische Anwendung auf dem Server, da sich der Rest über entsprechende Installationskripts sehr einfach und schnell neu aufbauen lässt.
 
@@ -52,6 +52,7 @@ Diese ist in unserem Repository zu finden: \url{https://github.com/odi86/kort/bl
 \subsubsection{Backup}
 Die Daten von Redmine werden über 2 Skripts täglich gesichert. 
 Das Skript \inlinecode{redmine\_backup.sh} kümmert sich darum alle Backup-Daten täglich auf dem virtuellen Server zu sammeln und an einem zentralen Ort zu speichern.
+
 Mit dem zweiten Skript \inlinecode{sync\_backup.sh} kann dann das zuvor erstellte Backup auf beliebige andere Systeme verteilt werden.
 In unserem Fall haben wir das Skript auf unseren Laptops eingerichtet und so täglich die aktuellen Daten gesichert.
 
@@ -59,7 +60,7 @@ In unserem Fall haben wir das Skript auf unseren Laptops eingerichtet und so tä
 \section{Webserver (Heroku)}
 
 Bei \brand{Heroku}\footnote{\url{http://www.heroku.com/}} handelt es sich um einen kostenlosen Dienst, welcher für verschiedenste Plattformen eine Deploymentumgebung anbietet. 
-Der Dienst hat eine Schnittstelle über welche sich automatisiert Applikationen erstellen lassen, die Datenübertragung läuft dann über \gls{Git}.
+Der Dienst hat eine Schnittstelle, über welche sich automatisiert Applikationen erstellen lassen. Die Datenübertragung läuft dann über \gls{Git}.
 
 \begin{table}[H]
 \centering
@@ -71,7 +72,7 @@ Der Dienst hat eine Schnittstelle über welche sich automatisiert Applikationen 
 \hline 
 \small{\textbf{Zugriff}} & Daten via \gls{Git}, Befehle via Kommandozeilen-\gls{API} (\brand{Heroku-Toolbelt}) \\
 \hline 
-\small{\textbf{Installierte Software}} & Apache, kort Applikation \\
+\small{\textbf{Installierte Software}} & Apache, \kort{} \gls{WebApp} \\
 \hline 
 \end{tabular} 
 \caption{Server bei Heroku}
@@ -79,15 +80,15 @@ Der Dienst hat eine Schnittstelle über welche sich automatisiert Applikationen 
 \end{table}
 
 Die Entscheidung den Webserver von \brand{Heroku} zu wählen ist dadurch begründet, dass uns dies die grösstmögliche Freiheit bietet. 
-\brand{Heroku} bietet bereits eine hervoragende \gls{API} welche sich über das Kommandozeilen-Toolset \brand{Heroku-Toolbelt} steuern lässt.
-Dies erlaubt es beliebig viele Applikationen automatisiert zu erstellen.
+\brand{Heroku} bietet bereits eine hervoragende \gls{API}, welche sich über das Kommandozeilen-Toolset \brand{Heroku-Toolbelt} steuern lässt.
+Dies erlaubt es, beliebig viele Applikationen automatisiert zu erstellen.
 Auch für den Betrieb bietet das \gls{API} viele Möglichkeiten zur Fernwartung an (SSH-Zugang, Logs, Prozessorauslastung).
 
 \section{Deployment}
 Am Deployment der Applikation sind mehrere Systeme beteiligt. 
 Alle Änderungen werden von den Entwicklern via \gls{Git} zu \brand{GitHub}\footnote{\url{http://github.com}} übertragen. 
 Auf \brand{GitHub} gibt es sogenannte \emph{Hooks} die man aktivieren kann. 
-Dabei handelt es sich um weitere Aktionen welche durch verschiedene Ereignisse ausgelöst werden können. 
+Dabei handelt es sich um weitere Aktionen, welche durch verschiedene Ereignisse ausgelöst werden können. 
 In unserem Fall haben wir einen \emph{post-commit Hook} aktiviert, welcher dem \gls{ci} Dienst \brand{Travis-CI}\footnote{\url{http://travis-ci.org}} Bescheid gibt, wenn ein neue Änderungen auf \brand{GitHub} eingetroffen sind.
 
 Nach einem erfolgreichen Build werden die Resultate an \brand{Heroku} gesendet.
@@ -101,10 +102,10 @@ Zusätzlich wird der Datenbankserver über die Änderungen notifiziert, worauf d
 \end{figure}
 
 \subsection{Travis CI}
-Auf \brand{Travis} läuft dann der Build, welcher durch die Konfigurationsdatei \inlinecode{.travis.yml} gesteuert ist. Darin lassen sich die Schritte sowie die Umgebung für Builds definieren.
-Für jede Umgebung wird dann ein separater Build ausgelöst.
+Auf \brand{Travis} läuft der Build, welcher durch die Konfigurationsdatei \inlinecode{.travis.yml} gesteuert ist. Darin lassen sich die Schritte sowie die Umgebung für Builds definieren.
+Für jede Umgebung wird ein separater Build ausgelöst.
 Somit lassen sich bequem verschiedene Versionen mit unterschiedlichen Umgebungen testen.
-Daraus entsteht dann eine sogenannte Build-Matrix welche bei jedem Build durchlaufen wird (siehe Tabelle \ref{infrastruktur-build-matrix}).
+Daraus entsteht eine sogenannte Build-Matrix, welche bei jedem Build durchlaufen wird (siehe Tabelle \ref{infrastruktur-build-matrix}).
 
 \begin{table}[H]
 \centering
@@ -122,8 +123,8 @@ Daraus entsteht dann eine sogenannte Build-Matrix welche bei jedem Build durchla
 \end{table}
 
 Ein Travis-Build läuft immer in einer neuen virtuellen Umgebung, so dass strikt nach dem Prinzip des \emph{\glslink{Bootstrapping}{Bootstrappings}} vorgegangen werden muss.
-Das bedeutet, es muss möglich sein die Applikation ohne Vorkenntnisse zu installieren, alle benötigte Software und Konfiguration muss bei jedem Build vorgenommen werden.
-Dies hilft, den Installationprozess genau festzuhalten.
+Das bedeutet, es muss möglich sein die Applikation ohne Vorkenntnisse zu installieren.
+Dies hilft, den Installationsprozess genau festzuhalten.
 
 Am Ende des Build-Vorgangs wird die \gls{WebApp} schliesslich zu Heroku übertragen.
 
