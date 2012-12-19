@@ -8,7 +8,8 @@ mkdir $BUILD_DIR
 
 if [[ $TARGET_ENV == "prod" ]] ; then
     echo "Production build... copying files from $SOURCE_DIR to $BUILD_DIR"
-    cp -r $SOURCE_DIR/* $BUILD_DIR
+    cp -r $SOURCE_DIR/build/Kort/production/* $BUILD_DIR
+    cp -r $SOURCE_DIR/docs $BUILD_DIR
 else
     echo "Development build... copying files from $SOURCE_DIR to $BUILD_DIR"
     mkdir -p $BUILD_DIR/lib/Leaflet-0.4.5
