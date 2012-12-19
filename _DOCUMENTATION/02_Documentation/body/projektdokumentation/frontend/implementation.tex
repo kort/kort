@@ -1,13 +1,13 @@
 % Implementation
 \section{Implementation}
 
-\kort wurde mit dem \emph{Sencha Touch 2-Framework}\footnote{\url{http://www.sencha.com/products/touch/}} erstellt. Zusätzlich wurden verschiedene Libraries und Community-Plugins eingesetzt, welche in der Tabelle \ref{table-kort-dependencies} beschrieben sind. 
+\kort wurde mit dem \brand{Sencha Touch 2}-Framework\footnote{\url{http://www.sencha.com/products/touch/}} erstellt. Zusätzlich wurden verschiedene Libraries und Community-Plugins eingesetzt, welche in der Tabelle \ref{table-kort-dependencies} beschrieben sind. 
 
-\emph{Leaflet}\footnote{\url{http://leafletjs.com/}} wurde eingesetzt, um \gls{OpenStreetMap}-Daten auf der Karte anzuzeigen. Zusätzlich wurde das \emph{leaflet-osm}\footnote{\url{https://github.com/jfirebaugh/leaflet-osm}}-Plugin für Leaflet verwendet, um \gls{OpenStreetMap}-Objekte als \inlinecode{XML}-Code direkt auf der Karte darzustellen.
+\brand{Leaflet}\footnote{\url{http://leafletjs.com/}} wurde eingesetzt, um \gls{OpenStreetMap}-Daten auf der Karte anzuzeigen. Zusätzlich wurde das \emph{leaflet-osm}\footnote{\url{https://github.com/jfirebaugh/leaflet-osm}}-Plugin für Leaflet verwendet, um \gls{OpenStreetMap}-Objekte als \inlinecode{XML}-Code direkt auf der Karte darzustellen.
 
-Für die Einbindung der Leaflet-Karte in Sencha Touch wurde das Plugin \emph{Ext.ux.LeafletMap} eingesetzt, welches ebenfalls während dieser Arbeit entwickelt wurde (siehe Abschnitt \ref{leaflet-sencha-komponente}).
+Für die Einbindung der Leaflet-Karte in Sencha Touch wurde das Plugin \brand{Ext.ux.LeafletMap} eingesetzt, welches ebenfalls während dieser Arbeit entwickelt wurde (siehe Abschnitt \ref{leaflet-sencha-komponente}).
 
-Für die Internationalisierung des Frontends wurde das \emph{Ext.i18n.Bundle-touch}\footnote{\url{https://github.com/elmasse/Ext.i18n.Bundle-touch/tree/css-content}}-Plugin für Sencha Touch eingesetzt.
+Für die Internationalisierung des Frontends wurde das \brand{Ext.i18n.Bundle-touch}\footnote{\url{https://github.com/elmasse/Ext.i18n.Bundle-touch/tree/css-content}}-Plugin für Sencha Touch eingesetzt.
 
 \begin{table}[H]
 \centering
@@ -52,7 +52,7 @@ Schlussendlich wird dem Benutzer eine der folgenden Masken angezeigt:
 
 \subsection{Sencha Cmd}
 \label{sencha-cmd}
-Das Grundgerüst der App wurde komplett mit dem Sencha-eigenen Build-Tool \emph{Sencha Cmd 3.0.0.250}\footnote{\url{http://www.sencha.com/products/sencha-cmd}} generiert.
+Das Grundgerüst der App wurde komplett mit dem Sencha-eigenen Build-Tool \brand{Sencha Cmd 3.0.0.250}\footnote{\url{http://www.sencha.com/products/sencha-cmd}} generiert.
 Dieses bietet verschiedene Build-Möglichkeiten an:
 
 \begin{table}[H]
@@ -101,7 +101,7 @@ Dieser wird für das Finden der abhängigen Ressourcen der App verwendet.
 Weitere Informationen zur Konfiguration findet man im entsprechendem Guide der Sencha Docs\footnote{\url{http://docs.sencha.com/touch/2-1/\#!/guide/command\_app}}.
 
 \subsubsection{App Build starten}
-Zur Erstellung eines \kort-Builds muss \emph{Sencha Cmd} in der Version 3.0.0.250 installiert sein.
+Zur Erstellung eines \kort-Builds muss \brand{Sencha Cmd} in der Version 3.0.0.250 installiert sein.
 Der Build kann von der Konsole aus gestartet werden. Dazu muss in das \emph{Root-Verzeichnis} von \kort gewechselt werden und folgender Befehl eingegeben werden:
 
 \inlinecode{sencha app build <environment>}
@@ -137,7 +137,7 @@ Getestet wurde die App mit folgenden Geräten:
 \subsection{Internernationalisierung}
 \label{i18n}
 Die Oberfläche von \kort wurde bereits für eine mögliche Übersetzung vorbereitet.
-Dazu wurde das Plugin \emph{Ext.i18n.Bundle-touch}\footnote{\url{https://github.com/elmasse/Ext.i18n.Bundle-touch}} für Sencha Touch eingesetzt.
+Dazu wurde das Plugin \brand{Ext.i18n.Bundle-touch}\footnote{\url{https://github.com/elmasse/Ext.i18n.Bundle-touch}} für Sencha Touch eingesetzt.
 Dieses ermöglicht es einzelne Texte in externen Sprach-Property-Dateien auszulagern.
 
 Bei \kort befinden sich diese Files im Verzeichnis \inlinecode{/resources/i18n/} und müssen nach folgendem Schema benannt werden: \inlinecode{Kort\_<locale>.props}.

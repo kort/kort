@@ -3,7 +3,7 @@
 
 Das Gesamtsystem setzt sich aus insgesamt vier Komponenten zusammen: die Datenbank, der Webserver, die Fehlerquelle und das Zielsystem von \gls{OpenStreetMap}. 
 Die einzelnen Komponenten sind über \gls{REST}-Schnittstellen miteinander verbunden. 
-Dabei sind das Zielsystem (\gls{OpenStreetMap}) und die Fehlerquelle (\emph{KeepRight}, siehe Kapitel \ref{datenquellen}) Fremdsysteme, bei welchen die Schnittstellen gegeben waren. 
+Dabei sind das Zielsystem (\gls{OpenStreetMap}) und die Fehlerquelle (\brand{KeepRight}, siehe Kapitel \ref{datenquellen}) Fremdsysteme, bei welchen die Schnittstellen gegeben waren. 
 Unsere eigenen Server haben wir entsprechend angepasst und auch via \gls{REST} zugänglich gemacht.
 
 \begin{figure}[H]
@@ -37,7 +37,7 @@ Konkret haben wir darauf geachtet, dass für alle Aktionen Skripte oder Build-Sc
 Dies Ziel ist es, ein System zu entwickelt, dass sich möglichst einfach wieder aufbauen lässt.
 
 Auf der Seite des Datenbankserver geschieht dies so, dass die Datenbank jede Nacht neu aufgebaut wird.
-Zum einen werden dabei die neuesten Fehlerdaten von \emph{KeepRight} geladen, zum anderen alle Änderungen an der Datenbank nachvollzogen.
+Zum einen werden dabei die neuesten Fehlerdaten von \brand{KeepRight} geladen, zum anderen alle Änderungen an der Datenbank nachvollzogen.
 Dies hat den grossen Vorteil, dass stets ein konsistenter Zustand anzutreffen ist.
 
 Eine Ausnahme bilden dabei die laufenden Daten der Applikation (d.h. Userdaten, Lösungsvorschläge etc.), welche nicht jede Nacht zurückgesetzt werden.
@@ -47,7 +47,7 @@ Auf der Seite des Webservers ist dies das \gls{Bootstrapping} noch stärker anzu
 Somit müssen alle Informationen in Skripten hinterlegt sein, da sie sonst schlicht nicht zur Anwendung kommen.
 
 \section{Umsysteme}
-Zu unserem System gehören auch die Fehlerdatenquelle \emph{KeepRight} sowie \gls{OpenStreetMap} dazu.
+Zu unserem System gehören auch die Fehlerdatenquelle \brand{KeepRight} sowie \gls{OpenStreetMap} dazu.
 Unsere Applikation interagiert direkt mit diesen beiden Systemen, ohne eine Kontrollfunktion zu übernehmen.
 Es handelt sich somit um sogenannte Fremdsysteme.
 
@@ -60,7 +60,7 @@ Ein wichtiger Eckpfeiler ist auch, die gesamte Kommunikation über \gls{REST}-Sc
 Dadurch lassen sich Dienste sowohl orts- wie auch technologie-unabhängig voneinander betreiben.
 
 \subsection{KeepRight}
-Die Verbindung zu \emph{KeepRight} ist sehr lose, da das angebotene \gls{API} lediglich ein täglich generierter Dump von Fehlerdaten ist.
+Die Verbindung zu \brand{KeepRight} ist sehr lose, da das angebotene \gls{API} lediglich ein täglich generierter Dump von Fehlerdaten ist.
 Diese Daten werden jede Nacht heruntergeladen und in unsere Datenbank integriert.
 
 Weitere Fehlerquellen lassen sich einfach einbinden (siehe Abschnitt \ref{additional-error-source}), da innerhalb der Applikation nur über eine View auf die Daten zugegriffen wird.
@@ -82,7 +82,7 @@ Es gilt die Grundregel, dass alle Änderungen über persönliche Benutzerkonten 
 Dies hat vor allem damit zu tun, dass Änderungen leicht nachvollziehbar sind.
 Solche Einschränkungen können jedoch auch ein Hindernis sein.
 In begründeten Fällen wird deshalb auch eine Ausnahme zugelassen.
-Beispielsweise hat die \emph{WheelMap}-Applikation\footnote{\url{http://wheelmap.org/}} offiziell die Erlaubnis mit einem technischen Benutzer Änderungen zu erfassen.
+Beispielsweise hat die \brand{WheelMap}-Applikation\footnote{\url{http://wheelmap.org/}} offiziell die Erlaubnis mit einem technischen Benutzer Änderungen zu erfassen.
 
 Dies war unter anderem auch der Grund weshalb wir unser Projekt am OSM-Stammtisch in Zürich vorgestellt haben\footnote{\url{http://wiki.openstreetmap.org/wiki/DE:Switzerland:Z\%C3\%BCrich/OSM-Treffen\#36._OSM-Stammtisch}}.
 Das Feedback war durchaus positiv, jedoch gab es starke Vorbehalte gegenüber unserem Vorhaben, die korrigierten und validierten Lösungen automatisiert an \gls{OpenStreetMap} zu senden.
@@ -112,7 +112,7 @@ Der Benutzer erspart sich dadurch einen weiteren Login, an den er sich erinnern 
 \Gls{OAuth} ist mittlerweile ein gängiger Standard, um Applikationen Zugriff auf fremde Resourcen zu geben, ohne direkt den Benutzernamen und das Passwort preiszugeben.
 Auch \gls{OpenStreetMap} unterstützt \gls{OAuth} und so fiel die Entscheidung leicht, dieses Protokoll zu verwenden.
 
-In unserem Fall ist die Resource jedoch \emph{nur} die Benutzerinformationen.
+In unserem Fall ist die Resource jedoch "`nur"' die Benutzerinformationen.
 Das Protokoll basiert darauf, dass sowohl die Applikation, sowie der Benutzer dem jeweiligen \gls{OAuth}-Anbieter vertraut.
 
 Vom authentisierten Benutzer werden dann die Benutzerinformationen (Name, ID, E-Mail) in unsere Datenbank übernommen.

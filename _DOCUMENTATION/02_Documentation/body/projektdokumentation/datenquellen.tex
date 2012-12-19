@@ -66,7 +66,7 @@ Darin wird der eigentliche Fehler beschrieben.
 \end{table}
 
 \subsection{OpenStreetBugs}
-Mit der Applikation \emph{OpenStreetBugs} ist es für die Benutzer möglich Fehler in den Kartendaten als Bug zu erfassen.
+Mit der Applikation \brand{OpenStreetBugs} ist es für die Benutzer möglich Fehler in den Kartendaten als Bug zu erfassen.
 
 \begin{table}[H]
 \centering
@@ -89,7 +89,7 @@ Mit der Applikation \emph{OpenStreetBugs} ist es für die Benutzer möglich Fehl
 \end{table}
 
 \subsection{KeepRight}
-\emph{KeepRight} ist ein Dienst, welcher jeweils über Nacht, Fehler in OSM-Objekten sucht und in einer eigenen Datenbank ablegt.
+\brand{KeepRight} ist ein Dienst, welcher jeweils über Nacht, Fehler in OSM-Objekten sucht und in einer eigenen Datenbank ablegt.
 
 \begin{table}[H]
 \centering
@@ -101,7 +101,7 @@ Mit der Applikation \emph{OpenStreetBugs} ist es für die Benutzer möglich Fehl
 \hline 
 \small{\textbf{API verfügbar?}} & Ja (Fehlerdaten werden als Dump-File zum Download angeboten) \newline \url{http://keepright.ipax.at/interfacing.php} \\
 \hline 
-\small{\textbf{Lösung zurückschreiben}} & Lösung müssten lediglich an \gls{OpenStreetMap} gesendet werden. \emph{KeepRight} baut seine Fehlerdatenbank jeweils über Nacht aus dem \gls{OpenStreetMap}-Daten neu auf. \\
+\small{\textbf{Lösung zurückschreiben}} & Lösung müssten lediglich an \gls{OpenStreetMap} gesendet werden. \brand{KeepRight} baut seine Fehlerdatenbank jeweils über Nacht aus dem \gls{OpenStreetMap}-Daten neu auf. \\
 \hline
 \small{\textbf{Eignung}} & \textbf{gut} \linebreak Dadurch das die Fehlerdaten automatisiert erstellt werden, ist es gut möglich, für jeweilige Fehlertypen eine geeignete Maske für deren Behebung zur Verfügung zu stellen. \\
 \hline
@@ -111,8 +111,8 @@ Mit der Applikation \emph{OpenStreetBugs} ist es für die Benutzer möglich Fehl
 \end{table}
 
 \subsection{MapDust}
-\emph{MapDust} ist ein Bug-Tracker der Firma skobbler.
-Er ist \emph{OpenStreetMap} sehr ähnlich, konzentriert sich aber mehr auf Fehler beim Routing.
+\brand{MapDust} ist ein Bug-Tracker der Firma skobbler.
+Er ist \gls{OpenStreetMap} sehr ähnlich, konzentriert sich aber mehr auf Fehler beim Routing.
 
 \begin{table}[H]
 \centering
@@ -135,7 +135,7 @@ Zusätzlich muss der Bug bei MapDust geschlossen werden. \\
 \end{table}
 
 \subsection{Housenumbervalidator}
-Der \emph{Housenumbervalidator} ist ein Quelle, welche die \gls{OpenStreetMap}-Daten automatisiert auf fehlerhafte Adressen prüft.
+Der \brand{Housenumbervalidator} ist ein Quelle, welche die \gls{OpenStreetMap}-Daten automatisiert auf fehlerhafte Adressen prüft.
 Die Fehler reichen von falschen Strassennamen bis zu Duplikaten von Hausnummern in der gleichen Strasse.
 
 \begin{table}[H]
@@ -158,14 +158,14 @@ Die Fehler reichen von falschen Strassennamen bis zu Duplikaten von Hausnummern 
 \end{table}
 
 \section{Entscheid: Fehlerdaten von KeepRight}
-Durch die gute Eignung der Fehlerdaten vom \emph{KeepRight}-Dienst, haben wir uns dazu entschieden deren Daten als Basis für unsere Fehler zu verwenden.
+Durch die gute Eignung der Fehlerdaten vom \brand{KeepRight}-Dienst, haben wir uns dazu entschieden deren Daten als Basis für unsere Fehler zu verwenden.
 Der Dienst liefert zuverlässig Daten in hoher Qualität.
 Die Fehlermeldungen sind klar und alle Fehler sind bereits Kategorisiert, so ist es einfach diese dann für die grafische Darstellung zu unterscheiden.
 
 Ein grosses Plus ist auch, dass sich die Daten auf \gls{OpenStreetMap} abstützen, so dass eine Korrektur nur an einer Stelle vorgenommen werden muss.
 
 \section{Fehlerdaten in die Datenbank laden}
-Um stets aktuelle Daten für die App anzuzeigen, wird der Dump von \emph{KeepRight} jede Nacht mit einem Shellskript in die Datenbank geladen.
+Um stets aktuelle Daten für die App anzuzeigen, wird der Dump von \brand{KeepRight} jede Nacht mit einem Shellskript in die Datenbank geladen.
 Das Shellskript befindet sich unter:
 
 \inlinecode{/server/database/keepright\_setup.sh}
@@ -192,7 +192,7 @@ Mittels Cronjob wird folgender Befehl aufgerufen:
 \end{table}
 
 \subsection{Datenformat}
-Auf der Webseite von \emph{KeepRight} ist ersichtlich\footnote{\url{http://www.keepright.at/interfacing.php}}, welche Daten im Dump enthalten sind.
+Auf der Webseite von \brand{KeepRight} ist ersichtlich\footnote{\url{http://www.keepright.at/interfacing.php}}, welche Daten im Dump enthalten sind.
 
 \begin{table}[H]
 \centering

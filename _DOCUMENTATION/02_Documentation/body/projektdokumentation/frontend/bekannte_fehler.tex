@@ -47,15 +47,15 @@ Das Deaktivieren dieser Zeile hat aber zur Folge, dass der native Rahmen des Bro
 Dies ist zwar unschön löst aber das Problem mit dem Zugriff auf die Geolocation.
 
 \subsection{App Build}
-Wie in Abschnitt \ref{sencha-cmd} beschrieben, basiert die App vollständig auf dem Sencha-eigenen Build-Tool \emph{Sencha Cmd 3.0.0.250}. Darin sind aber noch einige Bugs vorhanden.
+Wie in Abschnitt \ref{sencha-cmd} beschrieben, basiert die App vollständig auf dem Sencha-eigenen Build-Tool \brand{Sencha Cmd 3.0.0.250}. Darin sind aber noch einige Bugs vorhanden.
 
 Bei \kort besteht dabei ein Problem bei der fest eingebauten Komprimierung der JavaScript-Sourcen.
 Während diesem Prozess werden lokale Variablennamen mit einzelnen Buchstaben abgekürzt.
-Dabei treten Konflikte mit der \emph{Leaflet}-Library auf, welche den Buchstaben \emph{L} als Namespace verwendet.
+Dabei treten Konflikte mit der \brand{Leaflet}-Library auf, welche den Buchstaben \emph{L} als Namespace verwendet.
 
 \textbf{Workaround}
 
-Um diese Problem zu umgehen, mussten wir das Build-Skript von \emph{Sencha Cmd} minimal anpassen.
+Um diese Problem zu umgehen, mussten wir das Build-Skript von \brand{Sencha Cmd} minimal anpassen.
 So mussten wir die Zeile, welche den \gls{Microloader} komprimiert auskommentieren (siehe Code-Ausschnitt \ref{senchacmd-workaround}).
 Diese befindet sich in folgender Datei:
 

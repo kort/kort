@@ -58,7 +58,7 @@ In unserem Fall haben wir das Skript auf unseren Laptops eingerichtet und so tä
 
 \section{Webserver (Heroku)}
 
-Bei \emph{Heroku}\footnote{\url{http://www.heroku.com/}} handelt es sich um einen kostenlosen Dienst, welcher für verschiedenste Plattformen eine Deploymentumgebung anbietet. 
+Bei \brand{Heroku}\footnote{\url{http://www.heroku.com/}} handelt es sich um einen kostenlosen Dienst, welcher für verschiedenste Plattformen eine Deploymentumgebung anbietet. 
 Der Dienst hat eine Schnittstelle über welche sich automatisiert Applikationen erstellen lassen, die Datenübertragung läuft dann über \gls{Git}.
 
 \begin{table}[H]
@@ -69,7 +69,7 @@ Der Dienst hat eine Schnittstelle über welche sich automatisiert Applikationen 
 \hline 
 \small{\textbf{Betriebsystem}} & Ubuntu \\
 \hline 
-\small{\textbf{Zugriff}} & Daten via \gls{Git}, Befehle via Kommandozeilen-\gls{API} (\emph{Heroku-Toolbelt}) \\
+\small{\textbf{Zugriff}} & Daten via \gls{Git}, Befehle via Kommandozeilen-\gls{API} (\brand{Heroku-Toolbelt}) \\
 \hline 
 \small{\textbf{Installierte Software}} & Apache, kort Applikation \\
 \hline 
@@ -78,19 +78,19 @@ Der Dienst hat eine Schnittstelle über welche sich automatisiert Applikationen 
 \label{infrastruktur-heroku-tabelle}
 \end{table}
 
-Die Entscheidung den Webserver von \emph{Heroku} zu wählen ist dadurch begründet, dass uns dies die grösstmögliche Freiheit bietet. 
-\emph{Heroku} bietet bereits eine hervoragende \gls{API} welche sich über das Kommandozeilen-Toolset \emph{Heroku-Toolbelt} steuern lässt.
+Die Entscheidung den Webserver von \brand{Heroku} zu wählen ist dadurch begründet, dass uns dies die grösstmögliche Freiheit bietet. 
+\brand{Heroku} bietet bereits eine hervoragende \gls{API} welche sich über das Kommandozeilen-Toolset \brand{Heroku-Toolbelt} steuern lässt.
 Dies erlaubt es beliebig viele Applikationen automatisiert zu erstellen.
 Auch für den Betrieb bietet das \gls{API} viele Möglichkeiten zur Fernwartung an (SSH-Zugang, Logs, Prozessorauslastung).
 
 \section{Deployment}
 Am Deployment der Applikation sind mehrere Systeme beteiligt. 
-Alle Änderungen werden von den Entwicklern via \gls{Git} zu \emph{GitHub}\footnote{\url{http://github.com}} übertragen. 
-Auf \emph{GitHub} gibt es sogenannte \emph{Hooks} die man aktivieren kann. 
+Alle Änderungen werden von den Entwicklern via \gls{Git} zu \brand{GitHub}\footnote{\url{http://github.com}} übertragen. 
+Auf \brand{GitHub} gibt es sogenannte \emph{Hooks} die man aktivieren kann. 
 Dabei handelt es sich um weitere Aktionen welche durch verschiedene Ereignisse ausgelöst werden können. 
-In unserem Fall haben wir einen \emph{post-commit Hook} aktiviert, welcher dem \gls{ci} Dienst \emph{Travis-CI}\footnote{\url{http://travis-ci.org}} Bescheid gibt, wenn ein neue Änderungen auf \emph{GitHub} eingetroffen sind.
+In unserem Fall haben wir einen \emph{post-commit Hook} aktiviert, welcher dem \gls{ci} Dienst \brand{Travis-CI}\footnote{\url{http://travis-ci.org}} Bescheid gibt, wenn ein neue Änderungen auf \brand{GitHub} eingetroffen sind.
 
-Nach einem erfolgreichen Build werden die Resultate an \emph{Heroku} gesendet.
+Nach einem erfolgreichen Build werden die Resultate an \brand{Heroku} gesendet.
 Zusätzlich wird der Datenbankserver über die Änderungen notifiziert, worauf dieser sich selbst aktualisiert.
 
 \begin{figure}[H]
@@ -101,7 +101,7 @@ Zusätzlich wird der Datenbankserver über die Änderungen notifiziert, worauf d
 \end{figure}
 
 \subsection{Travis CI}
-Auf \emph{Travis} läuft dann der Build, welcher durch die Konfigurationsdatei \inlinecode{.travis.yml} gesteuert ist. Darin lassen sich die Schritte sowie die Umgebung für Builds definieren.
+Auf \brand{Travis} läuft dann der Build, welcher durch die Konfigurationsdatei \inlinecode{.travis.yml} gesteuert ist. Darin lassen sich die Schritte sowie die Umgebung für Builds definieren.
 Für jede Umgebung wird dann ein separater Build ausgelöst.
 Somit lassen sich bequem verschiedene Versionen mit unterschiedlichen Umgebungen testen.
 Daraus entsteht dann eine sogenannte Build-Matrix welche bei jedem Build durchlaufen wird (siehe Tabelle \ref{infrastruktur-build-matrix}).
