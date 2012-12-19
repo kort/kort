@@ -8,7 +8,25 @@
 \input{body/projektmanagement_monitoring/risikomanagement.tex}
 
 \section{Projektverlauf}
-\todo[inline]{Projektverlauf beschreiben}
+Das Projekt bestand aus 5 Sprints, wobei wir ursprünglich 6 geplant haben.
+Gegen Ende des Projekts mussten wir uns eingestehen, dass der Overhead für zweiwöchige Sprints zu gross ist, deshalb haben wir die letzten beiden Sprints auf 3 Wochen erweitert.
+
+Dank \emph{Redmine}, unsere Projektmanagement-Tool, hatten wir eine gute Übersicht über das Projekt.
+Jeweils am Ende eines Sprints haben wir besprochen wie wir weiterfahren sollen und haben entsprechend den nächsten Sprint geplant.
+Durch diese Iterationen war es uns möglich, schnell ein System zu erstellen, welches den aktuellen Bedürfnissen entspricht.
+
+Im Laufe des Projeks hat es sich ergeben, dass sich Herr Hunziker eher um das Frontend und Herr Oderbolz eher um das Backend gekümmert hat.
+Die Grenzen sind dabei fliessend und sind grösstenteils durch die persönlichen Interessen entstanden.
+Da wir das Studium berufsbegleitend absolvieren und uns deshalb nicht jeden Tag getroffen haben, hatte dies den Vorteil, dass wir so relativ gut unabhängig voneinander arbeiten konnten.
+
+Etwa in der Hälfe des Projekts wollte unser Betreuer Prof. Stefan Keller wissen, welche Funktionalitäten wir bis zum Ende abschliessen können und welche nicht.
+Die agile Vorgehensweise erlaubt es grundsätzlich nicht solche Aussagen zu treffen, da sich der Scope noch ändern kann.
+Jedoch ist es natürlich verständlich, dass man eine Übersicht will wie das Projekt vorangeschritten ist.
+Deshalb haben wir dann begonnen eine Meilenstein-Liste zu führen, welche die wichtigsten Funktionalitäten aufzeigt.
+So konnten wir zum einen jeweils zeigen, was schon erledigt und was noch zu tun ist und zum anderen jeweils beim Sprint Planning direkt Meilensteine einplanen.
+
+Abschliessend ist zu sagen, dass das Projekt gut verlaufen ist, und wir grundsätzlich alle unsere Ziele erreichen konnten (siehe Abschnitt \ref{fazit}).
+Daneben gab es auch Raum um kreative Ideen auszuprobieren.
 
 \section{Arbeitsaufwand}
 Wie im Kapitel \ref{projektmanagement} beschrieben, war der vom Modul vorgegebene Aufwand pro Person auf \emph{320 Stunden} festgelegt. Leider haben wir beide diese Vorgabe leicht überschritten (siehe Tabelle \ref{projektmanagement-arbeitsaufwand}).
@@ -30,8 +48,21 @@ Stefan Oderbolz & 352h \\
 \end{table} 
 
 \section{Fazit}
-\todo[inline]{Fazit schreiben}
-Bereits die Meilensteinliste (siehe Abschnitt \ref{meilensteine}) vermittelt ein ambitioniertes Ziel, welches zu erreichen war.
+\label{fazit}
+Bereits die Liste der Meilensteine (siehe Abschnitt \ref{meilensteine}) vermittelt ein ambitioniertes Ziel, welches zu erreichen war.
 Leider konnten wir nicht alle Punkte abschliessen.
 Schlussendlich haben wir uns auf die Grundfunktionalität der \gls{WebApp} konzentriert.
 So mussten wir leider auf das Zurückschreiben der korrigierten Daten zu \gls{OpenStreetMap} verzichten.
+
+Die entwickelte \gls{WebApp} erfüllt alle Erwartungen an eine moderne Applikation.
+Ein Benutzer kann mit der App die gewünschten Aufgaben (Fehler korrigieren und validieren) durchführen und wird durch einige Gamification-Konzepte animiert die App weiter zu verwenden.
+
+In der doch kurzen Zeit ist es uns aber nicht gelungen ein vollwertiges Spiel zu entwickeln.
+Dazu müsste noch mehr Wert auf Details gelegt werden, so dass eine abgerundetes Spielerlebnis entsteht.
+
+Dank der agilen Vorgehensweise konnten wir schnell auf Änderungen reagieren, welche sich bei einem solchen Projekt zwangläufig ergeben.
+Wir waren uns zu beginn noch nicht bewusst, welche Funktionalitäten wichtig sind und welche weniger.
+Der ursprüngliche Plan so schnell wie möglich einen Roundtrip durch alle Systeme zu erlangen.
+Als wir gemerkt haben, dass wir es mit vielen verschiedenen Schnittstellen zu tun haben, sind wir von diesem Plan wieder abgekommen und haben uns dazu entschlossen, zuerst unsere App zu stabilisieren und dann eine Schnittstelle nach der anderen anzuschauen.
+
+Mit Hilfe der \gls{ci} hatten wir stets ein lauffähiges System welchen automatisiert gebaut und ausgerollt wurde.
