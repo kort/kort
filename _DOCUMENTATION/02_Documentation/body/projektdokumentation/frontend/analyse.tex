@@ -5,7 +5,7 @@
 \subsection{User Szenarien}
 \label{kort-user-szenarien}
 
-Um die Anforderungen an die App genauer zu definieren, wurden im Vorfeld des Projektes einige Szenarien erstellt, welche damit abgedeckt werden sollen.
+Um die Anforderungen an die App genauer abschätzen zu können, wurden im Vorfeld der Implementierung einige Szenarien erstellt, welche damit abgedeckt werden sollen.
 
 \subsubsection{Szenario 1: Zeitvertreib an der Bushaltestelle}
 
@@ -16,7 +16,8 @@ Die App hat ihn bereits lokalisiert und zeigt ihm offene \brand{OpenStreetMap}-A
 Für die Aufträge werden Simon verschiedene Belohnungen angeboten, je nach Schwierigkeitsgrad der Aufgabe.
 
 Simon entscheidet sich für einen Auftrag mit mittlerer Belohnung.
-Die App zeigt ihm den Weg zum Auftrag und erklärt was zu tun ist. Beim Auftrag handelt es sich um einen fehlenden Strassennamen.
+Die App zeigt ihm den Weg zum Auftrag und erklärt was zu tun ist.
+Beim Auftrag handelt es sich um einen fehlenden Strassennamen.
 
 Als Simon vor Ort ist, findet er sehr schnell ein Strassenschild.
 Er gibt den Namen in der App ein wofür er bereits 10 Punkte erhält.
@@ -34,9 +35,15 @@ Danach verschwindet der Auftrag aus seiner Auftragsliste und von der Karte.
 
 \subsubsection{Szenario 2: Validieren}
 
-Andy sitzt im Zug und langweilt sich. Er öffnet die \kort{}-App im Indoor-Modus und sieht sich die Liste der zu validierenden Bugfixes an. Er sortiert die Liste, um diejenigen Einträge zu sehen, welche nur noch einen Review benötigen, um an \brand{OpenStreetMap} gesendet werden zu können.
+Andy sitzt im Zug und langweilt sich.
+Er öffnet die \kort{}-App im Indoor-Modus und sieht sich die Liste der zu validierenden Lösungsvorschläge an. 
+Er sortiert die Liste, um diejenigen Einträge zu sehen, welche nur noch einen Review benötigen, um an \brand{OpenStreetMap} gesendet werden zu können.
 
-Er öffnet einen Bugfix für einen fehlenden Strassennamen in der Umgebung. Er kennt zwar die Gegend ist sich aber nicht 100\% sicher ob der Name stimmt. Um sicherzugehen öffnet er das Bild, welches dem Bugfix angehängt ist. Das Bild zeigt ein Strassenschild, welches mit dem eingegeben Namen übereinstimmt. Andy bestätigt somit die Änderung und schliesst den Bug damit ab.
+Er öffnet einen Bugfix für einen fehlenden Strassennamen in der Umgebung.
+Er kennt zwar die Gegend ist sich aber nicht 100\% sicher ob der Name stimmt.
+Um sicherzugehen öffnet er das Bild, welches dem Bugfix angehängt ist.
+Das Bild zeigt ein Strassenschild, welches mit dem eingegeben Namen übereinstimmt
+Andy bestätigt dann die Änderung und schliesst den Bug damit ab.
 
 \textbf{Ziele}
 \begin{itemize}
@@ -59,27 +66,28 @@ Nach dem erfolgreichen Login wird Monika zurück zur \kort{}-App geleitet, wo si
 \begin{itemize}
 \item Direkt ersichtlich was die App kann
 \item Schneller Einstieg
-\item Einfache Anmeldung
+\item Einfache Anmeldung (keine Registrierung!)
 \item Benutzerführung durch die Funktionen
 \end{itemize}
 
 \subsubsection{Szenario 4: Highscore-Anwärter}
 
-Edi benutzt schon seit einiger Zeit die \kort{}-App und hat in seinem Revier bereits den zweiten Platz der Highscore-Liste erreicht.
-Seine Platzierung überprüft er regelmässig auf der Highscore-Liste in der App.
+Edi benutzt schon seit einiger Zeit die \kort{}-App und hat in seinem Revier bereits den zweiten Platz der Highscore erreicht.
+Seine Platzierung überprüft er regelmässig in der App.
 
 Heute möchte er endlich die Spitze erklimmen und den "`Leader"'-Badge erhalten.
 Dazu hat er sich einige Aufträge ausgesucht, welche er der Reihe nach abarbeiten will.
 Bei jedem Auftrag sieht Edi wieviele Punkte er sammeln kann.
 
-Nachdem er den 5. Auftrag erfolgreich erledigt hat, erhält er eine Benachrichtigung, dass der den "`Leader"'-Badge erhalten hat.
-Auch in der Highscoreliste steht Edi nun zuoberst.
+Nachdem er den 5. Auftrag erfolgreich erledigt hat, erhält er eine Benachrichtigung, dass er den "`Leader"'-Badge erhalten hat.
+Auch in der Rangliste steht Edi nun zuoberst.
 
 \textbf{Ziele}
 \begin{itemize}
 \item Einfach mehrere Aufträge nacheinander ausführen
 \item Badges sammeln
-\item Highscoreliste anzeigen und Erster werden
+\item Highscore anzeigen
+\item Erster Rang erreichen
 \end{itemize}
 
 % Paper-Prototype
@@ -92,7 +100,7 @@ Der Prototype besteht aus vier Hauptmasken und einem Overlay für den Login.
 
 \subsubsection{Overlay: Login}
 Beim ersten Starten der \gls{WebApp} erhält man die Möglichkeit sich über verschiedene Dienste anzumelden.
-Mit einem Klick auf den jeweiligen Anbieter, wird man zu diesem Weitergeleitet und kann sich dort anmelden.
+Mit einem Klick auf den jeweiligen Anbieter, wird man zu diesem weitergeleitet und kann sich dort anmelden.
 
 \begin{figure}[H]
 \subfigure[Login - Anbieterauswahl]{\includegraphics[width=0.43\textwidth]{images/paperprototype/kort-pp-startscreen}}
