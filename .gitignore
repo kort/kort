@@ -42,3 +42,4 @@ composer.phar
 composer.lock
 vendor/
 bin/
+/docs/Ext.ux.LeafletMap/
