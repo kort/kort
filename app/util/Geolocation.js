@@ -7,6 +7,7 @@ Ext.define('Kort.util.Geolocation', {
     config: {
         available: false,
         autoUpdate: false,
+        timeout: 20000,
 
         listeners: {
             locationupdate: function(geo, eOpts) {
