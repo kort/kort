@@ -1,7 +1,7 @@
 \chapter{Architektur}
 \label{architektur}
 
-Das Gesamtsystem setzt sich aus insgesamt vier Komponenten zusammen: die Datenbank, der Webserver, die Fehlerquelle und das Zielsystem von \brand{OpenStreetMap}. 
+Das Gesamtsystem setzt sich aus insgesamt vier Komponenten zusammen: der Datenbank, dem Webserver, der Fehlerquelle und dem Zielsystem von \brand{OpenStreetMap}. 
 Die einzelnen Komponenten sind über \gls{REST}-Schnittstellen miteinander verbunden. 
 Dabei sind das Zielsystem (\brand{OpenStreetMap}) und die Fehlerquelle (\brand{KeepRight}, siehe Kapitel \ref{datenquellen}) Fremdsysteme, bei welchen die Schnittstellen gegeben waren. 
 Unsere eigenen Server haben wir entsprechend angepasst und auch via \gls{REST} zugänglich gemacht.
@@ -17,7 +17,7 @@ Das Backend besteht aus zwei logisch und derzeit auch physisch getrennten Server
 Der Webserver liefert die \gls{WebApp} aus und ist auch der einzige Kommunikationspartner für das Frontend. Dies ist zum einen eine architektonische, zum anderen eine technische Entscheidung.
 
 \begin{itemize}
-\item Das Frontend muss sich nicht darum kümmern woher es welchen Dienst bezieht
+\item Das Frontend muss sich nicht darum kümmern, woher es welchen Dienst bezieht
 \item Die Same-Origin-Policy\cite{sop} einiger Server lässt keine direkte Kommunikation zwischen \emph{fremdem} JavaScript und dem Server zu
 \end{itemize}
 
@@ -43,7 +43,7 @@ Dies hat den grossen Vorteil, dass stets ein konsistenter Zustand anzutreffen is
 Eine Ausnahme bilden dabei die laufenden Daten der Applikation (d.h. Userdaten, Lösungsvorschläge etc.), welche nicht jede Nacht zurückgesetzt werden.
 Dies hat aber eher praktische als technische Gründe.
 
-Auf der Seite des Webservers ist das \gls{Bootstrapping} noch stärker anzutreffen, da bei jedem Build tatsächlich das System komplett neu aufgebaut wird.
+Auf der Seite des Webservers ist das \gls{Bootstrapping} noch stärker anzutreffen, da bei jedem Build das System komplett neu aufgebaut wird.
 Somit müssen alle Informationen in Skripten hinterlegt sein, da sie sonst schlicht nicht zur Anwendung kommen.
 
 \section{Umsysteme}
@@ -57,7 +57,7 @@ Um dieses Ziel zu erreichen haben wir darauf geachten keine festen Verbindungen 
 Solche lassen sich später nur schwer wieder entfernen oder ändern.
 
 Ein wichtiger Eckpfeiler ist auch, die gesamte Kommunikation über \gls{REST}-Schnittstellen zu realisieren.
-Dadurch lassen sich Dienste sowohl orts- wie auch technologie-unabhängig voneinander betreiben.
+Dadurch lassen sich Dienste sowohl orts-, wie auch technologie-unabhängig voneinander betreiben.
 
 \subsection{KeepRight}
 Die Verbindung zu \brand{KeepRight} ist sehr lose, da das angebotene \gls{API} lediglich ein täglich generierter Dump von Fehlerdaten ist.
@@ -70,21 +70,21 @@ Das System benötigt drei Schnittstellen zu \brand{OpenStreetMap}, wovon in dies
 
 \brand{OpenStreetMap} liefert die genauen Informationen über ein geografisches Objekt, um dieses auf einer Karte zeichnen zu können.
 Dies verwenden wir um Details zu einem Fehler anzuzeigen.
-Wenn beispielsweise der Name einer Strasse erfasst werden soll, kann sich der Benutzer vorher über die Detail-Karte darüber vergewissern, welche Strasse genau gemeint ist.
+Wenn beispielsweise der Name einer Strasse erfasst werden soll, kann sich der Benutzer vorher über die Detail-Karte vergewissern, welche Strasse genau gemeint ist.
 
-Der zweite Dienst, den wir beanspruchen ist die Authentifizierung über \gls{OAuth}.
+Der zweite Dienst, den wir beanspruchen, ist die Authentifizierung über \gls{OAuth}.
 So kann das \brand{OpenStreetMap}-Benutzerkonto direkt verwendet werden, um \kort{} zu spielen.
 
 Um den Kreis zu schliessen, sollen Korrekturen an \brand{OpenStreetMap} zurückgeschickt werden.
-Dieses Themengebiet ist sehr heikel, da die \brand{OpenStreetMap}-Community gegenüber technischen Benutzern sehr kritisch gegenübersteht.
+Dieses Themengebiet ist sehr heikel, da die \brand{OpenStreetMap}-Community technischen Benutzern sehr kritisch gegenübersteht.
 Es gilt die Grundregel, dass alle Änderungen über persönliche Benutzerkonten gemacht werden müssen.
 
-Dies hat vor allem damit zu tun, dass Änderungen leicht nachvollziehbar sind.
+Dies hat vor allem damit zu tun, dass Änderungen dadurch leichter nachvollziehbar sind.
 Solche Einschränkungen können jedoch auch ein Hindernis sein.
 In begründeten Fällen wird deshalb auch eine Ausnahme zugelassen.
 Beispielsweise hat die \brand{WheelMap}-Applikation\footnote{\url{http://wheelmap.org/}} offiziell die Erlaubnis mit einem technischen Benutzer Änderungen zu erfassen.
 
-Dies war unter anderem auch der Grund weshalb wir unser Projekt am OSM-Stammtisch in Zürich vorgestellt haben\footnote{\url{http://wiki.openstreetmap.org/wiki/DE:Switzerland:Z\%C3\%BCrich/OSM-Treffen\#36._OSM-Stammtisch}}.
+Dies war unter anderem auch der Grund, weshalb wir unser Projekt am OSM-Stammtisch in Zürich vorgestellt haben\footnote{\url{http://wiki.openstreetmap.org/wiki/DE:Switzerland:Z\%C3\%BCrich/OSM-Treffen\#36._OSM-Stammtisch}}.
 Das Feedback war durchaus positiv, jedoch gab es starke Vorbehalte gegenüber unserem Vorhaben, die korrigierten und validierten Lösungen automatisiert an \brand{OpenStreetMap} zu senden.
 
 Das Thema ist also sowohl technisch als auch organisatorisch als komplex einzustufen.
@@ -103,7 +103,7 @@ Die wichtigsten Kriterien dabei sind:
 \end{itemize}
 
 Auf diese Kriterien hin, war für uns sofort klar, dass wir keine eigene Benutzerverwaltung machen wollten.
-Ein App, die primär eine Ablenkung für einige Minuten sein soll, kann es sich nicht leisten, den Benutzer durch die Eingabe von Anmeldedaten abzuschrecken.
+Eine App, die primär eine Ablenkung für einige Minuten sein soll, kann es sich nicht leisten, den Benutzer durch die Eingabe von Anmeldedaten abzuschrecken.
 
 Daneben hat ein Benutzer bereits sehr viele Benutzerkonten bei verschiedensten Diensten.
 Daher ist es auch naheliegend diese Daten wiederzuverwenden.

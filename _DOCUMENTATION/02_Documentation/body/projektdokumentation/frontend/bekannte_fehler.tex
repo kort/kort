@@ -15,12 +15,12 @@ Eine sehr nützliche Funktionalität, welche Apple im Mobile Safari-Browser anbi
 \caption{iOS - Add to homescreen-Funktion}
 \end{figure}
 
-Dadurch wird ein App-ähnlicher Bookmark der aktuellen Webseite auf dem Homescreen erstellt.
+Dadurch wird ein App-ähnliches Bookmark der aktuellen Webseite auf dem Homescreen erstellt.
 Dieser erhält ein hinterlegtes Icon und einen Titel.
 Beim Starten der App erscheint ein Splashscreen, welchen man ebenfalls in der Webseite definieren kann.
-Zudem öffnet sich der Browser ohne jegliche Toolbars wie der Adress- oder der Navigationsleiste.
+Zudem öffnet sich der Browser ohne jegliche Toolbars, wie der Adress- oder der Navigationsleiste.
 
-Leider befindet in iOS6 ein Bug, welcher den Zugriff auf die Geolocation verhindert, wenn die \gls{WebApp} vom Homescreen aus gestartet wird.
+Leider befindet sich in iOS6 ein Bug, welcher den Zugriff auf die Geolocation verhindert, wenn die \gls{WebApp} vom Homescreen aus gestartet wird.
 Auf StackOverflow\footnote{\url{http://stackoverflow.com/questions/12503815/ios-6-breaks-geolocation-in-webapps-apple-mobile-web-app-capable}} wird der Bug genauer beschrieben.
 
 \subsubsection{Workaround}
@@ -43,7 +43,7 @@ Diese befindet sich in folgenden Dateien:
 \end{itemize}
 
 Das Deaktivieren dieser Zeile hat aber zur Folge, dass der native Rahmen des Browsers (Adressleiste, Navigationsleiste) wieder angezeigt wird.
-Dies ist zwar unschön löst aber das Problem mit dem Zugriff auf die Geolocation.
+Dies ist zwar unschön, löst aber das Problem mit dem Zugriff auf die Geolocation.
 
 \subsection{App Build}
 Wie in Abschnitt \ref{sencha-cmd} beschrieben, basiert die App vollständig auf dem Sencha-eigenen Build-Tool \brand{Sencha Cmd}. Darin sind aber noch einige Bugs vorhanden.
@@ -54,7 +54,7 @@ Dabei treten Konflikte mit der \brand{Leaflet}-Library auf, welche den Buchstabe
 
 \subsubsection{Workaround}
 Um diese Problem zu umgehen, mussten wir das Build-Skript von \brand{Sencha Cmd} minimal anpassen.
-So mussten wir die Zeile, welche den \gls{Microloader} komprimiert auskommentieren (siehe Code-Ausschnitt \ref{senchacmd-workaround}).
+So mussten wir die Zeile, welche den \gls{Microloader} komprimiert, auskommentieren (siehe Code-Ausschnitt \ref{senchacmd-workaround}).
 Diese befindet sich in folgender Datei:
 
 \inlinecode{/<Sencha Cmd Verzeichnis>/plugins/touch/current/app-build.js} Zeile 362

@@ -4,7 +4,7 @@
 \section{Datenbankserver}
 
 Beim Datenbankserver handelt es sich um einen virtuellen Server, den uns die HSR Hochschule für Technik Rapperswil zur Verfügung gestellt hat, für die Dauer dieser Arbeit.
-Dieser Server hält die Installation der \kort{}-Datenbank sowie das Projektmanagementtool Redmine.
+Dieser Server enthält die Installation der \kort{}-Datenbank sowie das Projektmanagementtool Redmine.
 Letzteres ist die einzige kritische Anwendung auf dem Server, da sich der Rest über entsprechende Installationskripts sehr einfach und schnell neu aufbauen lässt.
 
 Die Installation der benötigten Software kann mit dem Ubuntu Standard-Mechanismus \inlinecode{apt-get install} durchgeführt werden.
@@ -177,13 +177,13 @@ after_script: bash $CI_HOME/server/heroku/heroku.sh
 
 \subsubsection{Build-Matrix}
 Die Build-Matrix bestimmt, welche Builds mit welchen Parametern ausgeführt werden.
-Dabei wird pro definierte Spracheversion (Zeilen 3-5 im Code-Ausschnitt \ref{travis-yml}) und Umgebungsvariablen (Zeilen 15-17) ein Build ausgeführt.
+Dabei wird pro definierte Sprachversion (Zeilen 3-5 im Code-Ausschnitt \ref{travis-yml}) und Umgebungsvariablen (Zeilen 15-17) ein Build ausgeführt.
 Daneben gibt es noch eine Reihe von globalen Umgebungsvariablen, welche in allen Builds verwendet werden.
-In unserem Fall werden also vier Builds ausgeführt, mit dem PHP 5.3 und PHP 5.4 für die Test- und die Produktionsumgebung.
+In unserem Fall werden also vier Builds ausgeführt, mit jeweils PHP 5.3 und PHP 5.4 für die Test- und die Produktionsumgebung.
 
 \subsubsection{Verschlüsselte Umgebungsvariablen}
-Die Einträge mit \emph{secure} sind verschlüsselte Einträge welche bei der Ausführung des Builds wieder entschlüsselt werden\footnote{\url{http://about.travis-ci.org/docs/user/build-configuration/\#Secure-environment-variables}}.
-Auf diese Art lassen sich geheime Informationen wie API-Schlüssel schützen.
+Die Einträge mit \emph{secure} sind verschlüsselte Einträge, welche bei der Ausführung des Builds wieder entschlüsselt werden\footnote{\url{http://about.travis-ci.org/docs/user/build-configuration/\#Secure-environment-variables}}.
+Auf diese Art lassen sich geheime Informationen wie \gls{API}-Schlüssel schützen.
 
 In unserem \inlinecode{.travis.yml} kommt dies zweimal zum Einsatz:
 \begin{enumerate}
@@ -193,11 +193,11 @@ In unserem \inlinecode{.travis.yml} kommt dies zweimal zum Einsatz:
 
 \subsection{Apache Ant}
 Das Build-Skript ist mit Apache Ant geschrieben.
-Es beinhaltet alle Targets und Kombinationen davon um einen kompletten oder teilweisen Build durchzuführen.
+Es beinhaltet alle Targets und Kombinationen davon, um einen kompletten oder teilweisen Build durchzuführen.
 
 Derzeit werden bei einem vollständigen Build folgende Schritte durchlaufen:
 \begin{enumerate}
-\item Aus den SCSS-Quellen wird CSS generiert
+\item Aus den SCSS-Quelldateien wird CSS generiert
 \item Die JavaScript- und PHP-Dateien werden auf ihren Code Style geprüft
 \item Anschliessend wird die Code-Dokumentation generiert
 \item Zum Schluss werden noch die Unit Tests ausgeführt
@@ -205,23 +205,23 @@ Derzeit werden bei einem vollständigen Build folgende Schritte durchlaufen:
 
 \subsubsection{GruntJS}
 \label{gruntjs}
-Die JavaScript spezifischen Build-Aufgaben werden von Ant an GruntJS\footnote{\url{http://gruntjs.com/}} abgegeben.
+Die JavaScript spezifischen Build-Aufgaben werden von Ant an \brand{GruntJS}\footnote{\url{http://gruntjs.com/}} abgegeben.
 Dieses Tool hat wiederum sein eigenen Konfigurationsfile \inlinecode{grunt.js}.
 Darin sind sogenannte Tasks beschrieben, welche auf den Code angewendet werden sollen.
 
 In unserem Fall brauchen wir Grunt für zwei Aufgaben: JavaScript-Tests ausführen und JSHint auf sämlichen JavaScript Quellcode anwenden.
 
-Bei JSHint\footnote{\url{http://www.jshint.com/docs/}} handelt es sich um ein Linting-Werkzeug, welches mit divesen Optionen konfiguriert werden kann.
+Bei \brand{JSHint}\footnote{\url{http://www.jshint.com/docs/}} handelt es sich um ein Linting-Werkzeug, welches mit divesen Optionen konfiguriert werden kann.
 Das Ziel ist, dass der Code einheitlich wird und ein gewisser Code-Standard eingehalten wird.
 Der Code wird dadurch besser lesbar und weniger fehleranfällig.
 
-Die Unit Tests sind mit QUnit\footnote{\url{http://qunitjs.com/}} erstellt und werden mit dem headless Browser PhantomJS\footnote{\url{http://phantomjs.org/}} durchgeführt.
+Die Unit Tests sind mit \brand{QUnit}\footnote{\url{http://qunitjs.com/}} erstellt und werden mit dem headless Browser \brand{PhantomJS}\footnote{\url{http://phantomjs.org/}} durchgeführt.
 Dies ermöglicht es auf einfache Art und Weise Frontend-Tests während dem Build durchzuführen.
 
 \subsubsection{PHP\_CodeSniffer (PHPCS)}
 \label{phpcs}
-Der PHP\_CodeSniffer\footnote{\url{http://pear.php.net/manual/en/package.php.php-codesniffer.php}} ist ein Linting-Tool für PHP.
+Der \brand{PHP\_CodeSniffer}\footnote{\url{http://pear.php.net/manual/en/package.php.php-codesniffer.php}} ist ein Linting-Tool für PHP.
 Unser Code verwendet den Standard PSR-2\footnote{\url{https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md}}, welcher noch mit einigen Regeln zu PHPDoc-Kommentaren angereichert wurde.
 
-Dadurch ist sichergestellt, dass der Code sauber ist und keine unerwarteten Side-Effects auftreten.
+Dadurch ist sichergestellt, dass der Code sauber ist und keine unerwarteten Seiteneffekte auftreten.
 PHPCS lässt sich direkt in die Entwicklungsumgebung integrieren, so dass direkt beim Schreiben des Codes der Style überprüft werden kann.
