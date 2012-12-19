@@ -74,7 +74,7 @@ Dieses bietet verschiedene Build-Möglichkeiten an:
 \label{table-sencha-cmd-build}
 \end{table}
 
-Durch den Einsatz von \brand{Sencha Cmd} ist es möglich mit geringen Mehraufwand, eine native App zu generieren und diese in den verschiedenen \glspl{App-Store} anzubieten.
+Durch den Einsatz von \brand{Sencha Cmd} ist es möglich, mit geringen Mehraufwand, eine native App zu generieren und diese in den verschiedenen \glspl{App-Store} anzubieten.
 
 \subsubsection{Konfiguration}
 Der Buildprozess wird in der Datei \inlinecode{app.json} konfiguriert.
@@ -90,7 +90,7 @@ Die wichtigsten Konfigurations-Eigenschaften sind in Tabelle \ref{table-sencha-c
 \hline
 \inlinecode{"css"} & Ähnlich wie das \inlinecode{"js"}-Property nur für CSS-Ressourcen. \\
 \hline
-\inlinecode{"ressources"} & Hier können weitere Ressourcen wie Grafiken oder verwendete Libraries angegeben werden, welche beim Buildprozess ebenfalls in das Zielverzeichnis kopiert werden. \\
+\inlinecode{"resources"} & Hier können weitere Ressourcen wie Grafiken oder verwendete Libraries angegeben werden, welche beim Buildprozess ebenfalls in das Zielverzeichnis kopiert werden. \\
 \hline
 \end{tabular}
 \caption{Wichtige Konfigurations-Eigenschaften in Sencha Cmd (app.json)}
@@ -129,7 +129,7 @@ Getestet wurde die App mit folgenden Geräten:
 	\end{itemize}
 	\item Tablets
 	\begin{itemize}
-		\item iPad 2
+		\item Apple iPad 3
 		\item Asus Nexus 7
 		\item Asus Transformer
 	\end{itemize}
@@ -139,7 +139,7 @@ Getestet wurde die App mit folgenden Geräten:
 \label{i18n}
 Die Oberfläche von \kort{} wurde bereits für eine mögliche Übersetzung vorbereitet.
 Dazu wurde das Plugin \brand{Ext.i18n.Bundle-touch}\footnote{\url{https://github.com/elmasse/Ext.i18n.Bundle-touch}} für Sencha Touch eingesetzt.
-Dieses ermöglicht es einzelne Texte in externen Sprach-Property-Dateien auszulagern.
+Dieses ermöglicht es, einzelne Texte in externen Sprach-Property-Dateien auszulagern.
 
 Bei \kort{} befinden sich diese Files im Verzeichnis \inlinecode{resources/i18n/} und müssen nach folgendem Schema benannt werden: \inlinecode{Kort\_<locale>.props}.
 Die verwendete Sprache wird in der Funktion \inlinecode{prepareI18n()} der Datei \inlinecode{app.js} festgelegt.

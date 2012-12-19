@@ -18,13 +18,13 @@ Eine sehr nützliche Funktionalität, welche Apple im Mobile Safari-Browser anbi
 Dadurch wird ein App-ähnliches Bookmark der aktuellen Webseite auf dem Homescreen erstellt.
 Dieser erhält ein hinterlegtes Icon und einen Titel.
 Beim Starten der App erscheint ein Splashscreen, welchen man ebenfalls in der Webseite definieren kann.
-Zudem öffnet sich der Browser ohne jegliche Toolbars, wie der Adress- oder der Navigationsleiste.
+Zudem öffnet sich der Browser ohne jegliche Toolbars wie  Adress- oder Navigationsleiste.
 
 Leider befindet sich in iOS6 ein Bug, welcher den Zugriff auf die Geolocation verhindert, wenn die \gls{WebApp} vom Homescreen aus gestartet wird.
 Auf StackOverflow\footnote{\url{http://stackoverflow.com/questions/12503815/ios-6-breaks-geolocation-in-webapps-apple-mobile-web-app-capable}} wird der Bug genauer beschrieben.
 
 \subsubsection{Workaround}
-Im Sencha Fourm\footnote{\url{http://www.sencha.com/forum/showthread.php?246317-2.1.0-RC1-Save-to-home-screen-Geolocation-not-working}} wird als Workaround vorgeschlagen die Generierung des \newline \inlinecode{apple-mobile-web-app-capable} Metatags (siehe Code-Ausschnitt \ref{code-ios6-homescreen-metatag}) in der Sencha Touch Library zu deaktivieren.
+Im Sencha Forum\footnote{\url{http://www.sencha.com/forum/showthread.php?246317-2.1.0-RC1-Save-to-home-screen-Geolocation-not-working}} wird als Workaround vorgeschlagen, die Generierung des \newline \inlinecode{apple-mobile-web-app-capable} Metatags (siehe Code-Ausschnitt \ref{code-ios6-homescreen-metatag}) in der Sencha Touch Library zu deaktivieren.
 
 \lstset{language=HTML}
 \begin{lstlisting}[caption=Metatag für iOS6 Workaround, label=code-ios6-homescreen-metatag]
