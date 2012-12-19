@@ -7,11 +7,11 @@ Neben konventionellen Editoren gibt es auch Tools, welche sich explizit der Find
 Ein Beispiel davon ist der \brand{NoName-Layer} von Simon Poole\footnote{\url{http://wiki.openstreetmap.org/wiki/NoName}}. Dieser färbt Strassen, welche fälschlicherweise keinen Namen haben, rot ein.
 Daneben gibt es Dienste, welche Fehlerdaten sammeln und diese zur Verbesserung anbieten, wie beispielsweise \brand{KeepRight}\footnote{\url{http://www.keepright.at/}} oder \brand{OpenStreetBugs}\footnote{\url{http://openstreetbugs.schokokeks.org/}}.
 
-Die Gemeinsamkeit dieser Werkzeuge findet sich darin, dass sie bereits ein gewisses Interesse an \brand{OpenStreetMap} und am Editieren der Karte voraussetzen.
-Karten-Fehler sind jedoch typische Beispiele welche sich durch die Mithilfe von möglichst vielen Personen lösen lassen (sogenanntes \emph{Crowdsourcing})\todo{Crowdsourcing ins Glossar}.
-Die Voraussetzung für ein erfolgreiches Crowdsourcing ist es, möglichst kleine Hürden zu haben und einfach zu lösende Aufgaben bereit zu stellen.
-
+Die Gemeinsamkeit dieser Werkzeuge liegt darin, dass sie vom Benutzer bereits ein gewisses Interesse an \brand{OpenStreetMap} und am Editieren der Karte voraussetzen.
+Karten-Fehler sind jedoch typische Beispiele welche sich durch die Mithilfe von möglichst vielen Personen lösen lassen (sogenanntes \emph{\gls{Crowdsourcing}}).
+Die Voraussetzung für ein erfolgreiches Crowdsourcing ist es, möglichst viele Hürden abzubauen und einfach zu lösende Aufgaben bereit zu stellen.
 Das Konzept der \gls{Gamification} bietet sich daher an.
+
 Dabei werden Spiel-Elemente in eine Applikation eingebaut und dadurch die Motivation der Benutzer gesteigert, diese Applikation längerfristig zu verwenden.
 Es gibt bereits einige Projekte, welche sich mit der \gls{Gamification} von \brand{OpenStreetMap} beschäftigen\footnote{\url{http://wiki.openstreetmap.org/wiki/Games\#Gamification_of_map_contributions}}.
 
@@ -48,25 +48,23 @@ Nach dem Login über \gls{OAuth} werden dem Benutzer Fehler in seiner Umgebung a
 Um das Spiel zu starten kann der Benutzer eine beliebige Aktionen durchführen.
 Wenn er beispielsweise einen Fehler auswählt, indem er auf dessen Markierung tippt, wird er gefragt, ob er die Lösung für den Fehler kennt.
 Dadurch soll die Neugier des Spielers geweckt werden.
-Alle abgeschlossenen Aufgaben werden mit Punkten (sogenannten \emph{Koins}) belohnt.\todo{komischer Satz}
 
 Die Spielmechanik ist denkbar einfach, so dass das Spiel auch nur sekunden- aber auch  minutenlang gespielt werden kann.
 Der Benutzer erhält sofort ein Feedback und kann verfolgen, wie er sich gegenüber seinen Mitspielern verbessert.
 Eine zusätzliche Motivation wird über Auszeichnungen geschaffen.
-Diese werden für spezielle Leistungen vergeben und erscheinen auf der eigenen Profil-Seite.\todo{komischer Satz}
 
 Wir konnten einige Gamificationkonzepte direkt in der App umsetzen.
-Um das Spiel für möglichst viele Benutzer attraktiv zu machen, muss aber ein noch detaillierteres Konzept ausgearbeitet werden.
+Um das Spiel für möglichst viele Benutzer attraktiv zu machen, muss aber noch ein detaillierteres Konzept ausgearbeitet werden.
 Gerade mit den Badges lassen sich verschiedene Spielertypen ansprechen.
 Auch Schwierigkeitsstufen oder zusätzliche Berechtigungen für erfahrene Benutzer können den längerfristigen Erfolg der Applikation erhöhen.
 
 Auf der technischen Seite haben wir erfolgreich ein System entwickelt, welches stets mit neuen Fehlern "`gefüttert"' wird.
 Die Architektur ist so flexibel gewählt, dass sich beinahe beliebig Komponenten hinzufügen oder entfernen lassen.
-Dies stellt sicher, dass zukünftig noch weitere Fehlerdatenquellen in \kort{} integriert werden können.
+Dies stellt sicher, dass zukünftig auch noch weitere Fehlerdatenquellen in \kort{} integriert werden können.
 
 \section{Schlussfolgerungen und Ausblick}
 Leider konnten nicht alle Punkte aus der Aufgabenstellung erfüllt werden.
-Wir hatten das Ziel, dass Benutzer neben einer textuellen Antwort auch ein Bild hochladen können, um einen Beweis für eine Fehlerkorrektur zu liefern.
+Wir hatten das Ziel, dass Benutzern neben einer textuellen Antwort auch noch ein Bild hochzuladen können, quasi als Beweis für ihre eingetragene Fehlerkorrektur.
 Dabei sind wir jedoch an einer technischen Limite des verwendeten Frontend-Frameworks \brand{Sencha Touch 2} gescheitert.
 Des weiteren sollten soziale Medien wie Facebook und Twitter integriert werden, um eine breitere Öffentlichkeit zu erreichen.
 Im Verlaufe der Arbeit haben sich die Prioritäten diesbezüglich aber geändert.
