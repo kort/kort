@@ -6,12 +6,28 @@ namespace Webservice\Bug;
 
 use Webservice\DbProxyHandler;
 use Helper\PostGisSqlHelper;
+use Webservice\TransactionDbProxy;
 
 /**
  * The BugHandler class is used to handle request to the bug webservices.
  */
 class BugHandler extends DbProxyHandler
 {
+    /**
+     * Initialized the BugHandler object.
+     *
+     * @param TransactionDbProxy $dbProxy The database proxy object.
+     */
+    public function __construct(TransactionDbProxy $dbProxy = null)
+    {
+        parent::__construct();
+        if (empty($dbProxy)) {
+            $this->setDbProxy(new TransactionDbProxy());
+        } else {
+            $this->setDbProxy($dbProxy);
+        }
+    }
+
     /**
      * Returns the table used by this handler.
      *
@@ -42,6 +58,7 @@ class BugHandler extends DbProxyHandler
             'view_type',
             'answer_placeholder',
             'fix_koin_count',
+            'geom',
             'txt1',
             'txt2',
             'txt3',
@@ -64,13 +81,24 @@ class BugHandler extends DbProxyHandler
     {
         $limit = empty($limit) ? 20 : $limit;
         $radius = empty($radius) ? 5000 : $radius;
-        //TODO: Use the radius and get a fast result
-        // $userPosition =  PostGisSqlHelper::getLatLngGeom($lat, $lng);
-        // $this->dbProxy->setWhere("ST_DWithin(geom," . $userPosition . "," . $radius . ")");
-        $this->getDbProxy()->setOrderBy("geom <-> " . PostGisSqlHelper::getLatLngGeom($lat, $lng));
-        $this->getDbProxy()->setLimit($limit);
+        $userPosition =  PostGisSqlHelper::getLatLngGeom($lat, $lng);
 
-        return $this->select();
+        $sql  = "select * from (";
+        $sql .= "select " . implode($this->getFields(), ',');
+        $sql .= " from " . $this->getTable();
+        $sql .= " order by " . "geom <-> " . PostGisSqlHelper::getLatLngGeom($lat, $lng);
+        $sql .= " limit " . $limit;
+        $sql .= ") t";
+        $sql .= " where " . "ST_Distance_Sphere(t.geom," . $userPosition . ") <= " . $radius;
+
+        $params = array();
+        $params['sql'] = $sql;
+        $params['type'] = "SQL";
+
+        $position = $this->getDbProxy()->addToTransaction($params);
+        $result = json_decode($this->getDbProxy()->sendTransaction(), true);
+
+        return json_encode($result[$position - 1]);
     }
 
     /**
