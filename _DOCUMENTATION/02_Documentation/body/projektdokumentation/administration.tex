@@ -36,22 +36,39 @@ Für neue Typen ist zu prüfen, ob diese sich bereits mit den bestehenden Views 
 Ist dies nicht der Fall, so muss eine neue View erstellt werden.
 
 \subsection{Fehlertypen}
-In der App sind bereits folgende Fehlertypen implementiert:
+In der Tabelle \ref{kort-bug-types-table} sind die in der App bereits implementierten Fehlertypen beschrieben.
 
-\begin{itemize}
-\item Autobahn ohne Bezeichner
-\item Kultstätte/Kirche ohne Religion
-\item Objekt ohne Namen
-\item Beziehung ohne Typ
-\item Fehlendes Tempolimit
-\item Sprache des Namens unbekannt
-\item Typ des Wegs unbekannt
-\item Strasse ohne Namen
-\end{itemize}
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.40\twocelltabwidth}|p{0.37\twocelltabwidth}|}
+\hline
+\textbf{Fehlertyp} & \textbf{Anzahl vorhandener Fehler \newline \small{(Stand 20.12.2012)}} \\
+\hline
+Typ des Wegs unbekannt & 1'271'632 \\
+\hline
+Fehlendes Tempolimit & 463'819 \\
+\hline
+Sprache des Namens unbekannt & 111'565 \\
+\hline
+Objekt ohne Namen & 92'080 \\
+\hline
+Strasse ohne Namen & 74'864 \\
+\hline
+Kultstätte/Kirche ohne Religion & 15'288 \\
+\hline
+Autobahn ohne Bezeichner & 1'504 \\
+\hline
+\hline
+\textbf{Total} & \textbf{2'030'752} \\
+\hline
+\end{tabular}
+\caption{Fehlertypen in \kort{}}
+\label{kort-bug-types-table}
+\end{table}
 
-Diese Typen sind in der Tabelle \inlinecode{kort.error\_type} (siehe Abbildung \ref{image-kort-database-table-error_type}) definiert.
+Diese Typen sind in der Datenbanktabelle \inlinecode{kort.error\_type} (siehe Abbildung \ref{image-kort-database-table-error_type}) definiert.
 Im Feld \inlinecode{type} dieser Tabelle befindet sich die eindeutige Identifikation eines Typs.
-Diese wird beispielsweise für die Anzeige eines passenden Marker-Icons (für die Karte) und der Verbindung zu einem passenden View-Typ (siehe Abschnitt \ref{view-types}) verwendet.
+Diese wird beispielsweise für die Anzeige eines passenden Marker-Icons (auf der Karte) und der Verbindung zu einem passenden View-Typ (siehe Abschnitt \ref{view-types}) verwendet.
 
 \begin{figure}[H]
 	\centering
@@ -158,7 +175,7 @@ Die Dateien befinden sich unter:
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.5]{images/screenshots/kort-screenshot-login}
-	\caption{Login-Button in Kort}
+	\caption{Login-Button in \kort{}}
 \end{figure}
 
 \section{Reset der Applikation}
