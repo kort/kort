@@ -103,11 +103,11 @@ Die wichtigsten Kriterien dabei sind:
 \end{itemize}
 
 Auf diese Kriterien hin, war für uns sofort klar, dass wir keine eigene Benutzerverwaltung machen wollten.
-Eine App, die primär eine Ablenkung für einige Minuten sein soll, kann es sich nicht leisten, den Benutzer durch die Eingabe von Anmeldedaten abzuschrecken.
+Ein App, das primär eine Ablenkung für einige Minuten sein soll, kann es sich nicht leisten, den Benutzer durch die Eingabe von Anmeldedaten abzuschrecken.
 
 Daneben hat ein Benutzer bereits sehr viele Benutzerkonten bei verschiedensten Diensten.
 Daher ist es auch naheliegend, diese Daten wiederzuverwenden.
-Der Benutzer erspart sich dadurch einen weiteren Login, an den er sich erinnern muss.
+Der Benutzer erspart sich dadurch ein weiteres Login, an das er sich erinnern muss.
 
 \Gls{OAuth} ist mittlerweile ein gängiger Standard, um Applikationen Zugriff auf fremde Resourcen zu geben, ohne direkt den Benutzernamen und das Passwort preiszugeben.
 Auch \brand{OpenStreetMap} unterstützt \gls{OAuth} und so fiel die Entscheidung leicht, dieses Protokoll zu verwenden.
@@ -126,7 +126,7 @@ So lassen sich alle möglichen Entitäten als \emph{Resourcen} darstellen, welch
 Jede grössere Applikation kann von dieser Flexibilität profitieren.
 Sie ermöglicht es, dass Funktionalitäten mit beliebigen Technologien und Programmiersprachen entwickelt werden können.
 Dies ist besonders gut umsetzbar, wenn die Applikation bereits in Betrieb ist.
-So können einzelne Komponenten neu entwickelt werden und in das bestehende System integriert werden, ohne eine nennenswerte Downtime.
+So können einzelne Komponenten neu entwickelt und in das bestehende System integriert werden, ohne eine nennenswerte Downtime.
 
 Beim \gls{Marshalling} der Daten mag es effizientere Möglichkeiten geben als \inlinecode{JSON} und \inlinecode{XML}.
 Wenn die Datenmengen gering sind, fällt dies jedoch nicht stark ins Gewicht.
