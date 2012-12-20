@@ -96,7 +96,7 @@ Ext.define('Kort.util.Config', {
         about: {
             information: [
                 '<a href="http://wiki.openstreetmap.org/wiki/DE:Kort_App" target="_blank">OpenStreetMap Wiki</a>',
-                '<a href="http://kort.uservoice.com" target="_blank">Uservoice Formular</a>',
+                '<a href="http://kort.uservoice.com" target="_blank">UserVoice Contact</a>',
                 '<a href="https://github.com/odi86/kort/issues" target="_blank">GitHub</a>'
             ],
             developers: [
@@ -111,7 +111,7 @@ Ext.define('Kort.util.Config', {
             credits: {
                 partner: '<a href="http://bitforge.ch" target="_blank">bitforge AG</a>',
                 mapdata: '<a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap-Mitwirkende</a> (ODbL)',
-                tiledata: '<a href="http://cloudmade.com" target="_blank">CloudMade</a>',
+                tiledata: '<a href="http://cloudmade.com" target="_blank">CloudMade</a> (CC-BY-SA)',
                 markers: '<a href="http://mapicons.nicolasmollet.com" target="_blank">mapicons collection</a>'
             }
         },
