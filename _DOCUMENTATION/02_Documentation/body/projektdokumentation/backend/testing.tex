@@ -1,7 +1,7 @@
 \section{Testing}
 
 \subsection{SimpleTest}
-SimpleTest\footnote{\url{http://simpletest.org/}} ist ein einfaches aber dennoch sehr flexibles Unit Testing Framework.
+\brand{SimpleTest}\footnote{\url{http://simpletest.org/}} ist ein einfaches aber dennoch sehr flexibles Unit Testing Framework.
 Die bestehende Funktionalität lässt sich sehr einfach erweitern und auf die eigenen Bedürfnisse anpassen.
 Aus diesem Grund sind im Namespace \inlinecode{TestHelper}\footnote{\url{http://kort.herokuapp.com/docs/Kort-backend/namespaces/TestHelper.html}} einige Klassen entstanden als Erweiterung von SimpleTest.
 So ist es beispielsweise möglich, die Tests sowohl im Browser, wie auch auf der Kommandozeile auszuführen.
@@ -15,7 +15,7 @@ Die Testresultate der Entwicklungsumgebung befinden sich unter \url{http://kort-
 	\label{image-simple-test}
 \end{figure}
 
-Der derzeitige Build ist so konfiguriert, dass der Build nicht durchläuft, wenn die Tests nicht bestanden werden.
+Der derzeitige Build ist so konfiguriert, dass er fehlschlägt, wenn die Tests nicht bestanden werden.
 Dies stellt sicher, dass sich nur stabile Versionen auf unserem Webserver befinden.
 
 \subsection{Integrationstests der Webservices mit QUnit}

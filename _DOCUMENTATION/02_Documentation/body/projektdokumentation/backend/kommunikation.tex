@@ -2,12 +2,12 @@
 \subsection{Authentifizierung mit OAuth}
 \label{oauth}
 
-Die Idee hinter \gls{OAuth} ist bestechend einfach: eine Applikation möchte auf Dienste im Namen eines Benutzers zugreifen.
-Der Benutzer möchte der Applikation sein Passwort jedoch nicht verraten, sondern lediglich einige wenige Ressourcen freigeben.
-Da sowohl der Benutzer als auch die Applikation dem Anbieter der Ressource vertrauen, kann der Benutzer seinen Anbieter anweisen der Applikation Zugriff zu gewähren.
+Die Idee hinter \gls{OAuth} ist bestechend einfach: Eine Applikation möchte auf Dienste im Namen eines Benutzers zugreifen.
+Der Benutzer möchte der Applikation sein Passwort jedoch nicht preisgeben, sondern lediglich einige wenige Ressourcen freigeben.
+Da sowohl der Benutzer als auch die Applikation dem Anbieter der Ressource vertrauen, kann der Benutzer seinen Anbieter anweisen, der Applikation Zugriff zu gewähren.
 Der Anbieter erstellt dazu ein sogenanntes \emph{Access Token}, welches er der Applikation zur Verfügung stellt.
 
-Dieses Prinzip hat auf den ersten Blick nichts mit einem Login zu tun, jedoch kann das Vertrauensverhältnis des Benutzers zum Anbieter und der Applikation zum Anbieter dazu genutzt werden, einen Benutzer einzuloggen ohne von ihm ein Passwort zu verlangen. 
+Dieses Prinzip hat auf den ersten Blick nichts mit einem Login zu tun, jedoch kann das Vertrauensverhältnis des Benutzers zum Anbieter und der Applikation zum Anbieter dazu genutzt werden, einen Benutzer einzuloggen, ohne von ihm ein Passwort zu verlangen. 
 Die Ressource beinhaltet in diesem Fall die verfügbaren Benutzerinformationen wie Namen, E-Mail Adresse oder ein Profilfoto.
 
 \begin{figure}[H]
@@ -17,14 +17,14 @@ Die Ressource beinhaltet in diesem Fall die verfügbaren Benutzerinformationen w
 	\label{image-kort-login}
 \end{figure}
 
-In unserem Fall ist \kort{} die Applikation und Google der Anbieter der \emph{Benutzer}-Ressource.
+In unserem Fall ist \kort{} die Applikation und \brand{Google} oder \brand{OpenStreetMap} der Anbieter der \emph{Benutzer}-Ressource.
 Um dem Benutzer zu ersparen, sich bei jedem Besuch erneut via \gls{OAuth} anzumelden, wird auf dem Server ein \emph{Secret} generiert.
-Dieses wird lokal beim Benutzer gespeichert (siehe Abbildung \ref{image-kort-login}) und ermöglicht es dem Benutzer beim nächsten Login direkt dieses \emph{Secret} zu übermitteln um Zugriff zu bekommen (siehe Abbildung \ref{image-kort-relogin}).
+Dieses wird lokal beim Benutzer gespeichert (siehe Abbildung \ref{image-kort-login}) und ermöglicht es dem Benutzer beim nächsten Login direkt dieses \emph{Secret} zu übermitteln, um Zugriff auf die Applikation zu erhalten (siehe Abbildung \ref{image-kort-relogin}).
 Diese Übertragung sollte wenn möglich über SSL/TSL erfolgen.
 
 Wenn der Benutzer erfolgreich eingeloggt wurde, wird dies direkt in der Session des Benutzers gespeichert.
 Auf die entsprechenden Werte wird dann bei sicherheitskritischen Abfragen zurückgegriffen.
-So ist sichergestellt, dass ein Benutzer auch wirklich nur seine eigenen Daten manipulieren kann.
+So ist sichergestellt, dass ein Benutzer lediglich seine eigenen Daten manipulieren kann.
 
 \begin{figure}[H]
 	\centering

@@ -3,7 +3,7 @@ Die Datenbank ist in verschiedenen Schemas organisiert.
 Das Schema \inlinecode{kort} beinhaltet die Daten und Views für die Applikation.
 
 \subsection{Views}
-Um die Applikationslogik möglichst von der Datenbank unabhängig zu halten, wird aus dem Backend-Code heraus nur auf die Views aus dem Schema \inlinecode{kort} zugegriffen.
+Um die Applikationslogik möglichst von der Datenbank unabhängig zu halten, wird vom Backend-Code aus, lediglich auf die Views aus dem Schema \inlinecode{kort} zugegriffen.
 Dadurch können weitere Schemas unabhängig voneinander hinzugefügt oder entfernt werden.
 Auch Änderungen innerhalb des Schemas bedeuten keinen Bruch des View-\glspl{API}.
 
@@ -29,7 +29,7 @@ Die Schemas für Fehlerquellen gehören somit nicht zum \gls{API} der Datenbank.
 Um die Konsistenz und Integrität der Daten zu wahren, war es eine wichtige Anforderung Transaktionen auf der Datenbank durchführen zu können.
 So sollten beispielsweise einem Benutzer \emph{Koins} gutgeschrieben werden, wenn er einen Lösungsvorschlag abliefert.
 
-Dadurch, dass die Datenbank über eine \gls{REST}-Schnittstelle angesprochen wird, könnte man auf die Idee kommen, mehrere Datenbankabfragen mit nacheinander abgeschickten Requests zu realisieren.
+Dadurch, dass die Datenbank über eine \gls{REST}-Schnittstelle angesprochen wird, könnte man auf die Idee kommen, mehrere Datenbankabfragen mit aufeinanderfolgenden Requests zu realisieren.
 Dadurch könnte die Datenbank aber zwischen den einzelnen Requests in einen nicht-definierten Zustand geraten.
 
 Um dies zu verhindern, ist es notwendig, Transaktionen über eine separate \gls{REST}-Ressource zu abstrahieren.
