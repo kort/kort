@@ -36,7 +36,7 @@ Es besagt, dass sich das System selbst aufbauen kann.
 Konkret haben wir darauf geachtet, dass für alle Aktionen Skripte oder Build-Schritte vorhanden sind, um diese später nachzuvollziehen.
 Das Ziel ist es, ein System zu entwickeln, dass sich möglichst einfach wieder aufbauen lässt.
 
-Auf der Seite des Datenbankserver geschieht dies so, dass die Datenbank jede Nacht neu aufgebaut wird.
+Auf der Seite des Datenbankservers geschieht dies so, dass die Datenbank jede Nacht neu aufgebaut wird.
 Zum einen werden dabei die neuesten Fehlerdaten von \brand{KeepRight} geladen, zum anderen alle Änderungen an der Datenbank nachvollzogen.
 Dies hat den grossen Vorteil, dass stets ein konsistenter Zustand anzutreffen ist.
 
@@ -52,11 +52,11 @@ Unsere Applikation interagiert direkt mit diesen beiden Systemen, ohne eine Kont
 Es handelt sich somit um sogenannte Fremdsysteme.
 
 Bei der Gestaltung der Systemlandschaft war es uns wichtig, diese so flexibel und offen wie möglich zu halten.
-Weitere Systeme sollen sich einfach Einbinden lassen.
-Um dieses Ziel zu erreichen haben wir darauf geachten keine festen Verbindungen zwischen den Systemen zu schaffen.
+Weitere Systeme sollen sich einfach einbinden lassen.
+Um dieses Ziel zu erreichen, haben wir darauf geachtet keine festen Verbindungen zwischen den Systemen zu schaffen.
 Solche lassen sich später nur schwer wieder entfernen oder ändern.
 
-Ein wichtiger Eckpfeiler ist auch, die gesamte Kommunikation über \gls{REST}-Schnittstellen zu realisieren.
+Ein wichtiger Eckpfeiler ist es auch, die gesamte Kommunikation über \gls{REST}-Schnittstellen zu realisieren.
 Dadurch lassen sich Dienste sowohl orts-, wie auch technologie-unabhängig voneinander betreiben.
 
 \subsection{KeepRight}
@@ -69,27 +69,27 @@ Weitere Fehlerquellen lassen sich einfach einbinden (siehe Abschnitt \ref{additi
 Das System benötigt drei Schnittstellen zu \brand{OpenStreetMap}, wovon in dieser Arbeit zwei realisiert sind.
 
 \brand{OpenStreetMap} liefert die genauen Informationen über ein geografisches Objekt, um dieses auf einer Karte zeichnen zu können.
-Dies verwenden wir um Details zu einem Fehler anzuzeigen.
+Dies verwenden wir, um Details zu einem Fehler anzuzeigen.
 Wenn beispielsweise der Name einer Strasse erfasst werden soll, kann sich der Benutzer vorher über die Detail-Karte vergewissern, welche Strasse genau gemeint ist.
 
 Der zweite Dienst, den wir beanspruchen, ist die Authentifizierung über \gls{OAuth}.
 So kann das \brand{OpenStreetMap}-Benutzerkonto direkt verwendet werden, um \kort{} zu spielen.
 
 Um den Kreis zu schliessen, sollen Korrekturen an \brand{OpenStreetMap} zurückgeschickt werden.
-Dieses Themengebiet ist sehr heikel, da die \brand{OpenStreetMap}-Community technischen Benutzern sehr kritisch gegenübersteht.
+Dieses Themengebiet ist sehr heikel, da die \brand{OpenStreetMap}-Community technischen Benutzern sehr kritisch gegenübersteht\footnote{\url{http://lists.openstreetmap.org/pipermail/talk/2011-May/058396.html}}.
 Es gilt die Grundregel, dass alle Änderungen über persönliche Benutzerkonten gemacht werden müssen.
 
 Dies hat vor allem damit zu tun, dass Änderungen dadurch leichter nachvollziehbar sind.
 Solche Einschränkungen können jedoch auch ein Hindernis sein.
 In begründeten Fällen wird deshalb auch eine Ausnahme zugelassen.
-Beispielsweise hat die \brand{WheelMap}-Applikation\footnote{\url{http://wheelmap.org/}} offiziell die Erlaubnis mit einem technischen Benutzer Änderungen zu erfassen.
+Beispielsweise hat die \brand{WheelMap}-Applikation\footnote{\url{http://wheelmap.org/}} offiziell die Erlaubnis, mit einem technischen Benutzer Änderungen zu erfassen\footnote{\url{http://wiki.openstreetmap.org/wiki/Talk:Wheelmap}}.
 
 Dies war unter anderem auch der Grund, weshalb wir unser Projekt am OSM-Stammtisch in Zürich vorgestellt haben\footnote{\url{http://wiki.openstreetmap.org/wiki/DE:Switzerland:Z\%C3\%BCrich/OSM-Treffen\#36._OSM-Stammtisch}}.
 Das Feedback war durchaus positiv, jedoch gab es starke Vorbehalte gegenüber unserem Vorhaben, die korrigierten und validierten Lösungen automatisiert an \brand{OpenStreetMap} zu senden.
 
-Das Thema ist also sowohl technisch als auch organisatorisch als komplex einzustufen.
+Das Thema ist also sowohl technisch und organisatorisch als komplex einzustufen.
 Dies war uns von Anfang an klar, weshalb wir diesen Punkt auch in unserem Risikomanagement (siehe Abschnitt \ref{risikomanagement}) behandelt haben.
-Schlussendlich hat uns die Zeit gefehlt dieses Feature zu implementieren, weshalb \kort{} derzeit ein geschlossenes System ist, welches Lösungvorschläge für Fehlerdaten sammelt.
+Schlussendlich hat uns die Zeit gefehlt, dieses Feature zu implementieren, weshalb \kort{} derzeit ein geschlossenes System ist, welches Lösungvorschläge für Fehlerdaten sammelt.
 
 \section{Authentifizierung}
 Bei jeder Applikation, welche Daten für verschiedene Nutzer speichert, stellt sich die Frage, wie sich die User anmelden sollen.
@@ -106,8 +106,8 @@ Auf diese Kriterien hin, war für uns sofort klar, dass wir keine eigene Benutze
 Eine App, die primär eine Ablenkung für einige Minuten sein soll, kann es sich nicht leisten, den Benutzer durch die Eingabe von Anmeldedaten abzuschrecken.
 
 Daneben hat ein Benutzer bereits sehr viele Benutzerkonten bei verschiedensten Diensten.
-Daher ist es auch naheliegend diese Daten wiederzuverwenden.
-Der Benutzer erspart sich dadurch einen weiteren Login, an den er sich erinnern muss und wir als Entwickler müssen uns nicht um die Anmeldung kümmern.
+Daher ist es auch naheliegend, diese Daten wiederzuverwenden.
+Der Benutzer erspart sich dadurch einen weiteren Login, an den er sich erinnern muss.
 
 \Gls{OAuth} ist mittlerweile ein gängiger Standard, um Applikationen Zugriff auf fremde Resourcen zu geben, ohne direkt den Benutzernamen und das Passwort preiszugeben.
 Auch \brand{OpenStreetMap} unterstützt \gls{OAuth} und so fiel die Entscheidung leicht, dieses Protokoll zu verwenden.
@@ -132,4 +132,4 @@ Beim \gls{Marshalling} der Daten mag es effizientere Möglichkeiten geben als \i
 Wenn die Datenmengen gering sind, fällt dies jedoch nicht stark ins Gewicht.
 Sobald Binärdaten übertragen werden müssen, könnte es sinnvoll sein, einige Komponenten über andere Schnittstellen anzusprechen.
 
-In unserem System spielt das kein Rolle, da unsere Requests durchschnittlich 10KB gross sind.
+In unserem System spielt das keine Rolle, da unsere Requests durchschnittlich 10KB gross sind.

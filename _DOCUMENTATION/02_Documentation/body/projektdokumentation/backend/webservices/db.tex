@@ -4,7 +4,8 @@
 Die Kommunikation vom Webserver zum Datenbankserver geschieht über den \inlinecode{/db}-Webservice.
 Als zugehörige Ressource kann eine Tabelle und deren Felder angegeben werden.
 
-Alternativ können sich beliebig viele Statements in einer Transaktion auf der Datenbank laufen gelassen werden, dazu gibt es die spezielle \emph{transaction}-Ressource.
+Alternativ können eine Reihe von SQL-Queries in einer Transaktion auf der Datenbank laufen gelassen werden.
+Dazu gibt es die spezielle \emph{transaction}-Ressource.
 
 Da dieser Webservice direkt die Daten auf der Datenbank verändern kann, ist er durch einen \gls{API}-Key vor fremden Zugriffen geschützt. 
 Der \gls{API}-Key muss sowohl auf dem Webserver, wie auch auf dem Datenbankserver in der Umgebungsvariable \inlinecode{KORT\_DB\_API\_KEY} definiert sein.
@@ -146,7 +147,7 @@ Der API-Key ist nicht korrekt. \\
 \small{\textbf{Parameter}} & \multicolumn{2}{p{0.85\threecelltabwidth}|}
 {
 \inlinecode{key} API-Key \newline
-\inlinecode{return} Komma-separierte Felder welche als Antwort geschicht werden
+\inlinecode{return} Komma-separierte Felder welche als Antwort geschickt werden
 } \\ 
 \hline 
 \small{\textbf{Antwort}} & \inlinecode{200 OK} & 

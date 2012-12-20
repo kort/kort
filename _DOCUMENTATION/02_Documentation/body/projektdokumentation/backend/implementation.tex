@@ -33,10 +33,10 @@ Das Backend teilt sich auf verschiedene Unterordner auf (siehe Tabelle \ref{tabl
 \label{table-backend-gliederung}
 \end{table}
 
-Speziell zu erwähnen sind dabei die PHP-Klassen welche die Logik des Backends abbilden.
+Speziell zu erwähnen sind dabei die PHP-Klassen, welche die Logik des Backends abbilden.
 Sie sind über Namespaces aufgeteilt und liefern die Logik für alle anderen Teile des Backends.
-Um dies zu ermöglichen gibt es die \inlinecode{ClassLoader}-Klasse\footnote{\url{http://kort.herokuapp.com/docs/Kort-backend/classes/Kort.ClassLoader.html}}.
-Falls irgendwo eine PHP-Klasse gebraucht wird, muss nur diese Klasse geladen werden, diese wiederum kümmert sich darum, alle abhängigen Datei nachzuladen.
+Um dies zu ermöglichen, gibt es die \inlinecode{ClassLoader}-Klasse\footnote{\url{http://kort.herokuapp.com/docs/Kort-backend/classes/Kort.ClassLoader.html}}.
+Falls irgendwo eine PHP-Klasse gebraucht wird, muss nur diese Klasse geladen werden, diese wiederum kümmert sich darum, alle abhängigen Dateien nachzuladen.
 
 Für die Klassen gibt es eine separate Dokumentation (siehe Abschnitt \ref{backend-dokumentation}).
 

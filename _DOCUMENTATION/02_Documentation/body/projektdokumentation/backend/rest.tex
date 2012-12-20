@@ -1,14 +1,13 @@
-\section{REST-Schnittellen}
-Die Entscheidung \gls{REST}-Schnittstellen zu verwenden haben wir schnell gefasst. 
+\section{REST-Schnittstellen}
+Die Entscheidung, \gls{REST}-Schnittstellen zu verwenden, haben wir schnell gefasst. 
 Zum einen ist damit eine einheitliche Schnittstelle im gesamten System vorhanden, so dass immer klar ist über welchen Kanal eine Kommunikation stattfindet.
-
 Zum anderen sind \gls{REST}-Schnittellen für Webapplikation sehr einfach zu verwenden, da entsprechende Bibliotheksfunktionen bereits vorhanden sind.
 Schlussendlich ist entscheidend, dass \gls{REST}-Schnittstellen ein grosses Mass an Plattformunabhängigkeit bieten und so die räumliche Teilung der Systeme erleichtern.
 
 \subsection{Slim Framework}
-Für die Erstellung der \gls{REST}-Webservices wurde das PHP Microframework \brand{Slim}\footnote{\url{http://www.slimframework.com/}}.
-Das Framework ist sehr klein und beinhaltet nur gerade was nötig ist um die Webservices zu implementieren.
-Bereits mit wenigen Zeilen Code lässt sich ein Webservice erstellen (siehe Code-Abschnitt \ref{slim-example}).
+Für die Erstellung der \gls{REST}-Webservices wurde das PHP Microframework \brand{Slim}\footnote{\url{http://www.slimframework.com/}} verwendet.
+Das Framework ist sehr klein und beinhaltet nur das Nötigste, um die Webservices zu implementieren.
+Bereits mit wenigen Zeilen Code lässt sich ein Webservice erstellen (siehe Code-Ausschnitt \ref{slim-example}).
 
 \lstset{language=PHP}
 \begin{lstlisting}[caption=Beispiel REST-Webservice in Slim, label=slim-example]

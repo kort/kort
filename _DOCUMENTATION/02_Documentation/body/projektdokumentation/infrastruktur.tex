@@ -3,7 +3,7 @@
 
 \section{Datenbankserver}
 
-Beim Datenbankserver handelt es sich um einen virtuellen Server, den uns die HSR Hochschule für Technik Rapperswil zur Verfügung gestellt hat, für die Dauer dieser Arbeit.
+Beim Datenbankserver handelt es sich um einen virtuellen Server, den uns die HSR Hochschule für Technik Rapperswil für die Dauer dieser Arbeit zur Verfügung gestellt hat.
 Dieser Server enthält die Installation der \kort{}-Datenbank sowie das Projektmanagementtool Redmine.
 Letzteres ist die einzige kritische Anwendung auf dem Server, da sich der Rest über entsprechende Installationskripts sehr einfach und schnell neu aufbauen lässt.
 
@@ -38,7 +38,7 @@ Der Zugang auf die Datenbank von aussen läuft ausschliesslich über den \gls{RE
 Für den Betrieb dieses Dienstes ist eine Apache Webserver Installation mit PHP-Unterstützung (mindestens PHP 5.3) erforderlich.
 
 Für den Betrieb des Webservice ist das \kort{}-Repository auf dem Server geklont.
-Anschliessend muss noch ein Symlink angelegt werden um das Skript korrekt aufrufen zu können:
+Anschliessend muss noch ein Symlink angelegt werden, um das Skript korrekt aufrufen zu können:
 
 \inlinecode{\$ ln -s /home/odi/kort/server/webservices /var/www/webservices}
 
@@ -47,11 +47,11 @@ Der Webservice wird in Abschnitt \ref{webservice-database} genauer beschrieben.
 \subsection{Redmine}
 Die Installation von Redmine verlangt es, einen neuen Benutzer \inlinecode{redmine} auf dem Server anzulegen.
 Danach muss die Software nur noch auf den Server kopiert werden und der Installationsanleitung gefolgt werden.
-Diese ist in unserem Repository zu finden: \url{https://github.com/odi86/kort/blob/master/server/redmine/redmine_install.md}
+Diese ist in der Datei  \inlinecode{/server/redmine/redmine\_install.md} zu finden.
 
 \subsubsection{Backup}
-Die Daten von Redmine werden über 2 Skripts täglich gesichert. 
-Das Skript \inlinecode{redmine\_backup.sh} kümmert sich darum alle Backup-Daten täglich auf dem virtuellen Server zu sammeln und an einem zentralen Ort zu speichern.
+Die Daten von Redmine werden über zwei Skripts täglich gesichert. 
+Das Skript \inlinecode{redmine\_backup.sh} kümmert sich darum, alle Backup-Daten täglich auf dem virtuellen Server zu sammeln und an einem zentralen Ort zu speichern.
 
 Mit dem zweiten Skript \inlinecode{sync\_backup.sh} kann dann das zuvor erstellte Backup auf beliebige andere Systeme verteilt werden.
 In unserem Fall haben wir das Skript auf unseren Laptops eingerichtet und so täglich die aktuellen Daten gesichert.
@@ -59,7 +59,7 @@ In unserem Fall haben wir das Skript auf unseren Laptops eingerichtet und so tä
 
 \section{Webserver (Heroku)}
 
-Bei \brand{Heroku}\footnote{\url{http://www.heroku.com/}} handelt es sich um einen kostenlosen Dienst, welcher für verschiedenste Plattformen eine Deploymentumgebung anbietet. 
+Bei \brand{Heroku}\footnote{\url{http://www.heroku.com/}} handelt es sich um einen kostenlosen Dienst, welcher eine Deploymentumgebung für verschiedenste Plattformen anbietet. 
 Der Dienst hat eine Schnittstelle, über welche sich automatisiert Applikationen erstellen lassen. Die Datenübertragung läuft dann über \gls{Git}.
 
 \begin{table}[H]
@@ -79,7 +79,7 @@ Der Dienst hat eine Schnittstelle, über welche sich automatisiert Applikationen
 \label{infrastruktur-heroku-tabelle}
 \end{table}
 
-Die Entscheidung den Webserver von \brand{Heroku} zu wählen ist dadurch begründet, dass uns dies die grösstmögliche Freiheit bietet. 
+Die Entscheidung, den Webserver von \brand{Heroku} zu wählen, ist dadurch begründet, dass uns dies die grösstmögliche Freiheit bietet. 
 \brand{Heroku} bietet bereits eine hervoragende \gls{API}, welche sich über das Kommandozeilen-Toolset \brand{Heroku-Toolbelt} steuern lässt.
 Dies erlaubt es, beliebig viele Applikationen automatisiert zu erstellen.
 Auch für den Betrieb bietet das \gls{API} viele Möglichkeiten zur Fernwartung an (SSH-Zugang, Logs, Prozessorauslastung).
@@ -87,9 +87,9 @@ Auch für den Betrieb bietet das \gls{API} viele Möglichkeiten zur Fernwartung 
 \section{Deployment}
 Am Deployment der Applikation sind mehrere Systeme beteiligt. 
 Alle Änderungen werden von den Entwicklern via \gls{Git} zu \brand{GitHub}\footnote{\url{http://github.com}} übertragen. 
-Auf \brand{GitHub} gibt es sogenannte \emph{Hooks} die man aktivieren kann. 
+Auf \brand{GitHub} gibt es sogenannte \emph{Hooks}, die man aktivieren kann. 
 Dabei handelt es sich um weitere Aktionen, welche durch verschiedene Ereignisse ausgelöst werden können. 
-In unserem Fall haben wir einen \emph{post-commit Hook} aktiviert, welcher dem \gls{ci} Dienst \brand{Travis-CI}\footnote{\url{http://travis-ci.org}} Bescheid gibt, wenn ein neue Änderungen auf \brand{GitHub} eingetroffen sind.
+In unserem Fall haben wir einen \emph{post-commit Hook} aktiviert, welcher dem \gls{ci} Dienst \brand{Travis-CI}\footnote{\url{http://travis-ci.org}} Bescheid gibt, wenn neue Änderungen auf \brand{GitHub} eingetroffen sind.
 
 Nach einem erfolgreichen Build werden die Resultate an \brand{Heroku} gesendet.
 Zusätzlich wird der Datenbankserver über die Änderungen notifiziert, worauf dieser sich selbst aktualisiert.
@@ -123,7 +123,7 @@ Daraus entsteht eine sogenannte Build-Matrix, welche bei jedem Build durchlaufen
 \end{table}
 
 Ein Travis-Build läuft immer in einer neuen virtuellen Umgebung, so dass strikt nach dem Prinzip des \emph{\glslink{Bootstrapping}{Bootstrappings}} vorgegangen werden muss.
-Das bedeutet, es muss möglich sein die Applikation ohne Vorkenntnisse zu installieren.
+Das bedeutet, es muss möglich sein, die Applikation ohne Vorkenntnisse zu installieren.
 Dies hilft, den Installationsprozess genau festzuhalten.
 
 Am Ende des Build-Vorgangs wird die \gls{WebApp} schliesslich zu Heroku übertragen.
@@ -132,7 +132,7 @@ Am Ende des Build-Vorgangs wird die \gls{WebApp} schliesslich zu Heroku übertra
 Die \inlinecode{.travis.yml} Datei ist die Konfigurationsdatei von \brand{Travis CI}.
 Darin wird die Build-Matrix festgelegt sowie die die einzelnen Schritte des Builds definiert.
 
-Vor dem eigentlichen Build wird die Umgebung aufgesetzt und die benötigte Software installiert (Zeilen 19-34 in Code-Aussschnit \ref{travis-yml}).
+Vor dem eigentlichen Build wird die Umgebung aufgesetzt und die benötigte Software installiert (Zeilen 19-34 in Code-Ausschnitt \ref{travis-yml}).
 
 \lstset{language=XML}
 \begin{lstlisting}[float, caption=Die Travis CI Konfigurationsdatei .travis.yml, label=travis-yml]
@@ -177,7 +177,7 @@ after_script: bash $CI_HOME/server/heroku/heroku.sh
 
 \subsubsection{Build-Matrix}
 Die Build-Matrix bestimmt, welche Builds mit welchen Parametern ausgeführt werden.
-Dabei wird pro definierte Sprachversion (Zeilen 3-5 im Code-Ausschnitt \ref{travis-yml}) und Umgebungsvariablen (Zeilen 15-17) ein Build ausgeführt.
+Dabei wird gemäss definierten Sprachversionen (Zeilen 3-5 im Code-Ausschnitt \ref{travis-yml}) und Umgebungsvariablen (Zeilen 15-17) ein Build ausgeführt.
 Daneben gibt es noch eine Reihe von globalen Umgebungsvariablen, welche in allen Builds verwendet werden.
 In unserem Fall werden also vier Builds ausgeführt, mit jeweils PHP 5.3 und PHP 5.4 für die Test- und die Produktionsumgebung.
 
@@ -188,7 +188,7 @@ Auf diese Art lassen sich geheime Informationen wie \gls{API}-Schlüssel schütz
 In unserem \inlinecode{.travis.yml} kommt dies zweimal zum Einsatz:
 \begin{enumerate}
 \item \brand{Heroku} \gls{API}-Key, mit welchem sich beliebige Aktionen auf \brand{Heroku} durchführen lassen
-\item \kort{} DB \gls{API}-Key, welcher den Datenbank-Webservice (siehe Abschnitt \ref{webservice-database} vor fremden Zugriffen schützt
+\item \kort{} DB \gls{API}-Key, welcher den Datenbank-Webservice (siehe Abschnitt \ref{webservice-database}) vor fremden Zugriffen schützt
 \end{enumerate}
 
 \subsection{Apache Ant}
@@ -206,17 +206,17 @@ Derzeit werden bei einem vollständigen Build folgende Schritte durchlaufen:
 \subsubsection{GruntJS}
 \label{gruntjs}
 Die JavaScript spezifischen Build-Aufgaben werden von Ant an \brand{GruntJS}\footnote{\url{http://gruntjs.com/}} abgegeben.
-Dieses Tool hat wiederum sein eigenen Konfigurationsfile \inlinecode{grunt.js}.
-Darin sind sogenannte Tasks beschrieben, welche auf den Code angewendet werden sollen.
+Dieses Tool hat wiederum sein eigenes Konfigurationsfile \inlinecode{grunt.js}.
+Darin sind Tasks beschrieben, welche auf den Code angewendet werden sollen.
 
 In unserem Fall brauchen wir Grunt für zwei Aufgaben: JavaScript-Tests ausführen und JSHint auf sämlichen JavaScript Quellcode anwenden.
 
-Bei \brand{JSHint}\footnote{\url{http://www.jshint.com/docs/}} handelt es sich um ein Linting-Werkzeug, welches mit divesen Optionen konfiguriert werden kann.
+Bei \brand{JSHint}\footnote{\url{http://www.jshint.com/docs/}} handelt es sich um ein Linting-Werkzeug, welches mit diversen Optionen konfiguriert werden kann.
 Das Ziel ist, dass der Code einheitlich wird und ein gewisser Code-Standard eingehalten wird.
 Der Code wird dadurch besser lesbar und weniger fehleranfällig.
 
 Die Unit Tests sind mit \brand{QUnit}\footnote{\url{http://qunitjs.com/}} erstellt und werden mit dem headless Browser \brand{PhantomJS}\footnote{\url{http://phantomjs.org/}} durchgeführt.
-Dies ermöglicht es auf einfache Art und Weise Frontend-Tests während dem Build durchzuführen.
+Dies ermöglicht es, auf einfache Art und Weise Frontend-Tests während dem Build durchzuführen.
 
 \subsubsection{PHP\_CodeSniffer (PHPCS)}
 \label{phpcs}

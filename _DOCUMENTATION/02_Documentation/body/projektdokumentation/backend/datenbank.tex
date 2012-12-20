@@ -4,19 +4,19 @@ Das Schema \inlinecode{kort} beinhaltet die Daten und Views für die Applikation
 
 \subsection{Views}
 Um die Applikationslogik möglichst von der Datenbank unabhängig zu halten, wird aus dem Backend-Code heraus nur auf die Views aus dem Schema \inlinecode{kort} zugegriffen.
-Dies ermöglicht es weitere Schemas unabhängig voneinander hinzuzufügen und wieder zu entfernen.
+Dadurch können weitere Schemas unabhängig voneinander hinzugefügt oder entfernt werden.
 Auch Änderungen innerhalb des Schemas bedeuten keinen Bruch des View-\glspl{API}.
 
 \subsection{Applikationsschema kort}
-Als Grundregel verwenden wir immer Views als \gls{API} gegen das wir programmieren.
-So lassen sich Änderungen daran sehr leicht einbringen einbringen, ohne dafür eine Tabelle anzupassen.
+Als Grundregel verwenden wir immer Views als \gls{API}, gegen das wir programmieren.
+So lassen sich Änderungen daran sehr leicht einbringen, ohne dafür eine Tabelle anzupassen.
 
 Jedes Model (siehe Abschnitt \ref{kort-store-model-package})  in der \gls{WebApp} hat seine eigene View in der Datenbank, welche genau die Daten liefert, welche es braucht.
 Dies reduziert den Code für das Frontend und verschiebt die Datenlogik in die Datenbank.
 
 \subsection{Schema für Fehlerquellen}
 Jede Fehlerquelle sollte ein eigenes Schema besitzen.
-Jegliche Fehlerquellen-spezifischen Daten, Funktionen oder Types sind dann in diesem Schema.
+Jegliche Fehlerquellen-spezifischen Daten, Funktionen oder Types sind dann in diesem Schema gespeichert.
 Dadurch lassen sich diese beliebig hinzufügen und entfernen.
 
 In unserem Fall kommt uns das zugute, da jede Nacht das \brand{KeepRight} Schema gelöscht wird und anschliessend mit den neuen Fehlerdaten neu angelegt wird.
@@ -32,6 +32,6 @@ So sollten beispielsweise einem Benutzer \emph{Koins} gutgeschrieben werden, wen
 Dadurch, dass die Datenbank über eine \gls{REST}-Schnittstelle angesprochen wird, könnte man auf die Idee kommen, mehrere Datenbankabfragen mit nacheinander abgeschickten Requests zu realisieren.
 Dadurch könnte die Datenbank aber zwischen den einzelnen Requests in einen nicht-definierten Zustand geraten.
 
-Um dies zu verhindern ist es notwendig Transaktionen über eine separate \gls{REST}-Ressource zu abstrahieren.
+Um dies zu verhindern, ist es notwendig, Transaktionen über eine separate \gls{REST}-Ressource zu abstrahieren.
 Clients können dazu ihre Abfragen in einem einzigen Request schicken. Diese werden dann in einer einzigen Datenbank-Transaktion ausgeführt (siehe Abschnitt \ref{webservice-database}).
 Falls eine Abfrage schief läuft, werden automatisch die Änderungen der Transaktion rückgängig gemacht (\emph{Alles oder nichts}).
