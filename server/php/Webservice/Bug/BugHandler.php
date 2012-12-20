@@ -97,8 +97,9 @@ class BugHandler extends DbProxyHandler
 
         $position = $this->getDbProxy()->addToTransaction($params);
         $result = json_decode($this->getDbProxy()->sendTransaction(), true);
+        $translatedData = array_map(array($this, "translateBug"), $result[$position - 1]);
 
-        return json_encode($result[$position - 1]);
+        return json_encode($translatedData);
     }
 
     /**
