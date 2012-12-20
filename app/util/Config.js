@@ -132,6 +132,7 @@ Ext.define('Kort.util.Config', {
          * @cfg {Number} webservices.bug.limit (required) Limits bugs to given number
          * @cfg {Object} webservices.validation Configuration of validation webservice
          * @cfg {Function} webservices.validation.getUrl (required) Returns url of validation webservice with given position (latitude, longitude)
+         * @cfg {Number} webservices.validation.radius (required) Maximum range for validations selection
          * @cfg {Number} webservices.validation.limit (required) Limits validations to given number
          * @cfg {Object} webservices.user Configuration of user webservice
          * @cfg {Object} webservices.user.url Url of user webservice
@@ -156,13 +157,14 @@ Ext.define('Kort.util.Config', {
                 getUrl: function(latitude, longitude) {
                     return './server/webservices/bug/position/' + latitude + ',' + longitude;
                 },
-                radius: 5000,
+                radius: 10000,
                 limit: 25
             },
             validation: {
                 getUrl: function(latitude, longitude) {
                     return './server/webservices/validation/position/' + latitude + ',' + longitude;
                 },
+                radius: 10000,
                 limit: 25
             },
             user: {
