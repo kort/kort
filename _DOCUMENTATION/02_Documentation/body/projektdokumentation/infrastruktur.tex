@@ -7,7 +7,7 @@ Beim Datenbankserver handelt es sich um einen virtuellen Server, den uns die HSR
 Dieser Server enthält die Installation der \kort{}-Datenbank sowie das Projektmanagementtool Redmine.
 Letzteres ist die einzige kritische Anwendung auf dem Server, da sich der Rest über entsprechende Installationskripts sehr einfach und schnell neu aufbauen lässt.
 
-Die Installation der benötigten Software kann mit dem Ubuntu Standard-Mechanismus \inlinecode{apt-get install} durchgeführt werden.
+Die Installation der benötigten Software kann mit dem Ubuntu Standard-Mechanismus \inlinecode{apt-\\get install} durchgeführt werden.
 
 \begin{table}[H]
 \centering
@@ -51,7 +51,7 @@ Diese ist in der Datei  \inlinecode{/server/redmine/redmine\_install.md} zu find
 
 \subsubsection{Backup}
 Die Daten von Redmine werden über zwei Skripts täglich gesichert. 
-Das Skript \inlinecode{redmine\_backup.sh} kümmert sich darum, alle Backup-Daten täglich auf dem virtuellen Server zu sammeln und an einem zentralen Ort zu speichern.
+Das Skript \inlinecode{redmine\_\\backup.sh} kümmert sich darum, alle Backup-Daten täglich auf dem virtuellen Server zu sammeln und an einem zentralen Ort zu speichern.
 
 Mit dem zweiten Skript \inlinecode{sync\_backup.sh} kann dann das zuvor erstellte Backup auf beliebige andere Systeme verteilt werden.
 In unserem Fall haben wir das Skript auf unseren Laptops eingerichtet und so täglich die aktuellen Daten gesichert.
