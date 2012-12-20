@@ -5,7 +5,7 @@
 \label{additional-error-source}
 Die Applikation benutzt die View \inlinecode{kort.all\_errors} (siehe Abbildung \ref{image-kort-database-view-all_errors}) als Schnittstelle zu allen Fehlerdaten.
 Wenn neue Fehlerquellen an das System angeschlossen werden sollen, dann muss entsprechend diese View angepasst werden.
-Die jetzige View ist auf die Fehlerquelle \brand{KeepRight} (siehe Kapitel \ref{datenquellen-keepright}) angepasst.
+Die aktuelle View ist auf die Fehlerquelle \brand{KeepRight} (siehe Kapitel \ref{datenquellen-keepright}) angepasst.
 
 Es werden einige Anforderungen an eine neue Fehlerquelle gestellt:
 \begin{itemize}
@@ -22,14 +22,14 @@ Es werden einige Anforderungen an eine neue Fehlerquelle gestellt:
 \end{figure}
 
 Die Fehler einer neuen Quelle müssen auf die bestehenden Fehlertypen gemappt werden.
-Falls dies nicht geht oder es sich um neue Arten von Fehlern handelt, müssen zusätzliche Fehlertypen eingeführt werden (siehe Abschnitt \ref{additional-error-type}).
+Falls dies nicht möglich ist oder es sich um neue Arten von Fehlern handelt, müssen zusätzliche Fehlertypen eingeführt werden (siehe Abschnitt \ref{additional-error-type}).
 
-Daneben müssen für alle neuen Fehlertypen Texte erfasst und allenfalls auch internationalisiert werden. 
+Daneben müssen für alle neuen Fehlertypen Texte erfasst und allenfalls auch internationalisiert werden (siehe Abschnitt \ref{datenquellen-internationalisierung}).
 
 \section{Hinzufügen von Fehlertypen}
 \label{additional-error-type}
 Um neue Fehlertypen hinzuzufügen müssen sowohl technische als auch fachliche Anpassungen vorgenommen werden.
-Wichtig ist es dabei, den Endbenutzer nicht aus den Augen zu verlieren.
+Wichtig dabei ist es, den Endbenutzer nicht aus den Augen zu verlieren.
 Alle aufgeführten Fehler sollten sich mit wenigen Eingaben lösen lassen.
 Die bisher implementierten Fehlertypen benötigen alle nur eine einzige Eingabe.
 Für neue Typen ist zu prüfen, ob diese sich bereits mit den bestehenden Views abbilden lassen (siehe Kapitel \ref{view-types}).
@@ -79,10 +79,10 @@ Diese wird beispielsweise für die Anzeige eines passenden Marker-Icons (auf der
 
 \subsubsection{Erstellen eines neuen Fehlertyps}
 \label{create-new-error-type}
-Ein neuer Fehlertyp muss in der Tabelle \inlinecode{kort.error\_type} hinzugefügt werden.
-Sobald Fehler als \inlinecode{type} den neuen Typ eingetragen haben, wird dieser auch angezeigt.
+Ein neuer Fehlertyp muss in der Tabelle \inlinecode{kort.error\_type} (siehe Abbildung \ref{image-kort-database-table-error_type}) hinzugefügt werden.
+Sobald Fehler als \inlinecode{type} den neuen Typs eingetragen haben, wird dieser auch angezeigt.
 Jeder Fehlertyp hat ein zugehöriges Marker-Icon, welches beispielsweise auf der Karte angezeigt wird.
-Die Bilddatei hat den gleichen Namen wie das Attribut \inlinecode{type} und befindet sich im Ordner \inlinecode{/resources/images/marker\_icons}.
+Die Bilddatei hat den gleichen Namen wie das Attribut \inlinecode{type} und befindet sich im Ordner \inlinecode{resources/images/marker\_icons/<type>.png}.
 
 \subsection{View-Typen}
 \label{view-types}
@@ -108,9 +108,16 @@ In Tabelle \ref{kort-view-types-table} sind die bereits vorhandenen View-Typen b
 \label{kort-view-types-table}
 \end{table}
 
-Wird als View-Typ \inlinecode{select} gewählt, müssen in der Tabelle \inlinecode{kort.answer} die möglichen Antworten eingetragen werden.
+Wird als View-Typ \inlinecode{select} gewählt, müssen in der Tabelle \inlinecode{kort.answer} (siehe Abbildung \ref{image-kort-database-table-answer}) die möglichen Antworten eingetragen werden.
 Darin kann der eigentliche Wert des \brand{OpenStreetMap}-Tags und eine passende Bezeichnung hinterlegt werden.
 Als \inlinecode{type} muss der jeweilige Typen-Bezeichner gewählt werden.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{images/uml/kort-database-table-answer}
+	\caption{Die Tabelle kort.answer}
+	\label{image-kort-database-table-answer}
+\end{figure}
 
 \subsubsection{Erstellen eines neuen View-Typen}
 Um einen neuen View-Typen zu definieren muss wie in Code-Ausschnitt \ref{code-kort-add_view_type} beschrieben die Unterscheidung in der Klasse \inlinecode{Kort.view.bugmap.fix.Form} mit dem den neuen Typen ergänzt werden.
@@ -135,27 +142,32 @@ createFixField: function(bug) {
 Die bereits vorhandenen Auszeichnungen sind in Tabelle \ref{kort-badges} beschrieben. Um weitere Auszeichnungen hinzuzufügen, muss folgendermassen vorgegangen werden:
 
 \begin{enumerate}
-\item Es muss ein neuer Badge in der Tabelle \inlinecode{kort.badge} erstellt werden
-\item Zusätzlich muss eine Regel für das Gewinnen des Badges in der Methode \inlinecode{updateBadges()}\footnote{\url{http://kort.herokuapp.com/docs/Kort-backend/classes/Webservice.RewardHandler.html\#method_updateBadges}} der Klasse RewardHandler hinzugefügt werden.
-\item Für das Frontend muss ein Bild erstellt werden, welches dem Namen (Tabellenattribut \inlinecode{kort.badge.name}) des Badges entspricht. Dieses Bild muss in folgendem Pfad gespeichert werden \inlinecode{/resources/images/badges/<badgename>.png}.
+\item Es muss ein neuer Badge in der Tabelle \inlinecode{kort.badge} (siehe Abbildung \ref{image-kort-database-table-badge}) erstellt werden
+\item Zusätzlich muss eine Regel für das Gewinnen des Badges in der Methode \inlinecode{updateBadges()}\footnote{\url{http://kort.herokuapp.com/docs/Kort-backend/classes/Webservice.RewardHandler.html\#method_updateBadges}} der Klasse \inlinecode{RewardHandler} hinzugefügt werden.
+\item Für das Frontend muss ein Bild erstellt werden, welches dem Namen (Tabellenattribut \inlinecode{name}) des Badges entspricht. Dieses Bild muss in folgendem Pfad gespeichert werden \inlinecode{/resources/images/badges/<badgename>.png}.
 \end{enumerate}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{images/uml/kort-database-table-badge}
+	\caption{Die Tabelle kort.badge}
+	\label{image-kort-database-table-badge}
+\end{figure}
 
 Sind alle Punkte abgearbeitet, ist der Badge im Frontend ersichtlich und kann von den Benutzern gewonnen werden.
 
 \section{Hinzufügen von OAuth Anbietern}
 \label{kort-additional-oauth-provider}
-Derzeit ist der Login über Googles \gls{OAuth}-Dienst möglich. 
+Derzeit ist der Login über die \gls{OAuth}-Dienste von \brand{OpenStreetMap} und \brand{Google} möglich. 
 Um zukünftig weitere Login-Dienste anbieten zu können, müssen einige Schritte beachtet werden.
 Der Dienst muss folgende Anforderungen erfüllen:
 \begin{itemize}
 \item Unterstützung für OAuth 1.0, 1.0a oder 2.0
 \item Offline-Zugang, d.h. es müssen Aktionen ohne den Benutzer möglich sein
-\item Ein längerfristig gültiges Token, welches als \emph{Refresh Token} bezeichnet wird
 \item Der Dienst muss eine Registrierung der Applikation ermöglichen
 \end{itemize}
 
 Wenn ein Dienst diese Anforderung erfüllt, muss die Applikation registriert werden.
-Die Angaben für Google sind dabei im Kapitel \ref{oauth} vermerkt.
 
 Im Backend kann eine entsprechende Subklasse von \inlinecode{AbstractOAuthCallback}\footnote{\url{http://kort.herokuapp.com/docs/Kort-backend/classes/OAuth.AbstractOAuthCallback.html}} erstellt werden. 
 Eine so erstellte OAuthCallback-Klasse nimmt dann einen Callback des entsprechenden Anbieters entgegen und authentifiziert den Benutzer.
@@ -163,7 +175,7 @@ Das zugehörige Callback-Script wird im Order \inlinecode{/server/oauth2callback
 
 Schlussendlich muss das Frontend noch angepasst werden.
 Dazu gehört, dass der neue Dienst in der Konfiguration (siehe Kapitel \ref{frontend-config}) eingetragen werden muss.
-Um einen neuen Login-Button anzuzeigen, muss dieser auch noch auf dem Login-Panel hinzugefügt werden.
+Um einen neuen Login-Button anzuzeigen, muss dieser auf dem Login-Panel hinzugefügt werden.
 Die zugehörige Logik befindet sich im Login-Controller
 
 Die Dateien befinden sich unter:
@@ -175,7 +187,7 @@ Die Dateien befinden sich unter:
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.5]{images/screenshots/kort-screenshot-login}
-	\caption{Login-Button in \kort{}}
+	\caption{Login-Buttons in \kort{}}
 \end{figure}
 
 \section{Reset der Applikation}
@@ -190,7 +202,7 @@ Die Prozedur löscht alle laufenden Daten aus der Datenbank, so dass wieder der 
 \end{itemize}
 
 Der Aufruf der Prozedur sieht man im Code-Ausschnitt \ref{kort-reset-cmd}.
-Die Prozedur liefert \inlinecode{true} wenn alles geklappt hat, ansonsten \inlinecode{false}.
+Die Prozedur liefert \inlinecode{true} wenn alle Aktionen erfolgreich ausgeführt werden konnten, ansonsten \inlinecode{false}.
 \begin{lstlisting}[float, caption=Aufruf von reset\_kort(){,} um die Applikation zurückzusetzen, label=kort-reset-cmd]
 select reset_kort();
 
