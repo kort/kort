@@ -31,7 +31,8 @@ Ext.define('Kort.store.Validations', {
             pageParam: false,
             startParam: false,
             extraParams: {
-                'limit': Kort.util.Config.getWebservices().validation.limit
+                'limit': Kort.util.Config.getWebservices().validation.limit,
+                'radius': Kort.util.Config.getWebservices().validation.radius
             },
             reader: {
                 type: 'json',
