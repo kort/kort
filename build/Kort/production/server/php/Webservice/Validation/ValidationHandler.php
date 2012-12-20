@@ -5,6 +5,7 @@
 namespace Webservice\Validation;
 
 use Webservice\DbProxyHandler;
+use Webservice\TransactionDbProxy;
 use Helper\PostGisSqlHelper;
 
 /**
@@ -12,6 +13,21 @@ use Helper\PostGisSqlHelper;
  */
 class ValidationHandler extends DbProxyHandler
 {
+    /**
+     * Initialized the BugHandler object.
+     *
+     * @param TransactionDbProxy $dbProxy The database proxy object.
+     */
+    public function __construct(TransactionDbProxy $dbProxy = null)
+    {
+        parent::__construct();
+        if (empty($dbProxy)) {
+            $this->setDbProxy(new TransactionDbProxy());
+        } else {
+            $this->setDbProxy($dbProxy);
+        }
+    }
+
     /**
      * Returns the database table to be used with this Handler.
      *
@@ -43,7 +59,8 @@ class ValidationHandler extends DbProxyHandler
             'longitude',
             'upratings',
             'downratings',
-            'required_votes'
+            'required_votes',
+            'geom'
         );
     }
 
@@ -61,18 +78,29 @@ class ValidationHandler extends DbProxyHandler
     {
         $limit = empty($limit) ? 20 : $limit;
         $radius = empty($radius) ? 5000 : $radius;
-        //TODO: Use the radius and get a fast result
-        // $this->getDbProxy()->setWhere("ST_DWithin(geom," . $userPosition . "," . $radius . ")");
+        $userPosition =  PostGisSqlHelper::getLatLngGeom($lat, $lng);
 
         $where  = "fix_user_id != " . $_SESSION['user_id'];
         $where .= " AND not exists ";
         $where .= " (select 1 from kort.vote v ";
         $where .= " where v.fix_id = id and v.user_id = " . $_SESSION['user_id'] . ")";
-        $this->getDbProxy()->setWhere($where);
 
-        $this->getDbProxy()->setOrderBy("geom <-> " . PostGisSqlHelper::getLatLngGeom($lat, $lng));
-        $this->getDbProxy()->setLimit($limit);
+        $sql  = "select * from (";
+        $sql .= "select " . implode($this->getFields(), ',');
+        $sql .= " from " . $this->getTable();
+        $sql .= " where " . $where;
+        $sql .= " order by " . "geom <-> " . PostGisSqlHelper::getLatLngGeom($lat, $lng);
+        $sql .= " limit " . $limit;
+        $sql .= ") t";
+        $sql .= " where " . "ST_Distance_Sphere(t.geom," . $userPosition . ") <= " . $radius;
 
-        return $this->getDbProxy()->select();
+        $params = array();
+        $params['sql'] = $sql;
+        $params['type'] = "SQL";
+
+        $position = $this->getDbProxy()->addToTransaction($params);
+        $result = json_decode($this->getDbProxy()->sendTransaction(), true);
+
+        return json_encode($result[$position - 1]);
     }
 }
