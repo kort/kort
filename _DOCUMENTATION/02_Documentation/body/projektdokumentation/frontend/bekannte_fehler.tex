@@ -12,7 +12,7 @@ Eine sehr nützliche Funktionalität, welche Apple im Mobile Safari-Browser anbi
 \subfigure{\includegraphics[width=0.23\textwidth]{images/bugs/kort-add_to_homescreen_3}}
 \hfill
 \subfigure{\includegraphics[width=0.23\textwidth]{images/bugs/kort-add_to_homescreen_4}}
-\caption{iOS - Add to homescreen-Funktion}
+\caption{iOS Add to homescreen-Funktion}
 \end{figure}
 
 Dadurch wird ein App-ähnliches Bookmark der aktuellen Webseite auf dem Homescreen erstellt.
@@ -24,23 +24,17 @@ Leider befindet sich in iOS6 ein Bug, welcher den Zugriff auf die Geolocation ve
 Auf StackOverflow\footnote{\url{http://stackoverflow.com/questions/12503815/ios-6-breaks-geolocation-in-webapps-apple-mobile-web-app-capable}} wird der Bug genauer beschrieben.
 
 \subsubsection{Workaround}
-Im Sencha Forum\footnote{\url{http://www.sencha.com/forum/showthread.php?246317-2.1.0-RC1-Save-to-home-screen-Geolocation-not-working}} wird als Workaround vorgeschlagen, die Generierung des \newline \inlinecode{apple-mobile-web-app-capable} Metatags (siehe Code-Ausschnitt \ref{code-ios6-homescreen-metatag}) in der Sencha Touch Library zu deaktivieren.
+Im Sencha Forum\footnote{\url{http://www.sencha.com/forum/showthread.php?246317-2.1.0-RC1-Save-to-home-screen-Geolocation-not-working}} wird als Workaround vorgeschlagen, die Generierung des \newline \inlinecode{apple-mobile-web-app-capable} Metatags in der Sencha Touch Library zu deaktivieren (siehe Code-Ausschnitte \ref{code-ios6-homescreen-metatag} und \ref{code-ios6-bug-workaround}).
 
 \lstset{language=HTML}
-\begin{lstlisting}[caption=Metatag für iOS6 Workaround, label=code-ios6-homescreen-metatag]
+\begin{lstlisting}[caption=Metatag{,} welcher iOS6 Bug hervorruft, label=code-ios6-homescreen-metatag]
 <meta content="yes" name="apple-mobile-web-app-capable" />
 \end{lstlisting}
 
-Diese befindet sich in folgenden Dateien:
-
-\begin{itemize}
-\item \inlinecode{/touch/microloader/development.js} Zeile 24
-\item \inlinecode{/touch/microloader/production.js} Zeile 564
-\item \inlinecode{/touch/microloader/testing.js} Zeile 24
-\item \inlinecode{/touch/sencha-touch-all-debug.js} Zeile 9345
-\item \inlinecode{/touch/sencha-touch-debug.js} Zeile 9345
-\item \inlinecode{/touch/src/core/Ext-more.js} Zeile 657
-\end{itemize}
+\lstset{language=JavaScript}
+\begin{lstlisting}[caption=iOS6 Bug Workaround, label=code-ios6-bug-workaround]
+//meta('apple-mobile-web-app-capable', 'yes');
+\end{lstlisting}
 
 Das Deaktivieren dieser Zeile hat aber zur Folge, dass der native Rahmen des Browsers (Adressleiste, Navigationsleiste) wieder angezeigt wird.
 Dies ist zwar unschön, löst aber das Problem mit dem Zugriff auf die Geolocation.
@@ -63,7 +57,6 @@ Diese befindet sich in folgender Datei:
 \begin{lstlisting}[caption=Sencha Cmd Workaround, label=senchacmd-workaround]
 processIndex = function () {
 	[...]
-	
 	compressor = new ClosureCompressor();
 	microloader = (environment == 'production'
 		? 'production'
@@ -80,7 +73,6 @@ processIndex = function () {
 			}) : appJson) + ')' +
 			'</script>'
 	];
-	
 	[...]
 };
 \end{lstlisting}

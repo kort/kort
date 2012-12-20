@@ -20,7 +20,7 @@ Typische Fehler aus diesen Quellen sind \glspl{POI} ohne Namen oder Strassen ohn
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.4]{images/managementsummary/osmose-screenshot}
-	\caption{Anzeige von generierten Fehlern in Osmose}
+	\caption{Anzeige von Fehlern in Osmose}
 	\label{image-osmose-screenshot}
 \end{figure}
 
@@ -41,11 +41,11 @@ Zudem gibt es für speziellen Einsatz Auszeichnungen zu gewinnen.
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.6]{images/gamification/gamification-badges}
-	\caption{Auszeichnungen in Kort}
+	\caption{Auszeichnungen in \kort{}}
 	\label{image-kort-badges}
 \end{figure}
 
-Der Bereich der \gls{Gamification} ist aber sehr offen und lässt Raum für viele weitere Konzepte. Schlussendlich ist jedoch klar, dass \textsc{Kort} noch ein Stück davon entfernt ist, ein "`echtes"' Game zu sein.
+Der Bereich der \gls{Gamification} ist aber sehr offen und lässt Raum für viele weitere Konzepte. Schlussendlich ist jedoch klar, dass \kort{} noch ein Stück davon entfernt ist, ein "`echtes"' Game zu sein.
 
 Das Themengebiet der \gls{Gamification} bietet viele Ansätze, um repetitive Aufgaben spannend zu gestalten.
 Gerade bei der Qualitätssicherung von \brand{OpenStreetMap} fallen viele solcher Aufgaben an.
@@ -66,7 +66,7 @@ Die App bietet für die verschiedenen Funktionen unterschiedliche Tabs an, in we
 \end{figure}
 
 Für die Authentifizierung kommt \gls{OAuth} zum Einsatz.
-Der Standard sorgt dafür, dass sich der Benutzer mit einem bereits bestehenden Benutzerkonto bei \textsc{Kort} anmelden kann.
+Der Standard sorgt dafür, dass sich der Benutzer mit einem bereits bestehenden Benutzerkonto bei \kort{} anmelden kann.
 Derzeit werden dafür die \gls{OAuth}-Provider \brand{OpenStreetMap} und \brand{Google} verwendet.
 
 \subsection*{Backend}
@@ -75,6 +75,7 @@ Die eigenen Schnittstellen sind alle mit dem \brand{Slim-Framework}\footnote{\ur
 Da die Datenbank und der Webserver auf zwei verschiedenen Servern laufen, bietet auch die Datenbank eine \gls{REST}-Schnittstelle an, über welche sich beliebige SQL-Abfragen absetzen lassen.
 Diese flexible Aufteilung ermöglicht es sehr einfach, die Systeme zu migrieren oder weitere hinzuzufügen.
 
+\cleardoublepage
 \section*{Ausblick}
 Die App hat grosses Potential, Personen, welche sich bislang nicht mit der Thematik \brand{OpenStreetMap} befasst haben, für das Projekt zu begeistern.
 

@@ -37,7 +37,7 @@ Es wäre somit eine Möglichkeit, sich selbst daran zu versuchen, Fehler mit gee
 Dies würde den Rahmen dieser Arbeit sprengen. \\ 
 \hline 
 \end{tabular} 
-\caption{Fehler direkt aus OpenStreetMap}
+\caption{Fehler aus OpenStreetMap}
 \label{datenquellen-osm_itself}
 \end{table}
 
@@ -195,9 +195,7 @@ Mittels Cronjob wird folgender Befehl aufgerufen:
 \subsection{Datenformat}
 Auf der Webseite von \brand{KeepRight} ist ersichtlich\footnote{\url{http://www.keepright.at/interfacing.php}}, welche Daten im Dump enthalten sind.
 
-\begin{table}[H]
-\centering
-\begin{tabular}{|p{0.25\twocelltabwidth}|p{0.75\twocelltabwidth}|}
+\begin{longtable}{|p{0.25\twocelltabwidth}|p{0.75\twocelltabwidth}|}
 \hline 
 \small{\textbf{Feld}} & \small{\textbf{Bedeutung}} \\
 \hline 
@@ -238,10 +236,9 @@ Auf der Webseite von \brand{KeepRight} ist ersichtlich\footnote{\url{http://www.
 \hline
 \inlinecode{comment\_timestamp} & Zeitpunkt des Kommentars zum Fehler  \\
 \hline
-\end{tabular}
 \caption{Datenformat der KeepRight-Daten}
 \label{keepright-daten}
-\end{table}
+\end{longtable}
 
 Diese Daten sind in der Tabelle \inlinecode{keepright.errors} enthalten.
 Ein Subset davon wird für die Applikation benötigt.

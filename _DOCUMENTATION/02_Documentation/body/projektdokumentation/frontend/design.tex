@@ -42,7 +42,7 @@ Zuletzt gibt es eigenständige Controller für die Overlay-Komponenten, welche d
 Die \emph{Stores} bilden die Datenspeicher in einer \brand{Sencha Touch} Applikation.
 Über ein \emph{Model} wird die jeweilige Struktur der gespeicherten Daten festgelegt.
 Stores sind zudem über einen \emph{Proxy} mit der Datenquelle verbunden.
-Im Falle von \kort{} wurden dafür ausschliesslich \gls{REST}-Ressourcen verwendet.
+Im Falle von \kort{} wurden dafür ausschliesslich \gls{REST}-Ressourcen verwendet (siehe Abbildung \ref{image-kort-classdiagram-store}).
 
 \begin{figure}[H]
 	\centering
@@ -54,17 +54,17 @@ Im Falle von \kort{} wurden dafür ausschliesslich \gls{REST}-Ressourcen verwend
 \subsubsection{Models ohne Store}
 
 Falls die Applikation jeweils nur eine Instanz eines \emph{Models} verwendet, können diese ohne einen Store direkt mit einem Proxy verbunden werden.
-In \kort{} wurde dies für den eingeloggten Benutzer (User) sowie für die zu sendenden Datenpakete wie der Fehler-Lösung (Fix) und der Validierung (Vote) verwendet.
+In \kort{} wurde dies für den eingeloggten Benutzer (User) sowie für die zu sendenden Datenpakete wie der Fehler-Lösung (Fix) und der Validierung (Vote) verwendet (siehe Abbildung \ref{image-kort-classdiagram-model_own_proxy}).
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.6]{images/uml/kort-classdiagram-model_own_proxy}
+	\includegraphics[scale=0.5]{images/uml/kort-classdiagram-model_own_proxy}
 	\caption{Klassendiagramm der Models ohne Stores}
 	\label{image-kort-classdiagram-model_own_proxy}
 \end{figure}
 
 \subsubsection{Speichern der Logininformationen}
-Die Logininformationen des Benutzers werden im \gls{Local Storage} des Browsers abgelegt.
+Die Logininformationen des Benutzers werden im \gls{Local Storage} des Browsers abgelegt (siehe Abbildung \ref{image-kort-classdiagram-store_localstorage}).
 Der genaue Ablauf wird in Abschnitt \ref{oauth} beschrieben.
 
 \begin{figure}[H]
@@ -76,7 +76,7 @@ Der genaue Ablauf wird in Abschnitt \ref{oauth} beschrieben.
 
 \subsection{Aufbau der Benutzeroberfläche}
 Jede Maske der Applikation befindet sich in einer eigenen View-Klasse.
-Diese verschiedenen View-Klassen werden in der Hauptklasse \inlinecode{Kort.view.Main} inkludiert und angezeigt.
+Diese verschiedenen View-Klassen werden in der Hauptklasse \inlinecode{Kort.view.Main} inkludiert und angezeigt (siehe Abbildung \ref{image-kort-classdiagram-view}).
 
 \begin{figure}[H]
 	\centering
