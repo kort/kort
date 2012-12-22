@@ -132,7 +132,8 @@
         "server/webservices",
         "server/php",
         "server/oauth2callback",
-        "test"
+        "test",
+        "presentation"
     ],
 
     /**
