@@ -28,6 +28,7 @@ else
     cp -r $SOURCE_DIR/ux $BUILD_DIR/
     cp -r $SOURCE_DIR/i18n $BUILD_DIR
     cp -r $SOURCE_DIR/test $BUILD_DIR
+    cp -r $SOURCE_DIR/patch $BUILD_DIR
     cp -r $SOURCE_DIR/vendor $BUILD_DIR
 
     cp -r $SOURCE_DIR/lib/Leaflet-0.4.5/dist/ $BUILD_DIR/lib/Leaflet-0.4.5/
