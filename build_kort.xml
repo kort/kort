@@ -5,6 +5,7 @@
 		</classpath>
 	</taskdef>
 
+    <property environment="env"/>
     <property name="uml.dir" value="_DOCUMENTATION/03_Model" />
     <property name="php.dir" value="server" />
     <property name="php.test.dir" value="server/php" />
@@ -13,10 +14,11 @@
     <property name="js.doc.dir" value="docs/Kort"/>
     <property name="js.leaflet.dir" value="ux" />
     <property name="js.leaflet.doc.dir" value="docs/Ext.ux.LeafletMap"/>
+    <property name="js.config" value="app/util/Config.js" />
     <property name="test.dir" value="test" />
 
 
-	<target name="build" depends="generate_css,lint,docs,test">
+	<target name="build" depends="css,version,lint,docs,test">
 		<echo message="BUILD FINISHED!"/>
 	</target>
 
@@ -101,7 +103,7 @@
        </exec>
    </target>
 
-	<target name="generate_css">
+	<target name="css">
 		<echo message="Compile sass files to css"/>
 		<foreach target="compile_sass" param="dir">
 			<path>
@@ -112,15 +114,22 @@
 		</foreach>
 	</target>
 
-	<target name="compile_sass">
-		<echo message="Compile sass files in ${dir}"/>
-		<apply executable="sass" dest="${dir}" verbose="true" force="true" failonerror="true">
-			<arg value="--unix-newlines" />
-			<srcfile />
-			<targetfile />
-			<fileset dir="${dir}" includes="**/*.scss" />
-			<mapper type="glob" from="*.scss" to="*.css"/>
-		</apply>
+    <target name="version">
+        <replace file="${js.config}"
+            summary="true"
+            token='{BUILD_NR}'
+            value='${env.TRAVIS_BUILD_NUMBER}' />
+    </target>
+
+    <target name="compile_sass">
+        <echo message="Compile sass files in ${dir}"/>
+        <apply executable="sass" dest="${dir}" verbose="true" force="true" failonerror="true">
+            <arg value="--unix-newlines" />
+            <srcfile />
+            <targetfile />
+            <fileset dir="${dir}" includes="**/*.scss" />
+            <mapper type="glob" from="*.scss" to="*.css"/>
+        </apply>
     </target>
 
     <target name="exec_test_php">
