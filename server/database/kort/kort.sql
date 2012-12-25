@@ -23,7 +23,9 @@ create table kort.fix (
     schema character varying(50) not null,
     osm_id integer not null,
     message text,
-    complete boolean default false,
+    complete boolean not null default false,
+    valid boolean,
+    constraint complete_validity CHECK ((complete and valid is not null) or not complete),
     unique(error_id, schema, osm_id),
     foreign key (error_id, schema, osm_id) references keepright.errors (error_id, schema, object_id)
 );
@@ -32,7 +34,7 @@ create table kort.user (
     user_id integer primary key default nextval('kort.user_id'),
     name varchar(100) not null,
     username varchar(100),
-    koin_count integer not null default 0,
+    koin_count integer not null default 0 check (koin_count >= 0),
     token varchar(255),
     oauth_provider varchar(100),
     oauth_user_id varchar(100),
