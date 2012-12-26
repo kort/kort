@@ -47,7 +47,8 @@ class VoteHandler extends DbProxyHandler implements IKoinCount
     {
         $sql  = "update kort.fix set ";
         $sql .= "complete = ";
-        $sql .= "(select case when upratings >= required_votes or downratings >= required_votes then true else false end ";
+        $sql .= "(select case when upratings >= required_votes or downratings >= required_votes ";
+        $sql .= " then true else false end ";
         $sql .= " from kort.validations ";
         $sql .= " where id = " . $data['fix_id'] . "), ";
         $sql .= "valid = ";
@@ -116,10 +117,7 @@ class VoteHandler extends DbProxyHandler implements IKoinCount
         $malusParams = $this->getMalusParams($data);
         $transProxy->addToTransaction($malusParams);
 
-        //$result = json_decode($transProxy->sendTransaction(), true);
-
-        $result = $transProxy->sendTransaction();
-        return $result;
+        $result = json_decode($transProxy->sendTransaction(), true);
         $reward = $rewardHandler->extractReward($result);
         return $reward->toJson();
     }
