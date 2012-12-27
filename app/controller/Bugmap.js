@@ -180,7 +180,6 @@ Ext.define('Kort.controller.Bugmap', {
         // add markers
         Ext.each(bugs, function (bug, index, length) {
             if(bug.get('longitude') && bug.get('longitude')) {
-                console.log(bug.get('osm_type') + ' / ' + bug.get('osm_id') + ' / ' + bug.get('view_type') + ' / ' + bug.get('latitude') + ' / ' + bug.get('longitude'));
                 me.addMarker(bug);
             }
         });

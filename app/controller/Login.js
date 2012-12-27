@@ -29,7 +29,6 @@ Ext.define('Kort.controller.Login', {
 
     // @private
     onLoginButtonGoogleTap: function() {
-        console.log('loginButtonGoogle tapped -> ' + this.buildGoogleUrl(Kort.util.Config.getOAuth().google));
         this.showLoadMask();
         // redirect to google login page
         document.location.href = this.buildGoogleUrl(Kort.util.Config.getOAuth().google);
@@ -37,7 +36,6 @@ Ext.define('Kort.controller.Login', {
 
     // @private
     onLoginButtonOsmTap: function() {
-        console.log('loginButtonOsm tapped');
         this.showLoadMask();
         // redirect to osm login page
         document.location.href = Kort.util.Config.getOAuth().osm.url;
