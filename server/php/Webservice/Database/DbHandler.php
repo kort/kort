@@ -67,8 +67,8 @@ class DbHandler
      */
     public function doSelect(array $fields, $table, $where, $orderBy, $limit)
     {
-        if (!$limit || $limit > 500) {
-            $limit = 500;
+        if (!$limit || $limit > 5000) {
+            $limit = 5000;
         }
         $result = $this->db->doSelectQuery($fields, $table, $where, $orderBy, $limit);
         return (count($result) > 0) ? json_encode($result) : false;
