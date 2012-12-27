@@ -134,7 +134,7 @@
         "server/oauth2callback",
         "test",
         "presentation",
-        'proposals"
+        "proposals"
     ],
 
     /**
