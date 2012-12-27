@@ -117,7 +117,9 @@ class BugHandler extends DbProxyHandler
     /**
      * Return a bug with a specific id.
      *
-     * @param integer $id The id of the bug.
+     * @param integer $id     The id of the error.
+     * @param string  $schema The schema this error belongs to.
+     * @param integer $osmId  The id of the OSM object.
      *
      * @return string JSON-encoded bug
      */
