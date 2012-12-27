@@ -16,4 +16,8 @@ fi
 echo $APP_NAME | heroku apps:destroy $APP_NAME
 heroku apps:create $APP_NAME
 
+if [[ $APP_NAME == "kort" ]] ; then
+    heroku domains:add www.kort.ch --app $APP_NAME
+fi
+
 git push -f heroku master
