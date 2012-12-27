@@ -129,7 +129,7 @@ Ext.application({
                 console.log('no client secret record found in localstorage');
                 me.loadUser(geo, mainPanel);
             } else {
-                console.log('client secret found in localstorage: ' + records[0].get('secret'));
+                console.log('client secret found in localstorage');
                 me.loadUser(geo, mainPanel, records[0].get('secret'));
             }
         }, me);
@@ -144,11 +144,10 @@ Ext.application({
         }
         Kort.model.User.load(clientSecret, {
             success: function(record, operation) {
+                console.log('user loaded');
+
                 // set global accessor to user
                 Kort.user = record;
-
-                console.log('user loaded');
-                console.log(Kort.user);
 
                 // check if user is logged in
                 if (!Kort.user.get('logged_in')) {
@@ -173,9 +172,8 @@ Ext.application({
             userLocal;
 
         if(clientSecret) {
-            console.log('writing userClientSecret to localstore: ' + clientSecret);
+            console.log('writing userClientSecret to localstore');
             userLocal = Ext.create('Kort.model.UserLocal', { 'secret': clientSecret });
-            console.log(userLocal);
             userLocalStore.add(userLocal);
         } else {
             console.log('Error: no client secret passed');
@@ -209,7 +207,6 @@ Ext.application({
         validationsStore.getProxy().setUrl(Kort.util.Config.getWebservices().validation.getUrl(geo.getLatitude(), geo.getLongitude()));
 
         validationsStore.load(function(records, operation, success) {
-            console.log('validationStores load');
             validationsStore.updateDistances(Kort.geolocation);
         }, this);
         // enable auto update on geolocation
