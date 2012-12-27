@@ -39,16 +39,590 @@
     </style>
 
     <!-- The line below must be kept intact for Sencha Command to build your application -->
-    <script type="text/javascript">(function(i){function s(a){function b(a,j){var c=a.length,b,g;for(b=0;b<c;b++){g=a[b];var e=a,K=b,d=void 0;"string"==typeof g&&(g={path:g});g.shared?(g.version=g.shared,d=g.shared+g.path):(z.href=g.path,d=z.href);g.uri=d;g.key=h+"-"+d;f[d]=g;e[K]=g;g.type=j;g.index=b;g.collection=a;g.ready=!1;g.evaluated=!1}return a}var c;"string"==typeof a?(c=a,a=A(c)):c=JSON.stringify(a);var h=a.id,e=h+"-"+B+o,f={};this.key=e;this.css=b(a.css,"css");this.js=b(a.js,"js");this.assets=this.css.concat(this.js);this.getAsset=
-function(a){return f[a]};this.store=function(){t(e,c)}}function C(a,b){k.write('<meta name="'+a+'" content="'+b+'">')}function p(a,b,c){var h=new XMLHttpRequest,c=c||D,a=a+(-1==a.indexOf("?")?"?":"&")+Date.now();try{h.open("GET",a,!0),h.onreadystatechange=function(){if(4==h.readyState){var a=h.status,d=h.responseText;200<=a&&300>a||304==a||0==a&&0<d.length?b(d):c()}},h.send(null)}catch(d){c()}}function L(a,b){var c=k.createElement("iframe");m.push({iframe:c,callback:b});c.src=a+".html";c.style.cssText=
-"width:0;height:0;border:0;position:absolute;z-index:-999;visibility:hidden";k.body.appendChild(c)}function E(a,b,c){var d=!!a.shared;if(a.remote)b("");else{if(!d)var e=b,f=a.version,l,b=function(j){l=j.substring(0,f.length+4);l!=="/*"+f+"*/"?confirm("Requested: '"+a.uri+"' with checksum: "+f+" but received: "+l.substring(2,f.length)+"instead. Attempt to refresh the application?")&&M():e(j)};(d?L:p)(a.uri,b,c)}}function F(a){var b=a.data,a=a.source.window,c,d,e,f;c=0;for(d=m.length;c<d;c++)if(e=m[c],
-f=e.iframe,f.contentWindow===a){e.callback(b);k.body.removeChild(f);m.splice(c,1);break}}function G(a){"undefined"!=typeof console&&(console.error||console.log).call(console,a)}function t(a,b){try{n.setItem(a,b)}catch(c){if(c.code==c.QUOTA_EXCEEDED_ERR&&q){var d=q.assets.map(function(a){return a.key}),e=0,f=n.length,l=!1,j;for(d.push(q.key);e<=f-1;)j=n.key(e),-1==d.indexOf(j)?(n.removeItem(j),l=!0,f--):e++;l&&t(a,b)}}}function u(a){try{return n.getItem(a)}catch(d){return null}}function M(){H||(H=
-!0,p(o,function(a){(new s(a)).store();i.location.reload()}))}function v(a){function b(a,d){var b=a.collection,g=a.index,f=b.length,e;a.ready=!0;a.content=d;for(e=g-1;0<=e;e--)if(a=b[e],!a.ready||!a.evaluated)return;for(e=g;e<f;e++)if(a=b[e],a.ready)a.evaluated||c(a);else break}function c(a){a.evaluated=!0;if("js"==a.type)try{eval(a.content)}catch(b){G("Error evaluating "+a.uri+" with message: "+b)}else{var d=k.createElement("style"),c;d.type="text/css";d.textContent=a.content;"id"in a&&(d.id=a.id);
-"disabled"in a&&(d.disabled=a.disabled);c=document.createElement("base");c.href=a.path.replace(/\/[^\/]*$/,"/");w.appendChild(c);w.appendChild(d);w.removeChild(c)}delete a.content;0==--f&&h()}function h(){function b(){k&&c()}function c(){var a=r.onUpdated||D;if("onSetup"in r)r.onSetup(a);else a()}function e(){l.store();h.forEach(function(a){t(a.key,a.content)});c()}function g(a,b){a.content=b;0==--m&&(d.status==d.IDLE?e():i=e)}function f(){I("online",f,!1);p(o,function(c){q=l=new s(c);var e;l.assets.forEach(function(b){e=
-a.getAsset(b.uri);(!e||b.version!==e.version)&&h.push(b)});m=h.length;0==m?d.status==d.IDLE?b():i=b:h.forEach(function(b){function d(){E(b,function(a){g(b,a)})}var c=a.getAsset(b.uri),e=b.path,f=b.update;!c||!f||null===u(b.key)||"delta"!=f?d():p("deltas/"+e+"/"+c.version+".json",function(a){try{var d=b,c;var e=u(b.key),f=A(a),a=[],h,j,i;if(0===f.length)c=e;else{j=0;for(i=f.length;j<i;j++)h=f[j],"number"===typeof h?a.push(e.substring(h,h+f[++j])):a.push(h);c=a.join("")}g(d,c)}catch(k){G("Malformed delta content received for "+
-b.uri)}},d)})})}var h=[],k=!1,i=function(){},n=function(){d.swapCache();k=!0;i()},m;I("message",F,!1);if(d.status==d.UPDATEREADY)n();else if(d.status==d.CHECKING||d.status==d.DOWNLOADING)d.onupdateready=n,d.onnoupdate=d.onobsolete=function(){i()};!1!==navigator.onLine?f():x("online",f,!1)}var e=a.assets,f=e.length,l;q=a;x("message",F,!1);0==f?h():e.forEach(function(a){var c=u(a.key);null===c?E(a,function(c){a.remote||t(a.key,c);b(a,c)},function(){b(a,"")}):b(a,c)})}function J(a){null!==k.readyState.match(/interactive|complete|loaded/)?
-v(a):x("DOMContentLoaded",function(){navigator.standalone?setTimeout(function(){setTimeout(function(){v(a)},1)},1):v(a)},!1)}var D=function(){},m=[],k=i.document,w=k.head,x=i.addEventListener,I=i.removeEventListener,n=i.localStorage,d=i.applicationCache,A=JSON.parse,z=k.createElement("a"),y=k.location,B=y.origin+y.pathname+y.search,o="app.json",H=!1,q;if("undefined"===typeof r)var r=i.Ext={};r.blink=function(a){var b=u(a.id+"-"+B+o);C("viewport","width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no");
-C("apple-touch-fullscreen","yes");b?(a=new s(b),J(a)):p(o,function(b){a=new s(b);a.store();J(a)})}})(this);;Ext.blink({"id":"d6069029-dcbb-4cf2-b20b-cefd12012a6c"})</script>
+    <script type="text/javascript">/**
+ * Sencha Blink
+ * @author Jacky Nguyen <jacky@sencha.com>
+ */
+(function(global) {
+    var emptyFn = function(){},
+        callbacks = [],
+        doc = global.document,
+        head = doc.head,
+        addWindowListener = global.addEventListener,
+        removeWindowListener = global.removeEventListener,
+        storage = global.localStorage,
+        appCache = global.applicationCache,
+        jsonParse = JSON.parse,
+        a = doc.createElement('a'),
+        documentLocation = doc.location,
+        documentUri = documentLocation.origin + documentLocation.pathname + documentLocation.search,
+        manifestFile = 'app.json',
+        isRefreshing = false,
+        activeManifest;
+
+    function getManifestStorageKey(id) {
+        return id + '-' + documentUri + manifestFile;
+    }
+
+    function Manifest(manifest) {
+        var manifestContent;
+
+        if (typeof manifest == 'string') {
+            manifestContent = manifest;
+            manifest = jsonParse(manifestContent);
+        }
+        else {
+            manifestContent = JSON.stringify(manifest);
+        }
+
+        var applicationId = manifest.id,
+            key = getManifestStorageKey(applicationId),
+            assetMap = {};
+
+        function processAsset(asset) {
+            var uri;
+
+            if (typeof asset == 'string') {
+                asset = {
+                    path: asset
+                };
+            }
+
+            if (asset.shared) {
+                asset.version = asset.shared;
+                uri = asset.shared + asset.path;
+            }
+            else {
+                uri = toAbsoluteUri(asset.path);
+            }
+
+            asset.uri = uri;
+            asset.key = applicationId + '-' + uri;
+            assetMap[uri] = asset;
+
+            return asset;
+        }
+
+        function processAssets(assets, type) {
+            var ln = assets.length,
+                i, asset;
+
+            for (i = 0; i < ln; i++) {
+                asset = assets[i];
+
+                assets[i] = asset = processAsset(asset);
+
+                asset.type = type;
+                asset.index = i;
+                asset.collection = assets;
+                asset.ready = false;
+                asset.evaluated = false;
+            }
+
+            return assets;
+        }
+
+        this.key = key;
+        this.css = processAssets(manifest.css, 'css');
+        this.js = processAssets(manifest.js, 'js');
+        this.assets = this.css.concat(this.js);
+        this.getAsset = function(uri) {
+            return assetMap[uri];
+        };
+        this.store = function() {
+            store(key, manifestContent);
+        };
+    }
+
+    if (typeof Ext === 'undefined') {
+        var Ext = global.Ext = {};
+    }
+
+    function toAbsoluteUri(uri) {
+        a.href = uri;
+        return a.href;
+    }
+
+    function writeMeta(name, content) {
+        doc.write('<meta name="' + name + '" content="' + content + '">');
+    }
+
+    function request(uri, isShared, onSuccess, onFailure) {
+        (isShared ? requestIframe : requestXhr)(uri, onSuccess, onFailure);
+    }
+
+    function requestXhr(uri, onSuccess, onFailure) {
+        var xhr = new XMLHttpRequest();
+
+        onFailure = onFailure || emptyFn;
+
+        uri = uri + ((uri.indexOf('?') == -1) ? '?' : '&') + Date.now();
+
+        try {
+            xhr.open('GET', uri, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                    var status = xhr.status,
+                        content = xhr.responseText;
+
+                    if ((status >= 200 && status < 300) || status == 304 || (status == 0 && content.length > 0)) {
+                        onSuccess(content);
+                    }
+                    else {
+                        onFailure();
+                    }
+                }
+            };
+            xhr.send(null);
+        } catch (e) {
+            onFailure();
+        }
+    }
+
+    function requestIframe(uri, onSuccess) {
+        var iframe = doc.createElement('iframe');
+
+        callbacks.push({
+            iframe: iframe,
+            callback: onSuccess
+        });
+
+        iframe.src = uri + '.html';
+        iframe.style.cssText = 'width:0;height:0;border:0;position:absolute;z-index:-999;visibility:hidden';
+        doc.body.appendChild(iframe);
+    }
+
+    function requestAsset(asset, onSuccess, onFailure) {
+        var isRemote = !!asset.remote,
+            isShared = !!asset.shared;
+
+        if (isRemote) {
+            onSuccess('');
+            return;
+        }
+
+        if (!isShared) {
+            var onRequestSuccess = onSuccess,
+                version = asset.version,
+                remoteChecksumBlock;
+
+            onSuccess = function(content) {
+                remoteChecksumBlock = content.substring(0, version.length + 4);
+
+                if (remoteChecksumBlock !== '/*' + version + '*/') {
+                    if (confirm("Requested: '" + asset.uri + "' with checksum: " + version +
+                        " but received: " + remoteChecksumBlock.substring(2, version.length) +
+                        "instead. Attempt to refresh the application?")) {
+                        refresh();
+                    }
+                    return;
+                }
+                onRequestSuccess(content);
+            };
+        }
+
+        request(asset.uri, isShared, onSuccess, onFailure);
+    }
+
+    function onMessage(e) {
+        var data = e.data,
+            sourceWindow = e.source.window,
+            i, ln, callback, iframe;
+
+        for (i = 0, ln = callbacks.length; i < ln; i++) {
+            callback = callbacks[i];
+            iframe = callback.iframe;
+
+            if (iframe.contentWindow === sourceWindow) {
+                callback.callback(data);
+                doc.body.removeChild(iframe);
+                callbacks.splice(i, 1);
+                return;
+            }
+        }
+    }
+
+    function patch(content, delta) {
+        var output = [],
+            chunk, i, ln;
+
+        if (delta.length === 0) {
+            return content;
+        }
+
+        for (i = 0,ln = delta.length; i < ln; i++) {
+            chunk = delta[i];
+
+            if (typeof chunk === 'number') {
+                output.push(content.substring(chunk, chunk + delta[++i]));
+            }
+            else {
+                output.push(chunk);
+            }
+        }
+
+        return output.join('');
+    }
+
+    function log(message) {
+        if (typeof console != 'undefined') {
+            (console.error || console.log).call(console, message);
+        }
+    }
+
+    function store(key, value) {
+        try {
+            storage.setItem(key, value);
+        }
+        catch (e) {
+            if (e.code == e.QUOTA_EXCEEDED_ERR && activeManifest) {
+                // Quota exceeded, clean up unused items
+                var items = activeManifest.assets.map(function(asset) {
+                        return asset.key;
+                    }),
+                    i = 0,
+                    ln = storage.length,
+                    cleaned = false,
+                    item;
+
+                items.push(activeManifest.key);
+
+                while (i <= ln - 1) {
+                    item = storage.key(i);
+
+                    if (items.indexOf(item) == -1) {
+                        storage.removeItem(item);
+                        cleaned = true;
+                        ln--;
+                    }
+                    else {
+                        i++;
+                    }
+                }
+
+                // Done cleaning up, attempt to store the value again
+                // If there's still not enough space, no other choice
+                // but to skip this item from being stored
+                if (cleaned) {
+                    store(key, value);
+                }
+            }
+        }
+    }
+
+    function retrieve(key) {
+        try {
+            return storage.getItem(key);
+        }
+        catch (e) {
+            // Private browsing mode
+            return null;
+        }
+    }
+
+    function retrieveAsset(asset) {
+        return retrieve(asset.key);
+    }
+
+    function storeAsset(asset, content) {
+        return store(asset.key, content);
+    }
+
+    function refresh() {
+        if (!isRefreshing) {
+            isRefreshing = true;
+            requestXhr(manifestFile, function(content) {
+                new Manifest(content).store();
+                global.location.reload();
+            });
+        }
+    }
+
+    function blink(currentManifest) {
+        var currentAssets = currentManifest.assets,
+            assetsCount = currentAssets.length,
+            newManifest;
+
+        activeManifest = currentManifest;
+
+        addWindowListener('message', onMessage, false);
+
+        function onAssetReady(asset, content) {
+            var assets = asset.collection,
+                index = asset.index,
+                ln = assets.length,
+                i;
+
+            asset.ready = true;
+            asset.content = content;
+
+            for (i = index - 1; i >= 0; i--) {
+                asset = assets[i];
+                if (!asset.ready || !asset.evaluated) {
+                    return;
+                }
+            }
+
+            for (i = index; i < ln; i++) {
+                asset = assets[i];
+                if (asset.ready) {
+                    if (!asset.evaluated) {
+                        evaluateAsset(asset);
+                    }
+                }
+                else {
+                    return;
+                }
+            }
+        }
+
+        function evaluateAsset(asset) {
+            asset.evaluated = true;
+
+            if (asset.type == 'js') {
+                try {
+                    eval(asset.content);
+                }
+                catch (e) {
+                    log("Error evaluating " + asset.uri + " with message: " + e);
+                }
+            }
+            else {
+                var style = doc.createElement('style'),
+                    base;
+
+                style.type = 'text/css';
+                style.textContent = asset.content;
+
+                if ('id' in asset) {
+                    style.id = asset.id;
+                }
+
+                if ('disabled' in asset) {
+                    style.disabled = asset.disabled;
+                }
+
+                base = document.createElement('base');
+                base.href = asset.path.replace(/\/[^\/]*$/, '/');
+                head.appendChild(base);
+                head.appendChild(style);
+                head.removeChild(base);
+            }
+
+            delete asset.content;
+
+            if (--assetsCount == 0) {
+                onReady();
+            }
+        }
+
+        function onReady() {
+            var updatingAssets = [],
+                appCacheReady = false,
+                onAppCacheIdle = function() {},
+                onAppCacheReady = function() {
+                    appCache.swapCache();
+                    appCacheReady = true;
+                    onAppCacheIdle();
+                },
+                updatingCount;
+
+            removeWindowListener('message', onMessage, false);
+
+            if (appCache.status == appCache.UPDATEREADY) {
+                onAppCacheReady();
+            }
+            else if (appCache.status == appCache.CHECKING || appCache.status == appCache.DOWNLOADING) {
+                appCache.onupdateready = onAppCacheReady;
+                appCache.onnoupdate = appCache.onobsolete = function() {
+                    onAppCacheIdle();
+                };
+            }
+
+            function notifyUpdateIfAppCacheReady() {
+                if (appCacheReady) {
+                    notifyUpdate();
+                }
+            }
+
+            function notifyUpdate() {
+                var updatedCallback = Ext.onUpdated || emptyFn;
+
+                if ('onSetup' in Ext) {
+                    Ext.onSetup(updatedCallback);
+                }
+                else {
+                    updatedCallback();
+                }
+            }
+
+            function doUpdate() {
+                newManifest.store();
+
+                updatingAssets.forEach(function(asset) {
+                    storeAsset(asset, asset.content);
+                });
+
+                notifyUpdate();
+            }
+
+            function onAssetUpdated(asset, content) {
+                asset.content = content;
+
+                if (--updatingCount == 0) {
+                    if (appCache.status == appCache.IDLE) {
+                        doUpdate();
+                    }
+                    else {
+                        onAppCacheIdle = doUpdate;
+                    }
+                }
+            }
+
+            function checkForUpdate() {
+                removeWindowListener('online', checkForUpdate, false);
+                requestXhr(manifestFile, function(manifestContent) {
+                    activeManifest = newManifest = new Manifest(manifestContent);
+
+                    var assets = newManifest.assets,
+                        currentAsset;
+
+                    assets.forEach(function(asset) {
+                        currentAsset = currentManifest.getAsset(asset.uri);
+
+                        if (!currentAsset || asset.version !== currentAsset.version) {
+                            updatingAssets.push(asset);
+                        }
+                    });
+
+                    updatingCount = updatingAssets.length;
+
+                    if (updatingCount == 0) {
+                        if (appCache.status == appCache.IDLE) {
+                            notifyUpdateIfAppCacheReady();
+                        }
+                        else {
+                            onAppCacheIdle = notifyUpdateIfAppCacheReady;
+                        }
+                        return;
+                    }
+
+                    updatingAssets.forEach(function(asset) {
+                        var currentAsset = currentManifest.getAsset(asset.uri),
+                            path = asset.path,
+                            update = asset.update;
+
+                        function updateFull() {
+                            requestAsset(asset, function(content) {
+                                onAssetUpdated(asset, content);
+                            });
+                        }
+
+                        // New asset (never used before)
+                        // OR Shared from CDN
+                        // OR Missing local storage
+                        // OR Full update
+                        if (!currentAsset || !update || retrieveAsset(asset) === null || update != 'delta') {
+                            updateFull();
+                        }
+                        else {
+                            requestXhr('deltas/' + path + '/' + currentAsset.version + '.json',
+                                function(content) {
+                                    try {
+                                        onAssetUpdated(asset, patch(retrieveAsset(asset), jsonParse(content)));
+                                    }
+                                    catch (e) {
+                                        log("Malformed delta content received for " + asset.uri);
+                                    }
+                                },
+                                updateFull
+                            );
+                        }
+                    })
+                });
+            }
+
+            if (navigator.onLine !== false) {
+                checkForUpdate();
+            }
+            else {
+                addWindowListener('online', checkForUpdate, false);
+            }
+        }
+
+        if (assetsCount == 0) {
+            onReady();
+            return;
+        }
+
+        currentAssets.forEach(function(asset) {
+            var content = retrieveAsset(asset);
+
+            if (content === null) {
+                requestAsset(asset, function(content) {
+                    if (!asset.remote) {
+                        storeAsset(asset, content);
+                    }
+                    onAssetReady(asset, content);
+                }, function() {
+                    onAssetReady(asset, '');
+                });
+            }
+            else {
+                onAssetReady(asset, content);
+            }
+        });
+    }
+
+    function blinkOnDomReady(manifest) {
+        if (doc.readyState.match(/interactive|complete|loaded/) !== null) {
+            blink(manifest);
+        }
+        else {
+            addWindowListener('DOMContentLoaded', function() {
+                if (navigator.standalone) {
+                    // When running from Home Screen, the splash screen will not disappear until all
+                    // external resource requests finish.
+                    // The first timeout clears the splash screen
+                    // The second timeout allows inital HTML content to be displayed
+                    setTimeout(function() {
+                        setTimeout(function() {
+                            blink(manifest);
+                        }, 1);
+                    }, 1);
+                }
+                else {
+                    blink(manifest);
+                }
+            }, false);
+        }
+    }
+
+    Ext.blink = function(manifest) {
+        var manifestContent = retrieve(getManifestStorageKey(manifest.id));
+
+        writeMeta('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no');
+        /**
+         * WORKAROUND FOR iOS6 Bug - Add to homescreen doesn't work correctly
+         * see: http://www.sencha.com/forum/showthread.php?246317-2.1.0-RC1-Save-to-home-screen-Geolocation-not-working
+         */
+        //writeMeta('apple-mobile-web-app-capable', 'yes');
+        writeMeta('apple-touch-fullscreen', 'yes');
+
+        if (manifestContent) {
+            manifest = new Manifest(manifestContent);
+            blinkOnDomReady(manifest);
+        }
+        else {
+            requestXhr(manifestFile, function(content) {
+                manifest = new Manifest(content);
+                manifest.store();
+                blinkOnDomReady(manifest);
+            });
+        }
+    };
+})(this);
+;Ext.blink({"id":"d6069029-dcbb-4cf2-b20b-cefd12012a6c"})</script>
 </head>
 <body>
     <div id="appStartscreen">
