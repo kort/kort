@@ -58,7 +58,7 @@ class FixGetHandler extends DbProxyHandler
     public function getHeaders()
     {
         return array(
-            'fix_id'                => 'Fix ID',
+            'fix_id'                => 'ID',
             'user_id'               => 'User ID',
             'username'              => 'Benutzername',
             'formatted_create_date' => 'Erstellungsdatum',
@@ -108,7 +108,7 @@ class FixGetHandler extends DbProxyHandler
     protected function getFixes($where)
     {
         $this->getDbProxy()->setWhere($where);
-        $this->getDbProxy()->setOrderBy("create_date");
+        $this->getDbProxy()->setOrderBy("(required_votes - upratings + downratings), create_date");
         $fixData = json_decode($this->getDbProxy()->select(), true);
         if (!$fixData) {
             return false;
@@ -132,7 +132,7 @@ class FixGetHandler extends DbProxyHandler
         unset($fix['upratings']);
         unset($fix['downratings']);
         unset($fix['osm_type']);
-        unset($fix['fix_id']);
+        //unset($fix['fix_id']);
         unset($fix['complete']);
         unset($fix['valid']);
         unset($fix['latitude']);
