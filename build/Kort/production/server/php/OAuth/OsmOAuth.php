@@ -226,6 +226,8 @@ class OsmOAuth extends AbstractOAuthCallback
 
         if ($host == "localhost") {
             $env = $host;
+        } elseif ($host == "www.kort.ch") {
+            $env = "kort-ch";
         } else {
             $matches = array();
             preg_match("/([a-z-]*)\.(.*)/", $host, $matches);
