@@ -58,7 +58,7 @@ class FixGetHandler extends DbProxyHandler
     public function getHeaders()
     {
         return array(
-            'fix_id'                => 'Fix ID',
+            'fix_id'                => 'ID',
             'user_id'               => 'User ID',
             'username'              => 'Benutzername',
             'formatted_create_date' => 'Erstellungsdatum',
@@ -100,15 +100,17 @@ class FixGetHandler extends DbProxyHandler
         return $this->getFixes("complete and valid");
     }
 
-     /**
+    /**
      * Returns all fixes for the given where clause.
+     *
+     * @param string $where The WHERE clause to filter the fixes.
      *
      * @return string|bool a JSON-encoded array of fixes if successfull, false otherwise
      */
     protected function getFixes($where)
     {
         $this->getDbProxy()->setWhere($where);
-        $this->getDbProxy()->setOrderBy("create_date");
+        $this->getDbProxy()->setOrderBy("(required_votes - upratings + downratings), create_date");
         $fixData = json_decode($this->getDbProxy()->select(), true);
         if (!$fixData) {
             return false;
@@ -119,7 +121,14 @@ class FixGetHandler extends DbProxyHandler
         return json_encode($fixData);
     }
 
-    protected function reduceData($fix)
+    /**
+     * Reduces the returned data to be displayed.
+     *
+     * @param array $fix The data of a fix.
+     *
+     * @return array The reduced $fix
+     */
+    protected function reduceData(array $fix)
     {
         $fix = $this->votes($fix);
         $fix = $this->osmLink($fix);
@@ -132,7 +141,7 @@ class FixGetHandler extends DbProxyHandler
         unset($fix['upratings']);
         unset($fix['downratings']);
         unset($fix['osm_type']);
-        unset($fix['fix_id']);
+        //unset($fix['fix_id']);
         unset($fix['complete']);
         unset($fix['valid']);
         unset($fix['latitude']);
@@ -143,39 +152,72 @@ class FixGetHandler extends DbProxyHandler
         return $fix;
     }
 
+    /**
+     * Returns a text represenation of the given boolean value.
+     *
+     * @param boolean $value The boolean value to be converted to text.
+     *
+     * @return string
+     */
     protected function booleanToText($value)
     {
         if ($value == "t") {
             return "Yes";
-        } else if ($value == "f") {
+        } elseif ($value == "f") {
             return "No";
         } else {
             return "";
         }
     }
 
-    protected function osmLink($fix)
+    /**
+     * Enhances the $fix with a link to OSM.
+     *
+     * @param array $fix The $fix to enhance.
+     *
+     * @return array
+     */
+    protected function osmLink(array $fix)
     {
         $osmUrl = "http://www.openstreetmap.org/browse/" . $fix['osm_type'] . "/" . $fix['osm_id'];
         $fix['osm_link'] = "<a href=\"" . $osmUrl . "\">" . $fix['osm_id'] . "</a>";
         return $fix;
     }
 
-    protected function votes($fix)
+    /**
+     * Enhances the $fix with the corresponding votes.
+     *
+     * @param array $fix The $fix to enhance.
+     *
+     * @return array
+     */
+    protected function votes(array $fix)
     {
         $fix['votes'] = "";
         if ($fix['upratings'] > 0) {
-             $fix['votes'] = $fix['votes'] . "+" . $fix['upratings'] . "<img class=\"thumb\" src=\"../resources/images/validation/thumbs-up.png\" />";
+            $thumbsUp = "<img class=\"thumb\" src=\"../resources/images/validation/thumbs-up.png\" />";
+            $fix['votes'] = $fix['votes'] . "+" . $fix['upratings'] . $thumbsUp;
         }
         if ($fix['downratings'] > 0) {
-             $fix['votes'] = $fix['votes'] . "-" . $fix['downratings'] . "<img class=\"thumb\" src=\"../resources/images/validation/thumbs-down.png\" />";
+            $thumbsDown = "<img class=\"thumb\" src=\"../resources/images/validation/thumbs-down.png\" />";
+            $fix['votes'] = $fix['votes'] . "-" . $fix['downratings'] . $thumbsDown;
         }
         return $fix;
     }
 
-    protected function editInPotlatch2($fix)
+    /**
+     * Enhances the $fix with an edit link for Potlatch2.
+     *
+     * @param array $fix The $fix to enhance.
+     *
+     * @return array
+     */
+    protected function editInPotlatch2(array $fix)
     {
-        $fix['edit'] = "<a href=\"http://www.openstreetmap.org/edit?editor=potlatch2&lat=" . $fix['latitude'] . "&lon=" . $fix['longitude'] . "&zoom=18\"><img src=\"edit.png\" alt=\"Edit in Potlatch2\" title=\"Edit in Potlatch2\" /></a>";
+        $url  = "http://www.openstreetmap.org/edit?editor=potlatch2&lat=";
+        $url .= $fix['latitude'] . "&lon=" . $fix['longitude'] . "&zoom=18";
+        $editPic = "<img src=\"edit.png\" alt=\"Edit in Potlatch2\" title=\"Edit in Potlatch2\" />";
+        $fix['edit'] = "<a href=\"" . $url . "\">" . $editPic . "</a>";
         return $fix;
     }
 }
