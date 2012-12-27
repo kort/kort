@@ -9,7 +9,7 @@ Kort\ClassLoader::registerAutoLoader();
 
 echo "<html>\n";
 echo "<head>\n";
-echo "<title>kort - Proposals</title>\n";
+echo "<title>Kort - L&ouml;sungsvorschl&auml;ge</title>\n";
 echo "<link href=\"bootstrap/css/bootstrap.min.css\" rel=\"stylesheet\" media=\"screen\">";
 echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n";
 echo "<script src=\"bootstrap/js/bootstrap.min.js\"></script>";
