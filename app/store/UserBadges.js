@@ -5,7 +5,7 @@ Ext.define('Kort.store.UserBadges', {
     extend: 'Ext.data.Store',
 
 	config: {
-		model: 'Kort.model.Badge',
+		model: 'Kort.model.UserBadge',
         
 		proxy: {
 			type: 'rest',

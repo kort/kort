@@ -1,11 +1,11 @@
 /**
- * Store for user badges
+ * Store for highscore user badges
  */
 Ext.define('Kort.store.HighscoreUserBadges', {
     extend: 'Ext.data.Store',
 
 	config: {
-		model: 'Kort.model.Badge',
+		model: 'Kort.model.HighscoreUserBadge',
         
 		proxy: {
 			type: 'rest',

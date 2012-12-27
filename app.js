@@ -48,9 +48,11 @@ Ext.application({
         'Bug',
         'Fix',
         'HighscoreEntry',
+        'HighscoreUserBadge',
         'Reward',
         'SelectAnswer',
         'User',
+        'UserBadge',
         'UserLocal',
         'Validation',
         'Vote'
