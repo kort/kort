@@ -133,7 +133,8 @@
         "server/php",
         "server/oauth2callback",
         "test",
-        "presentation"
+        "presentation",
+        'proposals"
     ],
 
     /**
