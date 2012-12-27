@@ -2,6 +2,36 @@ create sequence kort.fix_id;
 create sequence kort.vote_id;
 create sequence kort.user_id;
 
+create function check_fix_onlyone_pending_per_error(i_error_id integer, i_schema varchar, i_osm_id integer)
+returns boolean as
+$$
+select
+case count(1)
+	when 0 then true
+	when 1 then true
+	else false
+end
+from kort.fix
+where error_id = $1
+and   schema = $2
+and   osm_id = $3
+and   not complete
+$$ language 'sql';
+
+create or replace function reset_kort() returns boolean as $$
+begin
+    update kort.user set koin_count = 0;
+    delete from kort.user_badge;
+    delete from kort.vote;
+    delete from kort.fix;
+
+    return true;
+exception
+    when others then
+       return false;
+end;
+$$ language plpgsql;
+
 create table kort.error_type (
     error_type_id integer primary key,
     type character varying(20) not null,
@@ -26,8 +56,7 @@ create table kort.fix (
     complete boolean not null default false,
     valid boolean,
     constraint complete_validity CHECK ((complete and valid is not null) or not complete),
-    unique(error_id, schema, osm_id),
-    foreign key (error_id, schema, osm_id) references keepright.errors (error_id, schema, object_id)
+    constraint only_one_pending_per_error CHECK (check_fix_onlyone_pending_per_error(error_id, schema, osm_id)
 );
 
 create table kort.user (
@@ -80,17 +109,3 @@ create table kort.vote (
     foreign key (user_id) references kort.user (user_id),
     foreign key (fix_id) references kort.fix (fix_id)
 );
-
-create or replace function reset_kort() returns boolean as $$
-begin
-    update kort.user set koin_count = 0;
-    delete from kort.user_badge;
-    delete from kort.vote;
-    delete from kort.fix;
-
-    return true;
-exception
-    when others then
-       return false;
-end;
-$$ language plpgsql;
