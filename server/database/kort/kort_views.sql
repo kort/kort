@@ -66,6 +66,31 @@ and     f.schema = e.schema
 and     f.osm_id = e.osm_id
 and     not f.complete;
 
+create or replace view kort.all_fixes as
+select f.fix_id,
+       f.user_id,
+       u.username,
+       f.create_date,
+       to_char(f.create_date, 'DD.MM.YYYY HH24:MI:SS') formatted_create_date,
+       f.osm_id,
+       e.osm_type,
+       e.latitude,
+       e.longitude,
+       e.error_id,
+       e.schema,
+       f.message answer,
+       a.title description,
+       f.complete,
+       f.valid,
+       t.required_votes,
+       (select count(1) from kort.vote v where v.fix_id = f.fix_id and v.valid) upratings,
+       (select count(1) from kort.vote v where v.fix_id = f.fix_id and not v.valid) downratings
+from   kort.fix f
+inner join kort.user u on f.user_id = u.user_id
+inner join kort.all_errors e on e.error_id = f.error_id and e.schema = f.schema and e.osm_id = f.osm_id
+inner join kort.error_type t on e.error_type_id = t.error_type_id
+left  join kort.answer a on a.type = t.type and a.value = f.message;
+
 create or replace view kort.tracktype as
 select a.answer_id tracktype_id,
        a.value type_key,
