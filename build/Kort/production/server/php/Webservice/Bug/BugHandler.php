@@ -121,9 +121,12 @@ class BugHandler extends DbProxyHandler
      *
      * @return string JSON-encoded bug
      */
-    public function getById($id)
+    public function getById($id, $schema, $osmId)
     {
-        $this->getDbProxy()->setWhere("id = " . $id);
+        $where  = "id = " . $id;
+        $where .= " and schema = '" . $schema . "'";
+        $where .= " and osm_id = " . $osmId;
+        $this->getDbProxy()->setWhere($where);
         return $this->select();
     }
 

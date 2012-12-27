@@ -1,0 +1,24 @@
+.htmlhelper-table tr, td , th{
+    border: 1px solid black;
+}
+.htmlhelper-table {
+    margin: 1em;
+    width: 90%;
+    text-align: left;
+    vertical-align: top;
+}
+
+.htmlhelper-table th {
+    vertical-align: top;
+}
+
+.thumb {
+    width: 10px;
+    height: 12.5px;
+    margin-left: 0.3em;
+    margin-right: 0.3em;
+}
+
+h1 {
+    font-size: 20px;
+}
