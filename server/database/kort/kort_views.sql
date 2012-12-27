@@ -38,7 +38,13 @@ select  e.error_id id,
 from    kort.all_errors e,
         kort.error_type t
 where   e.error_type_id = t.error_type_id
-and     not exists (select 1 from kort.fix f where f.error_id = e.error_id and ((f.complete and f.valid) or not f.complete));
+and     not exists (
+        select 1
+        from kort.fix f
+        where f.error_id = e.error_id
+        and   f.osm_id = e.osm_id
+        and   f.schema = e.schema
+        and ((f.complete and f.valid) or (not f.complete)));
 
 create or replace view kort.validations as
 select  f.fix_id id,
