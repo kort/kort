@@ -30,6 +30,8 @@ else
     cp -r $SOURCE_DIR/test $BUILD_DIR
     cp -r $SOURCE_DIR/patch $BUILD_DIR
     cp -r $SOURCE_DIR/vendor $BUILD_DIR
+    cp -r $SOURCE_DIR/presentation $BUILD_DIR
+    cp -r $SOURCE_DIR/proposals $BUILD_DIR
 
     cp -r $SOURCE_DIR/lib/Leaflet-0.4.5/dist/ $BUILD_DIR/lib/Leaflet-0.4.5/
     cp -r $SOURCE_DIR/lib/Slim-2.1.0/Slim/ $BUILD_DIR/lib/Slim-2.1.0/
