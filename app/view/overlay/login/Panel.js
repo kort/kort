@@ -15,7 +15,7 @@ Ext.define('Kort.view.overlay.login.Panel', {
         scrollable: true,
         cls: 'overlayLeafletMap',
 		items: [
-			{
+            {
                 html:   '<div class="overlay-content">' +
                             '<div class="logo">' +
                                 '<img src="./resources/images/kort-logo.png" />' +
@@ -26,12 +26,13 @@ Ext.define('Kort.view.overlay.login.Panel', {
                                 '<li>' + Ext.i18n.Bundle.message('login.kort.description.3') + '</li>' +
                             '</ul>' +
                             '<div class="introduction">' +
-                                Ext.i18n.Bundle.message('login.introduction.1') +
-                                Kort.util.Config.getKortTitle() +
-                                Ext.i18n.Bundle.message('login.introduction.2') +
+                                '<p>' + Kort.util.Config.getKortTitle() + Ext.i18n.Bundle.message('login.kort.introduction.1') + '</p>' +
+                                '<p>' + Ext.i18n.Bundle.message('login.kort.introduction.2') + '</p>' +
+                                '<p>' + Ext.i18n.Bundle.message('login.kort.introduction.3') + '</p>' +
+                                '<p class="important">' + Ext.i18n.Bundle.message('login.kort.introduction.4') + '</p>' +
                             '</div>' +
                         '</div>'
-			},
+            },
             {
                 xtype: 'container',
                 layout: 'vbox',
