@@ -216,7 +216,7 @@ class FixGetHandler extends DbProxyHandler
     {
         $url  = "http://www.openstreetmap.org/edit?editor=potlatch2&lat=";
         $url .= $fix['latitude'] . "&lon=" . $fix['longitude'] . "&zoom=18";
-        $editPic = "<img src=\"edit.png\" alt=\"Edit in Potlatch2\" title=\"Edit in Potlatch2\" />";
+        $editPic = "<img src=\"resources/images/edit.png\" alt=\"Edit in Potlatch2\" title=\"Edit in Potlatch2\" />";
         $fix['edit'] = "<a href=\"" . $url . "\">" . $editPic . "</a>";
         return $fix;
     }

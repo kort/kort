@@ -22,7 +22,7 @@ class HtmlHelper
         if (empty($headers)) {
             $headers = array_combine(array_keys($data[0]), array_keys($data[0]));
         }
-        echo "<table class=\"htmlhelper-table\">\n";
+        echo "<table class=\"table table-striped\">\n";
         echo "<tr>\n";
         foreach (array_keys($data[0]) as $key) {
             echo "<th>" . $headers[$key] . "</th>\n";
