@@ -54,6 +54,7 @@ class ValidationHandler extends DbProxyHandler
             'osm_type',
             'title',
             'fixmessage',
+            'falsepositive',
             'question',
             'latitude',
             'longitude',
@@ -100,7 +101,21 @@ class ValidationHandler extends DbProxyHandler
 
         $position = $this->getDbProxy()->addToTransaction($params);
         $result = json_decode($this->getDbProxy()->sendTransaction(), true);
+        $result[$position - 1] = array_map(array($this, "convertBoolean"), $result[$position - 1]);
 
         return json_encode($result[$position - 1]);
+    }
+    
+    /**
+     * Converts the string values from the database to "real" boolean values.
+     *
+     * @param array $validation The validation data.
+     *
+     * @return array the $validation data with fixed boolean values
+     */
+    public function convertBoolean(array $validation)
+    {
+        $validation['falsepositive'] = ($validation['falsepositive'] == 't') ? true : false;
+        return $validation;
     }
 }

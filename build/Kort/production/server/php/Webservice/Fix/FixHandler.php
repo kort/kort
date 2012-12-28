@@ -48,7 +48,7 @@ class FixHandler extends DbProxyHandler implements IKoinCount
      */
     protected function getFields()
     {
-        return array('user_id', 'error_id', 'schema', 'osm_id', 'message');
+        return array('user_id', 'error_id', 'schema', 'osm_id', 'message', 'falsepositive');
     }
 
     /**

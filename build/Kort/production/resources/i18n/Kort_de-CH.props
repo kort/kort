@@ -12,7 +12,7 @@ login.kort.description.2=Sammle Koins
 login.kort.description.3=Verbessere OpenStreetMap
 login.kort.introduction.1= soll dazu beitragen die Daten in OpenStreetMap zu verbessern.
 login.kort.introduction.2=Dazu werden dir auf der Karte Fehler in Form von Aufträgen angezeigt. Durch das Lösen solcher Aufträge erhälst du Koins und kannst Auszeichnungen gewinnen.
-login.kort.introduction.3=Gelöste Fehler können dann wiederum von anderen Spielern überprüft werden, um deren Korrektheit zu bestätigen. Sobald ein Lösungsvorschlag genügend positive Bewertungen erhalten hat, ist er bereit, um zu OpenStreetMap zurückgeschriben zu werden.
+login.kort.introduction.3=Gelöste Aufträge können dann wiederum von anderen Spielern überprüft werden, um deren Korrektheit zu bestätigen. Sobald ein Lösungsvorschlag genügend positive Bewertungen erhalten hat, ist er bereit, um zu OpenStreetMap zurückgeschriben zu werden.
 login.kort.introduction.4=Logge dich jetzt ein, um damit zu beginnen!
 login.button.google=Login mit Google
 login.button.osm=Login mit OpenStreetMap
@@ -28,7 +28,7 @@ firststeps.alert.username.empty.message=Bitte gib einen Benutzernamen ein.
 firststeps.alert.username.specialchars.title=Zeichenproblem
 firststeps.alert.username.specialchars.message=Verwende bitte nur Buchstaben und Zahlen für deinen Benutzernamen.
 firststeps.alert.submit.failure.title=Fehler beim Senden
-firststeps.alert.submit.failure.message=Beim Übertragen deines Benutzernamens ist ein Fehler aufgetretten. Bitte versuche es später noch einmal.
+firststeps.alert.submit.failure.message=Ups! Beim Übertragen deines Benutzernamens ist etwas schief gelaufen. Eventuell hilft ein Neustart der App.
 
 # Geolocation error
 geolocationerror.introduction.1=Um 
@@ -58,7 +58,7 @@ fix.sendmask.message=Sende Lösung...
 fix.alert.fixfield.empty.title=Felder ausfüllen
 fix.alert.fixfield.empty.message=Bitte alle Felder ausfüllen.
 fix.alert.submit.failure.title=Fehler beim Senden
-fix.alert.submit.failure.message=Beim Übertragen des Formulars ist etwas schief gelaufen. Bitte versuche es später noch einmal.
+fix.alert.submit.failure.message=Ups! Beim Übertragen der Lösung ist etwas schief gelaufen. Eventuell hilft ein Neustart der App.
 
 # Validation
 validation.title=Prüfen
@@ -68,6 +68,7 @@ validation.list.header=positive Überprüfungen nötig
 validation.distance=Distanz
 
 ## Vote
+vote.falsepositive.question=Es wurde angegeben, dass es keine Lösung zu dieser Frage gibt. Ist dies korrekt?
 vote.container.button.answer=Beantworten
 vote.answeractionsheet.button.accept=Ja
 vote.answeractionsheet.button.decline=Nein
@@ -75,7 +76,7 @@ vote.answeractionsheet.button.cancel=Weiss nicht
 vote.answeractionsheet.question=Ist die Antwort korrekt?
 vote.sendmask.message=Sende Antwort...
 vote.alert.submit.failure.title=Fehler beim Senden
-vote.alert.submit.failure.message=Beim Übertragen des deiner Stimme ist etwas schief gelaufen. Bitte versuche es später noch einmal.
+vote.alert.submit.failure.message=Ups! Beim Übertragen deiner Antwort ist etwas schief gelaufen. Eventuell hilft ein Neustart der App.
 
 # PullRefresh Plugin
 pullrefresh.pullrefresh=Zum Aktualisieren herunterziehen
@@ -118,14 +119,14 @@ profile.alert.username.empty.message=Bitte gib einen Benutzernamen ein.
 profile.alert.username.specialchars.title=Zeichenproblem
 profile.alert.username.specialchars.message=Verwende bitte nur Buchstaben und Zahlen für deinen Benutzernamen.
 profile.alert.submit.failure.title=Fehler beim Senden
-profile.alert.submit.failure.message=Beim Übertragen deines Benutzernamens ist ein Fehler aufgetretten. Bitte versuche es später noch einmal.
+profile.alert.submit.failure.message=Ups! Beim Übertragen deines Benutzernamens ist etwas schief gelaufen. Eventuell hilft ein Neustart der App.
 
 # About
 about.title=Über
 about.version.title=Version
 about.information.title=Weitere Informationen
 about.information.homepage=Webseite:
-about.information.feedback=Feedback:
+about.information.feedback=Feedback/FAQ:
 about.information.bugs=Fehler melden:
 about.developers.title=Entwickler
 about.project.title=Projekt
