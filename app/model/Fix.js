@@ -12,7 +12,8 @@ Ext.define('Kort.model.Fix', {
 			{ name: 'error_id', type: 'string' },
 			{ name: 'schema', type: 'string' },
 			{ name: 'osm_id', type: 'int' },
-			{ name: 'message', type: 'string' }
+			{ name: 'message', type: 'string' },
+			{ name: 'falsepositive', type: 'string' }
         ],
         
 		proxy: {

@@ -53,6 +53,7 @@ create table kort.fix (
     schema character varying(50) not null,
     osm_id integer not null,
     message text,
+    falsepositive boolean not null default false,
     complete boolean not null default false,
     valid boolean,
     constraint complete_validity CHECK ((complete and valid is not null) or not complete),

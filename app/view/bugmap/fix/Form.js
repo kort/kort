@@ -23,7 +23,8 @@ Ext.define('Kort.view.bugmap.fix.Form', {
     initialize: function () {
         var fixContentComponent,
             fixFormPanel,
-            fixField;
+            fixField,
+            fixNotFixableComponent;
         
         this.callParent(arguments);
         
@@ -67,6 +68,12 @@ Ext.define('Kort.view.bugmap.fix.Form', {
             items: [
                 fixField,
                 {
+                    xtype: 'togglefield',
+                    name : 'falsepositive',
+                    label: Ext.i18n.Bundle.message('fix.form.notfixable.label'),
+                    labelWidth: '60%'
+                },
+                {
                     xtype: 'button',
                     cls: 'fixSubmitButton',
                     ui: 'confirm',
@@ -75,14 +82,30 @@ Ext.define('Kort.view.bugmap.fix.Form', {
             ]
         };
         
-        this.add([fixContentComponent, fixFormPanel]);
+        fixNotFixableComponent = {
+            xtype: 'component',
+            cls: 'fixNotFixableComponent',
+            html:    '<div class="fix-content">' +
+                        '<div class="text">' +
+                            '<div class="content">' +
+                                '<p>' +
+                                    Ext.i18n.Bundle.message('fix.notfixable.description') +
+                                '</p>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>'
+        };
+        
+        this.add([fixContentComponent, fixFormPanel, fixNotFixableComponent]);
     },
     
     createFixField: function(bug) {
         var fixField,
             fieldConfig = {
                 name: 'fixfield',
-                cls: 'fixfield'
+                cls: 'fixfield',
+                hideAnimation: { type: 'fadeOut', duration: 500},
+                showAnimation: { type: 'fadeIn', duration: 500}
             };
         
         if(bug.get('view_type') === 'select') {

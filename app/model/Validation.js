@@ -15,6 +15,7 @@ Ext.define('Kort.model.Validation', {
 			{ name: 'view_type', type: 'string' },
 			{ name: 'question', type: 'string' },
 			{ name: 'fixmessage', type: 'string' },
+			{ name: 'falsepositive', type: 'boolean' },
             { name: 'upratings', type: 'int' },
             { name: 'downratings', type: 'int' },
             { name: 'required_votes', type: 'int' },
