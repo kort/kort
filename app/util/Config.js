@@ -165,7 +165,7 @@ Ext.define('Kort.util.Config', {
                     return './server/webservices/validation/position/' + latitude + ',' + longitude;
                 },
                 radius: 20000,
-                limit: 25
+                limit: 15
             },
             user: {
                 url: './server/webservices/user/'
