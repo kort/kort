@@ -45,3 +45,4 @@ composer.phar
 composer.lock
 vendor/
 bin/
+.sencha_backup/
