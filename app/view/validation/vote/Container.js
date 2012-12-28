@@ -21,38 +21,55 @@ Ext.define('Kort.view.validation.vote.Container', {
     initialize: function () {
         var me = this,
             selectAnswersStore = Ext.getStore('SelectAnswers'),
+            voteRecord = me.getRecord(),
+            fixmessage = voteRecord.get('fixmessage'),
             voteContentContainer,
             voteMap,
             voteAnswerButton,
-            fixmessage = me.getRecord().get('fixmessage');
+            voteContentTemplate;
 
         this.callParent(arguments);
         
         // replace fixmessage with title if select view type given
         if(this.getRecord().get('view_type') === 'select') {
             // filter answers for given type
-            selectAnswersStore.filter('type', this.getRecord().get('type'));
+            selectAnswersStore.filter('type', voteRecord.get('type'));
             selectAnswersStore.each(function(item, index, length) {
-                if(item.get('value') === me.getRecord().get('fixmessage')) {
+                if(item.get('value') === fixmessage) {
                     fixmessage = item.get('title');
                 }
             });
         }
         
+        if(voteRecord.get('falsepositive')) {
+            voteContentTemplate = new Ext.XTemplate(
+                '<div class="vote-content">',
+                    '<div class="question">',
+                        '{question}',
+                    '</div>',
+                    '<div class="fixmessage">',
+                        Ext.i18n.Bundle.message('vote.falsepositive.question'),
+                    '</div>',
+                '</div>'
+            );
+        } else {
+            voteContentTemplate = new Ext.XTemplate(
+                '<div class="vote-content">',
+                    '<div class="question">',
+                        '{question}',
+                    '</div>',
+                    '<div class="fixmessage">',
+                        fixmessage,
+                    '</div>',
+                '</div>'
+            );
+        }
+        
         voteContentContainer = {
             xtype: 'component',
             cls: 'voteContent',
-            record: this.getRecord(),
-            tpl:    new Ext.XTemplate(
-                        '<div class="vote-content">',
-                            '<div class="question">',
-                                '{question}',
-                            '</div>',
-                            '<div class="fixmessage">',
-                                fixmessage,
-                            '</div>',
-                        '</div>'
-                    )
+            record: voteRecord,
+            tpl: voteContentTemplate
         };
         
         voteAnswerButton = {
@@ -72,6 +89,6 @@ Ext.define('Kort.view.validation.vote.Container', {
             }
         };
         
-        this.add([voteContentContainer, voteAnswerButton, voteMap]);
+        me.add([voteContentContainer, voteAnswerButton, voteMap]);
     }
 });

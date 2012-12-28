@@ -16,7 +16,8 @@ Ext.define('Kort.controller.Fix', {
             bugmapNavigationView: '#bugmapNavigationView',
             detailComponent: '.fixtabpanel',
             fixFormSubmitButton: '.fixtabpanel .formpanel .button[cls=fixSubmitButton]',
-            fixField: '.fixtabpanel .formpanel .field',
+            fixField: '.fixtabpanel .formpanel .field[name=fixfield]',
+            fixNotFixableToggleField: '.fixtabpanel .formpanel .togglefield[name=falsepositive]',
             fixmap: '.fixtabpanel .kortleafletmap[cls=fixMap]'
         },
         control: {
@@ -25,6 +26,9 @@ Ext.define('Kort.controller.Fix', {
             },
             fixField: {
                 keyup: 'onFixFieldKeyUp'
+            },
+            fixNotFixableToggleField: {
+                change: 'onFixNotFixableToggleFieldChange'
             },
             fixmap: {
                 maprender: 'onMaprender'
@@ -37,18 +41,26 @@ Ext.define('Kort.controller.Fix', {
         var me = this,
             detailComponent = this.getDetailComponent(),
             fixFieldValue = this.getFixField().getValue(),
+            falsepositive = me.getFixNotFixableToggleField().getValue(),
             userId = Kort.user.get('id'),
+            falsepositiveString,
             fix,
             messageBox;
 
-        if (fixFieldValue && fixFieldValue !== '') {
+        if ((fixFieldValue && fixFieldValue !== '') || falsepositive) {
             me.showSendMask();
+            // for valid post request field has to be a string
+            falsepositiveString = falsepositive.toString();
+            if(falsepositive) {
+                fixFieldValue = '-';
+            }
             fix = Ext.create('Kort.model.Fix', {
                 error_id: detailComponent.getRecord().get('id'),
                 schema: detailComponent.getRecord().get('schema'),
                 osm_id: detailComponent.getRecord().get('osm_id'),
                 user_id: userId,
-                message: fixFieldValue
+                message: fixFieldValue,
+                falsepositive: falsepositiveString
             });
             fix.save({
                 success: function(records, operation) {
@@ -72,6 +84,16 @@ Ext.define('Kort.controller.Fix', {
         // submit form if return key was pressed
         if (e.event.keyCode === 13){
             this.onFixFormSubmitButtonTap();
+        }
+    },
+    
+    // @private
+    onFixNotFixableToggleFieldChange: function(cmp, newValue, oldValue) {
+        var value = cmp.getValue();
+        if(value) {
+            this.getFixField().hide();
+        } else {
+            this.getFixField().show();
         }
     },
 
