@@ -11,10 +11,10 @@ class DbWebserviceConfig
 {
     /**
      * The URL of the database webservice.
-     * 
+     *
      * @var string
      */
-    protected $url = "http://kort.rdmr.ch/webservices/db";
+    protected $url = "http://db.kort.ch/webservices/db";
 
     /**
      * Getter for the API key (which must be set in the environment.
