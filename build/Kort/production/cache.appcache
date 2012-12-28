@@ -1,6 +1,68 @@
 CACHE MANIFEST
 # 0b071652196fb8ea1f74ac4350c3c018f6287e05
 index.html
+# a5e81b6d62ad3b105789ea32e6cd302736ffe14b
+resources/images/ajax-loader.gif
+# ce90b52c910bb69d76fa95e53bfc18bc79294254
+resources/images/arrow_black.png
+# 84b01603757987aa75a599fe04e03fe7f1df8178
+resources/images/kort-favicon.ico
+# 4d9b92a19b4dbc7e425acf2ace912e523de4ff68
+resources/images/kort-icon.png
+# 17f2f284c256c8703719caf9b393e59f631047f0
+resources/images/kort-logo.png
+# cb573afcf819ff24bcba1d0d9c240625b12d0aa5
+resources/images/kort-logo_white.png
+# b033b10f244e89b4bfb7b034dae8d80b512672fb
+resources/images/badges/fix_count_1.png
+# 9f536bfde4a594accaf6514af4e97f399401a187
+resources/images/badges/fix_count_10.png
+# bf5feba07ee2732dba84bada7869b3621d934bdd
+resources/images/badges/fix_count_100.png
+# b523748bd50bc35373716ab27c91433be8c2bae7
+resources/images/badges/fix_count_50.png
+# 2ee6199334219e202c90c9f982065770170b926d
+resources/images/badges/highscore_place_1.png
+# 370f24022d0ab583600166faefaac131335f8f8b
+resources/images/badges/highscore_place_2.png
+# 8b692da8d25ce4239c8306a0128b9fa6ca63b9d1
+resources/images/badges/highscore_place_3.png
+# 58bd320fcc70a1184698a263c2bf6c184b7f5673
+resources/images/badges/locked.png
+# 52dbd54c6b2e4788981da881532578b9c967cdfd
+resources/images/badges/vote_count_1.png
+# 86568fc3cd399380d559e325aebeb2427a487cdb
+resources/images/badges/vote_count_10.png
+# 91728ffadc3965f8d065933cf2cb349f4a63a27f
+resources/images/badges/vote_count_100.png
+# 338efef90de657a69178ca8e8e636c3615ebedcb
+resources/images/badges/vote_count_1000.png
+# 43f8e82d0db7d346ee145dd376477d6558d8520f
+resources/images/koins/koin_no_value.png
+# 27537eee5ab70c64bd7370edce2b9930578ab78d
+resources/images/marker_icons/language_unknown.png
+# 08dc02b0244ed139331f84ba549f51f4e4cb7b23
+resources/images/marker_icons/missing_maxspeed.png
+# 11c743518bb89167b599e8e9a96cd64684653ed7
+resources/images/marker_icons/missing_track_type.png
+# 03f7e78b6a743897a97d928a7f893cc60ff98fd1
+resources/images/marker_icons/motorway_ref.png
+# 3ada573655b35ba88e868f85f779eee353f4ca79
+resources/images/marker_icons/own_position.png
+# 4f9293d4d46665de3755ba8c6c2edb3b618b24ed
+resources/images/marker_icons/poi_name.png
+# 5776ae915b6b0f3ec62164a4e812620be6c67350
+resources/images/marker_icons/religion.png
+# fde5816351b56b0c6107016e254830140d2e2697
+resources/images/marker_icons/shadow.png
+# 4bd9b702463c4a9c7d6e8c1cfb23aa38530d78fe
+resources/images/marker_icons/undefined.png
+# 90a31f67e93bfebbcf25525d92939d799402201b
+resources/images/marker_icons/way_wo_tags.png
+# 40035eed74c39e0a5a09d3cc45edce34a7c37f95
+resources/images/validation/thumbs-down.png
+# 368debdc9f12a6b2c5d92f88b0d6e14469844005
+resources/images/validation/thumbs-up.png
 
 
 FALLBACK:
