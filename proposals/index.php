@@ -6,25 +6,32 @@
 /** Load the ClassLoader */
 require_once('../server/php/ClassLoader.php');
 Kort\ClassLoader::registerAutoLoader();
+?>
 
-echo "<html>\n";
-echo "<head>\n";
-echo "<title>Kort - L&ouml;sungsvorschl&auml;ge</title>\n";
-echo "<link href=\"bootstrap/css/bootstrap.min.css\" rel=\"stylesheet\" media=\"screen\">";
-echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n";
-echo "<script src=\"bootstrap/js/bootstrap.min.js\"></script>";
-echo "</head>\n";
-echo "<body>\n";
-
-$completedFixHandler = new Webservice\Fix\FixGetHandler();
-$completed = json_decode($completedFixHandler->getCompletedValidFixes(), true);
-echo "<h1>Validierte L&ouml;sungsvorschl&auml;ge</h1>\n";
-Helper\HtmlHelper::printTable($completed, $completedFixHandler->getHeaders());
-
-$pendingFixHandler = new Webservice\Fix\FixGetHandler();
-$pending = json_decode($pendingFixHandler->getPendingFixes(), true);
-echo "<h1>Laufende L&ouml;sungsvorschl&auml;ge</h1>\n";
-Helper\HtmlHelper::printTable($pending, $pendingFixHandler->getHeaders());
-
-echo "</body>\n";
-echo "</html>\n";
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <title>Kort - L&ouml;sungsvorschl&auml;ge</title>
+    <meta charset="utf-8">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container-fluid">
+        <h1>Validierte Lösungsvorschläge</h1>
+        <?php
+        $completedFixHandler = new Webservice\Fix\FixGetHandler();
+        $completed = json_decode($completedFixHandler->getCompletedValidFixes(), true);
+        Helper\HtmlHelper::printTable($completed, $completedFixHandler->getHeaders());
+        ?>
+        <h1>Laufende Lösungsvorschläge</h1>
+        <?php
+        $pendingFixHandler = new Webservice\Fix\FixGetHandler();
+        $pending = json_decode($pendingFixHandler->getPendingFixes(), true);
+        Helper\HtmlHelper::printTable($pending, $pendingFixHandler->getHeaders());
+        ?>
+    </div>
+</body>
+</html>
