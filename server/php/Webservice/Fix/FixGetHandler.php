@@ -225,12 +225,20 @@ class FixGetHandler extends DbProxyHandler
         $potlatchUrl  = "http://www.openstreetmap.org/edit?editor=potlatch2&";
         $remoteUrl  = "http://www.openstreetmap.org/edit?editor=remote&";
         $params = "lat=" . $fix['latitude'] . "&lon=" . $fix['longitude'] . "&zoom=18";
-        $fix['edit'] = "<a target=\"_blank\" href=\"" . $potlatchUrl . $params . "\">[Potlatch 2]</a> ";
-        $fix['edit'] = $fix['edit'] . "<a target=\"_blank\" href=\"" . $remoteUrl . $params . "\">[JOSM]</a> ";
-
         $keeprightUrl  = "http://www.keepright.at/report_map.php";
         $keeprightUrl .= "?schema=" . $fix['schema'] . "&error=" . $fix['error_id'];
-        $fix['edit'] = $fix['edit'] . "<a target=\"_blank\" href=\"" . $keeprightUrl . "\">[KeepRight]</a>";
+
+        $fix['edit'] = "<div class=\"btn-group\">";
+        $fix['edit'] = $fix['edit'] . "<a class=\"btn btn-primary dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">";
+        $fix['edit'] = $fix['edit'] . "Bearbeiten";
+        $fix['edit'] = $fix['edit'] . "<span class=\"caret\"></span>";
+        $fix['edit'] = $fix['edit'] . "</a>";
+        $fix['edit'] = $fix['edit'] . "<ul class=\"dropdown-menu\">";
+        $fix['edit'] = $fix['edit'] . "<li><a target=\"_blank\" href=\"" . $potlatchUrl . $params . "\">Potlatch 2</a></li>";
+        $fix['edit'] = $fix['edit'] . "<li><a target=\"_blank\" href=\"" . $remoteUrl . $params . "\">JSOM</a></li>";
+        $fix['edit'] = $fix['edit'] . "<li><a target=\"_blank\" href=\"" . $keeprightUrl . "\">KeepRight</a></li>";
+        $fix['edit'] = $fix['edit'] . "</ul>";
+        $fix['edit'] = $fix['edit'] . "</div>";
 
         return $fix;
     }
