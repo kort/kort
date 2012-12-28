@@ -139,6 +139,9 @@ class FixGetHandler extends DbProxyHandler
         $fix = $this->edit($fix);
 
         $fix['answer'] = htmlentities($fix['answer']);
+        if ($fix['falsepositive'] == "t") {
+            $fix['answer'] = "Nicht lösbar";
+        }
 
         unset($fix['osm_id']);
         unset($fix['required_votes']);
@@ -147,6 +150,7 @@ class FixGetHandler extends DbProxyHandler
         unset($fix['osm_type']);
         //unset($fix['fix_id']);
         unset($fix['complete']);
+        unset($fix['falsepositive']);
         unset($fix['valid']);
         unset($fix['latitude']);
         unset($fix['longitude']);
@@ -166,9 +170,9 @@ class FixGetHandler extends DbProxyHandler
     protected function booleanToText($value)
     {
         if ($value == "t") {
-            return "Yes";
+            return "Ja";
         } elseif ($value == "f") {
-            return "No";
+            return "Nein";
         } else {
             return "";
         }
@@ -222,7 +226,12 @@ class FixGetHandler extends DbProxyHandler
         $remoteUrl  = "http://www.openstreetmap.org/edit?editor=remote&";
         $params = "lat=" . $fix['latitude'] . "&lon=" . $fix['longitude'] . "&zoom=18";
         $fix['edit'] = "<a target=\"_blank\" href=\"" . $potlatchUrl . $params . "\">[Potlatch 2]</a> ";
-        $fix['edit'] = $fix['edit'] . "<a target=\"_blank\" href=\"" . $remoteUrl . $params . "\">[JOSM]</a>";
+        $fix['edit'] = $fix['edit'] . "<a target=\"_blank\" href=\"" . $remoteUrl . $params . "\">[JOSM]</a> ";
+
+        $keeprightUrl  = "http://www.keepright.at/report_map.php";
+        $keeprightUrl .= "?schema=" . $fix['schema'] . "&error=" . $fix['error_id'];
+        $fix['edit'] = $fix['edit'] . "<a target=\"_blank\" href=\"" . $keeprightUrl . "\">[KeepRight]</a>";
+
         return $fix;
     }
 }
