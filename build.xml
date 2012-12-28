@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project name="@@@" default=".help">
+<project name="Kort" default=".help">
     <import file="${basedir}/.sencha/app/build-impl.xml"/>
-    <import file="${basedir}/build_kort.xml"/>
 
     <!--
     The following targets can be provided to inject logic before and/or after key steps
@@ -23,6 +22,11 @@
 
             <target name="-before-init"/>
             <target name="-after-init"/>
+            
+        The "page" target performs the call to Sencha Cmd to build the 'all-classes.js' file.
+
+            <target name="-before-page"/>
+            <target name="-after-page"/>
 
         The "build" target performs the call to Sencha Cmd to build the application.
 
