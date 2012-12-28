@@ -229,9 +229,9 @@ class FixGetHandler extends DbProxyHandler
         $keeprightUrl .= "?schema=" . $fix['schema'] . "&error=" . $fix['error_id'];
 
         $fix['edit'] = "<div class=\"btn-group\">";
-        $fix['edit'] = $fix['edit'] . "<a class=\"btn btn-primary dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">";
-        $fix['edit'] = $fix['edit'] . "Bearbeiten";
-        $fix['edit'] = $fix['edit'] . "<span class=\"caret\"></span>";
+        $fix['edit'] = $fix['edit'] . "<a class=\"btn btn-success dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">";
+        $fix['edit'] = $fix['edit'] . "Editor";
+        $fix['edit'] = $fix['edit'] . " <span class=\"caret\"></span>";
         $fix['edit'] = $fix['edit'] . "</a>";
         $fix['edit'] = $fix['edit'] . "<ul class=\"dropdown-menu\">";
         $fix['edit'] = $fix['edit'] . "<li><a target=\"_blank\" href=\"" . $potlatchUrl . $params . "\">Potlatch 2</a></li>";
