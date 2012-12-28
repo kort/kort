@@ -14,7 +14,7 @@ Kort\ClassLoader::registerAutoLoader();
     <title>Kort - L&ouml;sungsvorschl&auml;ge</title>
     <meta charset="utf-8">
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="resources/styles/styles.css">
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
 </head>
