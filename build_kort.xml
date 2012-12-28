@@ -15,6 +15,7 @@
     <property name="js.leaflet.dir" value="ux" />
     <property name="js.leaflet.doc.dir" value="docs/Ext.ux.LeafletMap"/>
     <property name="js.config" value="app/util/Config.js" />
+    <property name="js.config.prod" value="build/Kort/production/app.js" />
     <property name="test.dir" value="test" />
 
 
@@ -116,6 +117,10 @@
 
     <target name="version">
         <replace file="${js.config}"
+            summary="true"
+            token='{BUILD_NR}'
+            value='${env.TRAVIS_BUILD_NUMBER}' />
+        <replace file="${js.config.prod}"
             summary="true"
             token='{BUILD_NR}'
             value='${env.TRAVIS_BUILD_NUMBER}' />
