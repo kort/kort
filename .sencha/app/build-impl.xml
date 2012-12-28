@@ -60,13 +60,30 @@
         <taskdef resource="com/sencha/ant/antlib.xml" classpath="${cmd.dir}/sencha.jar"/>
         <x-sencha-init prefix=""/>
 
+        <!-- default the build environment to production if it is unset by this point -->
+        <property name="args.environment" value="production"/>
+        
         <!-- initialize the build.dir property from the workspace config after we've loaded it -->
         <property name="build.dir" location="${workspace.build.dir}"/>
-
+        
+        <!-- Specify the name for the individual resource dirs in the app -->
+        <property name="app.sass.name" value="sass"/>
+        
+        <!-- Specify the resources path in the app -->
+        <property name="app.resources.dir" location="${app.dir}/resources"/>
+        
+        <!-- Specify the sass path in the app -->
+        <property name="app.sass.dir" location="${app.resources.dir}/${app.sass.name}"/>
+        
+        <!-- Specify packaging info -->
+        <property name="app.packager.file" location="${app.dir}/packager.temp.json"/>
+        
         <!-- Some operations require sencha.jar in the Ant classpath -->
         <x-extend-classpath>
             <jar path="${cmd.dir}/sencha.jar"/>
         </x-extend-classpath>
+
+        <x-verify-app-cmd-ver/>
     </target>
     <target name="-after-init"/>
     <target name="init"
@@ -89,7 +106,7 @@
     -->
     <target name="-before-sass"/>
     <target name="-sass">
-        <x-shell dir="${app.dir}/resources/sass">
+        <x-shell dir="${app.sass.dir}">
             compass compile --boring --force
         </x-shell>
     </target>
@@ -101,13 +118,6 @@
         <antcall target="-after-sass"/>
     </target>
     
-    <scriptdef name="x-app-build" language="javascript" src="${framework.config.dir}/app-build.js">
-        <classpath>
-            <pathelement location="${cmd.dir}/lib/ant-contrib-1.0b3.jar"/>
-            <pathelement location="${cmd.dir}/sencha.jar"/>
-        </classpath>
-    </scriptdef>
-
     <!--
     Build Page
     -->
@@ -117,7 +127,15 @@
         <property name="args.path" location="."/>
         <property name="args.destination" location="${workspace.build.dir}"/>
         <property name="args.environment" value="production"/>
+        
+        <x-script-def name="x-app-build" 
+                      src="${framework.config.dir}/app-build.js">
+            <script src="${cmd.config.dir}/ant/JSON.js"/>
+            <script src="${cmd.config.dir}/ant/ant-util.js"/>
+        </x-script-def>
+        
         <x-app-build/>
+        
     </target>
     <target name="-after-page"/>
     <target name="page" depends="init" unless="skip.page"
@@ -132,7 +150,7 @@
         <x-sencha-command>
             package
             run
-            ${app.dir}/packager.temp.json
+            ${app.packager.file}
         </x-sencha-command>
     </target>
     <target name="-after-run"/>
