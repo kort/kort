@@ -20,17 +20,13 @@ Kort\ClassLoader::registerAutoLoader();
 </head>
 <body>
     <div class="container-fluid">
-        <h1>Validierte Lösungsvorschläge</h1>
+        <div class="page-header">
+            <h1>L&ouml;sungsvorschl&auml;ge <small>Von Benutzern von Kort erfasst und validiert.</small></h1>
+        </div>
         <?php
         $completedFixHandler = new Webservice\Fix\FixGetHandler();
         $completed = json_decode($completedFixHandler->getCompletedValidFixes(), true);
         Helper\HtmlHelper::printTable($completed, $completedFixHandler->getHeaders());
-        ?>
-        <h1>Laufende Lösungsvorschläge</h1>
-        <?php
-        $pendingFixHandler = new Webservice\Fix\FixGetHandler();
-        $pending = json_decode($pendingFixHandler->getPendingFixes(), true);
-        Helper\HtmlHelper::printTable($pending, $pendingFixHandler->getHeaders());
         ?>
     </div>
 </body>

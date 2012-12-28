@@ -36,6 +36,7 @@ class FixGetHandler extends DbProxyHandler
             'formatted_create_date',
             'latitude',
             'longitude',
+            'error_type',
             'answer',
             'falsepositive',
             'description',
@@ -66,6 +67,7 @@ class FixGetHandler extends DbProxyHandler
             'latitude'              => 'Latitude',
             'longitude'             => 'Longitude',
             'question'              => 'Auftrag',
+            'error_type'            => 'Fehler',
             'answer'                => 'L&ouml;sungsvorschlag',
             'falsepositive'         => 'Nicht lösbar?',
             'description'           => 'Beschreibung des L&ouml;sungsvorschlags',
@@ -78,7 +80,7 @@ class FixGetHandler extends DbProxyHandler
             'osm_id'                => 'OSM object ID',
             'osm_link'              => 'OSM-Objekt',
             'osm_type'              => 'OSM type',
-            'edit'                  => 'Bearbeiten'
+            'edit'                  => 'Bearbeiten in OSM'
         );
     }
 
@@ -134,9 +136,12 @@ class FixGetHandler extends DbProxyHandler
     {
         $fix = $this->votes($fix);
         $fix = $this->osmLink($fix);
-        $fix = $this->editInPotlatch2($fix);
+        $fix = $this->edit($fix);
 
         $fix['answer'] = htmlentities($fix['answer']);
+        if ($fix['falsepositive'] == "t") {
+            $fix['answer'] = "Nicht lösbar";
+        }
 
         unset($fix['osm_id']);
         unset($fix['required_votes']);
@@ -145,6 +150,7 @@ class FixGetHandler extends DbProxyHandler
         unset($fix['osm_type']);
         //unset($fix['fix_id']);
         unset($fix['complete']);
+        unset($fix['falsepositive']);
         unset($fix['valid']);
         unset($fix['latitude']);
         unset($fix['longitude']);
@@ -164,9 +170,9 @@ class FixGetHandler extends DbProxyHandler
     protected function booleanToText($value)
     {
         if ($value == "t") {
-            return "Yes";
+            return "Ja";
         } elseif ($value == "f") {
-            return "No";
+            return "Nein";
         } else {
             return "";
         }
@@ -214,12 +220,26 @@ class FixGetHandler extends DbProxyHandler
      *
      * @return array
      */
-    protected function editInPotlatch2(array $fix)
+    protected function edit(array $fix)
     {
-        $url  = "http://www.openstreetmap.org/edit?editor=potlatch2&lat=";
-        $url .= $fix['latitude'] . "&lon=" . $fix['longitude'] . "&zoom=18";
-        $editPic = "<img src=\"resources/images/edit.png\" alt=\"Edit in Potlatch2\" title=\"Edit in Potlatch2\" />";
-        $fix['edit'] = "<a href=\"" . $url . "\">" . $editPic . "</a>";
+        $potlatchUrl  = "http://www.openstreetmap.org/edit?editor=potlatch2&";
+        $remoteUrl  = "http://www.openstreetmap.org/edit?editor=remote&";
+        $params = "lat=" . $fix['latitude'] . "&lon=" . $fix['longitude'] . "&zoom=18";
+        $keeprightUrl  = "http://www.keepright.at/report_map.php";
+        $keeprightUrl .= "?schema=" . $fix['schema'] . "&error=" . $fix['error_id'];
+
+        $fix['edit'] = "<div class=\"btn-group\">";
+        $fix['edit'] = $fix['edit'] . "<a class=\"btn btn-success dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">";
+        $fix['edit'] = $fix['edit'] . "Editor";
+        $fix['edit'] = $fix['edit'] . " <span class=\"caret\"></span>";
+        $fix['edit'] = $fix['edit'] . "</a>";
+        $fix['edit'] = $fix['edit'] . "<ul class=\"dropdown-menu\">";
+        $fix['edit'] = $fix['edit'] . "<li><a target=\"_blank\" href=\"" . $potlatchUrl . $params . "\">Potlatch 2</a></li>";
+        $fix['edit'] = $fix['edit'] . "<li><a target=\"_blank\" href=\"" . $remoteUrl . $params . "\">JSOM</a></li>";
+        $fix['edit'] = $fix['edit'] . "<li><a target=\"_blank\" href=\"" . $keeprightUrl . "\">KeepRight</a></li>";
+        $fix['edit'] = $fix['edit'] . "</ul>";
+        $fix['edit'] = $fix['edit'] . "</div>";
+
         return $fix;
     }
 }
