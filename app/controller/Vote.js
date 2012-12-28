@@ -93,7 +93,10 @@ Ext.define('Kort.controller.Vote', {
         validString = valid.toString();
         
         me.showSendMask();
-        vote = Ext.create('Kort.model.Vote', { fix_id: detailComponent.getRecord().get('id'), user_id: userId, valid: validString });
+        vote = Ext.create('Kort.model.Vote', {
+            fix_id: detailComponent.getRecord().get('id'),
+            user_id: userId, valid: validString
+        });
         vote.save({
             success: function(records, operation) {
                 me.hideSendMask();
