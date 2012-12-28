@@ -13,7 +13,8 @@ select  e.error_id,
         e.txt3,
         e.txt4,
         e.txt5
-from    keepright.errors e;
+from    keepright.errors e
+where   e.state in ('new', 'reopened');
 
 create or replace view kort.errors as
 select  e.error_id id,
@@ -85,6 +86,7 @@ select f.fix_id,
        e.longitude,
        e.error_id,
        e.schema,
+       t.description error_type,
        f.message answer,
        f.falsepositive,
        a.title description,

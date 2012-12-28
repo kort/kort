@@ -36,6 +36,7 @@ class FixGetHandler extends DbProxyHandler
             'formatted_create_date',
             'latitude',
             'longitude',
+            'error_type',
             'answer',
             'falsepositive',
             'description',
@@ -66,6 +67,7 @@ class FixGetHandler extends DbProxyHandler
             'latitude'              => 'Latitude',
             'longitude'             => 'Longitude',
             'question'              => 'Auftrag',
+            'error_type'            => 'Fehler',
             'answer'                => 'L&ouml;sungsvorschlag',
             'falsepositive'         => 'Nicht lösbar?',
             'description'           => 'Beschreibung des L&ouml;sungsvorschlags',
@@ -78,7 +80,7 @@ class FixGetHandler extends DbProxyHandler
             'osm_id'                => 'OSM object ID',
             'osm_link'              => 'OSM-Objekt',
             'osm_type'              => 'OSM type',
-            'edit'                  => 'Bearbeiten'
+            'edit'                  => 'Bearbeiten in OSM'
         );
     }
 
@@ -134,7 +136,7 @@ class FixGetHandler extends DbProxyHandler
     {
         $fix = $this->votes($fix);
         $fix = $this->osmLink($fix);
-        $fix = $this->editInPotlatch2($fix);
+        $fix = $this->edit($fix);
 
         $fix['answer'] = htmlentities($fix['answer']);
 
@@ -214,12 +216,13 @@ class FixGetHandler extends DbProxyHandler
      *
      * @return array
      */
-    protected function editInPotlatch2(array $fix)
+    protected function edit(array $fix)
     {
-        $url  = "http://www.openstreetmap.org/edit?editor=potlatch2&lat=";
-        $url .= $fix['latitude'] . "&lon=" . $fix['longitude'] . "&zoom=18";
-        $editPic = "<img src=\"resources/images/edit.png\" alt=\"Edit in Potlatch2\" title=\"Edit in Potlatch2\" />";
-        $fix['edit'] = "<a href=\"" . $url . "\">" . $editPic . "</a>";
+        $potlatchUrl  = "http://www.openstreetmap.org/edit?editor=potlatch2&";
+        $remoteUrl  = "http://www.openstreetmap.org/edit?editor=remote&";
+        $params = "lat=" . $fix['latitude'] . "&lon=" . $fix['longitude'] . "&zoom=18";
+        $fix['edit'] = "<a target=\"_blank\" href=\"" . $potlatchUrl . $params . "\">[Potlatch 2]</a> ";
+        $fix['edit'] = $fix['edit'] . "<a target=\"_blank\" href=\"" . $remoteUrl . $params . "\">[JOSM]</a>";
         return $fix;
     }
 }
