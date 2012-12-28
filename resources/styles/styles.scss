@@ -21,6 +21,13 @@ $label-background-color: #46578D;
     .introduction {
         font-size: $default-font-size;
         margin: 1em 0;
+        
+        p {
+            margin-bottom: 0.6em;
+        }
+        .important {
+            font-weight: bold;
+        }
     }
 }
 
@@ -163,6 +170,10 @@ $label-background-color: #46578D;
         }
         .x-button {
             margin-bottom: 0.3em;
+        }
+        .x-toggle-field {
+            font-size: 0.8em;
+            margin-bottom: 0.5em;
         }
     }
 }
@@ -718,4 +729,8 @@ $label-background-color: #46578D;
 .emptytext {
     text-align: center;
     margin: 1em 0.5em;
+}
+
+.x-form-label span {
+    font-size: 1em;
 }
