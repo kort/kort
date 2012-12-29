@@ -18,6 +18,7 @@ heroku apps:create $APP_NAME
 
 if [[ $APP_NAME == "kort" ]] ; then
     heroku domains:add www.kort.ch --app $APP_NAME
+    heroku domains:add play.kort.ch --app $APP_NAME
 fi
 
 git push -f heroku master
