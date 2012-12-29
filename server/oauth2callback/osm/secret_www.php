@@ -1,6 +1,6 @@
 <?php
 /**
- * kort - The consumer key and secret for OpenStreetMap OAuth (kort)
+ * kort - The consumer key and secret for OpenStreetMap OAuth (www.kort.ch)
  */
 
 $consumerKey = "ZBpU9eJuUa0yVoDZAlQRd8HnrChgzqN7zWyLPpOy";

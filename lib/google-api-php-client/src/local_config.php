@@ -11,7 +11,7 @@ $apiConfig = array(
     // OAuth2 Settings, you can get these keys at https://code.google.com/apis/console
     'oauth2_client_id' => '653755350671.apps.googleusercontent.com',
     'oauth2_client_secret' => '7o67nw_e1diHMK72Q_GJlBsg',
-    'oauth2_redirect_uri' => 'http://' . $_SERVER['HTTP_HOST'] . ($_SERVER['HTTP_HOST'] == "localhost" ? '/kort' : '') . '/server/oauth2callback',
+    'oauth2_redirect_uri' => 'http://' . $_SERVER['HTTP_HOST'] . ($_SERVER['HTTP_HOST'] == "localhost" ? '/kort' : '') . '/server/oauth2callback/google',
 
     // The developer key, you get this at https://code.google.com/apis/console
     'developer_key' => 'AIzaSyCUa-hbodrdfulgB-QnrMPCY9dOZBObPiw',
