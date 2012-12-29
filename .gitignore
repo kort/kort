@@ -5,6 +5,7 @@
 /_DOCUMENTATION/02_Documentation/kort.pdf
 /_DOCUMENTATION/03_Model/data_model.png
 /chef/.vagrant
+/lib/sencha-touch-2.1.0/
 *.aux
 *.glo
 *.idx
