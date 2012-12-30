@@ -56,6 +56,7 @@ create table kort.fix (
     falsepositive boolean not null default false,
     complete boolean not null default false,
     valid boolean,
+    in_osm boolean not null default false,
     constraint complete_validity CHECK ((complete and valid is not null) or not complete),
     constraint only_one_pending_per_error CHECK (check_fix_onlyone_pending_per_error(error_id, schema, osm_id)
 );

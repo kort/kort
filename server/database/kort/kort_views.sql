@@ -92,6 +92,7 @@ select f.fix_id,
        a.title description,
        f.complete,
        f.valid,
+       f.in_osm,
        t.required_votes,
        (select count(1) from kort.vote v where v.fix_id = f.fix_id and v.valid) upratings,
        (select count(1) from kort.vote v where v.fix_id = f.fix_id and not v.valid) downratings
