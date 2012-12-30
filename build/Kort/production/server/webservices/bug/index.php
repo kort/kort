@@ -18,6 +18,7 @@ $slim = new \Helper\SlimHelper($app);
 
 $bugHandler = new \Webservice\Bug\BugHandler();
 $fixHandler = new \Webservice\Fix\FixHandler();
+$fixGetHandler = new \Webservice\Fix\FixGetHandler();
 
 $app->get(
     '/position/:lat,:lng',
@@ -53,6 +54,14 @@ $app->post(
         } else {
             $app->response()->write($result);
         }
+    }
+);
+
+$app->get(
+    '/fix/completed',
+    function () use ($fixGetHandler, $app) {
+        $fixes = $fixGetHandler->getCompletedValidFixes();
+        $app->response()->write($fixes);
     }
 );
 
