@@ -68,7 +68,7 @@ class FixGetHandler extends DbProxyHandler
      */
     public function getCompletedValidFixes()
     {
-        return $this->getFixes("complete and valid");
+        return $this->getFixes("complete and valid and not in_osm");
     }
 
     /**
