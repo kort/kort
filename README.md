@@ -8,7 +8,7 @@ Kort is built using [Travis CI](https://travis-ci.org):
 
 [![Build Status](https://secure.travis-ci.org/odi86/kort.png)](http://travis-ci.org/odi86/kort)
 
-The app is deployed on [Heroku](https://www.heroku.com/): http://www.kort.ch
+The app is deployed on [Heroku](https://www.heroku.com/): http://play.kort.ch
 
 ## Abstract
 
@@ -38,6 +38,11 @@ Finally he can earn badges for different kind of actions.
 
 The whole gamification is a huge area and we only implemented a few basics.
 There is a lot of room for improvement to keep the players motivated and  serve all the different types of gamers.
+
+## Other repositories
+
+* [odi86/kort-docu](https://github.com/odi86/kort-docu): Documents of Kort
+* [odi86/kort-home](https://github.com/odi86/kort-home): Website of Kort (http://www.kort.ch)
 
 ## License
 
