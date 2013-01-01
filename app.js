@@ -234,7 +234,6 @@ Ext.application({
     prepareI18n: function() {
         Ext.i18n.Bundle.configure({
             bundle: 'Kort',
-            language: 'de-CH',
             path: 'resources/i18n',
             noCache: true
         });
@@ -268,25 +267,34 @@ Ext.application({
     },
 
     onUpdated: function() {
+        // Prepare i18n bundle
+        // this has to be done directly in onUpdated method!
+        Ext.i18n.Bundle.configure({
+            bundle: 'Kort',
+            path: 'resources/i18n',
+            noCache: true
+        });
+
         // Override MessageBox default messages
+        // this has to be done directly in onUpdated method!
         Ext.override('Kort.MessageBox', {
             override: 'Ext.MessageBox',
-            
+
             statics: {
-                YES   : { text: 'Ja',   itemId: 'yes', ui: 'action'},
-                NO    : { text: 'Nein', itemId: 'no'},
+                YES   : { text: Ext.i18n.Bundle.message('messagebox.yes'),   itemId: 'yes', ui: 'action'},
+                NO    : { text: Ext.i18n.Bundle.message('messagebox.no'), itemId: 'no'},
 
                 YESNO: [
-                    { text: 'Ja',   itemId: 'yes', ui: 'action'},
-                    { text: 'Nein', itemId: 'no'}
+                    { text: Ext.i18n.Bundle.message('messagebox.yes'),   itemId: 'yes', ui: 'action'},
+                    { text: Ext.i18n.Bundle.message('messagebox.no'), itemId: 'no'}
                 ]
             }
         });
-
         Ext.Msg.defaultAllowedConfig.zIndex = 1600;
+
         Ext.Msg.confirm(
-            "Neue App-Version",
-            "Die App wurde auf die neuste Version aktualisiert. App neu laden?",
+            Ext.i18n.Bundle.message('update.title'),
+            Ext.i18n.Bundle.message('update.message'),
             function(buttonId) {
                 if (buttonId === 'yes') {
                     window.location.reload();
