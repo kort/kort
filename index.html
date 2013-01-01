@@ -8,7 +8,7 @@
         function startscreenLoad() {
             var lang = navigator.language || navigator.browserLanguage || navigator.userLanguage;
 
-            if(lang === 'de') {
+            if(document.getElementById("loading-text") && lang === 'de') {
                 document.getElementById("loading-text").innerHTML = 'wird geladen. Gleich gehts los...'
             } else {
                 document.getElementById("loading-text").innerHTML = 'is loading. Get ready...'
