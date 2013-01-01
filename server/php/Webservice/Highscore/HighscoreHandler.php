@@ -5,6 +5,7 @@
 namespace Webservice\Highscore;
 
 use Webservice\DbProxyHandler;
+use Webservice\TransactionDbProxy;
 use Helper\PostGisSqlHelper;
 use Helper\GravatarHelper;
 
@@ -13,6 +14,21 @@ use Helper\GravatarHelper;
  */
 class HighscoreHandler extends DbProxyHandler
 {
+    /**
+     * Initialized the HighscoreHandler object.
+     *
+     * @param TransactionDbProxy $dbProxy The database proxy object.
+     */
+    public function __construct(TransactionDbProxy $dbProxy = null)
+    {
+        parent::__construct();
+        if (empty($dbProxy)) {
+            $this->setDbProxy(new TransactionDbProxy());
+        } else {
+            $this->setDbProxy($dbProxy);
+        }
+    }
+
     /**
      * Returns the table used by this handler.
      *
@@ -50,14 +66,30 @@ class HighscoreHandler extends DbProxyHandler
      */
     public function getHighscore($limit)
     {
-        $this->getDbProxy()->setLimit($limit);
-        $scoreData = $this->getDbProxy()->select();
-        if (!$scoreData) {
+        $sql  = "select * from (select " . implode($this->getFields(), ',');
+        $sql .= " from " . $this->getTable();
+        $sql .= " limit " . $limit;
+        $sql .= ") hs union ";
+        $sql .= "select * from ";
+        $sql .= "(select " . implode($this->getFields(), ',');
+        $sql .= " from " . $this->getTable();
+        $sql .= " ) my where my.user_id = " . $_SESSION['user_id'];
+        $sql .= " order by ranking";
+
+
+        $params = array();
+        $params['sql'] = $sql;
+        $params['type'] = "SQL";
+
+        $position = $this->getDbProxy()->addToTransaction($params);
+        $result = json_decode($this->getDbProxy()->sendTransaction(), true);
+        $scoreList = $result[$position - 1];
+        if (!$scoreList) {
             return false;
         }
-        $scoreList = json_decode($scoreData, true);
         $scoreList = array_map("self::isYourScore", $scoreList);
         $scoreList = array_map("self::setGravatarUrl", $scoreList);
+
 
         return json_encode($scoreList);
     }
