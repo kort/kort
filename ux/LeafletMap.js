@@ -324,11 +324,15 @@ Ext.define('Ext.ux.LeafletMap', {
 
     // @private
     onGeoUpdate: function (geo) {
-        var ll = window.L;
+        var ll = window.L,
+            ownPositionMarker = this.getOwnPositionMarker();
 
         if (ll && geo && (this.getAutoMapCenter() || this.getInitialCenter())) {
             this.setMapCenter(new ll.LatLng(geo.getLatitude(), geo.getLongitude()));
             this.setInitialCenter(false);
+        }
+        if(ownPositionMarker) {
+            ownPositionMarker.setLatLng(L.latLng(geo.getLatitude(), geo.getLongitude()));
         }
     },
 
@@ -401,24 +405,6 @@ Ext.define('Ext.ux.LeafletMap', {
         ownPositionMarker = L.marker([me.getGeo().getLatitude(), me.getGeo().getLongitude()], markerOptions);
         me.setOwnPositionMarker(ownPositionMarker);
         ownPositionMarker.addTo(me.getMap());
-
-        // add listener for locationupdate event of geolocation for setting marker position
-        me.getGeo().addListener('locationupdate', function() {
-            // this referes to the geolocation
-            me.setOwnPositionMarkerPosition(L.latLng(this.getLatitude(), this.getLongitude()));
-        });
-    },
-
-    /**
-     * @private
-     * Sets position of own position marker
-     * @param {L.LatLng} latlng New position of marker
-     */
-    setOwnPositionMarkerPosition: function(latlng) {
-        var ownPositionMarker = this.getOwnPositionMarker();
-        if(ownPositionMarker) {
-            ownPositionMarker.setLatLng(latlng);
-        }
     },
 
     // @private
