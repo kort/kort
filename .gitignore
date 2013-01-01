@@ -5,8 +5,6 @@
 /chef/.vagrant
 /lib/sencha-touch-2.1.0/
 resources/styles/styles.css
-proposals/resources/styles/styles.css
-presentation/resources/styles/styles.css
 server/php/Webservice/Database/DbConfig.php
 *.bak
 docs/Kort
