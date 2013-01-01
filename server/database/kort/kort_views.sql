@@ -153,7 +153,8 @@ select u.user_id id,
        u.secret,
        u.koin_count,
        (select count(1) from kort.fix f where f.user_id = u.user_id) fix_count,
-       (select count(1) from kort.vote v where v.user_id = u.user_id) vote_count
+       (select count(1) from kort.vote v where v.user_id = u.user_id) vote_count,
+       (select ranking from (select ranking, user_id from kort.highscore) hs where user_id = u.user_id) ranking
 from   kort.user u;
 
 create or replace view kort.user_badges as
