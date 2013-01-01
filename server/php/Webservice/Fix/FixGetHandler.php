@@ -46,6 +46,7 @@ class FixGetHandler extends DbProxyHandler
             'downratings',
             'osm_id',
             'osm_type',
+            'osm_tag',
             'schema',
             'error_id'
         );
