@@ -20,7 +20,6 @@ login.loadmask.message=Login...
 # Firststeps
 firststeps.introduction.1=Willkommen bei 
 firststeps.introduction.2=! Wähle einen Benutzernamen:
-firststeps.form.username.placeholder=Benutzername
 firststeps.form.button.submit=Mission beginnen!
 firststeps.alert.username.empty.title=Benutzernamen eingeben
 firststeps.alert.username.empty.message=Bitte gib einen Benutzernamen ein.
@@ -160,9 +159,17 @@ reward.alert.koins.total.1=Deine Gesamtpunktzahl beträgt nun
 reward.alert.koins.total.2=Koins.
 reward.alert.badges.title=Gewonnene Auszeichnungen
 
-# App startscreen
-loading.message=is loading. Get ready...
-
 # App update
 update.title=Neue App-Version
 update.message=Die App wurde auf die neuste Version aktualisiert. App neu laden?
+
+
+###############################
+# Labels used directly in source files (without Ext.i18n.Bundle plugin)
+###############################
+
+# App startscreen (index.html)
+loading.message=is loading. Get ready...
+
+# Firststeps (app/util/Config.js)
+firststeps.form.username.placeholder=Username
