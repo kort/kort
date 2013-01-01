@@ -471,27 +471,30 @@ $label-background-color: #46578D;
             color: #fff;
         }
     }
-    .koins {
+    .koins,
+    .ranking {
         padding: 0.1em $panel-padding;
         clear: both;
         
-        .koins-image {
+        .koins-image,
+        .ranking-image {
             float: left;
             img {
-                $profile-koin-image-size: 60px;
-                width: $profile-koin-image-size/2;
-                height: $profile-koin-image-size/2;
+                $profile-image-size: 60px;
+                width: $profile-image-size/2;
+                height: $profile-image-size/2;
             }
         }
-        .koins-info {
+        .koins-info,
+        .ranking-info {
             margin-top: 0.2em;
             
-            .koins-number {
+            .value {
                 margin: 0 0.3em 0 0.5em;
                 font-size: 1.2em;
                 font-weight: bold;
             }
-            .koins-title {
+            .text {
                 text-transform: uppercase;
                 font-size: 0.7em;
             }

@@ -19,6 +19,7 @@ Ext.define('Kort.model.User', {
 			{ name: 'fix_count', type: 'int' },
 			{ name: 'vote_count', type: 'int' },
 			{ name: 'koin_count', type: 'int' },
+			{ name: 'ranking', type: 'int' },
             { name: 'secret', type: 'string' }
         ],
         
