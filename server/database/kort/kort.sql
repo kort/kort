@@ -36,6 +36,7 @@ create table kort.error_type (
     error_type_id integer primary key,
     type character varying(20) not null,
     description character varying(255),
+    osm_tag character varying(100),
     view_type character varying(50),
     answer_placeholder character varying(100),
     vote_question character varying(255),
