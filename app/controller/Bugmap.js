@@ -107,20 +107,7 @@ Ext.define('Kort.controller.Bugmap', {
         var me = this;
         me.setMap(map);
 
-        // adding markers
-        if(cmp.getGeo()) {
-            me.addOwnPositionMarker(cmp, map);
-
-            // add listener for locationupdate event of geolocation for setting marker position
-            cmp.getGeo().addListener('locationupdate', function() {
-                // this referes to the geolocation
-                me.setOwnPositionMarkerPosition(L.latLng(this.getLatitude(), this.getLongitude()));
-            });
-        }
-
-        // wait until correct position is found
-        Ext.Function.defer(me.refreshBugMarkers, 700, me);
-
+        me.refreshBugMarkers();
         me.getMarkerLayerGroup().addTo(map);
     },
 
@@ -213,43 +200,6 @@ Ext.define('Kort.controller.Bugmap', {
         marker.lastClickTimestamp = 0;
         marker.on('click', me.onMarkerClick, me);
         me.getMarkerLayerGroup().addLayer(marker);
-    },
-    
-    /**
-     * @private
-     * Adds own position marker to map
-     * @param {Ext.ux.LeafletMap} cmp LeafletMap component
-     * @param {L.Map} Leaflet map instance
-     */
-    addOwnPositionMarker: function(cmp, map) {
-        var iconWidth = 20,
-            iconHeight = 20,
-            icon,
-            ownPositionMarker;
-
-        icon = L.icon({
-            iconUrl: './resources/images/marker_icons/own_position.png',
-            iconSize: [iconWidth, iconHeight],
-            iconAnchor: [(iconWidth/2), (iconHeight/2)]
-        });
-        ownPositionMarker = L.marker([cmp.getGeo().getLatitude(), cmp.getGeo().getLongitude()], {
-            icon: icon,
-            clickable: false
-        });
-        this.setOwnPositionMarker(ownPositionMarker);
-        ownPositionMarker.addTo(map);
-    },
-
-    /**
-     * @private
-     * Sets position of own position marker
-     * @param {L.LatLng} latlng New position of marker
-     */
-    setOwnPositionMarkerPosition: function(latlng) {
-        var ownPositionMarker = this.getOwnPositionMarker();
-        if(ownPositionMarker) {
-            ownPositionMarker.setLatLng(latlng);
-        }
     },
 
     /**
