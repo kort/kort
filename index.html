@@ -7,7 +7,9 @@
     <script type="text/javascript">
         function startscreenLoad() {
             var lang = navigator.language || navigator.browserLanguage || navigator.userLanguage;
-            
+            // TODO better handling of different locale codes
+            lang = lang.substring(0, 2);
+
             if(document.getElementById("loading-text")) {
                 if(lang === 'de') {
                     document.getElementById("loading-text").innerHTML = 'wird geladen. Gleich gehts los...'
