@@ -56,7 +56,8 @@ Ext.define('Kort.controller.Profile', {
         
         me.getApplication().on({
             votesend: { fn: me.refreshProfile, scope: me },
-            fixsend: { fn: me.refreshProfile, scope: me }
+            fixsend: { fn: me.refreshProfile, scope: me },
+            userchange: { fn: me.refreshProfile, scope: me }
         });
     },
 
