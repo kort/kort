@@ -86,28 +86,23 @@ Ext.application({
 
     // launch function is called as soon as app is ready
     launch: function() {
-        var selectAnswersStore = Ext.getStore('SelectAnswers'),
-            mainPanel;
-
         this.prepareI18n();
         this.configureMessageBox();
 
-        selectAnswersStore.load();
-
-        // create main panel
-        mainPanel = Ext.create('Kort.view.Main');
-        Ext.Viewport.add(mainPanel);
-        mainPanel.hide();
-
-        // create ui
-        this.loadGeolocation(mainPanel);
+        this.loadGeolocation();
     },
 
-    loadGeolocation: function(mainPanel) {
-        var me = this;
+    loadGeolocation: function() {
+        var me = this,
+            mainPanel;
 
         Kort.geolocation = Ext.create('Kort.util.Geolocation');
         Kort.geolocation.updateLocation(function(geo) {
+            // create main panel
+            mainPanel = Ext.create('Kort.view.Main');
+            Ext.Viewport.add(mainPanel);
+            mainPanel.hide();
+
             // Destroy the #appStartscreen element
             Ext.fly('appStartscreen').destroy();
 
@@ -161,7 +156,7 @@ Ext.application({
                         console.log('clientSecret not passed -> write client secret to localstore');
                         me.writeUserClientSecret(Kort.user.get('secret'));
                     }
-                    me.showMainPanel(geo, mainPanel);
+                    me.loadStores(geo, mainPanel);
                 }
             }
         });
@@ -197,15 +192,21 @@ Ext.application({
         Ext.Viewport.add(geolocationerrorPanel);
         geolocationerrorPanel.show();
     },
-
-    showMainPanel: function(geo, mainPanel) {
+    
+    loadStores: function(geo, mainPanel) {
         var validationsStore = Ext.getStore('Validations'),
-            userBadges = Ext.getStore('UserBadges');
+            userBadges = Ext.getStore('UserBadges'),
+            selectAnswersStore = Ext.getStore('SelectAnswers'),
+            highscoreStore = Ext.getStore('Highscore');
 
-        mainPanel.show();
+        // loading select answers
+        selectAnswersStore.load();
 
+        // loading highscore
+        highscoreStore.load();
+        
+        // loading validations
         validationsStore.getProxy().setUrl(Kort.util.Config.getWebservices().validation.getUrl(geo.getLatitude(), geo.getLongitude()));
-
         validationsStore.load(function(records, operation, success) {
             validationsStore.updateDistances(Kort.geolocation);
         }, this);
@@ -215,9 +216,12 @@ Ext.application({
         // loading badges of user
         userBadges.getProxy().setUrl(Kort.util.Config.getWebservices().userBadges.getUrl(Kort.user.get('id')));
         userBadges.load();
+        
+        this.showMainPanel(mainPanel);
+    },
 
-        // loading highscore
-        Ext.getStore('Highscore').load();
+    showMainPanel: function(mainPanel) {
+        mainPanel.show();
 
         if(!Kort.user.get('username')) {
             this.showFirstStepsPanel();
