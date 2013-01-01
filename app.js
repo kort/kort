@@ -234,6 +234,7 @@ Ext.application({
     prepareI18n: function() {
         Ext.i18n.Bundle.configure({
             bundle: 'Kort',
+            language: 'de',
             path: 'resources/i18n',
             noCache: true
         });
@@ -271,6 +272,7 @@ Ext.application({
         // this has to be done directly in onUpdated method!
         Ext.i18n.Bundle.configure({
             bundle: 'Kort',
+            language: 'de',
             path: 'resources/i18n',
             noCache: true
         });
