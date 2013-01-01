@@ -20,7 +20,6 @@ login.loadmask.message=Login...
 # Firststeps
 firststeps.introduction.1=Willkommen bei 
 firststeps.introduction.2=! Wähle einen Benutzernamen:
-firststeps.form.username.placeholder=Benutzername
 firststeps.form.button.submit=Mission beginnen!
 firststeps.alert.username.empty.title=Benutzernamen eingeben
 firststeps.alert.username.empty.message=Bitte gib einen Benutzernamen ein.
@@ -106,6 +105,7 @@ profile.content.fixes=Erledigte Aufträge
 profile.content.votes=Getätigte Überprüfungen
 profile.content.koins.header=Gesammelte Koins
 profile.content.koins.title=Koins
+profile.content.ranking.title=Platz
 profile.content.badges.header=Gewonnene Auszeichnungen
 profile.logout.loadmask.message=Logout...
 profile.refresh.loadmask.message=Lade Profil...
@@ -139,7 +139,7 @@ about.legal.title=Rechtliche Hinweise
 about.legal.message=Halte die Richtlinien von OpenStreetMap ein und verwende z.B. keine urheberrechtlich geschützten Quellen ohne Erlaubnis.
 
 # Button
-button.back=Back
+button.back=Zurück
 
 # MessageBox
 messagebox.ok=OK
@@ -159,9 +159,17 @@ reward.alert.koins.total.1=Deine Gesamtpunktzahl beträgt nun
 reward.alert.koins.total.2=Koins.
 reward.alert.badges.title=Gewonnene Auszeichnungen
 
-# App startscreen
-loading.message=wird geladen. Gleich gehts los...
-
 # App update
 update.title=Neue App-Version
 update.message=Die App wurde auf die neuste Version aktualisiert. App neu laden?
+
+
+###############################
+# Labels used directly in source files (without Ext.i18n.Bundle plugin)
+###############################
+
+# App startscreen (index.html)
+loading.message=wird geladen. Gleich gehts los...
+
+# Firststeps (app/util/Config.js)
+firststeps.form.username.placeholder=Benutzername

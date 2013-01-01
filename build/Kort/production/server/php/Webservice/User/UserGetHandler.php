@@ -39,6 +39,7 @@ class UserGetHandler extends DbProxyHandler
             'fix_count',
             'vote_count',
             'koin_count',
+            'ranking',
             'secret'
         );
     }
@@ -109,12 +110,13 @@ class UserGetHandler extends DbProxyHandler
         $user['oauth_user_id'] = "";
         $user['oauth_provider'] = "";
         $user['token'] = "";
-        $user["fix_count"] = 0;
-        $user["vote_count"] = 0;
-        $user["koin_count"] = 0;
-        $user["pic_url"] = "";
-        $user["logged_in"] = false;
-        $user["secret"] = "";
+        $user['fix_count'] = 0;
+        $user['vote_count'] = 0;
+        $user['koin_count'] = 0;
+        $user['ranking'] = 0;
+        $user['pic_url'] = "";
+        $user['logged_in'] = false;
+        $user['secret'] = "";
 
         return json_encode($user);
     }
