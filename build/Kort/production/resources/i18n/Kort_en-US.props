@@ -1,10 +1,9 @@
 # Main View (TabPanel)
-tab.bugmap=Aufträge
-tab.validation=Prüfen
+tab.bugmap=Missions
+tab.validation=Check
 tab.highscore=Highscore
-tab.profile=Profil
-tab.about=Über
-button.back=Zurück
+tab.profile=Profile
+tab.about=About
 
 # Login
 login.kort.description.1=Löse Aufträge
@@ -139,6 +138,9 @@ about.credits.markers=Marker Icons:
 about.legal.title=Rechtliche Hinweise
 about.legal.message=Halte die Richtlinien von OpenStreetMap ein und verwende z.B. keine urheberrechtlich geschützten Quellen ohne Erlaubnis.
 
+# Button
+button.back=Back
+
 # MessageBox
 messagebox.ok=OK
 messagebox.yes=Ja
@@ -150,9 +152,16 @@ picker.done=Fertig
 picker.cancel=Abbrechen
 
 # Reward
-reward.alert.title=Du wurdest stärker!
+reward.alert.title=Dein Ansehen ist gestiegen!
 reward.alert.koins.new.1=Bravo! Du hast
 reward.alert.koins.new.2=Koins gewonnen.
 reward.alert.koins.total.1=Deine Gesamtpunktzahl beträgt nun
 reward.alert.koins.total.2=Koins.
 reward.alert.badges.title=Gewonnene Auszeichnungen
+
+# App startscreen
+loading.message=is loading. Get ready...
+
+# App update
+update.title=Neue App-Version
+update.message=Die App wurde auf die neuste Version aktualisiert. App neu laden?

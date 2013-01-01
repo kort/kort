@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <title>Kort</title>
     <link rel="icon" href="./resources/images/kort-favicon.ico" type="image/png" />
+    <script type="text/javascript">
+        function startscreenLoad() {
+            var lang = navigator.language || navigator.browserLanguage || navigator.userLanguage;
+
+            if(lang === 'de') {
+                document.getElementById("loading-text").innerHTML = 'wird geladen. Gleich gehts los...'
+            } else {
+                document.getElementById("loading-text").innerHTML = 'is loading. Get ready...'
+            }
+        }
+    </script>
     <style type="text/css">
         html, body {
             height: 100%;
@@ -630,13 +641,13 @@
 })(this);
 ;Ext.blink({"id":"d6069029-dcbb-4cf2-b20b-cefd12012a6c"})</script>
 </head>
-<body>
+<body onload="startscreenLoad()">
     <div id="appStartscreen">
         <div class="kort-logo">
             <img src="./resources/images/kort-logo_white.png" />
         </div>
         <div class="loading-content">
-            <p class="loading-text"><span class="kort-title-startscreen"><span class="kort-k">K</span><span class="kort-ort">ORT</span></span> wird geladen. Gleich gehts los...</p>
+            <p class="loading-text"><span class="kort-title-startscreen"><span class="kort-k">K</span><span class="kort-ort">ORT</span></span> <span id="loading-text">wird geladen. Gleich gehts los...</span></p>
             <div class="loading-spinner"><img src="./resources/images/ajax-loader.gif" /></div>
         </div>
     </div>
