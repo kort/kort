@@ -42,8 +42,7 @@ Ext.define('Kort.view.bugmap.NavigationView', {
         var bugmap = {
             xtype: 'kortleafletmap',
             title: Ext.i18n.Bundle.message('bugmap.title'),
-            id: 'bugmap',
-            useCurrentLocation: Kort.geolocation
+            id: 'bugmap'
         };
 
         this.add(bugmap);

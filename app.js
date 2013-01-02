@@ -86,23 +86,25 @@ Ext.application({
 
     // launch function is called as soon as app is ready
     launch: function() {
+        var mainPanel;
+
         this.prepareI18n();
         this.configureMessageBox();
+        
+        // create main panel
+        // this has to be done in launch method so routes can work properly
+        mainPanel = Ext.create('Kort.view.Main');
+        Ext.Viewport.add(mainPanel);
+        mainPanel.hide();
 
-        this.loadGeolocation();
+        this.loadGeolocation(mainPanel);
     },
 
-    loadGeolocation: function() {
-        var me = this,
-            mainPanel;
+    loadGeolocation: function(mainPanel) {
+        var me = this;
 
         Kort.geolocation = Ext.create('Kort.util.Geolocation');
         Kort.geolocation.updateLocation(function(geo) {
-            // create main panel
-            mainPanel = Ext.create('Kort.view.Main');
-            Ext.Viewport.add(mainPanel);
-            mainPanel.hide();
-
             // Destroy the #appStartscreen element
             Ext.fly('appStartscreen').destroy();
 

@@ -70,7 +70,6 @@ Ext.define('Kort.view.validation.vote.Container', {
             xtype: 'kortleafletmap',
             cls: 'voteMap',
             flex: 1,
-            useCurrentLocation: Kort.geolocation,
             initialCenter: false,
             mapOptions: {
                 dragging: false

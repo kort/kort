@@ -107,7 +107,9 @@ Ext.define('Kort.controller.Bugmap', {
         var me = this;
         me.setMap(map);
 
-        me.refreshBugMarkers();
+        // wait until correct position is found
+        Ext.Function.defer(me.refreshBugMarkers, 700, me);
+
         me.getMarkerLayerGroup().addTo(map);
     },
 

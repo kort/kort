@@ -32,7 +32,6 @@ Ext.define('Kort.view.bugmap.fix.TabPanel', {
             title: Ext.i18n.Bundle.message('fix.map.title'),
             xtype: 'kortleafletmap',
             initialCenter: false,
-            useCurrentLocation: Kort.geolocation,
             cls: 'fixMap'
         };
         
