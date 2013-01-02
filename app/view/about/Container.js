@@ -9,7 +9,7 @@ Ext.define('Kort.view.about.Container', {
     ],
 	
 	config: {
-		title: Ext.i18n.Bundle.message('tab.about') + ' ' + Kort.util.Config.getKortTitle(),
+		title: Ext.i18n.Bundle.message('tab.about'),
 		url: 'about',
 		id: 'aboutContainer',
 		iconCls: 'info',
