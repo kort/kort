@@ -157,7 +157,7 @@ Ext.define('Kort.util.Config', {
                 getUrl: function(latitude, longitude) {
                     return './server/webservices/bug/position/' + latitude + ',' + longitude;
                 },
-                radius: 10000,
+                radius: 50000,
                 limit: 25
             },
             validation: {
