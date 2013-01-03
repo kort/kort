@@ -1,37 +1,150 @@
-<?xml version="1.0" encoding="utf-8"?>
-<project name="Kort" default=".help">
-    <import file="${basedir}/.sencha/app/build-impl.xml"/>
+<project name="kort-build" basedir="." default="build">
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
+		<classpath>
+			<pathelement location="lib/antlibs/ant-contrib-1.0b3.jar"/>
+		</classpath>
+	</taskdef>
 
-    <!--
-    The following targets can be provided to inject logic before and/or after key steps
-    of the build process:
+    <property environment="env"/>
+    <property name="uml.dir" value="_DOCUMENTATION/03_Model" />
+    <property name="php.dir" value="server" />
+    <property name="php.test.dir" value="server/php" />
+    <property name="php.doc.dir" value="docs/Kort-backend" />
+    <property name="js.dir" value="app" />
+    <property name="js.doc.dir" value="docs/Kort"/>
+    <property name="js.leaflet.dir" value="ux" />
+    <property name="js.leaflet.doc.dir" value="docs/Ext.ux.LeafletMap"/>
+    <property name="js.config" value="app/util/Config.js" />
+    <property name="js.config.prod" value="build/Kort/production/app.js" />
+    <property name="test.dir" value="test" />
 
-        The "init-local" target is used to initialize properties that may be personalized
-        for the local machine.
 
-            <target name="-before-init-local"/>
-            <target name="-after-init-local"/>
+	<target name="build" depends="css,version,lint,docs,test">
+		<echo message="BUILD FINISHED!"/>
+	</target>
 
-        The "clean" target is used to clean build output from the build.dir.
+     <target name="test">
+        <antcall target="js-test"/>
+        <antcall target="php-test"/>
+    </target>
 
-            <target name="-before-clean"/>
-            <target name="-after-clean"/>
+    <target name="lint">
+        <antcall target="js-lint"/>
+        <antcall target="php-lint"/>
+    </target>
 
-        The general "init" target is used to initialize all other properties, including
-        those provided by Sencha Cmd.
+    <target name="docs">
+        <antcall target="js-docs"/>
+        <antcall target="php-docs"/>
+    </target>
 
-            <target name="-before-init"/>
-            <target name="-after-init"/>
-            
-        The "page" target performs the call to Sencha Cmd to build the 'all-classes.js' file.
+    <target name="php-test">
+		<echo message="Running tests"/>
+		<foreach target="exec_test_php" param="filename">
+			<path>
+				<fileset dir="${php.test.dir}" includes="**/Test*.php"/>
+			</path>
+		</foreach>
+    </target>
 
-            <target name="-before-page"/>
-            <target name="-after-page"/>
+	<target name="js-test">
+		<echo message="Running tests"/>
+		<exec executable="grunt" failonerror="true">
+			<arg value="qunit"/>
+			<arg value="--verbose"/>
+			<arg value="--force"/>
+		</exec>
+    </target>
 
-        The "build" target performs the call to Sencha Cmd to build the application.
+	<target name="js-lint">
+		<echo message="Linting JavaScript files"/>
+		<exec executable="grunt">
+			<arg value="lint"/>
+			<arg value="--verbose"/>
+			<arg value="--force"/>
+		</exec>
+    </target>
 
-            <target name="-before-build"/>
-            <target name="-after-build"/>
-    -->
+    <target name="php-lint">
+        <echo message="Linting PHP files"/>
+        <exec executable="bin/phpcs">
+            <arg value="--standard=code_standard.xml"/>
+            <arg value="--report-width=60"/>
+            <arg value="${php.dir}"/>
+        </exec>
+    </target>
+
+    <target name="js-docs">
+        <echo message="Generating JavaScript docs (JSDuck)"/>
+        <mkdir dir="${js.doc.dir}"/>
+        <exec executable="jsduck">
+            <arg value="${js.dir}"/>
+            <arg value="--output"/>
+            <arg value="${js.doc.dir}"/>
+            <arg value="--config"/>
+            <arg value="jsduck/jsduck_kort_config.json" />
+        </exec>
+        <exec executable="jsduck">
+            <arg value="${js.leaflet.dir}"/>
+            <arg value="--output"/>
+            <arg value="${js.leaflet.doc.dir}"/>
+            <arg value="--config"/>
+            <arg value="jsduck/jsduck_leaflet_config.json" />
+        </exec>
+    </target>
+
+   <target name="php-docs">
+       <echo message="Generating PHP docs (phpDocumentor)"/>
+       <mkdir dir="${php.doc.dir}"/>
+       <exec executable="phpdoc">
+           <arg value="-d"/>
+           <arg value="${php.dir}"/>
+           <arg value="-t"/>
+           <arg value="${php.doc.dir}"/>
+       </exec>
+   </target>
+
+	<target name="css">
+		<echo message="Compile sass files to css"/>
+		<foreach target="compile_sass" param="dir">
+			<path>
+				<dirset dir="${basedir}">
+					<include name="**/styles"/>
+				</dirset>
+			</path>
+		</foreach>
+	</target>
+
+    <target name="version">
+        <replace file="${js.config}"
+            summary="true"
+            token='{BUILD_NR}'
+            value='${env.TRAVIS_BUILD_NUMBER}' />
+        <replace file="${js.config.prod}"
+            summary="true"
+            token='{BUILD_NR}'
+            value='${env.TRAVIS_BUILD_NUMBER}' />
+    </target>
+
+    <target name="compile_sass">
+        <echo message="Compile sass files in ${dir}"/>
+        <apply executable="sass" dest="${dir}" verbose="true" force="true" failonerror="true">
+            <arg value="--unix-newlines" />
+            <srcfile />
+            <targetfile />
+            <fileset dir="${dir}" includes="**/*.scss" />
+            <mapper type="glob" from="*.scss" to="*.css"/>
+        </apply>
+    </target>
+
+    <target name="exec_test_php">
+		<basename file="${filename}" property="basename"/>
+		<echo message="Run ${basename}"/>
+		<exec executable="php" dir="${php.dir}" logError="true" failonerror="true">
+			<arg value="-f"/>
+			<arg value="${basedir}/${test.dir}/index.php"/>
+			<arg value="${filename}" />
+		</exec>
+	</target>
 
 </project>
