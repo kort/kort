@@ -76,12 +76,6 @@ vote.sendmask.message=Sending answer...
 vote.alert.submit.failure.title=Error while sending
 vote.alert.submit.failure.message=Oops! There was an error while sending your answer. Restarting the app might help.
 
-# PullRefresh Plugin
-pullrefresh.pullrefresh=Pull down to refresh
-pullrefresh.releaserefresh=Release to refresh...
-pullrefresh.loading=loading...
-pullrefresh.lastupdated=Last updated:
-
 # Highscore
 highscore.title=Highscore
 highscore.loadmask.message=Loading highscore...
@@ -138,6 +132,12 @@ about.credits.markers=Marker Icons:
 about.legal.title=Legal note:
 about.legal.message=Please follow the guidelines of OpenStreetMap and don't use copyright protected sources without permission.
 
+# PullRefresh Plugin
+pullrefresh.pullrefresh=Pull down to refresh
+pullrefresh.releaserefresh=Release to refresh...
+pullrefresh.loading=loading...
+pullrefresh.lastupdated=Last updated:
+
 # Button
 button.back=Back
 
@@ -163,6 +163,7 @@ reward.alert.badges.title=Won badges
 update.title=New version of app
 update.message=The app has be updated to the newest version. Reload?
 
+
 ###############################
 # Labels used directly in source files (without Ext.i18n.Bundle plugin)
 ###############################
@@ -172,3 +173,6 @@ loading.message=is loading. Get ready...
 
 # Firststeps (app/util/Config.js)
 firststeps.form.username.placeholder=Username
+
+# PullRefresh Plugin (app/util/Config.js)
+pullrefresh.dateformat=m/d/Y h:iA
