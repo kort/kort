@@ -30,7 +30,7 @@ before_script:
   - mv $CI_HOME/server/php/Webservice/Database/DbConfig.example.php $CI_HOME/server/php/Webservice/Database/DbConfig.php
   - phpenv rehash
 
-script: ant build
+script: ant -f build_kort.xml build
 
 after_script:
   - bash $CI_HOME/server/heroku/heroku.sh
