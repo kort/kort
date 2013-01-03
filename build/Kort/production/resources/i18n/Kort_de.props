@@ -76,12 +76,6 @@ vote.sendmask.message=Sende Antwort...
 vote.alert.submit.failure.title=Fehler beim Senden
 vote.alert.submit.failure.message=Ups! Beim Übertragen deiner Antwort ist etwas schief gelaufen. Eventuell hilft ein Neustart der App.
 
-# PullRefresh Plugin
-pullrefresh.pullrefresh=Zum Aktualisieren herunterziehen
-pullrefresh.releaserefresh=Zum Aktualisieren loslassen...
-pullrefresh.loading=wird aktualisiert...
-pullrefresh.lastupdated=Zuletzt aktualisiert:
-
 # Highscore
 highscore.title=Highscore
 highscore.loadmask.message=Lade Highscore...
@@ -138,6 +132,12 @@ about.credits.markers=Marker Icons:
 about.legal.title=Rechtliche Hinweise
 about.legal.message=Halte die Richtlinien von OpenStreetMap ein und verwende z.B. keine urheberrechtlich geschützten Quellen ohne Erlaubnis.
 
+# PullRefresh Plugin
+pullrefresh.pullrefresh=Zum Aktualisieren herunterziehen
+pullrefresh.releaserefresh=Zum Aktualisieren loslassen...
+pullrefresh.loading=wird aktualisiert...
+pullrefresh.lastupdated=Zuletzt aktualisiert:
+
 # Button
 button.back=Zurück
 
@@ -173,3 +173,6 @@ loading.message=wird geladen. Gleich gehts los...
 
 # Firststeps (app/util/Config.js)
 firststeps.form.username.placeholder=Benutzername
+
+# PullRefresh Plugin (app/util/Config.js)
+pullrefresh.dateformat=d.m.Y H:i:s

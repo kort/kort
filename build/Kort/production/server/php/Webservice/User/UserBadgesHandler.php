@@ -66,6 +66,7 @@ class UserBadgesHandler extends DbProxyHandler
 
         $userBadges = json_decode($badgeData, true);
         $userBadges = array_map(array($this, "convertBoolean"), $userBadges);
+        $userBadges = array_map(array($this, "translateBadge"), $userBadges);
         return json_encode($userBadges);
     }
 
@@ -79,6 +80,21 @@ class UserBadgesHandler extends DbProxyHandler
     public function convertBoolean(array $badge)
     {
         $badge['won'] = ($badge['won'] == 't') ? true : false;
+        return $badge;
+    }
+
+    /**
+     * Translate all texts of a badge.
+     *
+     * @param array $badge The badge to translate.
+     *
+     * @return array the translated badge
+     */
+    public function translateBadge(array $badge)
+    {
+        $badge['title'] = $this->translate($badge['title']);
+        $badge['description'] = $this->translate($badge['description']);
+
         return $badge;
     }
 }

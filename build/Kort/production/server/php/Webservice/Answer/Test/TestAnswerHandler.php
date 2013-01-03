@@ -39,13 +39,12 @@ class TestAnswerHandler extends AbstractKortUnitTestCase
 
     public function testGetSpecificAnswers()
     {
-        $this->mockProxy->shouldReceive('select')->andReturn("{\"test\":\"value\"}");
-        $this->assertEqual("{\"test\":\"value\"}", $this->handler->getSpecificAnswers("some_type", 1));
-    }
+        $answer = array();
+        $answer['title'] = "Test";
 
-    public function testGetSpecificAnswersEmpty()
-    {
-        $this->mockProxy->shouldReceive('select')->andReturn("");
-        $this->assertEqual("", $this->handler->getSpecificAnswers("some_type", 1));
+        $answerJson = json_encode(array($answer));
+
+        $this->mockProxy->shouldReceive('select')->andReturn($answerJson);
+        $this->assertEqual($answerJson, $this->handler->getSpecificAnswers("some_type", 1));
     }
 }

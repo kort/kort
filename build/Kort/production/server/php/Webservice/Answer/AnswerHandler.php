@@ -39,20 +39,45 @@ class AnswerHandler extends DbProxyHandler
     public function getAllAnswers()
     {
         $this->getDbProxy()->setOrderBy('sorting');
-        return $this->getDbProxy()->select();
+        return $this->select();
+    }
+
+    /**
+     * Returns the selected answers.
+     *
+     * @return string JSON-encoded bugs
+     */
+    protected function select()
+    {
+        $data = json_decode($this->getDbProxy()->select(), true);
+        $data = array_map(array($this, "translateAnswer"), $data);
+        return json_encode($data);
     }
 
     /**
      * Returns all answers of a specific type.
      *
      * @param string $type The type of answer.
-     * 
+     *
      * @return string ll answers of the specific type
      */
     public function getSpecificAnswers($type)
     {
         $this->getDbProxy()->setWhere("type = '" . $type ."'");
         $this->getDbProxy()->setOrderBy('sorting');
-        return $this->getDbProxy()->select();
+        return $this->select();
+    }
+
+    /**
+     * Translate all texts of an answer.
+     *
+     * @param array $answer The answer to translate.
+     *
+     * @return array the translated answer
+     */
+    public function translateAnswer(array $answer)
+    {
+        $answer['title'] = $this->translate($answer['title']);
+        return $answer;
     }
 }

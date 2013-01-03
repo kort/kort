@@ -1,0 +1,94 @@
+# error types
+Autobahn ohne Bezeichner=Motorway without reference
+Objekt ohne Namen=Object without a name
+Fehlendes Tempolimit=Missing speed limit
+Typ des Wegs unbekannt=Type of track unknown
+Kultstätte/Kirche ohne Religion=Place of worship without religion
+Sprache des Namens unbekannt=Language of the name unknown
+Strasse ohne Namen=Street without a name
+
+# error type placeholders
+Bezeichner=Reference
+Religion=Religion
+Tempolimit=Speed limit
+Sprache=Language
+Typ=Type
+Strassenname=Name of street
+
+# vote questions
+Ist diese Bezeichnung korrekt?=Is this the correct reference of this motorway?
+Ist diese Kultstätte/Kirche von dieser Religion?=Is this place of worship of this religion?
+Passt der Name zum gegebenen Objekt?=Does do name match to the object?
+Darf man auf dieser Strasse mit dieser Geschwindigkeit fahren?=Is this the correct speed limit for this street?
+Ist der Name in folgender Sprache?=Is the name in the following language?
+Ist der Weg folgendermassen beschaffen?=Is this path of the following kind?
+Ist dieser Strassenname korrekt?=Is this the correct name of the street?
+
+# badge names
+1. Rang=1st place
+2. Rang=2nd place
+3. Rang=3rd place
+100 Aufträge=100 missions
+50 Aufträge=50 missions
+10 Aufträge=10 missions
+1000 Prüfungen=1000 checks
+100 Prüfungen=100 checks
+10 Prüfungen=10 checks
+1. Auftrag=1st mission
+1. Prüfung=1st check
+
+# badge descriptions
+Erster Rang in der Highscore erreicht.=Reached 1st place in highscore.
+Zweiter Rang in der Highscore erreicht.=Reached 2nd place in highscore.
+Dritter Rang in der Highscore erreicht.=Reached 3rd place in highscore.
+100 Aufträge erledigt.=100 missions completed.
+50 Aufträge erledigt.=50 missions completed.
+10 Aufträge erledigt.=10 missions completed.
+1000 Antworten überprüft.=1000 answers checked.
+100 Antworten überprüft.=100 answers checked.
+10 Antworten überprüft.=10 answers checked.
+Erster Auftrag erledigt.=First mission completed.
+Erste Antwort überprüft.=First checked answer.
+
+# missing_track_types (http://wiki.openstreetmap.org/wiki/Key:tracktype)
+Asphalt, Beton oder Pflastersteine=Asphalt, concrete or cobblestone
+Schotter=Gravel road
+Feinschotter-, Sand- oder Erdweg=Mixture of hard and soft materials
+Weg mit Pflanzenwuchs entlang der Spurmitte=Soil, sand or grass
+Unbefestigter Weg=Unpaved track
+
+# religion (http://wiki.openstreetmap.org/wiki/Key:religion)
+Buddhismus (Tempel)=Buddhist (temple)
+Christentum (Kirche)=Christian (church)
+Hinduismus (Tempel)=Hindu (temple)
+Judentum (Synagoge)=Jewish (synagogue)
+Mehrere Religionen=Multiple faiths
+Islam (Moschee)=Muslim (mosque)
+Pastafarianismus=Pastafarian
+Shinto (Schrein)=Shinto (shrine)
+Sikh (Gurdwara)=Sikh (Gurdwara)
+
+# language (http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
+Arabisch=Arabic
+Chinesisch=Chinese
+Dänisch=Danish
+Holländisch=Dutch
+Englisch=English
+Finnisch=Finnish
+Französisch=French
+Deutsch=German
+Griechisch=Greek
+Hebräisch=Hebrew
+Italienisch=Italian
+Japanisch=Japanese
+Norwegisch=Norwegian
+Polnisch=Polish
+Portugiesisch=Portuguese
+Rätoromanisch=Romansh
+Rumänisch=Romanian
+Russisch=Russian
+Schweizerdeutsch=Swiss German
+Spanisch=Spanish
+Schwedisch=Swedish
+Türkisch=Turkish
+Vietnamesisch=Vietnamese

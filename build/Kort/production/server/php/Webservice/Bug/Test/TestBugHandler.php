@@ -38,6 +38,8 @@ class TestBugHandler extends AbstractKortUnitTestCase
         $bug['txt3'] = "";
         $bug['txt4'] = "";
         $bug['txt5'] = "";
+        $bug['title'] = "Objekt ohne Namen";
+        $bug['answer_placeholder'] = "Name";
 
         $translatedBug = array();
         $translatedBug['description'] = "Wie heisst diese/s Café?";
@@ -46,6 +48,8 @@ class TestBugHandler extends AbstractKortUnitTestCase
         $translatedBug['txt3'] = $bug['txt3'];
         $translatedBug['txt4'] = $bug['txt4'];
         $translatedBug['txt5'] = $bug['txt5'];
+        $translatedBug['title'] = "Objekt ohne Namen";
+        $translatedBug['answer_placeholder'] = "Name";
 
         $this->mockProxy->shouldReceive('addToTransaction')->andReturn(1);
         $this->mockProxy->shouldReceive('sendTransaction')->andReturn(json_encode(array(array($bug))));
