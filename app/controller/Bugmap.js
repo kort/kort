@@ -86,8 +86,24 @@ Ext.define('Kort.controller.Bugmap', {
         
         // adding listener for fixsend event
         me.getApplication().on({
-            fixsend: { fn: me.refreshBugMarkers, scope: me }
+            fixsend: { fn: me.refreshBugMarkers, scope: me },
+            geolocationready: { fn: me.geolocationReady, scope: me }
         });
+    },
+    
+    /**
+     * @private
+     * Called when geolocation is ready to use.
+     * Adds LeafletMap component to bugmap view.
+     */
+    geolocationReady: function(geo) {
+        var bugmap = {
+            xtype: 'kortleafletmap',
+            title: Ext.i18n.Bundle.message('bugmap.title'),
+            useCurrentLocation: geo,
+            id: 'bugmap'
+        };
+        this.getBugmapNavigationView().add(bugmap);
     },
     
     // @private
@@ -107,9 +123,7 @@ Ext.define('Kort.controller.Bugmap', {
         var me = this;
         me.setMap(map);
 
-        // wait until correct position is found
-        Ext.Function.defer(me.refreshBugMarkers, 700, me);
-
+        me.refreshBugMarkers();
         me.getMarkerLayerGroup().addTo(map);
     },
 
@@ -130,7 +144,6 @@ Ext.define('Kort.controller.Bugmap', {
     centerMapToCurrentPosition: function() {
         // centering map to current position
         this.getMapCmp().setMapCenter(this.getCurrentLocationLatLng(this.getMapCmp()));
-        this.getMap().setZoom(Kort.util.Config.getLeafletMap().zoom);
     },
 
     /**

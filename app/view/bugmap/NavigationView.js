@@ -34,17 +34,5 @@ Ext.define('Kort.view.bugmap.NavigationView', {
                 }
             ]
         }
-	},
-    
-    initialize: function() {
-        this.callParent(arguments);
-
-        var bugmap = {
-            xtype: 'kortleafletmap',
-            title: Ext.i18n.Bundle.message('bugmap.title'),
-            id: 'bugmap'
-        };
-
-        this.add(bugmap);
-    }
+	}
 });

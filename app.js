@@ -109,6 +109,8 @@ Ext.application({
             Ext.fly('appStartscreen').destroy();
 
             if(geo) {
+                // wait until correct position is found
+                Ext.defer(me.fireEvent, 500, me, ['geolocationready', geo]);
                 me.loadUserClientSecret(geo, mainPanel);
             } else {
                 me.showGeolocationErrorOverlay();
