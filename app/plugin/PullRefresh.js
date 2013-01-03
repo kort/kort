@@ -11,7 +11,7 @@ Ext.define('Kort.plugin.PullRefresh', {
         loadingText: Ext.i18n.Bundle.message('pullrefresh.loading'),
         releaseRefreshText: Ext.i18n.Bundle.message('pullrefresh.releaserefresh'),
         lastUpdatedText: Ext.i18n.Bundle.message('pullrefresh.lastupdated'),
-        dateFormat: 'd.m.Y H:i:s',
+        dateFormat: Kort.util.Config.getDateFormat(),
         refreshFn: function(callbackFn, scope) {
             var me = this,
                 list = me.getList(),
