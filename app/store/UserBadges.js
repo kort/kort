@@ -6,7 +6,7 @@ Ext.define('Kort.store.UserBadges', {
 
 	config: {
 		model: 'Kort.model.UserBadge',
-        
+
 		proxy: {
 			type: 'rest',
             url: '',
@@ -14,6 +14,9 @@ Ext.define('Kort.store.UserBadges', {
             startParam: false,
             limitParam: false,
             sorters: 'sorting',
+            extraParams: {
+                'lang': Ext.i18n.Bundle.guessLanguage()
+            },
             reader: {
                 type: 'json',
                 rootProperty: 'return'

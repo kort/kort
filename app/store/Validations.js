@@ -3,10 +3,10 @@
  */
 Ext.define('Kort.store.Validations', {
     extend: 'Ext.data.Store',
-	
+
 	config: {
 		model: 'Kort.model.Validation',
-        
+
 		grouper: {
             groupFn: function(record) {
                 var validationsLeft = record.get('required_votes') - record.get('upratings') + record.get('downratings');
@@ -24,13 +24,14 @@ Ext.define('Kort.store.Validations', {
                 direction: 'ASC'
             }
         ],
-        
+
 		proxy: {
 			type: 'rest',
             url: './resources/stores/validations.json',
             pageParam: false,
             startParam: false,
             extraParams: {
+                'lang': Ext.i18n.Bundle.guessLanguage(),
                 'limit': Kort.util.Config.getWebservices().validation.limit,
                 'radius': Kort.util.Config.getWebservices().validation.radius
             },
@@ -40,7 +41,7 @@ Ext.define('Kort.store.Validations', {
             }
 		}
 	},
-    
+
     /**
      * Update distances of trails in store
      * @param {Kort.util.Geolocation} geo Geolocation to calculate distance

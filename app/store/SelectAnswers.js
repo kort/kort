@@ -13,6 +13,9 @@ Ext.define('Kort.store.SelectAnswers', {
             pageParam: false,
             startParam: false,
             limitParam: false,
+            extraParams: {
+                'lang': Ext.i18n.Bundle.guessLanguage()
+            },
             sorters: 'sorting',
             reader: {
                 type: 'json',

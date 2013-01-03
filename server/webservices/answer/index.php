@@ -21,6 +21,7 @@ $answerHandler = new \Webservice\Answer\AnswerHandler();
 $app->get(
     '/(:type)',
     function ($type = null) use ($answerHandler, $app, $slim) {
+        $answerHandler->setLanguage($app->request()->params('lang'));
         if (empty($type)) {
              $answers = $answerHandler->getAllAnswers();
         } else {

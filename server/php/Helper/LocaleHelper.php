@@ -13,11 +13,18 @@ namespace Helper;
 class LocaleHelper
 {
     /**
+     * Defines the default language.
+     *
+     * @var array(string)
+     */
+    protected $defaultLanguge = "de";
+
+    /**
      * Defines all currently supported languages.
      *
      * @var array(string)
      */
-    protected $supported_langs = array("de", "en_US");
+    protected $supportedLanguages = array("de", "en");
     /**
      * The properties array are the core of this class, it contains all available translation.
      *
@@ -79,11 +86,11 @@ class LocaleHelper
         $userLangs = $this->getUserLanguages();
 
         foreach ($userLangs as $lang) {
-            if (in_array($lang, $this->supported_langs)) {
+            if (in_array($lang, $this->supportedLanguages)) {
                 return $lang;
             }
         }
-        return "";
+        return $this->defaultLanguge;
     }
 
     /**

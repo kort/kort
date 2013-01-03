@@ -16,7 +16,7 @@ Ext.define('Ext.i18n.Bundle', {
 	],
 
 	//@private
-	defaultLanguage: 'en',
+	defaultLanguage: 'de',
 	//@private
 	resourceExt: '.props',
 
@@ -38,7 +38,7 @@ Ext.define('Ext.i18n.Bundle', {
 		 * @cfg language {String} Language in the form xx-YY where:
 		 * 		xx: Language code (2 characters lowercase)
     	 *      YY: Country code (2 characters upercase).
-		 * Optional. Default to browser's language. If it cannot be determined default to en.
+		 * Optional. Default to browser's language. If it cannot be determined default to 'de'.
 		 */
 
 		/**
@@ -48,7 +48,7 @@ Ext.define('Ext.i18n.Bundle', {
 
 		model: 'Ext.i18n.model.Property',
 
-        supportedLanguages: ['en-US']
+        supportedLanguages: ['en']
 	},
 
 	/**
@@ -88,8 +88,6 @@ Ext.define('Ext.i18n.Bundle', {
 		me.callParent([config]);
 	},
 
-
-
     setNoCache: function(value){
         var me = this,
             proxy = me.getProxy();
@@ -101,7 +99,7 @@ Ext.define('Ext.i18n.Bundle', {
     },
 
 	/**
-	 * @private
+	 * @public
 	 */
 	guessLanguage: function() {
         var guessedLang = (navigator.language || navigator.browserLanguage

@@ -90,7 +90,7 @@ Ext.application({
 
         this.prepareI18n();
         this.configureMessageBox();
-        
+
         // create main panel
         // this has to be done in launch method so routes can work properly
         mainPanel = Ext.create('Kort.view.Main');
@@ -194,7 +194,7 @@ Ext.application({
         Ext.Viewport.add(geolocationerrorPanel);
         geolocationerrorPanel.show();
     },
-    
+
     loadStores: function(geo, mainPanel) {
         var validationsStore = Ext.getStore('Validations'),
             userBadges = Ext.getStore('UserBadges'),
@@ -206,7 +206,7 @@ Ext.application({
 
         // loading highscore
         highscoreStore.load();
-        
+
         // loading validations
         validationsStore.getProxy().setUrl(Kort.util.Config.getWebservices().validation.getUrl(geo.getLatitude(), geo.getLongitude()));
         validationsStore.load(function(records, operation, success) {
@@ -218,7 +218,7 @@ Ext.application({
         // loading badges of user
         userBadges.getProxy().setUrl(Kort.util.Config.getWebservices().userBadges.getUrl(Kort.user.get('id')));
         userBadges.load();
-        
+
         this.showMainPanel(mainPanel);
     },
 
@@ -240,7 +240,6 @@ Ext.application({
     prepareI18n: function() {
         Ext.i18n.Bundle.configure({
             bundle: 'Kort',
-            language: 'de',
             path: 'resources/i18n',
             noCache: true
         });
@@ -250,7 +249,7 @@ Ext.application({
         // Override MessageBox default messages
         Ext.define('Kort.MessageBox', {
             override: 'Ext.MessageBox',
-            
+
             statics: {
                 YES   : {text: Ext.i18n.Bundle.message('messagebox.yes'),    itemId: 'yes', ui: 'action'},
                 NO    : {text: Ext.i18n.Bundle.message('messagebox.no'),     itemId: 'no'},
@@ -278,7 +277,6 @@ Ext.application({
         // this has to be done directly in onUpdated method!
         Ext.i18n.Bundle.configure({
             bundle: 'Kort',
-            language: 'de',
             path: 'resources/i18n',
             noCache: true
         });

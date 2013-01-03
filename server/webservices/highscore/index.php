@@ -24,6 +24,7 @@ $highscoreHandler = new HighscoreHandler();
 $app->get(
     '/',
     function () use ($highscoreHandler, $app, $slim) {
+        $highscoreHandler->setLanguage($app->request()->params('lang'));
         $limit = $app->request()->params('limit');
         $highscoreData = $highscoreHandler->getHighscore($limit);
         $slim->returnData($highscoreData);
