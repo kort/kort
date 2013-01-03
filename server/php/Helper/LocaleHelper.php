@@ -131,7 +131,9 @@ class LocaleHelper
             }
             $entryPattern = '/^(.*[^\\\\])=(.*)$/';
             preg_match($entryPattern, $line, $matches);
-            $result[trim($matches[1])] = str_replace("\\=", "=", $matches[2]);
+            if (count($matches) > 1) {
+                $result[trim($matches[1])] = str_replace("\\=", "=", $matches[2]);
+            }
 
             unset($lines[$i]);
         }
