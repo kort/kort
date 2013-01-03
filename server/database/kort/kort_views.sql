@@ -14,7 +14,9 @@ select  e.error_id,
         e.txt4,
         e.txt5
 from    keepright.errors e
-where   e.state in ('new', 'reopened');
+where   e.state in ('new', 'reopened')
+and     e.object_id not in (1611867263, 1723313154);
+--save these two object until 15.1.2012
 
 create or replace view kort.errors as
 select  e.error_id id,
