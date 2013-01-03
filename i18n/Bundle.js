@@ -16,7 +16,7 @@ Ext.define('Ext.i18n.Bundle', {
 	],
 
 	//@private
-	defaultLanguage: 'en-US',
+	defaultLanguage: 'en',
 	//@private
 	resourceExt: '.props',
 
@@ -38,7 +38,7 @@ Ext.define('Ext.i18n.Bundle', {
 		 * @cfg language {String} Language in the form xx-YY where:
 		 * 		xx: Language code (2 characters lowercase)
     	 *      YY: Country code (2 characters upercase).
-		 * Optional. Default to browser's language. If it cannot be determined default to en-US.
+		 * Optional. Default to browser's language. If it cannot be determined default to en.
 		 */
 
 		/**
@@ -46,7 +46,9 @@ Ext.define('Ext.i18n.Bundle', {
 		 */
 
 
-		model: 'Ext.i18n.model.Property'
+		model: 'Ext.i18n.model.Property',
+
+        supportedLanguages: ['en-US']
 	},
 
 	/**
@@ -101,9 +103,20 @@ Ext.define('Ext.i18n.Bundle', {
 	/**
 	 * @private
 	 */
-	guessLanguage: function(){
-		return (navigator.language || navigator.browserLanguage
-				|| navigator.userLanguage || this.defaultLanguage);
+	guessLanguage: function() {
+        var guessedLang = (navigator.language || navigator.browserLanguage
+                || navigator.userLanguage || this.defaultLanguage),
+            supportedLanguages = this.getSupportedLanguages(),
+            langLen = supportedLanguages.length,
+            i;
+
+       guessedLang = guessedLang.substring(0, 2).toLowerCase();
+       for(i = 0; i < langLen; i++) {
+           if (supportedLanguages[i] === guessedLang) {
+               return guessedLang;
+           }
+       }
+       return this.defaultLanguage;
 	},
 
     /**
