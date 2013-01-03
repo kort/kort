@@ -15,6 +15,15 @@ Sprache=Language
 Typ=Type
 Strassenname=Name of street
 
+# vote questions
+Ist diese Bezeichnung korrekt?=Is this the correct reference of this motorway?
+Ist diese Kultstätte/Kirche von dieser Religion?=Is this place of worship of this religion?
+Passt der Name zum gegebenen Objekt?=Does do name match to the object?
+Darf man auf dieser Strasse mit dieser Geschwindigkeit fahren?=Is this the correct speed limit for this street?
+Ist der Name in folgender Sprache?=Is the name in the following language?
+Ist der Weg folgendermassen beschaffen?=Is this path of the following kind?
+Ist dieser Strassenname korrekt?=Is this the correct name of the street?
+
 # badge names
 1. Rang=1st place
 2. Rang=2nd place
