@@ -33,7 +33,7 @@ abstract class DbProxyHandler
     public function __construct()
     {
         $this->dbProxy = new DbProxy($this->getTable(), $this->getFields());
-        $this->reader = new LocaleHelper("de_CH");
+        $this->reader = new LocaleHelper("en_US");
     }
 
     /**

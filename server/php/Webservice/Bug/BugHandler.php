@@ -141,7 +141,10 @@ class BugHandler extends DbProxyHandler
      */
     public function translateBug(array $bug)
     {
+        $bug['title'] = $this->translate($bug['title']);
         $bug['description'] = $this->translate($bug['description']);
+        $bug['answer_placeholder'] = $this->translate($bug['answer_placeholder']);
+
         $search = array("\$1", "\$2", "\$3", "\$4", "\$5");
         $placeholder1 = $this->translate($bug['txt1']);
         $placeholder2 = $this->translate($bug['txt2']);

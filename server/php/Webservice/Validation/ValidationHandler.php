@@ -101,11 +101,12 @@ class ValidationHandler extends DbProxyHandler
 
         $position = $this->getDbProxy()->addToTransaction($params);
         $result = json_decode($this->getDbProxy()->sendTransaction(), true);
-        $result[$position - 1] = array_map(array($this, "convertBoolean"), $result[$position - 1]);
+        $validationData = array_map(array($this, "convertBoolean"), $result[$position - 1]);
+        $validationData = array_map(array($this, "translateValidation"), $validationData);
 
-        return json_encode($result[$position - 1]);
+        return json_encode($validationData);
     }
-    
+
     /**
      * Converts the string values from the database to "real" boolean values.
      *
@@ -116,6 +117,21 @@ class ValidationHandler extends DbProxyHandler
     public function convertBoolean(array $validation)
     {
         $validation['falsepositive'] = ($validation['falsepositive'] == 't') ? true : false;
+        return $validation;
+    }
+
+    /**
+     * Translate all texts of a validation.
+     *
+     * @param array $validation The validation to translate.
+     *
+     * @return array the translated validation
+     */
+    public function translateValidation(array $validation)
+    {
+        $validation['question'] = $this->translate($validation['question']);
+        $validation['title'] = $this->translate($validation['title']);
+
         return $validation;
     }
 }
