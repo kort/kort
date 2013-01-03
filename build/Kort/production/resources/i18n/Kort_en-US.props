@@ -6,163 +6,162 @@ tab.profile=Profile
 tab.about=About Kort
 
 # Login
-login.kort.description.1=Löse Aufträge
-login.kort.description.2=Sammle Koins
-login.kort.description.3=Verbessere OpenStreetMap
-login.kort.introduction.1= soll dazu beitragen die Daten in OpenStreetMap zu verbessern.
-login.kort.introduction.2=Dazu werden dir auf der Karte Fehler in Form von Aufträgen angezeigt. Durch das Lösen solcher Aufträge erhältst du Koins und kannst Auszeichnungen gewinnen.
-login.kort.introduction.3=Gelöste Aufträge können dann wiederum von anderen Spielern überprüft werden, um deren Korrektheit zu bestätigen. Sobald ein Lösungsvorschlag genügend positive Bewertungen erhalten hat, ist er bereit, um zu OpenStreetMap zurückgeschrieben zu werden.
-login.kort.introduction.4=Logge dich jetzt ein, um damit zu beginnen!
-login.button.google=Login mit Google
-login.button.osm=Login mit OpenStreetMap
+login.kort.description.1=Complete Aufträge
+login.kort.description.2=Collect Koins
+login.kort.description.3=Improve OpenStreetMap
+login.kort.introduction.1= helps to improve the data in OpenStreetMap.
+login.kort.introduction.2=Hence you'll see your missions on a map. By completing missions you get Koins and earn badges.
+login.kort.introduction.3=Each solved mission is later checked by other players for its correctness. As soon as enough positive ratings are entered for a suggested solution, it is ready to be sent back to OpenStreetMap.
+login.kort.introduction.4=Login now to begin your mission!
+login.button.google=Login with Google
+login.button.osm=Login with OpenStreetMap
 login.loadmask.message=Login...
 
 # Firststeps
-firststeps.introduction.1=Willkommen bei 
-firststeps.introduction.2=! Wähle einen Benutzernamen:
-firststeps.form.button.submit=Mission beginnen!
-firststeps.alert.username.empty.title=Benutzernamen eingeben
-firststeps.alert.username.empty.message=Bitte gib einen Benutzernamen ein.
-firststeps.alert.username.specialchars.title=Zeichenproblem
-firststeps.alert.username.specialchars.message=Verwende bitte nur Buchstaben und Zahlen für deinen Benutzernamen.
-firststeps.alert.submit.failure.title=Fehler beim Senden
-firststeps.alert.submit.failure.message=Ups! Beim Übertragen deines Benutzernamens ist etwas schief gelaufen. Eventuell hilft ein Neustart der App.
+firststeps.introduction.1=Welcome to
+firststeps.introduction.2=! Choose a username:
+firststeps.form.button.submit=Start Mission!
+firststeps.alert.username.empty.title=Enter username
+firststeps.alert.username.empty.message=Please enter a username.
+firststeps.alert.username.specialchars.title=Problem with character
+firststeps.alert.username.specialchars.message=Please only use letters and digits for your username.
+firststeps.alert.submit.failure.title=Error while sending
+firststeps.alert.submit.failure.message=Oops! There was an error while sending the username. Restarting the app might help.
 
 # Geolocation error
-geolocationerror.introduction.1=Um 
-geolocationerror.introduction.2= verwenden zu können, muss auf deine Position zugegriffen werden können.
-geolocationerror.button.reload=Applikation neu laden
-geolocationerror.loadmask.message=Lade App neu...
+geolocationerror.introduction.1=To use
+geolocationerror.introduction.2= , accessing your geo-position is essential.
+geolocationerror.button.reload=Reload application
+geolocationerror.loadmask.message=Reloading app...
 
 # Bugmap
-bugmap.title=Aufträge in deiner Nähe
-bugmap.loadmask.message=Lade Auträge...
-bugmap.messagebox.koins.earn=Verdiene dir
+bugmap.title=Missions nearby
+bugmap.loadmask.message=Loading missions...
+bugmap.messagebox.koins.earn=Earn
 bugmap.messagebox.koins.name=Koins
-bugmap.messagebox.yes=Beantworten
-bugmap.messagebox.no=Weiss nicht
+bugmap.messagebox.yes=Answer
+bugmap.messagebox.no=Don't know
 
 ## Fix
-fix.form.title=Auftrag
-fix.form.koins.earn=Hol dir die
+fix.form.title=Mission
+fix.form.koins.earn=Get the
 fix.form.koins.name=Koins!
-fix.form.message.placeholder=Deine Antwort...
-fix.form.button.showonmap=Auf der Karte anzeigen
-fix.form.button.submit=Auftrag abschliessen
-fix.form.loadmask.message=Lade Antworten...
-fix.form.notfixable.label=Nicht lösbar
-fix.map.title=Karte
-fix.sendmask.message=Sende Lösung...
-fix.alert.fixfield.empty.title=Felder ausfüllen
-fix.alert.fixfield.empty.message=Bitte alle Felder ausfüllen.
-fix.alert.submit.failure.title=Fehler beim Senden
-fix.alert.submit.failure.message=Ups! Beim Übertragen der Lösung ist etwas schief gelaufen. Eventuell hilft ein Neustart der App.
+fix.form.message.placeholder=Your answer...
+fix.form.button.showonmap=Show on map
+fix.form.button.submit=Complete mission
+fix.form.loadmask.message=Loading answers...
+fix.form.notfixable.label=Unable to solve
+fix.map.title=Map
+fix.sendmask.message=Sending solution...
+fix.alert.fixfield.empty.title=Fill in the fields
+fix.alert.fixfield.empty.message=Please fill in all fields.
+fix.alert.submit.failure.title=Error while sending
+fix.alert.submit.failure.message=Oops! There was an error while sending your answer. Restarting the app might help.
 
 # Validation
-validation.title=Prüfen
-validation.loadmask.message=Lade Daten...
-validation.emptytext=Bravo! Du hast alle Meldungen überprüft.
-validation.list.header=positive Überprüfungen nötig
-validation.distance=Distanz
+validation.title=Check
+validation.loadmask.message=Loading data...
+validation.emptytext=Bravo! You checked all messages.
+validation.list.header=positive Ratings needed
+validation.distance=Distance
 
 ## Vote
-vote.falsepositive.question=Es wurde angegeben, dass es keine Lösung zu dieser Frage gibt. Ist dies korrekt?
-vote.container.button.answer=Beantworten
-vote.answeractionsheet.button.accept=Ja
-vote.answeractionsheet.button.decline=Nein
-vote.answeractionsheet.button.cancel=Weiss nicht
-vote.answeractionsheet.question=Ist die Antwort korrekt?
-vote.sendmask.message=Sende Antwort...
-vote.alert.submit.failure.title=Fehler beim Senden
-vote.alert.submit.failure.message=Ups! Beim Übertragen deiner Antwort ist etwas schief gelaufen. Eventuell hilft ein Neustart der App.
+vote.falsepositive.question=This mission is flagged as "unable to solve". Is this correct?
+vote.container.button.answer=Answer
+vote.answeractionsheet.button.accept=Yes
+vote.answeractionsheet.button.decline=No
+vote.answeractionsheet.button.cancel=Don't know
+vote.answeractionsheet.question=Is the answer correct?
+vote.sendmask.message=Sending answer...
+vote.alert.submit.failure.title=Error while sending
+vote.alert.submit.failure.message=Oops! There was an error while sending your answer. Restarting the app might help.
 
 # PullRefresh Plugin
-pullrefresh.pullrefresh=Zum Aktualisieren herunterziehen
-pullrefresh.releaserefresh=Zum Aktualisieren loslassen...
-pullrefresh.loading=wird aktualisiert...
-pullrefresh.lastupdated=Zuletzt aktualisiert:
+pullrefresh.pullrefresh=Pull down to refresh
+pullrefresh.releaserefresh=Release to refresh...
+pullrefresh.loading=loading...
+pullrefresh.lastupdated=Last updated:
 
 # Highscore
 highscore.title=Highscore
-highscore.loadmask.message=Lade Highscore...
-highscore.emptytext=Highscore kann nicht geladen werden.
-highscore.you=Das bist du!
+highscore.loadmask.message=Loading highscore...
+highscore.emptytext=Can't load highscore.
+highscore.you=This is you!
 highscore.koins=Koins
-highscore.fixcount=Aufträge:
-highscore.votecount=Prüfungen:
-highscore.user.badges.emptytext=Die Auszeichnungen konnten nicht geladen werden.
+highscore.fixcount=Missions:
+highscore.votecount=Checks:
+highscore.user.badges.emptytext=Could not load badges.
 
 # Profil
-profile.title=Profil
+profile.title=Profile
 profile.button.logout=Logout
-profile.button.changeusername=Benutzername ändern
-profile.settings.messagebox.title=Einstellungen
-profile.settings.messagebox.message=Gib deinen neuen Benutzernamen ein
-profile.username.loadmask.message=Benutzername wird gespeichert
-profile.content.username=Benutzername
-profile.content.oauthprovider=Eingeloggt über
-profile.content.fixes=Erledigte Aufträge
-profile.content.votes=Getätigte Überprüfungen
-profile.content.koins.header=Gesammelte Koins
+profile.button.changeusername=Change username
+profile.settings.messagebox.title=Settings
+profile.settings.messagebox.message=Enter your new username
+profile.username.loadmask.message=Saving username...
+profile.content.username=Username
+profile.content.oauthprovider=Login via
+profile.content.fixes=Completed missions
+profile.content.votes=Performed checks
+profile.content.koins.header=Collected Koins
 profile.content.koins.title=Koins
-profile.content.ranking.title=Platz
-profile.content.badges.header=Gewonnene Auszeichnungen
+profile.content.ranking.title=Place
+profile.content.badges.header=Won badges
 profile.logout.loadmask.message=Logout...
-profile.refresh.loadmask.message=Lade Profil...
-profile.badges.title=Deine Auszeichnungen
-profile.badges.recieved=Erhalten am:
-profile.badges.emptytext=Deine Auszeichnungen konnten nicht geladen werden.
-profile.badges.button.close=Schliessen
-profile.alert.username.empty.title=Benutzernamen eingeben
-profile.alert.username.empty.message=Bitte gib einen Benutzernamen ein.
-profile.alert.username.specialchars.title=Zeichenproblem
-profile.alert.username.specialchars.message=Verwende bitte nur Buchstaben und Zahlen für deinen Benutzernamen.
-profile.alert.submit.failure.title=Fehler beim Senden
-profile.alert.submit.failure.message=Ups! Beim Übertragen deines Benutzernamens ist etwas schief gelaufen. Eventuell hilft ein Neustart der App.
+profile.refresh.loadmask.message=Loading profile...
+profile.badges.title=Your badges
+profile.badges.recieved=Received on:
+profile.badges.emptytext=Your badges could not be loaded.
+profile.badges.button.close=Close
+profile.alert.username.empty.title=Enter username
+profile.alert.username.empty.message=Please enter a username.
+profile.alert.username.specialchars.title=Problem with character
+profile.alert.username.specialchars.message=Please only use letters and digits for your username.
+profile.alert.submit.failure.title=Error while sending
+profile.alert.submit.failure.message=Oops! There was an error while sending the username. Restarting the app might help.
 
 # About
-about.title=Über
+about.title=About
 about.version.title=Version
-about.information.title=Weitere Informationen
-about.information.homepage=Webseite:
+about.information.title=More information
+about.information.homepage=Website:
 about.information.feedback=Feedback/FAQ:
-about.information.bugs=Fehler melden:
-about.developers.title=Entwickler
-about.project.title=Projekt
-about.project.advisor=Leitung:
+about.information.bugs=Report a bug:
+about.developers.title=Developer
+about.project.title=Project
+about.project.advisor=Lead:
 about.credits.title=Credits
 about.credits.partner=Partner:
-about.credits.mapdata=Geodaten:
-about.credits.tiledata=Kartenkacheln:
+about.credits.mapdata=Geo data:
+about.credits.tiledata=Tiles:
 about.credits.markers=Marker Icons:
-about.legal.title=Rechtliche Hinweise
-about.legal.message=Halte die Richtlinien von OpenStreetMap ein und verwende z.B. keine urheberrechtlich geschützten Quellen ohne Erlaubnis.
+about.legal.title=Legal note:
+about.legal.message=Please follow the guidelines of OpenStreetMap and don't use copyright protected sources without permission.
 
 # Button
 button.back=Back
 
 # MessageBox
 messagebox.ok=OK
-messagebox.yes=Ja
-messagebox.no=Nein
-messagebox.cancel=Abbrechen
+messagebox.yes=Yes
+messagebox.no=No
+messagebox.cancel=Cancel
 
 # Picker
-picker.done=Fertig
-picker.cancel=Abbrechen
+picker.done=Finish
+picker.cancel=Cancel
 
 # Reward
-reward.alert.title=Dein Ansehen ist gestiegen!
-reward.alert.koins.new.1=Bravo! Du hast
-reward.alert.koins.new.2=Koins gewonnen.
-reward.alert.koins.total.1=Deine Gesamtpunktzahl beträgt nun
+reward.alert.title=You increased your reputation!
+reward.alert.koins.new.1=Bravo! You have won
+reward.alert.koins.new.2=Koins.
+reward.alert.koins.total.1=Your now have a total amount of
 reward.alert.koins.total.2=Koins.
-reward.alert.badges.title=Gewonnene Auszeichnungen
+reward.alert.badges.title=Won badges
 
 # App update
-update.title=Neue App-Version
-update.message=Die App wurde auf die neuste Version aktualisiert. App neu laden?
-
+update.title=New version of app
+update.message=The app has be updated to the newest version. Reload?
 
 ###############################
 # Labels used directly in source files (without Ext.i18n.Bundle plugin)
