@@ -6,7 +6,7 @@ tab.profile=Profile
 tab.about=About Kort
 
 # Login
-login.kort.description.1=Complete Aufträge
+login.kort.description.1=Complete missions
 login.kort.description.2=Collect Koins
 login.kort.description.3=Improve OpenStreetMap
 login.kort.introduction.1= helps to improve the data in OpenStreetMap.
