@@ -17,7 +17,7 @@ class LocaleHelper
      *
      * @var array(string)
      */
-    protected $defaultLanguge = "de";
+    protected $defaultLanguge = "en";
 
     /**
      * Defines all currently supported languages.
