@@ -1,0 +1,28 @@
+# Error descriptions
+This track doesn't have a tracktype=Che tipo di strada è questa?
+This node is tagged as $1 and therefore needs a name tag or an operator tag=Come si chiama questa/o $1?
+This node is tagged as $1 and therefore needs a name tag=Come si chiama questa/o $1?
+missing maxspeed tag=Che limite di velocità bisogna rispettare su questa strada?
+This way has no tags=Come si chiama questa strada?
+It would be nice if this $1 had an additional tag 'name:XX=$2' where XX shows the language of its name '$2'.=Qual'è la lingua del nome '$2'?
+This way is tagged as motorway and therefore needs a ref, nat_ref or int_ref tag=Come è indicata questa autostrada (es. A1 o E45)?
+This %1 is tagged as place of worship and therefore needs a religion tag=A quale culto appartiene questo luogo di culto?
+
+# Single values
+cafe=Bar/Caffé
+fast_food=Fast-Food
+restaurant=Ristorante
+school=Scuola
+pharmacy=Farmacia
+fuel=Distributore
+cinema=Cinema
+bank=Banca
+university=Università
+theatre=Teatro
+pub=Pub
+place_of_worship=Luogo di culto/Chiesa
+library=Biblioteca
+hospital=Ospedale
+courthouse=Tribunale
+way=Strada
+node=Località
