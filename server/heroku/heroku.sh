@@ -1,5 +1,5 @@
 #!/bin/bash
-if [[ $TRAVIS_SECURE_ENV_VARS == "true" ]] ; then
+if [[ $TRAVIS_SECURE_ENV_VARS == "false" ]] ; then
     DEPLOY="false"
 fi
 
