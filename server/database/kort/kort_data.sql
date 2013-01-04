@@ -43,22 +43,44 @@ insert into kort.answer (answer_id, type, value, title, sorting) VALUES (151, 'l
 insert into kort.answer (answer_id, type, value, title, sorting) VALUES (140, 'language_unknown', 'en', 'Englisch', 20);
 insert into kort.answer (answer_id, type, value, title, sorting) VALUES (147, 'language_unknown', 'fr', 'Französisch', 30);
 insert into kort.answer (answer_id, type, value, title, sorting) VALUES (170, 'language_unknown', 'it', 'Italienisch', 40);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (248, 'language_unknown', 'es', 'Spanisch', 50);
 insert into kort.answer (answer_id, type, value, title, sorting) VALUES (106, 'language_unknown', 'ar', 'Arabisch', 100);
 insert into kort.answer (answer_id, type, value, title, sorting) VALUES (129, 'language_unknown', 'zh', 'Chinesisch', 200);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (136, 'language_unknown', 'da', 'Dänisch', 300);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (138, 'language_unknown', 'nl', 'Holländisch', 400);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (140, 'language_unknown', 'fi', 'Finnisch', 500);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (152, 'language_unknown', 'el', 'Griechisch', 600);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (157, 'language_unknown', 'he', 'Hebräisch', 700);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (172, 'language_unknown', 'ja', 'Japanisch', 800);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (214, 'language_unknown', 'no', 'Norwegisch', 900);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (226, 'language_unknown', 'pl', 'Polnisch', 1000);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (228, 'language_unknown', 'pt', 'Portugiesisch', 1100);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (230, 'language_unknown', 'rm', 'Rätoromanisch', 1200);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (232, 'language_unknown', 'ro', 'Rumänisch', 1300);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (233, 'language_unknown', 'ru', 'Russisch', 1400);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (243, 'language_unknown', 'gsw', 'Schweizerdeutsch', 1500);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (248, 'language_unknown', 'es', 'Spanisch', 1600);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (252, 'language_unknown', 'sv', 'Schwedisch', 1700);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (263, 'language_unknown', 'tr', 'Türkisch', 1800);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (273, 'language_unknown', 'vi', 'Vietnamesisch', 1900);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (280, 'language_unknown', 'ca', 'Katalanisch', 300);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (134, 'language_unknown', 'hr', 'Kroatisch', 400);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (135, 'language_unknown', 'cs', 'Tschechisch', 500);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (136, 'language_unknown', 'da', 'Dänisch', 600);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (138, 'language_unknown', 'nl', 'Holländisch', 700);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (142, 'language_unknown', 'et', 'Estnisch', 800);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (141, 'language_unknown', 'fi', 'Finnisch', 900);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (152, 'language_unknown', 'el', 'Griechisch', 1000);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (157, 'language_unknown', 'he', 'Hebräisch', 1100);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (165, 'language_unknown', 'ga', 'Irisch', 1200);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (169, 'language_unknown', 'is', 'Isländisch', 1300);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (172, 'language_unknown', 'ja', 'Japanisch', 1400);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (185, 'language_unknown', 'ko', 'Koreanisch', 1500);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (188, 'language_unknown', 'la', 'Lateinisch', 1600);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (189, 'language_unknown', 'lb', 'Luxemburgisch', 1700);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (214, 'language_unknown', 'no', 'Norwegisch', 1800);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (225, 'language_unknown', 'fa', 'Persisch', 1900);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (226, 'language_unknown', 'pl', 'Polnisch', 2000);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (228, 'language_unknown', 'pt', 'Portugiesisch', 2100);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (230, 'language_unknown', 'rm', 'Rätoromanisch', 2200);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (232, 'language_unknown', 'ro', 'Rumänisch', 2300);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (233, 'language_unknown', 'ru', 'Russisch', 2400);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (235, 'language_unknown', 'sc', 'Sardisch', 2500);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (241, 'language_unknown', 'gd', 'Schottisch-Gälisch', 2600);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (252, 'language_unknown', 'sv', 'Schwedisch', 2700);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (243, 'language_unknown', 'gsw', 'Schweizerdeutsch', 2800);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (240, 'language_unknown', 'sr', 'Serbisch', 2900);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (244, 'language_unknown', 'sk', 'Slowakisch', 3000);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (245, 'language_unknown', 'sl', 'Slowenisch', 3100);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (256, 'language_unknown', 'th', 'Thailändisch', 3200);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (263, 'language_unknown', 'tr', 'Türkisch', 3300);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (273, 'language_unknown', 'vi', 'Vietnamesisch', 3400);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (276, 'language_unknown', 'cy', 'Walisisch', 3500);
+
+
+
+
+
