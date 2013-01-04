@@ -165,10 +165,9 @@ $label-background-color: #46578D;
     .fixFormPanel {
         margin: 0 $panel-padding $panel-padding $panel-padding;
         
-        .fixfield {
-            margin-bottom: 0.4em;
-        }
-        .x-button {
+        .fixfield,
+        .x-button,
+        .x-field-textarea {
             margin-bottom: 0.3em;
         }
         .x-toggle-field {

@@ -17,7 +17,8 @@ Ext.define('Kort.controller.Fix', {
             detailComponent: '.fixtabpanel',
             fixFormSubmitButton: '.fixtabpanel .formpanel .button[cls=fixSubmitButton]',
             fixField: '.fixtabpanel .formpanel .field[name=fixfield]',
-            fixNotFixableToggleField: '.fixtabpanel .formpanel .togglefield[name=falsepositive]',
+            fixFalsepositiveToggleField: '.fixtabpanel .formpanel .togglefield[name=falsepositive]',
+            fixFalsepositiveDescriptionTextareaField: '.fixtabpanel .formpanel .textareafield[name=falsepositiveDescription]',
             fixmap: '.fixtabpanel .kortleafletmap[cls=fixMap]'
         },
         control: {
@@ -27,8 +28,8 @@ Ext.define('Kort.controller.Fix', {
             fixField: {
                 keyup: 'onFixFieldKeyUp'
             },
-            fixNotFixableToggleField: {
-                change: 'onFixNotFixableToggleFieldChange'
+            fixFalsepositiveToggleField: {
+                change: 'onFixFalsepositiveToggleFieldChange'
             },
             fixmap: {
                 maprender: 'onMaprender'
@@ -41,7 +42,8 @@ Ext.define('Kort.controller.Fix', {
         var me = this,
             detailComponent = this.getDetailComponent(),
             fixFieldValue = this.getFixField().getValue(),
-            falsepositive = me.getFixNotFixableToggleField().getValue(),
+            falsepositive = me.getFixFalsepositiveToggleField().getValue(),
+            falsepositiveDescription = me.getFixFalsepositiveDescriptionTextareaField().getValue(),
             userId = Kort.user.get('id'),
             falsepositiveString,
             fix,
@@ -60,7 +62,8 @@ Ext.define('Kort.controller.Fix', {
                 osm_id: detailComponent.getRecord().get('osm_id'),
                 user_id: userId,
                 message: fixFieldValue,
-                falsepositive: falsepositiveString
+                falsepositive: falsepositiveString,
+                falsepositive_description: falsepositiveDescription
             });
             fix.save({
                 success: function(records, operation) {
@@ -88,12 +91,14 @@ Ext.define('Kort.controller.Fix', {
     },
     
     // @private
-    onFixNotFixableToggleFieldChange: function(cmp, newValue, oldValue) {
+    onFixFalsepositiveToggleFieldChange: function(cmp, newValue, oldValue) {
         var value = cmp.getValue();
         if(value) {
             this.getFixField().hide();
+            this.getFixFalsepositiveDescriptionTextareaField().show();
         } else {
             this.getFixField().show();
+            this.getFixFalsepositiveDescriptionTextareaField().hide();
         }
     },
 

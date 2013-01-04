@@ -243,6 +243,7 @@ Ext.application({
         Ext.i18n.Bundle.configure({
             bundle: 'Kort',
             path: 'resources/i18n',
+            language: Kort.util.Config.getLanguage(),
             noCache: true
         });
     },
@@ -275,31 +276,10 @@ Ext.application({
     },
 
     onUpdated: function() {
-        // Prepare i18n bundle
-        // this has to be done directly in onUpdated method!
-        Ext.i18n.Bundle.configure({
-            bundle: 'Kort',
-            path: 'resources/i18n',
-            noCache: true
-        });
-
-        // Override MessageBox default messages
-        // this has to be done directly in onUpdated method!
-        Ext.override('Kort.MessageBox', {
-            override: 'Ext.MessageBox',
-
-            statics: {
-                YES   : { text: Ext.i18n.Bundle.message('messagebox.yes'),   itemId: 'yes', ui: 'action'},
-                NO    : { text: Ext.i18n.Bundle.message('messagebox.no'), itemId: 'no'},
-
-                YESNO: [
-                    { text: Ext.i18n.Bundle.message('messagebox.yes'),   itemId: 'yes', ui: 'action'},
-                    { text: Ext.i18n.Bundle.message('messagebox.no'), itemId: 'no'}
-                ]
-            }
-        });
-        Ext.Msg.defaultAllowedConfig.zIndex = 1600;
-
+        Kort.app.configureMessageBox();
+        Kort.app.prepareI18n();
+        
+        Ext.Msg.defaultAllowedConfig.zIndex = Kort.util.Config.getZIndex().overlayOverlayPanel;
         Ext.Msg.confirm(
             Ext.i18n.Bundle.message('update.title'),
             Ext.i18n.Bundle.message('update.message'),
