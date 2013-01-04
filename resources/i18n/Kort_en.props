@@ -50,7 +50,7 @@ fix.form.message.placeholder=Your answer...
 fix.form.button.showonmap=Show on map
 fix.form.button.submit=Complete mission
 fix.form.loadmask.message=Loading answers...
-fix.form.notfixable.label=Unable to solve
+fix.form.falsepositive.toggle.label=Unable to solve
 fix.map.title=Map
 fix.sendmask.message=Sending solution...
 fix.alert.fixfield.empty.title=Fill in the fields
@@ -168,11 +168,16 @@ update.message=The app has be updated to the newest version. Reload?
 # Labels used directly in source files (without Ext.i18n.Bundle plugin)
 ###############################
 
-# App startscreen (index.html)
+# index.html
+## App startscreen
 loading.message=is loading. Get ready...
 
-# Firststeps (app/util/Config.js)
+# app/util/Config.js
+## Firststeps
 firststeps.form.username.placeholder=Username
 
-# PullRefresh Plugin (app/util/Config.js)
+## Fix
+fix.form.falsepositive.placeholder=Reason
+
+## PullRefresh Plugin
 pullrefresh.dateformat=m/d/Y h:iA

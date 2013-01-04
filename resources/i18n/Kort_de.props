@@ -50,7 +50,7 @@ fix.form.message.placeholder=Deine Antwort...
 fix.form.button.showonmap=Auf der Karte anzeigen
 fix.form.button.submit=Auftrag abschliessen
 fix.form.loadmask.message=Lade Antworten...
-fix.form.notfixable.label=Nicht lösbar
+fix.form.falsepositive.toggle.label=Nicht lösbar
 fix.map.title=Karte
 fix.sendmask.message=Sende Lösung...
 fix.alert.fixfield.empty.title=Felder ausfüllen
@@ -168,11 +168,16 @@ update.message=Die App wurde auf die neuste Version aktualisiert. App neu laden?
 # Labels used directly in source files (without Ext.i18n.Bundle plugin)
 ###############################
 
-# App startscreen (index.html)
+# index.html
+## App startscreen
 loading.message=wird geladen. Gleich gehts los...
 
-# Firststeps (app/util/Config.js)
+# app/util/Config.js
+## Firststeps
 firststeps.form.username.placeholder=Benutzername
 
-# PullRefresh Plugin (app/util/Config.js)
+## Fix
+fix.form.falsepositive.placeholder=Grund
+
+## PullRefresh Plugin
 pullrefresh.dateformat=d.m.Y H:i:s
