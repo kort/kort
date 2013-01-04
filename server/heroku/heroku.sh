@@ -1,4 +1,8 @@
 #!/bin/bash
+if [[ $TRAVIS_SECURE_ENV_VARS == "true" ]] ; then
+    DEPLOY="false"
+fi
+
 if [[ $DEPLOY == "true" ]] ; then
     if [ -z $BUILD_DIR -a -z $CI_HOME -a -z $TARGET_ENV ] ; then
        echo "You need to specify the BUILD_DIR, CI_HOME, TARGET_ENV environment variable."
