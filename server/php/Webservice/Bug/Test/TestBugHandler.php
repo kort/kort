@@ -16,6 +16,7 @@ class TestBugHandler extends AbstractKortUnitTestCase
     {
         $this->mockProxy = M::mock('Webservice\TransactionDbProxy');
         $this->handler = new BugHandler();
+        $this->handler->setLanguage("de");
         $this->handler->setDbProxy($this->mockProxy);
     }
 
