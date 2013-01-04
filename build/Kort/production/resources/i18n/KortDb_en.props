@@ -1,4 +1,11 @@
 # error types
+error_type.title.motorway_ref=Motorway without reference
+error_type.title.poi_wo_name=Object without a name
+error_type.title.missing_speedlimit=Missing speed limit
+error_type.title.tracktype=Type of track unknown
+error_type.title.worship_religion=Place of worship without religion
+error_type.title.language_name=Language of the name unknown
+error_type.title.street_wo_name=Street without a name
 Autobahn ohne Bezeichner=Motorway without reference
 Objekt ohne Namen=Object without a name
 Fehlendes Tempolimit=Missing speed limit
@@ -8,6 +15,12 @@ Sprache des Namens unbekannt=Language of the name unknown
 Strasse ohne Namen=Street without a name
 
 # error type placeholders
+error_type.placeholder.ref=Reference
+error_type.placeholder.religion=Religion
+error_type.placeholder.speed_limit=Speed limit
+error_type.placeholder.language=Language
+error_type.placeholder.type=Type
+error_type.placeholder.street_name=Name of street
 Bezeichner=Reference
 Religion=Religion
 Tempolimit=Speed limit
@@ -92,3 +105,32 @@ Spanisch=Spanish
 Schwedisch=Swedish
 Türkisch=Turkish
 Vietnamesisch=Vietnamese
+
+# error descriptions (KeepRight)
+This track doesn't have a tracktype=What kind of track is this?
+This node is tagged as $1 and therefore needs a name tag or an operator tag=What's this $1 called?
+This node is tagged as $1 and therefore needs a name tag=What's this $1 called?
+missing maxspeed tag=What speed limit does apply on this street?
+This way has no tags=What's the name of this street?
+It would be nice if this $1 had an additional tag 'name:XX=$2' where XX shows the language of its name '$2'.=In what language is the name '$2' written?
+This way is tagged as motorway and therefore needs a ref, nat_ref or int_ref tag=What's the reference (e.g. A3 oder E385) of this motorway?
+This %1 is tagged as place of worship and therefore needs a religion tag=To which religion does this place of worship belong to?
+
+# single values
+cafe=cafe
+fast_food=fast food restaurant
+restaurant=restaurant
+school=school
+pharmacy=pharmacy
+fuel=gas station
+cinema=cinema
+bank=bank
+university=university
+theatre=theatre
+pub=pub
+place_of_worship=place of worship
+library=library
+hospital=hospital
+courthouse=courthouse
+way=way
+node=place
