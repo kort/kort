@@ -71,13 +71,6 @@ Ext.define('Kort.view.bugmap.fix.Form', {
                     label: Ext.i18n.Bundle.message('fix.form.falsepositive.toggle.label'),
                     labelWidth: '60%'
                 },
-                {
-                    xtype: 'textareafield',
-                    hidden: true,
-                    name : 'falsepositiveDescription',
-                    // i18n bundle doens't work for placeholders -> get text from config
-                    placeHolder: Kort.util.Config.getMessage('fix.form.falsepositive.placeholder')
-                },
                 fixField,
                 {
                     xtype: 'button',
@@ -95,7 +88,9 @@ Ext.define('Kort.view.bugmap.fix.Form', {
         var fixField,
             fieldConfig = {
                 name: 'fixfield',
-                cls: 'fixfield'
+                cls: 'fixfield',
+                hideAnimation: { type: 'fadeOut', duration: 500},
+                showAnimation: { type: 'fadeIn', duration: 500}
             };
         
         if(bug.get('view_type') === 'select') {

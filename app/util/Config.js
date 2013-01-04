@@ -132,17 +132,14 @@ Ext.define('Kort.util.Config', {
         messages: {
             de: {
                 'firststeps.form.username.placeholder': 'Benutzername',
-                'fix.form.falsepositive.placeholder': 'Grund',
                 'pullrefresh.dateformat': 'd.m.Y H:i:s'
             },
             en: {
                 'firststeps.form.username.placeholder': 'Username',
-                'fix.form.falsepositive.placeholder': 'Reason',
                 'pullrefresh.dateformat': 'm/d/Y h:iA'
             },
             it: {
                 'firststeps.form.username.placeholder': '[TODO: TRANSLATE ME]',
-                'fix.form.falsepositive.placeholder': '[TODO: TRANSLATE ME]',
                 'pullrefresh.dateformat': '[TODO: TRANSLATE ME]'
             }
         },

@@ -176,8 +176,5 @@ loading.message=wird geladen. Gleich gehts los...
 ## Firststeps
 firststeps.form.username.placeholder=Benutzername
 
-## Fix
-fix.form.falsepositive.placeholder=Grund
-
 ## PullRefresh Plugin
 pullrefresh.dateformat=d.m.Y H:i:s

@@ -18,7 +18,6 @@ Ext.define('Kort.controller.Fix', {
             fixFormSubmitButton: '.fixtabpanel .formpanel .button[cls=fixSubmitButton]',
             fixField: '.fixtabpanel .formpanel .field[name=fixfield]',
             fixFalsepositiveToggleField: '.fixtabpanel .formpanel .togglefield[name=falsepositive]',
-            fixFalsepositiveDescriptionTextareaField: '.fixtabpanel .formpanel .textareafield[name=falsepositiveDescription]',
             fixmap: '.fixtabpanel .kortleafletmap[cls=fixMap]'
         },
         control: {
@@ -43,7 +42,6 @@ Ext.define('Kort.controller.Fix', {
             detailComponent = this.getDetailComponent(),
             fixFieldValue = this.getFixField().getValue(),
             falsepositive = me.getFixFalsepositiveToggleField().getValue(),
-            falsepositiveDescription = me.getFixFalsepositiveDescriptionTextareaField().getValue(),
             userId = Kort.user.get('id'),
             falsepositiveString,
             fix,
@@ -62,8 +60,7 @@ Ext.define('Kort.controller.Fix', {
                 osm_id: detailComponent.getRecord().get('osm_id'),
                 user_id: userId,
                 message: fixFieldValue,
-                falsepositive: falsepositiveString,
-                falsepositive_description: falsepositiveDescription
+                falsepositive: falsepositiveString
             });
             fix.save({
                 success: function(records, operation) {
@@ -95,10 +92,8 @@ Ext.define('Kort.controller.Fix', {
         var value = cmp.getValue();
         if(value) {
             this.getFixField().hide();
-            this.getFixFalsepositiveDescriptionTextareaField().show();
         } else {
             this.getFixField().show();
-            this.getFixFalsepositiveDescriptionTextareaField().hide();
         }
     },
 

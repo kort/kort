@@ -176,8 +176,5 @@ loading.message=[TODO: TRANSLATE ME]
 ## Firststeps
 firststeps.form.username.placeholder=Nome utente
 
-## Fix
-fix.form.falsepositive.placeholder=[TODO: TRANSLATE ME]
-
 ## PullRefresh Plugin
 pullrefresh.dateformat=[TODO: TRANSLATE ME]
