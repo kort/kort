@@ -4,7 +4,6 @@ tab.validation=Verifica
 tab.highscore=Highscore
 tab.profile=Profilo
 tab.about=A proposito
-button.back=Indietro
 
 # Login
 login.kort.description.1=Risolvi incarichi
@@ -21,7 +20,6 @@ login.loadmask.message=Login...
 # Firststeps
 firststeps.introduction.1=Benvenuto su
 firststeps.introduction.2=! Scegli un nome utente:
-firststeps.form.username.placeholder=Nome utente
 firststeps.form.button.submit=Comincia la missione!
 firststeps.alert.username.empty.title=Scelta nome utente
 firststeps.alert.username.empty.message=Scegli il tuo nome utente.
@@ -52,7 +50,7 @@ fix.form.message.placeholder=La tua risposta...
 fix.form.button.showonmap=Mostra sulla mappa
 fix.form.button.submit=Risolvi l'incarico
 fix.form.loadmask.message=Carico risposte...
-fix.form.notfixable.label=Non risolvibile
+fix.form.falsepositive.toggle.label=Non risolvibile
 fix.map.title=Mappa
 fix.sendmask.message=Invia risposta...
 fix.alert.fixfield.empty.title=Campo vuoto!
@@ -78,13 +76,6 @@ vote.sendmask.message=Invio risposta...
 vote.alert.submit.failure.title=Errore nell'invio
 vote.alert.submit.failure.message=C'è stato un problema nell'invio della riposta. Potrebbe essere necessario un riavvio dell'applicazione.
 
-
-# PullRefresh Plugin
-pullrefresh.pullrefresh=Trascinare in basso per aggiornare
-pullrefresh.releaserefresh=Rilasciare per aggiornare...
-pullrefresh.loading=sto aggiornando...
-pullrefresh.lastupdated=Ultimo aggiornamento:
-
 # Highscore
 highscore.title=Highscore
 highscore.loadmask.message=Carico Highscore...
@@ -108,6 +99,7 @@ profile.content.fixes=Incarichi svolti
 profile.content.votes=Verifiche effettuate
 profile.content.koins.header=Koin raccolti
 profile.content.koins.title=Koin
+profile.content.ranking.title=[TODO: TRANSLATE ME]
 profile.content.badges.header=I tuoi badge
 profile.logout.loadmask.message=Logout...
 profile.refresh.loadmask.message=Carico il profilo...
@@ -140,6 +132,15 @@ about.credits.markers=Icone dei marker:
 about.legal.title=Indicazioni legali
 about.legal.message=Segui le indicazioni legali di OpenStreetMap, ad esempio non utilizzare sorgenti protette senza permesso.
 
+# PullRefresh Plugin
+pullrefresh.pullrefresh=Trascinare in basso per aggiornare
+pullrefresh.releaserefresh=Rilasciare per aggiornare...
+pullrefresh.loading=sto aggiornando...
+pullrefresh.lastupdated=Ultimo aggiornamento:
+
+# Button
+button.back=Indietro
+
 # MessageBox
 messagebox.ok=OK
 messagebox.yes=Si
@@ -157,3 +158,23 @@ reward.alert.koins.new.2=Koins.
 reward.alert.koins.total.1=Il tuo punteggio adesso è
 reward.alert.koins.total.2=Koin.
 reward.alert.badges.title=Nuovo Badge
+
+# App update
+update.title=[TODO: TRANSLATE ME]
+update.message=[TODO: TRANSLATE ME]
+
+
+###############################
+# Labels used directly in source files (without Ext.i18n.Bundle plugin)
+###############################
+
+# index.html
+## App startscreen
+loading.message=[TODO: TRANSLATE ME]
+
+# app/util/Config.js
+## Firststeps
+firststeps.form.username.placeholder=Nome utente
+
+## PullRefresh Plugin
+pullrefresh.dateformat=[TODO: TRANSLATE ME]
