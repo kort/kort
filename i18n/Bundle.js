@@ -46,9 +46,7 @@ Ext.define('Ext.i18n.Bundle', {
 		 */
 
 
-		model: 'Ext.i18n.model.Property',
-
-        supportedLanguages: ['en', 'de']
+		model: 'Ext.i18n.model.Property'
 	},
 
 	/**
@@ -88,6 +86,8 @@ Ext.define('Ext.i18n.Bundle', {
 		me.callParent([config]);
 	},
 
+
+
     setNoCache: function(value){
         var me = this,
             proxy = me.getProxy();
@@ -99,22 +99,11 @@ Ext.define('Ext.i18n.Bundle', {
     },
 
 	/**
-	 * @public
+	 * @private
 	 */
-	guessLanguage: function() {
-        var guessedLang = (navigator.language || navigator.browserLanguage
-                || navigator.userLanguage || this.defaultLanguage),
-            supportedLanguages = this.getSupportedLanguages(),
-            langLen = supportedLanguages.length,
-            i;
-
-       guessedLang = guessedLang.substring(0, 2).toLowerCase();
-       for(i = 0; i < langLen; i++) {
-           if (supportedLanguages[i] === guessedLang) {
-               return guessedLang;
-           }
-       }
-       return this.defaultLanguage;
+	guessLanguage: function(){
+		return (navigator.language || navigator.browserLanguage
+				|| navigator.userLanguage || this.defaultLanguage);
 	},
 
     /**

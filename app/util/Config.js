@@ -9,6 +9,16 @@ Ext.define('Kort.util.Config', {
          * @cfg {String} version Current version number of application
          */
         version: '1.1.{BUILD_NR}',
+        
+        /**
+         * @cfg {String[]} supportedLanguages Supported languages of the app
+         */
+        supportedLanguages: ['en', 'de'],
+        
+        /**
+         * @cfg {String} defaultLanguage Default language of app when no language setting could be detected
+         */
+        defaultLanguage: 'en',
 
         /**
          * @cfg {Object} leafletMap Configuration for {@link Ext.ux.LeafletMap} component
@@ -117,11 +127,24 @@ Ext.define('Kort.util.Config', {
         },
 
         /**
-         * @cfg {Object} formPlaceholders Ext.i18n.bundle plugin doesn't work for form placeholders so these are stored in config file
-         * @cfg {String} [formPlaceholders.username="Benutzername"] (required) Translation of username
+         * @cfg {Object} messages Ext.i18n.bundle plugin doesn't work for form placeholders so these are stored in config file
          */
-        formPlaceholders: {
-            username: 'Benutzername'
+        messages: {
+            de: {
+                'firststeps.form.username.placeholder': 'Benutzername',
+                'fix.form.falsepositive.placeholder': 'Grund',
+                'pullrefresh.dateformat': 'd.m.Y H:i:s'
+            },
+            en: {
+                'firststeps.form.username.placeholder': 'Username',
+                'fix.form.falsepositive.placeholder': 'Reason',
+                'pullrefresh.dateformat': 'm/d/Y h:iA'
+            },
+            it: {
+                'firststeps.form.username.placeholder': '[TODO: TRANSLATE ME]',
+                'fix.form.falsepositive.placeholder': '[TODO: TRANSLATE ME]',
+                'pullrefresh.dateformat': '[TODO: TRANSLATE ME]'
+            }
         },
 
         /**
@@ -213,6 +236,31 @@ Ext.define('Kort.util.Config', {
 	constructor: function(config) {
 		this.initConfig(config);
 		return this;
+	},
+    
+    getMessage: function(key) {
+        var lang = this.getLanguage();
+
+        return this.getMessages()[lang][key];
+    },
+    
+    /**
+     * Returns current language setting of browser
+     */
+	getLanguage: function() {
+        var currentLang = (navigator.language || navigator.browserLanguage
+                || navigator.userLanguage || this.defaultLanguage),
+            supportedLanguages = this.getSupportedLanguages(),
+            langLen = supportedLanguages.length,
+            i;
+
+       currentLang = currentLang.substring(0, 2).toLowerCase();
+       for(i = 0; i < langLen; i++) {
+           if (supportedLanguages[i] === currentLang) {
+               return currentLang;
+           }
+       }
+       return this.getDefaultLanguage();
 	},
 
     /**
