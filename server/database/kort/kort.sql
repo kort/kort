@@ -55,7 +55,6 @@ create table kort.fix (
     osm_id integer not null,
     message text,
     falsepositive boolean not null default false,
-    falsepositive_description character varying(2000),
     complete boolean not null default false,
     valid boolean,
     in_osm boolean not null default false,
