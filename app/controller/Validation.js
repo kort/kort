@@ -160,9 +160,6 @@ Ext.define('Kort.controller.Validation', {
         if(!me.getDetailPushDisabled()) {
             // disable fast tapping
             me.setDetailPushDisabled(true);
-            Ext.defer(function() {
-                me.setDetailPushDisabled(false);
-            }, 1000);
             
             voteContainer = Ext.create('Kort.view.validation.vote.Container', {
                 record: vote,
@@ -170,6 +167,9 @@ Ext.define('Kort.controller.Validation', {
             });
             validationNavigationView.push(voteContainer);
             validationNavigationView.fireEvent('detailpush', validationNavigationView);
+            Ext.defer(function() {
+                me.setDetailPushDisabled(false);
+            }, 2000);
         }
     },
 

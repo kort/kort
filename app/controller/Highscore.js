@@ -73,9 +73,6 @@ Ext.define('Kort.controller.Highscore', {
         if(!me.getDetailPushDisabled()) {
             // disable fast tapping
             me.setDetailPushDisabled(true);
-            Ext.defer(function() {
-                me.setDetailPushDisabled(false);
-            }, 1000);
             
             if(record.get('you')) {
                 me.getMainTabPanel().setActiveItem(me.getProfileContainer());
@@ -91,6 +88,9 @@ Ext.define('Kort.controller.Highscore', {
                 highscoreNavigationView.push(highscoreUserContainer);
                 highscoreNavigationView.fireEvent('detailpush', highscoreNavigationView);
             }
+            Ext.defer(function() {
+                me.setDetailPushDisabled(false);
+            }, 1000);
         }
     },
     
