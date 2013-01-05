@@ -25,7 +25,10 @@ Ext.define('Kort.view.highscore.NavigationView', {
                     iconMask: true,
                     align: 'right'
                 }
-            ]
+            ],
+            // SENCAH TOUCH BUGFIX:
+            // disable navigationBar animation because of wrong title positioning
+            animation: false
         },
         
 		items: [
