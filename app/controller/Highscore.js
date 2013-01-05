@@ -96,13 +96,34 @@ Ext.define('Kort.controller.Highscore', {
             highscoreStore = Ext.getStore('Highscore');
         
         if(me.getHighscoreList()) {
-            me.getHighscoreList().mask();
-            
+            me.showLoadMask();
             highscoreStore.load(function(records, operation, success) {
                 me.getHighscoreList().refresh();
-                me.getHighscoreList().unmask();
+                me.hideLoadMask();
             });
         }
+    },
+
+    /**
+     * @private
+     * Shows load mask
+     */
+    showLoadMask: function() {
+        this.getHighscoreRefreshButton().disable();
+        this.getHighscoreNavigationView().setMasked({
+            xtype: 'loadmask',
+            message: Ext.i18n.Bundle.message('highscore.loadmask.message'),
+            zIndex: Kort.util.Config.getZIndex().overlayLeafletMap
+        });
+    },
+    
+    /**
+     * @private
+     * Hides load mask
+     */
+    hideLoadMask: function() {
+        this.getHighscoreNavigationView().setMasked(false);
+        this.getHighscoreRefreshButton().enable();
     },
     
     // @private
