@@ -39,7 +39,8 @@ $app->get(
 
 $app->get(
     '/:id/badges',
-    function ($id) use ($userBadgesHandler, $slim) {
+    function ($id) use ($userBadgesHandler, $slim, $app) {
+        $userBadgesHandler->setLanguage($app->request()->params('lang'));
         $userBadges = $userBadgesHandler->getUserBadges($id);
         $slim->returnData($userBadges);
     }
