@@ -63,7 +63,7 @@ $app->post(
 $app->get(
     '/fix/completed',
     function () use ($fixGetHandler, $app) {
-        $fixHandler->setLanguage($app->request()->params('lang'));
+        $fixGetHandler->setLanguage($app->request()->params('lang'));
         $fixes = $fixGetHandler->getCompletedValidFixes();
         $app->response()->write($fixes);
     }
