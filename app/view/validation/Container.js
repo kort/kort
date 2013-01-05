@@ -5,8 +5,7 @@ Ext.define('Kort.view.validation.Container', {
 	extend: 'Ext.Container',
 	alias: 'widget.validationcontainer',
     requires: [
-        'Kort.view.validation.List',
-        //'Kort.view.validation.Map'
+        'Kort.view.validation.List'
     ],
 
 	config: {

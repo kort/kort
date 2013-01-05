@@ -245,8 +245,7 @@ Ext.define('Kort.util.Config', {
      * Returns current language setting of browser
      */
 	getLanguage: function() {
-        var currentLang = (navigator.language || navigator.browserLanguage
-                || navigator.userLanguage || this.defaultLanguage),
+        var currentLang = (navigator.language || navigator.browserLanguage || navigator.userLanguage || this.defaultLanguage),
             supportedLanguages = this.getSupportedLanguages(),
             langLen = supportedLanguages.length,
             i;
