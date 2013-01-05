@@ -6,7 +6,7 @@ Ext.define('Kort.view.validation.NavigationView', {
 	alias: 'widget.validationnavigationview',
     requires: [
         'Ext.Button',
-        'Kort.view.validation.List'
+        'Kort.view.validation.Container'
     ],
 	
 	config: {
@@ -18,6 +18,31 @@ Ext.define('Kort.view.validation.NavigationView', {
         
         navigationBar: {
             items: [
+                {
+                    xtype: 'segmentedbutton',
+                    items: [
+                        {
+                            itemId: 'list',
+                            iconCls: 'list',
+                            iconMask: true,
+                            pressed: true
+                        },
+                        {
+                            itemId: 'map',
+                            iconCls: 'maps',
+                            iconMask: true
+                        }
+                    ],
+                    align: 'left'
+                },
+                {
+                    xtype: 'button',
+                    cls: 'validationMapCenterButton',
+                    iconCls: 'locate',
+                    iconMask: true,
+                    align: 'left',
+                    hidden: true
+                },
                 {
                     xtype: 'button',
                     cls: 'validationRefreshButton',
@@ -31,7 +56,7 @@ Ext.define('Kort.view.validation.NavigationView', {
 		items: [
 			{
                 title: Ext.i18n.Bundle.message('validation.title'),
-                xtype: 'validationlist'
+                xtype: 'validationcontainer'
 			}
 		]
 	}

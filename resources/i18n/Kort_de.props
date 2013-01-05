@@ -60,7 +60,7 @@ fix.alert.submit.failure.message=Ups! Beim Übertragen der Lösung ist etwas sch
 
 # Validation
 validation.title=Prüfen
-validation.loadmask.message=Lade Daten...
+validation.loadmask.message=Lade Überprüfungen...
 validation.emptytext=Bravo! Du hast alle Meldungen überprüft.
 validation.list.header=positive Überprüfungen nötig
 validation.distance=Distanz

@@ -14,7 +14,6 @@ Ext.define('Kort.view.validation.PullRefreshPlugin', {
             if (store) {
                 store.load(function(records, operation, success) {
                     store.updateDistances(Kort.geolocation);
-                    list.refresh();
                 });
             }
         }

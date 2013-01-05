@@ -37,6 +37,7 @@ Ext.application({
         'Highscore',
         'Login',
         'Main',
+        'MarkerMap',
         'OsmMap',
         'Profile',
         'Validation',
@@ -198,8 +199,7 @@ Ext.application({
     },
 
     loadStores: function(geo, mainPanel) {
-        var validationsStore = Ext.getStore('Validations'),
-            userBadges = Ext.getStore('UserBadges'),
+        var userBadges = Ext.getStore('UserBadges'),
             selectAnswersStore = Ext.getStore('SelectAnswers'),
             highscoreStore = Ext.getStore('Highscore');
 
@@ -209,11 +209,6 @@ Ext.application({
         // loading highscore
         highscoreStore.load();
 
-        // loading validations
-        validationsStore.getProxy().setUrl(Kort.util.Config.getWebservices().validation.getUrl(geo.getLatitude(), geo.getLongitude()));
-        validationsStore.load(function(records, operation, success) {
-            validationsStore.updateDistances(Kort.geolocation);
-        }, this);
         // enable auto update on geolocation
         geo.setAutoUpdate(true);
 

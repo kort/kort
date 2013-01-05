@@ -117,11 +117,13 @@ Ext.define('Kort.controller.Vote', {
      */
     voteSuccessfulSubmittedHandler: function(responseText) {
         var rewardConfig = Ext.decode(responseText),
-            reward = Ext.create('Kort.model.Reward', rewardConfig);
+            reward = Ext.create('Kort.model.Reward', rewardConfig),
+            validationNavigationView = this.getValidationNavigationView();
         
         this.showRewardMessageBox(reward);
         // remove detail panel
-        this.getValidationNavigationView().pop();
+        validationNavigationView.pop();
+        validationNavigationView.fireEvent('detailpop', validationNavigationView);
         this.getApplication().fireEvent('votesend');
     },
     

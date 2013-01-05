@@ -12,7 +12,7 @@ Ext.define('Kort.view.validation.List', {
 		layout: 'fit',
 		store: 'Validations',
         grouped: true,
-        loadingText: Ext.i18n.Bundle.message('validation.loadmask.message'),
+        loadingText: false,
         emptyText: '<div class="emptytext">' + Ext.i18n.Bundle.message('validation.emptytext') + '</div>',
         disableSelection: true,
         scrollToTopOnRefresh: false,
