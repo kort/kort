@@ -200,14 +200,10 @@ Ext.application({
 
     loadStores: function(geo, mainPanel) {
         var userBadges = Ext.getStore('UserBadges'),
-            selectAnswersStore = Ext.getStore('SelectAnswers'),
-            highscoreStore = Ext.getStore('Highscore');
+            selectAnswersStore = Ext.getStore('SelectAnswers');
 
         // loading select answers
         selectAnswersStore.load();
-
-        // loading highscore
-        highscoreStore.load();
 
         // enable auto update on geolocation
         geo.setAutoUpdate(true);

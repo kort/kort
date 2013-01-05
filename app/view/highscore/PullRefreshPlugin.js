@@ -12,9 +12,7 @@ Ext.define('Kort.view.highscore.PullRefreshPlugin', {
                 store = list.getStore();
 
             if (store) {
-                store.load(function(records, operation, success) {
-                    list.refresh();
-                });
+                store.load();
             }
         }
 	}
