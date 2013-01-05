@@ -20,7 +20,7 @@ Ext.define('Kort.view.about.Container', {
 				xtype: 'titlebar',
 				cls: 'titlebar',
 				docked: 'top',
-				title: Ext.i18n.Bundle.message('about.title') + ' ' + Kort.util.Config.getKortTitle() + ' <span class="version">(v' + Kort.util.Config.getVersion() + ')</span>'
+				title: Ext.i18n.Bundle.message('about.title') + ' ' + Kort.util.Config.getKortTitle()
 			},
 			{
                 html:   '<div class="about-content">' +
