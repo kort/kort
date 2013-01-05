@@ -13,7 +13,7 @@ Ext.define('Kort.store.Highscore', {
             pageParam: false,
             startParam: false,
             extraParams: {
-                'lang': Ext.i18n.Bundle.guessLanguage(),
+                'lang': Kort.util.Config.getLanguage(),
                 'limit': Kort.util.Config.getWebservices().highscore.limit
             },
             sorters: 'place',

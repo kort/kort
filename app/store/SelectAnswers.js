@@ -14,7 +14,7 @@ Ext.define('Kort.store.SelectAnswers', {
             startParam: false,
             limitParam: false,
             extraParams: {
-                'lang': Ext.i18n.Bundle.guessLanguage()
+                'lang': Kort.util.Config.getLanguage()
             },
             sorters: 'sorting',
             reader: {

@@ -15,7 +15,7 @@ Ext.define('Kort.store.UserBadges', {
             limitParam: false,
             sorters: 'sorting',
             extraParams: {
-                'lang': Ext.i18n.Bundle.guessLanguage()
+                'lang': Kort.util.Config.getLanguage()
             },
             reader: {
                 type: 'json',

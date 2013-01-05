@@ -31,7 +31,7 @@ Ext.define('Kort.store.Validations', {
             pageParam: false,
             startParam: false,
             extraParams: {
-                'lang': Ext.i18n.Bundle.guessLanguage(),
+                'lang': Kort.util.Config.getLanguage(),
                 'limit': Kort.util.Config.getWebservices().validation.limit,
                 'radius': Kort.util.Config.getWebservices().validation.radius
             },
