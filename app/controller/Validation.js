@@ -167,9 +167,6 @@ Ext.define('Kort.controller.Validation', {
             });
             validationNavigationView.push(voteContainer);
             validationNavigationView.fireEvent('detailpush', validationNavigationView);
-            Ext.defer(function() {
-                me.setDetailPushDisabled(false);
-            }, 2000);
         }
     },
 
@@ -206,9 +203,16 @@ Ext.define('Kort.controller.Validation', {
 
     // @private
     onValidationNavigationViewDetailPush: function(cmp, view, opts) {
-        this.getValidationRefreshButton().hide();
-        this.getValidationSegmentedbutton().hide();
-        this.getValidationMapCenterButton().hide();
+        var me = this;
+
+        me.getValidationRefreshButton().hide();
+        me.getValidationSegmentedbutton().hide();
+        me.getValidationMapCenterButton().hide();
+
+        // reenable detail push after certain time
+        Ext.defer(function() {
+            me.setDetailPushDisabled(false);
+        }, 2000);
     },
     
     // @private

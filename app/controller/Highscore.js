@@ -88,9 +88,6 @@ Ext.define('Kort.controller.Highscore', {
                 highscoreNavigationView.push(highscoreUserContainer);
                 highscoreNavigationView.fireEvent('detailpush', highscoreNavigationView);
             }
-            Ext.defer(function() {
-                me.setDetailPushDisabled(false);
-            }, 1000);
         }
     },
     
@@ -142,7 +139,14 @@ Ext.define('Kort.controller.Highscore', {
     
     // @private
     onHighscoreNavigationViewDetailPush: function(cmp, view, opts) {
-        this.getHighscoreRefreshButton().hide();
+        var me = this;
+
+        me.getHighscoreRefreshButton().hide();
+
+        // reenable detail push after certain time
+        Ext.defer(function() {
+            me.setDetailPushDisabled(false);
+        }, 2000);
     },
     
     // @private
