@@ -47,7 +47,7 @@ Ext.define('Kort.controller.Validation', {
             }
         },
 
-        itemTapDisabled: false,
+        detailPushDisabled: false,
         validationsStore: null,
         activeRecord: null
     },
@@ -138,32 +138,13 @@ Ext.define('Kort.controller.Validation', {
             this.showVote(record);
         }
     },
-
-    // @private
-    markerConfirmHandler: function(buttonId, value, opt) {
-        if(buttonId === 'yes') {
-            this.showFix(this.getActiveRecord());
-        }
-
-        this.setActiveRecord(null);
-    },
     
     /**
      * @private
      * Displays vote panel for given validation
      */
     onValidationListItemTap: function(list, index, target, record, e) {
-        var me = this;
-        
-        if(!me.getItemTapDisabled()) {
-            // disable fast tapping
-            me.setItemTapDisabled(true);
-            Ext.defer(function() {
-                me.setItemTapDisabled(false);
-            }, 500);
-
-            me.showVote(record);
-        }
+        this.showVote(record);
     },
 
     /**
@@ -172,15 +153,24 @@ Ext.define('Kort.controller.Validation', {
      * @param {Kort.model.Vote} vote Vote instance
      */
     showVote: function(vote) {
-        var validationNavigationView = this.getValidationNavigationView(),
+        var me = this,
+            validationNavigationView = me.getValidationNavigationView(),
             voteContainer;
 
-        voteContainer = Ext.create('Kort.view.validation.vote.Container', {
-            record: vote,
-            title: vote.get('title')
-        });
-        validationNavigationView.push(voteContainer);
-        validationNavigationView.fireEvent('detailpush', validationNavigationView);
+        if(!me.getDetailPushDisabled()) {
+            // disable fast tapping
+            me.setDetailPushDisabled(true);
+            Ext.defer(function() {
+                me.setDetailPushDisabled(false);
+            }, 1000);
+            
+            voteContainer = Ext.create('Kort.view.validation.vote.Container', {
+                record: vote,
+                title: vote.get('title')
+            });
+            validationNavigationView.push(voteContainer);
+            validationNavigationView.fireEvent('detailpush', validationNavigationView);
+        }
     },
 
     /**

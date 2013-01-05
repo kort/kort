@@ -111,32 +111,5 @@ Ext.define('Kort.controller.MarkerMap', {
         //<debug warn>
         Ext.Logger.warn("Implement onMarkerClick method", this);
         //</debug>
-    },
-
-    // @private
-    markerConfirmHandler: function(buttonId, value, opt) {
-        //<debug warn>
-        Ext.Logger.warn("Implement markerConfirmHandler method", this);
-        //</debug>
-    },
-    
-    /**
-     * @private
-     * Shows load mask
-     */
-    showLoadMask: function() {
-        //<debug warn>
-        Ext.Logger.warn("Implement showLoadMask method", this);
-        //</debug>
-    },
-    
-    /**
-     * @private
-     * Hides load mask
-     */
-    hideLoadMask: function() {
-        //<debug warn>
-        Ext.Logger.warn("Implement hideLoadMask method", this);
-        //</debug>
     }
 });

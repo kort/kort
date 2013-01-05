@@ -80,7 +80,7 @@ Ext.define('Kort.controller.Profile', {
             me.setItemTapDisabled(true);
             Ext.defer(function() {
                 me.setItemTapDisabled(false);
-            }, 500);
+            }, 1000);
             
             badgesContainer = Ext.create('Kort.view.profile.BadgesContainer', {
                 selectedBadgeIndex: index

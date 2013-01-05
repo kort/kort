@@ -31,7 +31,7 @@ Ext.define('Kort.controller.Highscore', {
             }
         },
         
-        itemTapDisabled: false
+        detailPushDisabled: false
     },
     
     /**
@@ -70,12 +70,12 @@ Ext.define('Kort.controller.Highscore', {
             highscoreNavigationView = me.getHighscoreNavigationView(),
             highscoreUserContainer;
         
-        if(!me.getItemTapDisabled()) {
+        if(!me.getDetailPushDisabled()) {
             // disable fast tapping
-            me.setItemTapDisabled(true);
+            me.setDetailPushDisabled(true);
             Ext.defer(function() {
-                me.setItemTapDisabled(false);
-            }, 500);
+                me.setDetailPushDisabled(false);
+            }, 1000);
             
             if(record.get('you')) {
                 me.getMainTabPanel().setActiveItem(me.getProfileContainer());
