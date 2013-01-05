@@ -238,6 +238,7 @@ Ext.define('Kort.controller.Validation', {
         } else {
             this.getValidationMapCenterButton().hide();
             this.getValidationContainer().setActiveItem(this.getValidationList());
+            this.getValidationList().refresh();
         }
     }
 });
