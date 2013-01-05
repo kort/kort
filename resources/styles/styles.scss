@@ -25,9 +25,6 @@ $label-background-color: #46578D;
         p {
             margin-bottom: 0.6em;
         }
-        .important {
-            font-weight: bold;
-        }
     }
 }
 
@@ -153,10 +150,6 @@ $label-background-color: #46578D;
                     font-size: $default-font-size;
                     line-height: 1.3em;
                     margin-left: 45px;
-
-                    .important {
-                        font-weight: bold;
-                    }
                 }
             }
         }
@@ -305,12 +298,45 @@ $label-background-color: #46578D;
             color: #fff;
 			box-shadow: inset 0 0 0.5em #303030;
         }
+        
+        .ratings {
+            font-size: 0.8em;
+            margin-top: 0.3em;
+            img.thumb {
+                $thumb-width: 20px;
+
+                width: $thumb-width/2;
+                height: auto;
+                margin-left: 0.3em;
+            }
+            
+            .upratings,
+            .downratings {
+                color: #fff;
+                margin: 0 0.3em;
+            }
+            .votesLeft {
+                margin-left: 1em;
+                
+                img {
+                    $votes-left-width: 34px;
+
+                    width: $votes-left-width/2;
+                    height: auto;
+                    margin-right: 0.4em;
+                }
+            }
+        }
     }
     .voteMap {
         min-height: 300px;
     }
     .voteAnswerButton {
         margin: $panel-padding;
+        
+        .x-badge {
+            color: #fff;
+        }
     }
 }
 
@@ -649,10 +675,6 @@ $label-background-color: #46578D;
                     font-size: $default-font-size;
                     line-height: 1.3em;
                     margin-left: 50px;
-
-                    .important {
-                        font-weight: bold;
-                    }
                 }
             }
         }
@@ -734,4 +756,8 @@ $label-background-color: #46578D;
 
 .x-form-label span {
     font-size: 1em;
+}
+
+.important {
+    font-weight: bold;
 }

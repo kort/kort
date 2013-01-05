@@ -62,12 +62,13 @@ fix.alert.submit.failure.message=Oops! There was an error while sending your ans
 validation.title=Check
 validation.loadmask.message=Loading data...
 validation.emptytext=Bravo! You checked all messages.
-validation.list.header=positive Ratings needed
+validation.list.header=positive ratings needed
 validation.distance=Distance
 
 ## Vote
 vote.falsepositive.question=This mission is flagged as "unable to solve". Is this correct?
 vote.container.button.answer=Answer
+vote.container.votes.left=ratings needed
 vote.answeractionsheet.button.accept=Yes
 vote.answeractionsheet.button.decline=No
 vote.answeractionsheet.button.cancel=Don't know

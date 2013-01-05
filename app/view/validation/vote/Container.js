@@ -24,6 +24,7 @@ Ext.define('Kort.view.validation.vote.Container', {
             validationRecord = me.getRecord(),
             fixmessage = validationRecord.get('fixmessage'),
             question = validationRecord.get('question'),
+            votesLeft = validationRecord.get('required_votes') - validationRecord.get('upratings') + validationRecord.get('downratings'),
             voteContentContainer,
             voteMap,
             voteAnswerButton;
@@ -44,18 +45,38 @@ Ext.define('Kort.view.validation.vote.Container', {
                 }
             });
         }
-        
+
+        fixmessage +=   '<div class="ratings">' +
+                            '<span class="upratings">' +
+                                '<tpl if="upratings &gt; 0">+</tpl>' +
+                                '{upratings}' +
+                                '<img class="thumb" src="./resources/images/validation/thumbs-up.png" />' +
+                            '</span>' +
+                            '<span class="downratings">' +
+                                '<tpl if="downratings &gt; 0">-</tpl>' +
+                                '{downratings}' +
+                                '<img class="thumb" src="./resources/images/validation/thumbs-down.png" />' +
+                            '</span>' +
+                            '<span class="votesLeft">' +
+                                '<img src="./resources/images/validation/votes-left.png" />' +
+                                votesLeft + ' ' + Ext.i18n.Bundle.message('vote.container.votes.left') +
+                            '</span>' +
+                        '</div>';
+
         voteContentContainer = {
             xtype: 'component',
             cls: 'voteContent',
-            html:    '<div class="vote-content">' +
-                        '<div class="question">' +
-                            question +
-                        '</div>' +
-                        '<div class="fixmessage">' +
-                            fixmessage +
-                        '</div>' +
-                    '</div>'
+            record: this.getRecord(),
+            tpl:    new Ext.XTemplate(
+                        '<div class="vote-content">' +
+                            '<div class="question">' +
+                                question +
+                            '</div>' +
+                            '<div class="fixmessage">' +
+                                fixmessage +
+                            '</div>' +
+                        '</div>'
+                    )
         };
         
         voteAnswerButton = {
