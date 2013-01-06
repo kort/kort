@@ -36,6 +36,13 @@ abstract class DbProxyHandler
         $this->reader = new LocaleHelper();
     }
 
+    /**
+     * Sets the langauge to which the returns of all request should be translated.
+     *
+     * @param string $lang The two-character language code.
+     *
+     * @return void
+     */
     public function setLanguage($lang)
     {
         $this->reader = new LocaleHelper($lang);
