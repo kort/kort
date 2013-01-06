@@ -1,3 +1,120 @@
+# error types
+error_type.title.motorway_ref=
+error_type.title.poi_wo_name=
+error_type.title.missing_speedlimit=
+error_type.title.tracktype=
+error_type.title.worship_religion=
+error_type.title.language_name=
+error_type.title.street_wo_name=
+
+# error type placeholders
+error_type.placeholder.ref=
+error_type.placeholder.religion=
+error_type.placeholder.speed_limit=
+error_type.placeholder.language=
+error_type.placeholder.type=
+error_type.placeholder.street_name=
+
+# vote questions
+vote.question.ref=
+vote.question.place_of_worship=
+vote.question.name=
+vote.question.maxspeed=
+vote.question.language_unknown=
+vote.question.tracktype=
+vote.question.street_name=
+
+# badge names
+badge.name.first_place=
+badge.name.second_place=
+badge.name.third_place=
+badge.name.100_missions=
+badge.name.50_missions=
+badge.name.10_missions=
+badge.name.1000_checks=
+badge.name.100_checks=
+badge.name.10_checks=
+badge.name.first_mission=
+badge.name.first_check=
+
+# badge descriptions
+badge.description.reached_1st_place=
+badge.description.reached_2nd_place=
+badge.description.reached_3rd_place=
+badge.description.100_missions_completed=
+badge.description.50_missions_completed=
+badge.description.10_missions_completed=
+badge.description.1000_checks=
+badge.description.100_checks=
+badge.description.10_checks=
+badge.description.1st_mission=
+badge.description.1st_check=
+
+# missing_track_types (http://wiki.openstreetmap.org/wiki/Key:tracktype)
+answer.track_type.grade1=
+answer.track_type.grade2=
+answer.track_type.grade3=
+answer.track_type.grade4=
+answer.track_type.grade5=
+
+# religion (http://wiki.openstreetmap.org/wiki/Key:religion)
+answer.religion.buddhist=
+answer.religion.christian=
+answer.religion.hindu=
+answer.religion.jewish=
+answer.religion.multiple=
+answer.religion.muslim=
+answer.religion.pastafari=
+answer.religion.shinto=
+answer.religion.sikh=
+
+# language (http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
+answer.language.arabic=
+answer.language.catalan=
+answer.language.chinese=
+answer.language.danish=
+answer.language.dutch=
+answer.language.english=
+answer.language.estonian=
+answer.language.finnish=
+answer.language.french=
+answer.language.german=
+answer.language.greek=
+answer.language.hebrew=
+answer.language.irish=
+answer.language.icelandic=
+answer.language.italian=Italiano
+answer.language.japanese=
+answer.language.korean=
+answer.language.croatian=
+answer.language.latin=
+answer.language.norwegian=
+answer.language.persian=
+answer.language.polish=
+answer.language.portuguese=
+answer.language.romansh=
+answer.language.romanian=
+answer.language.russian=
+answer.language.sardinian=
+answer.language.scottish_gaelic=
+answer.language.swiss_german=
+answer.language.serbian=
+answer.language.slovakian=
+answer.language.slovenian=
+answer.language.spanish=
+answer.language.swedish=
+answer.language.thai=
+answer.language.tibetan=
+answer.language.czech=
+answer.language.turkish=
+answer.language.uzbek=
+answer.language.vietnamese=
+answer.language.welsh=
+
+################################################
+# THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT #
+################################################
+
 # Error descriptions
 This track doesn't have a tracktype=Che tipo di strada è questa?
 This node is tagged as $1 and therefore needs a name tag or an operator tag=Come si chiama questa/o $1?
