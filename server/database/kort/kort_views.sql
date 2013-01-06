@@ -192,3 +192,29 @@ select t.error_type_id,
        t.fix_koin_count,
        t.required_votes
 from   kort.error_type t;
+
+create or replace view kort.statistics as
+select
+(select count(*) from kort.fix) fix_count,
+(select count(*) from kort.fix where falsepositive) falsepositive_fix_count,
+(select count(*) from kort.fix where complete) complete_fix_count,
+(select count(*) from kort.fix where complete and valid) validated_fix_count,
+(select count(*) from kort.user) user_count,
+(select count(*) from kort.user where koin_count > 0) active_user_count,
+(select count(*) from kort.user where oauth_provider = 'OpenStreetMap') osm_user_count,
+(select count(*) from kort.user where oauth_provider = 'Google') google_user_count,
+(select count(*) from kort.vote) vote_count,
+(select count(*) from kort.vote where valid) valid_vote_count,
+(select count(*) from kort.vote where not valid) invalid_vote_count,
+(select count(*) from kort.user_badge) badge_count,
+(select count(*) from kort.user_badge where badge_id = 1) first_place_badge_count,
+(select count(*) from kort.user_badge where badge_id = 2) second_place_badge_count,
+(select count(*) from kort.user_badge where badge_id = 3) third_place_badge_count,
+(select count(*) from kort.user_badge where badge_id = 4) hundred_missions_badge_count,
+(select count(*) from kort.user_badge where badge_id = 5) fifty_missions_badge_count,
+(select count(*) from kort.user_badge where badge_id = 6) ten_missions_badge_count,
+(select count(*) from kort.user_badge where badge_id = 7) thousand_checks_badge_count,
+(select count(*) from kort.user_badge where badge_id = 8) hundred_checks_badge_count,
+(select count(*) from kort.user_badge where badge_id = 9) ten_checks_badge_count,
+(select count(*) from kort.user_badge where badge_id = 10) first_mission_badge_count,
+(select count(*) from kort.user_badge where badge_id = 11) first_check_badge_count;

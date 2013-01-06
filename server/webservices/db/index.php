@@ -24,7 +24,7 @@ $app->get(
         if (!$dbHandler->checkAuth($app->request()->params('key'))) {
             $app->response()->status(403);
         } else {
-            $fields = (isset($fields) ? explode(",", $fields) : null);
+            $fields = (isset($fields) ? explode(",", $fields) : array("*"));
             $where = $app->request()->params('where');
             $orderBy = $app->request()->params('orderby');
             $limit = $app->request()->params('limit');
