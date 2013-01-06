@@ -63,11 +63,11 @@ answer.religion.buddhist=
 answer.religion.christian=
 answer.religion.hindu=
 answer.religion.jewish=
-answer.religion.multiple=
 answer.religion.muslim=
 answer.religion.pastafari=
 answer.religion.shinto=
 answer.religion.sikh=
+answer.religion.multiple=
 
 # language (http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
 answer.language.arabic=
