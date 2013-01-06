@@ -10,6 +10,7 @@ error_type.title.street_wo_name=
 # error type placeholders
 error_type.placeholder.ref=
 error_type.placeholder.religion=
+error_type.placeholder.name=
 error_type.placeholder.speed_limit=
 error_type.placeholder.language=
 error_type.placeholder.type=
