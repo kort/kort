@@ -110,11 +110,11 @@ answer.religion.buddhist=Buddhist (temple)
 answer.religion.christian=Christian (church)
 answer.religion.hindu=Hindu (temple)
 answer.religion.jewish=Jewish (synagogue)
-answer.religion.multiple=Multiple faiths
 answer.religion.muslim=Muslim (mosque)
 answer.religion.pastafari=Pastafarian
 answer.religion.shinto=Shinto (shrine)
 answer.religion.sikh=Sikh (Gurdwara)
+answer.religion.multiple=Multiple faiths
 Buddhismus (Tempel)=Buddhist (temple)
 Christentum (Kirche)=Christian (church)
 Hinduismus (Tempel)=Hindu (temple)
@@ -222,7 +222,7 @@ missing maxspeed tag=What speed limit does apply on this street?
 This way has no tags=What's the name of this street?
 It would be nice if this $1 had an additional tag 'name:XX=$2' where XX shows the language of its name '$2'.=In what language is the name '$2' written?
 This way is tagged as motorway and therefore needs a ref, nat_ref or int_ref tag=What's the reference (e.g. A3 oder E385) of this motorway?
-This %1 is tagged as place of worship and therefore needs a religion tag=To which religion does this place of worship belong to?
+This $1 is tagged as place of worship and therefore needs a religion tag=To which religion does this place of worship belong to?
 
 # single values
 cafe=cafe
