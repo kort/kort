@@ -1,86 +1,81 @@
 -- fill data in table error_type
-insert into kort.error_type (error_type_id, type, description, osm_tag, view_type, answer_placeholder, vote_question, fix_koin_count, vote_koin_count, required_votes) values (90, 'motorway_ref', 'Autobahn ohne Bezeichner', 'ref', 'text', 'Bezeichner', 'Ist diese Bezeichnung korrekt?', 10, 5, 3);
-insert into kort.error_type (error_type_id, type, description, osm_tag, view_type, answer_placeholder, vote_question, fix_koin_count, vote_koin_count, required_votes) values (100, 'religion', 'Kultstätte/Kirche ohne Religion', 'religion', 'select', 'Religion', 'Ist diese Kultstätte/Kirche von dieser Religion?', 15, 5, 3);
-insert into kort.error_type (error_type_id, type, description, osm_tag, view_type, answer_placeholder, vote_question, fix_koin_count, vote_koin_count, required_votes) values (110, 'poi_name', 'Objekt ohne Namen', 'name', 'text', 'Name', 'Passt der Name zum gegebenen Objekt?', 15, 5, 3);
-insert into kort.error_type (error_type_id, type, description, osm_tag, view_type, answer_placeholder, vote_question, fix_koin_count, vote_koin_count, required_votes) values (300, 'missing_maxspeed', 'Fehlendes Tempolimit', 'maxspeed', 'number', 'Tempolimit', 'Darf man auf dieser Strasse mit dieser Geschwindigkeit fahren?', 10, 5, 3);
-insert into kort.error_type (error_type_id, type, description, osm_tag, view_type, answer_placeholder, vote_question, fix_koin_count, vote_koin_count, required_votes) values (360, 'language_unknown', 'Sprache des Namens unbekannt', 'name:XX', 'select', 'Sprache', 'Ist der Name in folgender Sprache?', 5, 5, 3);
-insert into kort.error_type (error_type_id, type, description, osm_tag, view_type, answer_placeholder, vote_question, fix_koin_count, vote_koin_count, required_votes) values (390, 'missing_track_type', 'Typ des Wegs unbekannt', 'tracktype', 'select', 'Typ', 'Ist der Weg folgendermassen beschaffen?', 5, 5, 5);
-insert into kort.error_type (error_type_id, type, description, osm_tag, view_type, answer_placeholder, vote_question, fix_koin_count, vote_koin_count, required_votes) values (71, 'way_wo_tags', 'Strasse ohne Namen', 'name', 'text', 'Strassenname', 'Ist dieser Strassenname korrekt?', 15, 5, 3);
+insert into kort.error_type (error_type_id, type, description, osm_tag, view_type, answer_placeholder, vote_question, fix_koin_count, vote_koin_count, required_votes) values (90, 'motorway_ref', 'error_type.title.motorway_ref', 'ref', 'text', 'error_type.placeholder.ref', 'vote.question.ref', 10, 5, 3);
+insert into kort.error_type (error_type_id, type, description, osm_tag, view_type, answer_placeholder, vote_question, fix_koin_count, vote_koin_count, required_votes) values (100, 'religion', 'error_type.title.worship_religion', 'religion', 'select', 'error_type.placeholder.religion', 'vote.question.place_of_worship', 15, 5, 3);
+insert into kort.error_type (error_type_id, type, description, osm_tag, view_type, answer_placeholder, vote_question, fix_koin_count, vote_koin_count, required_votes) values (110, 'poi_name', 'error_type.title.poi_wo_name', 'name', 'text', 'error_type.placeholder.name', 'vote.question.name', 15, 5, 3);
+insert into kort.error_type (error_type_id, type, description, osm_tag, view_type, answer_placeholder, vote_question, fix_koin_count, vote_koin_count, required_votes) values (300, 'missing_maxspeed', 'error_type.title.missing_speedlimit', 'maxspeed', 'number', 'error_type.placeholder.speed_limit', 'vote.question.maxspeed', 10, 5, 3);
+insert into kort.error_type (error_type_id, type, description, osm_tag, view_type, answer_placeholder, vote_question, fix_koin_count, vote_koin_count, required_votes) values (360, 'language_unknown', 'error_type.title.language_name', 'name:XX', 'select', 'error_type.placeholder.language', 'vote.question.language_unknown', 5, 5, 3);
+insert into kort.error_type (error_type_id, type, description, osm_tag, view_type, answer_placeholder, vote_question, fix_koin_count, vote_koin_count, required_votes) values (390, 'missing_track_type', 'error_type.title.tracktype', 'tracktype', 'select', 'error_type.placeholder.type', 'vote.question.tracktype', 5, 5, 5);
+insert into kort.error_type (error_type_id, type, description, osm_tag, view_type, answer_placeholder, vote_question, fix_koin_count, vote_koin_count, required_votes) values (71, 'way_wo_tags', 'error_type.title.street_wo_name', 'name', 'text', 'error_type.placeholder.street_name', 'vote.question.street_name', 15, 5, 3);
 
 -- Insert badge
-insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (1, 'highscore_place_1', 'badge.name.first_place', 'Erster Rang in der Highscore erreicht.', '#FFFBCB', 110, null);
-insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (2, 'highscore_place_2', 'badge.name.second_place', 'Zweiter Rang in der Highscore erreicht.', '#d9d9d9', 120, null);
-insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (3, 'highscore_place_3', 'badge.name.third_place', 'Dritter Rang in der Highscore erreicht.', '#d8c69a', 130, null);
-insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (4, 'fix_count_100', 'badge.name.100_missions', '100 Aufträge erledigt.', '#FFFBCB', 210, 100);
-insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (5, 'fix_count_50', 'badge.name.50_missions', '50 Aufträge erledigt.', '#d9d9d9', 220, 50);
-insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (6, 'fix_count_10', 'badge.name.10_missions', '10 Aufträge erledigt.', '#d8c69a', 230, 10);
-insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (7, 'vote_count_1000', 'badge.name.1000_checks', '1000 Antworten überprüft.', '#FFFBCB', 310, 1000);
-insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (8, 'vote_count_100', 'badge.name.100_checks', '100 Antworten überprüft.', '#d9d9d9', 320, 100);
-insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (9, 'vote_count_10', 'badge.name.10_checks', '10 Antworten überprüft.', '#d8c69a', 330, 10);
-insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (10, 'fix_count_1', 'badge.name.first_mission', 'Erster Auftrag erledigt.', '#CFFFD2', 410, 1);
-insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (11, 'vote_count_1', 'badge.name.first_check', 'Erste Antwort überprüft.', '#CFFFD2', 420, 1);
+insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (1, 'highscore_place_1', 'badge.name.first_place', 'badge.description.reached_1st_place', '#FFFBCB', 110, null);
+insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (2, 'highscore_place_2', 'badge.name.second_place', 'badge.description.reached_2nd_place', '#d9d9d9', 120, null);
+insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (3, 'highscore_place_3', 'badge.name.third_place', 'badge.description.reached_3rd_place', '#d8c69a', 130, null);
+insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (4, 'fix_count_100', 'badge.name.100_missions', 'badge.description.100_missions_completed', '#FFFBCB', 210, 100);
+insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (5, 'fix_count_50', 'badge.name.50_missions', 'badge.description.50_missions_completed', '#d9d9d9', 220, 50);
+insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (6, 'fix_count_10', 'badge.name.10_missions', 'badge.description.10_missions_completed', '#d8c69a', 230, 10);
+insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (7, 'vote_count_1000', 'badge.name.1000_checks', 'badge.description.1000_checks', '#FFFBCB', 310, 1000);
+insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (8, 'vote_count_100', 'badge.name.100_checks', 'badge.description.100_checks', '#d9d9d9', 320, 100);
+insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (9, 'vote_count_10', 'badge.name.10_checks', 'badge.description.10_checks', '#d8c69a', 330, 10);
+insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (10, 'fix_count_1', 'badge.name.first_mission', 'badge.description.1st_mission', '#CFFFD2', 410, 1);
+insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (11, 'vote_count_1', 'badge.name.first_check', 'badge.description.1st_check', '#CFFFD2', 420, 1);
 
 -- Insert missing_track_types
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1, 'missing_track_type', 'grade1', 'Asphalt, Beton oder Pflastersteine', 110);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (2, 'missing_track_type', 'grade2', 'Schotter', 120);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (3, 'missing_track_type', 'grade3', 'Feinschotter-, Sand- oder Erdweg', 130);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (4, 'missing_track_type', 'grade4', 'Weg mit Pflanzenwuchs entlang der Spurmitte', 140);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (5, 'missing_track_type', 'grade5', 'Unbefestigter Weg', 150);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1, 'missing_track_type', 'grade1', 'answer.track_type.grade1', 110);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (2, 'missing_track_type', 'grade2', 'answer.track_type.grade2', 120);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (3, 'missing_track_type', 'grade3', 'answer.track_type.grade3', 130);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (4, 'missing_track_type', 'grade4', 'answer.track_type.grade4', 140);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (5, 'missing_track_type', 'grade5', 'answer.track_type.grade5', 150);
 
 -- Insert religion
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (10, 'religion', 'buddhist','Buddhismus (Tempel)' , 110);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (11, 'religion', 'christian', 'Christentum (Kirche)', 120);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (12, 'religion', 'hindu', 'Hinduismus (Tempel)', 130);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (13, 'religion', 'jewish', 'Judentum (Synagoge)', 140);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (14, 'religion', 'multifaith', 'Mehrere Religionen', 150);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (15, 'religion', 'muslim', 'Islam (Moschee)', 160);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (16, 'religion', 'pastafarian', 'Pastafarianismus', 170);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (17, 'religion', 'shinto', 'Shinto (Schrein)', 180);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (18, 'religion', 'sikh', 'Sikh (Gurdwara)', 190);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (10, 'religion', 'buddhist','answer.religion.buddhist' , 110);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (11, 'religion', 'christian', 'answer.religion.christian', 120);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (12, 'religion', 'hindu', 'answer.religion.hindu', 130);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (13, 'religion', 'jewish', 'answer.religion.jewish', 140);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (15, 'religion', 'muslim', 'answer.religion.muslim', 160);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (16, 'religion', 'pastafarian', 'answer.religion.pastafari', 170);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (17, 'religion', 'shinto', 'answer.religion.shinto', 180);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (18, 'religion', 'sikh', 'answer.religion.sikh', 190);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (14, 'religion', 'multifaith', 'answer.religion.multiple', 200);
 
 -- Insert language_unknown
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (151, 'language_unknown', 'de', 'Deutsch', 10);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (140, 'language_unknown', 'en', 'Englisch', 20);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (147, 'language_unknown', 'fr', 'Französisch', 30);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (170, 'language_unknown', 'it', 'Italienisch', 40);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (248, 'language_unknown', 'es', 'Spanisch', 50);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (106, 'language_unknown', 'ar', 'Arabisch', 100);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (129, 'language_unknown', 'zh', 'Chinesisch', 200);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (280, 'language_unknown', 'ca', 'Katalanisch', 300);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (134, 'language_unknown', 'hr', 'Kroatisch', 400);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (135, 'language_unknown', 'cs', 'Tschechisch', 500);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (136, 'language_unknown', 'da', 'Dänisch', 600);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (138, 'language_unknown', 'nl', 'Holländisch', 700);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (142, 'language_unknown', 'et', 'Estnisch', 800);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (141, 'language_unknown', 'fi', 'Finnisch', 900);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (152, 'language_unknown', 'el', 'Griechisch', 1000);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (157, 'language_unknown', 'he', 'Hebräisch', 1100);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (165, 'language_unknown', 'ga', 'Irisch', 1200);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (169, 'language_unknown', 'is', 'Isländisch', 1300);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (172, 'language_unknown', 'ja', 'Japanisch', 1400);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (185, 'language_unknown', 'ko', 'Koreanisch', 1500);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (188, 'language_unknown', 'la', 'Lateinisch', 1600);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (189, 'language_unknown', 'lb', 'Luxemburgisch', 1700);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (214, 'language_unknown', 'no', 'Norwegisch', 1800);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (225, 'language_unknown', 'fa', 'Persisch', 1900);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (226, 'language_unknown', 'pl', 'Polnisch', 2000);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (228, 'language_unknown', 'pt', 'Portugiesisch', 2100);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (230, 'language_unknown', 'rm', 'Rätoromanisch', 2200);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (232, 'language_unknown', 'ro', 'Rumänisch', 2300);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (233, 'language_unknown', 'ru', 'Russisch', 2400);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (235, 'language_unknown', 'sc', 'Sardisch', 2500);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (241, 'language_unknown', 'gd', 'Schottisch-Gälisch', 2600);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (252, 'language_unknown', 'sv', 'Schwedisch', 2700);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (243, 'language_unknown', 'gsw', 'Schweizerdeutsch', 2800);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (240, 'language_unknown', 'sr', 'Serbisch', 2900);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (244, 'language_unknown', 'sk', 'Slowakisch', 3000);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (245, 'language_unknown', 'sl', 'Slowenisch', 3100);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (256, 'language_unknown', 'th', 'Thailändisch', 3200);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (263, 'language_unknown', 'tr', 'Türkisch', 3300);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (273, 'language_unknown', 'vi', 'Vietnamesisch', 3400);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (276, 'language_unknown', 'cy', 'Walisisch', 3500);
-
-
-
-
-
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (151, 'language_unknown', 'de', 'answer.language.german', 10);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (140, 'language_unknown', 'en', 'answer.language.english', 20);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (147, 'language_unknown', 'fr', 'answer.language.french', 30);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (170, 'language_unknown', 'it', 'answer.language.italian', 40);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (248, 'language_unknown', 'es', 'answer.language.spanish', 50);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (106, 'language_unknown', 'ar', 'answer.language.arabic', 100);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (280, 'language_unknown', 'ca', 'answer.language.catalan', 200);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (129, 'language_unknown', 'zh', 'answer.language.chinese', 400);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (134, 'language_unknown', 'hr', 'answer.language.croatian', 400);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (135, 'language_unknown', 'cs', 'answer.language.czech', 500);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (136, 'language_unknown', 'da', 'answer.language.danish', 600);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (138, 'language_unknown', 'nl', 'answer.language.dutch', 700);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (142, 'language_unknown', 'et', 'answer.language.estonian', 800);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (141, 'language_unknown', 'fi', 'answer.language.finnish', 900);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (152, 'language_unknown', 'el', 'answer.language.greek', 1000);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (157, 'language_unknown', 'he', 'answer.language.hebrew', 1100);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (165, 'language_unknown', 'ga', 'answer.language.irish', 1200);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (169, 'language_unknown', 'is', 'answer.language.icelandic', 1300);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (172, 'language_unknown', 'ja', 'answer.language.japanese', 1400);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (185, 'language_unknown', 'ko', 'answer.language.korean', 1500);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (188, 'language_unknown', 'la', 'answer.language.latin', 1600);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (189, 'language_unknown', 'lb', 'answer.language.luxembourgish', 1700);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (214, 'language_unknown', 'no', 'answer.language.norwegian', 1800);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (225, 'language_unknown', 'fa', 'answer.language.persian', 1900);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (226, 'language_unknown', 'pl', 'answer.language.polish', 2000);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (228, 'language_unknown', 'pt', 'answer.language.portuguese', 2100);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (230, 'language_unknown', 'rm', 'answer.language.romansh', 2200);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (232, 'language_unknown', 'ro', 'answer.language.romanian', 2300);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (233, 'language_unknown', 'ru', 'answer.language.russian', 2400);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (235, 'language_unknown', 'sc', 'answer.language.sardinian', 2500);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (241, 'language_unknown', 'gd', 'answer.language.scottish_gaelic', 2600);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (252, 'language_unknown', 'sv', 'answer.language.swedish', 2700);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (243, 'language_unknown','gsw', 'answer.language.swiss_german', 2800);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (240, 'language_unknown', 'sr', 'answer.language.serbian', 2900);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (244, 'language_unknown', 'sk', 'answer.language.slovakian', 3000);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (245, 'language_unknown', 'sl', 'answer.language.slovenian', 3100);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (256, 'language_unknown', 'th', 'answer.language.thai', 3200);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (263, 'language_unknown', 'tr', 'answer.language.turkish', 3300);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (273, 'language_unknown', 'vi', 'answer.language.vietnamese', 3400);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (276, 'language_unknown', 'cy', 'answer.language.welsh', 3500);
