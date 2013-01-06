@@ -29,6 +29,13 @@ Typ=Type
 Strassenname=Name of street
 
 # vote questions
+vote.question.ref=Is this the correct reference of this motorway?
+vote.question.place_of_worship=Is this place of worship of this religion?
+vote.question.name=Does the name match to the object?
+vote.question.maxspeed=Is this the correct speed limit for this street?
+vote.question.language_unknown=Is the name in the following language?
+vote.question.tracktype=Is this path of the following kind?
+vote.question.street_name=Is this the correct name of the street?
 Ist diese Bezeichnung korrekt?=Is this the correct reference of this motorway?
 Ist diese Kultstätte/Kirche von dieser Religion?=Is this place of worship of this religion?
 Passt der Name zum gegebenen Objekt?=Does the name match to the object?
@@ -38,6 +45,17 @@ Ist der Weg folgendermassen beschaffen?=Is this path of the following kind?
 Ist dieser Strassenname korrekt?=Is this the correct name of the street?
 
 # badge names
+badge.name.first_place=1st place
+badge.name.second_place=2nd place
+badge.name.third_place=3rd place
+badge.name.100_missions=100 missions
+badge.name.50_missions=50 missions
+badge.name.10_missions=10 missions
+badge.name.1000_checks=1000 checks
+badge.name.100_checks=100 checks
+badge.name.10_checks=10 checks
+badge.name.first_mission=1st mission
+badge.name.first_check=1st check
 1. Rang=1st place
 2. Rang=2nd place
 3. Rang=3rd place
@@ -51,6 +69,17 @@ Ist dieser Strassenname korrekt?=Is this the correct name of the street?
 1. Prüfung=1st check
 
 # badge descriptions
+badge.description.reached_1st_place=Reached 1st place in highscore.
+badge.description.reached_2nd_place=Reached 2nd place in highscore.
+badge.description.reached_3rd_place=Reached 3rd place in highscore.
+badge.description.100_missions_completed=100 missions completed.
+badge.description.50_missions_completed=50 missions completed.
+badge.description.10_missions_completed=10 missions completed.
+badge.description.1000_checks=1000 answers checked.
+badge.description.100_checks=100 answers checked.
+badge.description.10_checks=10 answers checked.
+badge.description.1st_mission=First mission completed.
+badge.description.1st_check=First checked answer.
 Erster Rang in der Highscore erreicht.=Reached 1st place in highscore.
 Zweiter Rang in der Highscore erreicht.=Reached 2nd place in highscore.
 Dritter Rang in der Highscore erreicht.=Reached 3rd place in highscore.
@@ -64,6 +93,11 @@ Erster Auftrag erledigt.=First mission completed.
 Erste Antwort überprüft.=First checked answer.
 
 # missing_track_types (http://wiki.openstreetmap.org/wiki/Key:tracktype)
+answer.track_type.grade1=Asphalt, concrete or cobblestone
+answer.track_type.grade2=Gravel road
+answer.track_type.grade3=Mixture of hard and soft materials
+answer.track_type.grade4=Soil, sand or grass
+answer.track_type.grade5=Unpaved track
 Asphalt, Beton oder Pflastersteine=Asphalt, concrete or cobblestone
 Schotter=Gravel road
 Feinschotter-, Sand- oder Erdweg=Mixture of hard and soft materials
@@ -71,6 +105,15 @@ Weg mit Pflanzenwuchs entlang der Spurmitte=Soil, sand or grass
 Unbefestigter Weg=Unpaved track
 
 # religion (http://wiki.openstreetmap.org/wiki/Key:religion)
+answer.religion.buddhist=Buddhist (temple)
+answer.religion.christian=Christian (church)
+answer.religion.hindu=Hindu (temple)
+answer.religion.jewish=Jewish (synagogue)
+answer.religion.multiple=Multiple faiths
+answer.religion.muslim=Muslim (mosque)
+answer.religion.pastafari=Pastafarian
+answer.religion.shinto=Shinto (shrine)
+answer.religion.sikh=Sikh (Gurdwara)
 Buddhismus (Tempel)=Buddhist (temple)
 Christentum (Kirche)=Christian (church)
 Hinduismus (Tempel)=Hindu (temple)
@@ -82,6 +125,47 @@ Shinto (Schrein)=Shinto (shrine)
 Sikh (Gurdwara)=Sikh (Gurdwara)
 
 # language (http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
+answer.language.arabic=Arabic
+answer.language.catalan=Catalan
+answer.language.chinese=Chinese
+answer.language.danish=Danish
+answer.language.dutch=Dutch
+answer.language.english=English
+answer.language.estonian=Estonian
+answer.language.finnish=Finnish
+answer.language.french=French
+answer.language.german=German
+answer.language.greek=Greek
+answer.language.hebrew=Hebrew
+answer.language.irish=Irish
+answer.language.icelandic=Icelandic
+answer.language.italian=Italian
+answer.language.japanese=Japanese
+answer.language.korean=Korean
+answer.language.croatian=Croatian
+answer.language.latin=Latin
+answer.language.norwegian=Norwegian
+answer.language.persian=Persian
+answer.language.polish=Polish
+answer.language.portuguese=Portuguese
+answer.language.romansh=Romansh
+answer.language.romanian=Romanian
+answer.language.russian=Russian
+answer.language.sardinian=Sardinian
+answer.language.scottish_gaelic=Scottish Gaelic
+answer.language.swiss_german=Swiss German
+answer.language.serbian=Serbian
+answer.language.slovakian=Slovakian
+answer.language.slovenian=Slovenian
+answer.language.spanish=Spanish
+answer.language.swedish=Swedish
+answer.language.thai=Thai
+answer.language.tibetan=Tibetan
+answer.language.czech=Czech
+answer.language.turkish=Turkish
+answer.language.uzbek=Uzbek
+answer.language.vietnamese=Vietnamese
+answer.language.welsh=Welsh
 Arabisch=Arabic
 Katalanisch=Catalan
 Chinesisch=Chinese
@@ -123,6 +207,11 @@ Türkisch=Turkish
 Uzbekisch=Uzbek
 Vietnamesisch=Vietnamese
 Walisisch=Welsh
+
+
+################################################
+# THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT #
+################################################
 
 # error descriptions (KeepRight)
 This track doesn't have a tracktype=What kind of track is this?
