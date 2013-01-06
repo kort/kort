@@ -8,17 +8,17 @@ insert into kort.error_type (error_type_id, type, description, osm_tag, view_typ
 insert into kort.error_type (error_type_id, type, description, osm_tag, view_type, answer_placeholder, vote_question, fix_koin_count, vote_koin_count, required_votes) values (71, 'way_wo_tags', 'Strasse ohne Namen', 'name', 'text', 'Strassenname', 'Ist dieser Strassenname korrekt?', 15, 5, 3);
 
 -- Insert badge
-insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (1, 'highscore_place_1', '1. Rang', 'Erster Rang in der Highscore erreicht.', '#FFFBCB', 110, null);
-insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (2, 'highscore_place_2', '2. Rang', 'Zweiter Rang in der Highscore erreicht.', '#d9d9d9', 120, null);
-insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (3, 'highscore_place_3', '3. Rang', 'Dritter Rang in der Highscore erreicht.', '#d8c69a', 130, null);
-insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (4, 'fix_count_100', '100 Aufträge', '100 Aufträge erledigt.', '#FFFBCB', 210, 100);
-insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (5, 'fix_count_50', '50 Aufträge', '50 Aufträge erledigt.', '#d9d9d9', 220, 50);
-insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (6, 'fix_count_10', '10 Aufträge', '10 Aufträge erledigt.', '#d8c69a', 230, 10);
-insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (7, 'vote_count_1000', '1000 Prüfungen', '1000 Antworten überprüft.', '#FFFBCB', 310, 1000);
-insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (8, 'vote_count_100', '100 Prüfungen', '100 Antworten überprüft.', '#d9d9d9', 320, 100);
-insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (9, 'vote_count_10', '10 Prüfungen', '10 Antworten überprüft.', '#d8c69a', 330, 10);
-insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (10, 'fix_count_1', '1. Auftrag', 'Erster Auftrag erledigt.', '#CFFFD2', 410, 1);
-insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (11, 'vote_count_1', '1. Prüfung', 'Erste Antwort überprüft.', '#CFFFD2', 420, 1);
+insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (1, 'highscore_place_1', 'badge.name.first_place', 'Erster Rang in der Highscore erreicht.', '#FFFBCB', 110, null);
+insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (2, 'highscore_place_2', 'badge.name.second_place', 'Zweiter Rang in der Highscore erreicht.', '#d9d9d9', 120, null);
+insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (3, 'highscore_place_3', 'badge.name.third_place', 'Dritter Rang in der Highscore erreicht.', '#d8c69a', 130, null);
+insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (4, 'fix_count_100', 'badge.name.100_missions', '100 Aufträge erledigt.', '#FFFBCB', 210, 100);
+insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (5, 'fix_count_50', 'badge.name.50_missions', '50 Aufträge erledigt.', '#d9d9d9', 220, 50);
+insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (6, 'fix_count_10', 'badge.name.10_missions', '10 Aufträge erledigt.', '#d8c69a', 230, 10);
+insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (7, 'vote_count_1000', 'badge.name.1000_checks', '1000 Antworten überprüft.', '#FFFBCB', 310, 1000);
+insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (8, 'vote_count_100', 'badge.name.100_checks', '100 Antworten überprüft.', '#d9d9d9', 320, 100);
+insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (9, 'vote_count_10', 'badge.name.10_checks', '10 Antworten überprüft.', '#d8c69a', 330, 10);
+insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (10, 'fix_count_1', 'badge.name.first_mission', 'Erster Auftrag erledigt.', '#CFFFD2', 410, 1);
+insert into kort.badge (badge_id, name, title, description, color, sorting, compare_value) VALUES (11, 'vote_count_1', 'badge.name.first_check', 'Erste Antwort überprüft.', '#CFFFD2', 420, 1);
 
 -- Insert missing_track_types
 insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1, 'missing_track_type', 'grade1', 'Asphalt, Beton oder Pflastersteine', 110);
