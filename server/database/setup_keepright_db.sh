@@ -1,6 +1,6 @@
 #!/bin/bash
 DIR="$( cd "$( dirname "$0" )" && pwd )"
-while getopts ":o:n:s:dp:" opt; do
+while getopts ":o:n:s:dcp:" opt; do
     case $opt in
         o)
             DB_OWNER="$OPTARG"
@@ -14,13 +14,16 @@ while getopts ":o:n:s:dp:" opt; do
         d)
             DROP_DB="true"
             ;;
+        c)
+            CLEANUP="true"
+            ;;
         p)
             PREVIOUS_DOWNLOAD="$OPTARG"
             ;;
         \?) # fall-through
             ;&
         :)
-            echo "USAGE: `basename $0` [-o <db owner>] [-n <database name>] [-s <schema name>] [-d drop database if exists] [-p path to previously downloaded error csv]" >&2
+            echo "USAGE: `basename $0` [-o <db owner>] [-n <database name>] [-s <schema name>] [-d drop database if exists] [-c cleanup data after import] [-p path to previously downloaded error csv]" >&2
             echo "Example: `basename $0` -o `whoami` -n osm_bugs -s keepright -p /tmp/keepright_errors.txt" >&2
             exit 1
             ;;
@@ -91,8 +94,12 @@ rm /tmp/kr_part*
 echo "Creating indexes"
 psql -d $DB_NAME -f $DIR/keepright/keepright_index.sql
 
-echo "Cleanup data"
-psql -d $DB_NAME -f $DIR/keepright/keepright_cleanup.sql
+if [[ $CLEANUP ]] ; then
+    echo "Cleanup data"
+    psql -d $DB_NAME -f $DIR/keepright/keepright_cleanup.sql
+else
+    echo "Omitting cleanup"
+fi
 
 echo "Install PostGIS"
 $DIR/setup_postgis.sh -d $DB_NAME -s $DB_SCHEMA -t errors
