@@ -40,5 +40,4 @@ class StatisticsHandler extends DbProxyHandler
     {
         return $this->getDbProxy()->select();
     }
-
 }

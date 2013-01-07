@@ -20,9 +20,19 @@ $statisticsHandler = new \Webservice\Statistics\StatisticsHandler();
 
 $app->get(
     '/',
-    function () use ($statisticsHandler, $slim) {
+    function () use ($statisticsHandler, $app, $slim) {
         $statistics = $statisticsHandler->getStatistics();
-        $slim->returnData($statistics);
+        $callback = $app->request()->params('callback');
+        if (empty($callback)) {
+            $slim->returnData($statistics);
+        } else {
+            // generate JSONP return value
+            if (empty($statistics)) {
+                $statistics = '[]';
+            }
+            $app->response()->header('Content-Type', 'application/x-javascript');
+            $app->response()->write($callback . "({\"return\":". $statistics . "});");
+        }
     }
 );
 
