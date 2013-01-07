@@ -161,7 +161,9 @@ Ext.application({
                         console.log('clientSecret not passed -> write client secret to localstore');
                         me.writeUserClientSecret(Kort.user.get('secret'));
                     }
-                    me.loadStores(geo, mainPanel);
+                    me.loadStores(mainPanel);
+                    // enable auto update on geolocation
+                    geo.setAutoUpdate(true);
                 }
             }
         });
@@ -198,19 +200,20 @@ Ext.application({
         geolocationerrorPanel.show();
     },
 
-    loadStores: function(geo, mainPanel) {
+    loadStores: function(mainPanel) {
         var userBadges = Ext.getStore('UserBadges'),
-            selectAnswersStore = Ext.getStore('SelectAnswers');
+            selectAnswersStore = Ext.getStore('SelectAnswers'),
+            highscoreStore = Ext.getStore('Highscore');
 
-        // loading select answers
+        // load select answers
         selectAnswersStore.load();
 
-        // enable auto update on geolocation
-        geo.setAutoUpdate(true);
-
-        // loading badges of user
+        // load badges of user
         userBadges.getProxy().setUrl(Kort.util.Config.getWebservices().userBadges.getUrl(Kort.user.get('id')));
         userBadges.load();
+        
+        // load highscore
+        highscoreStore.load();
 
         this.showMainPanel(mainPanel);
     },

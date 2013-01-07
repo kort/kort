@@ -22,7 +22,6 @@ Ext.define('Kort.controller.Highscore', {
                 tap: 'onHighscoreRefreshButtonTap'
             },
             highscoreNavigationView: {
-                initialize: 'onHighscoreNavigationViewInitialize',
                 detailpush: 'onHighscoreNavigationViewDetailPush',
                 back: 'onHighscoreNavigationViewBack'
             },
@@ -51,10 +50,6 @@ Ext.define('Kort.controller.Highscore', {
         Ext.getStore('Highscore').on('load', me.refreshView, me);
     },
 
-    onHighscoreNavigationViewInitialize: function() {
-        this.loadStore(true);
-    },
-    
     // @private
     onHighscoreRefreshButtonTap: function() {
         this.loadStore(true);
