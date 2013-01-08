@@ -56,6 +56,7 @@ class ValidationHandler extends DbProxyHandler
             'fixmessage',
             'falsepositive',
             'question',
+            'bug_question',
             'latitude',
             'longitude',
             'upratings',
@@ -137,6 +138,8 @@ class ValidationHandler extends DbProxyHandler
         $validation['title'] = $this->translate($validation['title']);
         $validation['question'] = $this->translate($validation['question']);
         $validation['question'] = $this->translateAndReplacePlaceholder($validation, $validation['question']);
+        $validation['bug_question'] = $this->translate($validation['bug_question']);
+        $validation['bug_question'] = $this->translateAndReplacePlaceholder($validation, $validation['bug_question']);
 
         return $validation;
     }

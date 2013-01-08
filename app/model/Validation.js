@@ -5,7 +5,7 @@ Ext.define('Kort.model.Validation', {
     extend: 'Ext.data.Model',
     config: {
 		idProperty: 'id',
-		
+
         fields: [
 			{ name: 'id', type: 'auto' },
 			{ name: 'osm_id', type: 'int' },
@@ -14,6 +14,7 @@ Ext.define('Kort.model.Validation', {
 			{ name: 'type', type: 'string' },
 			{ name: 'view_type', type: 'string' },
 			{ name: 'question', type: 'string' },
+            { name: 'bug_question', type: 'string' },
 			{ name: 'fixmessage', type: 'string' },
 			{ name: 'falsepositive', type: 'boolean' },
             { name: 'upratings', type: 'int' },

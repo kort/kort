@@ -8,7 +8,7 @@ Ext.define('Kort.view.validation.vote.Container', {
         'Kort.view.LeafletMap',
         'Ext.Button'
     ],
-	
+
 	config: {
         cls: 'voteContainer',
         scrollable: {
@@ -17,27 +17,28 @@ Ext.define('Kort.view.validation.vote.Container', {
         },
         layout: 'vbox'
 	},
-    
+
     initialize: function () {
         var me = this,
             selectAnswersStore = Ext.getStore('SelectAnswers'),
             validationRecord = me.getRecord(),
             fixmessage = validationRecord.get('fixmessage'),
             question = validationRecord.get('question'),
+            bug_question = validationRecord.get('bug_question'),
             votesLeft = validationRecord.get('required_votes') - validationRecord.get('upratings') + validationRecord.get('downratings'),
             voteContentContainer,
             voteMap,
             voteAnswerButton;
 
         this.callParent(arguments);
-        
+
         if(validationRecord.get('falsepositive')) {
-            fixmessage = question;
+            fixmessage = bug_question;
             question = Ext.i18n.Bundle.message('vote.falsepositive.question');
         } else if(validationRecord.get('view_type') === 'select') {
             // filter answers for given type
             selectAnswersStore.filter('type', validationRecord.get('type'));
-            
+
             // replace fixmessage with title if select view type given
             selectAnswersStore.each(function(item, index, length) {
                 if(item.get('value') === fixmessage) {
@@ -78,7 +79,7 @@ Ext.define('Kort.view.validation.vote.Container', {
                         '</div>'
                     )
         };
-        
+
         voteAnswerButton = {
             xtype: 'button',
             iconMask: true,
@@ -86,7 +87,7 @@ Ext.define('Kort.view.validation.vote.Container', {
             cls: 'voteAnswerButton',
             text: Ext.i18n.Bundle.message('vote.container.button.answer')
         };
-        
+
         voteMap = {
             xtype: 'kortleafletmap',
             cls: 'voteMap',
@@ -96,7 +97,7 @@ Ext.define('Kort.view.validation.vote.Container', {
                 dragging: false
             }
         };
-        
+
         me.add([voteContentContainer, voteAnswerButton, voteMap]);
     }
 });
