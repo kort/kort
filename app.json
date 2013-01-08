@@ -132,7 +132,8 @@
             "resources/images/marker_icons/way_wo_tags.png",
             "resources/images/profile/highscore.png",
             "resources/images/validation/thumbs-down.png",
-            "resources/images/validation/thumbs-up.png"
+            "resources/images/validation/thumbs-up.png",
+            "resources/images/validation/votes-left.png"
         ],
         /**
          * List of items in the NETWORK section
