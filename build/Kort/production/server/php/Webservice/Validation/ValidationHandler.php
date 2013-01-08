@@ -61,7 +61,12 @@ class ValidationHandler extends DbProxyHandler
             'upratings',
             'downratings',
             'required_votes',
-            'geom'
+            'geom',
+            'txt1',
+            'txt2',
+            'txt3',
+            'txt4',
+            'txt5'
         );
     }
 
@@ -129,8 +134,9 @@ class ValidationHandler extends DbProxyHandler
      */
     public function translateValidation(array $validation)
     {
-        $validation['question'] = $this->translate($validation['question']);
         $validation['title'] = $this->translate($validation['title']);
+        $validation['question'] = $this->translate($validation['question']);
+        $validation['question'] = $this->translateAndReplacePlaceholder($validation, $validation['question']);
 
         return $validation;
     }

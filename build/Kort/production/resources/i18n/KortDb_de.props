@@ -19,9 +19,9 @@ error_type.placeholder.street_name=Strassenname
 # vote questions
 vote.question.ref=Ist diese Bezeichnung korrekt?
 vote.question.place_of_worship=Ist diese Kultstätte/Kirche von dieser Religion?
-vote.question.name=Passt der Name zum gegebenen Objekt?
+vote.question.name=Passt der Name zu diesem/dieser $1?
 vote.question.maxspeed=Darf man auf dieser Strasse mit dieser Geschwindigkeit fahren?
-vote.question.language_unknown=Ist der Name in folgender Sprache?
+vote.question.language_unknown=Ist der Name '$2' in folgender Sprache?
 vote.question.tracktype=Ist der Weg folgendermassen beschaffen?
 vote.question.street_name=Ist dieser Strassenname korrekt?
 
