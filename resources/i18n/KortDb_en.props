@@ -19,9 +19,9 @@ error_type.placeholder.street_name=Name of street
 # vote questions
 vote.question.ref=Is this the correct reference of this motorway?
 vote.question.place_of_worship=Is this place of worship of this religion?
-vote.question.name=Does the name match to the object?
+vote.question.name=Is this the name of this $1?
 vote.question.maxspeed=Is this the correct speed limit for this street?
-vote.question.language_unknown=Is the name in the following language?
+vote.question.language_unknown=Is the name '$2' in the following language?
 vote.question.tracktype=Is this path of the following kind?
 vote.question.street_name=Is this the correct name of the street?
 

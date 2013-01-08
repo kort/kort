@@ -73,6 +73,26 @@ abstract class DbProxyHandler
     }
 
     /**
+     * Translate the values of the placeholders and replaced them in the given text.
+     *
+     * @param array  $data The data of the placeholders.
+     * @param string $text The string to translate.
+     *
+     * @return string the translated text
+     */
+    protected function translateAndReplacePlaceholder(array $data, $text)
+    {
+        $search = array("\$1", "\$2", "\$3", "\$4", "\$5");
+        $placeholder1 = $this->translate($data['txt1']);
+        $placeholder2 = $this->translate($data['txt2']);
+        $placeholder3 = $this->translate($data['txt3']);
+        $placeholder4 = $this->translate($data['txt4']);
+        $placeholder5 = $this->translate($data['txt5']);
+        $replace = array($placeholder1, $placeholder2, $placeholder3, $placeholder4, $placeholder5);
+        return str_replace($search, $replace, $text);
+    }
+
+    /**
      * Getter for $dbProxy.
      *
      * @return DbProxy the dbProxy object

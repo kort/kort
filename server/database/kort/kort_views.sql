@@ -66,7 +66,12 @@ select  f.fix_id id,
         t.required_votes,
         e.latitude,
         e.longitude,
-        e.geom
+        e.geom,
+        e.txt1,
+        e.txt2,
+        e.txt3,
+        e.txt4,
+        e.txt5
 from    kort.all_errors e,
         kort.error_type t,
         kort.fix f
