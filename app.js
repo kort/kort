@@ -110,8 +110,6 @@ Ext.application({
             Ext.fly('appStartscreen').destroy();
 
             if(geo) {
-                // wait until correct position is found
-                Ext.defer(me.fireEvent, 500, me, ['geolocationready', geo]);
                 me.loadUserClientSecret(geo, mainPanel);
             } else {
                 me.showGeolocationErrorOverlay();
@@ -161,7 +159,7 @@ Ext.application({
                         console.log('clientSecret not passed -> write client secret to localstore');
                         me.writeUserClientSecret(Kort.user.get('secret'));
                     }
-                    me.loadStores(mainPanel);
+                    me.loadStores(mainPanel, geo);
                     // enable auto update on geolocation
                     geo.setAutoUpdate(true);
                 }
@@ -200,10 +198,14 @@ Ext.application({
         geolocationerrorPanel.show();
     },
 
-    loadStores: function(mainPanel) {
-        var userBadges = Ext.getStore('UserBadges'),
+    loadStores: function(mainPanel, geo) {
+        var me = this,
+            userBadges = Ext.getStore('UserBadges'),
             selectAnswersStore = Ext.getStore('SelectAnswers'),
             highscoreStore = Ext.getStore('Highscore');
+
+        // wait until correct position is found
+        Ext.defer(me.fireEvent, 500, me, ['geolocationready', geo]);
 
         // load select answers
         selectAnswersStore.load();
