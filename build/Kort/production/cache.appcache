@@ -65,6 +65,8 @@ resources/images/profile/highscore.png
 resources/images/validation/thumbs-down.png
 # 368debdc9f12a6b2c5d92f88b0d6e14469844005
 resources/images/validation/thumbs-up.png
+# 00332680df19363653f74c3458a277bed3b484d2
+resources/images/validation/votes-left.png
 
 
 FALLBACK:
