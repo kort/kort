@@ -22,6 +22,11 @@ $app->get(
     '/',
     function () use ($statisticsHandler, $app, $slim) {
         $statistics = $statisticsHandler->getStatistics();
+        
+        if (json_decode($statistics, true) === null) {
+            $this->app->response()->status(404);
+        }
+        
         $callback = $app->request()->params('callback');
         if (empty($callback)) {
             $slim->returnData($statistics);
