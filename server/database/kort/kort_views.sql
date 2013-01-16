@@ -205,7 +205,7 @@ select
 (select count(*) from kort.fix where falsepositive) falsepositive_fix_count,
 (select count(*) from kort.fix where complete) complete_fix_count,
 (select count(*) from kort.fix where complete and valid) validated_fix_count,
-(select count(*) from kort.user) user_count,
+(select count(*) from kort.user where oauth_provider != '') user_count,
 (select count(*) from kort.user where koin_count > 0) active_user_count,
 (select count(*) from kort.user where oauth_provider = 'OpenStreetMap') osm_user_count,
 (select count(*) from kort.user where oauth_provider = 'Google') google_user_count,
