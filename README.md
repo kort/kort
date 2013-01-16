@@ -10,6 +10,13 @@ Kort is built using [Travis CI](https://travis-ci.org):
 
 The app is deployed on [Heroku](https://www.heroku.com/): http://play.kort.ch
 
+## Translations
+
+If you want to help us to translate Kort in other languages, check out our [project at Transifex](https://www.transifex.com/projects/p/kort/):
+
+[![Translation Status 'Database'](https://www.transifex.com/projects/p/kort/resource/database/chart/image_png)](https://www.transifex.com/projects/p/kort/resource/database/)
+[![Translation Status 'Frontend'](https://www.transifex.com/projects/p/kort/resource/frontend/chart/image_png)](https://www.transifex.com/projects/p/kort/resource/frontend/)
+
 ## Abstract
 
 This web app was developed by Stefan Oderbolz and Jürg Hunziker as part of their bachelor thesis.
