@@ -12,11 +12,12 @@ Ext.define('Kort.view.LeafletMap', {
         mapOptions: {
             zoom: Kort.util.Config.getLeafletMap().zoom
         },
-        tileLayerUrl: Kort.util.Config.getLeafletMap().tileLayerUrl,
+        tileLayerUrl: Kort.util.Config.getLeafletMap().getTileLayerUrl(L.Browser.retina),
         tileLayerOptions: {
             apikey: Kort.util.Config.getLeafletMap().apiKey,
             styleId: Kort.util.Config.getLeafletMap().styleId,
-            attribution: Kort.util.Config.getLeafletMap().tileLayerAttribution
+            attribution: Kort.util.Config.getLeafletMap().tileLayerAttribution,
+            detectRetina: true
         }
     }
 });
