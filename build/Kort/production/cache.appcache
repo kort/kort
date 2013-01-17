@@ -39,25 +39,25 @@ resources/images/badges/vote_count_100.png
 resources/images/badges/vote_count_1000.png
 # 43f8e82d0db7d346ee145dd376477d6558d8520f
 resources/images/koins/koin_no_value.png
-# 27537eee5ab70c64bd7370edce2b9930578ab78d
+# e6e032f886c3df99191eec53cf5ba846fa4e71c9
 resources/images/marker_icons/language_unknown.png
-# 88a48db869df7103add1b93fca7ffa088f813673
+# d98ce14e11c32458f6d464f35edd8e4f8cde93aa
 resources/images/marker_icons/missing_maxspeed.png
-# 11c743518bb89167b599e8e9a96cd64684653ed7
+# b4ca2f16b09ed4aaca8be80a7641134299710a82
 resources/images/marker_icons/missing_track_type.png
-# 03f7e78b6a743897a97d928a7f893cc60ff98fd1
+# 3ae00f699d4e57f0fbbf3d7f83bde6860d349f8a
 resources/images/marker_icons/motorway_ref.png
 # 3ada573655b35ba88e868f85f779eee353f4ca79
 resources/images/marker_icons/own_position.png
-# 4f9293d4d46665de3755ba8c6c2edb3b618b24ed
+# 4e161d38f17f3c02d412a6ec7e740423dfa71719
 resources/images/marker_icons/poi_name.png
-# 5776ae915b6b0f3ec62164a4e812620be6c67350
+# 043cc61b14639f448cf4d81eb04b25381e015d40
 resources/images/marker_icons/religion.png
-# fde5816351b56b0c6107016e254830140d2e2697
+# 8012a22a399ce0bde19367666fa458f0e9a443fc
 resources/images/marker_icons/shadow.png
-# 4bd9b702463c4a9c7d6e8c1cfb23aa38530d78fe
+# 6e357bfe91c76bfdb88026df0ca40de5f08e000c
 resources/images/marker_icons/undefined.png
-# 90a31f67e93bfebbcf25525d92939d799402201b
+# cdef67f578c30ea4bba797f9c7fe5b34777db68f
 resources/images/marker_icons/way_wo_tags.png
 # 256a6073de4ae4698b851b8dff68039d1ca13098
 resources/images/profile/highscore.png
