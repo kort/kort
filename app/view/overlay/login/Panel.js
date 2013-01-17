@@ -26,7 +26,7 @@ Ext.define('Kort.view.overlay.login.Panel', {
                                 '<li>' + Ext.i18n.Bundle.message('login.kort.description.3') + '</li>' +
                             '</ul>' +
                             '<div class="introduction">' +
-                                '<p>' + Kort.util.Config.getKortTitle() + Ext.i18n.Bundle.message('login.kort.introduction.1') + '</p>' +
+                                '<p>' + Ext.i18n.Bundle.message('login.kort.introduction.1') + '</p>' +
                                 '<p>' + Ext.i18n.Bundle.message('login.kort.introduction.2') + '</p>' +
                                 '<p>' + Ext.i18n.Bundle.message('login.kort.introduction.3') + '</p>' +
                                 '<p class="important">' + Ext.i18n.Bundle.message('login.kort.introduction.4') + '</p>' +

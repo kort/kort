@@ -14,14 +14,10 @@ Ext.define('Kort.view.RewardMessageBox', {
                         '</div>',
                         '<div class="content">',
                             '<p>' +
-                                Ext.i18n.Bundle.message('reward.alert.koins.new.1') +
-                                ' <span class="important">{koin_count_new}</span> ' +
-                                Ext.i18n.Bundle.message('reward.alert.koins.new.2') +
+                                '{[this.getMessage("reward.alert.koins.new", {koin_count_new: values.koin_count_new})]}',
                             '</p>',
                             '<p>' +
-                                Ext.i18n.Bundle.message('reward.alert.koins.total.1') +
-                                ' <span class="important">{koin_count_total}</span> ' +
-                                Ext.i18n.Bundle.message('reward.alert.koins.total.2') +
+                                '{[this.getMessage("reward.alert.koins.total", {koin_count_total: values.koin_count_total})]}',
                             '</p>',
                         '</div>',
                     '</div>',

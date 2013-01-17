@@ -23,9 +23,7 @@ Ext.define('Kort.view.overlay.geolocationerror.Panel', {
                             '</div>' +
                             '<div class="sadsmiley">:(</div>' +
                             '<div class="introduction">' +
-                                Ext.i18n.Bundle.message('geolocationerror.introduction.1') +
-                                Kort.util.Config.getKortTitle() +
-                                Ext.i18n.Bundle.message('geolocationerror.introduction.2') +
+                                Ext.i18n.Bundle.message('geolocationerror.introduction') +
                             '</div>' +
                         '</div>'
 			},

@@ -90,6 +90,7 @@ Ext.application({
         var mainPanel;
 
         this.prepareI18n();
+        this.prepareXTemplate();
         this.configureMessageBox();
 
         // create main panel
@@ -233,6 +234,15 @@ Ext.application({
         console.log('no username given -> show first steps panel');
         Ext.Viewport.add(firststepsPanel);
         firststepsPanel.show();
+    },
+
+    prepareXTemplate: function() {
+        // add method to use i18n strings with placeholders
+        Ext.XTemplate.addMembers({
+            getMessage: function(key, values) {
+                return Ext.i18n.Bundle.message(key, values);
+            }
+        });
     },
 
     prepareI18n: function() {

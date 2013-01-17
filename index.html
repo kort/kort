@@ -12,9 +12,9 @@
 
             if(document.getElementById("loading-text")) {
                 if(lang === 'de') {
-                    document.getElementById("loading-text").innerHTML = 'wird geladen. Gleich gehts los...'
+                    document.getElementById("loading-text").innerHTML = 'Kort wird geladen. Gleich gehts los...'
                 } else {
-                    document.getElementById("loading-text").innerHTML = 'is loading. Get ready...'
+                    document.getElementById("loading-text").innerHTML = 'Kort is loading. Get ready...'
                 }
             }
         }
@@ -50,14 +50,6 @@
         #appStartscreen .loading-content .loading-spinner {
             margin-top: 1em;
         }
-        #appStartscreen .kort-title-startscreen {
-            font-size: 1.2em;
-            font-weight: bold;
-            margin-right: 0.1em;
-        }
-        #appStartscreen .kort-title-startscreen .kort-ort {
-            font-size: 0.8em;
-        }
     </style>
 
     <!-- The line below must be kept intact for Sencha Command to build your application -->
@@ -69,7 +61,7 @@
             <img src="./resources/images/kort-logo_white.png" />
         </div>
         <div class="loading-content">
-            <p class="loading-text"><span class="kort-title-startscreen"><span class="kort-k">K</span><span class="kort-ort">ORT</span></span> <span id="loading-text">wird geladen. Gleich gehts los...</span></p>
+            <p class="loading-text"><span id="loading-text">Kort wird geladen. Gleich gehts los...</span></p>
             <div class="loading-spinner"><img src="./resources/images/ajax-loader.gif" /></div>
         </div>
     </div>

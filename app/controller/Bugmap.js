@@ -52,7 +52,7 @@ Ext.define('Kort.controller.Bugmap', {
         me.setBugsStore(Ext.getStore('Bugs'));
 
         me.setMessageBoxTemplate(
-            new Ext.Template(
+            new Ext.XTemplate(
                 '<div class="messagebox-content">',
                     '<div class="textpic">',
                         '<div class="image">',
@@ -60,9 +60,7 @@ Ext.define('Kort.controller.Bugmap', {
                         '</div>',
                         '<div class="content">',
                             '<p>',
-                                Ext.i18n.Bundle.message('bugmap.messagebox.koins.earn'),
-                                ' <span class="important">{fix_koin_count}</span> ',
-                                Ext.i18n.Bundle.message('bugmap.messagebox.koins.name'),
+                                '{[this.getMessage("bugmap.messagebox.koins.earn", {fix_koin_count: values.fix_koin_count})]}',
                             '</p>',
                         '</div>',
                     '</div>',

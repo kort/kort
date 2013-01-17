@@ -32,7 +32,7 @@ Ext.define('Kort.view.bugmap.fix.Form', {
             cls: 'fixContentComponent',
             scrollable: false,
             record: this.getRecord(),
-            tpl:    new Ext.Template(
+            tpl:    new Ext.XTemplate(
                         '<div class="fix-content">',
                             '<div class="textpic">',
                                 '<div class="image">',
@@ -40,9 +40,7 @@ Ext.define('Kort.view.bugmap.fix.Form', {
                                 '</div>',
                                 '<div class="content">',
                                     '<p>',
-                                        Ext.i18n.Bundle.message('fix.form.koins.earn'),
-                                        ' <span class="important">{fix_koin_count}</span> ',
-                                        Ext.i18n.Bundle.message('fix.form.koins.name'),
+                                        '{[this.getMessage("fix.form.koins.earn", {fix_koin_count: values.fix_koin_count})]}',
                                     '</p>',
                                 '</div>',
                             '</div>',
