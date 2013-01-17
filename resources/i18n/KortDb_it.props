@@ -1,133 +1,134 @@
 # error types
-error_type.title.motorway_ref=
-error_type.title.poi_wo_name=
-error_type.title.missing_speedlimit=
-error_type.title.tracktype=
-error_type.title.worship_religion=
-error_type.title.language_name=
-error_type.title.street_wo_name=
+error_type.title.motorway_ref=Strada senza riferimento
+error_type.title.poi_wo_name=Oggetto senza nome
+error_type.title.missing_speedlimit=Limite di velocità mancante
+error_type.title.tracktype=Tipo di strada sconosciuto
+error_type.title.worship_religion=Luogo di culto senza religione
+error_type.title.language_name=Lingua del nome sconosciuta
+error_type.title.street_wo_name=Strada senza nome
 
 # error type placeholders
-error_type.placeholder.ref=
-error_type.placeholder.religion=
-error_type.placeholder.name=
-error_type.placeholder.speed_limit=
-error_type.placeholder.language=
-error_type.placeholder.type=
-error_type.placeholder.street_name=
+error_type.placeholder.ref=Riferimento
+error_type.placeholder.religion=Religione
+error_type.placeholder.name=Nome
+error_type.placeholder.speed_limit=Limite di velocità
+error_type.placeholder.language=Lingua
+error_type.placeholder.type=Tipo
+error_type.placeholder.street_name=Nome della strada
 
 # vote questions
-vote.question.ref=
-vote.question.place_of_worship=
-vote.question.name=
-vote.question.maxspeed=
-vote.question.language_unknown=
-vote.question.tracktype=
-vote.question.street_name=
+vote.question.ref=Il riferimento di questa strada è corretto?
+vote.question.place_of_worship=La religione di questo luogo di culto è corretta?
+vote.question.name=È questo il nome di $1?
+vote.question.maxspeed=Il limite di velocità di questa strada è corretto?
+vote.question.language_unknown=Il nome '$2' è in questa lingua?
+vote.question.tracktype=Il percorso è di questo tipo?
+vote.question.street_name=È questo il nome della strada?
 
 # badge names
-badge.name.first_place=
-badge.name.second_place=
-badge.name.third_place=
-badge.name.100_missions=
-badge.name.50_missions=
-badge.name.10_missions=
-badge.name.1000_checks=
-badge.name.100_checks=
-badge.name.10_checks=
-badge.name.first_mission=
-badge.name.first_check=
+badge.name.first_place=Prima posizione
+badge.name.second_place=Seconda posizione
+badge.name.third_place=Terza posizione
+badge.name.100_missions=100 incarichi
+badge.name.50_missions=50 incarichi
+badge.name.10_missions=10 incarichi
+badge.name.1000_checks=1000 verifiche
+badge.name.100_checks=100 verifiche
+badge.name.10_checks=10 verifiche
+badge.name.first_mission=Primo incarico
+badge.name.first_check=Prima verifica
 
 # badge descriptions
-badge.description.reached_1st_place=
-badge.description.reached_2nd_place=
-badge.description.reached_3rd_place=
-badge.description.100_missions_completed=
-badge.description.50_missions_completed=
-badge.description.10_missions_completed=
-badge.description.1000_checks=
-badge.description.100_checks=
-badge.description.10_checks=
-badge.description.1st_mission=
-badge.description.1st_check=
+badge.description.reached_1st_place=Raggiunta la prima posizione in classifica.
+badge.description.reached_2nd_place=Raggiunta la seconda posizione in classifica.
+badge.description.reached_3rd_place=Raggiunta la terza posizione in classifica.
+badge.description.100_missions_completed=100 incarichi completati.
+badge.description.50_missions_completed=50 incarichi completati.
+badge.description.10_missions_completed=10 incarichi completati.
+badge.description.1000_checks=1000 risposte verificate.
+badge.description.100_checks=100 risposte verificate.
+badge.description.10_checks=10 risposte verificate.
+badge.description.1st_mission=Primo incarico completato.
+badge.description.1st_check=Prima risposta verificata.
 
 # missing_track_types (http://wiki.openstreetmap.org/wiki/Key:tracktype)
-answer.track_type.grade1=
-answer.track_type.grade2=
-answer.track_type.grade3=
-answer.track_type.grade4=
-answer.track_type.grade5=
+answer.track_type.grade1=Asfalto, cemento o lastricato
+answer.track_type.grade2=Strada sterrata
+answer.track_type.grade3=Misto di materiali duri e morbidi
+answer.track_type.grade4=Suolo, sabbia od erba
+answer.track_type.grade5=Strada sterrata
 
 # religion (http://wiki.openstreetmap.org/wiki/Key:religion)
-answer.religion.buddhist=
-answer.religion.christian=
-answer.religion.hindu=
-answer.religion.jewish=
-answer.religion.muslim=
-answer.religion.pastafari=
-answer.religion.shinto=
-answer.religion.sikh=
-answer.religion.multiple=
+answer.religion.buddhist=Buddista (tempio)
+answer.religion.christian=Cristiana (chiesa)
+answer.religion.hindu=Indú (tempio)
+answer.religion.jewish=Ebraica (sinagoga)
+answer.religion.muslim=Musulmana (moschea)
+answer.religion.pastafari=Pastafariana
+answer.religion.shinto=Shintoista (tempio)
+answer.religion.sikh=Sikh (Gurdwara)
+answer.religion.multiple=Più fedi
 
 # language (http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
-answer.language.arabic=
-answer.language.catalan=
-answer.language.chinese=
-answer.language.danish=
-answer.language.dutch=
-answer.language.english=
-answer.language.estonian=
-answer.language.finnish=
-answer.language.french=
+answer.language.arabic=Arabo
+answer.language.catalan=Catalano
+answer.language.chinese=Cinese
+answer.language.danish=Danese
+answer.language.dutch=Fiammingo
+answer.language.english=Inglese
+answer.language.estonian=Estone
+answer.language.finnish=Finlandese
+answer.language.french=Francese
 answer.language.german=Tedesco
-answer.language.greek=
-answer.language.hebrew=
-answer.language.irish=
-answer.language.icelandic=
+answer.language.greek=Greco
+answer.language.hebrew=Ebraico
+answer.language.irish=Irlandese
+answer.language.icelandic=Islandese
 answer.language.italian=Italiano
-answer.language.japanese=
-answer.language.korean=
-answer.language.croatian=
-answer.language.latin=
-answer.language.luxembourgish=
-answer.language.norwegian=
-answer.language.persian=
-answer.language.polish=
-answer.language.portuguese=
-answer.language.romansh=
-answer.language.romanian=
-answer.language.russian=
-answer.language.sardinian=
-answer.language.scottish_gaelic=
-answer.language.swiss_german=
-answer.language.serbian=
-answer.language.slovakian=
-answer.language.slovenian=
-answer.language.spanish=
-answer.language.swedish=
-answer.language.thai=
-answer.language.tibetan=
-answer.language.czech=
-answer.language.turkish=
-answer.language.uzbek=
-answer.language.vietnamese=
-answer.language.welsh=
+answer.language.japanese=Giapponese
+answer.language.korean=Coreano
+answer.language.croatian=Croato
+answer.language.latin=Latino
+answer.language.luxembourgish=Lussemburghese
+answer.language.norwegian=Norvegese
+answer.language.persian=Persiano
+answer.language.polish=Polacco
+answer.language.portuguese=Portoghese
+answer.language.romansh=Romancio
+answer.language.romanian=Rumeno
+answer.language.russian=Russo
+answer.language.sardinian=Sardo
+answer.language.scottish_gaelic=Scozzese
+answer.language.swiss_german=Svizzero tedesco
+answer.language.serbian=Serbo
+answer.language.slovakian=Slovacco
+answer.language.slovenian=Sloveno
+answer.language.spanish=Spagnolo
+answer.language.swedish=Svedese
+answer.language.thai=Thailandese
+answer.language.tibetan=Tibetano
+answer.language.czech=Ceco
+answer.language.turkish=Turco
+answer.language.uzbek=Utzbeko
+answer.language.vietnamese=Vietnamita
+answer.language.welsh=Gallese
+
 
 ################################################
 # THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT #
 ################################################
 
-# Error descriptions
+# error descriptions (KeepRight)
 This track doesn't have a tracktype=Che tipo di strada è questa?
-This node is tagged as $1 and therefore needs a name tag or an operator tag=Come si chiama questa/o $1?
-This node is tagged as $1 and therefore needs a name tag=Come si chiama questa/o $1?
+This track doesn't have a tracktype=Che tipo di strada è questa?
+This track doesn't have a tracktype=Che tipo di strada è questa?
 missing maxspeed tag=Che limite di velocità bisogna rispettare su questa strada?
-This way has no tags=Come si chiama questa strada?
+This track doesn't have a tracktype=Che tipo di strada è questa?
 It would be nice if this $1 had an additional tag 'name:XX=$2' where XX shows the language of its name '$2'.=Qual'è la lingua del nome '$2'?
-This way is tagged as motorway and therefore needs a ref, nat_ref or int_ref tag=Come è indicata questa autostrada (es. A1 o E45)?
-This $1 is tagged as place of worship and therefore needs a religion tag=A quale culto appartiene questo luogo di culto?
+This track doesn't have a tracktype=Che tipo di strada è questa?
+This track doesn't have a tracktype=Che tipo di strada è questa?
 
-# Single values
+# single values
 cafe=Bar/Caffé
 fast_food=Fast-Food
 restaurant=Ristorante
