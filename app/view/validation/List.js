@@ -19,7 +19,7 @@ Ext.define('Kort.view.validation.List', {
         
         itemTpl:    '<div class="validation-item">' +
                         '<div class="image">' +
-                            '<img class="bugtype-image" src="./resources/images/marker_icons/{type}.png" />' +
+                            '<img class="bugtype-image" src="./resources/images/marker_icons/{type}@2x.png" />' +
                         '</div>' +
                         '<div class="content">' +
                             '<div class="title">{title}</div>' +

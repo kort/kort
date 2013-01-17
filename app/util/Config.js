@@ -272,9 +272,11 @@ Ext.define('Kort.util.Config', {
 
         icon = L.icon({
             iconUrl: './resources/images/marker_icons/' + type + '.png',
+            iconRetinaUrl: './resources/images/marker_icons/' + type + '@2x.png',
             iconSize: [iconWidth, iconHeight],
             iconAnchor: [(iconWidth/2), iconHeight],
             shadowUrl: './resources/images/marker_icons/shadow.png',
+            shadowRetinaUrl: './resources/images/marker_icons/shadow@2x.png',
             shadowSize: [shadowWidth, shadowHeight],
             shadowAnchor: [(iconWidth/2), shadowHeight],
             popupAnchor: [0, -(2*iconHeight/3)]
