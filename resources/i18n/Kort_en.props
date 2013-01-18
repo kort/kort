@@ -9,7 +9,7 @@ tab.about=About Kort
 login.kort.description.1=Complete missions
 login.kort.description.2=Collect Koins
 login.kort.description.3=Improve OpenStreetMap
-login.kort.introduction.1= helps to improve the data in OpenStreetMap.
+login.kort.introduction.1=Kort helps to improve the data in OpenStreetMap.
 login.kort.introduction.2=Hence you'll see your missions on a map. By completing missions you get Koins and earn badges.
 login.kort.introduction.3=Each solved mission is later checked by other players for its correctness. As soon as enough positive ratings are entered for a suggested solution, it is ready to be sent back to OpenStreetMap.
 login.kort.introduction.4=Login now to begin your mission!
@@ -18,8 +18,7 @@ login.button.osm=Login with OpenStreetMap
 login.loadmask.message=Login...
 
 # Firststeps
-firststeps.introduction.1=Welcome to
-firststeps.introduction.2=! Choose a username:
+firststeps.introduction=Welcome to Kort! Choose a username:
 firststeps.form.button.submit=Start Mission!
 firststeps.alert.username.empty.title=Enter username
 firststeps.alert.username.empty.message=Please enter a username.
@@ -29,23 +28,20 @@ firststeps.alert.submit.failure.title=Error while sending
 firststeps.alert.submit.failure.message=Oops! There was an error while sending the username. Restarting the app might help.
 
 # Geolocation error
-geolocationerror.introduction.1=To use
-geolocationerror.introduction.2= , accessing your geo-position is essential.
+geolocationerror.introduction=To use Kort, accessing your geo-position is essential.
 geolocationerror.button.reload=Reload application
 geolocationerror.loadmask.message=Reloading app...
 
 # Bugmap
 bugmap.title=Missions nearby
 bugmap.loadmask.message=Loading missions...
-bugmap.messagebox.koins.earn=Earn
-bugmap.messagebox.koins.name=Koins
+bugmap.messagebox.koins.earn=Earn {fix_koin_count} Koins
 bugmap.messagebox.yes=Answer
 bugmap.messagebox.no=Don't know
 
 ## Fix
 fix.form.title=Mission
-fix.form.koins.earn=Get the
-fix.form.koins.name=Koins!
+fix.form.koins.earn=Get the {fix_koin_count} Koins!
 fix.form.message.placeholder=Your answer...
 fix.form.button.showonmap=Show on map
 fix.form.button.submit=Complete mission
@@ -62,7 +58,7 @@ fix.alert.submit.failure.message=Oops! There was an error while sending your ans
 validation.title=Check
 validation.loadmask.message=Loading data...
 validation.emptytext=Bravo! You checked all messages.
-validation.list.header=positive ratings needed
+validation.list.header={validations_left} positive ratings needed
 validation.distance=Distance
 
 ## Vote
@@ -154,10 +150,8 @@ picker.cancel=Cancel
 
 # Reward
 reward.alert.title=You increased your reputation!
-reward.alert.koins.new.1=Bravo! You have won
-reward.alert.koins.new.2=Koins.
-reward.alert.koins.total.1=You now have a total amount of
-reward.alert.koins.total.2=Koins.
+reward.alert.koins.new=Bravo! You have won {koin_count_new} Koins.
+reward.alert.koins.total.1=You now have a total amount of {koin_count_total} Koins.
 reward.alert.badges.title=Won badges
 
 # App update
@@ -171,7 +165,7 @@ update.message=The app has be updated to the newest version. Reload?
 
 # index.html
 ## App startscreen
-loading.message=is loading. Get ready...
+loading.message=Kort is loading. Get ready...
 
 # app/util/Config.js
 ## Firststeps
