@@ -60,7 +60,7 @@ Ext.define('Kort.view.validation.vote.Container', {
                             '</span>' +
                             '<span class="votesLeft">' +
                                 '<img src="./resources/images/validation/votes-left.png" />' +
-                                votesLeft + ' ' + Ext.i18n.Bundle.message('vote.container.votes.left') +
+                                Ext.i18n.Bundle.message('vote.container.votes.left', { 'votes_left': votesLeft }) +
                             '</span>' +
                         '</div>';
 

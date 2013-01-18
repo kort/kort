@@ -64,7 +64,7 @@ validation.distance=Distanz
 ## Vote
 vote.falsepositive.question=Es wurde angegeben, dass es keine Lösung zu dieser Frage gibt. Ist dies korrekt?
 vote.container.button.answer=Beantworten
-vote.container.votes.left=Bewertungen nötig
+vote.container.votes.left={votes_left} Bewertungen nötig
 vote.answeractionsheet.button.accept=Ja
 vote.answeractionsheet.button.decline=Nein
 vote.answeractionsheet.button.cancel=Weiss nicht

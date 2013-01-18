@@ -68,7 +68,7 @@ validation.distance=Distanza
 ## Vote
 vote.falsepositive.question=È stato detto che non è possibile rispondere a quest domanda. È vero?
 vote.container.button.answer=Rispondere
-vote.container.votes.left=[TODO: TRANSLATE ME]
+vote.container.votes.left={votes_left} [TODO: TRANSLATE ME]
 vote.answeractionsheet.button.accept=Si
 vote.answeractionsheet.button.decline=No
 vote.answeractionsheet.button.cancel=Non so
