@@ -5,63 +5,124 @@
     <title>Kort</title>
     <link rel="icon" href="./resources/images/kort-favicon.ico" type="image/png" />
     <script type="text/javascript">
-        function startscreenLoad() {
-            var lang = navigator.language || navigator.browserLanguage || navigator.userLanguage;
-            // TODO better handling of different locale codes
-            lang = lang.substring(0, 2);
+        // create namespace
+        var KortStartscreen = {};
+        KortStartscreen.supportedLanguages = ['en', 'de'];
+        KortStartscreen.supportedBrowsers = ['WebKit'];
+        KortStartscreen.defaultLanguage = 'en';
+        
+        KortStartscreen.getLanguage = function() {
+            var currentLang = (navigator.language || navigator.browserLanguage || navigator.userLanguage || KortStartscreen.defaultLanguage),
+                supportedLanguages = KortStartscreen.supportedLanguages,
+                langLen = supportedLanguages.length,
+                i;
 
-            if(document.getElementById("loading-text")) {
-                if(lang === 'de') {
-                    document.getElementById("loading-text").innerHTML = 'Kort wird geladen. Gleich gehts los...'
-                } else {
-                    document.getElementById("loading-text").innerHTML = 'Kort is loading. Get ready...'
+            currentLang = currentLang.substring(0, 2).toLowerCase();
+            for(i = 0; i < langLen; i++) {
+                if (supportedLanguages[i] === currentLang) {
+                    return currentLang;
                 }
+            }
+            return KortStartscreen.defaultLanguage;
+        }
+        
+        KortStartscreen.isBrowserSupported = function() {
+            var supportedBrowsers = KortStartscreen.supportedBrowsers,
+                supportedBrowsersLen = supportedBrowsers.length,
+                i;
+
+            for(i = 0; i < supportedBrowsersLen; i++) {
+                if(Ext.browser.is(supportedBrowsers[i])) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        KortStartscreen.lang = KortStartscreen.getLanguage();
+        KortStartscreen.messages = {
+            de: {
+                'startscreen.loadingtext': 'Kort wird geladen. Gleich gehts los...',
+                'startscreen.browsererror': 'Dein Browser wird leider nicht unterstützt. Kort ist optimiert für den Betrieb auf mobilen Geräten. Versuch es doch damit.'
+            },
+            en: {
+                'startscreen.loadingtext': 'Kort is loading. Get ready...',
+                'startscreen.browsererror': 'Your browser is not supported. Try it on your mobile phone.'
+            }
+        }
+        
+        KortStartscreen.init = function() {
+            KortStartscreen.setLanguage();
+            KortStartscreen.detectBrowser();
+        }
+        
+        KortStartscreen.getMessage = function(key) {
+            return KortStartscreen.messages[KortStartscreen.lang][key];
+        }
+        
+        KortStartscreen.setLanguage = function() {
+            if(document.getElementById('startscreen-loading-text')) {
+                document.getElementById('startscreen-loading-text').innerHTML = KortStartscreen.getMessage('startscreen.loadingtext');
+            }
+        }
+        KortStartscreen.detectBrowser = function() {
+            if(!KortStartscreen.isBrowserSupported()) {
+                document.getElementById('startscreen-kort-logo').innerHTML = '<img src="./resources/images/kort-logo.png" />';
+                document.getElementById('appStartscreen').style.backgroundColor = '#eee';
+                document.getElementById('appStartscreen').style.color = '#000';
+                document.getElementById('startscreen-loading-content').innerHTML =
+                    '<div class="sadsmiley">:(</div>' +
+                    '<div class="browser-error">' +
+                        KortStartscreen.getMessage('startscreen.browsererror') +
+                    '</div>';
             }
         }
     </script>
     <style type="text/css">
         html, body {
             height: 100%;
-            background-color: #395971;
             margin: 0;
             padding: 0;
             font-family: "Helvetica Neue", HelveticaNeue, "Helvetica-Neue", Helvetica, "BBAlpha Sans", sans-serif;
         }
         #appStartscreen {
+            font-size: 18px !important;
             height: 100%;
             background-color: #395971;
             color: #fff;
             padding: 1.5em 0.5em 0.5em 0.5em;
             text-align: center;
         }
-        #appStartscreen .kort-logo img {
+        #appStartscreen #startscreen-kort-logo img {
             width: 150px;
             height: 150px;
         }
-        #appStartscreen .loading-content {
-            margin-top: 1.5em;
-        }
-        #appStartscreen .loading-content .loading-text {
+        #appStartscreen #startscreen-loading-content #startscreen-loading-text,
+        #appStartscreen #startscreen-loading-content .browser-error {
             font-size: 0.9em;
-            text-transform: uppercase;
-            margin-left: 0.8em;
-            margin-top: 0.3em;
+            margin: 1.5em 0.8em 0 0.8em;
         }
-        #appStartscreen .loading-content .loading-spinner {
+        #appStartscreen #startscreen-loading-content #startscreen-loading-text {
+            text-transform: uppercase;
+        }
+        #appStartscreen #startscreen-loading-content .loading-spinner {
             margin-top: 1em;
+        }
+        #appStartscreen #startscreen-loading-content .sadsmiley {
+            font-size: 4em;
         }
     </style>
 
     <!-- The line below must be kept intact for Sencha Command to build your application -->
     <script id="microloader" type="text/javascript" src="touch/microloader/development.js"></script>
 </head>
-<body onload="startscreenLoad()">
+<body onload="KortStartscreen.init()">
     <div id="appStartscreen">
-        <div class="kort-logo">
+        <div id="startscreen-kort-logo">
             <img src="./resources/images/kort-logo_white.png" />
         </div>
-        <div class="loading-content">
-            <p class="loading-text"><span id="loading-text">Kort wird geladen. Gleich gehts los...</span></p>
+        <div id="startscreen-loading-content">
+            <p id="startscreen-loading-text">Kort wird geladen. Gleich gehts los...</p>
             <div class="loading-spinner"><img src="./resources/images/ajax-loader.gif" /></div>
         </div>
     </div>

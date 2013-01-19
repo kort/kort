@@ -87,19 +87,21 @@ Ext.application({
 
     // launch function is called as soon as app is ready
     launch: function() {
-        var mainPanel;
+        if(Kort.util.Config.isBrowserSupported()) {
+            var mainPanel;
 
-        this.prepareI18n();
-        this.prepareXTemplate();
-        this.configureMessageBox();
+            this.prepareI18n();
+            this.prepareXTemplate();
+            this.configureMessageBox();
 
-        // create main panel
-        // this has to be done in launch method so routes can work properly
-        mainPanel = Ext.create('Kort.view.Main');
-        Ext.Viewport.add(mainPanel);
-        mainPanel.hide();
+            // create main panel
+            // this has to be done in launch method so routes can work properly
+            mainPanel = Ext.create('Kort.view.Main');
+            Ext.Viewport.add(mainPanel);
+            mainPanel.hide();
 
-        this.loadGeolocation(mainPanel);
+            this.loadGeolocation(mainPanel);
+        }
     },
 
     loadGeolocation: function(mainPanel) {

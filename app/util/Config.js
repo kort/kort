@@ -16,6 +16,11 @@ Ext.define('Kort.util.Config', {
         supportedLanguages: ['en', 'de'],
         
         /**
+         * @cfg {String[]} supportedBrowsers List of supported browsers
+         */
+        supportedBrowsers: ['WebKit'],
+        
+        /**
          * @cfg {String} defaultLanguage Default language of app when no language setting could be detected
          */
         defaultLanguage: 'en',
@@ -23,7 +28,7 @@ Ext.define('Kort.util.Config', {
         /**
          * @cfg {Object} leafletMap Configuration for {@link Ext.ux.LeafletMap} component
          * @cfg {Number} [leafletMap.zoom=15] (required) Default zoom level of leaflet map
-         * @cfg {String} [leafletMap.tileLayerUrl="http://{s}.tile.cloudmade.com/{apikey}/{styleId}/256/{z}/{x}/{y}.png"] (required) URL to tile server
+         * @cfg {Function} [leafletMap.getTileLayerUrl] (required) URL to tile server
          * @cfg {String} [leafletMap.tileLayerAttribution="Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>"] (required) Copyright information of map
          * @cfg {String} [leafletMap.apiKey=729242682cb24de8aa825c8aed993cba] (required) API key for cloudmade tiles
          * @cfg {Number} [leafletMap.styleId=997] (required) Style id for cloudmade tiles
@@ -256,13 +261,29 @@ Ext.define('Kort.util.Config', {
             langLen = supportedLanguages.length,
             i;
 
-       currentLang = currentLang.substring(0, 2).toLowerCase();
-       for(i = 0; i < langLen; i++) {
-           if (supportedLanguages[i] === currentLang) {
-               return currentLang;
-           }
-       }
-       return this.getDefaultLanguage();
+        currentLang = currentLang.substring(0, 2).toLowerCase();
+        for(i = 0; i < langLen; i++) {
+            if (supportedLanguages[i] === currentLang) {
+                return currentLang;
+            }
+        }
+        return this.getDefaultLanguage();
+	},
+
+    /**
+     * Tells if current browser is supported
+     */
+	isBrowserSupported: function() {
+        var supportedBrowsers = this.getSupportedBrowsers(),
+            supportedBrowsersLen = supportedBrowsers.length,
+            i;
+
+        for(i = 0; i < supportedBrowsersLen; i++) {
+            if(Ext.browser.is(supportedBrowsers[i])) {
+                return true;
+            }
+        }
+        return false;
 	},
 
     /**

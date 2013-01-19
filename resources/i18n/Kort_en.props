@@ -165,7 +165,8 @@ update.message=The app has be updated to the newest version. Reload?
 
 # index.html
 ## App startscreen
-loading.message=Kort is loading. Get ready...
+startscreen.loadingtext=Kort is loading. Get ready...
+startscreen.browsererror=Your browser is not supported. Try it on your mobile phone.
 
 # app/util/Config.js
 ## Firststeps
