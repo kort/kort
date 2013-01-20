@@ -6,6 +6,10 @@ Ext.define('Kort.store.UserBadges', {
 
 	config: {
 		model: 'Kort.model.UserBadge',
+        sorters: {
+            property : 'sorting',
+            direction: 'asc'
+        },
 
 		proxy: {
 			type: 'rest',
@@ -13,7 +17,6 @@ Ext.define('Kort.store.UserBadges', {
             pageParam: false,
             startParam: false,
             limitParam: false,
-            sorters: 'sorting',
             extraParams: {
                 'lang': Kort.util.Config.getLanguage()
             },

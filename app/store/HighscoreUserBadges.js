@@ -6,6 +6,10 @@ Ext.define('Kort.store.HighscoreUserBadges', {
 
 	config: {
 		model: 'Kort.model.HighscoreUserBadge',
+        sorters: {
+            property : 'sorting',
+            direction: 'asc'
+        },
 
 		proxy: {
 			type: 'rest',
@@ -16,7 +20,6 @@ Ext.define('Kort.store.HighscoreUserBadges', {
             extraParams: {
                 'lang': Kort.util.Config.getLanguage()
             },
-            sorters: 'sorting',
             reader: {
                 type: 'json',
                 rootProperty: 'return'
