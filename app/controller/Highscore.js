@@ -30,7 +30,8 @@ Ext.define('Kort.controller.Highscore', {
             }
         },
         
-        detailPushDisabled: false
+        detailPushDisabled: false,
+        highscoreStore: null
     },
     
     /**
@@ -38,16 +39,21 @@ Ext.define('Kort.controller.Highscore', {
      * Initilizes the controller
      */
     init: function() {
-        var me = this;
+        var me = this,
+            highscoreStore = Ext.getStore('Highscore');
         me.callParent(arguments);
-        
+
+        me.setHighscoreStore(highscoreStore);
+
         me.getApplication().on({
             votesend: { fn: me.loadStore, scope: me },
             fixsend: { fn: me.loadStore, scope: me },
             userchange: { fn: me.loadStore, scope: me }
         });
 
-        Ext.getStore('Highscore').on('load', me.refreshView, me);
+        highscoreStore.on({
+            load: { fn: me.refreshView, scope: me }
+        });
     },
 
     // @private
@@ -91,12 +97,12 @@ Ext.define('Kort.controller.Highscore', {
      * Loads highscore store
      */
     loadStore: function(showLoadmask) {
-        var highscoreStore = Ext.getStore('Highscore');
-
         if(showLoadmask) {
             this.showLoadMask();
         }
-        highscoreStore.load();
+        this.getHighscoreStore().setClearOnPageLoad(true);
+        this.getHighscoreStore().loadPage(1);
+        this.getHighscoreStore().setClearOnPageLoad(false);
     },
 
     /**

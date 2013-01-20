@@ -1,5 +1,6 @@
 $panel-padding: 0.5em;
 $dark-grey: #4B4B4B;
+$color-dark-blue: #4e6490;
 $default-font-size: 0.9em;
 $label-background-color: #46578D;
 
@@ -368,7 +369,7 @@ $label-background-color: #46578D;
             float: left;
             border-radius: 5em;
             padding: 0.4em;
-            background-color: #4e6490;
+            background-color: $color-dark-blue;
             color: #fff;
         }
         
@@ -760,4 +761,15 @@ $label-background-color: #46578D;
 
 .important {
     font-weight: bold;
+}
+
+// listpaging plugin
+.x-list-paging {
+    .x-list-paging-msg {
+        color: $color-dark-blue;
+    }
+    
+    .x-loading-spinner {
+        margin-top: 0.1em !important;
+    }
 }

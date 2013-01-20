@@ -8,11 +8,12 @@ Ext.define('Kort.view.highscore.PullRefreshPlugin', {
 	config: {
        refreshFn: function() {
             var me = this,
-                list = me.getList(),
-                store = list.getStore();
+                store = me.getList().getStore();
 
             if (store) {
-                store.load();
+                store.setClearOnPageLoad(true);
+                store.loadPage(1);
+                store.setClearOnPageLoad(false);
             }
         }
 	}

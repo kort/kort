@@ -5,7 +5,8 @@ Ext.define('Kort.view.highscore.List', {
 	extend: 'Ext.List',
 	alias: 'widget.highscorelist',
     requires: [
-        'Kort.view.highscore.PullRefreshPlugin'
+        'Kort.view.highscore.PullRefreshPlugin',
+        'Ext.plugin.ListPaging'
     ],
     
 	config: {
@@ -38,6 +39,11 @@ Ext.define('Kort.view.highscore.List', {
         plugins: [
             {
                 xclass: 'Kort.view.highscore.PullRefreshPlugin'
+            },
+            {
+                xclass: 'Ext.plugin.ListPaging',
+                loadMoreText: Ext.i18n.Bundle.message('listpaging.loadmore'),
+                noMoreRecordsText: Ext.i18n.Bundle.message('listpaging.nomorerecords')
             }
         ]
 	}

@@ -135,6 +135,10 @@ pullrefresh.releaserefresh=Zum Aktualisieren loslassen...
 pullrefresh.loading=wird aktualisiert...
 pullrefresh.lastupdated=Zuletzt aktualisiert:
 
+# ListPaging Plugin
+listpaging.loadmore=Weitere Einträge laden...
+listpaging.nomorerecords=Keine weiteren Einträge vorhanden.
+
 # Button
 button.back=Zurück
 

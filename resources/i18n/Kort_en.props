@@ -135,6 +135,10 @@ pullrefresh.releaserefresh=Release to refresh...
 pullrefresh.loading=loading...
 pullrefresh.lastupdated=Last updated:
 
+# ListPaging Plugin
+listpaging.loadmore=Load more...
+listpaging.nomorerecords=No more records available.
+
 # Button
 button.back=Back
 
