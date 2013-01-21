@@ -9,7 +9,7 @@ tab.about=Über Kort
 login.kort.description.1=Löse Aufträge
 login.kort.description.2=Sammle Koins
 login.kort.description.3=Verbessere OpenStreetMap
-login.kort.introduction.1= soll dazu beitragen die Daten in OpenStreetMap zu verbessern.
+login.kort.introduction.1=Kort soll dazu beitragen die Daten in OpenStreetMap zu verbessern.
 login.kort.introduction.2=Dazu werden dir auf der Karte Fehler in Form von Aufträgen angezeigt. Durch das Lösen solcher Aufträge erhältst du Koins und kannst Auszeichnungen gewinnen.
 login.kort.introduction.3=Gelöste Aufträge können dann wiederum von anderen Spielern überprüft werden, um deren Korrektheit zu bestätigen. Sobald ein Lösungsvorschlag genügend positive Bewertungen erhalten hat, ist er bereit, um zu OpenStreetMap zurückgeschrieben zu werden.
 login.kort.introduction.4=Logge dich jetzt ein, um damit zu beginnen!
@@ -18,8 +18,7 @@ login.button.osm=Login mit OpenStreetMap
 login.loadmask.message=Login...
 
 # Firststeps
-firststeps.introduction.1=Willkommen bei 
-firststeps.introduction.2=! Wähle einen Benutzernamen:
+firststeps.introduction=Willkommen bei Kort! Wähle einen Benutzernamen:
 firststeps.form.button.submit=Mission beginnen!
 firststeps.alert.username.empty.title=Benutzernamen eingeben
 firststeps.alert.username.empty.message=Bitte gib einen Benutzernamen ein.
@@ -29,23 +28,20 @@ firststeps.alert.submit.failure.title=Fehler beim Senden
 firststeps.alert.submit.failure.message=Ups! Beim Übertragen deines Benutzernamens ist etwas schief gelaufen. Eventuell hilft ein Neustart der App.
 
 # Geolocation error
-geolocationerror.introduction.1=Um 
-geolocationerror.introduction.2= verwenden zu können, muss auf deine Position zugegriffen werden können.
+geolocationerror.introduction=Um Kort verwenden zu können, muss auf deine Position zugegriffen werden können.
 geolocationerror.button.reload=Applikation neu laden
 geolocationerror.loadmask.message=Lade App neu...
 
 # Bugmap
 bugmap.title=Aufträge in deiner Nähe
 bugmap.loadmask.message=Lade Auträge...
-bugmap.messagebox.koins.earn=Verdiene dir
-bugmap.messagebox.koins.name=Koins
+bugmap.messagebox.koins.earn=Verdiene dir {fix_koin_count} Koins
 bugmap.messagebox.yes=Beantworten
 bugmap.messagebox.no=Weiss nicht
 
 ## Fix
 fix.form.title=Auftrag
-fix.form.koins.earn=Hol dir die
-fix.form.koins.name=Koins!
+fix.form.koins.earn=Hol dir die {fix_koin_count} Koins!
 fix.form.message.placeholder=Deine Antwort...
 fix.form.button.showonmap=Auf der Karte anzeigen
 fix.form.button.submit=Auftrag abschliessen
@@ -62,13 +58,13 @@ fix.alert.submit.failure.message=Ups! Beim Übertragen der Lösung ist etwas sch
 validation.title=Prüfen
 validation.loadmask.message=Lade Überprüfungen...
 validation.emptytext=Bravo! Du hast alle Meldungen überprüft.
-validation.list.header=positive Überprüfungen nötig
+validation.list.header={validations_left} positive Überprüfungen nötig
 validation.distance=Distanz
 
 ## Vote
 vote.falsepositive.question=Es wurde angegeben, dass es keine Lösung zu dieser Frage gibt. Ist dies korrekt?
 vote.container.button.answer=Beantworten
-vote.container.votes.left=Bewertungen nötig
+vote.container.votes.left={votes_left} Bewertungen nötig
 vote.answeractionsheet.button.accept=Ja
 vote.answeractionsheet.button.decline=Nein
 vote.answeractionsheet.button.cancel=Weiss nicht
@@ -139,6 +135,10 @@ pullrefresh.releaserefresh=Zum Aktualisieren loslassen...
 pullrefresh.loading=wird aktualisiert...
 pullrefresh.lastupdated=Zuletzt aktualisiert:
 
+# ListPaging Plugin
+listpaging.loadmore=Weitere Einträge laden...
+listpaging.nomorerecords=Keine weiteren Einträge vorhanden.
+
 # Button
 button.back=Zurück
 
@@ -154,10 +154,8 @@ picker.cancel=Abbrechen
 
 # Reward
 reward.alert.title=Dein Ansehen ist gestiegen!
-reward.alert.koins.new.1=Bravo! Du hast
-reward.alert.koins.new.2=Koins gewonnen.
-reward.alert.koins.total.1=Deine Gesamtpunktzahl beträgt nun
-reward.alert.koins.total.2=Koins.
+reward.alert.koins.new=Bravo! Du hast {koin_count_new} Koins gewonnen.
+reward.alert.koins.total=Deine Gesamtpunktzahl beträgt nun {koin_count_total} Koins.
 reward.alert.badges.title=Gewonnene Auszeichnungen
 
 # App update
@@ -171,7 +169,9 @@ update.message=Die App wurde auf die neuste Version aktualisiert. App neu laden?
 
 # index.html
 ## App startscreen
-loading.message=wird geladen. Gleich gehts los...
+loading.message=Kort wird geladen. Gleich gehts los...
+startscreen.loadingtext=Kort wird geladen. Gleich gehts los...
+startscreen.browsererror=Dein Browser wird leider noch nicht unterstützt. Kort ist optimiert für den Betrieb auf mobilen Geräten. Versuch es doch damit.
 
 # app/util/Config.js
 ## Firststeps

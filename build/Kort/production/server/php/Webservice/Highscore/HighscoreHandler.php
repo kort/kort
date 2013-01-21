@@ -61,14 +61,17 @@ class HighscoreHandler extends DbProxyHandler
      * Return the current highscore with users, points etc.
      *
      * @param integer $limit The amount of entries this method should return.
+     * @param integer $page The current page which should be loaded.
      *
      * @return string|bool the JSON-encoded highscore if successful, false otherwise
      */
-    public function getHighscore($limit)
+    public function getHighscore($limit, $page)
     {
+        $offset = ($page * $limit) - $limit;
+        
         $sql  = "select * from (select " . implode($this->getFields(), ',');
         $sql .= " from " . $this->getTable();
-        $sql .= " limit " . $limit;
+        $sql .= " limit " . $limit . " offset " . $offset;
         $sql .= ") hs union ";
         $sql .= "select * from ";
         $sql .= "(select " . implode($this->getFields(), ',');
