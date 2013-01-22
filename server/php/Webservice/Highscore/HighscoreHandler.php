@@ -61,7 +61,7 @@ class HighscoreHandler extends DbProxyHandler
      * Return the current highscore with users, points etc.
      *
      * @param integer $limit The amount of entries this method should return.
-     * @param integer $page The current page which should be loaded.
+     * @param integer $page  The current page which should be loaded.
      *
      * @return string|bool the JSON-encoded highscore if successful, false otherwise
      */
