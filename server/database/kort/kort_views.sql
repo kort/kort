@@ -156,6 +156,7 @@ create or replace view kort.user_model as
 select u.user_id id,
        u.name,
        u.username,
+       u.pic_url,
        u.oauth_user_id,
        u.oauth_provider,
        u.token,

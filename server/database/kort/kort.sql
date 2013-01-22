@@ -70,6 +70,7 @@ create table kort.user (
     token varchar(255),
     oauth_provider varchar(100),
     oauth_user_id varchar(100),
+    pic_url varchar(255),
     secret varchar(100) unique,
     unique(oauth_provider, oauth_user_id)
 );

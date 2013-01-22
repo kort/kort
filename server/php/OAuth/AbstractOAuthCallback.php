@@ -58,6 +58,15 @@ abstract class AbstractOAuthCallback
      * @return string Name of the OAuth provider
      */
     abstract public function getOAuthProvider();
+    
+    /**
+     * The URL of the user's picture (avatar).
+     * 
+     * If this value is empty, Gravatar is used to get a picure.
+     *
+     * @return string URL of the user's picutre
+     */
+    abstract public function getPictureUrl();
 
     /**
      * Returns an array with all currently known user details.
@@ -69,6 +78,7 @@ abstract class AbstractOAuthCallback
         $user = $this->getOAuthUser();
         $user['oauth_provider'] = $this->getOAuthProvider();
         $user['oauth_user_id'] = $this->getOAuthUserId();
+        $user['pic_url'] = $this->getPictureUrl();
         return $user;
     }
 
