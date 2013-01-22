@@ -36,6 +36,7 @@ class FixGetHandler extends DbProxyHandler
             'latitude',
             'longitude',
             'error_type',
+            'error_type_description',
             'answer',
             'falsepositive',
             'description',
