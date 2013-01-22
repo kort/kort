@@ -169,7 +169,6 @@ update.message=Die App wurde auf die neuste Version aktualisiert. App neu laden?
 
 # index.html
 ## App startscreen
-loading.message=Kort wird geladen. Gleich gehts los...
 startscreen.loadingtext=Kort wird geladen. Gleich gehts los...
 startscreen.browsererror=Dein Browser wird leider noch nicht unterstützt. Kort ist optimiert für den Betrieb auf mobilen Geräten. Versuch es doch damit.
 
