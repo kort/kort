@@ -85,8 +85,8 @@ do
 done
 echo "End."
 
-echo "Combining part files to reduced keepright dump /tmp/keepright_errors.txt"
-cat /tmp/kr_part* >> /tmp/keepright_errors.txt
+# echo "Combining part files to reduced keepright dump /tmp/keepright_errors.txt"
+# cat /tmp/kr_part* >> /tmp/keepright_errors.txt
 
 echo "Delete all part files"
 rm /tmp/kr_part*
