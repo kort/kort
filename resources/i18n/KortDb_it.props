@@ -53,7 +53,7 @@ badge.description.1st_check=Prima risposta verificata.
 
 # missing_track_types (http://wiki.openstreetmap.org/wiki/Key:tracktype)
 answer.track_type.grade1=Asfalto, cemento o lastricato
-answer.track_type.grade2=Strada sterrata
+answer.track_type.grade2=Strada in ghiaia
 answer.track_type.grade3=Misto di materiali duri e morbidi
 answer.track_type.grade4=Suolo, sabbia od erba
 answer.track_type.grade5=Strada sterrata
@@ -119,14 +119,13 @@ answer.language.welsh=Gallese
 ################################################
 
 # error descriptions (KeepRight)
-This track doesn't have a tracktype=Che tipo di strada è questa?
-This track doesn't have a tracktype=Che tipo di strada è questa?
-This track doesn't have a tracktype=Che tipo di strada è questa?
-missing maxspeed tag=Che limite di velocità bisogna rispettare su questa strada?
-This track doesn't have a tracktype=Che tipo di strada è questa?
-It would be nice if this $1 had an additional tag 'name:XX=$2' where XX shows the language of its name '$2'.=Qual'è la lingua del nome '$2'?
-This track doesn't have a tracktype=Che tipo di strada è questa?
-This track doesn't have a tracktype=Che tipo di strada è questa?
+bug.question.track=Che tipo di strada è questa?
+bug.question.poi=Come si chiama questo $1?
+bug.question.speed=Che limite di velocità bisogna rispettare su questa strada?
+bug.question.name_of_street=Qual'è il nome di questa strada?
+bug.question.language=Qual'è la lingua del nome '$2'?
+bug.question.motorway_ref=Qualè il riferimento di questa strada (es. A3 o E385)?
+bug.question.place_of_worship=Quale religione si professa in questo luogo di culto?
 
 # single values
 cafe=Bar/Caffé

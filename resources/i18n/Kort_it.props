@@ -3,13 +3,13 @@ tab.bugmap=Incarichi
 tab.validation=Verifica
 tab.highscore=Highscore
 tab.profile=Profilo
-tab.about=A proposito
+tab.about=A proposito di Kort
 
 # Login
 login.kort.description.1=Risolvi incarichi
 login.kort.description.2=Raccogli Koins
 login.kort.description.3=Migliora OpenStreetMap
-login.kort.introduction.1= consente di migliorari i dati presenti in OpenStreetMap.
+login.kort.introduction.1=consente di migliorari i dati presenti in OpenStreetMap.
 login.kort.introduction.2=Sulla mappa vengono mostrati errori sotto forma di incarichi. Risolvendo questi incarichi ricevi dei Koins e puoi conquistare dei Badge.
 login.kort.introduction.3=Gli incarichi risolti possono essere verificati da altri giocatori, che ne confermano la correttezza. Quando una proposta riceve abbastanza valutazioni positive è pronta per essere inviata ad Openstreetmap.
 login.kort.introduction.4=Fai login per cominciare!
@@ -18,8 +18,7 @@ login.button.osm=Login con OpenStreetMap
 login.loadmask.message=Login...
 
 # Firststeps
-firststeps.introduction.1=Benvenuto su
-firststeps.introduction.2=! Scegli un nome utente:
+firststeps.introduction=Benvenuto in Kort! Scegli un nome utente:
 firststeps.form.button.submit=Comincia la missione!
 firststeps.alert.username.empty.title=Scelta nome utente
 firststeps.alert.username.empty.message=Scegli il tuo nome utente.
@@ -29,23 +28,20 @@ firststeps.alert.submit.failure.title=Errore nell'invio
 firststeps.alert.submit.failure.message=C'è stato un problema nell'invio del nome utente. Potrebbe essere necessario un riavvio dell'applicazione.
 
 # Geolocation error
-geolocationerror.introduction.1=Per potere utilizzare
-geolocationerror.introduction.2= è necessario accedere alla tua posizione corrente.
+geolocationerror.introduction=Per poter usare Kort è necessario accedere alla tua posizione corrente.
 geolocationerror.button.reload=Ricarica l'applicazione
 geolocationerror.loadmask.message=Ricarico l'applicazione...
 
 # Bugmap
 bugmap.title=Incarichi nei dintorni
 bugmap.loadmask.message=Caricamento incarichi...
-bugmap.messagebox.koins.earn=Guadagna
-bugmap.messagebox.koins.name=Koins
+bugmap.messagebox.koins.earn=Guadagna {fix_koin_count} Koins
 bugmap.messagebox.yes=Rispondi
 bugmap.messagebox.no=Non so
 
 ## Fix
 fix.form.title=Incarico
-fix.form.koins.earn=Guadagna
-fix.form.koins.name=Koin!
+fix.form.koins.earn=Prendi i {fix_koin_count} Koins!
 fix.form.message.placeholder=La tua risposta...
 fix.form.button.showonmap=Mostra sulla mappa
 fix.form.button.submit=Risolvi l'incarico
@@ -62,13 +58,13 @@ fix.alert.submit.failure.message=C'è stato un problema nell'invio della riposta
 validation.title=Verifica
 validation.loadmask.message=Carico dati...
 validation.emptytext=Congratulazioni! Tutte le risposte sono state verificate.
-validation.list.header=valutazioni positive richieste
+validation.list.header={validations_left} valutazioni positive richieste
 validation.distance=Distanza
 
 ## Vote
 vote.falsepositive.question=È stato detto che non è possibile rispondere a quest domanda. È vero?
 vote.container.button.answer=Rispondere
-vote.container.votes.left={votes_left} [TODO: TRANSLATE ME]
+vote.container.votes.left={votes_left} valutazioni necessarie
 vote.answeractionsheet.button.accept=Si
 vote.answeractionsheet.button.decline=No
 vote.answeractionsheet.button.cancel=Non so
@@ -100,7 +96,7 @@ profile.content.fixes=Incarichi svolti
 profile.content.votes=Verifiche effettuate
 profile.content.koins.header=Koin raccolti
 profile.content.koins.title=Koin
-profile.content.ranking.title=[TODO: TRANSLATE ME]
+profile.content.ranking.title=Posto
 profile.content.badges.header=I tuoi badge
 profile.logout.loadmask.message=Logout...
 profile.refresh.loadmask.message=Carico il profilo...
@@ -139,6 +135,10 @@ pullrefresh.releaserefresh=Rilasciare per aggiornare...
 pullrefresh.loading=sto aggiornando...
 pullrefresh.lastupdated=Ultimo aggiornamento:
 
+# ListPaging Plugin
+listpaging.loadmore=Carica altri...
+listpaging.nomorerecords=Non ci sono altre voci da visualizzare.
+
 # Button
 button.back=Indietro
 
@@ -154,15 +154,13 @@ picker.cancel=Annulla
 
 # Reward
 reward.alert.title=Sei migliorato!
-reward.alert.koins.new.1=Congratulazioni! Hai guadagnato 
-reward.alert.koins.new.2=Koins.
+reward.alert.koins.new=Congratulazioni! Hai guadagnato {koin_count_new} Koins.
 reward.alert.koins.total.1=Il tuo punteggio adesso è
-reward.alert.koins.total.2=Koin.
 reward.alert.badges.title=Nuovo Badge
 
 # App update
-update.title=[TODO: TRANSLATE ME]
-update.message=[TODO: TRANSLATE ME]
+update.title=Nuova versione dell'app
+update.message=L'app è stata aggiornata all'ultima versione. Ricaricare?
 
 
 ###############################
@@ -171,11 +169,12 @@ update.message=[TODO: TRANSLATE ME]
 
 # index.html
 ## App startscreen
-loading.message=[TODO: TRANSLATE ME]
+startscreen.loadingtext=Kort si sta caricando. Tieniti pronto...
+startscreen.browsererror=Questo browser non è supportato al momento. Prova dal tuo smartphone.
 
 # app/util/Config.js
 ## Firststeps
 firststeps.form.username.placeholder=Nome utente
 
 ## PullRefresh Plugin
-pullrefresh.dateformat=[TODO: TRANSLATE ME]
+pullrefresh.dateformat=d.m.Y h:iA
