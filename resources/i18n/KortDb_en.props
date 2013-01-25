@@ -128,6 +128,15 @@ It would be nice if this $1 had an additional tag 'name:XX=$2' where XX shows th
 This way is tagged as motorway and therefore needs a ref, nat_ref or int_ref tag=What's the reference (e.g. A3 oder E385) of this motorway?
 This $1 is tagged as place of worship and therefore needs a religion tag=To which religion does this place of worship belong to?
 
+# error descriptions (KeepRight)
+bug.question.track=What kind of track is this?
+bug.question.poi=What's this $1 called?
+bug.question.speed=What speed limit does apply on this street?
+bug.question.name_of_street=What's the name of this street?
+bug.question.language=In what language is the name '$2' written?
+bug.question.motorway_ref=What's the reference (e.g. A3 or E385) of this motorway?
+bug.question.place_of_worship=To which religion does this place of worship belong to?
+
 # single values
 cafe=cafe
 fast_food=fast food restaurant
