@@ -168,7 +168,7 @@ class OsmOAuth extends AbstractOAuthCallback
             
             $imgTags = $xPath->query("//user/img");
             if ($imgTags->length > 0) {
-                $this->user['pic_url'] = $imgTag->item(0)->getAttribute('href');
+                $this->user['pic_url'] = $imgTags->item(0)->getAttribute('href');
             }
         }
         return $this->user;
