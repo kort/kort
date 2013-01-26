@@ -5,6 +5,8 @@ index.html
 resources/images/ajax-loader.gif
 # ce90b52c910bb69d76fa95e53bfc18bc79294254
 resources/images/arrow_black.png
+# 6d7e541b979b768129a37cdcdc5ad21c6605f28a
+resources/images/hsr_logo.png
 # 84b01603757987aa75a599fe04e03fe7f1df8178
 resources/images/kort-favicon.ico
 # 4d9b92a19b4dbc7e425acf2ace912e523de4ff68
@@ -41,24 +43,42 @@ resources/images/badges/vote_count_1000.png
 resources/images/koins/koin_no_value.png
 # e6e032f886c3df99191eec53cf5ba846fa4e71c9
 resources/images/marker_icons/language_unknown.png
+# 27537eee5ab70c64bd7370edce2b9930578ab78d
+resources/images/marker_icons/language_unknown@2x.png
 # d98ce14e11c32458f6d464f35edd8e4f8cde93aa
 resources/images/marker_icons/missing_maxspeed.png
+# 88a48db869df7103add1b93fca7ffa088f813673
+resources/images/marker_icons/missing_maxspeed@2x.png
 # b4ca2f16b09ed4aaca8be80a7641134299710a82
 resources/images/marker_icons/missing_track_type.png
+# 11c743518bb89167b599e8e9a96cd64684653ed7
+resources/images/marker_icons/missing_track_type@2x.png
 # 3ae00f699d4e57f0fbbf3d7f83bde6860d349f8a
 resources/images/marker_icons/motorway_ref.png
+# 03f7e78b6a743897a97d928a7f893cc60ff98fd1
+resources/images/marker_icons/motorway_ref@2x.png
 # 3ada573655b35ba88e868f85f779eee353f4ca79
 resources/images/marker_icons/own_position.png
 # 4e161d38f17f3c02d412a6ec7e740423dfa71719
 resources/images/marker_icons/poi_name.png
+# 4f9293d4d46665de3755ba8c6c2edb3b618b24ed
+resources/images/marker_icons/poi_name@2x.png
 # 043cc61b14639f448cf4d81eb04b25381e015d40
 resources/images/marker_icons/religion.png
+# 5776ae915b6b0f3ec62164a4e812620be6c67350
+resources/images/marker_icons/religion@2x.png
 # 8012a22a399ce0bde19367666fa458f0e9a443fc
 resources/images/marker_icons/shadow.png
+# fde5816351b56b0c6107016e254830140d2e2697
+resources/images/marker_icons/shadow@2x.png
 # 6e357bfe91c76bfdb88026df0ca40de5f08e000c
 resources/images/marker_icons/undefined.png
+# 4bd9b702463c4a9c7d6e8c1cfb23aa38530d78fe
+resources/images/marker_icons/undefined@2x.png
 # cdef67f578c30ea4bba797f9c7fe5b34777db68f
 resources/images/marker_icons/way_wo_tags.png
+# 90a31f67e93bfebbcf25525d92939d799402201b
+resources/images/marker_icons/way_wo_tags@2x.png
 # 256a6073de4ae4698b851b8dff68039d1ca13098
 resources/images/profile/highscore.png
 # 40035eed74c39e0a5a09d3cc45edce34a7c37f95
