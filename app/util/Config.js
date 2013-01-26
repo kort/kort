@@ -188,11 +188,6 @@ Ext.define('Kort.util.Config', {
         },
 
         /**
-         * @cfg {String} dateFormat Format of date
-         */
-        dateFormat: 'd.m.Y H:i:s',
-
-        /**
          * @cfg {Object} webservices Configuration of webservices
          * @cfg {Object} webservices.bug Configuration of bug webservice
          * @cfg {Function} webservices.bug.getUrl (required) Returns url of bug webservice with given position (latitude, longitude)
