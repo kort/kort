@@ -40,6 +40,7 @@ create table kort.error_type (
     view_type character varying(50),
     answer_placeholder character varying(100),
     vote_question character varying(255),
+    bug_question character varying(255),
     vote_koin_count integer not null,
     fix_koin_count integer not null,
     required_votes integer not null,
