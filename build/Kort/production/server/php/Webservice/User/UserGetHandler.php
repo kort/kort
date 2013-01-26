@@ -33,6 +33,7 @@ class UserGetHandler extends DbProxyHandler
             'id',
             'name',
             'username',
+            'pic_url',
             'oauth_user_id',
             'oauth_provider',
             'token',
@@ -64,7 +65,9 @@ class UserGetHandler extends DbProxyHandler
                 }
                 $_SESSION['secret'] = $secret;
                 $_SESSION['user_id'] = $userData['id'];
-                $userData['pic_url'] = GravatarHelper::getGravatarUrl($userData['oauth_user_id']);
+                if (empty( $userData['pic_url'])) {
+                    $userData['pic_url'] = GravatarHelper::getGravatarUrl($userData['oauth_user_id']);
+                }
                 $userData['logged_in'] = true;
                 return json_encode($userData);
             }

@@ -108,4 +108,15 @@ class GoogleOAuth extends AbstractOAuthCallback
     {
         return "Google";
     }
+    
+    /**
+     * The URL of the user's picture (avatar).
+     *
+     * @return string URL of the user's picutre
+     */
+    public function getPictureUrl()
+    {
+        $user = $this->getOAuthUser();
+        return $user['picture'];
+    }
 }

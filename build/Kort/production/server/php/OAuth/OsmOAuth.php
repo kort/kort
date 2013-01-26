@@ -160,10 +160,16 @@ class OsmOAuth extends AbstractOAuthCallback
 
             $doc = new \DOMDocument();
             $doc->loadXML($result['body']);
+            $xPath = new \DOMXpath($doc);
+            
             $userTag = $doc->getElementsByTagName("user")->item(0);
-
             $this->user['name'] = $userTag->getAttribute('display_name');
             $this->user['id'] = $userTag->getAttribute('id');
+            
+            $imgTags = $xPath->query("//user/img");
+            if ($imgTags->length > 0) {
+                $this->user['pic_url'] = $imgTags->item(0)->getAttribute('href');
+            }
         }
         return $this->user;
     }
@@ -177,6 +183,17 @@ class OsmOAuth extends AbstractOAuthCallback
     {
         $user = $this->getOAuthUser();
         return $user['id'];
+    }
+    
+    /**
+     * Return the URL of the user's picture (avatar).
+     *
+     * @return string URL of the user's picutre
+     */
+    public function getPictureUrl()
+    {
+        $user = $this->getOAuthUser();
+        return $user['pic_url'];
     }
 
     /**

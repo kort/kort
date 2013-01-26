@@ -33,6 +33,7 @@ class UserHandler extends DbProxyHandler
             'name',
             'oauth_user_id',
             'username',
+            'pic_url',
             'oauth_provider',
             'token',
             'secret'
@@ -50,6 +51,7 @@ class UserHandler extends DbProxyHandler
             'user_id',
             'name',
             'username',
+            'pic_url',
             'oauth_user_id',
             'secret'
         );
