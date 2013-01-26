@@ -182,7 +182,7 @@ Ext.define('Kort.util.Config', {
                 'pullrefresh.dateformat': 'm/d/Y h:iA'
             },
             ro: {
-                'firststeps.form.username.placeholder': 'Username',
+                'firststeps.form.username.placeholder': 'Nume de utilizator',
                 'pullrefresh.dateformat': 'm/d/Y h:iA'
             }
         },
