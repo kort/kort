@@ -178,8 +178,8 @@ Ext.define('Kort.util.Config', {
                 'pullrefresh.dateformat': 'm/d/Y h:iA'
             },
             pt: {
-                'firststeps.form.username.placeholder': 'Username',
-                'pullrefresh.dateformat': 'm/d/Y h:iA'
+                'firststeps.form.username.placeholder': 'Nome do usuario',
+                'pullrefresh.dateformat': 'm/d/Y h\:iA'
             },
             ro: {
                 'firststeps.form.username.placeholder': 'Nume de utilizator',
