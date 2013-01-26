@@ -598,10 +598,19 @@ $label-background-color: #46578D;
         padding: $panel-padding;
         
         dt {
-            margin-top: 1.5em;
+            margin-top: 1.8em;
         }
         dd {
             font-size: 0.8em;
+            
+            &.image-hsr-logo {
+                margin: 1em 0;
+                
+                img {
+                    $hsr-logo-width: 350px;
+                    width: $hsr-logo-width/2;
+                }
+            }
         }
         
         a, a:hover, a:active, a:focus {
