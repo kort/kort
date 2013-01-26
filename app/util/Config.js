@@ -13,7 +13,7 @@ Ext.define('Kort.util.Config', {
         /**
          * @cfg {String[]} supportedLanguages Supported languages of the app
          */
-        supportedLanguages: ['en', 'de'],
+        supportedLanguages: ['en', 'de', 'it', 'fr', 'sl', 'hr', 'cs', 'nl', 'gl', 'pt', 'ro'],
         
         /**
          * @cfg {String[]} supportedBrowsers List of supported browsers
@@ -150,8 +150,40 @@ Ext.define('Kort.util.Config', {
                 'pullrefresh.dateformat': 'm/d/Y h:iA'
             },
             it: {
-                'firststeps.form.username.placeholder': '[TODO: TRANSLATE ME]',
-                'pullrefresh.dateformat': '[TODO: TRANSLATE ME]'
+                'firststeps.form.username.placeholder': 'Nome utente',
+                'pullrefresh.dateformat': 'd.m.Y h:i:s'
+            },
+            fr: {
+                'firststeps.form.username.placeholder': 'Username',
+                'pullrefresh.dateformat': 'm/d/Y h:iA'
+            },
+            sl: {
+                'firststeps.form.username.placeholder': 'Username',
+                'pullrefresh.dateformat': 'm/d/Y h:iA'
+            },
+            hr: {
+                'firststeps.form.username.placeholder': 'Username',
+                'pullrefresh.dateformat': 'm/d/Y h:iA'
+            },
+            cs: {
+                'firststeps.form.username.placeholder': 'Username',
+                'pullrefresh.dateformat': 'm/d/Y h:iA'
+            },
+            nl: {
+                'firststeps.form.username.placeholder': 'Username',
+                'pullrefresh.dateformat': 'm/d/Y h:iA'
+            },
+            gl: {
+                'firststeps.form.username.placeholder': 'Username',
+                'pullrefresh.dateformat': 'm/d/Y h:iA'
+            },
+            pt: {
+                'firststeps.form.username.placeholder': 'Username',
+                'pullrefresh.dateformat': 'm/d/Y h:iA'
+            },
+            ro: {
+                'firststeps.form.username.placeholder': 'Username',
+                'pullrefresh.dateformat': 'm/d/Y h:iA'
             }
         },
 
