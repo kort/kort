@@ -119,16 +119,6 @@ answer.language.welsh=Welsh
 ################################################
 
 # error descriptions (KeepRight)
-This track doesn't have a tracktype=What kind of track is this?
-This node is tagged as $1 and therefore needs a name tag or an operator tag=What's this $1 called?
-This node is tagged as $1 and therefore needs a name tag=What's this $1 called?
-missing maxspeed tag=What speed limit does apply on this street?
-This way has no tags=What's the name of this street?
-It would be nice if this $1 had an additional tag 'name:XX=$2' where XX shows the language of its name '$2'.=In what language is the name '$2' written?
-This way is tagged as motorway and therefore needs a ref, nat_ref or int_ref tag=What's the reference (e.g. A3 oder E385) of this motorway?
-This $1 is tagged as place of worship and therefore needs a religion tag=To which religion does this place of worship belong to?
-
-# error descriptions (KeepRight)
 bug.question.track=What kind of track is this?
 bug.question.poi=What's this $1 called?
 bug.question.speed=What speed limit does apply on this street?

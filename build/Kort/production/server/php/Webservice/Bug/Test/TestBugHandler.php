@@ -33,7 +33,7 @@ class TestBugHandler extends AbstractKortUnitTestCase
     public function testGetBugsByOwnPosition()
     {
         $bug = array();
-        $bug['description'] = "This node is tagged as \$1 and therefore needs a name tag or an operator tag";
+        $bug['description'] = "bug.question.poi";
         $bug['txt1'] = "cafe";
         $bug['txt2'] = "";
         $bug['txt3'] = "";
