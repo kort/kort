@@ -8,7 +8,7 @@ Ext.define('Kort.util.Config', {
         /**
          * @cfg {String} version Current version number of application
          */
-        version: '1.1.{BUILD_NR}',
+        version: '1.2.{BUILD_NR}',
         
         /**
          * @cfg {String[]} supportedLanguages Supported languages of the app
@@ -174,8 +174,8 @@ Ext.define('Kort.util.Config', {
                 'pullrefresh.dateformat': 'm/d/Y h:iA'
             },
             gl: {
-                'firststeps.form.username.placeholder': 'Username',
-                'pullrefresh.dateformat': 'm/d/Y h:iA'
+                'firststeps.form.username.placeholder': 'Nome de usuario',
+                'pullrefresh.dateformat': 'm/d/A h\:iA'
             },
             pt: {
                 'firststeps.form.username.placeholder': 'Nome do usuario',
