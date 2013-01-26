@@ -158,8 +158,8 @@ Ext.define('Kort.util.Config', {
                 'pullrefresh.dateformat': 'd/m/Y H:i'
             },
             sl: {
-                'firststeps.form.username.placeholder': 'Username',
-                'pullrefresh.dateformat': 'm/d/Y h:iA'
+                'firststeps.form.username.placeholder': 'Uporabniško ime',
+                'pullrefresh.dateformat': 'd/m/l h\:iA'
             },
             hr: {
                 'firststeps.form.username.placeholder': 'Username',
@@ -283,7 +283,7 @@ Ext.define('Kort.util.Config', {
      * Returns current language setting of browser
      */
 	getLanguage: function() {
-        return "fr";
+        //return "sl";
         var currentLang = (navigator.language || navigator.browserLanguage || navigator.userLanguage || this.defaultLanguage),
             supportedLanguages = this.getSupportedLanguages(),
             langLen = supportedLanguages.length,
