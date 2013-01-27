@@ -155,7 +155,7 @@ picker.cancel=Annuleer
 # Reward
 reward.alert.title=Je reputatie is verhoogd\!
 reward.alert.koins.new=Gefeliciteerd\! Je hebt  {koin_count_new} Koins verdiend.
-reward.alert.koins.total.1=Je hebt al {koin_count_total} Koins verzameld.
+reward.alert.koins.total=Je hebt al {koin_count_total} Koins verzameld.
 reward.alert.badges.title=Gewonnen badges
 
 # App update

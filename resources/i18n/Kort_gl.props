@@ -155,7 +155,7 @@ picker.cancel=Cancelar
 # Reward
 reward.alert.title=Melloraches a túa reputación\!
 reward.alert.koins.new=Parabéns\! Gañaches {koin_count_new} Koins.
-reward.alert.koins.total.1=Tes unha cantidade total de {koin_count_total} Koins.
+reward.alert.koins.total=Tes unha cantidade total de {koin_count_total} Koins.
 reward.alert.badges.title=Insignias gañadas
 
 # App update
