@@ -155,7 +155,7 @@ picker.cancel=Zrušit
 # Reward
 reward.alert.title=Zvedl jste si reputaci\!
 reward.alert.koins.new=Bravo\! Získal jste {koin_count_new} Koinů.
-reward.alert.koins.total.1=Máte celkem {koin_count_total} Koinů.
+reward.alert.koins.total=Máte celkem {koin_count_total} Koinů.
 reward.alert.badges.title=Získané odznaky
 
 # App update

@@ -12,20 +12,20 @@ login.kort.description.3=Améliorer OpenStreetMap
 login.kort.introduction.1=Kort contribue à l'amélioration des données d'OpenStreetMap.
 login.kort.introduction.2=Vous pourrez ainsi voir vos missions sur une carte. En accomplissant des missions vous obtenez des Krédits et pouvez acquérir des badges.
 login.kort.introduction.3=Chaque mission résolue est ensuite vérifiée par les autres joueurs. Dès que le nombre d'évaluations positives pour une solution suggérée est suffisant, elle est alors prête pour être renvoyée à OpenStreetMap.
-login.kort.introduction.4=Authentifiez-vous dès maintenant pour commencer votre mission !
+login.kort.introduction.4=Authentifiez-vous dès maintenant pour commencer votre mission \!
 login.button.google=S'authentifier avec Google
 login.button.osm=S'authentifier avec OpenStreetMap
 login.loadmask.message=S'authentifier…
 
 # Firststeps
-firststeps.introduction=Bienvenue sur Kort ! Choisissez un nom d'utilisateur :
-firststeps.form.button.submit=Démarrer la mission !
+firststeps.introduction=Bienvenue sur Kort \! Choisissez un nom d'utilisateur \:
+firststeps.form.button.submit=Démarrer la mission \!
 firststeps.alert.username.empty.title=Saisir un nom d'utilisateur
 firststeps.alert.username.empty.message=Veuillez saisir un nom d'utilisateur.
 firststeps.alert.username.specialchars.title=Problème avec un caractère
 firststeps.alert.username.specialchars.message=Veuillez n'utiliser que des lettres ou des chiffres pour votre nom d'utilisateur
 firststeps.alert.submit.failure.title=Erreur pendant l'envoi
-firststeps.alert.submit.failure.message=Aïe ! Une erreur s'est produite lors de l'envoi du nom d'utilisateur. Relancer l'application devrait aider.
+firststeps.alert.submit.failure.message=Aïe \! Une erreur s'est produite lors de l'envoi du nom d'utilisateur. Relancer l'application devrait aider.
 
 # Geolocation error
 geolocationerror.introduction=Pour utiliser Kort, accéder à votre position géographique est essentiel.
@@ -41,7 +41,7 @@ bugmap.messagebox.no=Ne sait pas
 
 ## Fix
 fix.form.title=Mission
-fix.form.koins.earn=Obtenir {fix_koin_count} Krédits !
+fix.form.koins.earn=Obtenir {fix_koin_count} Krédits \!
 fix.form.message.placeholder=Votre réponse...
 fix.form.button.showonmap=Voir sur la carte
 fix.form.button.submit=Accomplir la mission
@@ -52,12 +52,12 @@ fix.sendmask.message=Envoi de la solution...
 fix.alert.fixfield.empty.title=Complétez les champs
 fix.alert.fixfield.empty.message=Merci de bien vouloir remplir tous les champs
 fix.alert.submit.failure.title=Erreur au cours de l'envoi
-fix.alert.submit.failure.message=Aïe ! Une erreur est survenue lors de l'envoi de votre réponse. Relancer l'application devrait aider.
+fix.alert.submit.failure.message=Aïe \! Une erreur est survenue lors de l'envoi de votre réponse. Relancer l'application devrait aider.
 
 # Validation
 validation.title=Vérification
 validation.loadmask.message=Chargement des données...
-validation.emptytext=Bravo ! Vous avez vérifié tous les messages.
+validation.emptytext=Bravo \! Vous avez vérifié tous les messages.
 validation.list.header={validations_left} évaluations positives requises
 validation.distance=Distance
 
@@ -71,16 +71,16 @@ vote.answeractionsheet.button.cancel=Ne sait pas
 vote.answeractionsheet.question=La réponse est-elle correcte ?
 vote.sendmask.message=Envoi de la réponse...
 vote.alert.submit.failure.title=Erreur lors de l'envoi
-vote.alert.submit.failure.message=Aïe ! Une erreur est survenue lors de l'envoi de votre réponse. Relancer l'application devrait aider.
+vote.alert.submit.failure.message=Aïe \! Une erreur est survenue lors de l'envoi de votre réponse. Relancer l'application devrait aider.
 
 # Highscore
 highscore.title=Classement
 highscore.loadmask.message=Chargement du classement...
 highscore.emptytext=Chargement du classement impossible.
-highscore.you=C'est vous !
+highscore.you=C'est vous \!
 highscore.koins=Krédits
-highscore.fixcount=Missions :
-highscore.votecount=Vérifications :
+highscore.fixcount=Missions \:
+highscore.votecount=Vérifications \:
 highscore.user.badges.emptytext=Chargement des badges impossible.
 
 # Profil
@@ -101,7 +101,7 @@ profile.content.badges.header=Badges gagnés
 profile.logout.loadmask.message=Se déconnecter...
 profile.refresh.loadmask.message=Chargement du profil...
 profile.badges.title=Vos badges
-profile.badges.recieved=Reçu le :
+profile.badges.recieved=Reçu le \:
 profile.badges.emptytext=Chargement impossible de vos badges.
 profile.badges.button.close=Fermer
 profile.alert.username.empty.title=Saisir un nom d'utilisateur
@@ -109,7 +109,7 @@ profile.alert.username.empty.message=Veuillez saisir un nom d'utilisateur.
 profile.alert.username.specialchars.title=Problème avec un caractère
 profile.alert.username.specialchars.message=Veuillez n'utiliser que des lettres ou des chiffres pour votre nom d'utilisateur.
 profile.alert.submit.failure.title=Erreur pendant l'envoi
-profile.alert.submit.failure.message=Aïe ! Une erreur s'est produite lors de l'envoi du nom d'utilisateur. Relancer l'application devrait aider.
+profile.alert.submit.failure.message=Aïe \! Une erreur s'est produite lors de l'envoi du nom d'utilisateur. Relancer l'application devrait aider.
 
 # About
 about.title=À propos
@@ -117,23 +117,23 @@ about.version.title=Version
 about.information.title=Plus d'infos
 about.information.homepage=Site web
 about.information.feedback=Feedback/FAQ
-about.information.bugs=Rapporter un bogue :
+about.information.bugs=Rapporter un bogue \:
 about.developers.title=Développeur
 about.project.title=Projet
-about.project.advisor=Responsable :
+about.project.advisor=Responsable \:
 about.credits.title=Crédits
-about.credits.partner=Partenaire :
-about.credits.mapdata=Données géo :
-about.credits.tiledata=Tuiles :
-about.credits.markers=Icônes :
-about.legal.title=Notice légale :
+about.credits.partner=Partenaire \:
+about.credits.mapdata=Données géo \:
+about.credits.tiledata=Tuiles \:
+about.credits.markers=Icônes \:
+about.legal.title=Notice légale \:
 about.legal.message=Veuillez suivre les directive d'OpenStreetMap et n'utilisez pas de sources protégées par un copyright sans autorisation.
 
 # PullRefresh Plugin
 pullrefresh.pullrefresh=Tirer pour actualiser
 pullrefresh.releaserefresh=Relâcher pour actualiser...
 pullrefresh.loading=chargement...
-pullrefresh.lastupdated=Mis à jour le :
+pullrefresh.lastupdated=Mis à jour le \:
 
 # ListPaging Plugin
 listpaging.loadmore=Charger davantage...
@@ -153,9 +153,9 @@ picker.done=Terminer
 picker.cancel=Annuler
 
 # Reward
-reward.alert.title=Vous avez amélioré votre réputation !
-reward.alert.koins.new=Bravo ! vous avez remporté {koin_count_new} Krédits.
-reward.alert.koins.total.1=Vous disposez maintenant d'un total de {koin_count_total} Krédits 
+reward.alert.title=Vous avez amélioré votre réputation \!
+reward.alert.koins.new=Bravo \! vous avez remporté {koin_count_new} Krédits.
+reward.alert.koins.total=Vous disposez maintenant d'un total de {koin_count_total} Krédits 
 reward.alert.badges.title=Badges gagnés
 
 # App update
@@ -177,4 +177,4 @@ startscreen.browsererror=Votre navigateur n'est pas encore supporté. Veuillez e
 firststeps.form.username.placeholder=Nom d'utilisateur
 
 ## PullRefresh Plugin
-pullrefresh.dateformat=d/m/Y H:i
+pullrefresh.dateformat=d/m/Y H\:i

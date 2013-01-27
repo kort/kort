@@ -10,8 +10,8 @@ login.kort.description.1=Completar misións
 login.kort.description.2=Recolle Koins
 login.kort.description.3=Mellorar OpenStreetMap
 login.kort.introduction.1=Kort axuda a mellorar os datos de OpenStreetMap.
-login.kort.introduction.2=Polo tanto verás as túas misións nun mapa. Completando misións consegues Koins e gañas insignias.
-login.kort.introduction.3=Cada misión cumplida é chequeada logo por outros xogadores para ver que está correcta. Así como sexan enviadas suficientes notas positivas para unha solución suxerida, xa estará lista para ser enviada a OpenStreetMap.
+login.kort.introduction.2=Polo isto, verás as túas misións nun mapa. Completando misións consegues Koins e gañas insignias.
+login.kort.introduction.3=Cada misión cumprida é chequeada despois por outros xogadores, para comprobar que está correcta. Así como sexan enviadas suficientes notas positivas para unha solución suxerida, xa estará lista para ser enviada a OpenStreetMap.
 login.kort.introduction.4=Inicia sesión para comezar a túa misión\!
 login.button.google=Inicia sesión con Google
 login.button.osm=Inicia sesión con OpenStreetMap
@@ -19,7 +19,7 @@ login.loadmask.message=Iniciando sesión...
 
 # Firststeps
 firststeps.introduction=Benvido ao Kort\! Elixe un nome de usuario\:
-firststeps.form.button.submit=Comeza a misión\!
+firststeps.form.button.submit=Comeza unha misión\!
 firststeps.alert.username.empty.title=Introduce o nome de usuario
 firststeps.alert.username.empty.message=Por favor, introduce un nome de usuario
 firststeps.alert.username.specialchars.title=Problema cun carácter
@@ -136,8 +136,8 @@ pullrefresh.loading=cargando...
 pullrefresh.lastupdated=Última actualización\:
 
 # ListPaging Plugin
-listpaging.loadmore=Load more...
-listpaging.nomorerecords=No more records available.
+listpaging.loadmore=Cargar máis...
+listpaging.nomorerecords=Non hai máis rexistros dispoñibles.
 
 # Button
 button.back=Voltar
@@ -155,7 +155,7 @@ picker.cancel=Cancelar
 # Reward
 reward.alert.title=Melloraches a túa reputación\!
 reward.alert.koins.new=Parabéns\! Gañaches {koin_count_new} Koins.
-reward.alert.koins.total.1=Tes unha cantidade total de {koin_count_total} Koins.
+reward.alert.koins.total=Tes unha cantidade total de {koin_count_total} Koins.
 reward.alert.badges.title=Insignias gañadas
 
 # App update
@@ -170,7 +170,7 @@ update.message=A aplicación actualizouse á nova versión. Queres reiniciala?
 # index.html
 ## App startscreen
 startscreen.loadingtext=Kort está a cargar. Prepárate...
-startscreen.browsererror=Your browser is not supported yet. Try it on your mobile phone.
+startscreen.browsererror=O teu navegador non está aínda soportado. Téntao co teu teléfono móbil.
 
 # app/util/Config.js
 ## Firststeps

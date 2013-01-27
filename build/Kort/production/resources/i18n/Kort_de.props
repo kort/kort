@@ -12,20 +12,20 @@ login.kort.description.3=Verbessere OpenStreetMap
 login.kort.introduction.1=Kort soll dazu beitragen die Daten in OpenStreetMap zu verbessern.
 login.kort.introduction.2=Dazu werden dir auf der Karte Fehler in Form von Aufträgen angezeigt. Durch das Lösen solcher Aufträge erhältst du Koins und kannst Auszeichnungen gewinnen.
 login.kort.introduction.3=Gelöste Aufträge können dann wiederum von anderen Spielern überprüft werden, um deren Korrektheit zu bestätigen. Sobald ein Lösungsvorschlag genügend positive Bewertungen erhalten hat, ist er bereit, um zu OpenStreetMap zurückgeschrieben zu werden.
-login.kort.introduction.4=Logge dich jetzt ein, um damit zu beginnen!
+login.kort.introduction.4=Logge dich jetzt ein, um damit zu beginnen\!
 login.button.google=Login mit Google
 login.button.osm=Login mit OpenStreetMap
 login.loadmask.message=Login...
 
 # Firststeps
-firststeps.introduction=Willkommen bei Kort! Wähle einen Benutzernamen:
-firststeps.form.button.submit=Mission beginnen!
+firststeps.introduction=Willkommen bei Kort\! Wähle einen Benutzernamen\:
+firststeps.form.button.submit=Mission beginnen\!
 firststeps.alert.username.empty.title=Benutzernamen eingeben
 firststeps.alert.username.empty.message=Bitte gib einen Benutzernamen ein.
 firststeps.alert.username.specialchars.title=Zeichenproblem
 firststeps.alert.username.specialchars.message=Verwende bitte nur Buchstaben und Zahlen für deinen Benutzernamen.
 firststeps.alert.submit.failure.title=Fehler beim Senden
-firststeps.alert.submit.failure.message=Ups! Beim Übertragen deines Benutzernamens ist etwas schief gelaufen. Eventuell hilft ein Neustart der App.
+firststeps.alert.submit.failure.message=Ups\! Beim Übertragen deines Benutzernamens ist etwas schief gelaufen. Eventuell hilft ein Neustart der App.
 
 # Geolocation error
 geolocationerror.introduction=Um Kort verwenden zu können, muss auf deine Position zugegriffen werden können.
@@ -41,7 +41,7 @@ bugmap.messagebox.no=Weiss nicht
 
 ## Fix
 fix.form.title=Auftrag
-fix.form.koins.earn=Hol dir die {fix_koin_count} Koins!
+fix.form.koins.earn=Hol dir die {fix_koin_count} Koins\!
 fix.form.message.placeholder=Deine Antwort...
 fix.form.button.showonmap=Auf der Karte anzeigen
 fix.form.button.submit=Auftrag abschliessen
@@ -52,12 +52,12 @@ fix.sendmask.message=Sende Lösung...
 fix.alert.fixfield.empty.title=Felder ausfüllen
 fix.alert.fixfield.empty.message=Bitte alle Felder ausfüllen.
 fix.alert.submit.failure.title=Fehler beim Senden
-fix.alert.submit.failure.message=Ups! Beim Übertragen der Lösung ist etwas schief gelaufen. Eventuell hilft ein Neustart der App.
+fix.alert.submit.failure.message=Ups\! Beim Übertragen der Lösung ist etwas schief gelaufen. Eventuell hilft ein Neustart der App.
 
 # Validation
 validation.title=Prüfen
 validation.loadmask.message=Lade Überprüfungen...
-validation.emptytext=Bravo! Du hast alle Meldungen überprüft.
+validation.emptytext=Bravo\! Du hast alle Meldungen überprüft.
 validation.list.header={validations_left} positive Überprüfungen nötig
 validation.distance=Distanz
 
@@ -71,16 +71,16 @@ vote.answeractionsheet.button.cancel=Weiss nicht
 vote.answeractionsheet.question=Ist die Antwort korrekt?
 vote.sendmask.message=Sende Antwort...
 vote.alert.submit.failure.title=Fehler beim Senden
-vote.alert.submit.failure.message=Ups! Beim Übertragen deiner Antwort ist etwas schief gelaufen. Eventuell hilft ein Neustart der App.
+vote.alert.submit.failure.message=Ups\! Beim Übertragen deiner Antwort ist etwas schief gelaufen. Eventuell hilft ein Neustart der App.
 
 # Highscore
 highscore.title=Highscore
 highscore.loadmask.message=Lade Highscore...
 highscore.emptytext=Highscore kann nicht geladen werden.
-highscore.you=Das bist du!
+highscore.you=Das bist du\!
 highscore.koins=Koins
-highscore.fixcount=Aufträge:
-highscore.votecount=Prüfungen:
+highscore.fixcount=Aufträge\:
+highscore.votecount=Prüfungen\:
 highscore.user.badges.emptytext=Die Auszeichnungen konnten nicht geladen werden.
 
 # Profil
@@ -101,7 +101,7 @@ profile.content.badges.header=Gewonnene Auszeichnungen
 profile.logout.loadmask.message=Logout...
 profile.refresh.loadmask.message=Lade Profil...
 profile.badges.title=Deine Auszeichnungen
-profile.badges.recieved=Erhalten am:
+profile.badges.recieved=Erhalten am\:
 profile.badges.emptytext=Deine Auszeichnungen konnten nicht geladen werden.
 profile.badges.button.close=Schliessen
 profile.alert.username.empty.title=Benutzernamen eingeben
@@ -109,31 +109,31 @@ profile.alert.username.empty.message=Bitte gib einen Benutzernamen ein.
 profile.alert.username.specialchars.title=Zeichenproblem
 profile.alert.username.specialchars.message=Verwende bitte nur Buchstaben und Zahlen für deinen Benutzernamen.
 profile.alert.submit.failure.title=Fehler beim Senden
-profile.alert.submit.failure.message=Ups! Beim Übertragen deines Benutzernamens ist etwas schief gelaufen. Eventuell hilft ein Neustart der App.
+profile.alert.submit.failure.message=Ups\! Beim Übertragen deines Benutzernamens ist etwas schief gelaufen. Eventuell hilft ein Neustart der App.
 
 # About
 about.title=Über
 about.version.title=Version
 about.information.title=Weitere Informationen
-about.information.homepage=Webseite:
-about.information.feedback=Feedback/FAQ:
-about.information.bugs=Fehler melden:
+about.information.homepage=Webseite\:
+about.information.feedback=Feedback/FAQ\:
+about.information.bugs=Fehler melden\:
 about.developers.title=Entwickler
 about.project.title=Projekt
-about.project.advisor=Leitung:
+about.project.advisor=Leitung\:
 about.credits.title=Credits
-about.credits.partner=Partner:
-about.credits.mapdata=Geodaten:
-about.credits.tiledata=Kartenkacheln:
-about.credits.markers=Marker Icons:
-about.legal.title=Rechtliche Hinweise
+about.credits.partner=Partner\:
+about.credits.mapdata=Geodaten\:
+about.credits.tiledata=Kartenkacheln\:
+about.credits.markers=Marker Icons\:
+about.legal.title=Rechtliche Hinweise\:
 about.legal.message=Halte die Richtlinien von OpenStreetMap ein und verwende z.B. keine urheberrechtlich geschützten Quellen ohne Erlaubnis.
 
 # PullRefresh Plugin
 pullrefresh.pullrefresh=Zum Aktualisieren herunterziehen
 pullrefresh.releaserefresh=Zum Aktualisieren loslassen...
 pullrefresh.loading=wird aktualisiert...
-pullrefresh.lastupdated=Zuletzt aktualisiert:
+pullrefresh.lastupdated=Zuletzt aktualisiert\:
 
 # ListPaging Plugin
 listpaging.loadmore=Weitere Einträge laden...
@@ -153,8 +153,8 @@ picker.done=Fertig
 picker.cancel=Abbrechen
 
 # Reward
-reward.alert.title=Dein Ansehen ist gestiegen!
-reward.alert.koins.new=Bravo! Du hast {koin_count_new} Koins gewonnen.
+reward.alert.title=Dein Ansehen ist gestiegen\!
+reward.alert.koins.new=Bravo\! Du hast {koin_count_new} Koins gewonnen.
 reward.alert.koins.total=Deine Gesamtpunktzahl beträgt nun {koin_count_total} Koins.
 reward.alert.badges.title=Gewonnene Auszeichnungen
 
@@ -177,4 +177,4 @@ startscreen.browsererror=Dein Browser wird leider noch nicht unterstützt. Kort 
 firststeps.form.username.placeholder=Benutzername
 
 ## PullRefresh Plugin
-pullrefresh.dateformat=d.m.Y H:i:s
+pullrefresh.dateformat=d.m.Y H\:i\:s

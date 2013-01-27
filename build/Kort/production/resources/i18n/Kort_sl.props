@@ -11,7 +11,7 @@ login.kort.description.2=Zbiraj Koins
 login.kort.description.3=Izboljšaj OpenStreetMap
 login.kort.introduction.1=Kort omogoča izboljšati podatke v OpenStreetMap
 login.kort.introduction.2=Tako boš videl svoje naloge na zemljevidu. Z izpolnitvijo naloge si pridobiš Koins in značke.
-login.kort.introduction.3=Vsako rešeno nalogo preverijotudi ostali igralci. Takoj, ko predlagana rešitev prejme dovolj pozitivnih ocen je poslana nazaj na OpenStreetMap
+login.kort.introduction.3=Vsako rešeno nalogo preverijo tudi ostali igralci. Takoj, ko predlagana rešitev prejme dovolj pozitivnih ocen je poslana nazaj na OpenStreetMap
 login.kort.introduction.4=Prijavi se zdaj in začni svojo nalogo
 login.button.google=Prijavi se z Google
 login.button.osm=Prijavi se z OpenStreetMap
@@ -96,8 +96,8 @@ profile.content.fixes=Opravljene naloge
 profile.content.votes=Opravljeni pregledi
 profile.content.koins.header=Zbrani Koins
 profile.content.koins.title=Koins
-profile.content.ranking.title=Kraj
-profile.content.badges.header=Zmagal si značko
+profile.content.ranking.title=Mesto
+profile.content.badges.header=Zmagane značke
 profile.logout.loadmask.message=Odjava...
 profile.refresh.loadmask.message=Nalaganje profila...
 profile.badges.title=Tvoje značke
@@ -121,7 +121,7 @@ about.information.bugs=Prijavite napako\:
 about.developers.title=Razvijalec
 about.project.title=Projekt
 about.project.advisor=Vodja
-about.credits.title=Točke
+about.credits.title=Zahvale
 about.credits.partner=Partner\:
 about.credits.mapdata=Geo podatki\:
 about.credits.tiledata=Ploščice
@@ -155,7 +155,7 @@ picker.cancel=Prekliči
 # Reward
 reward.alert.title=Povečal si svoj ugled
 reward.alert.koins.new=Čestitam\! Osvojil si {koin_count_new} Koins.
-reward.alert.koins.total.1=Skupaj imaš {koin_count_total} Koins.
+reward.alert.koins.total=Skupaj imaš {koin_count_total} Koins.
 reward.alert.badges.title=Pridobljene značke
 
 # App update

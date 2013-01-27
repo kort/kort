@@ -136,8 +136,8 @@ pullrefresh.loading=Ophalen...
 pullrefresh.lastupdated=Laatst bijgewerkt\:
 
 # ListPaging Plugin
-listpaging.loadmore=Load more...
-listpaging.nomorerecords=No more records available.
+listpaging.loadmore=Laad nieuwe in...
+listpaging.nomorerecords=Geen nieuwe records beschikbaar.
 
 # Button
 button.back=Terug
@@ -155,7 +155,7 @@ picker.cancel=Annuleer
 # Reward
 reward.alert.title=Je reputatie is verhoogd\!
 reward.alert.koins.new=Gefeliciteerd\! Je hebt  {koin_count_new} Koins verdiend.
-reward.alert.koins.total.1=Je hebt al {koin_count_total} Koins verzameld.
+reward.alert.koins.total=Je hebt al {koin_count_total} Koins verzameld.
 reward.alert.badges.title=Gewonnen badges
 
 # App update
@@ -170,7 +170,7 @@ update.message=The app moet bijgewerkt worden naar de nieuwste versie. Herladen?
 # index.html
 ## App startscreen
 startscreen.loadingtext=Is aan het inladen. Bereid je voor...
-startscreen.browsererror=Your browser is not supported yet. Try it on your mobile phone.
+startscreen.browsererror=Je browser wordt nog niet ondersteund. Probeer het op je smartphone.
 
 # app/util/Config.js
 ## Firststeps

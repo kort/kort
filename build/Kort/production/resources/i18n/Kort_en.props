@@ -155,7 +155,7 @@ picker.cancel=Cancel
 # Reward
 reward.alert.title=You increased your reputation!
 reward.alert.koins.new=Bravo! You have won {koin_count_new} Koins.
-reward.alert.koins.total.1=You now have a total amount of {koin_count_total} Koins.
+reward.alert.koins.total=You now have a total amount of {koin_count_total} Koins.
 reward.alert.badges.title=Won badges
 
 # App update
