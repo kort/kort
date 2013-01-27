@@ -11,9 +11,10 @@ Ext.define('Kort.view.highscore.PullRefreshPlugin', {
                 store = me.getList().getStore();
 
             if (store) {
-                store.setClearOnPageLoad(true);
-                store.loadPage(1);
-                store.setClearOnPageLoad(false);
+                // reset store and load first page
+                store.loadPage(1, {
+                    addRecords: false
+                });
             }
         }
 	}

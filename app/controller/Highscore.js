@@ -104,9 +104,10 @@ Ext.define('Kort.controller.Highscore', {
         if(showLoadmask) {
             this.showLoadMask();
         }
-        this.getHighscoreStore().setClearOnPageLoad(true);
-        this.getHighscoreStore().loadPage(1);
-        this.getHighscoreStore().setClearOnPageLoad(false);
+        // reset store and load first page
+        this.getHighscoreStore().loadPage(1, {
+            addRecords: false
+        });
     },
 
     /**
