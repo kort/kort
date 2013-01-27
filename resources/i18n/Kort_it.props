@@ -12,14 +12,14 @@ login.kort.description.3=Migliora OpenStreetMap
 login.kort.introduction.1=consente di migliorari i dati presenti in OpenStreetMap.
 login.kort.introduction.2=Sulla mappa vengono mostrati errori sotto forma di incarichi. Risolvendo questi incarichi ricevi dei Koins e puoi conquistare dei Badge.
 login.kort.introduction.3=Gli incarichi risolti possono essere verificati da altri giocatori, che ne confermano la correttezza. Quando una proposta riceve abbastanza valutazioni positive è pronta per essere inviata ad Openstreetmap.
-login.kort.introduction.4=Fai login per cominciare!
+login.kort.introduction.4=Fai login per cominciare\!
 login.button.google=Login con Google
 login.button.osm=Login con OpenStreetMap
 login.loadmask.message=Login...
 
 # Firststeps
-firststeps.introduction=Benvenuto in Kort! Scegli un nome utente:
-firststeps.form.button.submit=Comincia la missione!
+firststeps.introduction=Benvenuto in Kort\! Scegli un nome utente\:
+firststeps.form.button.submit=Comincia la missione\!
 firststeps.alert.username.empty.title=Scelta nome utente
 firststeps.alert.username.empty.message=Scegli il tuo nome utente.
 firststeps.alert.username.specialchars.title=Carattere non valido
@@ -41,7 +41,7 @@ bugmap.messagebox.no=Non so
 
 ## Fix
 fix.form.title=Incarico
-fix.form.koins.earn=Prendi i {fix_koin_count} Koins!
+fix.form.koins.earn=Prendi i {fix_koin_count} Koins\!
 fix.form.message.placeholder=La tua risposta...
 fix.form.button.showonmap=Mostra sulla mappa
 fix.form.button.submit=Risolvi l'incarico
@@ -49,7 +49,7 @@ fix.form.loadmask.message=Carico risposte...
 fix.form.falsepositive.toggle.label=Non risolvibile
 fix.map.title=Mappa
 fix.sendmask.message=Invia risposta...
-fix.alert.fixfield.empty.title=Campo vuoto!
+fix.alert.fixfield.empty.title=Campo vuoto\!
 fix.alert.fixfield.empty.message=È necessario compilare tutti i campi.
 fix.alert.submit.failure.title=Errore nell'invio
 fix.alert.submit.failure.message=C'è stato un problema nell'invio della riposta. Potrebbe essere necessario un riavvio dell'applicazione.
@@ -57,7 +57,7 @@ fix.alert.submit.failure.message=C'è stato un problema nell'invio della riposta
 # Validation
 validation.title=Verifica
 validation.loadmask.message=Carico dati...
-validation.emptytext=Congratulazioni! Tutte le risposte sono state verificate.
+validation.emptytext=Congratulazioni\! Tutte le risposte sono state verificate.
 validation.list.header={validations_left} valutazioni positive richieste
 validation.distance=Distanza
 
@@ -77,10 +77,10 @@ vote.alert.submit.failure.message=C'è stato un problema nell'invio della ripost
 highscore.title=Highscore
 highscore.loadmask.message=Carico Highscore...
 highscore.emptytext=Impossibile caricare gli Highscore.
-highscore.you=Sei tu!
+highscore.you=Sei tu\!
 highscore.koins=Koins
-highscore.fixcount=Incarichi:
-highscore.votecount=Verifiche:
+highscore.fixcount=Incarichi\:
+highscore.votecount=Verifiche\:
 highscore.user.badges.emptytext=Impossibile caricare i badge.
 
 # Profil
@@ -101,7 +101,7 @@ profile.content.badges.header=I tuoi badge
 profile.logout.loadmask.message=Logout...
 profile.refresh.loadmask.message=Carico il profilo...
 profile.badges.title=I tuoi badge
-profile.badges.recieved=Ottenuto il:
+profile.badges.recieved=Ottenuto il\:
 profile.badges.emptytext=Impossibile caricare i tuoi badge.
 profile.badges.button.close=Chiudi
 profile.alert.username.empty.title=Scelta nome utente
@@ -115,17 +115,17 @@ profile.alert.submit.failure.message=C'è stato un problema nell'invio del nome 
 about.title=A proposito
 about.version.title=Versione
 about.information.title=Ulteriori informazioni
-about.information.homepage=Sito web:
-about.information.feedback=Feedback/FAQ:
-about.information.bugs=Segnalazione errori:
+about.information.homepage=Sito web\:
+about.information.feedback=Feedback/FAQ\:
+about.information.bugs=Segnalazione errori\:
 about.developers.title=Sviluppo
 about.project.title=Progetto
-about.project.advisor=Responsabile:
+about.project.advisor=Responsabile\:
 about.credits.title=Credits
-about.credits.partner=Partner:
-about.credits.mapdata=Dati geografici:
-about.credits.tiledata=Mappe (tiles):
-about.credits.markers=Icone dei marker:
+about.credits.partner=Partner\:
+about.credits.mapdata=Dati geografici\:
+about.credits.tiledata=Mappe (tiles)\:
+about.credits.markers=Icone dei marker\:
 about.legal.title=Indicazioni legali
 about.legal.message=Segui le indicazioni legali di OpenStreetMap, ad esempio non utilizzare sorgenti protette senza permesso.
 
@@ -133,7 +133,7 @@ about.legal.message=Segui le indicazioni legali di OpenStreetMap, ad esempio non
 pullrefresh.pullrefresh=Trascinare in basso per aggiornare
 pullrefresh.releaserefresh=Rilasciare per aggiornare...
 pullrefresh.loading=sto aggiornando...
-pullrefresh.lastupdated=Ultimo aggiornamento:
+pullrefresh.lastupdated=Ultimo aggiornamento\:
 
 # ListPaging Plugin
 listpaging.loadmore=Carica altri...
@@ -153,9 +153,9 @@ picker.done=Finito
 picker.cancel=Annulla
 
 # Reward
-reward.alert.title=Sei migliorato!
-reward.alert.koins.new=Congratulazioni! Hai guadagnato {koin_count_new} Koins.
-reward.alert.koins.total.1=Il tuo punteggio adesso è
+reward.alert.title=Sei migliorato\!
+reward.alert.koins.new=Congratulazioni\! Hai guadagnato {koin_count_new} Koins.
+reward.alert.koins.total=Il tuo punteggio adesso è {koin_count_total}
 reward.alert.badges.title=Nuovo Badge
 
 # App update
@@ -177,4 +177,4 @@ startscreen.browsererror=Questo browser non è supportato al momento. Prova dal 
 firststeps.form.username.placeholder=Nome utente
 
 ## PullRefresh Plugin
-pullrefresh.dateformat=d.m.Y h:iA
+pullrefresh.dateformat=d.m.Y h\:i\:s
