@@ -41,7 +41,7 @@ Ext.define('Kort.view.about.Container', {
                                 '<dd>' + Kort.util.Config.getAbout().project.title + '</dd>' +
                                 '<dd>' + Kort.util.Config.getAbout().project.school + '</dd>' +
                                 '<dd>' + Ext.i18n.Bundle.message('about.project.advisor') + ' ' + Kort.util.Config.getAbout().project.advisor + '</dd>' +
-                                '<dd class="image-hsr-logo"><img src="resources/images/hsr_logo.png" /></dd>' +
+                                '<dd class="image-hsr-logo"><a href="http://www.hsr.ch/informatik" target="_blank"><img src="resources/images/hsr_logo.png" /></a></dd>' +
                                 '<dt>' + Ext.i18n.Bundle.message('about.credits.title') + '</dt>' +
                                 '<dd>' + Ext.i18n.Bundle.message('about.credits.partner') + ' ' + Kort.util.Config.getAbout().credits.partner + '</dd>' +
                                 '<dd>' + Ext.i18n.Bundle.message('about.credits.mapdata') + ' ' + Kort.util.Config.getAbout().credits.mapdata + '</dd>' +
