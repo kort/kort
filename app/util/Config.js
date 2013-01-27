@@ -159,27 +159,27 @@ Ext.define('Kort.util.Config', {
             },
             sl: {
                 'firststeps.form.username.placeholder': 'Uporabniško ime',
-                'pullrefresh.dateformat': 'd/m/l h\:iA'
+                'pullrefresh.dateformat': 'd/m/l h:iA'
             },
             hr: {
                 'firststeps.form.username.placeholder': 'Korisničko ime',
-                'pullrefresh.dateformat': 'd/m/Y h\:iA'
+                'pullrefresh.dateformat': 'd/m/Y h:iA'
             },
             cs: {
                 'firststeps.form.username.placeholder': 'Uživatelské jméno',
-                'pullrefresh.dateformat': 'd.m.Y H\:i\:s'
+                'pullrefresh.dateformat': 'd.m.Y H:i:s'
             },
             nl: {
                 'firststeps.form.username.placeholder': 'Gebruikersnaam',
-                'pullrefresh.dateformat': 'm/d/J u\:m'
+                'pullrefresh.dateformat': 'm/d/J u:m'
             },
             gl: {
                 'firststeps.form.username.placeholder': 'Nome de usuario',
-                'pullrefresh.dateformat': 'm/d/A h\:iA'
+                'pullrefresh.dateformat': 'm/d/A h:iA'
             },
             pt: {
                 'firststeps.form.username.placeholder': 'Nome do usuario',
-                'pullrefresh.dateformat': 'm/d/Y h\:iA'
+                'pullrefresh.dateformat': 'm/d/Y h:iA'
             },
             ro: {
                 'firststeps.form.username.placeholder': 'Nume de utilizator',
