@@ -76,6 +76,10 @@ Ext.define('Kort.controller.Highscore', {
             me.setDetailPushDisabled(true);
             
             if(record.get('you')) {
+                // reenable detail push after certain time
+                Ext.defer(function() {
+                    me.setDetailPushDisabled(false);
+                }, 2000);
                 me.getMainTabPanel().setActiveItem(me.getProfileContainer());
             } else {
                 // loading badges of user
