@@ -155,7 +155,7 @@ picker.cancel=Poništi
 # Reward
 reward.alert.title=Popravili ste svoj ugled\!
 reward.alert.koins.new=Bravo\! Dobili ste {koin_count_new} Koinova.
-reward.alert.koins.total.1=Zaradili ste ukupno {koin_count_total} Koinova.
+reward.alert.koins.total=Zaradili ste ukupno {koin_count_total} Koinova.
 reward.alert.badges.title=Dobivene značke
 
 # App update

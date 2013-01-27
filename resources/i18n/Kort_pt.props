@@ -155,7 +155,7 @@ picker.cancel=Cancelar
 # Reward
 reward.alert.title=Aumentou a sua reputação\!
 reward.alert.koins.new=Bravo\! Ganhou {koin_count_new} Moedas.
-reward.alert.koins.total.1=Agora possuí um montante total de {koin_count_total} Moedas.
+reward.alert.koins.total=Agora possuí um montante total de {koin_count_total} Moedas.
 reward.alert.badges.title=Ganhou emblemas
 
 # App update
