@@ -111,7 +111,6 @@ Ext.define('Kort.controller.Validation', {
      * Refreshes validations view
      */
     refreshView: function() {
-        this.centerMapToCurrentPosition();
         this.redrawMarkers(this.getValidationsStore().getData().all);
         if(this.getValidationList()) {
             this.getValidationList().refresh();
@@ -198,6 +197,7 @@ Ext.define('Kort.controller.Validation', {
 
     // @private
     onValidationRefreshButtonTap: function() {
+        this.centerMapToCurrentPosition();
         this.loadStore(true);
     },
 
