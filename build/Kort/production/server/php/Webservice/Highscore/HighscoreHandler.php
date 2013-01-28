@@ -49,6 +49,7 @@ class HighscoreHandler extends DbProxyHandler
         return array(
             'user_id',
             'username',
+            'pic_url',
             'oauth_user_id',
             'koin_count',
             'fix_count',
@@ -91,8 +92,7 @@ class HighscoreHandler extends DbProxyHandler
             return false;
         }
         $scoreList = array_map("self::isYourScore", $scoreList);
-        $scoreList = array_map("self::setGravatarUrl", $scoreList);
-
+        $scoreList = array_map("self::setPicUrl", $scoreList);
 
         return json_encode($scoreList);
     }
@@ -113,15 +113,17 @@ class HighscoreHandler extends DbProxyHandler
     }
 
     /**
-     * Replaces field "oauth_user_id" with "pic_url".
+     * Adds picture from Gravatar if "pic_url" is empty.
      *
      * @param array $score The score data.
      *
      * @return array the $score array with the replaced field
      */
-    protected static function setGravatarUrl(array $score)
+    protected static function setPicUrl(array $score)
     {
-        $score['pic_url'] = GravatarHelper::getGravatarUrl($score['oauth_user_id']);
+        if (empty($score['pic_url'])) {
+            $score['pic_url'] = GravatarHelper::getGravatarUrl($score['oauth_user_id']);
+        }
         unset($score['oauth_user_id']);
         return $score;
     }
