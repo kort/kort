@@ -1,0 +1,180 @@
+# Main View (TabPanel)
+tab.bugmap=ミッション
+tab.validation=チェック
+tab.highscore=ハイスコア
+tab.profile=プロフィール
+tab.about=Kortについて
+
+# Login
+login.kort.description.1=ミッション完了
+login.kort.description.2=Collect Koins
+login.kort.description.3=OpenStreetMap を改善
+login.kort.introduction.1=Kort は OpenStreetMap のデータの改善を支援します。
+login.kort.introduction.2=地図上にミッションが表示されます。ミッションを達成することで、Koinとバッチを獲得できます
+login.kort.introduction.3=解決済みのミッションへは、別のプレーヤーによるチェックが行われます。ミッションの成果に対してある程度のよい評価が得られた場合、投稿内容は OpenStreetMapへ還元されます。
+login.kort.introduction.4=ミッションを開始するにはログインしてください\!
+login.button.google=Googleでログイン
+login.button.osm=OpenStreetMapでログイン
+login.loadmask.message=ログイン...
+
+# Firststeps
+firststeps.introduction=Kortへようこそ\! ユーザー名を決めてください\:
+firststeps.form.button.submit=ミッション開始\!
+firststeps.alert.username.empty.title=ユーザー名を入力
+firststeps.alert.username.empty.message=ユーザー名を入力してください。
+firststeps.alert.username.specialchars.title=文字に問題点があります
+firststeps.alert.username.specialchars.message=ユーザ名に使えるのは英数字のみです
+firststeps.alert.submit.failure.title=送信エラー
+firststeps.alert.submit.failure.message=おっと\! ユーザー名を送信中にエラーが発生しました。アプリを再起動してみてください。
+
+# Geolocation error
+geolocationerror.introduction=Kortをプレイするには、ブラウザの位置情報サービスを有効化してください
+geolocationerror.button.reload=アプリを再読み込み
+geolocationerror.loadmask.message=アプリを再読み込み中...
+
+# Bugmap
+bugmap.title=近くのミッション
+bugmap.loadmask.message=ミッションを読み込み中...
+bugmap.messagebox.koins.earn={fix_koin_count} 個のKoinを獲得
+bugmap.messagebox.yes=回答
+bugmap.messagebox.no=分かりません
+
+## Fix
+fix.form.title=ミッション
+fix.form.koins.earn={fix_koin_count} 個のKoinを獲得しました\!
+fix.form.message.placeholder=あなたの回答...
+fix.form.button.showonmap=マップ上で見る
+fix.form.button.submit=ミッション完了
+fix.form.loadmask.message=回答を読み込み中...
+fix.form.falsepositive.toggle.label=解決不可能
+fix.map.title=マップ
+fix.sendmask.message=解決案を投稿しています...
+fix.alert.fixfield.empty.title=入力欄へ内容を記入してください
+fix.alert.fixfield.empty.message=すべての入力欄へ入力をお願いします
+fix.alert.submit.failure.title=送信エラー
+fix.alert.submit.failure.message=すみません、あなたの解答を投稿中にエラーが発生しました。もう一度アプリを起動してください
+
+# Validation
+validation.title=チェック
+validation.loadmask.message=データを読み込み中...
+validation.emptytext=お疲れさまでした\! すべてのメッセージをチェックしました。
+validation.list.header=あと {validations_left} 以上の評価が必要です
+validation.distance=距離
+
+## Vote
+vote.falsepositive.question=このミッションには '解決不可能'の評価がされています。この評価は正しいですか？
+vote.container.button.answer=回答
+vote.container.votes.left=承認されるには {votes_left} 個の評価が必要です
+vote.answeractionsheet.button.accept=はい
+vote.answeractionsheet.button.decline=いいえ
+vote.answeractionsheet.button.cancel=分かりません
+vote.answeractionsheet.question=回答は正しいですか?
+vote.sendmask.message=回答を送信中...
+vote.alert.submit.failure.title=送信エラー
+vote.alert.submit.failure.message=おおっと\! 回答を送信中にエラーが発生しました。アプリケーションを再起動してもう一度入力をお願いします
+
+# Highscore
+highscore.title=ハイスコア
+highscore.loadmask.message=ハイスコア読み込み中...
+highscore.emptytext=ハイスコアを読み込めません。
+highscore.you=あなたです\!
+highscore.koins=Koin
+highscore.fixcount=ミッション\:
+highscore.votecount=チェック\:
+highscore.user.badges.emptytext=バッジを読み込めませんでした。
+
+# Profil
+profile.title=プロフィール
+profile.button.logout=ログアウト
+profile.button.changeusername=ユーザー名の変更
+profile.settings.messagebox.title=設定
+profile.settings.messagebox.message=新しいユーザー名を入力してください
+profile.username.loadmask.message=ユーザー名を保存中...
+profile.content.username=ユーザー名
+profile.content.oauthprovider=他サイト経由でログイン
+profile.content.fixes=達成したミッション
+profile.content.votes=実行済みのチェック
+profile.content.koins.header=獲得したKoin数
+profile.content.koins.title=Koin
+profile.content.ranking.title=場所
+profile.content.badges.header=獲得したバッジ
+profile.logout.loadmask.message=ログアウト...
+profile.refresh.loadmask.message=プロフィールを読み込み中...
+profile.badges.title=獲得したバッジ
+profile.badges.recieved=Received on\:
+profile.badges.emptytext=バッジを読み込めません。
+profile.badges.button.close=閉じる
+profile.alert.username.empty.title=ユーザー名を入力
+profile.alert.username.empty.message=ユーザー名を入力してください。
+profile.alert.username.specialchars.title=文字に問題点があります
+profile.alert.username.specialchars.message=ユーザー名には英数字のみを使用できます。
+profile.alert.submit.failure.title=送信エラー
+profile.alert.submit.failure.message=おおっと\! ユーザ名を送信中にエラーが発生しました。アプリケーションを再起動してもう一度入力をお願いします
+
+# About
+about.title=概要
+about.version.title=バージョン
+about.information.title=詳細情報
+about.information.homepage=Webサイト\:
+about.information.feedback=フィードバック/FAQ
+about.information.bugs=バグ報告\:
+about.developers.title=開発者
+about.project.title=プロジェクト
+about.project.advisor=Lead\:
+about.credits.title=クレジット
+about.credits.partner=パートナー\:
+about.credits.mapdata=位置情報\:
+about.credits.tiledata=タイル\:
+about.credits.markers=マーカーアイコン\:
+about.legal.title=Legal note\:
+about.legal.message=他の誰かの著作物を許可無く転載しないなど、OpenStreetMapのガイドラインに従ってください。
+
+# PullRefresh Plugin
+pullrefresh.pullrefresh=Pull down to refresh
+pullrefresh.releaserefresh=更新するには離してください...
+pullrefresh.loading=読み込み中...
+pullrefresh.lastupdated=最終更新\:
+
+# ListPaging Plugin
+listpaging.loadmore=Load more...
+listpaging.nomorerecords=より以前の履歴はありません
+
+# Button
+button.back=戻る
+
+# MessageBox
+messagebox.ok=OK
+messagebox.yes=はい
+messagebox.no=いいえ
+messagebox.cancel=キャンセル
+
+# Picker
+picker.done=完了
+picker.cancel=キャンセル
+
+# Reward
+reward.alert.title=誰かがあなたの投稿を評価しました\!
+reward.alert.koins.new=おめでとうございます\! {koin_count_new} 個の Koinを手に入れました\!
+reward.alert.koins.total={koin_count_total} 個のKoinを獲得しています。
+reward.alert.badges.title=バッジを獲得
+
+# App update
+update.title=アプリの新バージョン
+update.message=アプリケーションのバージョンが新しくなりました。再読み込みしますか？
+
+
+###############################
+# Labels used directly in source files (without Ext.i18n.Bundle plugin)
+###############################
+
+# index.html
+## App startscreen
+startscreen.loadingtext=Kortを読み込み中。Get ready...
+startscreen.browsererror=ご利用中のブラウザーにはまだ対応していません。携帯電話でお試しください。
+
+# app/util/Config.js
+## Firststeps
+firststeps.form.username.placeholder=ユーザー名
+
+## PullRefresh Plugin
+pullrefresh.dateformat=Y/m/d h\:iA

@@ -13,7 +13,7 @@ Ext.define('Kort.util.Config', {
         /**
          * @cfg {String[]} supportedLanguages Supported languages of the app
          */
-        supportedLanguages: ['en', 'de', 'it', 'fr', 'sl', 'hr', 'cs', 'nl', 'gl', 'pt', 'ro'],
+        supportedLanguages: ['en', 'de', 'it', 'fr', 'sl', 'hr', 'cs', 'nl', 'gl', 'pt', 'ro', 'ja'],
         
         /**
          * @cfg {String[]} supportedBrowsers List of supported browsers
@@ -184,6 +184,10 @@ Ext.define('Kort.util.Config', {
             ro: {
                 'firststeps.form.username.placeholder': 'Nume de utilizator',
                 'pullrefresh.dateformat': 'm/d/Y h:iA'
+            },
+            ja: {
+                'firststeps.form.username.placeholder': 'ユーザー名',
+                'pullrefresh.dateformat': 'Y/m/d h:iA'
             }
         },
 
