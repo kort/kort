@@ -7,7 +7,7 @@
     <script type="text/javascript">
         // create namespace
         var KortStartscreen = {};
-        KortStartscreen.supportedLanguages = ['en', 'de', 'it', 'fr', 'sl', 'hr', 'cs', 'nl', 'gl', 'pt', 'ro'];
+        KortStartscreen.supportedLanguages = ['en', 'de', 'it', 'fr', 'sl', 'hr', 'cs', 'nl', 'gl', 'pt', 'ro', 'ja', 'ca', 'es'];
         KortStartscreen.supportedBrowsers = ['WebKit'];
         KortStartscreen.defaultLanguage = 'en';
         
@@ -84,6 +84,18 @@
             ro: {
                 'startscreen.loadingtext': 'Kort se încarcă. Pregătiți-vă...',
                 'startscreen.browsererror': 'Navigatorul dumneavoastră web nu este încă suportat. Încercați-l pe telefonul mobil.'
+            },
+            ja: {
+                'startscreen.loadingtext': 'Kortを読み込み中。Get ready...',
+                'startscreen.browsererror': 'ご利用中のブラウザーにはまだ対応していません。携帯電話でお試しください。'
+            },
+            ca: {
+                'startscreen.loadingtext': "Kort està carregant. Prepara't...",
+                'startscreen.browsererror': 'El teu navegador encara no està suportat. Prova amb el teu telèfon mòbil.'
+            },
+            es: {
+                'startscreen.loadingtext': 'Kort está cargando. Preparate...',
+                'startscreen.browsererror': 'Tu navegador aún no está soportado. Prueba en tu teléfono móvil.'
             }
         }
         
@@ -741,7 +753,7 @@
             <img src="./resources/images/kort-logo_white.png" />
         </div>
         <div id="startscreen-loading-content">
-            <p id="startscreen-loading-text">Kort wird geladen. Gleich gehts los...</p>
+            <p id="startscreen-loading-text">Kort is loading. Get ready...</p>
             <div class="loading-spinner"><img src="./resources/images/ajax-loader.gif" /></div>
         </div>
     </div>
