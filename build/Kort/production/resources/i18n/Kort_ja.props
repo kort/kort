@@ -101,7 +101,7 @@ profile.content.badges.header=獲得したバッジ
 profile.logout.loadmask.message=ログアウト...
 profile.refresh.loadmask.message=プロフィールを読み込み中...
 profile.badges.title=獲得したバッジ
-profile.badges.recieved=Received on\:
+profile.badges.recieved=受信日\:
 profile.badges.emptytext=バッジを読み込めません。
 profile.badges.button.close=閉じる
 profile.alert.username.empty.title=ユーザー名を入力
@@ -130,13 +130,13 @@ about.legal.title=Legal note\:
 about.legal.message=他の誰かの著作物を許可無く転載しないなど、OpenStreetMapのガイドラインに従ってください。
 
 # PullRefresh Plugin
-pullrefresh.pullrefresh=Pull down to refresh
+pullrefresh.pullrefresh=プルダウンで更新
 pullrefresh.releaserefresh=更新するには離してください...
 pullrefresh.loading=読み込み中...
 pullrefresh.lastupdated=最終更新\:
 
 # ListPaging Plugin
-listpaging.loadmore=Load more...
+listpaging.loadmore=続きを読み込む...
 listpaging.nomorerecords=より以前の履歴はありません
 
 # Button
