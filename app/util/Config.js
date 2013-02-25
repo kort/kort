@@ -118,7 +118,7 @@ Ext.define('Kort.util.Config', {
             information: [
                 '<a href="http://www.kort.ch" target="_blank">kort.ch</a>',
                 '<a href="http://kort.uservoice.com" target="_blank">UserVoice Contact</a>',
-                '<a href="https://github.com/odi86/kort/issues" target="_blank">GitHub</a>'
+                '<a href="https://github.com/kort/kort/issues" target="_blank">GitHub</a>'
             ],
             developers: [
                 'Jürg Hunziker',
