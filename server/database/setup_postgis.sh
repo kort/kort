@@ -30,7 +30,7 @@ if [ -z $SCHEMA_NAME ] ; then
 fi
 
 if [ -z $TABLE_NAME ] ; then
-    DB_NAME="errors"
+    TABLE_NAME="errors"
 fi
 
 # Install postgis 2.1 using apt-get: apt-get install postgresql-9.1-postgis
