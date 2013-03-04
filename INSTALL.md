@@ -10,6 +10,7 @@
     * `apt-get install postgresql-9.1-postgis`
 * PHP (5.3 or 5.4)
     * `apt-get install php5`
+    * `apt-get install php5-curl`
 * Composer
     * `curl -s https://getcomposer.org/installer | php`
     * `php composer.phar install --dev`
