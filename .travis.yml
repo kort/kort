@@ -20,7 +20,7 @@ before_script:
   - gem install compass
   - gem install jsduck
   - wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh >/dev/null 2>&1
-  - sudo npm install -g grunt >/dev/null 2>&1
+  - npm install 
   - curl -s http://getcomposer.org/installer | php --
   - php composer.phar install --dev
   - sudo pear channel-discover pear.phpdoc.org
