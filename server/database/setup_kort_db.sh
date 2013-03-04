@@ -14,7 +14,7 @@ while getopts ":o:n:s:" opt; do
         \?) # fall-through
             ;&
         :)
-            echo "USAGE: `basename $0` [-o <db owner>] [-n <database name>] [-s <schema name>] [-d drop database if exists] " >&2
+            echo "USAGE: `basename $0` [-o <db owner>] [-n <database name>] [-s <schema name>]" >&2
             echo "Example: `basename $0` -o `whoami` -n osm_bugs -s kort" >&2
             exit 1
             ;;
