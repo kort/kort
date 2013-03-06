@@ -8,7 +8,7 @@ Ext.define('Kort.util.Config', {
         /**
          * @cfg {String} version Current version number of application
          */
-        version: '1.2.{BUILD_NR}',
+        version: '1.2.${env.TRAVIS_BUILD_NUMBER}',
         
         /**
          * @cfg {String[]} supportedLanguages Supported languages of the app
