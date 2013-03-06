@@ -24,7 +24,7 @@ while getopts ":o:n:s:dcmp:" opt; do
             PREVIOUS_DOWNLOAD="$OPTARG"
             ;;
         \?) # fall-through
-            ;&
+            ;;
         :)
             echo "USAGE: `basename $0` [-o <db owner>] [-n <database name>] [-s <schema name>] [-d drop database if exists] [-c cleanup data after import] [-p path to previously downloaded error csv] [-m minimal setup]" >&2
             echo "Example: `basename $0` -o `whoami` -n osm_bugs -s keepright -p /tmp/keepright_errors.txt" >&2
@@ -109,7 +109,8 @@ else
 fi
 
 echo "Install PostGIS"
-$DIR/setup_postgis.sh -d $DB_NAME -s $DB_SCHEMA -t errors
+echo "Install PostGIS"
+$DIR/setup_postgis_osx.sh -d $DB_NAME -s $DB_SCHEMA -t errors
 
 echo "Drop views for kort"
 for view in `psql -qAt -c "select table_schema || '.' || table_name from information_schema.views where table_schema = 'kort';" $DB_NAME` ; do  psql -c "drop table $view" $DB_NAME ; done
