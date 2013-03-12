@@ -63,7 +63,11 @@ class BugHandler extends DbProxyHandler
             'txt2',
             'txt3',
             'txt4',
-            'txt5'
+            'txt5',
+            /*
+            'campaignId',
+            'campaignExtraCoins'
+            */
         );
     }
 
@@ -95,11 +99,46 @@ class BugHandler extends DbProxyHandler
         $params['sql'] = $sql;
         $params['type'] = "SQL";
 
-        $position = $this->getDbProxy()->addToTransaction($params);
-        $result = json_decode($this->getDbProxy()->sendTransaction(), true);
-        $translatedData = array_map(array($this, "translateBug"), $result[$position - 1]);
 
+        /*
+         * For frontend development purpose, use returnDummyBugArray method to create
+         * a demo bug. This bug is located right at your current position. For live version, uncomment
+         * all following lines and comment the returnDummyBugArray-Line.
+         */
+
+        //$position = $this->getDbProxy()->addToTransaction($params);
+        //$result = json_decode($this->getDbProxy()->sendTransaction(), true);
+        //$translatedData = array_map(array($this, "translateBug"), $result[$position - 1]);
+        $translatedData = $this->returnDummyBugArray($lat,$lng);
         return json_encode($translatedData);
+    }
+
+    protected function returnDummyBugArray($lat, $lng) {
+
+
+        $toReturnArray = array(array(
+            "id" => "333",
+            "schema" => "95",
+            "type" => "missing_track_type",
+            "osm_id" => "333",
+            "osm_type" => "way",
+            "title" => "Dummy data track unknown",
+            "description" => "What kind of track is this?",
+            "latitude" => $lat,
+            "longitude" => $lng,
+            "view_type" => "select",
+            "answer_placeholder" => "Type",
+            "fix_koin_count" => "5",
+            "geom" => "0101000020E61000000A21318B9A2521408723FE17BEAC4740",
+            "txt1" => "",
+            "txt2" => "",
+            "txt3" => "",
+            "txt4" => "",
+            "txt5" => "",
+           )
+        );
+
+        return $toReturnArray;
     }
 
     /**
