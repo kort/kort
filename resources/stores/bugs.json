@@ -12,7 +12,9 @@
             "longitude": 8.817434,
             "view_type": "text",
             "answer_placeholder": "Strassenname",
-            "koin_count": 15
+            "koin_count": 15,
+            "campaign_id": 1,
+            "campaign_extra_coins": 15
         },
         {
             "id": 2,
@@ -26,7 +28,9 @@
             "longitude": 8.82434,
             "view_type": "number",
             "answer_placeholder": "Strassenname",
-            "koin_count": 15
+            "koin_count": 15,
+            "campaign_id": 1,
+            "campaign_extra_coins": 15
         },
         {
             "id": 3,
@@ -40,7 +44,9 @@
             "longitude": 8.813434,
             "view_type": "select",
             "answer_placeholder": "Strassenname",
-            "koin_count": 15
+            "koin_count": 15,
+            "campaign_id": 1,
+            "campaign_extra_coins": 15
         },
         {
             "id": 4,
@@ -54,7 +60,9 @@
             "longitude": 8.72175,
             "view_type": "select",
             "answer_placeholder": "Strassenname",
-            "koin_count": 15
+            "koin_count": 15,
+            "campaign_id": 1,
+            "campaign_extra_coins": 15
         }
     ]
 }
