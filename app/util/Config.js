@@ -329,7 +329,7 @@ Ext.define('Kort.util.Config', {
      * Returns a Leaflet marker icon for a given type
      * @param {String} type Type of marker
      */
-    getMarkerIcon: function(type) {
+    getMarkerIcon: function(type, state) {
         var iconWidth = 32,
             iconHeight = 37,
             shadowWidth = 51,
@@ -337,8 +337,8 @@ Ext.define('Kort.util.Config', {
             icon;
 
         icon = L.icon({
-            iconUrl: './resources/images/marker_icons/' + type + '.png',
-            iconRetinaUrl: './resources/images/marker_icons/' + type + '@2x.png',
+            iconUrl: this.constructMissionIconURL(type,state,false),
+            iconRetinaUrl: this.constructMissionIconURL(type,state,true),
             iconSize: [iconWidth, iconHeight],
             iconAnchor: [(iconWidth/2), iconHeight],
             shadowUrl: './resources/images/marker_icons/shadow.png',
@@ -348,5 +348,26 @@ Ext.define('Kort.util.Config', {
             popupAnchor: [0, -(2*iconHeight/3)]
         });
         return icon;
+    },
+
+    /**
+     * Constructs the correct Path to the mission icons depending
+     * on type, state and retina.
+     */
+    constructMissionIconURL: function(type, state, retina) {
+        if(typeof(state)==='undefined') state='normal';
+        if(typeof(retina)==='undefined') retina=false;
+
+        var pathToResourceFolder = './resources/images/marker_icons/';
+
+        var stateToPathSuffix = new Array();
+        stateToPathSuffix['normal'] = '';
+        stateToPathSuffix['campaign'] = 'campaign';
+        stateToPathSuffix['check'] = 'check';
+        stateToPathSuffix['checkcampaign'] = 'checkcampaign';
+
+        var retinaPathSuffix = retina ? '@2x' : '';
+
+        return pathToResourceFolder + type + '_' + stateToPathSuffix[state] + retinaPathSuffix + '.png';
     }
 });

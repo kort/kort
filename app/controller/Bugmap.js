@@ -127,7 +127,7 @@ Ext.define('Kort.controller.Bugmap', {
      * Reloads and redraws all markers
      */
     refreshView: function() {
-        this.redrawMarkers(this.getBugsStore().getData().all);
+        this.redrawMarkers(this.getBugsStore().getData().all,'bugs');
         this.hideLoadMask();
     },
 

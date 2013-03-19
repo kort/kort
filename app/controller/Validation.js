@@ -111,7 +111,7 @@ Ext.define('Kort.controller.Validation', {
      * Refreshes validations view
      */
     refreshView: function() {
-        this.redrawMarkers(this.getValidationsStore().getData().all);
+        this.redrawMarkers(this.getValidationsStore().getData().all,'validations');
         if(this.getValidationList()) {
             this.getValidationList().refresh();
         }

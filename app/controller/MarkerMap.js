@@ -42,17 +42,16 @@ Ext.define('Kort.controller.MarkerMap', {
      * @private
      * Removes old and draws new markers
      * @param {Ext.data.Model[]} records Array of records from store
+     * @param {String} sourceStore
      */
-	redrawMarkers: function(records) {
+	redrawMarkers: function(records, source) {
         var me = this;
-
         me.removeAllMarkers();
 
         // add markers
         Ext.each(records, function (record, index, length) {
-            console.log(record.get('campaign_id'));
             if(record.get('longitude') && record.get('longitude')) {
-                me.addMarker(record);
+                me.addMarker(record,source);
             }
         });
 	},
@@ -70,12 +69,12 @@ Ext.define('Kort.controller.MarkerMap', {
      * Adds marker for given record
      * @param {Ext.data.Model} record A record
      */
-    addMarker: function(record) {
+    addMarker: function(record,source) {
         var me = this,
             icon,
             marker;
 
-        icon = Kort.util.Config.getMarkerIcon(record.get('type'));
+        icon = Kort.util.Config.getMarkerIcon(record.get('type'),me.retrieveMissionStateFromRecord(record,source));
         marker = L.marker([record.get('latitude'), record.get('longitude')], {
             icon: icon
         });
@@ -112,5 +111,16 @@ Ext.define('Kort.controller.MarkerMap', {
         //<debug warn>
         Ext.Logger.warn("Implement onMarkerClick method", this);
         //</debug>
+    },
+
+    // @private
+    retrieveMissionStateFromRecord: function(record,source) {
+        if(source=='bugs') {
+          if (record.get('campaign_id')) {
+            return 'campaign';
+          }else {
+            return 'normal';
+          }
+        }
     }
 });
