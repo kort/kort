@@ -50,6 +50,7 @@ Ext.define('Kort.controller.MarkerMap', {
 
         // add markers
         Ext.each(records, function (record, index, length) {
+            console.log(record.get('campaign_id'));
             if(record.get('longitude') && record.get('longitude')) {
                 me.addMarker(record);
             }
