@@ -362,12 +362,12 @@ Ext.define('Kort.util.Config', {
 
         var stateToPathSuffix = new Array();
         stateToPathSuffix['normal'] = '';
-        stateToPathSuffix['campaign'] = 'campaign';
-        stateToPathSuffix['check'] = 'check';
-        stateToPathSuffix['checkcampaign'] = 'checkcampaign';
+        stateToPathSuffix['campaign'] = '_campaign';
+        stateToPathSuffix['check'] = '_check';
+        stateToPathSuffix['checkcampaign'] = '_checkcampaign';
 
         var retinaPathSuffix = retina ? '@2x' : '';
 
-        return pathToResourceFolder + type + '_' + stateToPathSuffix[state] + retinaPathSuffix + '.png';
+        return pathToResourceFolder + type  + stateToPathSuffix[state] + retinaPathSuffix + '.png';
     }
 });
