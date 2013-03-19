@@ -64,6 +64,8 @@ class BugHandler extends DbProxyHandler
             'txt3',
             'txt4',
             'txt5',
+            'campaign_id',
+            'campaign_extra_coins',
             /*
             'campaignId',
             'campaignExtraCoins'
@@ -106,10 +108,10 @@ class BugHandler extends DbProxyHandler
          * all following lines and comment the returnDummyBugArray-Line.
          */
 
-        //$position = $this->getDbProxy()->addToTransaction($params);
-        //$result = json_decode($this->getDbProxy()->sendTransaction(), true);
-        //$translatedData = array_map(array($this, "translateBug"), $result[$position - 1]);
-        $translatedData = $this->returnDummyBugArray($lat,$lng);
+        $position = $this->getDbProxy()->addToTransaction($params);
+        $result = json_decode($this->getDbProxy()->sendTransaction(), true);
+        $translatedData = array_map(array($this, "translateBug"), $result[$position - 1]);
+        //$translatedData = $this->returnDummyBugArray($lat,$lng);
         return json_encode($translatedData);
     }
 
@@ -117,10 +119,10 @@ class BugHandler extends DbProxyHandler
 
 
         $toReturnArray = array(array(
-            "id" => "333",
-            "schema" => "95",
+            "id" => "24044638",
+            "schema" => "15",
             "type" => "missing_track_type",
-            "osm_id" => "333",
+            "osm_id" => "115466810",
             "osm_type" => "way",
             "title" => "Dummy data track unknown",
             "description" => "What kind of track is this?",
@@ -135,6 +137,8 @@ class BugHandler extends DbProxyHandler
             "txt3" => "",
             "txt4" => "",
             "txt5" => "",
+            "campaign_id" => "1",
+            "campaign_extra_coins" => "15",
            )
         );
 
