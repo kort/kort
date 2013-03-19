@@ -36,12 +36,14 @@ geolocationerror.loadmask.message=Lade App neu...
 bugmap.title=Aufträge in deiner Nähe
 bugmap.loadmask.message=Lade Aufträge...
 bugmap.messagebox.koins.earn=Verdiene dir {fix_koin_count} Koins
+bugmap.messagebox.koins.earncamp=Verdiene dir {fix_koin_count} + 5 Koins
 bugmap.messagebox.yes=Beantworten
 bugmap.messagebox.no=Weiss nicht
 
 ## Fix
 fix.form.title=Auftrag
 fix.form.koins.earn=Hol dir die {fix_koin_count} Koins\!
+fix.form.koins.earncamp=Hol dir die {fix_koin_count} + 5 Koins\!
 fix.form.message.placeholder=Deine Antwort...
 fix.form.button.showonmap=Auf der Karte anzeigen
 fix.form.button.submit=Auftrag abschliessen
