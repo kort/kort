@@ -47,6 +47,7 @@ Ext.application({
     models: [
         'Badge',
         'Bug',
+        'Campaign',
         'Fix',
         'HighscoreEntry',
         'HighscoreUserBadge',
@@ -61,6 +62,7 @@ Ext.application({
 
     stores: [
         'Bugs',
+        'Campaigns',
         'Highscore',
         'HighscoreUserBadges',
         'SelectAnswers',

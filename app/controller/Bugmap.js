@@ -47,14 +47,10 @@ Ext.define('Kort.controller.Bugmap', {
      */
     init: function() {
         var me = this;
-        
 
-            
         me.callParent(arguments);
 
         me.setBugsStore(Ext.getStore('Bugs'));
-
-       
 
         me.setMessageBoxTemplate(
               
@@ -167,7 +163,7 @@ Ext.define('Kort.controller.Bugmap', {
             marker = e.target,
             record = marker.record,
             CLICK_TOLERANCE = 400,
-            timeDifference, bugMessageBox;
+            timeDifference, bugMessageBox, campaignOverlay;
 
         timeDifference = e.originalEvent.timeStamp - marker.lastClickTimestamp;
 
@@ -180,6 +176,13 @@ Ext.define('Kort.controller.Bugmap', {
                 record: record
             });
             bugMessageBox.confirm(record.get('title'), tpl.apply(record.data), this.markerConfirmHandler, this);
+
+            /*
+            campaignOverlay = Ext.create('Kort.view.bugmap.CampaignOverlay', {
+                data: record.getData()
+            });
+            this.getBugmapNavigationView().add(campaignOverlay);
+            */
         }
     },
 
