@@ -66,17 +66,18 @@ Ext.define('Kort.controller.Bugmap', {
                             '<img class="koin-image" src="./resources/images/koins/koin_no_value.png" />',
                         '</div>',
                         '<div class="content">',
-            '<if="this.isCampaign()">',
+           
+            '<tpl if="this.isCampaign()">',
                             '<p>',
             
-                                 '{[this.getMessage("bugmap.messagebox.koins.earncamp", {fix_koin_count: values.fix_koin_count})]}',
+                                 '{[this.getMessage("bugmap.messagebox.koins.earncamp", {fix_koin_count: values.fix_koin_count, extra_coins: values.extra_coins})]}',
                                 '<img class="koin-image" src="./resources/images/i.png"/>',
             '</p>',
-           ' <else>',
+           ' <tpl else>',
             '<p>',
              '{[this.getMessage("bugmap.messagebox.koins.earn", {fix_koin_count: values.fix_koin_count})]}',
                             '</p>',
-            
+            '</tpl>',
                         '</div>',
                     '</div>',
                     '<div class="textpic">',
@@ -93,9 +94,9 @@ Ext.define('Kort.controller.Bugmap', {
                         '<img class="bugtype-image" src="./resources/images/circle.png" />',
                         '</div>',
         {
-            ////member functions:
+            //member functions:
             isCampaign: function () {
-                return false;
+                return true;
             }
         }
             )
