@@ -47,22 +47,36 @@ Ext.define('Kort.controller.Bugmap', {
      */
     init: function() {
         var me = this;
+        
+
+            
         me.callParent(arguments);
 
         me.setBugsStore(Ext.getStore('Bugs'));
 
+       
+
         me.setMessageBoxTemplate(
-            new Ext.XTemplate(
+              
+          new Ext.XTemplate(
+          
                 '<div class="messagebox-content">',
                     '<div class="textpic">',
                         '<div class="image">',
                             '<img class="koin-image" src="./resources/images/koins/koin_no_value.png" />',
                         '</div>',
                         '<div class="content">',
+            '<if="this.isCampaign()">',
                             '<p>',
+            
                                  '{[this.getMessage("bugmap.messagebox.koins.earncamp", {fix_koin_count: values.fix_koin_count})]}',
                                 '<img class="koin-image" src="./resources/images/i.png"/>',
+            '</p>',
+           ' <else>',
+            '<p>',
+             '{[this.getMessage("bugmap.messagebox.koins.earn", {fix_koin_count: values.fix_koin_count})]}',
                             '</p>',
+            
                         '</div>',
                     '</div>',
                     '<div class="textpic">',
@@ -73,7 +87,17 @@ Ext.define('Kort.controller.Bugmap', {
                             '<p>{description}</p>',
                         '</div>',
                     '</div>',
-                '</div>'
+                '</div>',
+
+             '<div class="image">',
+                        '<img class="bugtype-image" src="./resources/images/circle.png" />',
+                        '</div>',
+        {
+            ////member functions:
+            isCampaign: function () {
+                return false;
+            }
+        }
             )
         );
         
