@@ -43,6 +43,7 @@ bugmap.messagebox.no=Don't know
 ## Fix
 fix.form.title=Mission
 fix.form.koins.earn=Get the {fix_koin_count} Koins!
+fix.form.koins.earncamp=Get the {fix_koin_coint} + {extra_coins} Koins!
 fix.form.message.placeholder=Your answer...
 fix.form.button.showonmap=Show on map
 fix.form.button.submit=Complete mission

@@ -43,7 +43,7 @@ bugmap.messagebox.no=Weiss nicht
 ## Fix
 fix.form.title=Auftrag
 fix.form.koins.earn=Hol dir die {fix_koin_count} Koins\!
-fix.form.koins.earncamp=Hol dir die {fix_koin_count} + 5 Koins\!
+fix.form.koins.earncamp=Hol dir die {fix_koin_count} + {extra_coins} Koins\!
 fix.form.message.placeholder=Deine Antwort...
 fix.form.button.showonmap=Auf der Karte anzeigen
 fix.form.button.submit=Auftrag abschliessen
