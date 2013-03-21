@@ -36,6 +36,7 @@ geolocationerror.loadmask.message=Reloading app...
 bugmap.title=Missions nearby
 bugmap.loadmask.message=Loading missions...
 bugmap.messagebox.koins.earn=Earn {fix_koin_count} Koins
+bugmap.messagebox.koins.earncamp=Earn {fix_koin_count} + {extra_coins} Koins
 bugmap.messagebox.yes=Answer
 bugmap.messagebox.no=Don't know
 
