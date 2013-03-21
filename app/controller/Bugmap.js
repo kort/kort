@@ -72,7 +72,7 @@ Ext.define('Kort.controller.Bugmap', {
             '<tpl if="this.isCampaign()">',
                             '<p>',
             
-                                 '{[this.getMessage("bugmap.messagebox.koins.earncamp", {fix_koin_count: values.fix_koin_count, extra_coins: values.extra_coins})]}',
+                                 '{[this.getMessage("bugmap.messagebox.koins.earncamp", {fix_koin_count: values.fix_koin_count, extra_coins: values.campaign_extra_coins})]}',
                                 '<img class="koin-image" src="./resources/images/i.png" id="campaignInfoButton"/>',
             '</p>',
            ' <tpl else>',
