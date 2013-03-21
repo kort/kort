@@ -14,6 +14,7 @@ Ext.define('Kort.controller.Bugmap', {
             'bugmap.fix.TabPanel'
         ],
         refs: {
+            extViewPort: '#ext-viewport',
             mainTabPanel: '#mainTabPanel',
             mapCmp: '#bugmap',
             bugmapNavigationView: '#bugmapNavigationView',
@@ -33,12 +34,17 @@ Ext.define('Kort.controller.Bugmap', {
             bugmapNavigationView: {
                 detailpush: 'onBugmapNavigationViewDetailPush',
                 back: 'onBugmapNavigationViewBack'
+            },
+            bugmapInformationButton: {
+                tap: 'displayCampaignMessageBox'
             }
         },
 
         bugsStore: null,
         messageBoxTemplate: null,
-        activeRecord: null
+        activeRecord: null,
+        bugmapView: null,
+        campaignMessageBox: null
     },
     
     /**
@@ -67,7 +73,7 @@ Ext.define('Kort.controller.Bugmap', {
                             '<p>',
             
                                  '{[this.getMessage("bugmap.messagebox.koins.earncamp", {fix_koin_count: values.fix_koin_count, extra_coins: values.extra_coins})]}',
-                                '<img class="koin-image" src="./resources/images/i.png"/>',
+                                '<img class="koin-image" src="./resources/images/i.png" id={[this.getCircleId()]}/>',
             '</p>',
            ' <tpl else>',
             '<p>',
@@ -86,11 +92,17 @@ Ext.define('Kort.controller.Bugmap', {
                     '</div>',
                 '</div>',
 
+             /*
              '<div class="image">',
                         '<img class="bugtype-image" src="./resources/images/circle.png" />',
                         '</div>',
+              */
         {
             //member functions:
+            getCircleId: function() {
+                return "test";
+            },
+
             isCampaign: function () {
                 return true;
             }
@@ -113,12 +125,20 @@ Ext.define('Kort.controller.Bugmap', {
      * Adds LeafletMap component to bugmap view.
      */
     geolocationReady: function(geo) {
+        var bugmap = Ext.create('Kort.view.LeafletMap', {
+            title: Ext.i18n.Bundle.message('bugmap.title'),
+            useCurrentLocation: geo,
+            id: 'bugmap'
+        });
+        this.setBugmapView(bugmap);
+        /*
         var bugmap = {
             xtype: 'kortleafletmap',
             title: Ext.i18n.Bundle.message('bugmap.title'),
             useCurrentLocation: geo,
             id: 'bugmap'
         };
+        */
         this.getBugmapNavigationView().add(bugmap);
         this.loadStore(true);
     },
@@ -177,12 +197,21 @@ Ext.define('Kort.controller.Bugmap', {
             });
             bugMessageBox.confirm(record.get('title'), tpl.apply(record.data), this.markerConfirmHandler, this);
 
-            /*
+
             campaignOverlay = Ext.create('Kort.view.bugmap.CampaignOverlay', {
-                data: record.getData()
+                record: record
             });
-            this.getBugmapNavigationView().add(campaignOverlay);
-            */
+
+            this.getBugmapView().add(campaignOverlay);
+
+            this.setCampaignMessageBox(Ext.create('Ext.MessageBox', {
+                cls: "emptyMessageBox",
+                style:'background-color: transparent;',
+                zIndex: Kort.util.Config.getZIndex().overlayLeafletMap+1
+            }));
+
+
+
         }
     },
 
@@ -191,7 +220,6 @@ Ext.define('Kort.controller.Bugmap', {
         if(buttonId === 'yes') {
             this.showFix(this.getActiveRecord());
         }
-
         this.setActiveRecord(null);
     },
 
@@ -257,5 +285,10 @@ Ext.define('Kort.controller.Bugmap', {
     onBugmapRefreshButtonTap: function() {
         this.centerMapToCurrentPosition();
         this.loadStore(true);
+    },
+
+    // @private
+    displayCampaignMessageBox: function() {
+        this.getCampaignMessageBox().show();
     }
 });

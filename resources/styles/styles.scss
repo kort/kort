@@ -782,3 +782,6 @@ $label-background-color: #46578D;
         margin-top: 0.1em !important;
     }
 }
+
+.bugmap-campaign-overlay {background: url('../images/circle.png'); position:absolute;left:50%;top:50%;margin-left:-170px; margin-top:-150px;width:341px;height:301px;}
+.emptyMessageBox {background: url('../images/circle.png');width:341px;height:301px;box-shadow:none!important;border:none!important}

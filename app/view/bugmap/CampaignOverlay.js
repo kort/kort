@@ -3,17 +3,15 @@
  */
 
 Ext.define('Kort.view.bugmap.CampaignOverlay', {
-    extend: 'Ext.Container',
-    config: {
+    extend: 'Ext.Component',
 
-    },
-    html: '<div class="testclass">asd</div>',
-    tpl:    new Ext.XTemplate(
-        '<div class="bugmap-campaign-overlay">',
-        '<p>',
-        '{typec}',
-        '</p>',
-        '<img class="koin-image" src="./resources/images/i.png"/>',
-        '</div>'
-    )
+    config: {
+        cls: 'transparentPanel',
+        style:'background-color: transparent;margin:auto;float:left;',
+        zIndex: Kort.util.Config.getZIndex().overlayLeafletMap+1,
+        tpl:    new Ext.XTemplate(
+            '<div class="bugmap-campaign-overlay" />'
+        )
+    }
+
 });

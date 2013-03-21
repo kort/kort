@@ -45,3 +45,8 @@ $tabs-dark: #111;
 .x-button-back .x-button-label {
     color: #fff;
 }
+
+.transparentPanel .x-panel-inner{
+  background-color: transparent!important;
+  border:none;
+}
