@@ -17,12 +17,21 @@ Ext.define('Kort.view.bugmap.BugMessageBox', {
         ]
     },
 
+
     /**
      * @inheritdoc
 	 * OVERRIDEN SENCHA TOUCH FUNCTION
 	 * CHANGE: use own yes/no labels
 	 */
     confirm: function(title, message, fn, scope) {
+        //register campaignInfoButton callback
+        this.element.on({
+            tap: function(e, dom) {
+                scope.displayCampaignMessageBox();
+            },
+            delegate: '#campaignInfoButton',
+            scope: this
+        });
 
         return this.show({
             title       : title || null,

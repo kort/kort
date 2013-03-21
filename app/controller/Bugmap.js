@@ -73,7 +73,7 @@ Ext.define('Kort.controller.Bugmap', {
                             '<p>',
             
                                  '{[this.getMessage("bugmap.messagebox.koins.earncamp", {fix_koin_count: values.fix_koin_count, extra_coins: values.extra_coins})]}',
-                                '<img class="koin-image" src="./resources/images/i.png" id={[this.getCircleId()]}/>',
+                                '<img class="koin-image" src="./resources/images/i.png" id="campaignInfoButton"/>',
             '</p>',
            ' <tpl else>',
             '<p>',
@@ -99,16 +99,14 @@ Ext.define('Kort.controller.Bugmap', {
               */
         {
             //member functions:
-            getCircleId: function() {
-                return "test";
-            },
-
             isCampaign: function () {
                 return true;
             }
         }
             )
         );
+
+
         
         // adding listener for fixsend event
         me.getApplication().on({
@@ -197,7 +195,6 @@ Ext.define('Kort.controller.Bugmap', {
             });
             bugMessageBox.confirm(record.get('title'), tpl.apply(record.data), this.markerConfirmHandler, this);
 
-
             campaignOverlay = Ext.create('Kort.view.bugmap.CampaignOverlay', {
                 record: record
             });
@@ -207,6 +204,10 @@ Ext.define('Kort.controller.Bugmap', {
             this.setCampaignMessageBox(Ext.create('Ext.MessageBox', {
                 cls: "emptyMessageBox",
                 style:'background-color: transparent;',
+                record: this.getActiveRecord(),
+                tpl: new Ext.XTemplate(
+                  '<div>{campaign_id}</div>'
+                ),
                 zIndex: Kort.util.Config.getZIndex().overlayLeafletMap+1
             }));
 
@@ -287,8 +288,10 @@ Ext.define('Kort.controller.Bugmap', {
         this.loadStore(true);
     },
 
-    // @private
     displayCampaignMessageBox: function() {
-        this.getCampaignMessageBox().show();
+        if(this.getCampaignMessageBox()) {
+            this.getCampaignMessageBox().show();
+        }
+
     }
 });
