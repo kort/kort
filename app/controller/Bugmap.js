@@ -224,7 +224,7 @@ Ext.define('Kort.controller.Bugmap', {
                     ' <div align="center">{startdate} bis {enddate}</div>',
                     '<div align="center">Hol dir zusätzliche {extra_coins} Koins!</div>',
                     ' <br>', ' <br>',
-                    ' <div align="center"><>Close</div>'
+                    ' <div align="center"><a href="">Close</a></div>'
 
                 ),
                 zIndex: Kort.util.Config.getZIndex().overlayLeafletMap + 1

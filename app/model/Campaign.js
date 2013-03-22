@@ -8,8 +8,8 @@ Ext.define('Kort.model.Campaign', {
 
         fields: [
             { name: 'id', type: 'auto' },
-            { name: 'startdate', type: 'int' },
-            { name: 'enddate', type: 'int' },
+            { name: 'startdate', type: 'string' },
+            { name: 'enddate', type: 'string' },
             { name: 'extra_coins', type: 'int' },
             { name: 'title', type: 'string' }
         ]

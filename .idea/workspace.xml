@@ -5,12 +5,13 @@
     <ignored path="kort.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="81c657cb-6a69-439f-bc03-f1fdd1b8ace4" time="1363956785272" ignored="false" />
-    <file path="/Bugmap.js" changelist="81c657cb-6a69-439f-bc03-f1fdd1b8ace4" time="1363984591209" ignored="false" />
+    <file path="/Bugmap.js" changelist="81c657cb-6a69-439f-bc03-f1fdd1b8ace4" time="1363985987469" ignored="false" />
     <file path="/a.dummy" changelist="81c657cb-6a69-439f-bc03-f1fdd1b8ace4" time="1363978191753" ignored="false" />
     <file path="/Campaign.js" changelist="81c657cb-6a69-439f-bc03-f1fdd1b8ace4" time="1363975076902" ignored="false" />
     <file path="/Bugs.js" changelist="81c657cb-6a69-439f-bc03-f1fdd1b8ace4" time="1363977345603" ignored="false" />
     <file path="/Campaigns.js" changelist="81c657cb-6a69-439f-bc03-f1fdd1b8ace4" time="1363980157736" ignored="false" />
     <file path="/Config.js" changelist="81c657cb-6a69-439f-bc03-f1fdd1b8ace4" time="1363978042519" ignored="false" />
+    <file path="/campaigns.json" changelist="81c657cb-6a69-439f-bc03-f1fdd1b8ace4" time="1363984810971" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +52,7 @@
       <file leaf-file-name="campaigns.json" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/stores/campaigns.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="20" selection-start="231" selection-end="231" vertical-scroll-proportion="-6.8965516">
+            <state line="13" column="28" selection-start="346" selection-end="346" vertical-scroll-proportion="-8.965517">
               <folding />
             </state>
           </provider>
@@ -60,7 +61,7 @@
       <file leaf-file-name="Campaign.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/model/Campaign.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="41" selection-start="288" selection-end="288" vertical-scroll-proportion="0.0">
+            <state line="11" column="44" selection-start="294" selection-end="294" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -69,7 +70,7 @@
       <file leaf-file-name="Bugmap.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controller/Bugmap.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="226" column="43" selection-start="7186" selection-end="7186" vertical-scroll-proportion="0.67054266">
+            <state line="220" column="39" selection-start="6828" selection-end="6828" vertical-scroll-proportion="0.67054266">
               <folding />
             </state>
           </provider>
@@ -98,6 +99,7 @@
         <option value="$PROJECT_DIR$/app/store/Campaigns.js" />
         <option value="$PROJECT_DIR$/app/model/Campaign.js" />
         <option value="$PROJECT_DIR$/app/controller/Bugmap.js" />
+        <option value="$PROJECT_DIR$/resources/stores/campaigns.json" />
       </list>
     </option>
   </component>
@@ -591,13 +593,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/stores/campaigns.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="20" selection-start="231" selection-end="231" vertical-scroll-proportion="-6.8965516">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/stores/bugs.json">
       <provider selected="true" editor-type-id="text-editor">
         <state line="36" column="25" selection-start="1121" selection-end="1121" vertical-scroll-proportion="-24.827587">
@@ -614,14 +609,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/model/Campaign.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="41" selection-start="288" selection-end="288" vertical-scroll-proportion="0.0">
+        <state line="11" column="44" selection-start="294" selection-end="294" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/stores/campaigns.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="28" selection-start="346" selection-end="346" vertical-scroll-proportion="-8.965517">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controller/Bugmap.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="226" column="43" selection-start="7186" selection-end="7186" vertical-scroll-proportion="0.67054266">
+        <state line="220" column="39" selection-start="6828" selection-end="6828" vertical-scroll-proportion="0.67054266">
           <folding />
         </state>
       </provider>

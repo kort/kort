@@ -2,15 +2,15 @@
     "return": [
         {
             "id": 1,
-            "startdate":1363742847,
-            "enddate":1363742847,
+            "startdate":"13. 04. 2013",
+            "enddate":"15. 04. 2013",
             "extra_coins":15,
             "title":"Brandneue Kampagne"
         },
         {
             "id": 2,
-            "startdate":1363742847,
-            "enddate":1363742847,
+            "startdate":"18. 04. 2013",
+            "enddate":"23. 04. 2013",
             "extra_coins":5,
             "title":"Noch neuere Kampagne"
         }
