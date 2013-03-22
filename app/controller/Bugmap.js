@@ -219,12 +219,12 @@ Ext.define('Kort.controller.Bugmap', {
                 record: campaign,
                 tpl: new Ext.XTemplate(
                     '<div>{id}</div>', ' <br>', ' <br>',
-                    '<div align="center"><b>Bienenhauskampagne</b></div>',
+                    '<div align="center"><b>{title}</b></div>',
                     ' <br>',
-                    ' <div>{startdate}</div>',
-                    '<div>{title}</div>',
+                    ' <div align="center">{startdate} bis {enddate}</div>',
+                    '<div align="center">Hol dir zusätzliche {extra_coins} Koins!</div>',
                     ' <br>', ' <br>',
-                    ' <div align="center">Close</div>'
+                    ' <div align="center"><>Close</div>'
 
                 ),
                 zIndex: Kort.util.Config.getZIndex().overlayLeafletMap + 1
