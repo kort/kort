@@ -235,6 +235,13 @@ Ext.define('Kort.util.Config', {
                 radius: 50000,
                 limit: 25
             },
+            campaign: {
+                getUrl: function() {
+                    return './server/webservices/bug/position/';
+                },
+                radius: 50000,
+                limit: 25
+            },
             validation: {
                 getUrl: function(latitude, longitude) {
                     return './server/webservices/validation/position/' + latitude + ',' + longitude;

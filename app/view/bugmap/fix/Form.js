@@ -40,7 +40,7 @@ Ext.define('Kort.view.bugmap.fix.Form', {
                                 '</div>',
                                 '<div class="content">',
                                     '<p>',
-                                        '{[this.getMessage("fix.form.koins.earncamp", {fix_koin_count: values.fix_koin_count})]}',
+                                        '{[this.getMessage("fix.form.koins.earncamp", {fix_koin_count: values.fix_koin_count, extra_coins: values.campaign_extra_coins})]}',
                                     '</p>',
                                 '</div>',
                             '</div>',

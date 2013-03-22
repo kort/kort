@@ -41,73 +41,76 @@ Ext.define('Kort.controller.Bugmap', {
         },
 
         bugsStore: null,
+        campaignStore: null,
         messageBoxTemplate: null,
         activeRecord: null,
         bugmapView: null,
         campaignMessageBox: null
+
     },
-    
+
     /**
      * @private
      * Initilizes the controller
      */
-    init: function() {
+    init: function () {
         var me = this;
 
         me.callParent(arguments);
 
         me.setBugsStore(Ext.getStore('Bugs'));
+        me.setCampaignStore(Ext.getStore('Campaigns'));
 
         me.setMessageBoxTemplate(
-              
-          new Ext.XTemplate(
-          
+
+            new Ext.XTemplate(
+
                 '<div class="messagebox-content">',
-                    '<div class="textpic">',
-                        '<div class="image">',
-                            '<img class="koin-image" src="./resources/images/koins/koin_no_value.png" />',
-                        '</div>',
-                        '<div class="content">',
-           
-            '<tpl if="this.isCampaign()">',
-                            '<p>',
-            
-                                 '{[this.getMessage("bugmap.messagebox.koins.earncamp", {fix_koin_count: values.fix_koin_count, extra_coins: values.campaign_extra_coins})]}',
-                                '<img class="koin-image" src="./resources/images/i.png" id="campaignInfoButton"/>',
-            '</p>',
-           ' <tpl else>',
-            '<p>',
-             '{[this.getMessage("bugmap.messagebox.koins.earn", {fix_koin_count: values.fix_koin_count})]}',
-                            '</p>',
-            '</tpl>',
-                        '</div>',
-                    '</div>',
-                    '<div class="textpic">',
-                        '<div class="image">',
-                            '<img class="bugtype-image" src="./resources/images/marker_icons/{type}@2x.png" />',
-                        '</div>',
-                        '<div class="content">',
-                            '<p>{description}</p>',
-                        '</div>',
-                    '</div>',
+                '<div class="textpic">',
+                '<div class="image">',
+                '<img class="koin-image" src="./resources/images/koins/koin_no_value.png" />',
+                '</div>',
+                '<div class="content">',
+
+                '<tpl if="this.isCampaign()">',
+                '<p>',
+
+                '{[this.getMessage("bugmap.messagebox.koins.earncamp", {fix_koin_count: values.fix_koin_count, ' +
+                    'extra_coins: values.campaign_extra_coins})]}',
+                '<img class="koin-image" src="./resources/images/i.png" id="campaignInfoButton"/>',
+                '</p>',
+                ' <tpl else>',
+                '<p>',
+                '{[this.getMessage("bugmap.messagebox.koins.earn", {fix_koin_count: values.fix_koin_count})]}',
+                '</p>',
+                '</tpl>',
+                '</div>',
+                '</div>',
+                '<div class="textpic">',
+                '<div class="image">',
+                '<img class="bugtype-image" src="./resources/images/marker_icons/{type}@2x.png" />',
+                '</div>',
+                '<div class="content">',
+                '<p>{description}</p>',
+                '</div>',
+                '</div>',
                 '</div>',
 
-             /*
-             '<div class="image">',
-                        '<img class="bugtype-image" src="./resources/images/circle.png" />',
-                        '</div>',
-              */
-        {
-            //member functions:
-            isCampaign: function () {
-                return true;
-            }
-        }
+                /*
+                 '<div class="image">',
+                 '<img class="bugtype-image" src="./resources/images/circle.png" />',
+                 '</div>',
+                 */
+                {
+                    //member functions:
+                    isCampaign: function () {
+                        return true;
+                    }
+                }
             )
         );
 
 
-        
         // adding listener for fixsend event
         me.getApplication().on({
             fixsend: { fn: me.loadStore, scope: me },
@@ -116,13 +119,13 @@ Ext.define('Kort.controller.Bugmap', {
 
         me.getBugsStore().on('load', me.refreshView, me);
     },
-    
+
     /**
      * @private
      * Called when geolocation is ready to use.
      * Adds LeafletMap component to bugmap view.
      */
-    geolocationReady: function(geo) {
+    geolocationReady: function (geo) {
         var bugmap = Ext.create('Kort.view.LeafletMap', {
             title: Ext.i18n.Bundle.message('bugmap.title'),
             useCurrentLocation: geo,
@@ -130,13 +133,13 @@ Ext.define('Kort.controller.Bugmap', {
         });
         this.setBugmapView(bugmap);
         /*
-        var bugmap = {
-            xtype: 'kortleafletmap',
-            title: Ext.i18n.Bundle.message('bugmap.title'),
-            useCurrentLocation: geo,
-            id: 'bugmap'
-        };
-        */
+         var bugmap = {
+         xtype: 'kortleafletmap',
+         title: Ext.i18n.Bundle.message('bugmap.title'),
+         useCurrentLocation: geo,
+         id: 'bugmap'
+         };
+         */
         this.getBugmapNavigationView().add(bugmap);
         this.loadStore(true);
     },
@@ -145,29 +148,31 @@ Ext.define('Kort.controller.Bugmap', {
      * @private
      * Loads bugs store
      */
-    loadStore: function(showLoadmask) {
+    loadStore: function (showLoadmask) {
         var me = this,
             mapCmp = me.getMapCmp(),
             bugsStore = me.getBugsStore(),
+            campaignStore = me.getCampaignStore(),
             currentLatLng;
 
         currentLatLng = me.getCurrentLocationLatLng(mapCmp);
         bugsStore.getProxy().setUrl(Kort.util.Config.getWebservices().bug.getUrl(currentLatLng.lat, currentLatLng.lng));
 
-        if(showLoadmask) {
+        if (showLoadmask) {
             me.showLoadMask();
         }
 
         // Load bugs store
-		bugsStore.load();
+        bugsStore.load();
+        campaignStore.load();
     },
 
     /**
      * @private
      * Reloads and redraws all markers
      */
-    refreshView: function() {
-        this.redrawMarkers(this.getBugsStore().getData().all,'bugs');
+    refreshView: function () {
+        this.redrawMarkers(this.getBugsStore().getData().all, 'bugs');
         this.hideLoadMask();
     },
 
@@ -176,7 +181,9 @@ Ext.define('Kort.controller.Bugmap', {
      * Executed when marker gets clicked
      * @param {L.MouseEvent} e Mouse click event
      */
-    onMarkerClick: function(e) {
+
+    onMarkerClick: function (e) {
+
         var tpl,
             marker = e.target,
             record = marker.record,
@@ -186,7 +193,7 @@ Ext.define('Kort.controller.Bugmap', {
         timeDifference = e.originalEvent.timeStamp - marker.lastClickTimestamp;
 
         // LEAFLET BUGFIX: only execute click if there is a certain time between last click
-        if(timeDifference > CLICK_TOLERANCE) {
+        if (timeDifference > CLICK_TOLERANCE) {
             tpl = this.getMessageBoxTemplate();
             marker.lastClickTimestamp = e.originalEvent.timeStamp;
             this.setActiveRecord(record);
@@ -201,24 +208,35 @@ Ext.define('Kort.controller.Bugmap', {
 
             this.getBugmapView().add(campaignOverlay);
 
-            this.setCampaignMessageBox(Ext.create('Ext.MessageBox', {
-                cls: "emptyMessageBox",
-                style:'background-color: transparent;',
-                record: this.getActiveRecord(),
-                tpl: new Ext.XTemplate(
-                  '<div>{campaign_id}</div>'
-                ),
-                zIndex: Kort.util.Config.getZIndex().overlayLeafletMap+1
-            }));
 
+            var campaigns = this.getCampaignStore ();
+             var campaign = campaigns.getById(record.get("campaign_id"));
+
+            this.setCampaignMessageBox(Ext.create('Ext.MessageBox', {
+
+                cls: "emptyMessageBox",
+                style: 'background-color: transparent;',
+                record: campaign,
+                tpl: new Ext.XTemplate(
+                    '<div>{id}</div>', ' <br>', ' <br>',
+                    '<div align="center"><b>Bienenhauskampagne</b></div>',
+                    ' <br>',
+                    ' <div>{startdate}</div>',
+                    '<div>{title}</div>',
+                    ' <br>', ' <br>',
+                    ' <div align="center">Close</div>'
+
+                ),
+                zIndex: Kort.util.Config.getZIndex().overlayLeafletMap + 1
+            }));
 
 
         }
     },
 
     // @private
-    markerConfirmHandler: function(buttonId, value, opt) {
-        if(buttonId === 'yes') {
+    markerConfirmHandler: function (buttonId, value, opt) {
+        if (buttonId === 'yes') {
             this.showFix(this.getActiveRecord());
         }
         this.setActiveRecord(null);
@@ -229,7 +247,7 @@ Ext.define('Kort.controller.Bugmap', {
      * Displays fix detail panel
      * @param {Kort.model.Bug} bug Bug instance
      */
-    showFix: function(bug) {
+    showFix: function (bug) {
         var bugmapNavigationView = this.getBugmapNavigationView(),
             fixTabPanel;
 
@@ -240,12 +258,12 @@ Ext.define('Kort.controller.Bugmap', {
         bugmapNavigationView.push(fixTabPanel);
         bugmapNavigationView.fireEvent('detailpush', bugmapNavigationView);
     },
-    
+
     /**
      * @private
      * Shows load mask
      */
-    showLoadMask: function() {
+    showLoadMask: function () {
         this.getBugmapCenterButton().disable();
         this.getBugmapRefreshButton().disable();
         this.getBugmapNavigationView().setMasked({
@@ -254,42 +272,42 @@ Ext.define('Kort.controller.Bugmap', {
             zIndex: Kort.util.Config.getZIndex().overlayLeafletMap
         });
     },
-    
+
     /**
      * @private
      * Hides load mask
      */
-    hideLoadMask: function() {
+    hideLoadMask: function () {
         this.getBugmapNavigationView().setMasked(false);
         this.getBugmapCenterButton().enable();
         this.getBugmapRefreshButton().enable();
     },
 
     // @private
-    onBugmapNavigationViewDetailPush: function(cmp, view, opts) {
+    onBugmapNavigationViewDetailPush: function (cmp, view, opts) {
         this.getBugmapCenterButton().hide();
         this.getBugmapRefreshButton().hide();
     },
-    
+
     // @private
-    onBugmapNavigationViewBack: function(cmp, view, opts) {
+    onBugmapNavigationViewBack: function (cmp, view, opts) {
         this.getBugmapCenterButton().show();
         this.getBugmapRefreshButton().show();
     },
 
     // @private
-    onBugmapCenterButtonTap: function() {
+    onBugmapCenterButtonTap: function () {
         this.centerMapToCurrentPosition();
     },
-    
+
     // @private
-    onBugmapRefreshButtonTap: function() {
+    onBugmapRefreshButtonTap: function () {
         this.centerMapToCurrentPosition();
         this.loadStore(true);
     },
 
-    displayCampaignMessageBox: function() {
-        if(this.getCampaignMessageBox()) {
+    displayCampaignMessageBox: function () {
+        if (this.getCampaignMessageBox()) {
             this.getCampaignMessageBox().show();
         }
 
