@@ -3,8 +3,8 @@
  */
 Ext.define('Kort.store.Bugs', {
     extend: 'Ext.data.Store',
-
 	config: {
+        autoLoad: false,
 		model: 'Kort.model.Bug',
 
 		proxy: {
@@ -22,5 +22,8 @@ Ext.define('Kort.store.Bugs', {
                 rootProperty: 'return'
             }
 		}
+
+
 	}
+
 });

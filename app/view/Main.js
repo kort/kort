@@ -6,8 +6,7 @@ Ext.define('Kort.view.Main', {
     xtype: 'main',
     id: 'mainTabPanel',
     requires: [
-        'Kort.view.bugmap.NavigationView',
-        'Kort.view.validation.NavigationView',
+        'Kort.view.markermap.NavigationView',
         'Kort.view.highscore.NavigationView',
         'Kort.view.profile.Container',
         'Kort.view.about.Container'
@@ -23,10 +22,7 @@ Ext.define('Kort.view.Main', {
 
         items: [
             {
-                xtype: 'bugmapnavigationview'
-            },
-            {
-                xtype: 'validationnavigationview'
+                xtype: 'markermapnavigationview'
             },
             {
                 xtype: 'highscorenavigationview'

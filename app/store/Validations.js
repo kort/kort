@@ -39,7 +39,8 @@ Ext.define('Kort.store.Validations', {
                 type: 'json',
                 rootProperty: 'return'
             }
-		}
+		},
+        autoLoad:false
 	},
 
     /**

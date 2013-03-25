@@ -1,16 +1,16 @@
 /**
  * Answer form for fix view
  */
-Ext.define('Kort.view.bugmap.fix.Form', {
+Ext.define('Kort.view.markermap.bug.fix.Form', {
 	extend: 'Ext.Container',
-	alias: 'widget.fixform-old',
+	alias: 'widget.fixform',
     requires: [
         'Ext.form.Panel',
         'Ext.Button',
         'Ext.field.Select',
         'Ext.field.Number',
         'Ext.field.Text',
-        'Kort.view.bugmap.fix.type.Select'
+        'Kort.view.markermap.bug.fix.type.Select'
     ],
     
 	config: {
@@ -39,20 +39,42 @@ Ext.define('Kort.view.bugmap.fix.Form', {
                                     '<img class="koin-image" src="./resources/images/koins/koin_no_value.png" />',
                                 '</div>',
                                 '<div class="content">',
-                                    '<p> lae',
-                                        '{[this.getMessage("fix.form.koins.earncamp", {fix_koin_count: values.fix_koin_count, extra_coins: values.campaign_extra_coins})]}',
+                                    '<p>',
+                                        '<tpl if="this.isCampaign(campaign_id)">',
+                                            '{[this.getMessage("fix.form.koins.earncamp", {fix_koin_count: values.fix_koin_count, extra_coins: values.campaign_extra_coins})]}',
+                                        ' <tpl else>',
+                                            '{[this.getMessage("fix.form.koins.earn", {fix_koin_count: values.fix_koin_count})]}',
+                                        '</tpl>',
                                     '</p>',
                                 '</div>',
                             '</div>',
                             '<div class="textpic">',
                                 '<div class="image">',
-                                    '<img class="bugtype-image" src="./resources/images/marker_icons/{type}@2x.png" />',
+                                    '<img class="bugtype-image" src="{[this.constructBugtypeIcon(values.type,values.campaign_id)]}" />',
                                 '</div>',
                                 '<div class="content">',
                                     '<p>{description}</p>',
                                 '</div>',
                             '</div>',
-                        '</div>'
+                        '</div>',
+
+                {
+                    //member functions:
+                    isCampaign: function(campaign_id) {
+                        if(campaign_id) {
+                            return true;
+                        }else {
+                            return false;
+                        }
+                    },
+                    constructBugtypeIcon: function(type,campaign_id) {
+                        var state = 'normal';
+                        if(campaign_id) {
+                            state = 'campaign'
+                        }
+                        return Kort.util.Config.constructMissionIconURL(type,state,true);
+                    }
+                }
                 
                     )
         };
@@ -97,7 +119,7 @@ Ext.define('Kort.view.bugmap.fix.Form', {
                 type: bug.get('type')
             });
             
-            fixField = Ext.create('Kort.view.bugmap.fix.type.Select', fieldConfig);
+            fixField = Ext.create('Kort.view.markermap.bug.fix.type.Select', fieldConfig);
         } else if(bug.get('view_type') === 'number') {
             fixField = Ext.create('Ext.field.Number', fieldConfig);
         } else {

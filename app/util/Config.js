@@ -332,6 +332,7 @@ Ext.define('Kort.util.Config', {
         return false;
 	},
 
+
     /**
      * Returns a Leaflet marker icon for a given type
      * @param {String} type Type of marker

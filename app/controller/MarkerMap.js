@@ -3,10 +3,56 @@
  */
 Ext.define('Kort.controller.MarkerMap', {
     extend: 'Ext.app.Controller',
+    requires: [
+        'Ext.LoadMask',
+        'Kort.view.markermap.bug.BugMessageBox',
+        'Kort.view.markermap.bug.CampaignMessageBox',
+        'Kort.view.markermap.bug.CampaignOverlay',
+        'Kort.view.markermap.bug.fix.TabPanel'
+
+    ],
 
     config: {
         map: null,
-        markerLayerGroup: []
+        markerLayerGroup: [],
+        views: [
+
+        ],
+        refs: {
+            leafletmapComponent: '#leafletmapcomponent',
+            markermapNavigationView: '#markermapNavigationView',
+            markermapCenterButton: '#markermapNavigationView .button[cls=markermapCenterButton]',
+            markermapRefreshButton: '#markermapNavigationView .button[cls=markermapRefreshButton]'
+        },
+        control: {
+            leafletmapComponent: {
+                maprender: 'onMapRender'
+            },
+            markermapCenterButton: {
+                tap: 'onMarkermapCenterButtonTap'
+            },
+            markermapRefreshButton: {
+                tap: 'onMarkermapCenterButtonTap'
+            },
+            markermapNavigationView: {
+                detailpush: 'onMarkerMapDetailViewPush',
+                back: 'onMarkerMapDetailViewBack'
+            }
+        },
+        markermapLeafletView: null,
+
+        campaignsStore: null,
+        bugsStore: null,
+        validationsStore: null,
+
+        activeRecord: null,
+
+        amountOfStoresSuccessfullyLoaded: 0,
+        totalAmountOfStoresToLoad: 3,
+
+        bugMessageBoxTemplate: null,
+
+        campaignOverlayBackground: null
     },
     
     /**
@@ -16,11 +62,177 @@ Ext.define('Kort.controller.MarkerMap', {
     init: function() {
         var me = this;
         me.callParent(arguments);
-        
+
+        me.getApplication().on({
+            fixsend: { fn: me.loadStores, scope: me },
+            geolocationready: { fn: me.geolocationReady, scope: me }
+        });
+
+        this.initStores();
+
+        //register store loaded events - possibility for race condition failures - needs check
+        this.getCampaignsStore().on('refresh',me.storeSuccessfullyLoaded , me);
+        this.getBugsStore().on('load', me.storeSuccessfullyLoaded, me);
+        this.getValidationsStore().on('load', me.storeSuccessfullyLoaded, me);
+
         // create layer group for bug markers
         me.setMarkerLayerGroup(L.layerGroup());
+
+        //create campaignOverlay background div
+        this.setCampaignOverlayBackground(Ext.create('Kort.view.markermap.bug.CampaignOverlay'));
     },
-    
+
+    /**
+     * @private
+     * Called when geolocation is ready to use.
+     * Adds LeafletMap component to markermap view.
+     */
+    geolocationReady: function (geo) {
+        var leafletmapComponent = Ext.create('Kort.view.LeafletMap', {
+            title: Ext.i18n.Bundle.message('markermap.title'),
+            useCurrentLocation: geo,
+            id: 'leafletmapcomponent'
+        });
+        this.getLeafletmapComponent(leafletmapComponent);
+        this.getMarkermapNavigationView().add(leafletmapComponent);
+        this.loadStores();
+    },
+
+
+    // @private
+    initStores: function() {
+        this.setCampaignsStore(Ext.getStore('Campaigns'));
+        this.setBugsStore(Ext.getStore('Bugs'));
+        this.setValidationsStore(Ext.getStore('Validations'))
+    },
+
+    // @private
+    loadStores: function(showLoadMask) {
+        var me = this;
+        //relink campaignsstore with webservice
+        //$$$ waiting for mwo
+
+        //relink bugsstore to webservice
+        var currentLatLng = me.getCurrentLocationLatLng(me.getLeafletmapComponent());
+        me.getBugsStore().getProxy().setUrl(Kort.util.Config.getWebservices().bug.getUrl(currentLatLng.lat, currentLatLng.lng));
+
+        //relinik validationstore to webservice
+        me.getValidationsStore().getProxy().setUrl(Kort.util.Config.getWebservices().validation.getUrl(currentLatLng.lat, currentLatLng.lng));
+
+        if (showLoadMask) {
+            me.showLoadMask();
+        }
+
+        //load stores -
+        this.setCampaignsStore(Ext.getStore('Campaigns'));
+        me.getCampaignsStore().load();
+        me.getBugsStore().load();
+        me.getValidationsStore().load(function(records, operation, success) {
+            me.getValidationsStore().updateDistances(Kort.geolocation);
+        });
+    },
+
+    /**
+     * @private
+     * When MarkerMap starts up, there are different stores to load. If all stores have been
+     * loaded successfully, the map shoud perform a reload. Every store has a registered load-Event
+     * and whenever a store has loaded, this function is called and the loaded stores counter gets incremented.
+     */
+
+    storeSuccessfullyLoaded: function() {
+        this.setAmountOfStoresSuccessfullyLoaded(this.getAmountOfStoresSuccessfullyLoaded()+1);
+        if(this.getAmountOfStoresSuccessfullyLoaded()==this.getTotalAmountOfStoresToLoad()) {
+            this.setAmountOfStoresSuccessfullyLoaded(0);
+            this.refreshView();
+        }
+    },
+
+    // @private
+    onMarkerMapDetailViewPush: function(cmp, view, opts) {
+        this.getMarkermapCenterButton().hide();
+        this.getMarkermapRefreshButton().hide();
+    },
+
+    // @private
+    onMarkerMapDetailViewBack: function(cmp, view, opts) {
+        this.getMarkermapCenterButton().show();
+        this.getMarkermapRefreshButton().show();
+    },
+
+    // @private
+    onMarkermapCenterButtonTap: function () {
+        this.centerMapToCurrentPosition();
+    },
+
+    // @private
+    onMarkermapCenterButtonTap: function () {
+        this.centerMapToCurrentPosition();
+        this.loadStores(true);
+    },
+
+    //$$$ CSC on March 24: should be implemented with enum
+    retrieveMissionStateFromRecord: function(record,source) {
+        if(source=='bug') {
+            if (record.get('campaign_id')) {
+                return 'campaign';
+            }else {
+                return 'normal';
+            }
+        }else if(source=='validation') {
+            if (record.get('campaign_id')) {
+                return 'checkcampaign';
+            }else {
+                return 'check';
+            }
+        }
+    },
+
+    /*********************************************************
+     * BEGIN
+     * Leaflet-Map related functions
+     *
+     *********************************************************/
+
+    /*
+     * @private
+     *
+     * Reloads and redraws all markers
+     */
+    refreshView: function () {
+        this.removeAllMarkers();
+        //redraw bug markers
+        this.redrawMarkers(this.getBugsStore().getData().all, 'bug');
+        //redraw validation markers
+        this.redrawMarkers(this.getValidationsStore().getData().all,'validation');
+
+        this.hideLoadMask();
+    },
+
+
+    /**
+     * @private
+     * Shows load mask
+     */
+    showLoadMask: function () {
+        this.getMarkermapCenterButton().disable();
+        this.getMarkermapRefreshButton().disable();
+        this.getMarkermapNavigationView().setMasked({
+            xtype: 'loadmask',
+            message: Ext.i18n.Bundle.message('markermap.loadmask.message'),
+            zIndex: Kort.util.Config.getZIndex().overlayLeafletMap
+        });
+    },
+
+    /**
+     * @private
+     * Hides load mask
+     */
+    hideLoadMask: function() {
+        this.getMarkermapNavigationView().setMasked(false);
+        this.getMarkermapCenterButton().enable();
+        this.getMarkermapRefreshButton().enable();
+    },
+
     // @private
     onMapRender: function(cmp, map, tileLayer) {
         var me = this;
@@ -35,7 +247,7 @@ Ext.define('Kort.controller.MarkerMap', {
      */
     centerMapToCurrentPosition: function() {
         // centering map to current position
-        this.getMapCmp().setMapCenter(this.getCurrentLocationLatLng(this.getMapCmp()));
+        this.getLeafletmapComponent().setMapCenter(this.getCurrentLocationLatLng(this.getLeafletmapComponent()));
     },
 
     /**
@@ -46,7 +258,6 @@ Ext.define('Kort.controller.MarkerMap', {
      */
 	redrawMarkers: function(records, source) {
         var me = this;
-        me.removeAllMarkers();
 
         // add markers
         Ext.each(records, function (record, index, length) {
@@ -79,9 +290,10 @@ Ext.define('Kort.controller.MarkerMap', {
             icon: icon
         });
 
+        marker.source = source;
         marker.record = record;
         marker.lastClickTimestamp = 0;
-        marker.on('click', me.onMarkerClick, me);
+        marker.on('click', me.onMarkerClick,me);
         me.getMarkerLayerGroup().addLayer(marker);
     },
 
@@ -99,28 +311,118 @@ Ext.define('Kort.controller.MarkerMap', {
 		}
 	},
 
-    // @private
-    refreshView: function() {
-        //<debug warn>
-        Ext.Logger.warn("Implement refreshView method", this);
-        //</debug>
+    /**
+     * @private
+     * Executed when marker gets clicked
+     * @param {L.MouseEvent} e Mouse click event
+     */
+    onMarkerClick: function(e) {
+        var marker = e.target,
+            record = marker.record,
+            CLICK_TOLERANCE = 400,
+            timeDifference;
+
+        timeDifference = e.originalEvent.timeStamp - marker.lastClickTimestamp;
+
+        // LEAFLET BUGFIX: only execute click if there is a certain time between last click
+        if(timeDifference > CLICK_TOLERANCE) {
+            marker.lastClickTimestamp = e.originalEvent.timeStamp;
+            this.setActiveRecord(record);
+            if(marker.source=='bug') {
+                this.onBugMarkerClicked();
+            }else if(marker.source=='validation') {
+                this.onValidationMarkerClicked();
+            }
+        }
     },
 
-    // @private
-    onMarkerClick: function() {
-        //<debug warn>
-        Ext.Logger.warn("Implement onMarkerClick method", this);
-        //</debug>
+    /*********************************************************
+     * BEGIN
+     * Bug related functions
+     *
+     *********************************************************/
+
+    /**
+     * @private
+     */
+    onBugMarkerClicked: function() {
+        //show BugMessageBox
+        Ext.create('Kort.view.markermap.bug.BugMessageBox').confirm(this.getActiveRecord(), this.returnFromBugMessageBox, this);
+        if(this.retrieveMissionStateFromRecord(this.getActiveRecord(),'bug')=='campaign') {
+            this.getLeafletmapComponent().add(this.getCampaignOverlayBackground());
+        }
     },
 
-    // @private
-    retrieveMissionStateFromRecord: function(record,source) {
-        if(source=='bugs') {
-          if (record.get('campaign_id')) {
-            return 'campaign';
-          }else {
-            return 'normal';
-          }
+    displayCampaignMessageBox: function () {
+        Ext.create('Kort.view.markermap.bug.CampaignMessageBox').confirm(this.getCampaignsStore().getById(this.getActiveRecord().get('campaign_id')), Ext.emptyFn, this);
+    },
+
+    /**
+     *
+     * @param buttonId
+     * @param value
+     * @param opt
+     * is called when user returns from BugMessageBox or Fix
+     *
+     */
+    returnFromBugMessageBox: function(buttonId, value, opt) {
+        if(this.retrieveMissionStateFromRecord(this.getActiveRecord(),'bug')=='campaign') {
+            this.getLeafletmapComponent().remove(this.getCampaignOverlayBackground(),false);
+        }
+        if (buttonId === 'yes') {
+            this.showFix();
+        }
+        this.setActiveRecord(null);
+    },
+
+    /**
+     * @private
+     * Displays fix detail panel
+     * @param {Kort.model.Bug} bug Bug instance
+     */
+    showFix: function () {
+        var fixTabPanel = Ext.create('Kort.view.markermap.bug.fix.TabPanel', {
+            record: this.getActiveRecord(),
+            title: this.getActiveRecord().get('title')
+        });
+        this.getMarkermapNavigationView().push(fixTabPanel);
+        this.getMarkermapNavigationView().fireEvent('detailpush', this.getMarkermapNavigationView());
+    },
+
+
+    /*********************************************************
+     * BEGIN
+     * Validation related functions
+     *
+     *********************************************************/
+
+    /**
+     * @private
+     */
+    onValidationMarkerClicked: function() {
+        console.log("on validation marker clicked");
+    },
+
+    /**
+     * @private
+     * Displays vote detail panel
+     * @param {Kort.model.Vote} vote Vote instance
+     */
+    showVote: function(vote) {
+        var me = this,
+            validationNavigationView = me.getValidationNavigationView(),
+            voteContainer;
+
+        if(!me.getDetailPushDisabled()) {
+            // disable fast tapping
+            me.setDetailPushDisabled(true);
+
+            voteContainer = Ext.create('Kort.view.validation.vote.Container', {
+                record: vote,
+                title: vote.get('title')
+            });
+            validationNavigationView.push(voteContainer);
+            validationNavigationView.fireEvent('detailpush', validationNavigationView);
         }
     }
 });

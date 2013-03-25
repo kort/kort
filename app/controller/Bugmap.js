@@ -172,7 +172,7 @@ Ext.define('Kort.controller.Bugmap', {
      * Reloads and redraws all markers
      */
     refreshView: function () {
-        this.redrawMarkers(this.getBugsStore().getData().all, 'bugs');
+        this.redrawMarkers(this.getBugsStore().getData().all, 'bug');
         this.hideLoadMask();
     },
 
@@ -183,7 +183,7 @@ Ext.define('Kort.controller.Bugmap', {
      */
 
     onMarkerClick: function (e) {
-
+        console.log(e.target.source);
         var tpl,
             marker = e.target,
             record = marker.record,
@@ -312,4 +312,5 @@ Ext.define('Kort.controller.Bugmap', {
         }
 
     }
+
 });

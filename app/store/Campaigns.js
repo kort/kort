@@ -1,6 +1,8 @@
 /**
  * Store for campaigns
  */
+/*
+
 Ext.define('My.CampaignReader', {
     extend: 'Ext.data.reader.Json',
     alias: 'reader.campaigns',
@@ -26,13 +28,14 @@ function debug(object){
     return output;
 }
 
+*/
+
 Ext.define('Kort.store.Campaigns', {
     extend: 'Ext.data.Store',
 
     config: {
         model: 'Kort.model.Campaign',
-//        fields: [ 'id','startdate','enddate','extra_coins','title'],
-        autoLoad:true,
+//        fields: [ 'id','startdate','enddate','extra_coins','title']
         proxy: {
             type: 'ajax',
             url: './resources/stores/campaigns.json',
@@ -42,6 +45,7 @@ Ext.define('Kort.store.Campaigns', {
                 type: 'json',
                 rootProperty: 'return'
             }
-        }
+        },
+        autoLoad:false
     }
 });

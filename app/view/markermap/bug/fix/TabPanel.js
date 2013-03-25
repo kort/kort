@@ -1,11 +1,11 @@
 /**
  * Main tab panel for fix view
  */
-Ext.define('Kort.view.bugmap.fix.TabPanel', {
+Ext.define('Kort.view.markermap.bug.fix.TabPanel', {
 	extend: 'Ext.tab.Panel',
-	alias: 'widget.fixtabpanel-old',
+	alias: 'widget.fixtabpanel',
     requires: [
-        'Kort.view.bugmap.fix.Form',
+        'Kort.view.markermap.bug.fix.Form',
         'Kort.view.LeafletMap'
     ],
     
