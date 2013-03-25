@@ -1,4 +1,5 @@
 # Main View (TabPanel)
+tab.map=Karte
 tab.bugmap=Aufträge
 tab.validation=Prüfen
 tab.highscore=Highscore
@@ -31,6 +32,15 @@ firststeps.alert.submit.failure.message=Ups\! Beim Übertragen deines Benutzerna
 geolocationerror.introduction=Um Kort verwenden zu können, muss auf deine Position zugegriffen werden können.
 geolocationerror.button.reload=Applikation neu laden
 geolocationerror.loadmask.message=Lade App neu...
+
+#Markermap
+markermap.title=$$$Aufträge in deiner Nähe
+markermap.loadmask.message=Lade...
+markermap.bug.campaignmessagebox.close=Fenster Schliessen
+markermap.bug.bugmessagebox.koins.earn=Verdiene dir {fix_koin_count} Koins
+markermap.bug.bugmessagebox.koins.earncamp=Verdiene dir {fix_koin_count} + {extra_coins} Koins
+markermap.bug.bugmessagebox.yes=Beantworten
+markermap.bug.bugmessagebox.no=Weiss nicht
 
 # Bugmap
 bugmap.title=Aufträge in deiner Nähe

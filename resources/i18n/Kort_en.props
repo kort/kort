@@ -1,4 +1,5 @@
 # Main View (TabPanel)
+tab.map=Map
 tab.bugmap=Missions
 tab.validation=Check
 tab.highscore=Highscore
@@ -32,6 +33,16 @@ geolocationerror.introduction=To use Kort, accessing your geo-position is essent
 geolocationerror.button.reload=Reload application
 geolocationerror.loadmask.message=Reloading app...
 
+#Markermap
+markermap.title=$$$Missons nearby
+markermap.loadmask.message=Loading...
+markermap.bug.campaignmessagebox.close=Close Window
+markermap.bug.bugmessagebox.koins.earn=Earn {fix_koin_count} Koins
+markermap.bug.bugmessagebox.koins.earncamp=Earn {fix_koin_count} + {extra_coins} Koins
+markermap.bug.bugmessagebox.yes=Answer
+markermap.bug.bugmessagebox.no=Don't know
+
+
 # Bugmap
 bugmap.title=Missions nearby
 bugmap.loadmask.message=Loading missions...
@@ -43,7 +54,7 @@ bugmap.messagebox.no=Don't know
 ## Fix
 fix.form.title=Mission
 fix.form.koins.earn=Get the {fix_koin_count} Koins!
-fix.form.koins.earncamp=Get the {fix_koin_coint} + {extra_coins} Koins!
+fix.form.koins.earncamp=Get the {fix_koin_count} + {extra_coins} Koins!
 fix.form.message.placeholder=Your answer...
 fix.form.button.showonmap=Show on map
 fix.form.button.submit=Complete mission
