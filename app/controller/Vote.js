@@ -6,13 +6,14 @@ Ext.define('Kort.controller.Vote', {
 
     config: {
         views: [
-            'validation.NavigationView',
-            'validation.vote.Container',
-            'validation.vote.AnswerActionSheet',
+            'markermap.NavigationView',
+            'markermap.validation.Container',
+            'markermap.validation.AnswerActionSheet',
             'LeafletMap'
         ],
         refs: {
-            validationNavigationView: '#validationNavigationView',
+            markermapNavigationView: '#markermapNavigationView',
+            //validationNavigationView: '#validationNavigationView',
             detailComponent: '.votecontainer',
             voteMap: '.votecontainer .kortleafletmap[cls=voteMap]',
             voteAnswerButton: '.votecontainer .button[cls=voteAnswerButton]',
@@ -43,7 +44,7 @@ Ext.define('Kort.controller.Vote', {
     
     // @private
     onVoteAnswerButtonTap: function() {
-        var answerActionSheet = Ext.create('Kort.view.validation.vote.AnswerActionSheet');
+        var answerActionSheet = Ext.create('Kort.view.markermap.validation.AnswerActionSheet');
         
         this.setAnswerActionSheet(answerActionSheet);
         Ext.Viewport.add(answerActionSheet);
@@ -68,13 +69,13 @@ Ext.define('Kort.controller.Vote', {
     
     // @private
     onVoteAnswerCancelButtonTap: function() {
-        var validationNavigationView = this.getValidationNavigationView();
+        var markermapNavigationView = this.getMarkermapNavigationView();
         if(this.getAnswerActionSheet()) {
             this.getAnswerActionSheet().hide();
         }
         // remove detail panel
-        validationNavigationView.pop();
-        validationNavigationView.fireEvent('detailpop', validationNavigationView);
+        markermapNavigationView.pop();
+        markermapNavigationView.fireEvent('detailpop', markermapNavigationView);
     },
     
     /**
@@ -118,18 +119,18 @@ Ext.define('Kort.controller.Vote', {
     voteSuccessfulSubmittedHandler: function(responseText) {
         var rewardConfig = Ext.decode(responseText),
             reward = Ext.create('Kort.model.Reward', rewardConfig),
-            validationNavigationView = this.getValidationNavigationView();
+            markermapNavigationView = this.getMarkermapNavigationView();
         
         this.showRewardMessageBox(reward);
         // remove detail panel
-        validationNavigationView.pop();
-        validationNavigationView.fireEvent('detailpop', validationNavigationView);
+        markermapNavigationView.pop();
+        markermapNavigationView.fireEvent('detailpop', markermapNavigationView);
         this.getApplication().fireEvent('votesend');
     },
     
     // @private
     showSendMask: function() {
-        this.getValidationNavigationView().setMasked({
+        this.getMarkermapNavigationView().setMasked({
             xtype: 'loadmask',
             message: Ext.i18n.Bundle.message('vote.sendmask.message'),
             zIndex: Kort.util.Config.getZIndex().overlayLeafletMap
@@ -138,7 +139,7 @@ Ext.define('Kort.controller.Vote', {
     
     // @private
     hideSendMask: function() {
-        this.getValidationNavigationView().setMasked(false);
+        this.getMarkermapNavigationView().setMasked(false);
     },
     
     /**

@@ -8,7 +8,8 @@ Ext.define('Kort.controller.MarkerMap', {
         'Kort.view.markermap.bug.BugMessageBox',
         'Kort.view.markermap.bug.CampaignMessageBox',
         'Kort.view.markermap.bug.CampaignOverlay',
-        'Kort.view.markermap.bug.fix.TabPanel'
+        'Kort.view.markermap.bug.fix.TabPanel',
+        'Kort.view.markermap.validation.Container'
 
     ],
 
@@ -36,6 +37,7 @@ Ext.define('Kort.controller.MarkerMap', {
             },
             markermapNavigationView: {
                 detailpush: 'onMarkerMapDetailViewPush',
+                detailpop: 'onMarkerMapDetailViewBack',
                 back: 'onMarkerMapDetailViewBack'
             }
         },
@@ -46,6 +48,8 @@ Ext.define('Kort.controller.MarkerMap', {
         validationsStore: null,
 
         activeRecord: null,
+
+        detailPushDisabled: false,
 
         amountOfStoresSuccessfullyLoaded: 0,
         totalAmountOfStoresToLoad: 3,
@@ -65,13 +69,14 @@ Ext.define('Kort.controller.MarkerMap', {
 
         me.getApplication().on({
             fixsend: { fn: me.loadStores, scope: me },
+            votesend: { fn: me.loadStores, scope: me },
             geolocationready: { fn: me.geolocationReady, scope: me }
         });
 
         this.initStores();
 
         //register store loaded events - possibility for race condition failures - needs check
-        this.getCampaignsStore().on('refresh',me.storeSuccessfullyLoaded , me);
+        this.getCampaignsStore().on('load',me.storeSuccessfullyLoaded , me);
         this.getBugsStore().on('load', me.storeSuccessfullyLoaded, me);
         this.getValidationsStore().on('load', me.storeSuccessfullyLoaded, me);
 
@@ -124,7 +129,6 @@ Ext.define('Kort.controller.MarkerMap', {
         }
 
         //load stores -
-        this.setCampaignsStore(Ext.getStore('Campaigns'));
         me.getCampaignsStore().load();
         me.getBugsStore().load();
         me.getValidationsStore().load(function(records, operation, success) {
@@ -149,8 +153,14 @@ Ext.define('Kort.controller.MarkerMap', {
 
     // @private
     onMarkerMapDetailViewPush: function(cmp, view, opts) {
-        this.getMarkermapCenterButton().hide();
-        this.getMarkermapRefreshButton().hide();
+        var me = this;
+        me.getMarkermapCenterButton().hide();
+        me.getMarkermapRefreshButton().hide();
+
+        // reenable detail push after certain time
+        Ext.defer(function() {
+            me.setDetailPushDisabled(false);
+        }, 2000);
     },
 
     // @private
@@ -400,7 +410,7 @@ Ext.define('Kort.controller.MarkerMap', {
      * @private
      */
     onValidationMarkerClicked: function() {
-        console.log("on validation marker clicked");
+        this.showVote();
     },
 
     /**
@@ -408,21 +418,18 @@ Ext.define('Kort.controller.MarkerMap', {
      * Displays vote detail panel
      * @param {Kort.model.Vote} vote Vote instance
      */
-    showVote: function(vote) {
-        var me = this,
-            validationNavigationView = me.getValidationNavigationView(),
-            voteContainer;
+    showVote: function() {
 
-        if(!me.getDetailPushDisabled()) {
+        if(!this.getDetailPushDisabled()) {
             // disable fast tapping
-            me.setDetailPushDisabled(true);
+            this.setDetailPushDisabled(true);
 
-            voteContainer = Ext.create('Kort.view.validation.vote.Container', {
-                record: vote,
-                title: vote.get('title')
+            var voteContainer = Ext.create('Kort.view.markermap.validation.Container', {
+                record: this.getActiveRecord(),
+                title: this.getActiveRecord().get('title')
             });
-            validationNavigationView.push(voteContainer);
-            validationNavigationView.fireEvent('detailpush', validationNavigationView);
+            this.getMarkermapNavigationView().push(voteContainer);
+            this.getMarkermapNavigationView().fireEvent('detailpush', this.getMarkermapNavigationView());
         }
     }
 });

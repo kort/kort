@@ -3,7 +3,7 @@
  */
 Ext.define('Kort.view.validation.vote.Container', {
 	extend: 'Ext.Container',
-	alias: 'widget.votecontainer',
+	alias: 'widget.votecontainer-old',
     requires: [
         'Kort.view.LeafletMap',
         'Ext.Button'

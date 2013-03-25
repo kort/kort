@@ -1,7 +1,7 @@
 /**
  * ActionSheet with answers for vote view
  */
-Ext.define('Kort.view.validation.vote.AnswerActionSheet', {
+Ext.define('Kort.view.markermap.validation.AnswerActionSheet', {
     extend: 'Ext.ActionSheet',
     xtype: 'voteansweractionsheet',
     requires: [
