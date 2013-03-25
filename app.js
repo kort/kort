@@ -30,7 +30,6 @@ Ext.application({
 
     controllers: [
         'About',
-        'Bugmap',
         'Firststeps',
         'Fix',
         'GeolocationError',
@@ -40,7 +39,6 @@ Ext.application({
         'MarkerMap',
         'OsmMap',
         'Profile',
-        'Validation',
         'Vote'
     ],
 
