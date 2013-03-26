@@ -4,14 +4,20 @@ Ext.define('Kort.view.markermap.bug.CampaignMessageBox', {
     config: {
         cls: 'campaignMessageBox',
         zIndex: Kort.util.Config.getZIndex().overlayLeafletMap + 1,
-        showAnimation: false,
-        hideAnimation: false
+        showAnimation: {animation:{type:'flip'}},
+        hideAnimation: {animation:{type:'flip'}}
+
     },
     tpl: new Ext.XTemplate(
+
         '<div align="center"><b>{title}</b></div>',
         ' <br>',
-        ' <div align="center">{startdate} bis {enddate}</div>',
-        '<div align="center">Hol dir zusätzliche {extra_coins} Koins!</div>'
+        ' <div align="center">',
+        '{[this.getMessage("markermap.bug.campaignmessagebox.date", {startdate: values.startdate, enddate: values.enddate})]}',
+        '</div>',
+        '<div align="center">',
+        '{[this.getMessage("markermap.bug.campaignmessagebox.earn", {extra_coins: values.extra_coins})]}',
+        '</div>'
     ),
 
     statics: {
@@ -25,23 +31,20 @@ Ext.define('Kort.view.markermap.bug.CampaignMessageBox', {
      * OVERRIDEN SENCHA TOUCH FUNCTION
      * CHANGE: use own yes/no labels
      */
-    confirm: function(record, fn, scope) {
+    confirm: function (record, fn, scope) {
         return this.show({
-            title       : null,
-            message     : this.tpl.apply(record.data) || null,
+            title: null,
+            message: this.tpl.apply(record.data) || null,
             // use own yes/no labels
-            buttons     : Kort.view.markermap.bug.CampaignMessageBox.YES,
+            buttons: Kort.view.markermap.bug.CampaignMessageBox.YES,
             promptConfig: false,
-            scope       : scope,
-            fn: function() {
+            scope: scope,
+            fn: function () {
                 if (fn) {
                     fn.apply(scope, arguments);
                 }
             }
         });
     }
-
-
-
 
 });

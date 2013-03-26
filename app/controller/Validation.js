@@ -1,6 +1,6 @@
 /**
- * Controller for validation tab
- */
+* Controller for validation tab
+*/
 Ext.define('Kort.controller.Validation', {
     extend: 'Kort.controller.MarkerMap',
     requires: [
@@ -51,19 +51,19 @@ Ext.define('Kort.controller.Validation', {
         validationsStore: null,
         activeRecord: null
     },
-    
+
     // @private
     init: function() {
         var me = this;
         me.callParent(arguments);
 
         me.setValidationsStore(Ext.getStore('Validations'));
-        
+
         me.getApplication().on({
             votesend: { fn: me.loadStore, scope: me },
             geolocationready: { fn: me.geolocationReady, scope: me }
         });
-        
+
         me.getValidationsStore().on('load', me.refreshView, me);
     },
 
@@ -82,7 +82,7 @@ Ext.define('Kort.controller.Validation', {
         this.getValidationContainer().add(validationmap);
         this.loadStore(true);
     },
-    
+
     /**
      * @private
      * Loads validations store
@@ -137,7 +137,7 @@ Ext.define('Kort.controller.Validation', {
             this.showVote(record);
         }
     },
-    
+
     /**
      * @private
      * Displays vote panel for given validation
@@ -159,7 +159,7 @@ Ext.define('Kort.controller.Validation', {
         if(!me.getDetailPushDisabled()) {
             // disable fast tapping
             me.setDetailPushDisabled(true);
-            
+
             voteContainer = Ext.create('Kort.view.validation.vote.Container', {
                 record: vote,
                 title: vote.get('title')
@@ -183,7 +183,7 @@ Ext.define('Kort.controller.Validation', {
             zIndex: Kort.util.Config.getZIndex().overlayLeafletMap
         });
     },
-    
+
     /**
      * @private
      * Hides load mask
@@ -214,7 +214,7 @@ Ext.define('Kort.controller.Validation', {
             me.setDetailPushDisabled(false);
         }, 2000);
     },
-    
+
     // @private
     onValidationNavigationViewBack: function(cmp, view, opts) {
         this.getValidationRefreshButton().show();
@@ -223,12 +223,12 @@ Ext.define('Kort.controller.Validation', {
             this.getValidationMapCenterButton().show();
         }
     },
-    
+
     // @private
     onValidationMapCenterButtonTap: function() {
         this.centerMapToCurrentPosition();
     },
-    
+
     // @private
     onValidationSegmentedbuttonToggle: function(cmp, button, isPressed) {
         if(button.getItemId() === 'map' && isPressed) {

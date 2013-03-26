@@ -208,29 +208,8 @@ Ext.define('Kort.controller.Bugmap', {
 
             this.getBugmapView().add(campaignOverlay);
 
-
             var campaigns = this.getCampaignStore ();
              var campaign = campaigns.getById(record.get("campaign_id"));
-
-            this.setCampaignMessageBox(Ext.create('Ext.MessageBox', {
-
-                cls: "emptyMessageBox",
-                style: 'background-color: transparent;',
-                record: campaign,
-                tpl: new Ext.XTemplate(
-                    '<div>{id}</div>', ' <br>', ' <br>',
-                    '<div align="center"><b>{title}</b></div>',
-                    ' <br>',
-                    ' <div align="center">{startdate} bis {enddate}</div>',
-                    '<div align="center">Hol dir zusätzliche {extra_coins} Koins!</div>',
-                    ' <br>', ' <br>',
-                    ' <div align="center"><a href="">Close</a></div>'
-
-                ),
-                zIndex: Kort.util.Config.getZIndex().overlayLeafletMap + 1
-            }));
-
-
         }
     },
 

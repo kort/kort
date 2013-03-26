@@ -64,7 +64,9 @@ Ext.define('Kort.controller.MarkerMap', {
      * Initilizes the controller
      */
     init: function() {
+
         var me = this;
+
         me.callParent(arguments);
 
         me.getApplication().on({
