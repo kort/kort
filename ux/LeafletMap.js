@@ -304,7 +304,7 @@ Ext.define('Ext.ux.LeafletMap', {
 
             me.setTileLayer(new ll.TileLayer(me.getTileLayerUrl(), me.getTileLayerOptions()));
             tileLayer = me.getTileLayer();
-            mapOptions.layers = [tileLayer];
+            mapOptions.layers = [tileLayer].concat(this.getAdditionalLayers());
 
             me.setMap(new ll.Map(element.dom, mapOptions));
             map = me.getMap();

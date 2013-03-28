@@ -15,7 +15,8 @@ Ext.define('Kort.controller.MarkerMap', {
 
     config: {
         map: null,
-        markerLayerGroup: [],
+        bugMarkerLayerGroup: [],
+        validationMarkerLayerGroup: [],
         views: [
 
         ],
@@ -83,7 +84,8 @@ Ext.define('Kort.controller.MarkerMap', {
         this.getValidationsStore().on('load', me.storeSuccessfullyLoaded, me);
 
         // create layer group for bug markers
-        me.setMarkerLayerGroup(L.layerGroup());
+        me.setBugMarkerLayerGroup(L.layerGroup());
+        me.setValidationMarkerLayerGroup(L.layerGroup());
 
         //create campaignOverlay background div
         this.setCampaignOverlayBackground(Ext.create('Kort.view.markermap.bug.CampaignOverlay'));
@@ -98,9 +100,9 @@ Ext.define('Kort.controller.MarkerMap', {
         var leafletmapComponent = Ext.create('Kort.view.LeafletMap', {
             title: Ext.i18n.Bundle.message('markermap.title'),
             useCurrentLocation: geo,
-            id: 'leafletmapcomponent'
+            id: 'leafletmapcomponent',
+            additionalLayers: [this.getBugMarkerLayerGroup(),this.getValidationMarkerLayerGroup()]
         });
-        this.getLeafletmapComponent(leafletmapComponent);
         this.getMarkermapNavigationView().add(leafletmapComponent);
         this.loadStores();
     },
@@ -249,8 +251,12 @@ Ext.define('Kort.controller.MarkerMap', {
     onMapRender: function(cmp, map, tileLayer) {
         var me = this;
         me.setMap(map);
-
-        me.getMarkerLayerGroup().addTo(map);
+        var baseMap = {};
+        var additionalMap = {
+            "Bug": this.getBugMarkerLayerGroup(),
+            "Validation": this.getValidationMarkerLayerGroup()
+        }
+        L.control.layers(baseMap,additionalMap).addTo(map);
     },
     
     /**
@@ -284,7 +290,8 @@ Ext.define('Kort.controller.MarkerMap', {
      * Removes all markers from map
      */
     removeAllMarkers: function() {
-        this.getMarkerLayerGroup().clearLayers();
+        this.getBugMarkerLayerGroup().clearLayers();
+        this.getValidationMarkerLayerGroup().clearLayers();
     },
 
     /**
@@ -306,7 +313,11 @@ Ext.define('Kort.controller.MarkerMap', {
         marker.record = record;
         marker.lastClickTimestamp = 0;
         marker.on('click', me.onMarkerClick,me);
-        me.getMarkerLayerGroup().addLayer(marker);
+        if(source=='bug') {
+            me.getBugMarkerLayerGroup().addLayer(marker);
+        }else if(source=='validation') {
+            me.getValidationMarkerLayerGroup().addLayer(marker);
+        }
     },
 
     /**
@@ -366,6 +377,7 @@ Ext.define('Kort.controller.MarkerMap', {
     },
 
     displayCampaignMessageBox: function () {
+        Kort.view.markermap.bug.BugMessageBox.preventOpening=true;
         Ext.create('Kort.view.markermap.bug.CampaignMessageBox').confirm(this.getCampaignsStore().getById(this.getActiveRecord().get('campaign_id')), Ext.emptyFn, this);
     },
 

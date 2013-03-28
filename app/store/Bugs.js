@@ -6,7 +6,6 @@ Ext.define('Kort.store.Bugs', {
 	config: {
         autoLoad: false,
 		model: 'Kort.model.Bug',
-
 		proxy: {
 			type: 'rest',
             url: './resources/stores/bugs.json',

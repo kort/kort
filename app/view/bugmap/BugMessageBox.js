@@ -17,7 +17,6 @@ Ext.define('Kort.view.bugmap.BugMessageBox', {
         ]
     },
 
-
     /**
      * @inheritdoc
 	 * OVERRIDEN SENCHA TOUCH FUNCTION
@@ -26,9 +25,7 @@ Ext.define('Kort.view.bugmap.BugMessageBox', {
     confirm: function(title, message, fn, scope) {
         //register campaignInfoButton callback
         this.element.on({
-            tap: function(e, dom) {
-                scope.displayCampaignMessageBox();
-            },
+            tap: {fn: function(e, dom) {scope.displayCampaignMessageBox();}, single:true,delay:100}, //$$$ needs exprectation
             delegate: '#campaignInfoButton',
             scope: this
         });

@@ -68,11 +68,14 @@ Ext.define('Kort.view.markermap.bug.BugMessageBox', {
         }
     ),
 
+
+
     statics: {
         YESNO: [
             { text: Ext.i18n.Bundle.message('markermap.bug.bugmessagebox.yes'), itemId: 'yes', ui: 'action'},
             { text: Ext.i18n.Bundle.message('markermap.bug.bugmessagebox.no'), itemId: 'no'}
-        ]
+        ],
+        preventOpening: false
     },
 
 
@@ -85,7 +88,12 @@ Ext.define('Kort.view.markermap.bug.BugMessageBox', {
         //register campaignInfoButton callback
         this.element.on({
             tap: function(e, dom) {
-                scope.displayCampaignMessageBox();
+                if(!Kort.view.markermap.bug.BugMessageBox.preventOpening) {
+                    scope.displayCampaignMessageBox();
+                }
+                Ext.defer(function() {
+                    Kort.view.markermap.bug.BugMessageBox.preventOpening=false;
+                }, 1000);
             },
             delegate: '#campaignInfoButton',
             scope: this
