@@ -623,6 +623,12 @@ $label-background-color: #46578D;
 /* -----------------------
    Message Boxes
    ----------------------- */
+.campaignMessageBox {
+  div{
+    color: black;
+    text-shadow: none;
+  }
+}
 .bugMessageBox ,
 .notificationMessageBox {
     .x-msgbox-text {
@@ -634,6 +640,7 @@ $label-background-color: #46578D;
             .text {
                 .content {
                     font-size: $default-font-size;
+
                     
                     h1 {
                         font-weight: bold;
