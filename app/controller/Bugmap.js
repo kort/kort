@@ -51,7 +51,7 @@ Ext.define('Kort.controller.Bugmap', {
 
     /**
      * @private
-     * Initilizes the controller
+     * Initializes the controller
      */
     init: function () {
         var me = this;
@@ -61,54 +61,49 @@ Ext.define('Kort.controller.Bugmap', {
         me.setBugsStore(Ext.getStore('Bugs'));
         me.setCampaignStore(Ext.getStore('Campaigns'));
 
-        me.setMessageBoxTemplate(
-
-            new Ext.XTemplate(
-
-                '<div class="messagebox-content">',
-                '<div class="textpic">',
-                '<div class="image">',
-                '<img class="koin-image" src="./resources/images/koins/koin_no_value.png" />',
-                '</div>',
-                '<div class="content">',
-
-                '<tpl if="this.isCampaign()">',
-                '<p>',
-
-                '{[this.getMessage("bugmap.messagebox.koins.earncamp", {fix_koin_count: values.fix_koin_count, ' +
-                    'extra_coins: values.campaign_extra_coins})]}',
-                '<img class="koin-image" src="./resources/images/i.png" id="campaignInfoButton"/>',
-                '</p>',
-                ' <tpl else>',
-                '<p>',
-                '{[this.getMessage("bugmap.messagebox.koins.earn", {fix_koin_count: values.fix_koin_count})]}',
-                '</p>',
-                '</tpl>',
-                '</div>',
-                '</div>',
-                '<div class="textpic">',
-                '<div class="image">',
-                '<img class="bugtype-image" src="./resources/images/marker_icons/{type}@2x.png" />',
-                '</div>',
-                '<div class="content">',
-                '<p>{description}</p>',
-                '</div>',
-                '</div>',
-                '</div>',
-
-                /*
-                 '<div class="image">',
-                 '<img class="bugtype-image" src="./resources/images/circle.png" />',
-                 '</div>',
-                 */
-                {
-                    //member functions:
-                    isCampaign: function () {
-                        return true;
-                    }
-                }
-            )
-        );
+//        me.setMessageBoxTemplate(
+//
+//            new Ext.XTemplate(
+//
+//                '<div class="messagebox-content">',
+//                '<div class="textpic">',
+//                '<div class="image">',
+//                '<img class="koin-image" src="./resources/images/koins/koin_no_value.png" />',
+//                '</div>',
+//                '<div class="content">',
+//
+//                '<tpl if="this.isCampaign()">',
+//                '<p>',
+//
+//                '{[this.getMessage("bugmap.messagebox.koins.earncamp", {fix_koin_count: values.fix_koin_count, ' +
+//                    'extra_coins: values.campaign_extra_coins})]}',
+//                '<img class="koin-image" src="./resources/images/i.png" id="campaignInfoButton"/>',
+//                '</p>',
+//                ' <tpl else>',
+//                '<p>',
+//                '{[this.getMessage("bugmap.messagebox.koins.earn", {fix_koin_count: values.fix_koin_count})]}',
+//                '</p>',
+//                '</tpl>',
+//                '</div>',
+//                '</div>',
+//                '<div class="textpic">',
+//                '<div class="image">',
+//                '<img class="bugtype-image" src="./resources/images/marker_icons/{type}@2x.png" />',
+//                '</div>',
+//                '<div class="content">',
+//                '<p>{description}</p>',
+//                '</div>',
+//                '</div>',
+//                '</div>',
+//
+//                {
+//                    //member functions:
+//                    isCampaign: function () {
+//                        return true;
+//                    }
+//                }
+//            )
+//        );
 
 
         // adding listener for fixsend event
