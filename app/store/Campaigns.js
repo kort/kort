@@ -11,8 +11,8 @@ Ext.define('My.CampaignReader', {
         var result = [];
 
         Ext.each(data.return, function(entry) {
-            entry.startdate=Ext.Date.format(new Date(entry.startdate*1000), 'd. M. Y');
-            entry.enddate=Ext.Date.format(new Date(entry.enddate*1000), 'd. M. Y');
+            entry.startdate=Ext.Date.format(new Date(entry.startdate*1000), 'd. m. Y');
+            entry.enddate=Ext.Date.format(new Date(entry.enddate*1000), 'd. m. Y');
                 result.push({
                     id: entry.id, startdate: entry.startdate, enddate:entry.enddate, extra_coins:entry.extra_coins,title:entry.title
                 });
