@@ -34,7 +34,7 @@ geolocationerror.button.reload=Reload application
 geolocationerror.loadmask.message=Reloading app...
 
 #Markermap
-markermap.title=$$$Missons nearby
+markermap.title=Missons nearby
 markermap.loadmask.message=Loading...
 markermap.bug.campaignmessagebox.close=Close Window
 markermap.bug.campaignmessagebox.earn=Earn additional {extra_coins} Koins

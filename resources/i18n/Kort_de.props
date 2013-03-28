@@ -34,7 +34,7 @@ geolocationerror.button.reload=Applikation neu laden
 geolocationerror.loadmask.message=Lade App neu...
 
 #Markermap
-markermap.title=$$$Aufträge in deiner Nähe
+markermap.title=Aufträge in deiner Nähe
 markermap.loadmask.message=Lade...
 markermap.bug.campaignmessagebox.close=Fenster Schliessen
 markermap.bug.campaignmessagebox.earn=Hol dir zusätzliche {extra_coins} Koins
