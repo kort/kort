@@ -16,6 +16,7 @@ login.kort.introduction.3=Gelöste Aufträge können dann wiederum von anderen S
 login.kort.introduction.4=Logge dich jetzt ein, um damit zu beginnen\!
 login.button.google=Login mit Google
 login.button.osm=Login mit OpenStreetMap
+login.button.facebook=Login mit Facebook
 login.loadmask.message=Login...
 
 # Firststeps
@@ -36,7 +37,7 @@ geolocationerror.loadmask.message=Lade App neu...
 #Markermap
 markermap.title=Aufträge in deiner Nähe
 markermap.loadmask.message=Lade...
-markermap.bug.campaignmessagebox.close=Fenster Schliessen
+markermap.bug.campaignmessagebox.close=Fenster schliessen
 markermap.bug.campaignmessagebox.earn=Hol dir zusätzliche {extra_coins} Koins
 markermap.bug.campaignmessagebox.date={startdate} bis {enddate}
 markermap.bug.bugmessagebox.koins.earn=Verdiene dir {fix_koin_count} Koins

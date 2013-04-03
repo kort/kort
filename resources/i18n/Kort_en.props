@@ -16,6 +16,7 @@ login.kort.introduction.3=Each solved mission is later checked by other players 
 login.kort.introduction.4=Login now to begin your mission!
 login.button.google=Login with Google
 login.button.osm=Login with OpenStreetMap
+login.button.facebook=Login with Facebook
 login.loadmask.message=Login...
 
 # Firststeps
