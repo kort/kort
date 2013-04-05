@@ -143,7 +143,7 @@ Ext.define('Kort.controller.MarkerMap', {
     /**
      * @private
      * When MarkerMap starts up, there are different stores to load. If all stores have been
-     * loaded successfully, the map shoud perform a reload. Every store has a registered load-Event
+     * loaded successfully, the map should perform a reload. Every store has a registered load-Event
      * and whenever a store has loaded, this function is called and the loaded stores counter gets incremented.
      */
 
@@ -188,15 +188,15 @@ Ext.define('Kort.controller.MarkerMap', {
     retrieveMissionStateFromRecord: function(record,source) {
         if(source=='bug') {
             if (record.get('campaign_id')) {
-                return 'campaign';
+                return Kort.util.Config.getMissionState().bugCampaign;
             }else {
-                return 'normal';
+                return Kort.util.Config.getMissionState().bug;
             }
         }else if(source=='validation') {
             if (record.get('campaign_id')) {
-                return 'checkcampaign';
+                return Kort.util.Config.getMissionState().validationCampaign;
             }else {
-                return 'check';
+                return Kort.util.Config.getMissionState().validation;
             }
         }
     },
@@ -371,7 +371,7 @@ Ext.define('Kort.controller.MarkerMap', {
     onBugMarkerClicked: function() {
         //show BugMessageBox
         Ext.create('Kort.view.markermap.bug.BugMessageBox').confirm(this.getActiveRecord(), this.returnFromBugMessageBox, this);
-        if(this.retrieveMissionStateFromRecord(this.getActiveRecord(),'bug')=='campaign') {
+        if(this.retrieveMissionStateFromRecord(this.getActiveRecord(),'bug')==Kort.util.Config.getMissionState().bugCampaign) {
             this.getLeafletmapComponent().add(this.getCampaignOverlayBackground());
         }
     },
@@ -390,7 +390,7 @@ Ext.define('Kort.controller.MarkerMap', {
      *
      */
     returnFromBugMessageBox: function(buttonId, value, opt) {
-        if(this.retrieveMissionStateFromRecord(this.getActiveRecord(),'bug')=='campaign') {
+        if(this.retrieveMissionStateFromRecord(this.getActiveRecord(),'bug')==Kort.util.Config.getMissionState().bugCampaign) {
             this.getLeafletmapComponent().remove(this.getCampaignOverlayBackground(),false);
         }
         if (buttonId === 'yes') {

@@ -280,6 +280,16 @@ Ext.define('Kort.util.Config', {
                     return './server/webservices/osm/' + objectType + '/' + objectId;
                 }
             }
+        },
+
+        /**
+         * @cfg {Object} enumeration of all possible mission states
+         */
+        missionState: {
+            bug: 'bugState',
+            bugCampaign: 'bugCampaignState',
+            validation: 'validationSate',
+            validationCampaign: 'validationCampaignState'
         }
 	},
 
@@ -363,19 +373,21 @@ Ext.define('Kort.util.Config', {
      * on type, state and retina.
      */
     constructMissionIconURL: function(type, state, retina) {
-        if(typeof(state)==='undefined') state='normal';
+        if(typeof(state)==='undefined') state=Kort.util.Config.getMissionState().bug;
         if(typeof(retina)==='undefined') retina=false;
 
         var pathToResourceFolder = './resources/images/marker_icons/';
 
         var stateToPathSuffix = new Array();
-        stateToPathSuffix['normal'] = '';
-        stateToPathSuffix['campaign'] = '_campaign';
-        stateToPathSuffix['check'] = '_check';
-        stateToPathSuffix['checkcampaign'] = '_checkcampaign';
+        stateToPathSuffix[Kort.util.Config.getMissionState().bug] = '';
+        stateToPathSuffix[Kort.util.Config.getMissionState().bugCampaign] = '_campaign';
+        stateToPathSuffix[Kort.util.Config.getMissionState().validation] = '_check';
+        stateToPathSuffix[Kort.util.Config.getMissionState().validationCampaign] = '_checkcampaign';
 
         var retinaPathSuffix = retina ? '@2x' : '';
 
         return pathToResourceFolder + type  + stateToPathSuffix[state] + retinaPathSuffix + '.png';
     }
+
+
 });

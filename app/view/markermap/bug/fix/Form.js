@@ -68,9 +68,9 @@ Ext.define('Kort.view.markermap.bug.fix.Form', {
                         }
                     },
                     constructBugtypeIcon: function(type,campaign_id) {
-                        var state = 'normal';
+                        var state = Kort.util.Config.getMissionState().bug;
                         if(campaign_id) {
-                            state = 'campaign'
+                            state = Kort.util.Config.getMissionState().bugCampaign;
                         }
                         return Kort.util.Config.constructMissionIconURL(type,state,true);
                     }
