@@ -44,6 +44,8 @@ markermap.bug.bugmessagebox.koins.earn=Earn {fix_koin_count} Koins
 markermap.bug.bugmessagebox.koins.earncamp=Earn {fix_koin_count} + {extra_coins} Koins
 markermap.bug.bugmessagebox.yes=Answer
 markermap.bug.bugmessagebox.no=Don't know
+markermap.bug.layername=Bugs
+markermap.validation.layername=Validations
 
 
 # Bugmap
@@ -53,6 +55,7 @@ bugmap.messagebox.koins.earn=Earn {fix_koin_count} Koins
 bugmap.messagebox.koins.earncamp=Earn {fix_koin_count} + {extra_coins} Koins
 bugmap.messagebox.yes=Answer
 bugmap.messagebox.no=Don't know
+
 
 ## Fix
 fix.form.title=Mission

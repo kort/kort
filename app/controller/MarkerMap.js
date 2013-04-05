@@ -184,26 +184,6 @@ Ext.define('Kort.controller.MarkerMap', {
         this.loadStores(true);
     },
 
-    //$$$ CSC on April 5: Obsolete because of model state attribute
-    /*
-    retrieveMissionStateFromRecord: function(record,source) {
-        console.log(record.get('state'));
-        if(source=='bug') {
-            if (record.get('campaign_id')) {
-                return Kort.util.Config.getMissionState().bugCampaign;
-            }else {
-                return Kort.util.Config.getMissionState().bug;
-            }
-        }else if(source=='validation') {
-            if (record.get('campaign_id')) {
-                return Kort.util.Config.getMissionState().validationCampaign;
-            }else {
-                return Kort.util.Config.getMissionState().validation;
-            }
-        }
-    },
-    */
-
     /*********************************************************
      * BEGIN
      * Leaflet-Map related functions
@@ -256,13 +236,15 @@ Ext.define('Kort.controller.MarkerMap', {
         me.setMap(map);
         var baseMap = {};
         var additionalMap;
+        var validationLayerTitle = Ext.i18n.Bundle.message('validation.title');
         additionalMap = {
-            Bug: this.getBugMarkerLayerGroup(),
-            Validation: this.getValidationMarkerLayerGroup(),
-            //TODO i18n
-//          (message: Ext.i18n.Bundle.message('validation.title')): this.getBugMarkerLayerGroup()
+            '<span id="bugplaceholder">placeholder</span>': this.getBugMarkerLayerGroup(),
+            '<span id="validationplaceholder">placeholder</span>': this.getValidationMarkerLayerGroup()
         };
         L.control.layers(baseMap,additionalMap).addTo(map);
+        //hack to provide i18n to default leaflet control.layers
+        document.getElementById('bugplaceholder').innerHTML=Ext.i18n.Bundle.message('markermap.bug.layername');
+        document.getElementById('validationplaceholder').innerHTML=Ext.i18n.Bundle.message('markermap.validation.layername');
     },
     
     /**

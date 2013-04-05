@@ -44,6 +44,8 @@ markermap.bug.bugmessagebox.koins.earn=Verdiene dir {fix_koin_count} Koins
 markermap.bug.bugmessagebox.koins.earncamp=Verdiene dir {fix_koin_count} + {extra_coins} Koins
 markermap.bug.bugmessagebox.yes=Beantworten
 markermap.bug.bugmessagebox.no=Weiss nicht
+markermap.bug.layername=Aufträge
+markermap.validation.layername=Überprüfungen
 
 # Bugmap
 bugmap.title=Aufträge in deiner Nähe
