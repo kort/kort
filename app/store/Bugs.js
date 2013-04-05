@@ -21,8 +21,6 @@ Ext.define('Kort.store.Bugs', {
                 rootProperty: 'return'
             }
 		}
-
-
 	}
 
 });

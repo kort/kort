@@ -184,8 +184,10 @@ Ext.define('Kort.controller.MarkerMap', {
         this.loadStores(true);
     },
 
-    //$$$ CSC on March 24: should be implemented with enum
+    //$$$ CSC on April 5: Obsolete because of model state attribute
+    /*
     retrieveMissionStateFromRecord: function(record,source) {
+        console.log(record.get('state'));
         if(source=='bug') {
             if (record.get('campaign_id')) {
                 return Kort.util.Config.getMissionState().bugCampaign;
@@ -200,6 +202,7 @@ Ext.define('Kort.controller.MarkerMap', {
             }
         }
     },
+    */
 
     /*********************************************************
      * BEGIN
@@ -304,7 +307,7 @@ Ext.define('Kort.controller.MarkerMap', {
             icon,
             marker;
 
-        icon = Kort.util.Config.getMarkerIcon(record.get('type'),me.retrieveMissionStateFromRecord(record,source));
+        icon = Kort.util.Config.getMarkerIcon(record.get('type'),record.get('state'));
         marker = L.marker([record.get('latitude'), record.get('longitude')], {
             icon: icon
         });
@@ -371,7 +374,7 @@ Ext.define('Kort.controller.MarkerMap', {
     onBugMarkerClicked: function() {
         //show BugMessageBox
         Ext.create('Kort.view.markermap.bug.BugMessageBox').confirm(this.getActiveRecord(), this.returnFromBugMessageBox, this);
-        if(this.retrieveMissionStateFromRecord(this.getActiveRecord(),'bug')==Kort.util.Config.getMissionState().bugCampaign) {
+        if(this.getActiveRecord().get('state')==Kort.util.Config.getMissionState().bugCampaign) {
             this.getLeafletmapComponent().add(this.getCampaignOverlayBackground());
         }
     },
@@ -390,7 +393,7 @@ Ext.define('Kort.controller.MarkerMap', {
      *
      */
     returnFromBugMessageBox: function(buttonId, value, opt) {
-        if(this.retrieveMissionStateFromRecord(this.getActiveRecord(),'bug')==Kort.util.Config.getMissionState().bugCampaign) {
+        if(this.getActiveRecord().get('state')==Kort.util.Config.getMissionState().bugCampaign) {
             this.getLeafletmapComponent().remove(this.getCampaignOverlayBackground(),false);
         }
         if (buttonId === 'yes') {

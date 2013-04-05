@@ -1,6 +1,10 @@
 /**
  * Model for a bug
  */
+function determineMissionState(v, record) {
+    return record.data.campaign_id ? Kort.util.Config.getMissionState().bugCampaign : Kort.util.Config.getMissionState().bug;
+}
+
 Ext.define('Kort.model.Bug', {
     extend: 'Ext.data.Model',
     config: {
@@ -20,7 +24,8 @@ Ext.define('Kort.model.Bug', {
             { name: 'answer_placeholder', type: 'string' },
             { name: 'fix_koin_count', type: 'int' },
             { name: 'campaign_id', type: 'int' },
-            { name: 'campaign_extra_coins', type: 'int' }
+            { name: 'campaign_extra_coins', type: 'int' },
+            { name: 'state', convert:determineMissionState}
         ]
     }
 });

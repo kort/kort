@@ -1,6 +1,11 @@
 /**
  * Model for a validation
  */
+
+function determineMissionState(v, record) {
+    return record.data.campaign_id ? Kort.util.Config.getMissionState().validationCampaign : Kort.util.Config.getMissionState().validation;
+}
+
 Ext.define('Kort.model.Validation', {
     extend: 'Ext.data.Model',
     config: {
@@ -23,7 +28,8 @@ Ext.define('Kort.model.Validation', {
             { name: 'latitude', type: 'string' },
             { name: 'longitude', type: 'string' },
             { name: 'distance', type: 'int' },
-            { name: 'formatted_distance', type: 'string' }
+            { name: 'formatted_distance', type: 'string' },
+            { name: 'state', convert:determineMissionState}
         ]
     }
 });
