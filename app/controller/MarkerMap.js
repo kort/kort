@@ -255,10 +255,13 @@ Ext.define('Kort.controller.MarkerMap', {
         var me = this;
         me.setMap(map);
         var baseMap = {};
-        var additionalMap = {
-            "Bug": this.getBugMarkerLayerGroup(),
-            "Validation": this.getValidationMarkerLayerGroup()
-        }
+        var additionalMap;
+        additionalMap = {
+            Bug: this.getBugMarkerLayerGroup(),
+            Validation: this.getValidationMarkerLayerGroup(),
+            //TODO i18n
+//          (message: Ext.i18n.Bundle.message('validation.title')): this.getBugMarkerLayerGroup()
+        };
         L.control.layers(baseMap,additionalMap).addTo(map);
     },
     

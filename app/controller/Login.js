@@ -23,6 +23,9 @@ Ext.define('Kort.controller.Login', {
             },
             loginButtonOsm: {
                 tap: 'onLoginButtonOsmTap'
+            },
+            loginButtonFacebook: {
+                tap: 'onLoginFacebookTap'
             }
         }
     },
@@ -39,6 +42,13 @@ Ext.define('Kort.controller.Login', {
         this.showLoadMask();
         // redirect to osm login page
         document.location.href = Kort.util.Config.getOAuth().osm.url;
+    },
+
+    // @private
+    onLoginFacebookTap: function() {
+        this.showLoadMask();
+        //redirect to facebook login page
+        //TODO
     },
 
     // @private
