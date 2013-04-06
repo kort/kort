@@ -50,6 +50,9 @@
             "path": "lib/Leaflet-0.5.0/dist/leaflet-osm.js"
         },
         {
+            "path": "lib/leafletplugins/i18nLayer.js"
+        },
+        {
             "path": "lib/kort-libs/UrlLib.js"
         },
         {

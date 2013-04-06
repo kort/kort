@@ -10,7 +10,6 @@ Ext.define('Kort.controller.MarkerMap', {
         'Kort.view.markermap.bug.CampaignOverlay',
         'Kort.view.markermap.bug.fix.TabPanel',
         'Kort.view.markermap.validation.Container'
-
     ],
 
     config: {
@@ -238,13 +237,10 @@ Ext.define('Kort.controller.MarkerMap', {
         var additionalMap;
         var validationLayerTitle = Ext.i18n.Bundle.message('validation.title');
         additionalMap = {
-            '<span id="bugplaceholder">placeholder</span>': this.getBugMarkerLayerGroup(),
-            '<span id="validationplaceholder">placeholder</span>': this.getValidationMarkerLayerGroup()
+            'markermap.bug.layername': this.getBugMarkerLayerGroup(),
+            'markermap.validation.layername': this.getValidationMarkerLayerGroup()
         };
-        L.control.layers(baseMap,additionalMap).addTo(map);
-        //hack to provide i18n to default leaflet control.layers
-        document.getElementById('bugplaceholder').innerHTML=Ext.i18n.Bundle.message('markermap.bug.layername');
-        document.getElementById('validationplaceholder').innerHTML=Ext.i18n.Bundle.message('markermap.validation.layername');
+        L.control.i18nLayers(baseMap,additionalMap).addTo(map);
     },
     
     /**
