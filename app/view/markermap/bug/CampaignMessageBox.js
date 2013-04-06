@@ -9,14 +9,15 @@ Ext.define('Kort.view.markermap.bug.CampaignMessageBox', {
 
     },
     tpl: new Ext.XTemplate(
-
-        '<div align="center"><b>{title}</b></div>',
-        ' <br>',
-        ' <div align="center">',
+        '<div id="campaignMessageBox-wrapper">',
+        '<div class="titleText">{title}</div>',
+        '<div class="dateText">',
         '{[this.getMessage("markermap.bug.campaignmessagebox.date", {startdate: values.startdate, enddate: values.enddate})]}',
         '</div>',
-        '<div align="center">',
+        '<div class="koinsText">',
         '{[this.getMessage("markermap.bug.campaignmessagebox.earn", {extra_coins: values.extra_coins})]}',
+        '</div>',
+
         '</div>'
     ),
 

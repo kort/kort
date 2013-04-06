@@ -624,11 +624,42 @@ $label-background-color: #46578D;
    Message Boxes
    ----------------------- */
 .campaignMessageBox {
-  div{
-    color: black;
-    text-shadow: none;
+  //background: url('../images/circle.png') no-repeat center center fixed;
+  background-image: url('../images/promotion/promotionCircle.png');
+  background-position:center top;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  overflow: auto;
+  width:320px;
+  height:301px;
+  box-shadow:none!important;
+  border:none!important;
+
+  #campaignMessageBox-wrapper {
+    //color: black;
+    //text-shadow: none;
+    //text-align: left!important;
+    max-width: 270px;
+    max-height:200px;
+    padding: 35px 0px 60px 25px;
+    overflow: hidden;
+  }
+
+
+  .titleText {
+    font-weight: bold;
+    padding: 0px 0px 13px 0px;
+  }
+
+  .dateText {
+    font-style: italic;
+  }
+
+  .koinsText {
+
   }
 }
+
 .bugMessageBox ,
 .notificationMessageBox {
     .x-msgbox-text {
@@ -802,18 +833,7 @@ $label-background-color: #46578D;
   width:320px;
   height:301px;}
 
-.campaignMessageBox {
-  //background: url('../images/circle.png') no-repeat center center fixed;
-  background-image: url('../images/promotion/promotionCircle.png');
-  background-position:center top;
-  background-repeat: no-repeat;
-  background-color: transparent;
-  overflow: auto;
-  width:320px;
-  height:301px;
-  box-shadow:none!important;
-  border:none!important
-}
+
 
 #campaignInfoButton {
   $campaignInfoButton-width: 40px;
@@ -822,7 +842,6 @@ $label-background-color: #46578D;
   height: $campaignInfoButton-height/2;
   position: absolute;
   margin-left:5px;
-
 }
 
 .x-msgbox {
