@@ -25,7 +25,7 @@ Ext.define('Kort.view.markermap.bug.BugMessageBox', {
 
         '{[this.getMessage("markermap.bug.bugmessagebox.koins.earncamp", {fix_koin_count: values.fix_koin_count, ' +
             'extra_coins: values.campaign_extra_coins})]}',
-        '<img class="koin-image" src="./resources/images/i.png" id="campaignInfoButton"/>',
+        '<img src="./resources/images/promotion/promotionInfoButton@X2.png" id="campaignInfoButton"/>',
         '</p>',
         ' <tpl else>',
         '<p>',

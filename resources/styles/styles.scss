@@ -791,7 +791,7 @@ $label-background-color: #46578D;
 }
 
 .bugmap-campaign-overlay {
-  background-image: url('../images/circle.png');
+  background-image: url('../images/promotion/promotionCircle.png');
   background-position:center top;
   background-repeat: no-repeat;
   position:absolute;
@@ -804,7 +804,7 @@ $label-background-color: #46578D;
 
 .campaignMessageBox {
   //background: url('../images/circle.png') no-repeat center center fixed;
-  background-image: url('../images/circle.png');
+  background-image: url('../images/promotion/promotionCircle.png');
   background-position:center top;
   background-repeat: no-repeat;
   background-color: transparent;
@@ -815,8 +815,18 @@ $label-background-color: #46578D;
   border:none!important
 }
 
+#campaignInfoButton {
+  $campaignInfoButton-width: 40px;
+  $campaignInfoButton-height: 40px;
+  width: $campaignInfoButton-width/2;
+  height: $campaignInfoButton-height/2;
+  position: absolute;
+  margin-left:5px;
+
+}
+
 .x-msgbox {
   min-width: 305px;
   max-width: 305px;
 }
-.emptyMessageBox {background: url('../images/promotionCircle.png');width:320px;height:301px;box-shadow:none!important;border:none!important}
+.emptyMessageBox {background: url('../images/promotion/promotionCircle.png');width:320px;height:301px;box-shadow:none!important;border:none!important}
