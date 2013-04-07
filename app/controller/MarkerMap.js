@@ -408,7 +408,15 @@ Ext.define('Kort.controller.MarkerMap', {
      * @private
      */
     onValidationMarkerClicked: function() {
-        this.showVote();
+        //show ValidationMessageBox
+        Ext.create('Kort.view.markermap.validation.ValidationMessageBox').confirm(this.getActiveRecord(), this.returnFromValidationMessageBox, this);
+    },
+
+    returnFromValidationMessageBox: function(buttonId, value, opt){
+        if (buttonId === 'yes'){
+            this.showVote();
+        }
+        this.setActiveRecord(null);
     },
 
     /**

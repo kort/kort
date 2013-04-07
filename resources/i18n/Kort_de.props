@@ -46,6 +46,8 @@ markermap.bug.bugmessagebox.yes=Beantworten
 markermap.bug.bugmessagebox.no=Weiss nicht
 markermap.bug.layername=Aufträge
 markermap.validation.layername=Überprüfungen
+markermap.validation.validationmessagebox.koins.earn=Verdiene dir {vote_koin_count} Koins
+markermap.validation.validationmessagebox.checkit=Überprüfe die Lösung
 
 # Bugmap
 bugmap.title=Aufträge in deiner Nähe

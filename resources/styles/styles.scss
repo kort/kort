@@ -659,6 +659,34 @@ $label-background-color: #46578D;
 
   }
 }
+.validationMessageBox{
+  .messagebox-content {
+    text-align: left;
+  }
+  .textpic {
+    overflow: hidden;
+    margin: 0.5em 0;
+  .image {
+    float: left;
+    width: 40px;
+    height: 40px;
+
+    .bugtype-image {
+      float: left;;
+      $bugtype-image-width: 64px;
+      $bugtype-image-height: 74px;
+      width: $bugtype-image-width/2;
+      height: $bugtype-image-height/2;
+    }
+    .koin-image {
+      $koin-image-width: 70px;
+      $koin-image-height: 70px;
+      width: $koin-image-width/2;
+      height: $koin-image-height/2;
+    }
+  }}
+}
+
 
 .bugMessageBox ,
 .notificationMessageBox {
