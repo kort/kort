@@ -16,7 +16,7 @@ Ext.define('Kort.view.markermap.validation.ValidationMessageBox', {
         '<img class="koin-image" src="./resources/images/koins/koin_no_value.png" />',
         '</div>',
         '<div class="content">',
-        '<tpl if="this.isCampaign(campaign_id)">',
+        '<tpl if="this.isCampaign(state)">',
         '<p>',
         '{[this.getMessage("markermap.bug.bugmessagebox.koins.earncamp", {fix_koin_count: values.fix_koin_count, ' +
             'extra_coins: values.campaign_extra_coins})]}',
@@ -42,12 +42,8 @@ Ext.define('Kort.view.markermap.validation.ValidationMessageBox', {
 
         {
             //member functions:
-            isCampaign: function(campaign_id) {
-                if(campaign_id) {
-                    return true;
-                }else {
-                    return false;
-                }
+            isCampaign: function(state) {
+                return state==Kort.util.Config.getMissionState().validationCampaign;
             },
             constructBugtypeIcon: function(type,state) {
                 return Kort.util.Config.constructMissionIconURL(type,state,true);

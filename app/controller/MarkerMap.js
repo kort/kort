@@ -9,7 +9,8 @@ Ext.define('Kort.controller.MarkerMap', {
         'Kort.view.markermap.bug.CampaignMessageBox',
         'Kort.view.markermap.bug.CampaignOverlay',
         'Kort.view.markermap.bug.fix.TabPanel',
-        'Kort.view.markermap.validation.Container'
+        'Kort.view.markermap.validation.Container',
+        'Kort.view.markermap.validation.ValidationMessageBox'
     ],
 
     config: {
