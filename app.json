@@ -172,6 +172,7 @@
         "resources/i18n",
         "resources/stores",
         "lib/Leaflet-0.5.0/dist/images",
+        "lib/leafletplugins",
         "lib/Slim-2.1.0/Slim",
         "lib/google-api-php-client/src",
         "lib/oauth-php/library",
