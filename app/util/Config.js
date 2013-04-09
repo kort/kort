@@ -71,6 +71,17 @@ Ext.define('Kort.util.Config', {
             },
             osm: {
                 url: './server/oauth2callback/osm/authorize.php'
+            },
+            facebook: {
+                url: 'https://www.facebook.com/dialog/oauth',
+                scopes: [
+                    'email'
+                ],
+                redirect_path: 'server/oauth2callback/facebook',
+                response_type: 'code',
+                client_id: '290615117735384'
+
+
             }
         },
 

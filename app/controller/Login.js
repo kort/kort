@@ -15,7 +15,9 @@ Ext.define('Kort.controller.Login', {
             loginPanel: '#loginPanel',
             mainTabPanel: '#mainTabPanel',
             loginButtonGoogle: '#loginButtonGoogle',
-            loginButtonOsm: '#loginButtonOsm'
+            loginButtonOsm: '#loginButtonOsm',
+            loginButtonFacebook: '#loginButtonFacebook'
+
         },
         control: {
             loginButtonGoogle: {
@@ -25,7 +27,7 @@ Ext.define('Kort.controller.Login', {
                 tap: 'onLoginButtonOsmTap'
             },
             loginButtonFacebook: {
-                tap: 'onLoginFacebookTap'
+                tap: 'onLoginButtonFacebookTap'
             }
         }
     },
@@ -45,10 +47,10 @@ Ext.define('Kort.controller.Login', {
     },
 
     // @private
-    onLoginFacebookTap: function() {
+    onLoginButtonFacebookTap: function() {
         this.showLoadMask();
         //redirect to facebook login page
-        //TODO
+        document.location.href = this.buildFacebookUrl(Kort.util.Config.getOAuth().facebook);
     },
 
     // @private
@@ -91,6 +93,17 @@ Ext.define('Kort.controller.Login', {
         url += 'state=' + urlLib.getAppEnv() + '&';
         url += 'approval_prompt=' + (params.force ? 'force' : 'auto');
 
+        return url;
+    },
+
+    buildFacebookUrl: function(oauth) {
+        var urlLib = new UrlLib();
+        var url = '';
+        url+= oauth.url+'?';
+        url+='client_id='+oauth.client_id;
+        url+='&redirect_uri='+ encodeURIComponent(urlLib.getAppUrl() + '/' + oauth.redirect_path);
+        url+='&scope='+oauth.scopes.toString();
+        url+='&response_type='+oauth.response_type;
         return url;
     }
 });
