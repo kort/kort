@@ -363,13 +363,14 @@ Ext.define('Kort.util.Config', {
             iconHeight = 37,
             shadowWidth = 51,
             shadowHeight = 37,
-            icon;
+            icon,
+            iconCenterCorrectionFactor=0.064;
 
         icon = L.icon({
             iconUrl: this.constructMissionIconURL(type,state,false),
             iconRetinaUrl: this.constructMissionIconURL(type,state,true),
             iconSize: [iconWidth, iconHeight],
-            iconAnchor: [(iconWidth/2), iconHeight],
+            iconAnchor: [((iconWidth/2)*(1-iconCenterCorrectionFactor)), iconHeight],
             shadowUrl: './resources/images/marker_icons/shadow.png',
             shadowRetinaUrl: './resources/images/marker_icons/shadow@2x.png',
             shadowSize: [shadowWidth, shadowHeight],
