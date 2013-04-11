@@ -17,7 +17,8 @@ Ext.define('Kort.controller.Main', {
             highscoreNavigationView: '#highscoreNavigationView',
             highscoreList: '#highscoreNavigationView .highscorelist',
             profileContainer: '#profileContainer',
-            validationNavigationView: '#validationNavigationView'
+            validationNavigationView: '#validationNavigationView',
+            newsContainer: '#newsContainer'
         },
         control: {
             mainTabPanel: {
@@ -30,7 +31,8 @@ Ext.define('Kort.controller.Main', {
             'bugmap': 'showBugmap',
             'highscore': 'showHighscore',
             'profile': 'showProfile',
-            'validation': 'showValidation'
+            'validation': 'showValidation',
+            'news': 'showNews'
         }
     },
 
@@ -76,6 +78,9 @@ Ext.define('Kort.controller.Main', {
      */
     showValidation: function() {
         this.showView(this.getValidationNavigationView());
+    },
+    showNews: function(){
+        this.showView(this.getNewsContainer());
     },
     
     /**

@@ -5,6 +5,7 @@ tab.validation=Prüfen
 tab.highscore=Highscore
 tab.profile=Profil
 tab.about=Über Kort
+tab.news=News
 
 # Login
 login.kort.description.1=Löse Aufträge
@@ -131,6 +132,9 @@ profile.alert.username.specialchars.title=Zeichenproblem
 profile.alert.username.specialchars.message=Verwende bitte nur Buchstaben und Zahlen für deinen Benutzernamen.
 profile.alert.submit.failure.title=Fehler beim Senden
 profile.alert.submit.failure.message=Ups\! Beim Übertragen deines Benutzernamens ist etwas schief gelaufen. Eventuell hilft ein Neustart der App.
+
+#News
+news.title=News
 
 # About
 about.title=Über

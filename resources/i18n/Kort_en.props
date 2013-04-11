@@ -5,6 +5,7 @@ tab.validation=Check
 tab.highscore=Highscore
 tab.profile=Profile
 tab.about=About Kort
+tab.news=News
 
 # Login
 login.kort.description.1=Complete missions
@@ -133,6 +134,9 @@ profile.alert.username.specialchars.title=Problem with character
 profile.alert.username.specialchars.message=Please only use letters and digits for your username.
 profile.alert.submit.failure.title=Error while sending
 profile.alert.submit.failure.message=Oops! There was an error while sending the username. Restarting the app might help.
+
+#News
+news.title=News
 
 # About
 about.title=About

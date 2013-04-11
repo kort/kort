@@ -9,7 +9,9 @@ Ext.define('Kort.view.Main', {
         'Kort.view.markermap.NavigationView',
         'Kort.view.highscore.NavigationView',
         'Kort.view.profile.Container',
+        'Kort.view.news.Container',
         'Kort.view.about.Container'
+
     ],
     
     config: {
@@ -29,6 +31,9 @@ Ext.define('Kort.view.Main', {
             },
             {
                 xtype: 'profilecontainer'
+            },
+            {
+                xtype: 'newscontainer'
             },
             {
                 xtype: 'aboutcontainer'
