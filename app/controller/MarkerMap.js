@@ -17,6 +17,7 @@ Ext.define('Kort.controller.MarkerMap', {
         map: null,
         bugMarkerLayerGroup: [],
         validationMarkerLayerGroup: [],
+        bugInactiveMarkerLayerGroup: [],
         views: [
 
         ],
@@ -28,7 +29,8 @@ Ext.define('Kort.controller.MarkerMap', {
         },
         control: {
             leafletmapComponent: {
-                maprender: 'onMapRender'
+                maprender: 'onMapRender',
+                //moveend: 'onMapMoveEnd'
             },
             markermapCenterButton: {
                 tap: 'onMarkermapCenterButtonTap'
@@ -47,6 +49,7 @@ Ext.define('Kort.controller.MarkerMap', {
         campaignsStore: null,
         bugsStore: null,
         validationsStore: null,
+        bugsInactiveStore: null,
 
         activeRecord: null,
 
@@ -81,11 +84,13 @@ Ext.define('Kort.controller.MarkerMap', {
         //register store loaded events - possibility for race condition failures - needs check
         this.getCampaignsStore().on('load',me.storeSuccessfullyLoaded , me);
         this.getBugsStore().on('load', me.storeSuccessfullyLoaded, me);
+        this.getBugsInactiveStore().on('load', me.onInactiveBugsStoreUpdate, me);
         this.getValidationsStore().on('load', me.storeSuccessfullyLoaded, me);
 
         // create layer group for bug markers
         me.setBugMarkerLayerGroup(L.layerGroup());
         me.setValidationMarkerLayerGroup(L.layerGroup());
+        me.setBugInactiveMarkerLayerGroup(L.layerGroup());
 
         //create campaignOverlay background div
         this.setCampaignOverlayBackground(Ext.create('Kort.view.markermap.bug.CampaignOverlay'));
@@ -101,7 +106,7 @@ Ext.define('Kort.controller.MarkerMap', {
             title: Ext.i18n.Bundle.message('markermap.title'),
             useCurrentLocation: geo,
             id: 'leafletmapcomponent',
-            additionalLayers: [this.getBugMarkerLayerGroup(),this.getValidationMarkerLayerGroup()]
+            additionalLayers: [this.getBugMarkerLayerGroup(),this.getValidationMarkerLayerGroup(),this.getBugInactiveMarkerLayerGroup()]
         });
         this.getMarkermapNavigationView().add(leafletmapComponent);
         this.loadStores();
@@ -112,6 +117,7 @@ Ext.define('Kort.controller.MarkerMap', {
     initStores: function() {
         this.setCampaignsStore(Ext.getStore('Campaigns'));
         this.setBugsStore(Ext.getStore('Bugs'));
+        this.setBugsInactiveStore(Ext.getStore('BugsInactive'));
         this.setValidationsStore(Ext.getStore('Validations'))
     },
 
@@ -205,6 +211,11 @@ Ext.define('Kort.controller.MarkerMap', {
         this.hideLoadMask();
     },
 
+    onInactiveBugsStoreUpdate: function() {
+        this.getBugsInactiveStore().remove(this.getBugsStore().getData().all);
+        this.redrawMarkers(this.getBugsInactiveStore().getData().all,'buginactive');
+    },
+
 
     /**
      * @private
@@ -240,8 +251,23 @@ Ext.define('Kort.controller.MarkerMap', {
         additionalMap = {
             'markermap.bug.layername': this.getBugMarkerLayerGroup(),
             'markermap.validation.layername': this.getValidationMarkerLayerGroup()
+            //'markermap.bugInactive.layername': this.getBugInactiveMarkerLayerGroup()
         };
         L.control.i18nLayers(baseMap,additionalMap).addTo(map);
+    },
+
+    onMapMoveEnd: function() {
+        if(this.getLeafletmapComponent()) {
+            var currentMapCenter = this.getLeafletmapComponent().getCurrentMapCenter();
+            if(Math.round(Kort.geolocation.getDistance(currentMapCenter.lat, currentMapCenter.lng))>((Kort.util.Config.getWebservices().bug.radius/10)/2)) {
+                this.getBugsInactiveStore().getProxy().setUrl(Kort.util.Config.getWebservices().bug.getUrl(currentMapCenter.lat, currentMapCenter.lng));
+                this.getBugInactiveMarkerLayerGroup().clearLayers();
+                this.getBugsInactiveStore().load();
+                console.log(Kort.geolocation.getDistance(currentMapCenter.lat, currentMapCenter.lng));
+            }
+        }
+
+        //Kort.geolocation
     },
     
     /**
@@ -288,7 +314,9 @@ Ext.define('Kort.controller.MarkerMap', {
         var me = this,
             icon,
             marker;
-
+        if(source=='buginactive') {
+            record.set('state','inactive');
+        }
         icon = Kort.util.Config.getMarkerIcon(record.get('type'),record.get('state'));
         marker = L.marker([record.get('latitude'), record.get('longitude')], {
             icon: icon
@@ -298,7 +326,7 @@ Ext.define('Kort.controller.MarkerMap', {
         marker.record = record;
         marker.lastClickTimestamp = 0;
         marker.on('click', me.onMarkerClick,me);
-        if(source=='bug') {
+        if(source=='bug' || source=='buginactive') {
             me.getBugMarkerLayerGroup().addLayer(marker);
         }else if(source=='validation') {
             me.getValidationMarkerLayerGroup().addLayer(marker);
@@ -363,7 +391,7 @@ Ext.define('Kort.controller.MarkerMap', {
 
     displayCampaignMessageBox: function () {
         Kort.view.markermap.bug.BugMessageBox.preventOpening=true;
-        Ext.create('Kort.view.markermap.bug.CampaignMessageBox').confirm(this.getCampaignsStore().getById(this.getActiveRecord().get('campaign_id')), Ext.emptyFn, this);
+        Ext.create('Kort.view.markermap.bug.CampaignMessageBox').confirm(this.getCampaignsStore().getById(this.getActiveRecord().get('campaign_id')), Ext.emptyFn, this, this.getActiveRecord().get('campaign_extra_coins'));
     },
 
     /**

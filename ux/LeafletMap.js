@@ -388,6 +388,16 @@ Ext.define('Ext.ux.LeafletMap', {
     },
 
     /**
+     *
+     */
+    getCurrentMapCenter: function() {
+        return this.getMap().getCenter();
+    },
+    getCurrentMapZoomLevel: function() {
+        return this.getMap().getZoom();
+    },
+
+    /**
      * @private
      * Adds own position marker to map
      */

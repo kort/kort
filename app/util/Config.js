@@ -395,6 +395,7 @@ Ext.define('Kort.util.Config', {
         stateToPathSuffix[Kort.util.Config.getMissionState().bugCampaign] = '_campaign';
         stateToPathSuffix[Kort.util.Config.getMissionState().validation] = '_check';
         stateToPathSuffix[Kort.util.Config.getMissionState().validationCampaign] = '_checkcampaign';
+        stateToPathSuffix['inactive'] = '_checkcampaign';
 
         var retinaPathSuffix = retina ? '@2x' : '';
 

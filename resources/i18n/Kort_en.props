@@ -45,6 +45,7 @@ markermap.bug.bugmessagebox.koins.earncamp=Earn {fix_koin_count} + {extra_coins}
 markermap.bug.bugmessagebox.yes=Answer
 markermap.bug.bugmessagebox.no=Don't know
 markermap.bug.layername=Bugs
+markermap.bugInactive.layername = Inactive Bugs
 markermap.validation.layername=Validations
 markermap.validation.validationmessagebox.koins.earn=Earn {vote_koin_count} Koins
 markermap.validation.validationmessagebox.checkit=Check the solution

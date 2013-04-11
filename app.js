@@ -60,6 +60,7 @@ Ext.application({
 
     stores: [
         'Bugs',
+        'BugsInactive',
         'Campaigns',
         'Highscore',
         'HighscoreUserBadges',
