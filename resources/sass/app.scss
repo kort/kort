@@ -37,6 +37,10 @@ $tabs-dark: #111;
 @include pictos-iconmask('minus_black1');
 @include pictos-iconmask('help');
 
+// to compile:
+@include pictos-iconmask('wifi');
+
+
 .x-toolbar-light .x-title {
     color: #fff;
     text-shadow: rgba(0, 0, 0, 0.5) 0 -0.08em 0;

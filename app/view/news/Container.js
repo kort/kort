@@ -12,7 +12,8 @@ Ext.define('Kort.view.news.Container', {
         title: Ext.i18n.Bundle.message('tab.news'),
         url: 'news',
         id: 'newsContainer',
-        iconCls: 'favorites',
+        iconMask: true,
+        iconCls: 'wifi',
         layout: 'vbox',
         scrollable: true,
         items: [
