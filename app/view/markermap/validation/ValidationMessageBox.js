@@ -18,13 +18,13 @@ Ext.define('Kort.view.markermap.validation.ValidationMessageBox', {
         '<div class="content">',
         '<tpl if="this.isCampaign(state)">',
         '<p>',
-        '{[this.getMessage("markermap.bug.bugmessagebox.koins.earncamp", {fix_koin_count: values.fix_koin_count, ' +
+        '{[this.getMessage("markermap.validation.validationmessagebox.koins.earncamp", {validation_koin_count: values.validation_koin_count, ' +
             'extra_coins: values.campaign_extra_coins})]}',
         '<img src="./resources/images/promotion/promotionInfoButton@X2.png" id="campaignInfoButton"/>',
         '</p>',
         ' <tpl else>',
         '<p>',
-        '{[this.getMessage("markermap.validation.validationmessagebox.koins.earn", {vote_koin_count: values.vote_koin_count})]}',
+        '{[this.getMessage("markermap.validation.validationmessagebox.koins.earn", {validation_koin_count: values.validation_koin_count})]}',
         '</p>',
         '</tpl>',
         '</div>',

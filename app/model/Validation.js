@@ -29,7 +29,9 @@ Ext.define('Kort.model.Validation', {
             { name: 'longitude', type: 'string' },
             { name: 'distance', type: 'int' },
             { name: 'formatted_distance', type: 'string' },
+            { name: 'validation_koin_count', type: 'int' },
             { name: 'state', convert:determineMissionState}
+
         ]
     }
 });

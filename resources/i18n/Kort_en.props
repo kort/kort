@@ -35,7 +35,7 @@ geolocationerror.button.reload=Reload application
 geolocationerror.loadmask.message=Reloading app...
 
 #Markermap
-markermap.title=Missons nearby
+markermap.title=Missons & Checks
 markermap.loadmask.message=Loading...
 markermap.bug.campaignmessagebox.close=Close
 markermap.bug.campaignmessagebox.earn=Earn additional {extra_coins} Koins
@@ -44,15 +44,16 @@ markermap.bug.bugmessagebox.koins.earn=Earn {fix_koin_count} Koins
 markermap.bug.bugmessagebox.koins.earncamp=Earn {fix_koin_count} + {extra_coins} Koins
 markermap.bug.bugmessagebox.yes=Answer
 markermap.bug.bugmessagebox.no=Don't know
-markermap.bug.layername=Bugs
-markermap.bugInactive.layername = Inactive Bugs
+markermap.bug.layername=Missions
+markermap.bugInactive.layername = Inactive Missions
 markermap.validation.layername=Validations
 markermap.validation.validationmessagebox.koins.earn=Earn {vote_koin_count} Koins
+markermap.validation.validationmessagebox.koins.earncamp=Earn {validation_koin_count} + {extra_coins} Koins
 markermap.validation.validationmessagebox.checkit=Check the solution
 
 
 # Bugmap
-bugmap.title=Missions nearby
+bugmap.title=Missions
 bugmap.loadmask.message=Loading missions...
 bugmap.messagebox.koins.earn=Earn {fix_koin_count} Koins
 bugmap.messagebox.koins.earncamp=Earn {fix_koin_count} + {extra_coins} Koins

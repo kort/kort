@@ -35,7 +35,7 @@ geolocationerror.button.reload=Applikation neu laden
 geolocationerror.loadmask.message=Lade App neu...
 
 #Markermap
-markermap.title=Aufträge in deiner Nähe
+markermap.title=Aufträge & Überprüfungen
 markermap.loadmask.message=Lade...
 markermap.bug.campaignmessagebox.close=Schliessen
 markermap.bug.campaignmessagebox.earn=Hol dir zusätzliche {extra_coins} Koins
@@ -48,6 +48,7 @@ markermap.bug.layername=Aufträge
 markermap.bugInactive.layername = Inaktive Aufträge
 markermap.validation.layername=Überprüfungen
 markermap.validation.validationmessagebox.koins.earn=Verdiene dir {vote_koin_count} Koins
+markermap.validation.validationmessagebox.koins.earncamp=Verdiene dir {validation_koin_count} + {extra_coins} Koins
 markermap.validation.validationmessagebox.checkit=Überprüfe die Lösung
 
 # Bugmap
