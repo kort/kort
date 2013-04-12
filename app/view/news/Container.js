@@ -13,7 +13,7 @@ Ext.define('Kort.view.news.Container', {
         url: 'news',
         id: 'newsContainer',
         iconMask: true,
-        iconCls: 'wifi',
+        iconCls: 'bulb',
         layout: 'vbox',
         scrollable: true,
         items: [

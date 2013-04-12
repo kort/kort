@@ -1,6 +1,7 @@
 /**
  * Main tabpanel of application
  */
+Ext.require('App.view.TabBarMvc');
 Ext.define('Kort.view.Main', {
     extend: 'Ext.tab.Panel',
     xtype: 'main',
@@ -33,7 +34,9 @@ Ext.define('Kort.view.Main', {
                 xtype: 'profilecontainer'
             },
             {
-                xtype: 'newscontainer'
+                xtype: 'newscontainer',
+                //should be dynamic:
+                badgeText: '1'
             },
             {
                 xtype: 'aboutcontainer'
