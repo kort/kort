@@ -61,6 +61,9 @@ module.exports = function(grunt) {
 
     // Default task.
     grunt.registerTask('default', 'jshint:kort');
+    
+    // Linting task.
+    grunt.registerTask('lint', 'jshint:kort');
 
     // Travis CI task.
     grunt.registerTask('travis', 'jshint:kort qunit:kort');
