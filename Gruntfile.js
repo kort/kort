@@ -26,31 +26,30 @@ module.exports = function(grunt) {
                 devel: true,
                 trailing: true,
                 white:  false,
-                maxcomplexity: 3
-                /*indent: 4  comment out until white/indent options are separated => https://github.com/jshint/jshint/issues/655 */
-            },
-            globals: {
-                Ext: true,
-                L: true,
-                UrlLib: true,
-                urlLib: true,
-                asyncTest: true,
-                api_test: true,
-                deepEqual: true,
-                equal: true,
-                expect: true,
-                module: true,
-                notDeepEqual: true,
-                notEqual: true,
-                notStrictEqual: true,
-                ok: true,
-                QUnit: true,
-                raises: true,
-                start: true,
-                stop: true,
-                strictEqual: true,
-                test: true,
-                testSkip: true
+                maxcomplexity: 3,
+                globals: {
+                    Ext: true,
+                    L: true,
+                    UrlLib: true,
+                    urlLib: true,
+                    asyncTest: true,
+                    api_test: true,
+                    deepEqual: true,
+                    equal: true,
+                    expect: true,
+                    module: true,
+                    notDeepEqual: true,
+                    notEqual: true,
+                    notStrictEqual: true,
+                    ok: true,
+                    QUnit: true,
+                    raises: true,
+                    start: true,
+                    stop: true,
+                    strictEqual: true,
+                    test: true,
+                    testSkip: true
+                }
             }
         }
     });
