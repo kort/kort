@@ -7,7 +7,7 @@ module.exports = function(grunt) {
             'kort': ['test/client/index.html']
         },
         jshint: {
-            'kort': ['app/**/*.js', 'Grunfile.js', 'app.js*', 'test/client/**/*.js']
+            'kort': ['app/**/*.js', 'Grunfile.js', 'app.js*', 'test/client/**/*.js'],
             options: {
                 jquery: true,
                 curly: true,
