@@ -28,6 +28,7 @@ module.exports = function(grunt) {
                 white:  false,
                 maxcomplexity: 3,
                 globals: {
+                    Kort: true,
                     Ext: true,
                     L: true,
                     UrlLib: true,
