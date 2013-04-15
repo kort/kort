@@ -23,9 +23,6 @@ before_script:
   - npm install 
   - curl -s http://getcomposer.org/installer | php --
   - php composer.phar install --dev
-  - sudo pear channel-discover pear.phpdoc.org
-  - sudo pear install phpdoc/phpDocumentor-alpha
-  - sudo apt-get install graphviz
   - export PATH="$PATH:$CI_HOME:/usr/local/heroku/bin"
   - mv $CI_HOME/server/php/Webservice/Database/DbConfig.example.php $CI_HOME/server/php/Webservice/Database/DbConfig.php
   - phpenv rehash

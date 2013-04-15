@@ -14,10 +14,6 @@
 * Composer
     * `curl -s https://getcomposer.org/installer | php`
     * `php composer.phar install --dev`
-* PEAR
-    * `apt-get install php-pear`
-    * `pear channel-discover pear.phpdoc.org`
-    * `pear install phpdoc/phpDocumentor-alpha`
 * RubyGems 
     * `apt-get install rubygems`
     * `gem install sass`
@@ -26,8 +22,6 @@
 * NPM
     * `apt-get install npm`
     * `npm -g install grunt`
-* Graphviz
-    * `apt-get install graphviz`
 * Ant
     * `apt-get install ant`
     * `ant -f build_kort.xml build`

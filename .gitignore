@@ -16,4 +16,5 @@ composer.phar
 npm-debug.log
 vendor/
 bin/
+data/
 .sencha_backup/
