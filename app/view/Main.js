@@ -1,7 +1,6 @@
 /**
  * Main tabpanel of application
  */
-Ext.require('App.view.TabBarMvc');
 Ext.define('Kort.view.Main', {
     extend: 'Ext.tab.Panel',
     xtype: 'main',
