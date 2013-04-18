@@ -29,7 +29,7 @@ Ext.define('Kort.controller.MarkerMap', {
         },
         control: {
             leafletmapComponent: {
-                maprender: 'onMapRender',
+                maprender: 'onMapRender'
                 //moveend: 'onMapMoveEnd'
             },
             markermapCenterButton: {

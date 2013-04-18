@@ -39,7 +39,8 @@ Ext.application({
         'MarkerMap',
         'OsmMap',
         'Profile',
-        'Vote'
+        'Vote',
+        'News'
     ],
 
     models: [
@@ -55,7 +56,8 @@ Ext.application({
         'UserBadge',
         'UserLocal',
         'Validation',
-        'Vote'
+        'Vote',
+        'News'
     ],
 
     stores: [
@@ -67,7 +69,8 @@ Ext.application({
         'SelectAnswers',
         'UserBadges',
         'UserLocal',
-        'Validations'
+        'Validations',
+        'News'
     ],
 
     icon: './resources/images/kort-icon.png',
