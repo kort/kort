@@ -4,7 +4,7 @@ Ext.define('Kort.store.NewsRemote', {
         model: 'Kort.model.News',
         proxy: {
             type: 'ajax',
-            url: './resources/stores/news_default.xml',
+            url: Kort.util.Config.getNewsAtomFeedUrl(),
             reader: {
                 type: 'xml',
                 record: 'entry',

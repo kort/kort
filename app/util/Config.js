@@ -294,14 +294,19 @@ Ext.define('Kort.util.Config', {
         },
 
         /**
-         * @cfg {Object} enumeration of all possible mission states
+         * @cfg {String} enumeration of all possible mission states
          */
         missionState: {
             bug: 'bugState',
             bugCampaign: 'bugCampaignState',
             validation: 'validationSate',
             validationCampaign: 'validationCampaignState'
-        }
+        },
+
+        /**
+         * @cfg {String} URL of Atom news feed
+         */
+        newsAtomFeedUrl: './resources/stores/news_default.xml'
 	},
 
     /**
