@@ -1,4 +1,4 @@
-Ext.define('Kort.store.News', {
+Ext.define('Kort.store.NewsRemote', {
     extend: 'Ext.data.Store',
     config: {
         model: 'Kort.model.News',
@@ -10,16 +10,7 @@ Ext.define('Kort.store.News', {
                 record: 'entry',
                 rootProperty: 'feed'
             }
-        }
-    },
-    getAmountOfUnreadNews: function(){
-        var count=0;
-        this.each(function (item, index, length) {
-            console.log(item);
-            if(item.get('read')=='false') {
-                count++;
-            }
-        });
-        return count;
+        },
+        autoload:false
     }
 });

@@ -40,7 +40,8 @@ Ext.application({
         'OsmMap',
         'Profile',
         'Vote',
-        'News'
+        'News',
+        'Notifications'
     ],
 
     models: [
@@ -70,7 +71,8 @@ Ext.application({
         'UserBadges',
         'UserLocal',
         'Validations',
-        'News'
+        'NewsLocal',
+        'NewsRemote'
     ],
 
     icon: './resources/images/kort-icon.png',

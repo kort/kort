@@ -135,6 +135,8 @@ profile.alert.submit.failure.message=Ups\! Beim Übertragen deines Benutzernamen
 
 #News
 news.title=News
+news.unread=Ungelesen
+news.read=Gelesen
 
 # About
 about.title=Über

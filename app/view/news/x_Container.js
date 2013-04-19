@@ -5,7 +5,8 @@ Ext.define('Kort.view.news.Container', {
     extend: 'Ext.Container',
     alias: 'widget.newscontainer',
     requires: [
-        'Ext.TitleBar'
+        'Ext.TitleBar',
+        'Kort.view.news.List'
     ],
 
     config: {
@@ -17,6 +18,12 @@ Ext.define('Kort.view.news.Container', {
         layout: 'vbox',
         scrollable: true,
         items: [
+            {
+                title: Ext.i18n.Bundle.message('news.title'),
+                xtype: 'newslist'
+            }
+
+            /*
             {
                 xtype: 'titlebar',
                 cls: 'titlebar',
@@ -30,6 +37,7 @@ Ext.define('Kort.view.news.Container', {
                     '</dl>' +
                     '</div>'
             }
+            */
         ]
     }
 });

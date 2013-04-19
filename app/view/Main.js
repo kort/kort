@@ -9,11 +9,11 @@ Ext.define('Kort.view.Main', {
         'Kort.view.markermap.NavigationView',
         'Kort.view.highscore.NavigationView',
         'Kort.view.profile.Container',
-        'Kort.view.news.Container',
+        'Kort.view.news.NavigationView',
         'Kort.view.about.Container'
 
     ],
-    
+
     config: {
         tabBar: {
             docked: 'bottom',
@@ -33,9 +33,9 @@ Ext.define('Kort.view.Main', {
                 xtype: 'profilecontainer'
             },
             {
-                xtype: 'newscontainer',
+                xtype: 'newsnavigationview'
                 //should be dynamic:
-                badgeText: '1'
+                //badgeText: '1'
             },
             {
                 xtype: 'aboutcontainer'

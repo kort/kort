@@ -137,6 +137,8 @@ profile.alert.submit.failure.message=Oops! There was an error while sending the 
 
 #News
 news.title=News
+news.unread=Unread
+news.read=Read
 
 # About
 about.title=About
