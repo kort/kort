@@ -6,11 +6,14 @@ Ext.define('Kort.controller.News', {
 
     config: {
         views: [
-            'news.NavigationView'
+            'news.NavigationView',
+            'news.newsEntry.Container'
         ],
         refs: {
             newsRefreshButton: '#newsNavigationView .button[cls=newsRefreshButton]',
-            newsList: '.newslist'
+            newsNavigationView: '#newsNavigationView',
+            newsList: '.newslist',
+            newsContainer: '#newsContainer'
         },
         control: {
             newsRefreshButton: {
@@ -64,10 +67,21 @@ Ext.define('Kort.controller.News', {
     },
 
     onNewsListItemTap: function(list, index, target, record, e) {
+
+        var me = this,
+          newsNavigationView = me.getNewsNavigationView(),
+          newsNewsEntryContainer;
+          newsNewsEntryContainer = Ext.create('Kort.view.news.newsEntry.Container', {
+             record: record,
+             title: record.get('title')
+            })
+        newsNavigationView.push(newsNewsEntryContainer);
         record.set('unread',false);
         this.getNewsLocalStore().sync();
         this.getNewsLocalStore().load();
 
     }
+
+
 
 });

@@ -12,9 +12,18 @@ Ext.define('Kort.view.highscore.PullRefreshPlugin', {
 
             if (store) {
                 // reset store and load first page
-                store.loadPage(1, {
-                    addRecords: false
+                var index = 6;//store.findExact("user_id",you.id);
+                console.log("index ist "+index);
+                var clearOnPageLoad = store.getClearOnPageLoad ();
+                store.load({},{
+                    page: 0,
+                   start: index -1,
+                    limit: 3,
+                    addRecords: !clearOnPageLoad
                 });
+//                store.loadPage(1, {
+//                    addRecords: false
+//                });
             }
         }
 	}

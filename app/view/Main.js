@@ -34,8 +34,6 @@ Ext.define('Kort.view.Main', {
             },
             {
                 xtype: 'newsnavigationview'
-                //should be dynamic:
-                //badgeText: '1'
             },
             {
                 xtype: 'aboutcontainer'

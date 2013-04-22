@@ -7,7 +7,8 @@ Ext.define('Kort.view.news.List', {
     config: {
         store: 'NewsLocal',
         itemTpl: '<div class="news"><strong>{title}</strong></div>',
-        emptyText: 'no entries',
+        emptyText: Ext.i18n.Bundle.message('news.emptytext'),
+        disableSelection: true,
         grouped: true
     }
 });

@@ -26,7 +26,7 @@ Ext.define('Kort.view.highscore.NavigationView', {
                     align: 'right'
                 }
             ],
-            // SENCAH TOUCH BUGFIX:
+            // SENCHA TOUCH BUGFIX:
             // disable navigationBar animation because of wrong title positioning
             animation: false
         },

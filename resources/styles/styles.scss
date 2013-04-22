@@ -457,6 +457,24 @@ $label-background-color: #46578D;
 }
 
 /* -----------------------
+   News
+   ----------------------- */
+.newsNewsEntryContentComponent{
+  .newsclass{
+    padding: $panel-padding;
+
+
+    .dateText{
+      float: left;
+    }
+  //  .text{
+  //     font: 10px;
+  //  }
+  }
+}
+
+
+/* -----------------------
    Highscore / Profile
    ----------------------- */
 .profileContentComponent,

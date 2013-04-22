@@ -104,6 +104,7 @@ Ext.define('Kort.controller.Login', {
         url+='&redirect_uri='+ encodeURIComponent(urlLib.getAppUrl() + '/' + oauth.redirect_path);
         url+='&scope='+oauth.scopes.toString();
         url+='&response_type='+oauth.response_type;
+        alert("url: " + url)
         return url;
     }
 });
