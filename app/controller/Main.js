@@ -18,7 +18,7 @@ Ext.define('Kort.controller.Main', {
             highscoreList: '#highscoreNavigationView .highscorelist',
             profileContainer: '#profileContainer',
             validationNavigationView: '#validationNavigationView',
-            newsContainer: '#newsContainer'
+            newsNavigationView: '#newsNavigationView'
         },
         control: {
             mainTabPanel: {
@@ -79,8 +79,12 @@ Ext.define('Kort.controller.Main', {
     showValidation: function() {
         this.showView(this.getValidationNavigationView());
     },
+
+    /**
+     * redirects to news tab
+     */
     showNews: function(){
-        this.showView(this.getNewsContainer());
+        this.showView(this.getNewsNavigationView());
     },
     
     /**

@@ -23,5 +23,33 @@
         <updated>2013-04-16T18:30:02Z</updated>
         <content type="text" xml:lang="fr">Different fr text 2</content>
     </entry>
+    <entry>
+        <title>New News 2</title>
+        <link href="http://example.org/2003/12/13/atom03"/>
+        <id>urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efb3s</id>
+        <updated>2013-04-13T18:30:02Z</updated>
+        <content type="text" xml:lang="en">Different en text</content>
+    </entry>
+    <entry>
+        <title>New News 3</title>
+        <link href="http://example.org/2003/12/13/atom03"/>
+        <id>urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efc3s</id>
+        <updated>2013-04-14T18:30:02Z</updated>
+        <content type="text" xml:lang="en">Different en text</content>
+    </entry>
+    <entry>
+        <title>New News 1</title>
+        <link href="http://example.org/2003/12/13/atom03"/>
+        <id>urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efd3s</id>
+        <updated>2013-04-12T18:30:02Z</updated>
+        <content type="text" xml:lang="en">Different en text</content>
+    </entry>
+    <entry>
+        <title>New News 4</title>
+        <link href="http://example.org/2003/12/13/atom03"/>
+        <id>urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efe3s</id>
+        <updated>2013-04-15T18:30:02Z</updated>
+        <content type="text" xml:lang="en">Different en text</content>
+    </entry>
 
 </feed>

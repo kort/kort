@@ -6,6 +6,12 @@ Ext.define('Kort.store.NewsLocal', {
             type:'localstorage',
             id:'newsItems'
         },
+        sorters: [
+            {
+                property: 'updated',
+                direction: 'ASC'
+            }
+        ],
         grouper: {
             groupFn: function(record) {
                 return record.get('unread') ? Ext.i18n.Bundle.message('news.unread') : Ext.i18n.Bundle.message('news.read');

@@ -10,14 +10,13 @@ Ext.define('Kort.controller.News', {
             'news.newsEntry.Container'
         ],
         refs: {
-            newsRefreshButton: '#newsNavigationView .button[cls=newsRefreshButton]',
             newsNavigationView: '#newsNavigationView',
-            newsList: '.newslist',
-            newsContainer: '#newsContainer'
+            newsRefreshButton: '#newsNavigationView .button[cls=newsRefreshButton]',
+            newsList: '.newslist'
         },
         control: {
             newsRefreshButton: {
-                tab: 'refreshNews'
+                tap: 'refreshNews'
             },
             newsList: {
                 itemtap: 'onNewsListItemTap'
@@ -37,6 +36,7 @@ Ext.define('Kort.controller.News', {
     },
 
     refreshNews: function() {
+        console.log("refresh news");
         var me = this;
         this.getNewsLocalStore().load({
             callback:me.syncLocalNewsStoreWithRemoteNewsStore,
