@@ -16,4 +16,7 @@ composer.phar
 composer.lock
 vendor/
 bin/
-.sencha_backup/
+.sencha_backup/      
+.idea/
+Gruntfile.js
+/Icon
