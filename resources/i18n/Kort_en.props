@@ -193,6 +193,22 @@ reward.alert.badges.title=Won badges
 update.title=New version of app
 update.message=The app has be updated to the newest version. Reload?
 
+#Languages
+en=English
+de=German
+it=Italian
+fr=French
+sl=Slovenian
+hr=Croatian
+cs=Czech
+nl=Dutch
+gl=Galician
+pt=Portuguese
+ro=Romanian
+ja=Japanese
+ca=Catalan
+es=Spanish
+
 
 ###############################
 # Labels used directly in source files (without Ext.i18n.Bundle plugin)

@@ -191,6 +191,22 @@ reward.alert.badges.title=Gewonnene Auszeichnungen
 update.title=Neue App-Version
 update.message=Die App wurde auf die neuste Version aktualisiert. App neu laden?
 
+#Languages
+en=Englisch
+de=Deutsch
+it=Italienisch
+fr=Französisch
+sl=Slowenisch
+hr=Kroatisch
+cs=Tschechisch
+nl=Holländisch
+gl=Galizisch
+pt=Portugiesisch
+ro=Rumänisch
+ja=Japanisch
+ca=Katalanisch
+es=Spanisch
+
 
 ###############################
 # Labels used directly in source files (without Ext.i18n.Bundle plugin)

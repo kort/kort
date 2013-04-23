@@ -19,6 +19,12 @@ Ext.define('Kort.view.news.NavigationView', {
         navigationBar: {
             items: [
                 {
+                    cls: 'newsSettingsButton',
+                    iconCls: 'settings',
+                    iconMask: true,
+                    align: 'right'
+                },
+                {
                     xtype: 'button',
                     cls: 'newsRefreshButton',
                     iconCls: 'refresh',
