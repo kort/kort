@@ -33,7 +33,7 @@ Ext.define('Kort.view.markermap.bug.CampaignMessageBox', {
      * CHANGE: use own yes/no labels
      */
     confirm: function (record, fn, scope, extraCoins) {
-        //we get the extraCoins attribute only through mission-object. Add this informatiomn to the campaign object.
+        //we get the extraCoins attribute only through mission-object. Add this information to the campaign object.
         record.data.extra_coins=extraCoins;
         return this.show({
             title: null,

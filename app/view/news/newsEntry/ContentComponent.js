@@ -11,7 +11,8 @@ Ext.define('Kort.view.news.newsEntry.ContentComponent', {
         tpl: new Ext.XTemplate(
 
             '<div class="newsclass">',
-            '<span class="dateText">' + Ext.i18n.Bundle.message('news.updated') + ': ' + '{updated}' + '</span>',
+            '<span class="dateText">' + Ext.i18n.Bundle.message('news.updated') + ': ' + '</span>',
+            '<dd> {updated}</dd>',
             '<div class="text">{content}</div>',
             '</div>'
         )

@@ -465,11 +465,15 @@ $label-background-color: #46578D;
 
 
     .dateText{
-      float: left;
+      font-size: 0.8em;
     }
-  //  .text{
-  //     font: 10px;
-  //  }
+    dd {
+      font-size: 0.8em;
+      margin-bottom: 1.0em;
+    }
+    .text{
+      font-size: 1.0em;
+    }
   }
 }
 
@@ -654,9 +658,6 @@ $label-background-color: #46578D;
   border:none!important;
 
   #campaignMessageBox-wrapper {
-    //color: black;
-    //text-shadow: none;
-    //text-align: left!important;
     max-width: 270px;
     max-height:200px;
     padding: 35px 0px 60px 25px;
