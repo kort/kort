@@ -13,11 +13,10 @@ Ext.define('Kort.controller.Main', {
         refs: {
             mainTabPanel: '#mainTabPanel',
             aboutContainer: '#aboutContainer',
-            bugmapNavigationView: '#bugmapNavigationView',
+            mapNavigationView: '#markermapNavigationView',
             highscoreNavigationView: '#highscoreNavigationView',
             highscoreList: '#highscoreNavigationView .highscorelist',
             profileContainer: '#profileContainer',
-            validationNavigationView: '#validationNavigationView',
             newsNavigationView: '#newsNavigationView'
         },
         control: {
@@ -28,10 +27,9 @@ Ext.define('Kort.controller.Main', {
 
         routes: {
             'about': 'showAbout',
-            'bugmap': 'showBugmap',
+            'map': 'showMap',
             'highscore': 'showHighscore',
             'profile': 'showProfile',
-            'validation': 'showValidation',
             'news': 'showNews'
         }
     },
@@ -52,10 +50,10 @@ Ext.define('Kort.controller.Main', {
     },
     
     /**
-     * redirects to bugmap tab
+     * redirects to map tab
      */
-    showBugmap: function() {
-        this.showView(this.getBugmapNavigationView());
+    showMap: function() {
+        this.showView(this.getMapNavigationView());
     },
     
     /**
@@ -71,13 +69,6 @@ Ext.define('Kort.controller.Main', {
      */
     showProfile: function() {
         this.showView(this.getProfileContainer());
-    },
-    
-    /**
-     * redirects to validation tab
-     */
-    showValidation: function() {
-        this.showView(this.getValidationNavigationView());
     },
 
     /**
