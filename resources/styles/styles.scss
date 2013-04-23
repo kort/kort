@@ -463,20 +463,26 @@ $label-background-color: #46578D;
   .newsclass{
     padding: $panel-padding;
 
+    .title{
+      font-family: "Verdana";
+      font-size: 1.2em;
+      color: #b30000;
+    }
 
     .dateText{
-      font-size: 0.8em;
+      font-size: 0.7em;
     }
-    dd {
+    .date{
+      font-style: italic;
       font-size: 0.8em;
-      margin-bottom: 1.0em;
     }
     .text{
+      margin-top:  1.0em;
       font-size: 1.0em;
+      font-family: "andale mono";
     }
   }
 }
-
 
 /* -----------------------
    Highscore / Profile

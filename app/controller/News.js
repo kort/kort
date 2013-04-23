@@ -23,6 +23,7 @@ Ext.define('Kort.controller.News', {
             }
 
         },
+        detailPushDisabled: false,
         newsLocalStore:null
     },
 
@@ -69,17 +70,29 @@ Ext.define('Kort.controller.News', {
     onNewsListItemTap: function(list, index, target, record, e) {
 
         var me = this,
+
           newsNavigationView = me.getNewsNavigationView(),
           newsNewsEntryContainer;
+
+        // disable fast tapping
+        if(!me.getDetailPushDisabled()) {
+            me.setDetailPushDisabled(true);
+
           newsNewsEntryContainer = Ext.create('Kort.view.news.newsEntry.Container', {
              record: record,
-             title: record.get('title')
+             title: Ext.i18n.Bundle.message('news.title')
             })
+
+            // reenable detail push after certain time
+            Ext.defer(function() {
+                me.setDetailPushDisabled(false);
+            }, 1000);
+
         newsNavigationView.push(newsNewsEntryContainer);
         record.set('unread',false);
         this.getNewsLocalStore().sync();
         this.getNewsLocalStore().load();
-
+        }
     }
 
 

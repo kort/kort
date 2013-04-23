@@ -38,11 +38,17 @@
         <content type="text" xml:lang="en">Different en text</content>
     </entry>
     <entry>
-        <title>New News 1</title>
+        <title>New News vom Zürichsee</title>
         <link href="http://example.org/2003/12/13/atom03"/>
         <id>urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efd3s</id>
         <updated>2013-04-12T18:30:02Z</updated>
-        <content type="text" xml:lang="en">Different en text</content>
+        <content type="text" xml:lang="en">Different en text oder einen etwas
+        längeren Text, damit man sieht wie es aussieht wenn etwas mehr Text da steht
+        wie zum Beispiel eine Ankündigung Es findet nämlich bald eine
+        erste Kort-Aktion statt, was auf Englisch Promotion heisst und wir wollen
+        jetzt sagen wann diese stattfindet und wo. Nur wissen wir leider noch nicht
+        genau wann und wo sie stattfindet. Wahrscheinlich in einer spannenden
+        Region wo noch viele Aufträge offen sind. Die Region erscheint dann im Titel.</content>
     </entry>
     <entry>
         <title>New News 4</title>
