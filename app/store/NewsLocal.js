@@ -9,7 +9,7 @@ Ext.define('Kort.store.NewsLocal', {
         sorters: [
             {
                 property: 'updated',
-                direction: 'ASC'
+                direction: 'DESC'
             }
         ],
         grouper: {
