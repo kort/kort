@@ -19,12 +19,13 @@ Ext.define('Kort.store.NewsLocal', {
                 }
             }
         ],
-        grouper: {
+        grouper:
+            {
             groupFn: function(record) {
                 return record.get('unread') ? Ext.i18n.Bundle.message('news.unread') : Ext.i18n.Bundle.message('news.read');
+            },
+            direction: 'DESC'
             }
-        }
-
    },
 
     getAmountOfUnreadNews: function(){
