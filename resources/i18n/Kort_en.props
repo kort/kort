@@ -139,7 +139,7 @@ profile.alert.submit.failure.message=Oops! There was an error while sending the 
 news.title=News
 news.unread=Unread
 news.read=Read
-news.emptytext=No entries
+news.list.emptytext=No entries
 news.updated=Updated
 news.settings.save=Save
 

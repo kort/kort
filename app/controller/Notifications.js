@@ -8,7 +8,8 @@ Ext.define('Kort.controller.Notifications', {
     init: function() {
         var me = this;
         this.getApplication().on({
-            newsupdated: { fn: me.updateNewsBadgeText, scope: me }
+            newsupdated: { fn: me.updateNewsBadgeText, scope: me },
+            newsacceptedlanguagesupdated: { fn: me.updateNewsBadgeText, scope: me }
         })
     },
     updateNewsBadgeText: function() {

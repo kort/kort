@@ -43,7 +43,6 @@ Ext.define('Kort.controller.News', {
         var me = this;
         this.setNewsLocalStore(Ext.getStore('NewsLocal'));
         this.getNewsLocalStore().on('updaterecord',me.newsLocalStoreUpdated,me);
-        //this.getNewsLocalStore().on('updateacceptedlanguages',)
         me.getApplication().on({
             geolocationready: { fn: me.refreshNews, scope: me }
         });
@@ -63,6 +62,7 @@ Ext.define('Kort.controller.News', {
         var newsRemoteStore = Ext.getStore('NewsRemote');
         newsRemoteStore.load({
             callback: function(records, operation, success) {
+                //create new news items in local store
                 records.forEach(function(element) {
                     if(me.getNewsLocalStore().findExact('newsid',element.data.newsid)==-1) {
                         //change model state to force sync to work properly
@@ -70,6 +70,15 @@ Ext.define('Kort.controller.News', {
                         me.getNewsLocalStore().add(element);
                     }
                 });
+                //delete obsolete news items form local store
+                /*
+                me.getNewsLocalStore().each(function(record) {
+                    console.log(record.get('newsid'));
+                    if(newsRemoteStore.findExact('newsid',record.get('newsid')==-1)) {
+                        me.getNewsLocalStore().remove(record);
+                    }
+                });
+                */
                 me.getNewsLocalStore().sync();
                 me.getNewsLocalStore().load();
                 me.newsLocalStoreUpdated();
@@ -79,10 +88,6 @@ Ext.define('Kort.controller.News', {
 
     newsLocalStoreUpdated: function() {
         this.getApplication().fireEvent('newsupdated');
-    },
-
-    acceptedLanguageUpdated: function() {
-
     },
 
     onNewsListItemTap: function(list, index, target, record, e) {
@@ -99,7 +104,7 @@ Ext.define('Kort.controller.News', {
             newsNewsEntryContainer = Ext.create('Kort.view.news.newsEntry.Container', {
                 record: record,
                 title: Ext.i18n.Bundle.message('news.title')
-            })
+            });
 
             // reenable detail push after certain time
             Ext.defer(function() {
@@ -110,7 +115,6 @@ Ext.define('Kort.controller.News', {
             record.set('unread',false);
             this.getNewsLocalStore().sync();
             this.getNewsLocalStore().load();
-
         }
     },
 
@@ -132,6 +136,7 @@ Ext.define('Kort.controller.News', {
         localUserStore.getAt(0).set('newsAcceptedLanguageArray',newAcceptedLanguageArray);
         localUserStore.sync();
         this.getSettingsPanel().destroy();
-        this.getNewsLocalStore().performAcceptedLanguageFiltering();
+        this.getNewsLocalStore().load();
+        this.getApplication().fireEvent('newsacceptedlanguagesupdated');
     }
 });
