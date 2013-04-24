@@ -20,6 +20,10 @@ Ext.define('Kort.controller.News', {
             newsList: '.newslist'
         },
         control: {
+            newsNavigationView: {
+                push: 'onNewsNavigationViewDetailPush',
+                back: 'onNewsNavigationViewBack'
+            },
             newsRefreshButton: {
                 tap: 'refreshNews'
             },
@@ -142,5 +146,15 @@ Ext.define('Kort.controller.News', {
 
     onAccpetedLanguageCancelButtonTap: function() {
         this.getSettingsPanel().destroy();
+    },
+
+    onNewsNavigationViewDetailPush: function() {
+        this.getNewsRefreshButton().hide();
+        this.getNewsSettingsButton().hide();
+    },
+
+    onNewsNavigationViewBack: function() {
+        this.getNewsRefreshButton().show();
+        this.getNewsSettingsButton().show();
     }
 });
