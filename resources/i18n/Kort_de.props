@@ -140,6 +140,7 @@ news.read=Gelesen
 news.list.emptytext=Derzeit keine News
 news.updated=Publiziert am
 news.settings.save=Speichern
+news.settings.cancel=Abbrechen
 
 # About
 about.title=Über

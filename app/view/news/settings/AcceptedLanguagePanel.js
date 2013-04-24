@@ -17,6 +17,12 @@ Ext.define('Kort.view.news.settings.AcceptedLanguagePanel', {
                 docked: 'bottom',
                 items: [
                     { xtype: 'spacer' },
+
+                    {
+                        xtype: 'button',
+                        cls: 'accpetedLanguageCancelButton',
+                        text: Ext.i18n.Bundle.message('news.settings.cancel')
+                    },
                     {
                         xtype: 'button',
                         cls: 'accpetedLanguageSaveButton',

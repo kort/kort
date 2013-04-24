@@ -142,6 +142,7 @@ news.read=Read
 news.list.emptytext=No entries
 news.updated=Updated
 news.settings.save=Save
+news.settings.cancel=Cancel
 
 # About
 about.title=About
