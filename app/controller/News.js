@@ -7,16 +7,26 @@ Ext.define('Kort.controller.News', {
     config: {
         views: [
             'news.NavigationView',
-            'news.newsEntry.Container'
+            'news.newsEntry.Container',
+            'news.settings.AcceptedLanguagePanel'
         ],
         refs: {
+            mainTabPanel: '#mainTabPanel',
             newsNavigationView: '#newsNavigationView',
             newsRefreshButton: '#newsNavigationView .button[cls=newsRefreshButton]',
+            newsSettingsButton: '#newsNavigationView .button[cls=newsSettingsButton]',
+            accpetedLanguageSaveButton: '#newsAcceptedLanguageSettingsPanel .button[cls=accpetedLanguageSaveButton]',
             newsList: '.newslist'
         },
         control: {
             newsRefreshButton: {
                 tap: 'refreshNews'
+            },
+            newsSettingsButton: {
+                tap: 'onNewsSettingsButtonTap'
+            },
+            accpetedLanguageSaveButton: {
+                tap: 'onAccpetedLanguageSaveButtonTap'
             },
             newsList: {
                 itemtap: 'onNewsListItemTap'
@@ -24,13 +34,16 @@ Ext.define('Kort.controller.News', {
 
         },
         detailPushDisabled: false,
-        newsLocalStore:null
+        newsLocalStore:null,
+        settingsPanel:null
+
     },
 
     init: function() {
         var me = this;
         this.setNewsLocalStore(Ext.getStore('NewsLocal'));
         this.getNewsLocalStore().on('updaterecord',me.newsLocalStoreUpdated,me);
+        //this.getNewsLocalStore().on('updateacceptedlanguages',)
         me.getApplication().on({
             geolocationready: { fn: me.refreshNews, scope: me }
         });
@@ -58,6 +71,7 @@ Ext.define('Kort.controller.News', {
                     }
                 });
                 me.getNewsLocalStore().sync();
+                me.getNewsLocalStore().load();
                 me.newsLocalStoreUpdated();
             }
         });
@@ -67,20 +81,24 @@ Ext.define('Kort.controller.News', {
         this.getApplication().fireEvent('newsupdated');
     },
 
+    acceptedLanguageUpdated: function() {
+
+    },
+
     onNewsListItemTap: function(list, index, target, record, e) {
 
         var me = this,
 
-          newsNavigationView = me.getNewsNavigationView(),
-          newsNewsEntryContainer;
+            newsNavigationView = me.getNewsNavigationView(),
+            newsNewsEntryContainer;
 
         // disable fast tapping
         if(!me.getDetailPushDisabled()) {
             me.setDetailPushDisabled(true);
 
-          newsNewsEntryContainer = Ext.create('Kort.view.news.newsEntry.Container', {
-             record: record,
-             title: Ext.i18n.Bundle.message('news.title')
+            newsNewsEntryContainer = Ext.create('Kort.view.news.newsEntry.Container', {
+                record: record,
+                title: Ext.i18n.Bundle.message('news.title')
             })
 
             // reenable detail push after certain time
@@ -88,13 +106,32 @@ Ext.define('Kort.controller.News', {
                 me.setDetailPushDisabled(false);
             }, 1000);
 
-        newsNavigationView.push(newsNewsEntryContainer);
-        record.set('unread',false);
-        this.getNewsLocalStore().sync();
-        this.getNewsLocalStore().load();
+            newsNavigationView.push(newsNewsEntryContainer);
+            record.set('unread',false);
+            this.getNewsLocalStore().sync();
+            this.getNewsLocalStore().load();
+
         }
+    },
+
+    onNewsSettingsButtonTap: function() {
+        this.setSettingsPanel(Ext.create('Kort.view.news.settings.AcceptedLanguagePanel'));
+        Ext.Viewport.add(this.getSettingsPanel());
+        this.getSettingsPanel().show();
+    },
+
+    onAccpetedLanguageSaveButtonTap: function() {
+        var settingsValues = this.getSettingsPanel().getValues();
+        var newAcceptedLanguageArray = [];
+        Kort.util.Config.getSupportedLanguages().forEach(function(element,index,array) {
+            if(settingsValues[element]) {
+                newAcceptedLanguageArray.push(element);
+            }
+        });
+        var localUserStore = Ext.getStore('UserLocal');
+        localUserStore.getAt(0).set('newsAcceptedLanguageArray',newAcceptedLanguageArray);
+        localUserStore.sync();
+        this.getSettingsPanel().destroy();
+        this.getNewsLocalStore().performAcceptedLanguageFiltering();
     }
-
-
-
 });
