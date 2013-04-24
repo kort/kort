@@ -31,9 +31,9 @@
         <content type="text" xml:lang="en">Different en text</content>
     </entry>
     <entry>
-        <title>New News 3</title>
+        <title>New News 3 deleted and readded</title>
         <link href="http://example.org/2003/12/13/atom03"/>
-        <id>urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efc3s</id>
+        <id>urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344eaa3s</id>
         <updated>2013-04-14T18:30:02Z</updated>
         <content type="text" xml:lang="en">Different en text</content>
     </entry>

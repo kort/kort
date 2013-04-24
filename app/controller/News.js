@@ -49,7 +49,6 @@ Ext.define('Kort.controller.News', {
     },
 
     refreshNews: function() {
-        console.log("refresh news");
         var me = this;
         this.getNewsLocalStore().load({
             callback:me.syncLocalNewsStoreWithRemoteNewsStore,
@@ -71,14 +70,11 @@ Ext.define('Kort.controller.News', {
                     }
                 });
                 //delete obsolete news items form local store
-                /*
                 me.getNewsLocalStore().each(function(record) {
-                    console.log(record.get('newsid'));
-                    if(newsRemoteStore.findExact('newsid',record.get('newsid')==-1)) {
+                    if(newsRemoteStore.findExact('newsid',record.get('newsid'))==-1) {
                         me.getNewsLocalStore().remove(record);
                     }
                 });
-                */
                 me.getNewsLocalStore().sync();
                 me.getNewsLocalStore().load();
                 me.newsLocalStoreUpdated();
