@@ -139,6 +139,7 @@ news.unread=Ungelesen
 news.read=Gelesen
 news.emptytext=Derzeit keine News
 news.updated=Publiziert am
+news.settings.save=Speichern
 
 # About
 about.title=Über

@@ -141,6 +141,7 @@ news.unread=Unread
 news.read=Read
 news.emptytext=No entries
 news.updated=Updated
+news.settings.save=Save
 
 # About
 about.title=About

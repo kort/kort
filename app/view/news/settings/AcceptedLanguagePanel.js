@@ -20,8 +20,7 @@ Ext.define('Kort.view.news.settings.AcceptedLanguagePanel', {
                     {
                         xtype: 'button',
                         cls: 'accpetedLanguageSaveButton',
-                        text: 'save'
-
+                        text: Ext.i18n.Bundle.message('news.settings.save')
                     },
                     { xtype: 'spacer' }
                 ]
@@ -38,6 +37,7 @@ Ext.define('Kort.view.news.settings.AcceptedLanguagePanel', {
                xtype: 'checkboxfield',
                 name: element,
                 label: Ext.i18n.Bundle.message(element),
+                labelWidth: '70%',
                 value: element,
                 checked: acceptedLanguagesByUser.indexOf(element)!=-1
            })
