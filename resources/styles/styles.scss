@@ -459,6 +459,19 @@ $label-background-color: #46578D;
 /* -----------------------
    News
    ----------------------- */
+
+
+  .newsItem{
+
+    &.unreadstyle {
+      font-weight: bold;
+      .starImage{
+        height: 15px;
+        width: 15px;
+      }
+    }
+  }
+
 .newsNewsEntryContentComponent{
   .newsclass{
     padding: $panel-padding;
@@ -469,9 +482,9 @@ $label-background-color: #46578D;
       color: #b30000;
     }
 
-    .dateText{
-      font-size: 0.7em;
-    }
+    //.dateText{
+    //  font-size: 0.7em;
+    //}
     .date{
       font-style: italic;
       font-size: 0.8em;

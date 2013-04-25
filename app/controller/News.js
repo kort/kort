@@ -15,8 +15,8 @@ Ext.define('Kort.controller.News', {
             newsNavigationView: '#newsNavigationView',
             newsRefreshButton: '#newsNavigationView .button[cls=newsRefreshButton]',
             newsSettingsButton: '#newsNavigationView .button[cls=newsSettingsButton]',
-            accpetedLanguageSaveButton: '#newsAcceptedLanguageSettingsPanel .button[cls=accpetedLanguageSaveButton]',
-            accpetedLanguageCancelButton: '#newsAcceptedLanguageSettingsPanel .button[cls=accpetedLanguageCancelButton]',
+            acceptedLanguageSaveButton: '#newsAcceptedLanguageSettingsPanel .button[cls=acceptedLanguageSaveButton]',
+            acceptedLanguageCancelButton: '#newsAcceptedLanguageSettingsPanel .button[cls=acceptedLanguageCancelButton]',
             newsList: '.newslist'
         },
         control: {
@@ -30,11 +30,11 @@ Ext.define('Kort.controller.News', {
             newsSettingsButton: {
                 tap: 'onNewsSettingsButtonTap'
             },
-            accpetedLanguageSaveButton: {
-                tap: 'onAccpetedLanguageSaveButtonTap'
+            acceptedLanguageSaveButton: {
+                tap: 'onAcceptedLanguageSaveButtonTap'
             },
-            accpetedLanguageCancelButton: {
-                tap: 'onAccpetedLanguageCancelButtonTap'
+            acceptedLanguageCancelButton: {
+                tap: 'onAcceptedLanguageCancelButtonTap'
             },
             newsList: {
                 itemtap: 'onNewsListItemTap'
@@ -128,7 +128,7 @@ Ext.define('Kort.controller.News', {
         this.getSettingsPanel().show();
     },
 
-    onAccpetedLanguageSaveButtonTap: function() {
+    onAcceptedLanguageSaveButtonTap: function() {
         var settingsValues = this.getSettingsPanel().getValues();
         var newAcceptedLanguageArray = [];
         Kort.util.Config.getSupportedLanguages().forEach(function(element,index,array) {
@@ -144,7 +144,7 @@ Ext.define('Kort.controller.News', {
         this.getApplication().fireEvent('newsacceptedlanguagesupdated');
     },
 
-    onAccpetedLanguageCancelButtonTap: function() {
+    onAcceptedLanguageCancelButtonTap: function() {
         this.getSettingsPanel().destroy();
     },
 
