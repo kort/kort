@@ -8,9 +8,12 @@ Ext.define('Kort.view.news.List', {
         store: 'NewsLocal',
         itemTpl: new Ext.XTemplate(
             '<div class="newsItem',
-                '<tpl if="unread==true"> unreadstyle "><img class="starImage" src="./resources/images/littleStar@2X.png"/>',
+                '<tpl if="unread==true"> unreadstyle "><ln><li> ',
                '<tpl else>"></tpl>',
-                '{title}</div>'
+                '{title}' +
+                '<tpl if="unread==true"></li></ln></tpl>'+
+                '</div>'
+
         ),
 
         emptyText: Ext.i18n.Bundle.message('news.list.emptytext'),
