@@ -36,7 +36,7 @@ geolocationerror.button.reload=Reload application
 geolocationerror.loadmask.message=Reloading app...
 
 #Markermap
-markermap.title=Missons & Checks
+markermap.title=Missions & Checks
 markermap.loadmask.message=Loading...
 markermap.bug.campaignmessagebox.close=Close
 markermap.bug.campaignmessagebox.earn=Earn additional {extra_coins} Koins
