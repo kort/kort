@@ -7,13 +7,12 @@ Ext.define('Kort.controller.Main', {
     config: {
         views: [
             'Main',
-            'NotificationMessageBox',
-            'LeafletMap'
+            'NotificationMessageBox'
         ],
         refs: {
             mainTabPanel: '#mainTabPanel',
             aboutContainer: '#aboutContainer',
-            mapNavigationView: '#markermapNavigationView',
+            mapNavigationView: '#mapNavigationView',
             highscoreNavigationView: '#highscoreNavigationView',
             highscoreList: '#highscoreNavigationView .highscorelist',
             profileContainer: '#profileContainer',

@@ -35,14 +35,33 @@ geolocationerror.introduction=Um Kort verwenden zu können, muss auf deine Posit
 geolocationerror.button.reload=Applikation neu laden
 geolocationerror.loadmask.message=Lade App neu...
 
-#Markermap
+#Map
+map.title=Aufträge & Überprüfungen
+map.loadmask.message=Lade...
+map.mission.promotionmessagebox.close=Schliessen
+map.mission.promotionmessagebox.earn=Hol dir zusätzliche {extra_coins} Koins
+map.mission.promotionmessagebox.date={startdate} bis {enddate}
+map.mission.missionmessagebox.koins.earn=Verdiene dir {fix_koin_count} Koins
+map.mission.missionmessagebox.koins.earnpromotion=Verdiene dir {fix_koin_count} + {extra_coins} Koins
+map.mission.missionmessagebox.yes=Beantworten
+map.mission.missionmessagebox.no=Weiss nicht
+map.mission.layername=Aufträge
+map.missionInactive.layername = Inaktive Aufträge
+map.validation.layername=Überprüfungen
+map.validation.validationmessagebox.koins.earn=Verdiene dir {vote_koin_count} Koins
+map.validation.validationmessagebox.koins.earncamp=Verdiene dir {validation_koin_count} + {extra_coins} Koins
+map.mission.validationmessagebox.yes=Beantworten
+map.mission.validationmessagebox.no=Weiss nicht
+map.validation.validationmessagebox.checkit=Überprüfe die Lösung
+
+#Markermap - should be obsolete
 markermap.title=Aufträge & Überprüfungen
 markermap.loadmask.message=Lade...
 markermap.bug.campaignmessagebox.close=Schliessen
 markermap.bug.campaignmessagebox.earn=Hol dir zusätzliche {extra_coins} Koins
 markermap.bug.campaignmessagebox.date={startdate} bis {enddate}
 markermap.bug.bugmessagebox.koins.earn=Verdiene dir {fix_koin_count} Koins
-markermap.bug.bugmessagebox.koins.earncamp=Verdiene dir {fix_koin_count} + {extra_coins} Koins
+markermap.bug.bugmessagebox.koins.earnpromotion=Verdiene dir {fix_koin_count} + {extra_coins} Koins
 markermap.bug.bugmessagebox.yes=Beantworten
 markermap.bug.bugmessagebox.no=Weiss nicht
 markermap.bug.layername=Aufträge
@@ -52,7 +71,7 @@ markermap.validation.validationmessagebox.koins.earn=Verdiene dir {vote_koin_cou
 markermap.validation.validationmessagebox.koins.earncamp=Verdiene dir {validation_koin_count} + {extra_coins} Koins
 markermap.validation.validationmessagebox.checkit=Überprüfe die Lösung
 
-# Bugmap
+# Bugmap - should be obsolete
 bugmap.title=Aufträge in deiner Nähe
 bugmap.loadmask.message=Lade Aufträge...
 bugmap.messagebox.koins.earn=Verdiene dir {fix_koin_count} Koins
@@ -63,7 +82,7 @@ bugmap.messagebox.no=Weiss nicht
 ## Fix
 fix.form.title=Auftrag
 fix.form.koins.earn=Hol dir die {fix_koin_count} Koins\!
-fix.form.koins.earncamp=Hol dir die {fix_koin_count} + {extra_coins} Koins\!
+fix.form.koins.earnpromotion=Hol dir die {fix_koin_count} + {extra_coins} Koins\!
 fix.form.message.placeholder=Deine Antwort...
 fix.form.button.showonmap=Auf der Karte anzeigen
 fix.form.button.submit=Auftrag abschliessen

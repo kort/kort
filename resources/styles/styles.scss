@@ -664,6 +664,41 @@ $label-background-color: #46578D;
 /* -----------------------
    Message Boxes
    ----------------------- */
+.promotionMessageBox {
+  //background: url('../images/circle.png') no-repeat center center fixed;
+  background-image: url('../images/promotion/promotionCircle.png');
+  background-position:center top;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  overflow: auto;
+  width:320px;
+  height:301px;
+  box-shadow:none!important;
+  border:none!important;
+
+  #promotionMessageBox-wrapper {
+    max-width: 270px;
+    max-height:200px;
+    padding: 35px 0px 60px 25px;
+    overflow: hidden;
+  }
+
+
+  .titleText {
+    font-weight: bold;
+    padding: 0px 0px 13px 0px;
+  }
+
+  .dateText {
+    font-style: italic;
+  }
+
+  .koinsText {
+
+  }
+}
+
+//should become obsolete
 .campaignMessageBox {
   //background: url('../images/circle.png') no-repeat center center fixed;
   background-image: url('../images/promotion/promotionCircle.png');
@@ -697,6 +732,7 @@ $label-background-color: #46578D;
 
   }
 }
+
 .validationMessageBox{
   .messagebox-content {
     text-align: left;
@@ -726,6 +762,76 @@ $label-background-color: #46578D;
 }
 
 
+.missionMessageBox ,
+.notificationMessageBox {
+  .x-msgbox-text {
+    padding: 0.5em;
+
+    .messagebox-content {
+      text-align: left;
+
+      .text {
+        .content {
+          font-size: $default-font-size;
+
+
+          h1 {
+            font-weight: bold;
+          }
+
+          .badges {
+            $badge-image-size: 110px;
+            overflow: hidden;
+
+            .badge {
+              float: left;
+              width: $badge-image-size/2;
+              margin: 0.2em 0.5em;
+              text-align: center;
+              overflow: hidden;
+
+              img {
+                width: $badge-image-size/2;
+                height: $badge-image-size/2;
+              }
+            }
+          }
+        }
+      }
+
+      .textpic {
+        overflow: hidden;
+        margin: 0.5em 0;
+
+        .image {
+          float: left;
+          width: 40px;
+          height: 40px;
+
+          .bugtype-image {
+            $bugtype-image-width: 64px;
+            $bugtype-image-height: 74px;
+            width: $bugtype-image-width/2;
+            height: $bugtype-image-height/2;
+          }
+          .koin-image {
+            $koin-image-width: 70px;
+            $koin-image-height: 70px;
+            width: $koin-image-width/2;
+            height: $koin-image-height/2;
+          }
+        }
+        .content {
+          font-size: $default-font-size;
+          line-height: 1.3em;
+          margin-left: 50px;
+        }
+      }
+    }
+  }
+}
+
+//should become obsolete
 .bugMessageBox ,
 .notificationMessageBox {
     .x-msgbox-text {
@@ -899,8 +1005,16 @@ $label-background-color: #46578D;
   width:320px;
   height:301px;}
 
+#promotionInfoButton {
+  $promotionInfoButton-width: 40px;
+  $promotionInfoButton-height: 40px;
+  width: $promotionInfoButton-width/2;
+  height: $promotionInfoButton-height/2;
+  position: absolute;
+  margin-left:5px;
+}
 
-
+//should become obsolete
 #campaignInfoButton {
   $campaignInfoButton-width: 40px;
   $campaignInfoButton-height: 40px;

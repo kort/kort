@@ -2,8 +2,8 @@
  * Model for a validation
  */
 
-function determineMissionState(v, record) {
-    return record.data.campaign_id ? Kort.util.Config.getMissionState().validationCampaign : Kort.util.Config.getMissionState().validation;
+function determineMapMarkerState(v, record) {
+    return record.data.campaign_id ? Kort.util.Config.getMapMarkerState().validationPromotion : Kort.util.Config.getMapMarkerState().validation;
 }
 
 Ext.define('Kort.model.Validation', {
@@ -30,7 +30,7 @@ Ext.define('Kort.model.Validation', {
             { name: 'distance', type: 'int' },
             { name: 'formatted_distance', type: 'string' },
             { name: 'validation_koin_count', type: 'int' },
-            { name: 'state', convert:determineMissionState}
+            { name: 'state', convert:determineMapMarkerState}
 
         ]
     }

@@ -3,17 +3,13 @@
  */
 Ext.define('Kort.controller.Vote', {
     extend: 'Kort.controller.OsmMap',
-
+    requires: [
+        'Kort.view.map.validation.AnswerActionSheet',
+        'Kort.view.RewardMessageBox'
+    ],
     config: {
-        views: [
-            'markermap.NavigationView',
-            'markermap.validation.Container',
-            'markermap.validation.AnswerActionSheet',
-            'LeafletMap'
-        ],
         refs: {
-            markermapNavigationView: '#markermapNavigationView',
-            //validationNavigationView: '#validationNavigationView',
+            mapNavigationView: '#mapNavigationView',
             detailComponent: '.votecontainer',
             voteMap: '.votecontainer .kortleafletmap[cls=voteMap]',
             voteAnswerButton: '.votecontainer .button[cls=voteAnswerButton]',
@@ -44,8 +40,7 @@ Ext.define('Kort.controller.Vote', {
     
     // @private
     onVoteAnswerButtonTap: function() {
-        var answerActionSheet = Ext.create('Kort.view.markermap.validation.AnswerActionSheet');
-        
+        var answerActionSheet = Ext.create('Kort.view.map.validation.AnswerActionSheet');
         this.setAnswerActionSheet(answerActionSheet);
         Ext.Viewport.add(answerActionSheet);
         answerActionSheet.show();
@@ -69,13 +64,13 @@ Ext.define('Kort.controller.Vote', {
     
     // @private
     onVoteAnswerCancelButtonTap: function() {
-        var markermapNavigationView = this.getMarkermapNavigationView();
+        var mapNavigationView = this.getMapNavigationView();
         if(this.getAnswerActionSheet()) {
             this.getAnswerActionSheet().hide();
         }
         // remove detail panel
-        markermapNavigationView.pop();
-        markermapNavigationView.fireEvent('detailpop', markermapNavigationView);
+        mapNavigationView.pop();
+        mapNavigationView.fireEvent('detailpop', mapNavigationView);
     },
     
     /**
@@ -119,18 +114,18 @@ Ext.define('Kort.controller.Vote', {
     voteSuccessfulSubmittedHandler: function(responseText) {
         var rewardConfig = Ext.decode(responseText),
             reward = Ext.create('Kort.model.Reward', rewardConfig),
-            markermapNavigationView = this.getMarkermapNavigationView();
+            mapNavigationView = this.getMapNavigationView();
         
         this.showRewardMessageBox(reward);
         // remove detail panel
-        markermapNavigationView.pop();
-        markermapNavigationView.fireEvent('detailpop', markermapNavigationView);
+        mapNavigationView.pop();
+        mapNavigationView.fireEvent('detailpop', mapNavigationView);
         this.getApplication().fireEvent('votesend');
     },
     
     // @private
     showSendMask: function() {
-        this.getMarkermapNavigationView().setMasked({
+        this.getMapNavigationView().setMasked({
             xtype: 'loadmask',
             message: Ext.i18n.Bundle.message('vote.sendmask.message'),
             zIndex: Kort.util.Config.getZIndex().overlayLeafletMap
@@ -139,7 +134,7 @@ Ext.define('Kort.controller.Vote', {
     
     // @private
     hideSendMask: function() {
-        this.getMarkermapNavigationView().setMasked(false);
+        this.getMapNavigationView().setMasked(false);
     },
     
     /**

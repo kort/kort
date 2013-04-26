@@ -15,6 +15,7 @@ Ext.define('Kort.controller.MarkerMap', {
 
     config: {
         map: null,
+        lLayerControl: null,
         bugMarkerLayerGroup: [],
         validationMarkerLayerGroup: [],
         bugInactiveMarkerLayerGroup: [],
@@ -30,7 +31,6 @@ Ext.define('Kort.controller.MarkerMap', {
         control: {
             leafletmapComponent: {
                 maprender: 'onMapRender'
-                //moveend: 'onMapMoveEnd'
             },
             markermapCenterButton: {
                 tap: 'onMarkermapCenterButtonTap'
@@ -105,9 +105,12 @@ Ext.define('Kort.controller.MarkerMap', {
         var leafletmapComponent = Ext.create('Kort.view.LeafletMap', {
             title: Ext.i18n.Bundle.message('markermap.title'),
             useCurrentLocation: geo,
-            id: 'leafletmapcomponent',
-            additionalLayers: [this.getBugMarkerLayerGroup(),this.getValidationMarkerLayerGroup(),this.getBugInactiveMarkerLayerGroup()]
+            id: 'leafletmapcomponent'
+            //additionalLayers: [this.getBugMarkerLayerGroup(),this.getValidationMarkerLayerGroup(),this.getBugInactiveMarkerLayerGroup()]
         });
+        //leafletmapComponent.addAdditionalLayer(this.getBugMarkerLayerGroup());
+        //leafletmapComponent.addAdditionalLayer(this.getValidationMarkerLayerGroup());
+        //leafletmapComponent.addAdditionalLayer(this.getBugInactiveMarkerLayerGroup());
         this.getMarkermapNavigationView().add(leafletmapComponent);
         this.loadStores();
     },
@@ -245,15 +248,49 @@ Ext.define('Kort.controller.MarkerMap', {
     onMapRender: function(cmp, map, tileLayer) {
         var me = this;
         me.setMap(map);
-        var baseMap = {};
-        var additionalMap;
+        //var baseMap = {};
+        //var additionalMap;
         var validationLayerTitle = Ext.i18n.Bundle.message('validation.title');
+        /*
         additionalMap = {
             'markermap.bug.layername': this.getBugMarkerLayerGroup(),
             'markermap.validation.layername': this.getValidationMarkerLayerGroup()
             //'markermap.bugInactive.layername': this.getBugInactiveMarkerLayerGroup()
         };
-        L.control.i18nLayers(baseMap,additionalMap).addTo(map);
+        var control = L.control.i18nLayers(baseMap,additionalMap);
+        */
+        var control = new L.Control.Layers({},{},{collapsed:false});
+        control.addTo(map);
+        control.addOverlay(this.getBugMarkerLayerGroup(),Ext.i18n.Bundle.message('markermap.bug.layername'));
+        control.addOverlay(this.getValidationMarkerLayerGroup(),Ext.i18n.Bundle.message('markermap.validation.layername'));
+        //var nl = document.getElementsByClassName('leaflet-control-layers-selector');
+        //var test = [];
+
+        var inputNodeList = document.getElementsByClassName('leaflet-control-layers-selector');
+        for(var i = inputNodeList.length; i--; inputNodeList[i].checked=true);
+
+        /*
+        Array.prototype.slice.call(document.getElementsByClassName('leaflet-control-layers-selector')).forEach(function(item) {
+            console.log(item);
+        });
+        */
+        /*
+        document.getElementsByClassName('leaflet-control-layers-selector')[0].checked=true;
+        document.getElementsByClassName('leaflet-control-layers-selector')[1].checked=true;
+        */
+
+        control._onInputClick();
+
+        /*
+        var additionalMap2 = {
+            'markermap.bug.layername': this.getBugMarkerLayerGroup()
+            //'markermap.validation.layername': this.getValidationMarkerLayerGroup()
+            //'markermap.bugInactive.layername': this.getBugInactiveMarkerLayerGroup()
+        };
+        */
+
+
+        //L.control.i18nLayers(baseMap,additionalMap2).addTo(map);
     },
 
     onMapMoveEnd: function() {

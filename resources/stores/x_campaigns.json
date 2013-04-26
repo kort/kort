@@ -1,0 +1,18 @@
+{
+    "return": [
+        {
+            "id": 1,
+            "startdate":"1428071962",
+            "enddate":"1430649562",
+            "extra_coins":15,
+            "title":"Brandneue Koins-Aktion"
+        },
+        {
+            "id": 2,
+            "startdate":"1428071962",
+            "enddate":"1430649562",
+            "extra_coins":5,
+            "title":"Noch neuere Kampagne"
+        }
+    ]
+}

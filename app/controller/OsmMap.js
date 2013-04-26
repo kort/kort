@@ -16,7 +16,6 @@ Ext.define('Kort.controller.OsmMap', {
      * @param {L.TileLayer} tileLayer Leaflet TileLayer object
      */
     onMaprender: function(cmp, map, tileLayer) {
-        console.log('osm called');
         var record = this.getDetailComponent().getRecord();
 
         this.setMap(map);
@@ -55,7 +54,7 @@ Ext.define('Kort.controller.OsmMap', {
      * @param {Kort.model.Bug} record Bug which should be rendered
      */
     addFeature: function(xml, record) {
-        var icon = Kort.util.Config.getMarkerIcon(record.get('type')),
+        var icon = Kort.util.Config.getMarkerIcon(record.get('type'),record.get('state')),
             layer;
 
         layer = new L.OSM.DataLayer(xml, {

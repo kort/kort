@@ -296,12 +296,25 @@ Ext.define('Kort.util.Config', {
         /**
          * @cfg {String} enumeration of all possible mission states
          */
+        mapMarkerState: {
+            mission: 'missionState',
+            missionPromotion: 'missionPromotionState',
+            validation: 'validationSate',
+            validationPromotion: 'validationPromotionState',
+            inactive: 'inactiveState'
+        },
+
+        /**
+         * @cfg {String} enumeration of all possible mission states
+         */
+        /*
         missionState: {
             bug: 'bugState',
             bugCampaign: 'bugCampaignState',
             validation: 'validationSate',
             validationCampaign: 'validationCampaignState'
         },
+        *)
 
         /**
          * @cfg {String} URL of Atom news feed
@@ -390,21 +403,21 @@ Ext.define('Kort.util.Config', {
      * on type, state and retina.
      */
     constructMissionIconURL: function(type, state, retina) {
-        if(typeof(state)==='undefined') state=Kort.util.Config.getMissionState().bug;
+        if(typeof(state)==='undefined') state=Kort.util.Config.getMapMarkerState().mission;
         if(typeof(retina)==='undefined') retina=false;
 
         var pathToResourceFolder = './resources/images/marker_icons/';
 
         var stateToPathSuffix = new Array();
-        stateToPathSuffix[Kort.util.Config.getMissionState().bug] = '';
-        stateToPathSuffix[Kort.util.Config.getMissionState().bugCampaign] = '_campaign';
-        stateToPathSuffix[Kort.util.Config.getMissionState().validation] = '_check';
-        stateToPathSuffix[Kort.util.Config.getMissionState().validationCampaign] = '_checkcampaign';
-        stateToPathSuffix['inactive'] = '_checkcampaign';
+        stateToPathSuffix[Kort.util.Config.getMapMarkerState().mission] = 'mission';
+        stateToPathSuffix[Kort.util.Config.getMapMarkerState().missionPromotion] = 'missionpromotion';
+        stateToPathSuffix[Kort.util.Config.getMapMarkerState().validation] = 'validation';
+        stateToPathSuffix[Kort.util.Config.getMapMarkerState().validationPromotion] = 'validationpromotion';
+        stateToPathSuffix[Kort.util.Config.getMapMarkerState().inactive] = 'validationpromotion';
 
         var retinaPathSuffix = retina ? '@2x' : '';
 
-        return pathToResourceFolder + type  + stateToPathSuffix[state] + retinaPathSuffix + '.png';
+        return pathToResourceFolder + type  + '_' + stateToPathSuffix[state] + retinaPathSuffix + '.png';
     }
 
 

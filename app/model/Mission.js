@@ -1,11 +1,11 @@
 /**
  * Model for a bug
  */
-function determineMissionState(v, record) {
-    return record.data.campaign_id ? Kort.util.Config.getMissionState().bugCampaign : Kort.util.Config.getMissionState().bug;
+function determineMapMarkerState(v, record) {
+    return record.data.campaign_id ? Kort.util.Config.getMapMarkerState().missionPromotion : Kort.util.Config.getMapMarkerState().mission;
 }
 
-Ext.define('Kort.model.Bug', {
+Ext.define('Kort.model.Mission', {
     extend: 'Ext.data.Model',
     config: {
 		idProperty: 'id',
@@ -25,7 +25,7 @@ Ext.define('Kort.model.Bug', {
             { name: 'fix_koin_count', type: 'int' },
             { name: 'campaign_id', type: 'int' },
             { name: 'campaign_extra_coins', type: 'int' },
-            { name: 'state', convert:determineMissionState}
+            { name: 'state', convert:determineMapMarkerState}
         ]
     }
 });

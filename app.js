@@ -18,7 +18,8 @@ Ext.application({
         'Ext.MessageBox',
         'Ext.i18n.Bundle',
         'Kort.util.Config',
-        'Kort.util.Geolocation'
+        'Kort.util.Geolocation',
+        'Kort.plugin.QueryRouter'
     ],
 
     views: [
@@ -36,7 +37,10 @@ Ext.application({
         'Highscore',
         'Login',
         'Main',
-        'MarkerMap',
+        //'MarkerMap',
+        'Map',
+        'MapMission',
+        'MapValidation',
         'OsmMap',
         'Profile',
         'Vote',
@@ -46,8 +50,10 @@ Ext.application({
 
     models: [
         'Badge',
-        'Bug',
-        'Campaign',
+        //'Bug',
+        'Mission',
+        'Promotion',
+        //'Campaign',
         'Fix',
         'HighscoreEntry',
         'HighscoreUserBadge',
@@ -62,9 +68,11 @@ Ext.application({
     ],
 
     stores: [
-        'Bugs',
-        'BugsInactive',
-        'Campaigns',
+        //'Bugs',
+        //'BugsInactive',
+        'Missions',
+        'Promotions',
+        //'Campaigns',
         'Highscore',
         'HighscoreUserBadges',
         'SelectAnswers',
@@ -74,6 +82,10 @@ Ext.application({
         'NewsLocal',
         'NewsRemote'
     ],
+
+    router: {
+        xclass: 'Kort.plugin.QueryRouter'
+    },
 
     icon: './resources/images/kort-icon.png',
 

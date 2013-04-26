@@ -35,7 +35,27 @@ geolocationerror.introduction=To use Kort, accessing your geo-position is essent
 geolocationerror.button.reload=Reload application
 geolocationerror.loadmask.message=Reloading app...
 
-#Markermap
+#Map
+map.title=Missions & Checks
+map.loadmask.message=Loading...
+map.mission.promotionmessagebox.close=Close
+map.mission.promotionmessagebox.earn=Earn additional {extra_coins} Koins
+map.mission.promotionmessagebox.date={startdate} to {enddate}
+map.mission.missionmessagebox.koins.earn=Earn {fix_koin_count} Koins
+map.mission.missionmessagebox.koins.earnpromotion=Earn {fix_koin_count} + {extra_coins} Koins
+map.mission.missionmessagebox.yes=Answer
+map.mission.missionmessagebox.no=Don't know
+map.mission.layername=Missions
+map.missionInactive.layername = Inactive Missions
+map.validation.layername=Validations
+map.validation.validationmessagebox.koins.earn=Earn {vote_koin_count} Koins
+map.validation.validationmessagebox.koins.earnpromotion=Earn {validation_koin_count} + {extra_coins} Koins
+map.mission.validationmessagebox.yes=Answer
+map.mission.validationmessagebox.no=Don't know
+map.validation.validationmessagebox.checkit=Check the solution
+
+
+#Markermap - should be obsolete
 markermap.title=Missions & Checks
 markermap.loadmask.message=Loading...
 markermap.bug.campaignmessagebox.close=Close
@@ -53,7 +73,7 @@ markermap.validation.validationmessagebox.koins.earncamp=Earn {validation_koin_c
 markermap.validation.validationmessagebox.checkit=Check the solution
 
 
-# Bugmap
+# Bugmap - should be obsolete
 bugmap.title=Missions
 bugmap.loadmask.message=Loading missions...
 bugmap.messagebox.koins.earn=Earn {fix_koin_count} Koins
@@ -65,7 +85,7 @@ bugmap.messagebox.no=Don't know
 ## Fix
 fix.form.title=Mission
 fix.form.koins.earn=Get the {fix_koin_count} Koins!
-fix.form.koins.earncamp=Get the {fix_koin_count} + {extra_coins} Koins!
+fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins!
 fix.form.message.placeholder=Your answer...
 fix.form.button.showonmap=Show on map
 fix.form.button.submit=Complete mission

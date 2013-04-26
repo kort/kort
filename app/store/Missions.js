@@ -1,14 +1,14 @@
 /**
  * Store for bugs
  */
-Ext.define('Kort.store.Bugs', {
+Ext.define('Kort.store.Missions', {
     extend: 'Ext.data.Store',
 	config: {
         autoLoad: false,
-		model: 'Kort.model.Bug',
+		model: 'Kort.model.Mission',
 		proxy: {
 			type: 'rest',
-            url: './resources/stores/bugs.json',
+            url: './resources/stores/missions.json',
             pageParam: false,
             startParam: false,
             extraParams: {

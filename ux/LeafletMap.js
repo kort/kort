@@ -115,10 +115,18 @@ Ext.define('Ext.ux.LeafletMap', {
         tileLayer: null,
 
         /**
+         * @cfg {L.TileLayer} tileLayer
+         * Additional layers.
+         * @accessor
+         */
+        additionalLayers: [],
+
+        /**
          * @cfg {Ext.util.Geolocation} geo
          * Geolocation provider for the map.
          * @accessor
          */
+
         geo: null,
 
         /**
@@ -230,6 +238,8 @@ Ext.define('Ext.ux.LeafletMap', {
             me.on('painted', 'setMapCenter', this, { delay: 150, single: true, args: [newOptions.center] });
         }
     },
+
+
 
     getMapOptions: function () {
         return Ext.merge({}, this.options || this.getInitialConfig('mapOptions'));
@@ -343,6 +353,7 @@ Ext.define('Ext.ux.LeafletMap', {
             this.renderMap();
         }
     },
+
 
     /**
      * Moves the map center to the designated coordinates hash of the form:

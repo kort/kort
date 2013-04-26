@@ -3,18 +3,13 @@
  */
 Ext.define('Kort.controller.Fix', {
     extend: 'Kort.controller.OsmMap',
-
+    requires: [
+        'Kort.view.map.mission.fix.type.Select',
+        'Kort.view.RewardMessageBox'
+    ],
     config: {
-        views: [
-            'markermap.NavigationView',
-            'markermap.bug.fix.TabPanel',
-            'markermap.bug.fix.Form',
-            'LeafletMap',
-            'RewardMessageBox'
-        ],
         refs: {
-            markermapNavigationView: '#markermapNavigationView',
-            //bugmapNavigationView: '#bugmapNavigationView',
+            mapNavigationView: '#mapNavigationView',
             detailComponent: '.fixtabpanel',
             fixFormSubmitButton: '.fixtabpanel .formpanel .button[cls=fixSubmitButton]',
             fixField: '.fixtabpanel .formpanel .field[name=fixfield]',
@@ -106,18 +101,18 @@ Ext.define('Kort.controller.Fix', {
     fixSuccessfulSubmittedHandler: function(responseText) {
         var rewardConfig = JSON.parse(responseText),
             reward = Ext.create('Kort.model.Reward', rewardConfig),
-            markermapNavigationView = this.getMarkermapNavigationView();
+            mapNavigationView = this.getMapNavigationView();
         
         this.showRewardMessageBox(reward);
         // remove detail panel
-        markermapNavigationView.pop();
-        markermapNavigationView.fireEvent('back', markermapNavigationView);
+        mapNavigationView.pop();
+        mapNavigationView.fireEvent('back', mapNavigationView);
         this.getApplication().fireEvent('fixsend');
     },
     
     // @private
     showSendMask: function() {
-        this.getMarkermapNavigationView().setMasked({
+        this.getMapNavigationView().setMasked({
             xtype: 'loadmask',
             message: Ext.i18n.Bundle.message('fix.sendmask.message'),
             zIndex: Kort.util.Config.getZIndex().overlayLeafletMap
@@ -126,7 +121,7 @@ Ext.define('Kort.controller.Fix', {
     
     // @private
     hideSendMask: function() {
-        this.getMarkermapNavigationView().setMasked(false);
+        this.getMapNavigationView().setMasked(false);
     },
     
     /**

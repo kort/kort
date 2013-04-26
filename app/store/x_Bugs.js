@@ -1,14 +1,15 @@
+//$$$replaced by missions
 /**
  * Store for bugs
  */
-Ext.define('Kort.store.BugsInactive', {
+Ext.define('Kort.store.Bugs', {
     extend: 'Ext.data.Store',
-    config: {
+	config: {
         autoLoad: false,
-        model: 'Kort.model.Bug',
-        proxy: {
-            type: 'rest',
-            url: './resources/stores/missions.json',
+		model: 'Kort.model.Bug',
+		proxy: {
+			type: 'rest',
+            url: './resources/stores/bugs.json',
             pageParam: false,
             startParam: false,
             extraParams: {
@@ -20,7 +21,7 @@ Ext.define('Kort.store.BugsInactive', {
                 type: 'json',
                 rootProperty: 'return'
             }
-        }
-    }
+		}
+	}
 
 });
