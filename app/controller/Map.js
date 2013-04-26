@@ -17,12 +17,17 @@ Ext.define('Kort.controller.Map', {
             },
             mapCenterButton: {
                 tap: '_onMapNavigationViewCenterButtonTap'
+                //tap: '_centerMapToJumpPosition'
             },
             mapRefreshButton: {
                 tap: '_onMapNavigationViewRefreshButtonTap'
             }
         },
         routes: {
+            //direct link to geoposition on map startup
+            //e.g. for london: http://local.play.kort.ch/#map/jump?lat=51.503355&lng=-0.127564
+            //in addition, a zoom level can be added (values between 0 and 18)
+            //e.g. for london: http://local.play.kort.ch/#map/jump?lat=51.503355&lng=-0.127564&z=1
             'map/:jump': '_jumpToDifferentGeoLocation'
         },
         lMap: null,
@@ -30,8 +35,6 @@ Ext.define('Kort.controller.Map', {
         lLayerControl: null,
         jumpLLatLong:null,
         jumpZoomLevel:null
-
-
 
     },
 
@@ -53,6 +56,7 @@ Ext.define('Kort.controller.Map', {
         var lMapWrapper = Ext.create('Kort.view.LeafletMap', {
             title: Ext.i18n.Bundle.message('map.title'),
             useCurrentLocation: geo,
+            initialCenter: false,
             id: 'leafletmapwrapper'
         });
         lMapWrapper.on('maprender', function(cmp, map, tileLayer) {
@@ -62,8 +66,17 @@ Ext.define('Kort.controller.Map', {
             me.setLLayerControl(lLayerControl);
             me.getApplication().fireEvent('leafletmaprendered');
         });
-        me.getMapNavigationView().add(lMapWrapper);
         me.setLMapWrapper(lMapWrapper);
+        me.getMapNavigationView().add(lMapWrapper);
+        //if there is a JumpPosition set through route query, use this one as starting center position.
+        if(me.getJumpLLatLong()) {
+            me._centerMapToJumpPosition();
+            if(me.getJumpZoomLevel()) {
+                me._zoomMapToJumpZoomLevel();
+            }
+        }else {
+            me._centerMapToCurrentPosition();
+        }
     },
 
     //adds {L.LayerGroup} lLayerGroup with display name lLayerGroupName as overlay to {L.Map} map
@@ -86,8 +99,25 @@ Ext.define('Kort.controller.Map', {
         }
     },
 
+    /**
+     *
+     * @param locationToJump
+     * @private
+     * sets the coordinates and zoomlevel, to which the center of the map should jump after being successfully initialized
+     * called by routes with locationToJump Object containing the optional keys:
+     * lat = latitude
+     * lng = longitude
+     * z = zoom level (0 - 18)
+     *
+     */
     _jumpToDifferentGeoLocation: function(locationToJump) {
-        console.log(locationToJump);
+
+        if(locationToJump.lat && locationToJump.lng) {
+            this.setJumpLLatLong(L.latLng(locationToJump.lat,locationToJump.lng));
+            if(locationToJump.z && locationToJump.z>=0 && locationToJump.z <=18) {
+                this.setJumpZoomLevel(locationToJump.z);
+            }
+        }
     },
 
     _triggerMapTypesUpdateProcess: function() {
@@ -116,6 +146,14 @@ Ext.define('Kort.controller.Map', {
 
     _centerMapToCurrentPosition: function() {
         this.getLMapWrapper().setMapCenter(this.getCurrentLocationLatLng());
+    },
+
+    _centerMapToJumpPosition: function() {
+        this.getLMapWrapper().setMapCenter(this.getJumpLLatLong());
+    },
+
+    _zoomMapToJumpZoomLevel: function() {
+        this.getLMapWrapper().setMapZoomLevel(this.getJumpZoomLevel());
     }
 
 });

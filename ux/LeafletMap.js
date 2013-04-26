@@ -249,10 +249,12 @@ Ext.define('Ext.ux.LeafletMap', {
         return Ext.merge({}, this.options || this.getInitialConfig('tileLayerOptions'));
     },
 
+    //ToDo Check
     updateUseCurrentLocation: function (useCurrentLocation) {
         this.setGeo(useCurrentLocation);
         if (!this.getMap() && (!useCurrentLocation || !this.getInitialCenter())) {
-            this.renderMap();
+           //csc on 26.04.2013: This call causes error in combination with initialCenter=false config.
+           //this.renderMap();
         }
     },
 
@@ -336,8 +338,8 @@ Ext.define('Ext.ux.LeafletMap', {
     onGeoUpdate: function (geo) {
         var ll = window.L,
             ownPositionMarker = this.getOwnPositionMarker();
-
         if (ll && geo && (this.getAutoMapCenter() || this.getInitialCenter())) {
+        //if (ll && geo && (this.getAutoMapCenter())) {
             this.setMapCenter(new ll.LatLng(geo.getLatitude(), geo.getLongitude()));
             this.setInitialCenter(false);
         }
@@ -395,6 +397,12 @@ Ext.define('Ext.ux.LeafletMap', {
                     center: coordinates
                 });
             }
+        }
+    },
+
+    setMapZoomLevel: function(zoomLevel) {
+        if(zoomLevel && zoomLevel>=0 && zoomLevel<=18) {
+            this.getMap().setZoom(zoomLevel);
         }
     },
 
