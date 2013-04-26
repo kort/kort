@@ -16,6 +16,7 @@ Ext.define('Kort.controller.OsmMap', {
      * @param {L.TileLayer} tileLayer Leaflet TileLayer object
      */
     onMaprender: function(cmp, map, tileLayer) {
+        console.log('osm called');
         var record = this.getDetailComponent().getRecord();
 
         this.setMap(map);
