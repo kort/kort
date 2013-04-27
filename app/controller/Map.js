@@ -1,5 +1,5 @@
 /**
- * Controller for a map with markers on it
+ * Controller for leaflet map
  */
 Ext.define('Kort.controller.Map', {
     extend: 'Ext.app.Controller',
@@ -17,7 +17,6 @@ Ext.define('Kort.controller.Map', {
             },
             mapCenterButton: {
                 tap: '_onMapNavigationViewCenterButtonTap'
-                //tap: '_centerMapToJumpPosition'
             },
             mapRefreshButton: {
                 tap: '_onMapNavigationViewRefreshButtonTap'
@@ -140,7 +139,6 @@ Ext.define('Kort.controller.Map', {
     },
 
     _onMapNavigationViewRefreshButtonTap: function () {
-        this._centerMapToCurrentPosition();
         this._triggerMapTypesUpdateProcess();
     },
 

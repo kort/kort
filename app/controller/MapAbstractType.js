@@ -14,6 +14,8 @@ Ext.define('Kort.controller.MapAbstractType', {
         //must be set by derived class
         lLayerGroupName:null,
 
+        preventAutomaticUpdates:false,
+
         mapController:null,
         activeRecord: null,
 
@@ -75,7 +77,6 @@ Ext.define('Kort.controller.MapAbstractType', {
         }
     },
 
-
     /**
      *
      * @param {L.MouseEvent}e
@@ -93,7 +94,6 @@ Ext.define('Kort.controller.MapAbstractType', {
             this.setActiveRecord(marker.record);
             this.onMarkerClickCallbackFunction();
         }
-
     },
 
     /**
