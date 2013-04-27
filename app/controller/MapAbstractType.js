@@ -14,7 +14,8 @@ Ext.define('Kort.controller.MapAbstractType', {
         //must be set by derived class
         lLayerGroupName:null,
 
-        preventAutomaticUpdates:false,
+        automaticUpdate:true,
+        updateByReplace: true,
 
         mapController:null,
         activeRecord: null,
@@ -31,17 +32,26 @@ Ext.define('Kort.controller.MapAbstractType', {
         me.setMapController(me.getApplication().getController('Map'));
         me.getApplication().on({
             leafletmaprendered: { fn: me.initData, scope:me },
-            maptypeupdaterequest: { fn: me._updateData, scope: me }
+            maptypeupdaterequest: { fn: me._onMapTypeUpdateRequest, scope: me }
         });
     },
 
 
     /**
-     * add layergroup (defined by derived class) to leaflet map and trigger update process to generate markers
+     * add layergroup (defined by derived class) to leaflet map and trigger, if automaticUpdate=true, update process to generate markers
      * called after leaflet map component is ready
      */
     initData: function() {
         this.getMapController().addLayerGroupToMap(this.getLLayerGroup(),this.getLLayerGroupName());
+        if(this.getAutomaticUpdate()) {
+            this._updateData();
+        }
+    },
+
+    /**
+     *
+     */
+    triggerDataUpdate: function() {
         this._updateData();
     },
 
@@ -60,12 +70,24 @@ Ext.define('Kort.controller.MapAbstractType', {
     /**
      *
      * @private
+     */
+    _onMapTypeUpdateRequest: function() {
+        if(this.getAutomaticUpdate()) {
+            this._updateData();
+        }
+    },
+
+    /**
+     *
+     * @private
      * generate markers from dataStore and add them to layergroup
      */
     _updateData: function() {
         var me = this;
         if(me.getDataStore() && me.getLLayerGroup()) {
-            me.getLLayerGroup().clearLayers();
+            if(me.getUpdateByReplace()) {
+                me.getLLayerGroup().clearLayers();
+            }
             me.getDataStore().getProxy().setUrl(me.generateDataStoreProxyUrl());
             me.getDataStore().load({
                 callback: function(records,operation,success) {
