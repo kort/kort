@@ -10,12 +10,11 @@ Ext.define('Kort.controller.MapAbstractType', {
         //must be set by derived class
         dataStore: null,
         //must be set by derived class
+        dataStoreProxyURL: null,
+        //must be set by derived class
         lLayerGroup: null,
         //must be set by derived class
         lLayerGroupName:null,
-
-        automaticUpdate:true,
-        updateByReplace: true,
 
         mapController:null,
         activeRecord: null,
@@ -36,16 +35,19 @@ Ext.define('Kort.controller.MapAbstractType', {
         });
     },
 
-
     /**
      * add layergroup (defined by derived class) to leaflet map and trigger, if automaticUpdate=true, update process to generate markers
      * called after leaflet map component is ready
      */
     initData: function() {
-        this.getMapController().addLayerGroupToMap(this.getLLayerGroup(),this.getLLayerGroupName());
-        if(this.getAutomaticUpdate()) {
-            this._updateData();
-        }
+        var me = this;
+        //omit false moveend events right after the map has been created
+        Ext.defer(function() {
+            me.getLMapWrapper().on('moveend',me.onMapMoveEnd,me);
+        },1000);
+        me.getMapController().addLayerGroupToMap(me.getLLayerGroup(),me.getLLayerGroupName());
+        me.updateDataStoreProxyUrl();
+        me._updateData();
     },
 
     /**
@@ -57,24 +59,27 @@ Ext.define('Kort.controller.MapAbstractType', {
 
     /**
      *
-     * abstract function; must be overidden by derived class
+     * abstract function; MUST be overidden by deriving class
      */
     onMarkerClickCallbackFunction: function() {},
 
-     /**
+    /**
      *
-     * abstract function; must be overidden by derived class
+     * abstract function; MUST be overidden by deriving class
      */
-    generateDataStoreProxyUrl: function() {},
+    updateDataStoreProxyUrl: function() {},
+
+    /**
+     * abstract function; CAN be overidden by deriving class if needed
+     */
+    onMapMoveEnd: function() {},
 
     /**
      *
      * @private
      */
     _onMapTypeUpdateRequest: function() {
-        if(this.getAutomaticUpdate()) {
-            this._updateData();
-        }
+        this._updateData();
     },
 
     /**
@@ -84,13 +89,12 @@ Ext.define('Kort.controller.MapAbstractType', {
      */
     _updateData: function() {
         var me = this;
-        if(me.getDataStore() && me.getLLayerGroup()) {
-            if(me.getUpdateByReplace()) {
-                me.getLLayerGroup().clearLayers();
-            }
-            me.getDataStore().getProxy().setUrl(me.generateDataStoreProxyUrl());
+        if(me.getDataStore() && me.getLLayerGroup() && me.getDataStoreProxyURL()) {
+            me.getDataStore().getProxy().setUrl(me.getDataStoreProxyURL());
             me.getDataStore().load({
                 callback: function(records,operation,success) {
+                    me.getDataStore().doOperationalRangeCheck(me.getLMapWrapper().getGeo(),2500);
+                    me.getLLayerGroup().clearLayers();
                     records.forEach(function(record) {
                         me.getLLayerGroup().addLayer(me._createLMarkerFromRecord(record));
                     });
@@ -127,7 +131,7 @@ Ext.define('Kort.controller.MapAbstractType', {
     _createLMarkerFromRecord: function(record) {
         var me = this;
         var marker = L.marker([record.get('latitude'), record.get('longitude')], {
-            icon: Kort.util.Config.getMarkerIcon(record.get('type'),record.get('state'))
+            icon: Kort.util.Config.getMarkerIcon(record.get('type'),record.get('state'),record.get('inOperationalRange'))
         });
         marker.record=record;
         marker.lastClickTimestamp = 0;

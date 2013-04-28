@@ -7,6 +7,7 @@ Ext.define('Kort.store.Validations', {
 	config: {
 		model: 'Kort.model.Validation',
 
+        /*
 		grouper: {
             groupFn: function(record) {
                 var validationsLeft = record.get('required_votes') - record.get('upratings') + record.get('downratings');
@@ -24,6 +25,7 @@ Ext.define('Kort.store.Validations', {
                 direction: 'ASC'
             }
         ],
+        */
 
 		proxy: {
 			type: 'rest',
@@ -43,10 +45,20 @@ Ext.define('Kort.store.Validations', {
         autoLoad:false
 	},
 
+    doOperationalRangeCheck: function(geo,distance) {
+        console.log('doOperationalRangeCheck');
+        if(!this.isLoading()) {
+            this.each(function(record, index, length) {
+                record.set('inOperationalRange', (geo.getDistance(record.get('latitude'), record.get('longitude')) < distance) ? true : false);
+            });
+        }
+    }
+
     /**
      * Update distances of trails in store
      * @param {Kort.util.Geolocation} geo Geolocation to calculate distance
      */
+    /*
 	updateDistances: function(geo) {
         console.log('updatedistances');
 		if(!this.isLoading()) {
@@ -57,4 +69,5 @@ Ext.define('Kort.store.Validations', {
 			this.sort();
 		}
 	}
+	*/
 });

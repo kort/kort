@@ -45,6 +45,7 @@ map.mission.missionmessagebox.koins.earn=Verdiene dir {fix_koin_count} Koins
 map.mission.missionmessagebox.koins.earnpromotion=Verdiene dir {fix_koin_count} + {extra_coins} Koins
 map.mission.missionmessagebox.yes=Beantworten
 map.mission.missionmessagebox.no=Weiss nicht
+map.mission.missionmessagebox.close=Schliessen
 map.mission.layername=Aufträge
 map.missionInactive.layername = Inaktive Aufträge
 map.validation.layername=Überprüfungen
@@ -52,6 +53,7 @@ map.validation.validationmessagebox.koins.earn=Verdiene dir {vote_koin_count} Ko
 map.validation.validationmessagebox.koins.earncamp=Verdiene dir {validation_koin_count} + {extra_coins} Koins
 map.mission.validationmessagebox.yes=Beantworten
 map.mission.validationmessagebox.no=Weiss nicht
+map.mission.validationmessagebox.close=Schliessen
 map.validation.validationmessagebox.checkit=Überprüfe die Lösung
 
 #Markermap - should be obsolete

@@ -243,22 +243,22 @@ Ext.define('Kort.util.Config', {
                 getUrl: function(latitude, longitude) {
                     return './server/webservices/bug/position/' + latitude + ',' + longitude;
                 },
-                radius: 50000,
-                limit: 25
+                radius: 5000,
+                limit: 50
             },
             campaign: {
                 getUrl: function() {
                     return './server/webservices/bug/position/';
                 },
-                radius: 50000,
+                radius: 5000,
                 limit: 25
             },
             validation: {
                 getUrl: function(latitude, longitude) {
                     return './server/webservices/validation/position/' + latitude + ',' + longitude;
                 },
-                radius: 20000,
-                limit: 15
+                radius: 5000,
+                limit: 50
             },
             user: {
                 url: './server/webservices/user/'
@@ -376,7 +376,7 @@ Ext.define('Kort.util.Config', {
      * Returns a Leaflet marker icon for a given type
      * @param {String} type Type of marker
      */
-    getMarkerIcon: function(type, state) {
+    getMarkerIcon: function(type, state, inOperationalRange) {
         var iconWidth = 32,
             iconHeight = 37,
             shadowWidth = 51,
@@ -385,8 +385,8 @@ Ext.define('Kort.util.Config', {
             iconCenterCorrectionFactor=0.064;
 
         icon = L.icon({
-            iconUrl: this.constructMissionIconURL(type,state,false),
-            iconRetinaUrl: this.constructMissionIconURL(type,state,true),
+            iconUrl: this.constructMissionIconURL(type,state,false, inOperationalRange),
+            iconRetinaUrl: this.constructMissionIconURL(type,state,true, inOperationalRange),
             iconSize: [iconWidth, iconHeight],
             iconAnchor: [((iconWidth/2)*(1-iconCenterCorrectionFactor)), iconHeight],
             shadowUrl: './resources/images/marker_icons/shadow.png',
@@ -402,9 +402,10 @@ Ext.define('Kort.util.Config', {
      * Constructs the correct Path to the mission icons depending
      * on type, state and retina.
      */
-    constructMissionIconURL: function(type, state, retina) {
+    constructMissionIconURL: function(type, state, retina, inOperationalRange) {
         if(typeof(state)==='undefined') state=Kort.util.Config.getMapMarkerState().mission;
         if(typeof(retina)==='undefined') retina=false;
+        if(typeof(inOperationalRange)==='undefined') inOperationalRange=true;
 
         var pathToResourceFolder = './resources/images/marker_icons/';
 
@@ -413,11 +414,12 @@ Ext.define('Kort.util.Config', {
         stateToPathSuffix[Kort.util.Config.getMapMarkerState().missionPromotion] = 'missionpromotion';
         stateToPathSuffix[Kort.util.Config.getMapMarkerState().validation] = 'validation';
         stateToPathSuffix[Kort.util.Config.getMapMarkerState().validationPromotion] = 'validationpromotion';
-        stateToPathSuffix[Kort.util.Config.getMapMarkerState().inactive] = 'validationpromotion';
 
         var retinaPathSuffix = retina ? '@2x' : '';
 
-        return pathToResourceFolder + type  + '_' + stateToPathSuffix[state] + retinaPathSuffix + '.png';
+        var inOperationalStatePathSuffix = inOperationalRange ? '' : 'inactive';
+
+        return pathToResourceFolder + type  + '_' + stateToPathSuffix[state] + inOperationalStatePathSuffix + retinaPathSuffix + '.png';
     }
 
 

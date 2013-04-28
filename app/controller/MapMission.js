@@ -15,6 +15,8 @@ Ext.define('Kort.controller.MapMission', {
         //override required from base class
         dataStore: null,
         //override required from base class
+        dataStoreProxyURL: null,
+        //override required from base class
         lLayerGroup: null,
         //override required from base class
         lLayerGroupName:null,
@@ -22,17 +24,19 @@ Ext.define('Kort.controller.MapMission', {
         promotionOverlayBackground:null,
 
         promotionStore: null
+
     },
 
     init: function() {
         this.setLLayerGroup(L.layerGroup());
         this.setLLayerGroupName(Ext.i18n.Bundle.message('map.mission.layername'));
         this.setDataStore(Ext.getStore('Missions'));
-        this.setPromotionStore(Ext.getStore('Promotions'))
+        this.setPromotionStore(Ext.getStore('Promotions'));
         this._loadPromotionStore();
         this.setPromotionOverlayBackground(Ext.create('Kort.view.map.mission.PromotionOverlay'));
         //call init function of parent class not until having overridden required configs
-        this.callParent()
+        this.callParent();
+
     },
 
     onMarkerClickCallbackFunction: function() {
@@ -42,10 +46,15 @@ Ext.define('Kort.controller.MapMission', {
         }
     },
 
-    generateDataStoreProxyUrl: function() {
-        var currentLatLng = this.getCurrentLocationLatLng();
+    updateDataStoreProxyUrl: function(useMapCenterInsteadOfGPS) {
+        var coordinateSource = (useMapCenterInsteadOfGPS && this.getLMapWrapper()) ? this.getLMapWrapper().getMapCenter() : this.getCurrentLocationLatLng();
         //ToDo Refactor
-        return Kort.util.Config.getWebservices().bug.getUrl(currentLatLng.lat, currentLatLng.lng);
+        this.setDataStoreProxyURL(Kort.util.Config.getWebservices().bug.getUrl(coordinateSource.lat, coordinateSource.lng));
+    },
+
+    onMapMoveEnd: function() {
+        this.updateDataStoreProxyUrl(true);
+        this.triggerDataUpdate();
     },
 
     returnFromMissionMessageBox: function(buttonId, value, opt,record) {

@@ -45,7 +45,7 @@ Ext.define('Kort.view.map.mission.fix.Form', {
                             '</div>',
                             '<div class="textpic">',
                                 '<div class="image">',
-                                    '<img class="bugtype-image" src="{[this.constructMissiontypeIcon(values.type,values.campaign_id)]}" />',
+                                    '<img class="bugtype-image" src="{[this.constructMissiontypeIcon(values.type,values.campaign_id,values.inOperationalRange)]}" />',
                                 '</div>',
                                 '<div class="content">',
                                     '<p>{description}</p>',
@@ -62,12 +62,12 @@ Ext.define('Kort.view.map.mission.fix.Form', {
                             return false;
                         }
                     },
-                    constructMissiontypeIcon: function(type,campaign_id) {
+                    constructMissiontypeIcon: function(type,campaign_id,inOperationalRange) {
                         var state = Kort.util.Config.getMapMarkerState().mission;
                         if(campaign_id) {
                             state = Kort.util.Config.getMapMarkerState().missionPromotion;
                         }
-                        return Kort.util.Config.constructMissionIconURL(type,state,true);
+                        return Kort.util.Config.constructMissionIconURL(type,state,true,inOperationalRange);
                     }
                 }
                 

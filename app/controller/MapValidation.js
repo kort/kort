@@ -13,6 +13,8 @@ Ext.define('Kort.controller.MapValidation', {
         //override required from base class
         dataStore: null,
         //override required from base class
+        dataStoreProxyURL: null,
+        //override required from base class
         lLayerGroup: null,
         //override required from base class
         lLayerGroupName:null,
@@ -40,9 +42,21 @@ Ext.define('Kort.controller.MapValidation', {
         }
     },
 
-    generateDataStoreProxyUrl: function() {
-        var currentLatLng = this.getCurrentLocationLatLng();
-        return Kort.util.Config.getWebservices().validation.getUrl(currentLatLng.lat, currentLatLng.lng);
+    updateDataStoreProxyUrl: function(useMapCenterInsteadOfGPS) {
+        var coordinateSource = (useMapCenterInsteadOfGPS && this.getLMapWrapper()) ? this.getLMapWrapper().getMapCenter() : this.getCurrentLocationLatLng();
+        //ToDo Refactor
+        this.setDataStoreProxyURL(Kort.util.Config.getWebservices().bug.getUrl(coordinateSource.lat, coordinateSource.lng));
+    },
+
+    updateDataStoreProxyUrl: function(useMapCenterInsteadOfGPS) {
+        var coordinateSource = (useMapCenterInsteadOfGPS && this.getLMapWrapper()) ? this.getLMapWrapper().getMapCenter() : this.getCurrentLocationLatLng();
+        //ToDo Refactor
+        this.setDataStoreProxyURL(Kort.util.Config.getWebservices().validation.getUrl(coordinateSource.lat, coordinateSource.lng));
+    },
+
+    onMapMoveEnd: function() {
+        this.updateDataStoreProxyUrl(true);
+        this.triggerDataUpdate();
     },
 
     returnFromValidationMessageBox: function(buttonId, value, opt){

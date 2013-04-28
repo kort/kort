@@ -31,7 +31,7 @@ Ext.define('Kort.view.map.validation.ValidationMessageBox', {
         '</div>',
         '<div class="textpic">',
         '<div class="image">',
-        '<img class="bugtype-image" src="{[this.constructMissiontypeIcon(values.type,values.state)]}" />',
+        '<img class="bugtype-image" src="{[this.constructMissiontypeIcon(values.type,values.state,values.inOperationalRange)]}" />',
         '</div>',
         '<div class="content">{[this.getMessage("map.validation.validationmessagebox.checkit")]} ',
         //'<img src="./resources/images/validation/thumbs-up.png" /> ',
@@ -45,8 +45,8 @@ Ext.define('Kort.view.map.validation.ValidationMessageBox', {
             isPromotion: function(state) {
                 return state==Kort.util.Config.getMapMarkerState().validationPromotion;
             },
-            constructMissiontypeIcon: function(type,state) {
-                return Kort.util.Config.constructMissionIconURL(type,state,true);
+            constructMissiontypeIcon: function(type,state,inOperationalRange) {
+                return Kort.util.Config.constructMissionIconURL(type,state,true,inOperationalRange);
             }
         }
     ),
@@ -57,6 +57,10 @@ Ext.define('Kort.view.map.validation.ValidationMessageBox', {
         YESNO: [
             { text: Ext.i18n.Bundle.message('map.mission.validationmessagebox.yes'), itemId: 'yes', ui: 'action'},
             { text: Ext.i18n.Bundle.message('map.mission.validationmessagebox.no'), itemId: 'no'}
+        ],
+        CLOSE: [
+            //{ text: Ext.i18n.Bundle.message('map.mission.validationmessagebox.yes'), itemId: 'yes', ui: 'action'},
+            { text: Ext.i18n.Bundle.message('map.mission.validationmessagebox.close'), itemId: 'no'}
         ],
         preventOpening: false
     },
@@ -87,7 +91,7 @@ Ext.define('Kort.view.map.validation.ValidationMessageBox', {
             record      : record,
             message     : this.tpl.apply(record.data) || null,
             // use own yes/no labels
-            buttons     : Kort.view.map.validation.ValidationMessageBox.YESNO,
+            buttons     : record.get('inOperationalRange') ? Kort.view.map.validation.ValidationMessageBox.YESNO : Kort.view.map.validation.ValidationMessageBox.CLOSE,
             promptConfig: false,
             scope       : scope,
             fn: function() {

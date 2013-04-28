@@ -36,7 +36,7 @@ Ext.define('Kort.view.map.mission.MissionMessageBox', {
         '</div>',
         '<div class="textpic">',
         '<div class="image">',
-        '<img class="bugtype-image" src="{[this.constructMissiontypeIcon(values.type,values.state)]}" />',
+        '<img class="bugtype-image" src="{[this.constructMissiontypeIcon(values.type,values.state,values.inOperationalRange)]}" />',
         '</div>',
         '<div class="content">',
         '<p>{description}</p>',
@@ -54,8 +54,8 @@ Ext.define('Kort.view.map.mission.MissionMessageBox', {
             isPromotion: function(state) {
                 return state==Kort.util.Config.getMapMarkerState().missionPromotion;
             },
-            constructMissiontypeIcon: function(type,state) {
-                return Kort.util.Config.constructMissionIconURL(type,state,true);
+            constructMissiontypeIcon: function(type,state,inOperationalRange) {
+                return Kort.util.Config.constructMissionIconURL(type,state,true,inOperationalRange);
             }
         }
     ),
@@ -66,6 +66,10 @@ Ext.define('Kort.view.map.mission.MissionMessageBox', {
         YESNO: [
             { text: Ext.i18n.Bundle.message('map.mission.missionmessagebox.yes'), itemId: 'yes', ui: 'action'},
             { text: Ext.i18n.Bundle.message('map.mission.missionmessagebox.no'), itemId: 'no'}
+        ],
+        CLOSE: [
+            //{ text: Ext.i18n.Bundle.message('map.mission.missionmessagebox.yes'), itemId: 'yes', ui: 'action'},
+            { text: Ext.i18n.Bundle.message('map.mission.missionmessagebox.close'), itemId: 'no'}
         ],
         preventOpening: false
     },
@@ -96,7 +100,7 @@ Ext.define('Kort.view.map.mission.MissionMessageBox', {
             record      : record,
             message     : this.tpl.apply(record.data) || null,
             // use own yes/no labels
-            buttons     : Kort.view.map.mission.MissionMessageBox.YESNO,
+            buttons     : record.get('inOperationalRange') ? Kort.view.map.mission.MissionMessageBox.YESNO : Kort.view.map.mission.MissionMessageBox.CLOSE,
             promptConfig: false,
             scope       : scope,
             fn: function() {

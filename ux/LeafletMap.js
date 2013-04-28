@@ -409,10 +409,10 @@ Ext.define('Ext.ux.LeafletMap', {
     /**
      *
      */
-    getCurrentMapCenter: function() {
+    getMapCenter: function() {
         return this.getMap().getCenter();
     },
-    getCurrentMapZoomLevel: function() {
+    getMapZoomLevel: function() {
         return this.getMap().getZoom();
     },
 
@@ -462,10 +462,11 @@ Ext.define('Ext.ux.LeafletMap', {
 
     // @private
     onMoveEnd: function () {
+        /*
         var map = this.getMap(),
             tileLayer = this.getTileLayer();
-
-        this.fireEvent('moveend', this, map, tileLayer);
+        */
+        this.fireEvent('moveend');
     },
 
     // @private
