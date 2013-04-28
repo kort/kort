@@ -1,5 +1,5 @@
 /**
- * Store for bugs
+ * Store for missions
  */
 Ext.define('Kort.store.Missions', {
     extend: 'Ext.data.Store',
