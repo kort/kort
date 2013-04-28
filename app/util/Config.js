@@ -244,7 +244,7 @@ Ext.define('Kort.util.Config', {
                     return './server/webservices/bug/position/' + latitude + ',' + longitude;
                 },
                 radius: 5000,
-                limit: 50
+                limit: 25
             },
             campaign: {
                 getUrl: function() {
@@ -258,7 +258,7 @@ Ext.define('Kort.util.Config', {
                     return './server/webservices/validation/position/' + latitude + ',' + longitude;
                 },
                 radius: 5000,
-                limit: 50
+                limit: 25
             },
             user: {
                 url: './server/webservices/user/'
