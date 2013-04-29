@@ -38,6 +38,8 @@ geolocationerror.loadmask.message=Reloading app...
 #Map
 map.title=Missions & Checks
 map.loadmask.message=Loading...
+map.sneakypeaksegmentedbutton.on=Sneaky Peak On
+map.sneakypeaksegmentedbutton.off=Sneaky Peak Off
 map.mission.promotionmessagebox.close=Close
 map.mission.promotionmessagebox.earn=Earn additional {extra_coins} Koins
 map.mission.promotionmessagebox.date={startdate} to {enddate}

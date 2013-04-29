@@ -54,11 +54,6 @@ Ext.define('Kort.controller.MapValidation', {
         this.setDataStoreProxyURL(Kort.util.Config.getWebservices().validation.getUrl(coordinateSource.lat, coordinateSource.lng));
     },
 
-    onMapMoveEnd: function() {
-        this.updateDataStoreProxyUrl(true);
-        this.triggerDataUpdate();
-    },
-
     returnFromValidationMessageBox: function(buttonId, value, opt){
         if(this.getActiveRecord().get('state')==Kort.util.Config.getMapMarkerState().validationPromotion) {
             this.getLMapWrapper().remove(this.getPromotionOverlayBackground(),false);

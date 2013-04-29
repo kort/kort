@@ -7,7 +7,8 @@ Ext.define('Kort.controller.Map', {
         refs: {
             mapNavigationView: '#mapNavigationView',
             mapCenterButton: '#mapNavigationView .button[cls=mapCenterButton]',
-            mapRefreshButton: '#mapNavigationView .button[cls=mapRefreshButton]'
+            mapRefreshButton: '#mapNavigationView .button[cls=mapRefreshButton]',
+            mapSneakyPeakSegmentedButton: '#mapNavigationView .segmentedbutton[cls=sneakyPeak]',
         },
         control: {
             mapNavigationView: {
@@ -20,7 +21,11 @@ Ext.define('Kort.controller.Map', {
             },
             mapRefreshButton: {
                 tap: '_onMapNavigationViewRefreshButtonTap'
+            },
+            mapSneakyPeakSegmentedButton: {
+                toggle: '_onSneakyPeakSegmentedButtonToggle'
             }
+
         },
         routes: {
             //direct link to geoposition on map startup
@@ -34,7 +39,6 @@ Ext.define('Kort.controller.Map', {
         lLayerControl: null,
         jumpLLatLong:null,
         jumpZoomLevel:null
-
     },
 
     init: function(){
@@ -152,6 +156,11 @@ Ext.define('Kort.controller.Map', {
 
     _zoomMapToJumpZoomLevel: function() {
         this.getLMapWrapper().setMapZoomLevel(this.getJumpZoomLevel());
+    },
+
+    _onSneakyPeakSegmentedButtonToggle: function(segmentedButton, button, isPressed, eOpts) {
+        button.setText(isPressed ? Ext.i18n.Bundle.message('map.sneakypeaksegmentedbutton.on') : Ext.i18n.Bundle.message('map.sneakypeaksegmentedbutton.off'));
+        this.getMapNavigationView().fireEvent('sneakypeaktoggled',isPressed);
     }
 
 });

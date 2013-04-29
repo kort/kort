@@ -52,10 +52,6 @@ Ext.define('Kort.controller.MapMission', {
         this.setDataStoreProxyURL(Kort.util.Config.getWebservices().bug.getUrl(coordinateSource.lat, coordinateSource.lng));
     },
 
-    onMapMoveEnd: function() {
-        this.updateDataStoreProxyUrl(true);
-        this.triggerDataUpdate();
-    },
 
     returnFromMissionMessageBox: function(buttonId, value, opt,record) {
         if(this.getActiveRecord().get('state')==Kort.util.Config.getMapMarkerState().missionPromotion) {

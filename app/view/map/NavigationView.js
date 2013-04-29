@@ -23,6 +23,17 @@ Ext.define('Kort.view.map.NavigationView', {
                     align: 'left'
                 },
                 {
+                    xtype: 'segmentedbutton',
+                    cls: 'sneakyPeak',
+                    allowMultiple: true,
+                    items: [
+                        {
+                            text:Ext.i18n.Bundle.message('map.sneakypeaksegmentedbutton.off')
+                        }
+                    ],
+                    align: 'right'
+                },
+                {
                     xtype: 'button',
                     cls: 'mapRefreshButton',
                     iconCls: 'refresh',

@@ -23,7 +23,9 @@ Ext.define('Kort.controller.MapAbstractType', {
             mapNavigationView: '#mapNavigationView',
             //available after leafletmaprendered event
             lMapWrapper: '#leafletmapwrapper'
-        }
+        },
+
+        isSneakyPeakActivated: false
     },
 
     init: function() {
@@ -41,20 +43,14 @@ Ext.define('Kort.controller.MapAbstractType', {
      */
     initData: function() {
         var me = this;
+        me.getMapNavigationView().on('sneakypeaktoggled', me._onSneakyPeakToggeled,me);
         //omit false moveend events right after the map has been created
         Ext.defer(function() {
-            me.getLMapWrapper().on('moveend',me.onMapMoveEnd,me);
+            me.getLMapWrapper().on('moveend',me._onMapMoveEnd,me);
         },1000);
         me.getMapController().addLayerGroupToMap(me.getLLayerGroup(),me.getLLayerGroupName());
         me.updateDataStoreProxyUrl();
         me._updateData();
-    },
-
-    /**
-     *
-     */
-    triggerDataUpdate: function() {
-        this._updateData();
     },
 
     /**
@@ -69,10 +65,13 @@ Ext.define('Kort.controller.MapAbstractType', {
      */
     updateDataStoreProxyUrl: function() {},
 
-    /**
-     * abstract function; CAN be overidden by deriving class if needed
-     */
-    onMapMoveEnd: function() {},
+
+    _onMapMoveEnd: function() {
+        if(this.getIsSneakyPeakActivated()) {
+            this.updateDataStoreProxyUrl(true);
+            this._updateData();
+        }
+    },
 
     /**
      *
@@ -137,6 +136,18 @@ Ext.define('Kort.controller.MapAbstractType', {
         marker.lastClickTimestamp = 0;
         marker.on('click', me._onMarkerClick,me);
         return marker;
+    },
+
+    _onSneakyPeakToggeled: function(state) {
+        console.log(state);
+        if(state) {
+            this.setIsSneakyPeakActivated(true);
+            this._onMapMoveEnd();
+        }else {
+            this.setIsSneakyPeakActivated(false);
+            this.updateDataStoreProxyUrl(false);
+            this._updateData();
+        }
     },
 
     /**
