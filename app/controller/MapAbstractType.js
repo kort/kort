@@ -65,7 +65,10 @@ Ext.define('Kort.controller.MapAbstractType', {
      */
     updateDataStoreProxyUrl: function() {},
 
-
+    /**
+     *
+     * @private
+     */
     _onMapMoveEnd: function() {
         if(this.getIsSneakyPeakActivated()) {
             this.updateDataStoreProxyUrl(true);
@@ -138,8 +141,12 @@ Ext.define('Kort.controller.MapAbstractType', {
         return marker;
     },
 
+    /**
+     *
+     * @param state
+     * @private
+     */
     _onSneakyPeakToggeled: function(state) {
-        console.log(state);
         if(state) {
             this.setIsSneakyPeakActivated(true);
             this._onMapMoveEnd();
