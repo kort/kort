@@ -134,11 +134,11 @@ $label-background-color: #46578D;
                     width: 40px;
                     height: 40px;
 
-                    .bugtype-image {
-                        $bugtype-image-width: 64px;
-                        $bugtype-image-height: 74px;
-                        width: $bugtype-image-width/2;
-                        height: $bugtype-image-height/2;
+                    .missiontype-image {
+                        $missiontype-image-width: 64px;
+                        $missiontype-image-height: 74px;
+                        width: $missiontype-image-width/2;
+                        height: $missiontype-image-height/2;
                     }
                     .koin-image {
                         $koin-image-width: 70px;
@@ -204,7 +204,7 @@ $label-background-color: #46578D;
                 float: left;
                 margin-right: 0.8em;
 
-                .bugtype-image {
+                .missiontype-image {
                     width: $image-width/2;
                     height: $image-height/2;
                 }
@@ -743,12 +743,12 @@ $label-background-color: #46578D;
     width: 40px;
     height: 40px;
 
-    .bugtype-image {
+    .missiontype-image {
       float: left;;
-      $bugtype-image-width: 64px;
-      $bugtype-image-height: 74px;
-      width: $bugtype-image-width/2;
-      height: $bugtype-image-height/2;
+      $missiontype-image-width: 64px;
+      $missiontype-image-height: 74px;
+      width: $missiontype-image-width/2;
+      height: $missiontype-image-height/2;
     }
     .koin-image {
       $koin-image-width: 70px;
@@ -806,11 +806,11 @@ $label-background-color: #46578D;
           width: 40px;
           height: 40px;
 
-          .bugtype-image {
-            $bugtype-image-width: 64px;
-            $bugtype-image-height: 74px;
-            width: $bugtype-image-width/2;
-            height: $bugtype-image-height/2;
+          .missiontype-image {
+            $missiontype-image-width: 64px;
+            $missiontype-image-height: 74px;
+            width: $missiontype-image-width/2;
+            height: $missiontype-image-height/2;
           }
           .koin-image {
             $koin-image-width: 70px;
@@ -876,11 +876,11 @@ $label-background-color: #46578D;
                     width: 40px;
                     height: 40px;
 
-                    .bugtype-image {
-                        $bugtype-image-width: 64px;
-                        $bugtype-image-height: 74px;
-                        width: $bugtype-image-width/2;
-                        height: $bugtype-image-height/2;
+                    .missiontype-image {
+                        $missiontype-image-width: 64px;
+                        $missiontype-image-height: 74px;
+                        width: $missiontype-image-width/2;
+                        height: $missiontype-image-height/2;
                     }
                     .koin-image {
                         $koin-image-width: 70px;

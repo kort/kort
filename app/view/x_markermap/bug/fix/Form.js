@@ -50,7 +50,7 @@ Ext.define('Kort.view.markermap.bug.fix.Form', {
                             '</div>',
                             '<div class="textpic">',
                                 '<div class="image">',
-                                    '<img class="bugtype-image" src="{[this.constructBugtypeIcon(values.type,values.campaign_id)]}" />',
+                                    '<img class="missiontype-image" src="{[this.constructMissiontypeIcon(values.type,values.campaign_id)]}" />',
                                 '</div>',
                                 '<div class="content">',
                                     '<p>{description}</p>',
@@ -67,7 +67,7 @@ Ext.define('Kort.view.markermap.bug.fix.Form', {
                             return false;
                         }
                     },
-                    constructBugtypeIcon: function(type,campaign_id) {
+                    constructMissiontypeIcon: function(type,campaign_id) {
                         var state = Kort.util.Config.getMissionState().bug;
                         if(campaign_id) {
                             state = Kort.util.Config.getMissionState().bugCampaign;

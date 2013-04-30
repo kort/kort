@@ -36,7 +36,7 @@ Ext.define('Kort.view.markermap.bug.BugMessageBox', {
         '</div>',
         '<div class="textpic">',
         '<div class="image">',
-        '<img class="bugtype-image" src="{[this.constructBugtypeIcon(values.type,values.state)]}" />',
+        '<img class="missiontype-image" src="{[this.constructMissiontypeIcon(values.type,values.state)]}" />',
         '</div>',
         '<div class="content">',
         '<p>{description}</p>',
@@ -44,17 +44,12 @@ Ext.define('Kort.view.markermap.bug.BugMessageBox', {
         '</div>',
         '</div>',
 
-        /*
-         '<div class="image">',
-         '<img class="bugtype-image" src="./resources/images/circle.png" />',
-         '</div>',
-         */
         {
             //member functions:
             isCampaign: function(state) {
                 return state==Kort.util.Config.getMissionState().bugCampaign;
             },
-            constructBugtypeIcon: function(type,state) {
+            constructMissiontypeIcon: function(type,state) {
                 return Kort.util.Config.constructMissionIconURL(type,state,true);
             }
         }

@@ -36,7 +36,7 @@ Ext.define('Kort.view.map.mission.MissionMessageBox', {
         '</div>',
         '<div class="textpic">',
         '<div class="image">',
-        '<img class="bugtype-image" src="{[this.constructMissiontypeIcon(values.type,values.state,values.inOperationalRange)]}" />',
+        '<img class="missiontype-image" src="{[this.constructMissiontypeIcon(values.type,values.state,values.inOperationalRange)]}" />',
         '</div>',
         '<div class="content">',
         '<p>{description}</p>',
@@ -44,11 +44,6 @@ Ext.define('Kort.view.map.mission.MissionMessageBox', {
         '</div>',
         '</div>',
 
-        /*
-         '<div class="image">',
-         '<img class="bugtype-image" src="./resources/images/circle.png" />',
-         '</div>',
-         */
         {
             //member functions:
             isPromotion: function(state) {

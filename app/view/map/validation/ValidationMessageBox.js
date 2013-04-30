@@ -31,7 +31,7 @@ Ext.define('Kort.view.map.validation.ValidationMessageBox', {
         '</div>',
         '<div class="textpic">',
         '<div class="image">',
-        '<img class="bugtype-image" src="{[this.constructMissiontypeIcon(values.type,values.state,values.inOperationalRange)]}" />',
+        '<img class="missiontype-image" src="{[this.constructMissiontypeIcon(values.type,values.state,values.inOperationalRange)]}" />',
         '</div>',
         '<div class="content">{[this.getMessage("map.validation.validationmessagebox.checkit")]} ',
         //'<img src="./resources/images/validation/thumbs-up.png" /> ',

@@ -88,7 +88,7 @@ Ext.define('Kort.controller.Bugmap', {
 //                '</div>',
 //                '<div class="textpic">',
 //                '<div class="image">',
-//                '<img class="bugtype-image" src="./resources/images/marker_icons/{type}@2x.png" />',
+//                '<img class="missiontype-image" src="./resources/images/marker_icons/{type}@2x.png" />',
 //                '</div>',
 //                '<div class="content">',
 //                '<p>{description}</p>',

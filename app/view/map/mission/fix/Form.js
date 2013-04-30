@@ -45,7 +45,7 @@ Ext.define('Kort.view.map.mission.fix.Form', {
                             '</div>',
                             '<div class="textpic">',
                                 '<div class="image">',
-                                    '<img class="bugtype-image" src="{[this.constructMissiontypeIcon(values.type,values.campaign_id,values.inOperationalRange)]}" />',
+                                    '<img class="missiontype-image" src="{[this.constructMissiontypeIcon(values.type,values.campaign_id,values.inOperationalRange)]}" />',
                                 '</div>',
                                 '<div class="content">',
                                     '<p>{description}</p>',

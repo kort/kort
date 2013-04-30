@@ -31,11 +31,9 @@ Ext.define('Kort.view.markermap.validation.ValidationMessageBox', {
         '</div>',
         '<div class="textpic">',
         '<div class="image">',
-        '<img class="bugtype-image" src="{[this.constructBugtypeIcon(values.type,values.state)]}" />',
+        '<img class="missiontype-image" src="{[this.constructMissiontypeIcon(values.type,values.state)]}" />',
         '</div>',
         '<div class="content">{[this.getMessage("markermap.validation.validationmessagebox.checkit")]} ',
-        //'<img src="./resources/images/validation/thumbs-up.png" /> ',
-        //'<img src="./resources/images/validation/thumbs-down.png" />',
         '</div>',
         '</div>',
         '</div>',
@@ -45,7 +43,7 @@ Ext.define('Kort.view.markermap.validation.ValidationMessageBox', {
             isCampaign: function(state) {
                 return state==Kort.util.Config.getMissionState().validationCampaign;
             },
-            constructBugtypeIcon: function(type,state) {
+            constructMissiontypeIcon: function(type,state) {
                 return Kort.util.Config.constructMissionIconURL(type,state,true);
             }
         }
