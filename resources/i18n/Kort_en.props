@@ -167,6 +167,9 @@ news.list.emptytext=No entries
 news.updated=Updated
 news.settings.save=Save
 news.settings.cancel=Cancel
+news.settings.acceptNoLanguage=Deselect all
+news.settings.acceptAllLanguages=Select all
+news.settings.label=Die News welcher Sprache möchtest du erhalten?
 
 # About
 about.title=About

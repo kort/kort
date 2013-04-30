@@ -164,6 +164,9 @@ news.list.emptytext=Derzeit keine News
 news.updated=Publiziert am
 news.settings.save=Speichern
 news.settings.cancel=Abbrechen
+news.settings.acceptNoLanguage=Keine auswählen
+news.settings.acceptAllLanguages=Alle auswählen
+news.settings.label=Die News welcher Sprache möchtest du erhalten?
 
 # About
 about.title=Über

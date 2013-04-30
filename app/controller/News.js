@@ -17,6 +17,8 @@ Ext.define('Kort.controller.News', {
             newsSettingsButton: '#newsNavigationView .button[cls=newsSettingsButton]',
             acceptedLanguageSaveButton: '#newsAcceptedLanguageSettingsPanel .button[cls=acceptedLanguageSaveButton]',
             acceptedLanguageCancelButton: '#newsAcceptedLanguageSettingsPanel .button[cls=acceptedLanguageCancelButton]',
+//            acceptAllLanguagesButton: '#newsAcceptedLanguageSettingsPanel .button[cls=acceptAllLanguagesButton',
+//            acceptNoLanguagesButton: '#newsAcceptedLanguageSettingsPanel .button[cls=acceptNoLanguagesButton',
             newsList: '.newslist'
         },
         control: {
@@ -35,6 +37,12 @@ Ext.define('Kort.controller.News', {
             },
             acceptedLanguageCancelButton: {
                 tap: 'onAcceptedLanguageCancelButtonTap'
+            },
+            acceptAllLanguagesButton: {
+                tap: 'onAcceptAllLanguagesButtonTap'
+            },
+            acceptNoLanguagesButton: {
+                tap: 'onAcceptNoLanguagesButtonTap'
             },
             newsList: {
                 itemtap: 'onNewsListItemTap'
@@ -146,6 +154,16 @@ Ext.define('Kort.controller.News', {
 
     onAcceptedLanguageCancelButtonTap: function() {
         this.getSettingsPanel().destroy();
+    },
+    // Select all languages
+    onAcceptAllLanguagesButtonTap:function(){
+        console.log('alles');
+        //Todo
+    },
+    //Deselect all languages
+    onAcceptNoLanguagesButtonTap:function(){
+        console.log('nichts');
+        //Todo
     },
 
     onNewsNavigationViewDetailPush: function() {

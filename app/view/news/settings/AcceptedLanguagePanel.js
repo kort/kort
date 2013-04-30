@@ -1,21 +1,45 @@
 Ext.define('Kort.view.news.settings.AcceptedLanguagePanel', {
     extend: ('Ext.form.Panel'),
     requires: [
-        'Ext.form.FieldSet'
+        'Ext.form.FieldSet',
+        'Ext.Label'
     ],
     config: {
         id: 'newsAcceptedLanguageSettingsPanel',
         centered : true,
         scrollable:true,
-        width: '90%',
-        height:'70%',
+        width: '95%',
+        height:'95%',
         modal    : true,
         items: [
             {
-                xtype: 'container',
-                cls: ''
+                xtype: 'toolbar',
+                docked: 'top',
+                cls: 'acceptedLanguageContainer',
+                items:[
+                    {
+                        xtype: 'label',
+                        html: Ext.i18n.Bundle.message('news.settings.label')
+                    }
+                ]
             },
-            { xtype: 'spacer' },
+            {
+                xtype: 'toolbar',
+                items: [
+                    { xtype: 'spacer' },
+                    {
+                        xtype: 'button',
+                        cls: 'acceptAllLanguagesButton',
+                        text: Ext.i18n.Bundle.message('news.settings.acceptAllLanguages')
+                    },
+                    {
+                        xtype: 'button',
+                        cls: 'acceptNoLanguageButton',
+                        text: Ext.i18n.Bundle.message('news.settings.acceptNoLanguage')
+                    },
+                    { xtype: 'spacer' }
+                ]
+            },
             {
                 xtype: 'fieldset',
                 id: 'acceptedLanguageFieldSet',
