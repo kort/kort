@@ -459,16 +459,12 @@ $label-background-color: #46578D;
 /* -----------------------
    News
    ----------------------- */
-
-
   .newsItem{
-
+    li {
+      list-style-image: url('../images/littleStar@2X.png');
+    }
     &.unreadstyle {
       font-weight: bold;
-      .starImage{
-        height: 15px;
-        width: 15px;
-      }
     }
   }
 
@@ -481,10 +477,6 @@ $label-background-color: #46578D;
       font-size: 1.2em;
       color: #b30000;
     }
-
-    //.dateText{
-    //  font-size: 0.7em;
-    //}
     .date{
       font-style: italic;
       font-size: 0.8em;
