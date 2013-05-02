@@ -8,10 +8,10 @@ Ext.define('Kort.view.news.List', {
         store: 'NewsLocal',
         itemTpl: new Ext.XTemplate(
             '<div class="newsItem',
-                '<tpl if="unread==true"> unreadstyle "><ln><li> ',
+                '<tpl if="unread==true"> unreadstyle "><ul><li> ',
                '<tpl else>"></tpl>',
                 '{title}' +
-                '<tpl if="unread==true"></li></ln></tpl>'+
+                '<tpl if="unread==true"></li></ul></tpl>'+
                 '</div>'
 
         ),
