@@ -15,10 +15,11 @@ Ext.define('Kort.view.news.settings.AcceptedLanguagePanel', {
             {
                 xtype: 'toolbar',
                 docked: 'top',
-                cls: 'acceptedLanguageContainer',
+                cls: 'newsSettingsTitle',
                 items:[
                     {
                         xtype: 'label',
+
                         html: Ext.i18n.Bundle.message('news.settings.label')
                     }
                 ]
@@ -48,6 +49,7 @@ Ext.define('Kort.view.news.settings.AcceptedLanguagePanel', {
             {
                 xtype: 'toolbar',
                 docked: 'bottom',
+                cls: 'newsSettingsBottomToolbar',
                 items: [
                     { xtype: 'spacer' },
 

@@ -3,6 +3,7 @@ $dark-grey: #4B4B4B;
 $color-dark-blue: #4e6490;
 $default-font-size: 0.9em;
 $label-background-color: #46578D;
+$message-box-background-color:#232e39;
 
 /* -----------------------
    Overlay / About
@@ -459,6 +460,13 @@ $label-background-color: #46578D;
 /* -----------------------
    News
    ----------------------- */
+#newsSettingsTitle{
+  background-color:$message-box-background-color;
+
+}
+#newsSettingsBottomToolbar{
+  background-color:$message-box-background-color;
+}
   .newsItem{
     li {
       list-style-image: url('../images/littleStar@2X.png');
