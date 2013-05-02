@@ -27,7 +27,6 @@ Ext.define('Kort.store.Missions', {
         console.log('doOperationalRangeCheck');
         if(!this.isLoading()) {
             this.each(function(record, index, length) {
-                console.log(geo.getDistance(record.get('latitude'), record.get('longitude')));
                 record.set('inOperationalRange', (geo.getDistance(record.get('latitude'), record.get('longitude')) < distance) ? true : false);
             });
         }
