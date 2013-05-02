@@ -498,7 +498,7 @@ $message-box-background-color:#232e39;
     padding: $panel-padding;
 
     .title{
-      font-family: "Verdana";
+     // font-family: "Helvetica";
       font-size: 1.2em;
       color: #b30000;
     }
@@ -509,7 +509,7 @@ $message-box-background-color:#232e39;
     .text{
       margin-top:  1.0em;
       font-size: 1.0em;
-      font-family: "andale mono";
+      font-family: "Georgia, serif";
     }
   }
 }
