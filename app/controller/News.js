@@ -15,10 +15,10 @@ Ext.define('Kort.controller.News', {
             newsNavigationView: '#newsNavigationView',
             newsRefreshButton: '#newsNavigationView .button[cls=newsRefreshButton]',
             newsSettingsButton: '#newsNavigationView .button[cls=newsSettingsButton]',
-            acceptedLanguageSaveButton: '#newsAcceptedLanguageSettingsPanel .button[cls=acceptedLanguageSaveButton]',
-            acceptedLanguageCancelButton: '#newsAcceptedLanguageSettingsPanel .button[cls=acceptedLanguageCancelButton]',
-//            acceptAllLanguagesButton: '#newsAcceptedLanguageSettingsPanel .button[cls=acceptAllLanguagesButton',
-//            acceptNoLanguagesButton: '#newsAcceptedLanguageSettingsPanel .button[cls=acceptNoLanguagesButton',
+            newsSettingsSaveButton: '#newsSettingsPanel .button[cls=newsSettingsSaveButton]',
+            newsSettingsCancelButton: '#newsSettingsPanel .button[cls=newsSettingsCancelButton]',
+//            newsSettingsSelectAllLanguagesButton: '#newsSettingsPanel .button[cls=newsSettingsSelectAllLanguagesButton',
+//            newsSettingsClearAllLanguagesButton: '#newsSettingsPanel .button[cls=newsSettingsClearAllLanguagesButton',
             newsList: '.newslist'
         },
         control: {
@@ -32,17 +32,17 @@ Ext.define('Kort.controller.News', {
             newsSettingsButton: {
                 tap: 'onNewsSettingsButtonTap'
             },
-            acceptedLanguageSaveButton: {
-                tap: 'onAcceptedLanguageSaveButtonTap'
+            newsSettingsSaveButton: {
+                tap: '_onNewsSettingsSaveButton'
             },
-            acceptedLanguageCancelButton: {
-                tap: 'onAcceptedLanguageCancelButtonTap'
+            newsSettingsCancelButton: {
+                tap: '_onNewsSettingsCancelButton'
             },
-            acceptAllLanguagesButton: {
-                tap: 'onAcceptAllLanguagesButtonTap'
+            newsSettingsSelectAllLanguagesButton: {
+                tap: '_onNewsSettingsSelectAllLanguagesButton'
             },
-            acceptNoLanguagesButton: {
-                tap: 'onAcceptNoLanguagesButtonTap'
+            newsSettingsClearAllLanguagesButton: {
+                tap: '_onNewsSettingsClearAllLanguagesButton'
             },
             newsList: {
                 itemtap: 'onNewsListItemTap'
@@ -136,7 +136,7 @@ Ext.define('Kort.controller.News', {
         this.getSettingsPanel().show();
     },
 
-    onAcceptedLanguageSaveButtonTap: function() {
+    _onNewsSettingsSaveButton: function() {
         var settingsValues = this.getSettingsPanel().getValues();
         var newAcceptedLanguageArray = [];
         Kort.util.Config.getSupportedLanguages().forEach(function(element,index,array) {
@@ -152,16 +152,16 @@ Ext.define('Kort.controller.News', {
         this.getApplication().fireEvent('newsacceptedlanguagesupdated');
     },
 
-    onAcceptedLanguageCancelButtonTap: function() {
+    _onNewsSettingsCancelButton: function() {
         this.getSettingsPanel().destroy();
     },
     // Select all languages
-    onAcceptAllLanguagesButtonTap:function(){
+    _onNewsSettingsSelectAllLanguagesButton:function(){
         console.log('alles');
         //Todo
     },
     //Deselect all languages
-    onAcceptNoLanguagesButtonTap:function(){
+    _onNewsSettingsClearAllLanguagesButton:function(){
         console.log('nichts');
         //Todo
     },

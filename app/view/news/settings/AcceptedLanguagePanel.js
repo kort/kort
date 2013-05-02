@@ -5,7 +5,7 @@ Ext.define('Kort.view.news.settings.AcceptedLanguagePanel', {
         'Ext.Label'
     ],
     config: {
-        id: 'newsAcceptedLanguageSettingsPanel',
+        id: 'newsSettingsPanel',
         centered : true,
         scrollable:true,
         width: '95%',
@@ -19,23 +19,24 @@ Ext.define('Kort.view.news.settings.AcceptedLanguagePanel', {
                 items:[
                     {
                         xtype: 'label',
-
                         html: Ext.i18n.Bundle.message('news.settings.label')
                     }
                 ]
             },
             {
                 xtype: 'toolbar',
+                docked: 'top',
+                cls: 'newsSettingsSelectionToolbar',
                 items: [
                     { xtype: 'spacer' },
                     {
                         xtype: 'button',
-                        cls: 'acceptAllLanguagesButton',
+                        cls: 'newsSettingsSelectAllLanguagesButton',
                         text: Ext.i18n.Bundle.message('news.settings.acceptAllLanguages')
                     },
                     {
                         xtype: 'button',
-                        cls: 'acceptNoLanguageButton',
+                        cls: 'newsSettingsClearAllLanguagesButton',
                         text: Ext.i18n.Bundle.message('news.settings.acceptNoLanguage')
                     },
                     { xtype: 'spacer' }
@@ -55,12 +56,12 @@ Ext.define('Kort.view.news.settings.AcceptedLanguagePanel', {
 
                     {
                         xtype: 'button',
-                        cls: 'acceptedLanguageCancelButton',
+                        cls: 'newsSettingsCancelButton',
                         text: Ext.i18n.Bundle.message('news.settings.cancel')
                     },
                     {
                         xtype: 'button',
-                        cls: 'acceptedLanguageSaveButton',
+                        cls: 'newsSettingsSaveButton',
                         text: Ext.i18n.Bundle.message('news.settings.save')
                     },
                     { xtype: 'spacer' }

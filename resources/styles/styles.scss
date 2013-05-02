@@ -460,27 +460,38 @@ $message-box-background-color:#232e39;
 /* -----------------------
    News
    ----------------------- */
-#newsSettingsTitle{
-  background-color:$message-box-background-color;
 
-}
-#newsSettingsBottomToolbar{
-  background-color:$message-box-background-color;
-}
-  .newsItem{
-    li {
-      list-style-image: url('../images/littleStar@2X.png');
-    }
-    &.unreadstyle {
-      font-weight: bold;
-    }
+#newsSettingsPanel {
+  .newsSettingsTitle {
+    padding: 6px 0px 6px 12px;
+    font-size:$default-font-size;
+    background:$message-box-background-color;
+    border-bottom: 1px solid white;
   }
 
-.acceptedLanguageFieldSet{
+  .newsSettingsBottomToolbar, .newsSettingsSelectionToolbar{
+    background:$message-box-background-color;
+  }
 
-  font-style: italic;
-  background: #cc0000;
+
 }
+
+  .newsItem{
+    ul {
+      padding-left:1em;
+      li {
+        list-style-image: url('../images/listStarIcon.png');
+      }
+    }
+
+
+
+  }
+  .unreadstyle {
+    font-weight: bold;
+  }
+
+
 
 .newsNewsEntryContentComponent{
   .newsclass{
@@ -949,7 +960,6 @@ $message-box-background-color:#232e39;
     background-color: $label-background-color;
     padding: 0.4em 0.6em;
     color: white;
-    border-radius: 1em;
     text-shadow: rgba(0, 0, 0, 0.25) 0 0.08em 0;
 }
 

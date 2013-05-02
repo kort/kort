@@ -95,7 +95,7 @@ Ext.define('Kort.controller.MapAbstractType', {
             me.getDataStore().getProxy().setUrl(me.getDataStoreProxyURL());
             me.getDataStore().load({
                 callback: function(records,operation,success) {
-                    me.getDataStore().doOperationalRangeCheck(me.getLMapWrapper().getGeo(),2500);
+                    me.getDataStore().doOperationalRangeCheck(me.getLMapWrapper().getGeo(),5000);
                     me.getLLayerGroup().clearLayers();
                     records.forEach(function(record) {
                         me.getLLayerGroup().addLayer(me._createLMarkerFromRecord(record));
