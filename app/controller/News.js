@@ -17,8 +17,8 @@ Ext.define('Kort.controller.News', {
             newsSettingsButton: '#newsNavigationView .button[cls=newsSettingsButton]',
             newsSettingsSaveButton: '#newsSettingsPanel .button[cls=newsSettingsSaveButton]',
             newsSettingsCancelButton: '#newsSettingsPanel .button[cls=newsSettingsCancelButton]',
-//            newsSettingsSelectAllLanguagesButton: '#newsSettingsPanel .button[cls=newsSettingsSelectAllLanguagesButton',
-//            newsSettingsClearAllLanguagesButton: '#newsSettingsPanel .button[cls=newsSettingsClearAllLanguagesButton',
+            newsSettingsSelectAllLanguagesButton: '#newsSettingsPanel .button[cls=newsSettingsSelectAllLanguagesButton]',
+            newsSettingsClearAllLanguagesButton: '#newsSettingsPanel .button[cls=newsSettingsClearAllLanguagesButton]',
             newsList: '.newslist'
         },
         control: {
@@ -158,12 +158,18 @@ Ext.define('Kort.controller.News', {
     // Select all languages
     _onNewsSettingsSelectAllLanguagesButton:function(){
         console.log('alles');
-        //Todo
+        var fieldset = Ext.getCmp('acceptedLanguageFieldSet');
+        fieldset.getItems().items.forEach(function(item) {
+            item.setChecked(true);
+        });
     },
     //Deselect all languages
     _onNewsSettingsClearAllLanguagesButton:function(){
         console.log('nichts');
-        //Todo
+        var fieldset = Ext.getCmp('acceptedLanguageFieldSet');
+        fieldset.getItems().items.forEach(function(item) {
+            item.setChecked(false);
+        });
     },
 
     onNewsNavigationViewDetailPush: function() {
