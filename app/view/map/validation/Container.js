@@ -91,7 +91,7 @@ Ext.define('Kort.view.map.validation.Container', {
             xtype: 'kortleafletmap',
             cls: 'voteMap',
             flex: 1,
-            initialCenter: false,
+            initialCenter: true,
             mapOptions: {
                 dragging: false
             }

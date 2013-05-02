@@ -10,39 +10,39 @@
     <id>urn:uuid:60a76c80-d399-11d9-b93C-0003939e0af6</id>
 
     <entry>
-        <title>Atom-Powered Robots Run Amok</title>
+        <title xml:lang="en">Atom-Powered Robots Run Amok</title>
         <link href="http://example.org/2003/12/13/atom03"/>
         <id>urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa7a</id>
         <updated>2013-04-16T18:30:02Z</updated>
-        <content type="text" xml:lang="en">Different en text</content>
+        <content type="html">Different en text</content>
     </entry>
     <entry>
-        <title>Atom-Powered Robots Run Amok 2</title>
+        <title xml:lang="fr">Atom-Powered Robots Run Amok 2</title>
         <link href="http://example.org/2003/12/13/atom03"/>
         <id>urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa8a</id>
         <updated>2013-04-16T18:30:02Z</updated>
-        <content type="text" xml:lang="fr">Different fr text 2</content>
+        <content type="html">Different fr text 2</content>
     </entry>
     <entry>
-        <title>New News 2</title>
+        <title xml:lang="fr">New News 2</title>
         <link href="http://example.org/2003/12/13/atom03"/>
         <id>urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efb3s</id>
         <updated>2013-04-13T18:30:02Z</updated>
-        <content type="text" xml:lang="en">Different en text</content>
+        <content type="html">Different en text</content>
     </entry>
     <entry>
-        <title>New News 3 deleted and readded</title>
+        <title xml:lang="fr">New News 3 deleted and readded</title>
         <link href="http://example.org/2003/12/13/atom03"/>
         <id>urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344eaa3s</id>
         <updated>2013-04-14T18:30:02Z</updated>
-        <content type="text" xml:lang="en">Different en text</content>
+        <content type="html">Different en text</content>
     </entry>
     <entry>
-        <title>New News vom Zürichsee</title>
+        <title xml:lang="fr">New News vom Zürichsee</title>
         <link href="http://example.org/2003/12/13/atom03"/>
         <id>urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efd3s</id>
         <updated>2013-04-12T18:30:02Z</updated>
-        <content type="text" xml:lang="en">Different en text oder einen etwas
+        <content type="html">Different en text oder einen etwas
         längeren Text, damit man sieht wie es aussieht wenn etwas mehr Text da steht
         wie zum Beispiel eine Ankündigung Es findet nämlich bald eine
         erste Kort-Aktion statt, was auf Englisch Promotion heisst und wir wollen
@@ -51,11 +51,11 @@
         Region wo noch viele Aufträge offen sind. Die Region erscheint dann im Titel.</content>
     </entry>
     <entry>
-        <title>New News 4</title>
+        <title xml:lang="fr">New News 4</title>
         <link href="http://example.org/2003/12/13/atom03"/>
         <id>urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efe3s</id>
         <updated>2013-04-15T18:30:02Z</updated>
-        <content type="text" xml:lang="en">Different en text</content>
+        <content type="html">Different en text</content>
     </entry>
 
 </feed>

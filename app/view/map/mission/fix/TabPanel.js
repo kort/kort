@@ -31,7 +31,7 @@ Ext.define('Kort.view.map.mission.fix.TabPanel', {
         fixMap = {
             title: Ext.i18n.Bundle.message('fix.map.title'),
             xtype: 'kortleafletmap',
-            initialCenter: false,
+            initialCenter: true,
             cls: 'fixMap'
         };
         

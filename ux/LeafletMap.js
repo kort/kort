@@ -336,6 +336,7 @@ Ext.define('Ext.ux.LeafletMap', {
 
     // @private
     onGeoUpdate: function (geo) {
+        console.log(this.getInitialCenter());
         var ll = window.L,
             ownPositionMarker = this.getOwnPositionMarker();
         if (ll && geo && (this.getAutoMapCenter() || this.getInitialCenter())) {

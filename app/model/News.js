@@ -8,7 +8,7 @@ Ext.define('Kort.model.News', {
 
         fields: [
             { name: 'newsid', mapping:'id', type: 'auto' },
-            { name: 'lang', mapping:'content@xml:lang', type: 'string'},
+            { name: 'lang', mapping:'title@xml:lang', type: 'string'},
             { name: 'title', mapping:'title', type: 'string' },
             { name: 'content', mapping:'content', type: 'string' },
             { name: 'updated', mapping:'updated', type: 'date'},

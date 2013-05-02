@@ -8,7 +8,7 @@ Ext.define('Kort.controller.Map', {
             mapNavigationView: '#mapNavigationView',
             mapCenterButton: '#mapNavigationView .button[cls=mapCenterButton]',
             mapRefreshButton: '#mapNavigationView .button[cls=mapRefreshButton]',
-            mapSneakyPeakSegmentedButton: '#mapNavigationView .segmentedbutton[cls=sneakyPeak]',
+            mapSneakyPeakSegmentedButton: '#mapNavigationView .segmentedbutton[cls=sneakyPeak]'
         },
         control: {
             mapNavigationView: {
@@ -31,7 +31,7 @@ Ext.define('Kort.controller.Map', {
             //direct link to geoposition on map startup
             //e.g. for london: http://local.play.kort.ch/#map/jump?lat=51.503355&lng=-0.127564
             //in addition, a zoom level can be added (values between 0 and 18)
-            //e.g. for london: http://local.play.kort.ch/#map/jump?lat=51.503355&lng=-0.127564&z=1
+            //e.g. for london: http://local.play.kort.ch/#map/jump?lat=51.503355&lng=-0.127564&z=15
             'map/:jump': '_jumpToDifferentGeoLocation'
         },
         lMap: null,
@@ -159,7 +159,7 @@ Ext.define('Kort.controller.Map', {
     },
 
     _onSneakyPeakSegmentedButtonToggle: function(segmentedButton, button, isPressed, eOpts) {
-        button.setText(isPressed ? Ext.i18n.Bundle.message('map.sneakypeaksegmentedbutton.on') : Ext.i18n.Bundle.message('map.sneakypeaksegmentedbutton.off'));
+        //button.setText(isPressed ? Ext.i18n.Bundle.message('map.sneakypeaksegmentedbutton.on') : Ext.i18n.Bundle.message('map.sneakypeaksegmentedbutton.off'));
         this.getMapNavigationView().fireEvent('sneakypeaktoggled',isPressed);
     }
 

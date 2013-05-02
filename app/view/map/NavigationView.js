@@ -28,7 +28,9 @@ Ext.define('Kort.view.map.NavigationView', {
                     allowMultiple: true,
                     items: [
                         {
-                            text:Ext.i18n.Bundle.message('map.sneakypeaksegmentedbutton.off')
+                            iconCls: 'look',
+                            iconMask: true
+                                //text:Ext.i18n.Bundle.message('map.sneakypeaksegmentedbutton.off')
                         }
                     ],
                     align: 'right'
