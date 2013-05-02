@@ -12,7 +12,7 @@ Ext.define('Kort.view.news.newsEntry.ContentComponent', {
 
             '<div class="newsclass">',
             '<div class="title">{title}</div>',
-            '<span class="date"> {updated}</span>',
+            '<span class="date">{updated:date("d.m.Y")}</span>',
             '<div class="text">{content}</div>',
             '</div>'
         )
