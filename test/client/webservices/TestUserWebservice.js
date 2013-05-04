@@ -4,7 +4,7 @@ module("kort-UserWebservice", {
     }
 });
 
-testSkip("get user", function() {
+test("get user", function() {
 	var type = 'GET',
         data = null,
         url = urlLib.getAppUrl() + this.path + '/09821093801923';
@@ -20,7 +20,7 @@ testSkip("get user", function() {
     });
 });
 
-testSkip("create user", function() {
+test("create user", function() {
 	var type = 'POST',
         data = {
             username: 'testuser',
