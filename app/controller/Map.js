@@ -47,36 +47,16 @@ Ext.define('Kort.controller.Map', {
         me.getApplication().on({
             fixsend: {fn: me._triggerMapTypesUpdateProcess, scope:me },
             votesend: {fn: me._triggerMapTypesUpdateProcess, scope:me },
-            geolocationready: { fn: me.createLeafletMapWrapper, scope: me }
+            geolocationready: { fn: me._createLeafletMapWrapper, scope: me }
         });
     },
 
     /**
-     *invoked by gelocationready event fired by app.js after geolocation data is available
+     *
+     * @param {L.LayerGroup} lLayerGroup
+     * @param {String} lLayerGroupName
+     * adds {L.LayerGroup} lLayerGroup with display name lLayerGroupName as overlay to {L.Map} map
      */
-    createLeafletMapWrapper: function (geo) {
-        var me = this,
-            lMapWrapper = Ext.create('Kort.view.LeafletMap', {
-            title: Ext.i18n.Bundle.message('map.title'),
-            useCurrentLocation: geo,
-            initialCenter: false,
-            id: 'leafletmapwrapper'
-        });
-        lMapWrapper.on('maprender', me._onLMapRendered,me);
-        me.setLMapWrapper(lMapWrapper);
-        me.getMapNavigationView().add(lMapWrapper);
-        //if there is a JumpPosition set through route query, use this one as starting center position.
-        if(me.getJumpLLatLong()) {
-            me._centerMapToJumpPosition();
-            if(me.getJumpZoomLevel()) {
-                me._zoomMapToJumpZoomLevel();
-            }
-        }else {
-            me._centerMapToCurrentPosition();
-        }
-    },
-
-    //adds {L.LayerGroup} lLayerGroup with display name lLayerGroupName as overlay to {L.Map} map
     addLayerGroupToMap: function(lLayerGroup,lLayerGroupName) {
         this.getLLayerControl().addOverlay(lLayerGroup,lLayerGroupName);
         //there is no possibility to dynamically add a layer group to the leaflet map which is directly visible through default leaflet api.
@@ -99,6 +79,34 @@ Ext.define('Kort.controller.Map', {
 
     /**
      *
+     * @param {Kort.util.Geolocation} geo
+     * @private
+     * creates LeafletMap component
+     */
+    _createLeafletMapWrapper: function (geo) {
+        var me = this,
+            lMapWrapper = Ext.create('Kort.view.LeafletMap', {
+                title: Ext.i18n.Bundle.message('map.title'),
+                useCurrentLocation: geo,
+                initialCenter: false,
+                id: 'leafletmapwrapper'
+            });
+        lMapWrapper.on('maprender', me._onLMapRendered,me);
+        me.setLMapWrapper(lMapWrapper);
+        me.getMapNavigationView().add(lMapWrapper);
+        //if there is a JumpPosition set through route query, use this one as starting center position.
+        if(me.getJumpLLatLong()) {
+            me._centerMapToJumpPosition();
+            if(me.getJumpZoomLevel()) {
+                me._zoomMapToJumpZoomLevel();
+            }
+        }else {
+            me._centerMapToCurrentPosition();
+        }
+    },
+
+    /**
+     *
      * @param locationToJump
      * @private
      * sets the coordinates and zoomlevel, to which the center of the map should jump after being successfully initialized
@@ -106,7 +114,6 @@ Ext.define('Kort.controller.Map', {
      * lat = latitude
      * lng = longitude
      * z = zoom level (0 - 18)
-     *
      */
     _jumpToDifferentGeoLocation: function(locationToJump) {
 
