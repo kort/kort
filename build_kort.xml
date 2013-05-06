@@ -19,25 +19,27 @@
     <property name="test.dir" value="test" />
 
 
-	<target name="build" depends="css,version,lint,docs,test">
+	<!--<target name="build" depends="css,version,lint,docs,test">-->
+    <target name="build" depends="css,version,lint">
 		<echo message="BUILD FINISHED!"/>
 	</target>
 
      <target name="test">
         <antcall target="js-test"/>
-        <antcall target="php-test"/>
+        <!-- <antcall target="php-test"/> -->
     </target>
 
     <target name="lint">
         <antcall target="js-lint"/>
-        <antcall target="php-lint"/>
+        <!-- <antcall target="php-lint"/> -->
     </target>
 
     <target name="docs">
         <antcall target="js-docs"/>
-        <antcall target="php-docs"/>
+        <!-- <antcall target="php-docs"/> -->
     </target>
 
+    <!--
     <target name="php-test">
 		<echo message="Running tests"/>
 		<foreach target="exec_test_php" param="filename">
@@ -46,6 +48,7 @@
 			</path>
 		</foreach>
     </target>
+    -->
 
 	<target name="js-test">
 		<echo message="Running tests"/>
