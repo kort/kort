@@ -70,8 +70,8 @@ Ext.define('Kort.view.news.settings.AcceptedLanguagePanel', {
         ]
     },
     initialize: function(){
-        var acceptedLanguagesByUser = Ext.getStore('UserLocal').getData().all[0].get('newsAcceptedLanguageArray');
-        var fieldset = Ext.getCmp('acceptedLanguageFieldSet');
+        var acceptedLanguagesByUser = Ext.getStore('UserLocal').getData().all[0].get('newsAcceptedLanguageArray'),
+            fieldset = Ext.getCmp('acceptedLanguageFieldSet');
         Kort.util.Config.getSupportedLanguages().forEach(function(element,index,array){
             fieldset.add({
                xtype: 'checkboxfield',
@@ -79,13 +79,8 @@ Ext.define('Kort.view.news.settings.AcceptedLanguagePanel', {
                 label: Ext.i18n.Bundle.message(element),
                 labelWidth: '70%',
                 value: element,
-                checked: acceptedLanguagesByUser.indexOf(element)!=-1
-           })
+                checked: acceptedLanguagesByUser.indexOf(element)!==-1
+           });
         });
-        /*
-        fieldset.getItems().items.forEach(function(item) {
-            item.setChecked(false);
-        }));
-        */
     }
 });

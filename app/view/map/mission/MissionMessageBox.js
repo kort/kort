@@ -47,7 +47,7 @@ Ext.define('Kort.view.map.mission.MissionMessageBox', {
         {
             //member functions:
             isPromotion: function(state) {
-                return state==Kort.util.Config.getMapMarkerState().missionPromotion;
+                return state===Kort.util.Config.getMapMarkerState().missionPromotion;
             },
             constructMissiontypeIcon: function(type,state,inOperationalRange) {
                 return Kort.util.Config.constructMissionIconURL(type,state,true,inOperationalRange);

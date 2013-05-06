@@ -41,7 +41,7 @@ Ext.define('Kort.controller.MapMission', {
 
     onMarkerClickCallbackFunction: function() {
         Ext.create('Kort.view.map.mission.MissionMessageBox').confirm(this.getActiveRecord(), this.returnFromMissionMessageBox, this);
-        if(this.getActiveRecord().get('state')==Kort.util.Config.getMapMarkerState().missionPromotion) {
+        if(this.getActiveRecord().get('state') === Kort.util.Config.getMapMarkerState().missionPromotion) {
             this.getLMapWrapper().add(this.getPromotionOverlayBackground());
         }
     },
@@ -54,7 +54,7 @@ Ext.define('Kort.controller.MapMission', {
 
 
     returnFromMissionMessageBox: function(buttonId, value, opt,record) {
-        if(this.getActiveRecord().get('state')==Kort.util.Config.getMapMarkerState().missionPromotion) {
+        if(this.getActiveRecord().get('state') === Kort.util.Config.getMapMarkerState().missionPromotion) {
             this.getLMapWrapper().remove(this.getPromotionOverlayBackground(),false);
         }
         if (buttonId === 'yes') {

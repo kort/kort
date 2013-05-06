@@ -28,24 +28,18 @@ Ext.define('Kort.controller.MapValidation', {
         this.setLLayerGroup(L.layerGroup());
         this.setLLayerGroupName(Ext.i18n.Bundle.message('map.validation.layername'));
         this.setDataStore(Ext.getStore('Validations'));
-        this.setPromotionStore(Ext.getStore('Promotions'))
+        this.setPromotionStore(Ext.getStore('Promotions'));
         this._loadPromotionStore();
         this.setPromotionOverlayBackground(Ext.create('Kort.view.map.mission.PromotionOverlay'));
         //call init function of parent class not until having overridden required configs
-        this.callParent()
+        this.callParent();
     },
 
     onMarkerClickCallbackFunction: function() {
         Ext.create('Kort.view.map.validation.ValidationMessageBox').confirm(this.getActiveRecord(), this.returnFromValidationMessageBox, this);
-        if(this.getActiveRecord().get('state')==Kort.util.Config.getMapMarkerState().validationPromotion) {
+        if(this.getActiveRecord().get('state') === Kort.util.Config.getMapMarkerState().validationPromotion) {
             this.getLMapWrapper().add(this.getPromotionOverlayBackground());
         }
-    },
-
-    updateDataStoreProxyUrl: function(useMapCenterInsteadOfGPS) {
-        var coordinateSource = (useMapCenterInsteadOfGPS && this.getLMapWrapper()) ? this.getLMapWrapper().getMapCenter() : this.getCurrentLocationLatLng();
-        //ToDo Refactor
-        this.setDataStoreProxyURL(Kort.util.Config.getWebservices().bug.getUrl(coordinateSource.lat, coordinateSource.lng));
     },
 
     updateDataStoreProxyUrl: function(useMapCenterInsteadOfGPS) {
@@ -55,7 +49,7 @@ Ext.define('Kort.controller.MapValidation', {
     },
 
     returnFromValidationMessageBox: function(buttonId, value, opt){
-        if(this.getActiveRecord().get('state')==Kort.util.Config.getMapMarkerState().validationPromotion) {
+        if(this.getActiveRecord().get('state') === Kort.util.Config.getMapMarkerState().validationPromotion) {
             this.getLMapWrapper().remove(this.getPromotionOverlayBackground(),false);
         }
         if (buttonId === 'yes'){

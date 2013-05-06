@@ -43,7 +43,7 @@ Ext.define('Kort.view.map.validation.ValidationMessageBox', {
         {
             //member functions:
             isPromotion: function(state) {
-                return state==Kort.util.Config.getMapMarkerState().validationPromotion;
+                return state===Kort.util.Config.getMapMarkerState().validationPromotion;
             },
             constructMissiontypeIcon: function(type,state,inOperationalRange) {
                 return Kort.util.Config.constructMissionIconURL(type,state,true,inOperationalRange);

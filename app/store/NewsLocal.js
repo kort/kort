@@ -15,7 +15,7 @@ Ext.define('Kort.store.NewsLocal', {
         filters: [
             {
                 filterFn: function(item) {
-                    return Ext.getStore('UserLocal').getAt(0).get('newsAcceptedLanguageArray').some(function(lang){return lang === item.get('lang')});
+                    return Ext.getStore('UserLocal').getAt(0).get('newsAcceptedLanguageArray').some(function(lang){return lang === item.get('lang');});
                 }
             }
         ]
@@ -24,7 +24,7 @@ Ext.define('Kort.store.NewsLocal', {
     getAmountOfUnreadNews: function(){
     var count=0;
     this.each(function (item, index, length) {
-        if(item.get('unread')==true) {
+        if(item.get('unread') === true) {
             count++;
         }
     });

@@ -97,14 +97,13 @@ Ext.define('Kort.controller.Login', {
     },
 
     buildFacebookUrl: function(oauth) {
-        var urlLib = new UrlLib();
-        var url = '';
+        var urlLib = new UrlLib(),
+            url = '';
         url+= oauth.url+'?';
         url+='client_id='+oauth.client_id;
         url+='&redirect_uri='+ encodeURIComponent(urlLib.getAppUrl() + '/' + oauth.redirect_path);
         url+='&scope='+oauth.scopes.toString();
         url+='&response_type='+oauth.response_type;
-        alert("url: " + url)
         return url;
     }
 });

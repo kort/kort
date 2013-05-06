@@ -55,8 +55,8 @@ Ext.define('Kort.controller.Map', {
      *invoked by gelocationready event fired by app.js after geolocation data is available
      */
     createLeafletMapWrapper: function (geo) {
-        var me = this;
-        var lMapWrapper = Ext.create('Kort.view.LeafletMap', {
+        var me = this,
+            lMapWrapper = Ext.create('Kort.view.LeafletMap', {
             title: Ext.i18n.Bundle.message('map.title'),
             useCurrentLocation: geo,
             initialCenter: false,
@@ -81,8 +81,9 @@ Ext.define('Kort.controller.Map', {
         this.getLLayerControl().addOverlay(lLayerGroup,lLayerGroupName);
         //there is no possibility to dynamically add a layer group to the leaflet map which is directly visible through default leaflet api.
         //Hack to circumvent this restriction: programmatically check all control checkboxes and call lefalet.control update function (same effect as if all the control checkboxes where clicked by hand).
-        var inputNodeList = document.getElementsByClassName('leaflet-control-layers-selector');
-        for(var i = inputNodeList.length; i--; inputNodeList[i].checked=true);
+        var inputNodeList = document.getElementsByClassName('leaflet-control-layers-selector'),
+            i;
+        for (i = 0; i<inputNodeList.length; i++) { inputNodeList[i].checked=true; }
         this.getLLayerControl()._onInputClick();
     },
 

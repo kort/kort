@@ -8,13 +8,15 @@ Ext.define('Kort.view.highscore.PullRefreshPlugin', {
 	config: {
        refreshFn: function() {
             var me = this,
-                store = me.getList().getStore();
+                store = me.getList().getStore(),
+                index,
+                clearOnPageLoad;
 
             if (store) {
                 // reset store and load first page
-                var index = 6;//store.findExact("user_id",you.id);
+                index = 6;//store.findExact("user_id",you.id);
+                clearOnPageLoad = store.getClearOnPageLoad();
                 console.log("index ist "+index);
-                var clearOnPageLoad = store.getClearOnPageLoad ();
                 store.load({},{
                     page: 0,
                    start: index -1,

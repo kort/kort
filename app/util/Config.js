@@ -405,21 +405,19 @@ Ext.define('Kort.util.Config', {
      * on type, state and retina.
      */
     constructMissionIconURL: function(type, state, retina, inOperationalRange) {
-        if(typeof(state)==='undefined') state=Kort.util.Config.getMapMarkerState().mission;
-        if(typeof(retina)==='undefined') retina=false;
-        if(typeof(inOperationalRange)==='undefined') inOperationalRange=true;
+        if(typeof(state)==='undefined') {state=Kort.util.Config.getMapMarkerState().mission;}
+        if(typeof(retina)==='undefined') {retina=false;}
+        if(typeof(inOperationalRange)==='undefined') {inOperationalRange=true;}
 
-        var pathToResourceFolder = './resources/images/marker_icons/';
+        var pathToResourceFolder = './resources/images/marker_icons/',
+            stateToPathSuffix = [],
+            retinaPathSuffix = retina ? '@2x' : '',
+            inOperationalStatePathSuffix = inOperationalRange ? '' : 'inactive';
 
-        var stateToPathSuffix = new Array();
         stateToPathSuffix[Kort.util.Config.getMapMarkerState().mission] = 'mission';
         stateToPathSuffix[Kort.util.Config.getMapMarkerState().missionPromotion] = 'missionpromotion';
         stateToPathSuffix[Kort.util.Config.getMapMarkerState().validation] = 'validation';
         stateToPathSuffix[Kort.util.Config.getMapMarkerState().validationPromotion] = 'validationpromotion';
-
-        var retinaPathSuffix = retina ? '@2x' : '';
-
-        var inOperationalStatePathSuffix = inOperationalRange ? '' : 'inactive';
 
         return pathToResourceFolder + type  + '_' + stateToPathSuffix[state] + inOperationalStatePathSuffix + retinaPathSuffix + '.png';
     }

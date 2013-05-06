@@ -31,7 +31,7 @@ module.exports = function(grunt) {
                 devel: true,
                 trailing: true,
                 white:  false,
-                maxcomplexity: 3
+                maxcomplexity: 4
                 /*indent: 4  comment out until white/indent options are separated => https://github.com/jshint/jshint/issues/655 */
             },
             globals: {

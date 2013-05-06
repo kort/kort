@@ -3,13 +3,6 @@ module.exports = function(grunt) {
 
     // Project configuration.
     grunt.initConfig({
-//
-//        lint: {
-//            src: 'app/**/*.js',
-//            grunt: 'Gruntfile.js',
-//            app: 'app.js*',
-//            tests: 'test/client/**/*.js'
-//        },
         qunit: {
             files: ['test/client/index.html']
         },
@@ -39,7 +32,7 @@ module.exports = function(grunt) {
                 devel: true,
                 trailing: true,
                 white:  false,
-                maxcomplexity: 3,
+                maxcomplexity: 4,
                 /*indent: 4  comment out until white/indent options are separated => https://github.com/jshint/jshint/issues/655 */
                 globals: {
                     Kort: true,

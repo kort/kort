@@ -73,13 +73,13 @@ Ext.define('Kort.controller.News', {
     },
 
     syncLocalNewsStoreWithRemoteNewsStore: function() {
-        var me = this;
-        var newsRemoteStore = Ext.getStore('NewsRemote');
+        var me = this,
+            newsRemoteStore = Ext.getStore('NewsRemote');
         newsRemoteStore.load({
             callback: function(records, operation, success) {
                 //create new news items in local store
                 records.forEach(function(element) {
-                    if(me.getNewsLocalStore().findExact('newsid',element.data.newsid)==-1) {
+                    if(me.getNewsLocalStore().findExact('newsid',element.data.newsid) === -1) {
                         //change model state to force sync to work properly
                         element.set('local',true);
                         me.getNewsLocalStore().add(element);
@@ -87,7 +87,7 @@ Ext.define('Kort.controller.News', {
                 });
                 //delete obsolete news items form local store
                 me.getNewsLocalStore().each(function(record) {
-                    if(newsRemoteStore.findExact('newsid',record.get('newsid'))==-1) {
+                    if(newsRemoteStore.findExact('newsid',record.get('newsid')) === -1) {
                         me.getNewsLocalStore().remove(record);
                     }
                 });
@@ -103,9 +103,7 @@ Ext.define('Kort.controller.News', {
     },
 
     onNewsListItemTap: function(list, index, target, record, e) {
-
         var me = this,
-
             newsNavigationView = me.getNewsNavigationView(),
             newsNewsEntryContainer;
 
@@ -137,14 +135,16 @@ Ext.define('Kort.controller.News', {
     },
 
     _onNewsSettingsSaveButton: function() {
-        var settingsValues = this.getSettingsPanel().getValues();
-        var newAcceptedLanguageArray = [];
+        var settingsValues = this.getSettingsPanel().getValues(),
+            newAcceptedLanguageArray = [],
+            localUserStore = Ext.getStore('UserLocal');
+
         Kort.util.Config.getSupportedLanguages().forEach(function(element,index,array) {
             if(settingsValues[element]) {
                 newAcceptedLanguageArray.push(element);
             }
         });
-        var localUserStore = Ext.getStore('UserLocal');
+
         localUserStore.getAt(0).set('newsAcceptedLanguageArray',newAcceptedLanguageArray);
         localUserStore.sync();
         this.getSettingsPanel().destroy();
@@ -155,17 +155,17 @@ Ext.define('Kort.controller.News', {
     _onNewsSettingsCancelButton: function() {
         this.getSettingsPanel().destroy();
     },
+
     // Select all languages
     _onNewsSettingsSelectAllLanguagesButton:function(){
-        console.log('alles');
         var fieldset = Ext.getCmp('acceptedLanguageFieldSet');
         fieldset.getItems().items.forEach(function(item) {
             item.setChecked(true);
         });
     },
+
     //Deselect all languages
     _onNewsSettingsClearAllLanguagesButton:function(){
-        console.log('nichts');
         var fieldset = Ext.getCmp('acceptedLanguageFieldSet');
         fieldset.getItems().items.forEach(function(item) {
             item.setChecked(false);

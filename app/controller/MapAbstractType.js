@@ -113,9 +113,9 @@ Ext.define('Kort.controller.MapAbstractType', {
      * function called every time a marker has been klicked, delegates klick to markerClickCallbackFunction defined in derived class
      */
     _onMarkerClick: function(e) {
-        var CLICK_TOLERANCE = 400;
-        var marker = e.target;
-        var timeDifference = e.originalEvent.timeStamp - marker.lastClickTimestamp;
+        var CLICK_TOLERANCE = 400,
+            marker = e.target,
+            timeDifference = e.originalEvent.timeStamp - marker.lastClickTimestamp;
 
         // LEAFLET BUGFIX: only execute click if there is a certain time between last click
         if(timeDifference > CLICK_TOLERANCE) {
@@ -132,10 +132,10 @@ Ext.define('Kort.controller.MapAbstractType', {
      * @private
      */
     _createLMarkerFromRecord: function(record) {
-        var me = this;
-        var marker = L.marker([record.get('latitude'), record.get('longitude')], {
-            icon: Kort.util.Config.getMarkerIcon(record.get('type'),record.get('state'),record.get('inOperationalRange'))
-        });
+        var me = this,
+            marker = L.marker([record.get('latitude'), record.get('longitude')], {
+                icon: Kort.util.Config.getMarkerIcon(record.get('type'),record.get('state'),record.get('inOperationalRange'))
+            });
         marker.record=record;
         marker.lastClickTimestamp = 0;
         marker.on('click', me._onMarkerClick,me);
