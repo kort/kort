@@ -20,7 +20,7 @@
 
 
 	<!--<target name="build" depends="css,version,lint,docs,test">-->
-    <target name="build" depends="css,version,lint">
+    <target name="build" depends="css,version,lint,docs,test">
 		<echo message="BUILD FINISHED!"/>
 	</target>
 
