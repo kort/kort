@@ -1,5 +1,9 @@
 /**
- * Controller for leaflet map
+ *
+ * @event leafletmaprendered
+ * Triggered after the tile leaflet map is rendered
+ *
+ * Main controller for handle interaction with leaflet map 
  */
 Ext.define('Kort.controller.Map', {
     extend: 'Ext.app.Controller',
@@ -41,6 +45,10 @@ Ext.define('Kort.controller.Map', {
         jumpZoomLevel:null
     },
 
+    /**
+     *
+     * @private
+     */
     init: function(){
         var me = this;
         me.callParent(arguments);
@@ -55,7 +63,8 @@ Ext.define('Kort.controller.Map', {
      *
      * @param {L.LayerGroup} lLayerGroup
      * @param {String} lLayerGroupName
-     * adds {L.LayerGroup} lLayerGroup with display name lLayerGroupName as overlay to {L.Map} map
+     *
+     * add a layer group to the map at runtime
      */
     addLayerGroupToMap: function(lLayerGroup,lLayerGroupName) {
         this.getLLayerControl().addOverlay(lLayerGroup,lLayerGroupName);
@@ -64,23 +73,25 @@ Ext.define('Kort.controller.Map', {
         var inputNodeList = document.getElementsByClassName('leaflet-control-layers-selector'),
             i;
         for (i = 0; i<inputNodeList.length; i++) { inputNodeList[i].checked=true; }
-        this.getLLayerControl()._onInputClick();
+        this.getLLayerControl()._onInputClick();//potentially dangerous call of leaflet private method. No other possibility yet discovered.
     },
 
+    /**
+     *
+     * @returns {L.latLng}
+     *
+     * get the current gps coordiantes
+     */
     getCurrentLocationLatLng: function() {
-        if(this.getLMapWrapper().getUseCurrentLocation()) {
-            var geo = this.getLMapWrapper().getGeo();
-            return L.latLng(geo.getLatitude(), geo.getLongitude());
-        } else {
-            console.log("controller/Map.js Line 62");
-            return this.getLMapWrapper().getMap().getCenter();
-        }
+        var geo = this.getLMapWrapper().getGeo();
+        return L.latLng(geo.getLatitude(), geo.getLongitude());
     },
 
     /**
      *
      * @param {Kort.util.Geolocation} geo
      * @private
+     *
      * creates LeafletMap component
      */
     _createLeafletMapWrapper: function (geo) {
@@ -125,6 +136,13 @@ Ext.define('Kort.controller.Map', {
         }
     },
 
+    /**
+     *
+     * @param {Kort.view.LeafletMap} cmp
+     * @param {L.Map} map
+     * @param {TileLayer} tileLayer
+     * @private
+     */
     _onLMapRendered: function(cmp, map, tileLayer) {
         this.setLMap(map);
         var lLayerControl = new L.Control.Layers();
@@ -133,43 +151,90 @@ Ext.define('Kort.controller.Map', {
         this.getApplication().fireEvent('leafletmaprendered');
     },
 
+    /**
+     *
+     * @private
+     */
     _triggerMapTypesUpdateProcess: function() {
         this.getApplication().fireEvent('maptypeupdaterequest');
     },
 
+    //ToDo set param types
+    /**
+     *
+     * @param cmp
+     * @param view
+     * @param opts
+     * @private
+     */
     _onMapNavigationViewDetailViewPush: function(cmp, view, opts) {
         var me = this;
         me.getMapCenterButton().hide();
         me.getMapRefreshButton().hide();
     },
 
+    //ToDo set param types
+    /**
+     *
+     * @param cmp
+     * @param view
+     * @param opts
+     * @private
+     */
     _onMapNavigationViewDetailViewBack: function(cmp, view, opts) {
         this.getMapCenterButton().show();
         this.getMapRefreshButton().show();
     },
 
+    /**
+     *
+     * @private
+     */
     _onMapNavigationViewCenterButtonTap: function () {
         this._centerMapToCurrentPosition();
     },
 
+    /**
+     *
+     * @private
+     */
     _onMapNavigationViewRefreshButtonTap: function () {
         this._triggerMapTypesUpdateProcess();
     },
 
+    /**
+     *
+     * @private
+     */
     _centerMapToCurrentPosition: function() {
         this.getLMapWrapper().setMapCenter(this.getCurrentLocationLatLng());
     },
 
+    /**
+     *
+     * @private
+     */
     _centerMapToJumpPosition: function() {
         this.getLMapWrapper().setMapCenter(this.getJumpLLatLong());
     },
 
+    /**
+     *
+     * @private
+     */
     _zoomMapToJumpZoomLevel: function() {
         this.getLMapWrapper().setMapZoomLevel(this.getJumpZoomLevel());
     },
 
+    /**
+     *
+     * @param {Ext.SegmentedButton} segmentedButton
+     * @param {Ext.Button} button
+     * @param {Boolean} isPressed
+     * @param eOpts
+     * @private
+     */
     _onSneakyPeakSegmentedButtonToggle: function(segmentedButton, button, isPressed, eOpts) {
-        //button.setText(isPressed ? Ext.i18n.Bundle.message('map.sneakypeaksegmentedbutton.on') : Ext.i18n.Bundle.message('map.sneakypeaksegmentedbutton.off'));
         this.getMapNavigationView().fireEvent('sneakypeaktoggled',isPressed);
     }
 
