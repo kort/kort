@@ -18,5 +18,4 @@ vendor/
 bin/
 .sencha_backup/      
 .idea/
-Gruntfile.js
 /Icon
