@@ -210,6 +210,8 @@ Ext.define('Kort.util.Config', {
             }
         },
 
+        operationalRange: 5000,
+
         /**
          * @cfg {Object} webservices Configuration of webservices
          * @cfg {Object} webservices.bug Configuration of bug webservice
@@ -243,21 +245,21 @@ Ext.define('Kort.util.Config', {
                 getUrl: function(latitude, longitude) {
                     return './server/webservices/bug/position/' + latitude + ',' + longitude;
                 },
-                radius: 5000,
+                radius: this.operationalRange,
                 limit: 25
             },
             campaign: {
                 getUrl: function() {
                     return './server/webservices/bug/position/';
                 },
-                radius: 5000,
+                radius: this.operationalRange,
                 limit: 25
             },
             validation: {
                 getUrl: function(latitude, longitude) {
                     return './server/webservices/validation/position/' + latitude + ',' + longitude;
                 },
-                radius: 5000,
+                radius: this.operationalRange,
                 limit: 25
             },
             user: {

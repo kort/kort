@@ -182,7 +182,7 @@ Ext.application({
                     }
                     me.loadStores(mainPanel, geo);
                     // enable auto update on geolocation
-                    geo.setAutoUpdate(true);
+                    geo.setAutoUpdate(false);
                 }
             }
         });

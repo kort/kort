@@ -29,10 +29,10 @@ Ext.define('Kort.controller.Map', {
         },
         routes: {
             //direct link to geoposition on map startup
-            //e.g. for london: http://local.play.kort.ch/#map/jump?lat=51.503355&lng=-0.127564
+            //e.g. for london: http://local.play.kort.ch/#map/permalink?lat=51.503355&lng=-0.127564
             //in addition, a zoom level can be added (values between 0 and 18)
-            //e.g. for london: http://local.play.kort.ch/#map/jump?lat=51.503355&lng=-0.127564&z=15
-            'map/:jump': '_jumpToDifferentGeoLocation'
+            //e.g. for london: http://local.play.kort.ch/#map/permalink?lat=51.503355&lng=-0.127564&z=15
+            'map/:permalink': '_jumpToDifferentGeoLocation'
         },
         lMap: null,
         lMapWrapper: null,
@@ -62,13 +62,7 @@ Ext.define('Kort.controller.Map', {
             initialCenter: false,
             id: 'leafletmapwrapper'
         });
-        lMapWrapper.on('maprender', function(cmp, map, tileLayer) {
-            me.setLMap(map);
-            var lLayerControl = new L.Control.Layers();
-            lLayerControl.addTo(map);
-            me.setLLayerControl(lLayerControl);
-            me.getApplication().fireEvent('leafletmaprendered');
-        });
+        lMapWrapper.on('maprender', me._onLMapRendered,me);
         me.setLMapWrapper(lMapWrapper);
         me.getMapNavigationView().add(lMapWrapper);
         //if there is a JumpPosition set through route query, use this one as starting center position.
@@ -121,6 +115,14 @@ Ext.define('Kort.controller.Map', {
                 this.setJumpZoomLevel(locationToJump.z);
             }
         }
+    },
+
+    _onLMapRendered: function(cmp, map, tileLayer) {
+        this.setLMap(map);
+        var lLayerControl = new L.Control.Layers();
+        lLayerControl.addTo(map);
+        this.setLLayerControl(lLayerControl);
+        this.getApplication().fireEvent('leafletmaprendered');
     },
 
     _triggerMapTypesUpdateProcess: function() {

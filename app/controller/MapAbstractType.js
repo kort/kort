@@ -95,6 +95,7 @@ Ext.define('Kort.controller.MapAbstractType', {
             me.getDataStore().getProxy().setUrl(me.getDataStoreProxyURL());
             me.getDataStore().load({
                 callback: function(records,operation,success) {
+                    //ToDo should be implemented via Config.operationalRange
                     me.getDataStore().doOperationalRangeCheck(me.getLMapWrapper().getGeo(),5000);
                     me.getLLayerGroup().clearLayers();
                     records.forEach(function(record) {
