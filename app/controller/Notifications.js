@@ -26,4 +26,4 @@ Ext.define('Kort.controller.Notifications', {
     updateNewsBadgeText: function() {
         this.getTabPanel().getTabBar().getComponent(3).setBadgeText(Ext.getStore('NewsLocal').getAmountOfUnreadNews());
     }
-})
+});

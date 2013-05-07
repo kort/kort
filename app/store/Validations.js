@@ -6,27 +6,6 @@ Ext.define('Kort.store.Validations', {
 
 	config: {
 		model: 'Kort.model.Validation',
-
-        /*
-		grouper: {
-            groupFn: function(record) {
-                var validationsLeft = record.get('required_votes') - record.get('upratings') + record.get('downratings');
-                return '<span class="text">' + Ext.i18n.Bundle.message('validation.list.header', { 'validations_left': validationsLeft }) + '</span>';
-            }
-        },
-        sorters: [
-            {
-                // Sort by distance
-                sorterFn: function(record1, record2) {
-                    var distance1 = record1.get('distance'),
-                        distance2 = record2.get('distance');
-                    return distance1 > distance2 ? 1 : (distance1 === distance2 ? 0 : -1);
-                },
-                direction: 'ASC'
-            }
-        ],
-        */
-
 		proxy: {
 			type: 'rest',
             url: './resources/stores/validations.json',
@@ -53,21 +32,4 @@ Ext.define('Kort.store.Validations', {
             });
         }
     }
-
-    /**
-     * Update distances of trails in store
-     * @param {Kort.util.Geolocation} geo Geolocation to calculate distance
-     */
-    /*
-	updateDistances: function(geo) {
-        console.log('updatedistances');
-		if(!this.isLoading()) {
-			this.each(function(record, index, length) {
-				record.set('distance', geo.getDistance(record.get('latitude'), record.get('longitude')));
-				record.set('formatted_distance', geo.getFormattedDistance(record.get('distance')));
-			});
-			this.sort();
-		}
-	}
-	*/
 });

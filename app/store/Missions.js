@@ -3,11 +3,11 @@
  */
 Ext.define('Kort.store.Missions', {
     extend: 'Ext.data.Store',
-	config: {
+    config: {
         autoLoad: false,
-		model: 'Kort.model.Mission',
-		proxy: {
-			type: 'rest',
+        model: 'Kort.model.Mission',
+        proxy: {
+            type: 'rest',
             url: './resources/stores/missions.json',
             pageParam: false,
             startParam: false,
@@ -20,13 +20,13 @@ Ext.define('Kort.store.Missions', {
                 type: 'json',
                 rootProperty: 'return'
             }
-		}
-	},
+        }
+    },
 
-    doOperationalRangeCheck: function(geo,distance) {
+    doOperationalRangeCheck: function (geo, distance) {
         console.log('doOperationalRangeCheck');
-        if(!this.isLoading()) {
-            this.each(function(record, index, length) {
+        if (!this.isLoading()) {
+            this.each(function (record, index, length) {
                 record.set('inOperationalRange', (geo.getDistance(record.get('latitude'), record.get('longitude')) < distance) ? true : false);
             });
         }
