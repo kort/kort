@@ -7,7 +7,7 @@ module("kort-HighscoreWebservice", {
 testSkip("get table", function() {
     var type = 'GET',
         data = null,
-        url = urlLib.getAppUrl() + '/' + this.path + '/limit';
+        url = urlLib.getAppUrl() + '/' + this.path;
 
     api_test(url, type, data, function (highscore) {
         notStrictEqual(highscore, undefined, "method call failed");
@@ -17,4 +17,6 @@ testSkip("get table", function() {
         notStrictEqual(highscore.koin_count, undefined, "koin count field should be defined.");
         notStrictEqual(highscore.ranking, undefined, "ranking field should be defined.");
     });
+
+
 });

@@ -7,7 +7,7 @@ module("kort-UserWebservice", {
 testSkip("get user", function() {
 	var type = 'GET',
         data = null,
-        url = urlLib.getAppUrl() + this.path + '/09821093801923';
+        url = urlLib.getAppUrl() + '/' + this.path + '/09821093801923';
 
     api_test(url, type, data, function (user) {
         notStrictEqual(user, undefined, "method call failed");

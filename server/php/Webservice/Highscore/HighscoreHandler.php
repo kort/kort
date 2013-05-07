@@ -98,7 +98,7 @@ class HighscoreHandler extends DbProxyHandler
     }
 
     /**
-     * Adds a field to a score to indicate wheter a user is the currently logged in user or not.
+     * Adds a field to a score to indicate whether a user is the currently logged in user or not.
      *
      * @param array $score The score data.
      *
