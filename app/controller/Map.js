@@ -47,10 +47,26 @@ Ext.define('Kort.controller.Map', {
             //e.g. for london: http://local.play.kort.ch/#map/permalink?lat=51.503355&lng=-0.127564&z=15
             'map/:permalink': '_jumpToDifferentGeoLocation'
         },
+
+        /**
+         * @private
+         */
         lMap: null,
+        /**
+         * @private
+         */
         lMapWrapper: null,
+        /**
+         * @private
+         */
         lLayerControl: null,
+        /**
+         * @private
+         */
         jumpLLatLong:null,
+        /**
+         * @private
+         */
         jumpZoomLevel:null
     },
 
