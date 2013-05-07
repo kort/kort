@@ -1,13 +1,22 @@
 /**
  *
- * @event leafletmaprendered
- * Triggered after the tile leaflet map is rendered
+ * Main controller for handle interaction with leaflet map
  *
- * Main controller for handle interaction with leaflet map 
  */
 Ext.define('Kort.controller.Map', {
     extend: 'Ext.app.Controller',
     config: {
+        /**
+         * @event leafletmaprendered
+         * Fired when tile leaflet map is rendered.
+         */
+
+        /**
+         * @event maptypeupdaterequest
+         * Fired on marker update request.
+         */
+
+
         refs: {
             mapNavigationView: '#mapNavigationView',
             mapCenterButton: '#mapNavigationView .button[cls=mapCenterButton]',
