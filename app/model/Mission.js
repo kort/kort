@@ -1,5 +1,5 @@
 /**
- * Model for a bug
+ * Model for a mission
  */
 function determineMapMarkerState(v, record) {
     return record.data.campaign_id ? Kort.util.Config.getMapMarkerState().missionPromotion : Kort.util.Config.getMapMarkerState().mission;

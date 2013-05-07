@@ -214,10 +214,10 @@ Ext.define('Kort.util.Config', {
 
         /**
          * @cfg {Object} webservices Configuration of webservices
-         * @cfg {Object} webservices.bug Configuration of bug webservice
-         * @cfg {Function} webservices.bug.getUrl (required) Returns url of bug webservice with given position (latitude, longitude)
-         * @cfg {Number} webservices.bug.radius (required) Maximum range for bugs selection (in meters)
-         * @cfg {Number} webservices.bug.limit (required) Limits bugs to given number
+         * @cfg {Object} webservices.mission Configuration of mission webservice
+         * @cfg {Function} webservices.mission.getUrl (required) Returns url of mission webservice with given position (latitude, longitude)
+         * @cfg {Number} webservices.mission.radius (required) Maximum range for bugs selection (in meters)
+         * @cfg {Number} webservices.mission.limit (required) Limits bugs to given number
          * @cfg {Object} webservices.validation Configuration of validation webservice
          * @cfg {Function} webservices.validation.getUrl (required) Returns url of validation webservice with given position (latitude, longitude)
          * @cfg {Number} webservices.validation.radius (required) Maximum range for validations selection (in meters)
@@ -243,14 +243,14 @@ Ext.define('Kort.util.Config', {
         webservices: {
             bug: {
                 getUrl: function(latitude, longitude) {
-                    return './server/webservices/bug/position/' + latitude + ',' + longitude;
+                    return './server/webservices/mission/position/' + latitude + ',' + longitude;
                 },
                 radius: this.operationalRange,
                 limit: 25
             },
             campaign: {
                 getUrl: function() {
-                    return './server/webservices/bug/position/';
+                    return './server/webservices/mission/position/';
                 },
                 radius: this.operationalRange,
                 limit: 25
@@ -283,7 +283,7 @@ Ext.define('Kort.util.Config', {
                 url: './server/webservices/answer/'
             },
             fix: {
-                url: './server/webservices/bug/fix'
+                url: './server/webservices/mission/fix'
             },
             vote: {
                 url: './server/webservices/validation/vote'
@@ -311,7 +311,7 @@ Ext.define('Kort.util.Config', {
          */
         /*
         missionState: {
-            bug: 'bugState',
+            mission: 'bugState',
             bugCampaign: 'bugCampaignState',
             validation: 'validationSate',
             validationCampaign: 'validationCampaignState'
