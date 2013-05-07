@@ -1,5 +1,5 @@
 /**
- * Controller for fix panel
+ * Controller for fix panel.
  */
 Ext.define('Kort.controller.Fix', {
     extend: 'Kort.controller.OsmMap',
@@ -33,7 +33,6 @@ Ext.define('Kort.controller.Fix', {
     },
 
     /**
-     *
      * @private
      */
     _onFixFormSubmitButtonTap: function() {
@@ -79,7 +78,6 @@ Ext.define('Kort.controller.Fix', {
     },
 
     /**
-     *
      * @private
      * @param {Ext.field.Text} field
      * @param {Ext.event.Event} e
@@ -92,7 +90,6 @@ Ext.define('Kort.controller.Fix', {
     },
 
     /**
-     *
      * @private
      * @param {Ext.field.Toggle} cmp
      * @param {Object} newValue
@@ -108,8 +105,8 @@ Ext.define('Kort.controller.Fix', {
 
     /**
      * @private
-     * Called when a fix was successfully submitted
-     * @param {String} responseText Response from server
+     * Called when a fix was successfully submitted.
+     * @param {String} responseText Response from server.
      */
     _fixSuccessfulSubmittedHandler: function(responseText) {
         var rewardConfig = JSON.parse(responseText),
@@ -124,7 +121,6 @@ Ext.define('Kort.controller.Fix', {
     },
 
     /**
-     *
      * @private
      */
     _showSendMask: function() {
@@ -136,7 +132,6 @@ Ext.define('Kort.controller.Fix', {
     },
 
     /**
-     *
      * @private
      */
     _hideSendMask: function() {
@@ -145,8 +140,8 @@ Ext.define('Kort.controller.Fix', {
     
     /**
      * @private
-     * Shows message box with rewards
-     * @param {Kort.model.Reward} reward Won reward
+     * Shows message box with rewards.
+     * @param {Kort.model.Reward} reward Won reward.
      */
 	_showRewardMessageBox: function(reward) {
         var messageBox = Ext.create('Kort.view.RewardMessageBox', {

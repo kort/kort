@@ -1,5 +1,5 @@
 /**
- * Controller for login overlay
+ * Controller for login overlay.
  */
 Ext.define('Kort.controller.Login', {
     extend: 'Ext.app.Controller',
@@ -33,7 +33,6 @@ Ext.define('Kort.controller.Login', {
     },
 
     /**
-     *
      * @private
      */
     _onLoginButtonGoogleTap: function() {
@@ -43,7 +42,6 @@ Ext.define('Kort.controller.Login', {
     },
 
     /**
-     *
      * @private
      */
     _onLoginButtonOsmTap: function() {
@@ -53,7 +51,6 @@ Ext.define('Kort.controller.Login', {
     },
 
     /**
-     *
      * @private
      */
     _onLoginButtonFacebookTap: function() {
@@ -63,7 +60,6 @@ Ext.define('Kort.controller.Login', {
     },
 
     /**
-     *
      * @private
      */
     _showLoadMask: function() {
@@ -76,7 +72,6 @@ Ext.define('Kort.controller.Login', {
     },
 
     /**
-     *
      * @private
      */
     _hideLoadMask: function() {
@@ -85,10 +80,9 @@ Ext.define('Kort.controller.Login', {
     },
 
     /**
-     *
      * @private
-     * Creates google oauth url
-     * @param {Object} oauth Google OAuth configuration
+     * Creates google oauth url.
+     * @param {Object} oauth Google OAuth configuration.
      */
     _buildGoogleUrl: function(oauth) {
         var urlLib = new UrlLib(),
@@ -113,11 +107,10 @@ Ext.define('Kort.controller.Login', {
     },
 
     /**
-     *
      * @private
-     * Creates facebook oauth url
+     * Creates facebook oauth url.
      * @param oauth
-     * @returns {Object} oauth Facebook OAuth configuration
+     * @returns {Object} oauth Facebook OAuth configuration.
      */
     _buildFacebookUrl: function(oauth) {
         var urlLib = new UrlLib(),

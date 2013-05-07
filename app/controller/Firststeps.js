@@ -1,5 +1,5 @@
 /**
- * Controller for firststeps overlay
+ * Controller for firststeps overlay.
  */
 Ext.define('Kort.controller.Firststeps', {
     extend: 'Ext.app.Controller',
@@ -24,9 +24,8 @@ Ext.define('Kort.controller.Firststeps', {
     },
 
     /**
-     *
      * @private
-     * Called when submit button of firststeps form gets pressed
+     * Called when submit button of firststeps form gets pressed.
      */
     _onFirststepsFormSubmitButtonTap: function() {
         var me = this,
@@ -60,9 +59,8 @@ Ext.define('Kort.controller.Firststeps', {
     },
 
     /**
-     *
      * @private
-     * Called when user was successfully saved
+     * Called when user was successfully saved.
      */
     _userSuccessfullSavedHandler: function() {
         this.getApplication().fireEvent('userchange');
@@ -70,7 +68,6 @@ Ext.define('Kort.controller.Firststeps', {
     },
 
     /**
-     *
      * @private
      * @param {Ext.field.Text} field
      * @param {Ext.event.Event} e

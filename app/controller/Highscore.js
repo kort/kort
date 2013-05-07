@@ -1,5 +1,5 @@
 /**
- * Controller for highscore tab
+ * Controller for highscore tab.
  */
 Ext.define('Kort.controller.Highscore', {
     extend: 'Ext.app.Controller',
@@ -41,7 +41,6 @@ Ext.define('Kort.controller.Highscore', {
     },
 
     /**
-     *
      * @private
      */
     init: function() {
@@ -60,8 +59,7 @@ Ext.define('Kort.controller.Highscore', {
     },
 
     /**
-     *
-     * refreshes highscore list
+     * Refreshes highscore list.
      */
     refreshView: function() {
         if(this.getHighscoreList()) {
@@ -72,7 +70,6 @@ Ext.define('Kort.controller.Highscore', {
 
 
     /**
-     *
      * @private
      */
     _onHighscoreRefreshButtonTap: function() {
@@ -80,9 +77,8 @@ Ext.define('Kort.controller.Highscore', {
     },
 
     /**
-     *
      * @private
-     * Displays highscore user panel for given user
+     * Displays highscore user panel for given user.
      * @param {Kort.view.highscore.List} list
      * @param {Number} index
      * @param {Ext.dataview.component.DataItem} target
@@ -120,7 +116,6 @@ Ext.define('Kort.controller.Highscore', {
     },
 
     /**
-     *
      * @private
      * @param {Boolean} showLoadmask
      */
@@ -135,7 +130,6 @@ Ext.define('Kort.controller.Highscore', {
     },
 
     /**
-     *
      * @private
      */
     _showLoadMask: function() {
@@ -148,7 +142,6 @@ Ext.define('Kort.controller.Highscore', {
     },
 
     /**
-     *
      * @private
      */
     _hideLoadMask: function() {
@@ -157,7 +150,6 @@ Ext.define('Kort.controller.Highscore', {
     },
 
     /**
-     *
      * @private
      * @param {Kort.view.highscore.NavigationView} cmp
      * @param {Mixed} view
@@ -173,7 +165,6 @@ Ext.define('Kort.controller.Highscore', {
     },
 
     /**
-     *
      * @private
      * @param {Kort.view.highscore.NavigationView} cmp
      * @param {Mixed} view

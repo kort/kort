@@ -1,5 +1,5 @@
 /**
- * Main controller for application
+ * Main controller for application.
  */
 Ext.define('Kort.controller.Main', {
     extend: 'Ext.app.Controller',
@@ -34,24 +34,21 @@ Ext.define('Kort.controller.Main', {
     },
 
     /**
-     *
-     * redirects to about tab
+     * Redirects to about tab.
      */
     showAbout: function() {
         this._showView(this.getAboutContainer());
     },
     
     /**
-     *
-     * redirects to map tab
+     * Redirects to map tab.
      */
     showMap: function() {
         this._showView(this.getMapNavigationView());
     },
     
     /**
-     *
-     * redirects to highscore tab
+     * Redirects to highscore tab.
      */
     showHighscore: function() {
         this._showView(this.getHighscoreNavigationView());
@@ -59,26 +56,23 @@ Ext.define('Kort.controller.Main', {
     },
     
     /**
-     *
-     * redirects to profile tab
+     * Redirects to profile tab.
      */
     showProfile: function() {
         this._showView(this.getProfileContainer());
     },
 
     /**
-     *
-     * redirects to news tab
+     * Redirects to news tab.
      */
     showNews: function(){
         this._showView(this.getNewsNavigationView());
     },
     
     /**
-     *
      * @private
-     * redirects to given component
-     * @param {Ext.Component} viewCmp Component which should be displayed
+     * Redirects to given component.
+     * @param {Ext.Component} viewCmp Component which should be displayed.
      */
     _showView: function(viewCmp) {
         if(this.getMainTabPanel()) {
@@ -87,14 +81,12 @@ Ext.define('Kort.controller.Main', {
     },
 
     /**
-     *
      * @private
+     * Called when active item of main tabpanel changes.
      * @param {Ext.Container} container
      * @param {Object} newCmp
      * @param {Object} oldCmp
      * @param {Object} eOpts
-     *
-     * Called when active item of main tabpanel changes
      */
     _onMainTabPanelActiveItemChange: function(container, newCmp, oldCmp, eOpts) {
         this.redirectTo(newCmp.getUrl());

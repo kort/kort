@@ -76,7 +76,7 @@ Ext.define('Kort.view.map.validation.ValidationMessageBox', {
         this.element.on({
             tap: function(e, dom) {
                 if(!Kort.view.map.validation.ValidationMessageBox.preventOpening) {
-                    scope.showPromotionMessageBox();
+                    scope._showPromotionMessageBox();
                 }
                 Ext.defer(function() {
                     Kort.view.map.validation.ValidationMessageBox.preventOpening=false;

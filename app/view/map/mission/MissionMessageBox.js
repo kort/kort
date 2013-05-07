@@ -80,7 +80,7 @@ Ext.define('Kort.view.map.mission.MissionMessageBox', {
         this.element.on({
             tap: function(e, dom) {
                 if(!Kort.view.map.mission.MissionMessageBox.preventOpening) {
-                    scope.showPromotionMessageBox();
+                    scope._showPromotionMessageBox();
                 }
                 Ext.defer(function() {
                     Kort.view.map.mission.MissionMessageBox.preventOpening=false;

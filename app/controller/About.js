@@ -1,5 +1,5 @@
 /**
- * Controller for about tab
+ * Controller for about tab.
  */
 Ext.define('Kort.controller.About', {
     extend: 'Ext.app.Controller',

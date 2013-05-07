@@ -1,5 +1,5 @@
 /**
- * Controller for news tab
+ * Controller for news tab.
  */
 Ext.define('Kort.controller.News', {
     extend: 'Ext.app.Controller',
@@ -8,12 +8,12 @@ Ext.define('Kort.controller.News', {
 
         /**
          * @event newsupdated
-         * Fired after news had been updated
+         * Fired after news had been updated.
          */
 
         /**
          * @event newsacceptedlanguagesupdated
-         * Fired after the news language settings had been changed
+         * Fired after the news language settings had been changed.
          */
         views: [
             'news.NavigationView',
@@ -57,7 +57,6 @@ Ext.define('Kort.controller.News', {
             newsList: {
                 itemtap: '_onNewsListItemTap'
             }
-
         },
         /**
          * @private
@@ -75,7 +74,6 @@ Ext.define('Kort.controller.News', {
     },
 
     /**
-     *
      * @private
      */
     init: function() {
@@ -88,7 +86,7 @@ Ext.define('Kort.controller.News', {
     },
 
     /**
-     * synchonizes news with atom feed defined in config file and stores them to the user's localstorage
+     * Synchonizes news with atom feed defined in config file and stores them to the user's localstorage.
      */
     refreshNews: function() {
         var me = this;
@@ -99,9 +97,8 @@ Ext.define('Kort.controller.News', {
     },
 
     /**
-     *
      * @private
-     * sync news items from the news remote store, which is directly connected to the atom feed provided in the config file, with
+     * Sync news items from the news remote store, which is directly connected to the atom feed provided in the config file, with
      * the local storage. This allows to keep track of what articles the user has read.
      */
     _syncLocalNewsStoreWithRemoteNewsStore: function() {
@@ -131,7 +128,6 @@ Ext.define('Kort.controller.News', {
     },
 
     /**
-     *
      * @private
      */
     _newsLocalStoreUpdated: function() {
@@ -139,9 +135,8 @@ Ext.define('Kort.controller.News', {
     },
 
     /**
-     *
      * @private
-     * Displays news detail view for given news entry
+     * Displays news detail view for given news entry.
      * @param {Kort.view.news.List} list
      * @param {Number} index
      * @param {Ext.dataview.component.DataItem} target
@@ -175,9 +170,8 @@ Ext.define('Kort.controller.News', {
     },
 
     /**
-     *
      * @private
-     * creates and displays news language settings panel
+     * Creates and displays the news language settings panel.
      */
     _onNewsSettingsButtonTap: function() {
         this.setSettingsPanel(Ext.create('Kort.view.news.settings.AcceptedLanguagePanel'));
@@ -186,9 +180,8 @@ Ext.define('Kort.controller.News', {
     },
 
     /**
-     *
      * @private
-     * store user made news settings to localstorage (via UserLocal store)
+     * Store user made news settings to localstorage (via UserLocal store).
      */
     _onNewsSettingsSaveButton: function() {
         var settingsValues = this.getSettingsPanel().getValues(),
@@ -209,7 +202,6 @@ Ext.define('Kort.controller.News', {
     },
 
     /**
-     *
      * @private
      */
     _onNewsSettingsCancelButton: function() {
@@ -217,9 +209,8 @@ Ext.define('Kort.controller.News', {
     },
 
     /**
-     *
      * @private
-     * select all language checkboxes in news language settings panel
+     * Select all language checkboxes in news language settings panel.
      */
     _onNewsSettingsSelectAllLanguagesButton:function(){
         var fieldset = Ext.getCmp('acceptedLanguageFieldSet');
@@ -229,9 +220,8 @@ Ext.define('Kort.controller.News', {
     },
 
     /**
-     *
      * @private
-     * deselect all language checkboxes in news language settings panel
+     * Deselect all language checkboxes in news language settings panel.
      */
     _onNewsSettingsClearAllLanguagesButton:function(){
         var fieldset = Ext.getCmp('acceptedLanguageFieldSet');
@@ -241,7 +231,6 @@ Ext.define('Kort.controller.News', {
     },
 
     /**
-     *
      * @private
      */
     _onNewsNavigationViewDetailPush: function() {
@@ -250,7 +239,6 @@ Ext.define('Kort.controller.News', {
     },
 
     /**
-     *
      * @private
      */
     _onNewsNavigationViewBack: function() {

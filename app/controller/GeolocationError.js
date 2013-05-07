@@ -1,5 +1,5 @@
 /**
- * Controller for geolocation error overlay
+ * Controller for geolocation error overlay.
  */
 Ext.define('Kort.controller.GeolocationError', {
     extend: 'Ext.app.Controller',
@@ -23,7 +23,6 @@ Ext.define('Kort.controller.GeolocationError', {
     },
 
     /**
-     *
      * @private
      */
     _onGeolocationerrorReloadButtonTap: function() {
@@ -32,7 +31,6 @@ Ext.define('Kort.controller.GeolocationError', {
     },
 
     /**
-     *
      * @private
      * @param {String} message
      */
@@ -45,7 +43,6 @@ Ext.define('Kort.controller.GeolocationError', {
     },
 
     /**
-     *
      * @private
      */
     _hideLoadMask: function() {

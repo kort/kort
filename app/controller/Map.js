@@ -1,6 +1,6 @@
 /**
  *
- * Main controller for handle interaction with leaflet map
+ * Main controller for handle interaction with leaflet map.
  *
  */
 Ext.define('Kort.controller.Map', {
@@ -15,7 +15,6 @@ Ext.define('Kort.controller.Map', {
          * @event maptypeupdaterequest
          * Fired on marker update request.
          */
-
 
         refs: {
             mapNavigationView: '#mapNavigationView',
@@ -71,7 +70,6 @@ Ext.define('Kort.controller.Map', {
     },
 
     /**
-     *
      * @private
      */
     init: function(){
@@ -85,8 +83,7 @@ Ext.define('Kort.controller.Map', {
     },
 
     /**
-     *
-     * Add a leaflet layer group to the leaflet map at runtime
+     * Add a leaflet layer group to the leaflet map.
      * @param {L.LayerGroup} lLayerGroup
      * @param {String} lLayerGroupName
      */
@@ -101,7 +98,7 @@ Ext.define('Kort.controller.Map', {
     },
 
     /**
-     * Get the current gps coordiantes
+     * Get the current gps coordiantes.
      * @returns {L.latLng}
      */
     getCurrentLocationLatLng: function() {
@@ -110,9 +107,8 @@ Ext.define('Kort.controller.Map', {
     },
 
     /**
-     *
      * @private
-     * Creates LeafletMap component
+     * Creates LeafletMap component.
      * @param {Kort.util.Geolocation} geo
      */
     _createLeafletMapWrapper: function (geo) {
@@ -138,10 +134,9 @@ Ext.define('Kort.controller.Map', {
     },
 
     /**
-     *
      * @private
-     * Sets the coordinates and zoomlevel, to which the center of the map should jump after being successfully initialized
-     * called by routes with locationToJump Object containing the optional keys:
+     * Sets the coordinates and zoomlevel, to which the center of the map should jump after being successfully initialized.
+     * Called by routes with locationToJump Object containing the optional keys:
      * lat = latitude
      * lng = longitude
      * z = zoom level (0 - 18)
@@ -158,7 +153,6 @@ Ext.define('Kort.controller.Map', {
     },
 
     /**
-     *
      * @private
      * @param {Kort.view.LeafletMap} cmp
      * @param {L.Map} map
@@ -173,7 +167,6 @@ Ext.define('Kort.controller.Map', {
     },
 
     /**
-     *
      * @private
      */
     _triggerMapTypesUpdateProcess: function() {
@@ -181,7 +174,6 @@ Ext.define('Kort.controller.Map', {
     },
 
     /**
-     *
      * @private
      * @param {Kort.view.map.NavigationView} cmp
      * @param {Mixed} view
@@ -194,7 +186,6 @@ Ext.define('Kort.controller.Map', {
     },
 
     /**
-     *
      * @private
      * @param {Kort.view.map.NavigationView} cmp
      * @param {Mixed} view
@@ -207,7 +198,6 @@ Ext.define('Kort.controller.Map', {
     },
 
     /**
-     *
      * @private
      */
     _onMapNavigationViewCenterButtonTap: function () {
@@ -215,7 +205,6 @@ Ext.define('Kort.controller.Map', {
     },
 
     /**
-     *
      * @private
      */
     _onMapNavigationViewRefreshButtonTap: function () {
@@ -223,7 +212,6 @@ Ext.define('Kort.controller.Map', {
     },
 
     /**
-     *
      * @private
      */
     _centerMapToCurrentPosition: function() {
@@ -231,7 +219,6 @@ Ext.define('Kort.controller.Map', {
     },
 
     /**
-     *
      * @private
      */
     _centerMapToJumpPosition: function() {
@@ -239,7 +226,6 @@ Ext.define('Kort.controller.Map', {
     },
 
     /**
-     *
      * @private
      */
     _zoomMapToJumpZoomLevel: function() {
@@ -247,7 +233,6 @@ Ext.define('Kort.controller.Map', {
     },
 
     /**
-     *
      * @private
      * @param {Ext.SegmentedButton} segmentedButton
      * @param {Ext.Button} button

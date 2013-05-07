@@ -1,6 +1,6 @@
 /**
- * Abstract class MapAbstractType is extended by all Map{Type} classes
- * Defines basic functionallity to plot markers on lafeletmap and handels iteraction with them
+ * Abstract class MapAbstractType is extended by all Map{Type} classes.
+ * Defines basic functionallity to plot markers on lafeletmap and handels iteraction with them.
  */
 Ext.define('Kort.controller.MapAbstractType', {
     extend: 'Ext.app.Controller',
@@ -37,7 +37,6 @@ Ext.define('Kort.controller.MapAbstractType', {
     },
 
     /**
-     *
      * @private
      */
     init: function() {
@@ -51,8 +50,7 @@ Ext.define('Kort.controller.MapAbstractType', {
     },
 
     /**
-     *
-     * get the current gps coordinates
+     * Get the current gps coordinates.
      * @returns {L.latLng} latLng
      */
     getCurrentLocationLatLng: function() {
@@ -60,10 +58,9 @@ Ext.define('Kort.controller.MapAbstractType', {
     },
 
     /**
-     *
      * @private
-     * add layergroup to leaflet map and trigger update process to generate markers
-     * called after leaflet map component is ready
+     * Add layergroup to leaflet map and trigger update process to generate markers.
+     * Called after leaflet map component is ready.
      */
     _initData: function() {
         var me = this;
@@ -78,21 +75,18 @@ Ext.define('Kort.controller.MapAbstractType', {
     },
 
     /**
-     *
      * @private
-     * abstract function; MUST be overidden by derived class
+     * Abstract function; MUST be overidden by derived class.
      */
     onMarkerClickCallbackFunction: function() {},
 
     /**
-     *
      * @private
-     * abstract function; MUST be overidden by derived class
+     * Abstract function; MUST be overidden by derived class.
      */
     updateDataStoreProxyUrl: function() {},
 
     /**
-     *
      * @private
      */
     _onMapMoveEnd: function() {
@@ -103,7 +97,6 @@ Ext.define('Kort.controller.MapAbstractType', {
     },
 
     /**
-     *
      * @private
      */
     _onMapTypeUpdateRequest: function() {
@@ -111,9 +104,8 @@ Ext.define('Kort.controller.MapAbstractType', {
     },
 
     /**
-     *
      * @private
-     * generate markers from dataStore and add them to layergroup
+     * Generate markers from dataStore and add them to layergroup.
      */
     _updateData: function() {
         var me = this;
@@ -133,9 +125,8 @@ Ext.define('Kort.controller.MapAbstractType', {
     },
 
     /**
-     *
      * @private
-     * function called every time a marker has been klicked, delegates klick to markerClickCallbackFunction defined in derived class
+     * Function called every time a marker has been klicked, delegates klick to markerClickCallbackFunction defined in derived class.
      * @param {L.MouseEvent} e
      */
     _onMarkerClick: function(e) {
@@ -152,7 +143,6 @@ Ext.define('Kort.controller.MapAbstractType', {
     },
 
     /**
-     *
      * @private
      * @param record
      * @returns {L.marker} marker
@@ -169,7 +159,6 @@ Ext.define('Kort.controller.MapAbstractType', {
     },
 
     /**
-     *
      * @private
      * @param state
      */
@@ -183,7 +172,6 @@ Ext.define('Kort.controller.MapAbstractType', {
             this._updateData();
         }
     }
-
 });
 
 

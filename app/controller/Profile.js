@@ -1,15 +1,19 @@
 /*jshint maxcomplexity:10 */
 
 /**
- * Controller for profile tab
+ * Controller for profile tab.
  */
 Ext.define('Kort.controller.Profile', {
     extend: 'Ext.app.Controller',
     requires: [
         'Ext.LoadMask'
     ],
-
     config: {
+        /**
+         * @event userchange
+         * Fired after a change in the user model successfully saved to localstorage.
+         */
+
         views: [
             'profile.Container',
             'profile.BadgesContainer'
@@ -32,39 +36,42 @@ Ext.define('Kort.controller.Profile', {
                 itemtap: '_onProfileBadgesDataViewItemTap'
             },
             profileRefreshButton: {
-                tap: 'onProfileRefreshButtonTap'
+                tap: '_onProfileRefreshButtonTap'
             },
             profileSettingsButton: {
-                tap: 'onProfileSettingsButtonTap'
+                tap: '_onProfileSettingsButtonTap'
             },
             profileLogoutButton: {
-                tap: 'onProfileLogoutButtonTap'
+                tap: '_onProfileLogoutButtonTap'
             },
             badgesContainerBackButton: {
-                tap: 'onBadgesContainerBackButtonTap'
+                tap: '_onBadgesContainerBackButtonTap'
             }
         },
-
+        /**
+         * @private
+         */
         badgesContainer: null,
+        /**
+         * @private
+         */
         itemTapDisabled: false
     },
 
     /**
-     *
      * @private
      */
     init: function() {
         var me = this;
         me.callParent(arguments);
         me.getApplication().on({
-            votesend: { fn: me.refreshProfile, scope: me },
-            fixsend: { fn: me.refreshProfile, scope: me },
-            userchange: { fn: me.refreshProfile, scope: me }
+            votesend: { fn: me._refreshProfile, scope: me },
+            fixsend: { fn: me._refreshProfile, scope: me },
+            userchange: { fn: me._refreshProfile, scope: me }
         });
     },
 
     /**
-     *
      * @private
      */
     _onProfileContentComponentInitialize: function() {
@@ -75,15 +82,13 @@ Ext.define('Kort.controller.Profile', {
         }
     },
 
-    //ToDo current progress of commenting process
     /**
-     *
      * @private
-     * Displays news detail view for given news entry
-     * @param {Kort.view.news.List} list
+     * Creates and displays a BadgesContainer for detailed information about the badge.
+     * @param {Kort.view.profile.BadgesDataView} dataViewCmp
      * @param {Number} index
      * @param {Ext.dataview.component.DataItem} target
-     * @param {Kort.model.News} record
+     * @param {Kort.model.Badge} record
      * @param {Ext.EventObject} e
      */
     _onProfileBadgesDataViewItemTap: function(dataViewCmp, index, target, record, e) {
@@ -106,17 +111,21 @@ Ext.define('Kort.controller.Profile', {
         }
     },
 
-    // @private
-    onBadgesContainerBackButtonTap: function() {
+    /**
+     * @private
+     */
+    _onBadgesContainerBackButtonTap: function() {
         this.getBadgesContainer().hide();
     },
 
-    // @private
-    onProfileLogoutButtonTap: function() {
+    /**
+     * @private
+     */
+    _onProfileLogoutButtonTap: function() {
         var me = this,
             userLocalStore = Ext.getStore('UserLocal');
 
-        me.showLoadMask(Ext.i18n.Bundle.message('profile.logout.loadmask.message'));
+        me._showLoadMask(Ext.i18n.Bundle.message('profile.logout.loadmask.message'));
         Ext.Ajax.request({
             url: Kort.util.Config.getWebservices().userLogout.getUrl(Kort.user.get('id')),
             success: function(response){
@@ -129,17 +138,21 @@ Ext.define('Kort.controller.Profile', {
         });
     },
 
-    // @private
-    onProfileRefreshButtonTap: function() {
-        this.refreshProfile();
+    /**
+     * @private
+     */
+    _onProfileRefreshButtonTap: function() {
+        this._refreshProfile();
     },
-    
-    // @private
-    onProfileSettingsButtonTap: function() {
+
+    /**
+     * @private
+     */
+    _onProfileSettingsButtonTap: function() {
         Ext.Msg.prompt(
             Ext.i18n.Bundle.message('profile.settings.messagebox.title'),
             Ext.i18n.Bundle.message('profile.settings.messagebox.message'),
-            this.settingsSaveHandler,
+            this._settingsSaveHandler,
             this,
             false,
             Kort.user.get('username'),
@@ -151,9 +164,9 @@ Ext.define('Kort.controller.Profile', {
     
     /**
      * @private
-     * Called when settings prompt gets closed
+     * Called when settings prompt gets closed.
      */
-    settingsSaveHandler: function(buttonId, value) {
+    _settingsSaveHandler: function(buttonId, value) {
         var me = this,
             messageBox;
             
@@ -174,10 +187,10 @@ Ext.define('Kort.controller.Profile', {
         // if username is different
         if(value !== Kort.user.get('username')) {
             Kort.user.set('username', value);
-            me.showLoadMask(Ext.i18n.Bundle.message('profile.username.loadmask.message'));
+            me._showLoadMask(Ext.i18n.Bundle.message('profile.username.loadmask.message'));
             Kort.user.save({
                 success: function() {
-                    me.userSuccessfullSavedHandler();
+                    me._userSuccessfullSavedHandler();
                 },
                 failure: function() {
                     messageBox = Ext.create('Kort.view.NotificationMessageBox');
@@ -189,42 +202,42 @@ Ext.define('Kort.controller.Profile', {
     
     /**
      * @private
-     * Called when user was successfull saved
+     * Called when user was successfull saved.
      */
-    userSuccessfullSavedHandler: function() {
-        console.log('user saved');
+    _userSuccessfullSavedHandler: function() {
         this.getApplication().fireEvent('userchange');
-        this.hideLoadMask();
+        this._hideLoadMask();
     },
     
     /**
      * @private
-     * Refreshes user
+     * Refreshes user.
      */
-    refreshProfile: function() {
-        var me = this;
-        
+    _refreshProfile: function() {
         // show loadmask only if container is already loaded
         if(this.getProfileContainer()) {
-            me.showLoadMask(Ext.i18n.Bundle.message('profile.refresh.loadmask.message'));
+            this._showLoadMask(Ext.i18n.Bundle.message('profile.refresh.loadmask.message'));
         }
-        
-        Kort.model.User.reload(Kort.user, 'secret', me.hideLoadMask, me);
+        Kort.model.User.reload(Kort.user, 'secret', this._hideLoadMask, this);
     },
 
-    // @private
-    showLoadMask: function(message) {
+    /**
+     * @private
+     * @param {String} message
+     */
+    _showLoadMask: function(message) {
         this.getProfileRefreshButton().disable();
         this.getProfileContainer().setMasked({
             xtype: 'loadmask',
             message: message
         });
-
-        Ext.defer(this.hideLoadMask, Kort.util.Config.getTimeout(), this);
+        Ext.defer(this._hideLoadMask, Kort.util.Config.getTimeout(), this);
     },
 
-    // @private
-    hideLoadMask: function() {
+    /**
+     * @private
+     */
+    _hideLoadMask: function() {
         this.getProfileRefreshButton().enable();
         this.getProfileContainer().setMasked(false);
     }
