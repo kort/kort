@@ -10,29 +10,38 @@ Ext.define('Kort.controller.MapMission', {
         'Kort.view.map.mission.PromotionMessageBox'
     ],
     config: {
-        //override required from base class
+        /**
+         * @private
+         * override REQUIRED from base class
+         */
         dataStore: null,
-        //override required from base class
+        /**
+         * @private
+         * override REQUIRED from base class
+         */
         dataStoreProxyURL: null,
-        //override required from base class
-        lLayerGroup: null,
-        //override required from base class
+        /**
+         * @private
+         * override REQUIRED from base class
+         */
         lLayerGroupName:null,
-
+        /**
+         * @private
+         */
         promotionOverlayBackground:null,
-
+        /**
+         * @private
+         */
         promotionStore: null
-
     },
 
     init: function() {
-        this.setLLayerGroup(L.layerGroup());
         this.setLLayerGroupName(Ext.i18n.Bundle.message('map.mission.layername'));
         this.setDataStore(Ext.getStore('Missions'));
         this.setPromotionStore(Ext.getStore('Promotions'));
         this._loadPromotionStore();
         this.setPromotionOverlayBackground(Ext.create('Kort.view.map.mission.PromotionOverlay'));
-        //call init function of parent class not until having overridden required configs
+        //call init function of parent AFTER having overidden the required properties
         this.callParent();
 
     },

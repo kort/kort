@@ -5,17 +5,12 @@
 Ext.define('Kort.controller.MapAbstractType', {
     extend: 'Ext.app.Controller',
     config: {
-        //must be overridden by derived class
+        //must be overridden or set by derived class before this class gets initialized
         dataStore: null,
-        //must be overridden by derived class
+        //must be overridden or set by derived class before this class gets initialized
         dataStoreProxyURL: null,
-        //must be overridden by derived class
-        lLayerGroup: null,
-        //must be overridden by derived class
+        //must be overridden or set by derived class before this class gets initialized
         lLayerGroupName:null,
-
-        mapController:null,
-        activeRecord: null,
 
         refs: {
             mapNavigationView: '#mapNavigationView',
@@ -23,23 +18,54 @@ Ext.define('Kort.controller.MapAbstractType', {
             lMapWrapper: '#leafletmapwrapper'
         },
 
+        /**
+         * @private
+         */
+        lLayerGroup: null,
+        /**
+         * @private
+         */
+        mapController:null,
+        /**
+         * @private
+         */
+        activeRecord: null,
+        /**
+         * @private
+         */
         isSneakyPeakActivated: false
     },
 
+    /**
+     *
+     * @private
+     */
     init: function() {
         var me = this;
+        this.setLLayerGroup(L.layerGroup());
         me.setMapController(me.getApplication().getController('Map'));
         me.getApplication().on({
-            leafletmaprendered: { fn: me.initData, scope:me },
+            leafletmaprendered: { fn: me._initData, scope:me },
             maptypeupdaterequest: { fn: me._onMapTypeUpdateRequest, scope: me }
         });
     },
 
     /**
-     * add layergroup (defined by derived class) to leaflet map and trigger, if automaticUpdate=true, update process to generate markers
+     *
+     * get the current gps coordinates
+     * @returns {L.latLng} latLng
+     */
+    getCurrentLocationLatLng: function() {
+        return this.getMapController().getCurrentLocationLatLng();
+    },
+
+    /**
+     *
+     * @private
+     * add layergroup to leaflet map and trigger update process to generate markers
      * called after leaflet map component is ready
      */
-    initData: function() {
+    _initData: function() {
         var me = this;
         me.getMapNavigationView().on('sneakypeaktoggled', me._onSneakyPeakToggeled,me);
         //omit false moveend events right after the map has been created
@@ -53,13 +79,15 @@ Ext.define('Kort.controller.MapAbstractType', {
 
     /**
      *
-     * abstract function; MUST be overidden by deriving class
+     * @private
+     * abstract function; MUST be overidden by derived class
      */
     onMarkerClickCallbackFunction: function() {},
 
     /**
      *
-     * abstract function; MUST be overidden by deriving class
+     * @private
+     * abstract function; MUST be overidden by derived class
      */
     updateDataStoreProxyUrl: function() {},
 
@@ -106,9 +134,9 @@ Ext.define('Kort.controller.MapAbstractType', {
 
     /**
      *
-     * @param {L.MouseEvent}e
      * @private
      * function called every time a marker has been klicked, delegates klick to markerClickCallbackFunction defined in derived class
+     * @param {L.MouseEvent} e
      */
     _onMarkerClick: function(e) {
         var CLICK_TOLERANCE = 400,
@@ -125,9 +153,9 @@ Ext.define('Kort.controller.MapAbstractType', {
 
     /**
      *
+     * @private
      * @param record
      * @returns {L.marker} marker
-     * @private
      */
     _createLMarkerFromRecord: function(record) {
         var me = this,
@@ -142,8 +170,8 @@ Ext.define('Kort.controller.MapAbstractType', {
 
     /**
      *
-     * @param state
      * @private
+     * @param state
      */
     _onSneakyPeakToggeled: function(state) {
         if(state) {
@@ -154,14 +182,6 @@ Ext.define('Kort.controller.MapAbstractType', {
             this.updateDataStoreProxyUrl(false);
             this._updateData();
         }
-    },
-
-    /**
-     *
-     * @returns {L.latLng} latLng
-     */
-    getCurrentLocationLatLng: function() {
-        return this.getMapController().getCurrentLocationLatLng();
     }
 
 });
