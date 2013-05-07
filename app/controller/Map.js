@@ -86,10 +86,9 @@ Ext.define('Kort.controller.Map', {
 
     /**
      *
+     * add a layer group to the map at runtime
      * @param {L.LayerGroup} lLayerGroup
      * @param {String} lLayerGroupName
-     *
-     * add a layer group to the map at runtime
      */
     addLayerGroupToMap: function(lLayerGroup,lLayerGroupName) {
         this.getLLayerControl().addOverlay(lLayerGroup,lLayerGroupName);
@@ -102,10 +101,8 @@ Ext.define('Kort.controller.Map', {
     },
 
     /**
-     *
-     * @returns {L.latLng}
-     *
      * get the current gps coordiantes
+     * @returns {L.latLng}
      */
     getCurrentLocationLatLng: function() {
         var geo = this.getLMapWrapper().getGeo();
@@ -114,10 +111,9 @@ Ext.define('Kort.controller.Map', {
 
     /**
      *
-     * @param {Kort.util.Geolocation} geo
      * @private
-     *
      * creates LeafletMap component
+     * @param {Kort.util.Geolocation} geo
      */
     _createLeafletMapWrapper: function (geo) {
         var me = this,
@@ -143,13 +139,13 @@ Ext.define('Kort.controller.Map', {
 
     /**
      *
-     * @param locationToJump
      * @private
      * sets the coordinates and zoomlevel, to which the center of the map should jump after being successfully initialized
      * called by routes with locationToJump Object containing the optional keys:
      * lat = latitude
      * lng = longitude
      * z = zoom level (0 - 18)
+     * @param {Object} locationToJump
      */
     _jumpToDifferentGeoLocation: function(locationToJump) {
 
@@ -163,10 +159,10 @@ Ext.define('Kort.controller.Map', {
 
     /**
      *
+     * @private
      * @param {Kort.view.LeafletMap} cmp
      * @param {L.Map} map
-     * @param {TileLayer} tileLayer
-     * @private
+     * @param {L.TileLayer} tileLayer
      */
     _onLMapRendered: function(cmp, map, tileLayer) {
         this.setLMap(map);
@@ -184,31 +180,30 @@ Ext.define('Kort.controller.Map', {
         this.getApplication().fireEvent('maptypeupdaterequest');
     },
 
-    //ToDo set param types
     /**
      *
-     * @param cmp
-     * @param view
-     * @param opts
      * @private
+     * @param {Kort.view.map.NavigationView} cmp
+     * @param {Mixed} view
+     * @param {Object} opts
      */
     _onMapNavigationViewDetailViewPush: function(cmp, view, opts) {
-        var me = this;
-        me.getMapCenterButton().hide();
-        me.getMapRefreshButton().hide();
+        this.getMapCenterButton().hide();
+        this.getMapRefreshButton().hide();
+        this.getMapSneakyPeakSegmentedButton().hide();
     },
 
-    //ToDo set param types
     /**
      *
-     * @param cmp
-     * @param view
-     * @param opts
      * @private
+     * @param {Kort.view.map.NavigationView} cmp
+     * @param {Mixed} view
+     * @param {Object} opts
      */
     _onMapNavigationViewDetailViewBack: function(cmp, view, opts) {
         this.getMapCenterButton().show();
         this.getMapRefreshButton().show();
+        this.getMapSneakyPeakSegmentedButton().show();
     },
 
     /**
@@ -253,11 +248,11 @@ Ext.define('Kort.controller.Map', {
 
     /**
      *
+     * @private
      * @param {Ext.SegmentedButton} segmentedButton
      * @param {Ext.Button} button
      * @param {Boolean} isPressed
-     * @param eOpts
-     * @private
+     * @param {Object} eOpts
      */
     _onSneakyPeakSegmentedButtonToggle: function(segmentedButton, button, isPressed, eOpts) {
         this.getMapNavigationView().fireEvent('sneakypeaktoggled',isPressed);

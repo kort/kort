@@ -20,7 +20,7 @@ Ext.define('Kort.controller.Main', {
         },
         control: {
             mainTabPanel: {
-                activeitemchange: 'onMainTabPanelActiveItemChange'
+                activeitemchange: '_onMainTabPanelActiveItemChange'
             }
         },
 
@@ -34,13 +34,19 @@ Ext.define('Kort.controller.Main', {
     },
 
     /**
+     *
+     * @param {Ext.Container} container
+     * @param {Object} newCmp
+     * @param {Object} oldCmp
+     * @param {Object} eOpts
      * @private
+     *
      * Called when active item of main tabpanel changes
      */
-    onMainTabPanelActiveItemChange: function(container, newCmp, oldCmp, eOpts) {
+    _onMainTabPanelActiveItemChange: function(container, newCmp, oldCmp, eOpts) {
         this.redirectTo(newCmp.getUrl());
     },
-    
+
     /**
      * redirects to about tab
      */
