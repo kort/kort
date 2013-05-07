@@ -17,32 +17,38 @@ Ext.define('Kort.controller.GeolocationError', {
         },
         control: {
             geolocationerrorReloadButton: {
-                tap: 'onGeolocationerrorReloadButtonTap'
+                tap: '_onGeolocationerrorReloadButtonTap'
             }
         }
     },
-    
-    // @private
-    onGeolocationerrorReloadButtonTap: function() {
-        var me = this;
-        me.showLoadMask(Ext.i18n.Bundle.message('geolocationerror.loadmask.message'));
-        
-        // reload app
+
+    /**
+     *
+     * @private
+     */
+    _onGeolocationerrorReloadButtonTap: function() {
+        this._showLoadMask(Ext.i18n.Bundle.message('geolocationerror.loadmask.message'));
         window.location.reload();
     },
-    
-    // @private
-    showLoadMask: function(message) {
+
+    /**
+     *
+     * @private
+     * @param {String} message
+     */
+    _showLoadMask: function(message) {
         this.getGeolocationerrorPanel().setMasked({
             xtype: 'loadmask',
             message: message
         });
-
-        Ext.defer(this.hideLoadMask, Kort.util.Config.getTimeout(), this);
+        Ext.defer(this._hideLoadMask, Kort.util.Config.getTimeout(), this);
     },
 
-    // @private
-    hideLoadMask: function() {
+    /**
+     *
+     * @private
+     */
+    _hideLoadMask: function() {
         this.getGeolocationerrorPanel().setMasked(false);
     }
 });

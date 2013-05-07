@@ -15,7 +15,7 @@ test("thats a test", function(){
     equals("Wert", "Wert", "Erfolgreich");
 });
 QUnit.log = function(result, message){
-    alert(result);
+    //alert(result);
 }
 
 test("get table", function() {
