@@ -32,7 +32,7 @@ Ext.define('Kort.model.Validation', {
             { name: 'formatted_distance', type: 'string' },
             { name: 'validation_koin_count', type: 'int' },
             { name: 'state', convert:determineMapMarkerState},
-            { name: 'inOperationalRange', type:'boolean', fefaultValue:true }
+            { name: 'inOperationalRange', type:'boolean', defaultValue:true }
         ]
     }
 });

@@ -4,22 +4,10 @@ module("kort-HighscoreWebservice", {
     }
 });
 
-test("first Test", function(highscore){
-    expect(1);
-    equals(highscore.ranking, undefined);
-});
-
-test("thats a test", function(){
-    expect(2);
-    equals(true, false, "Fehlerhaft");
-    equals("Wert", "Wert", "Erfolgreich");
-});
-
-
 test("get table", function() {
     var type = 'GET',
         data = null,
-        url = urlLib.getAppUrl() + '/' + this.path;
+        url = urlLib.getAppUrl()+ '/' + this.path;
 
     api_test(url, type, data, function (highscore) {
         notStrictEqual(highscore, undefined, "method call failed");

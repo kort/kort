@@ -4,7 +4,7 @@ module("kort-AnswerWebservice", {
     }
 });
 
-test("root", function() {
+testSkip("root", function() {
 	var type = 'GET',
         data = null,
         url = urlLib.getAppUrl() + '/' + this.path + '/?limit=10';
