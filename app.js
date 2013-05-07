@@ -124,7 +124,6 @@ Ext.application({
 
     loadGeolocation: function(mainPanel) {
         var me = this;
-
         Kort.geolocation = Ext.create('Kort.util.Geolocation');
         Kort.geolocation.updateLocation(function(geo) {
             // Destroy the #appStartscreen element
@@ -182,7 +181,7 @@ Ext.application({
                     }
                     me.loadStores(mainPanel, geo);
                     // enable auto update on geolocation
-                    geo.setAutoUpdate(false);
+                    geo.setAutoUpdate(true);
                 }
             }
         });

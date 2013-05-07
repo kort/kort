@@ -39,7 +39,7 @@ Ext.define('Kort.controller.Highscore', {
          */
         highscoreStore: null
     },
-    
+
     /**
      *
      * @private
@@ -55,9 +55,21 @@ Ext.define('Kort.controller.Highscore', {
             userchange: { fn: me._loadStore, scope: me }
         });
         highscoreStore.on({
-            load: { fn: me._refreshView, scope: me }
+            load: { fn: me.refreshView, scope: me }
         });
     },
+
+    /**
+     *
+     * refreshes highscore list
+     */
+    refreshView: function() {
+        if(this.getHighscoreList()) {
+            this.getHighscoreList().refresh();
+        }
+        this._hideLoadMask();
+    },
+
 
     /**
      *
@@ -120,17 +132,6 @@ Ext.define('Kort.controller.Highscore', {
         this.getHighscoreStore().loadPage(1, {
             addRecords: false
         });
-    },
-
-    /**
-     *
-     * @private
-     */
-    _refreshView: function() {
-        if(this.getHighscoreList()) {
-            this.getHighscoreList().refresh();
-        }
-        this._hideLoadMask();
     },
 
     /**

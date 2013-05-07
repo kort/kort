@@ -9,8 +9,6 @@ Ext.define('Kort.controller.MapValidation', {
     ],
     config: {
         //override required from base class
-        name:null,
-        //override required from base class
         dataStore: null,
         //override required from base class
         dataStoreProxyURL: null,

@@ -11,8 +11,6 @@ Ext.define('Kort.controller.MapMission', {
     ],
     config: {
         //override required from base class
-        name:null,
-        //override required from base class
         dataStore: null,
         //override required from base class
         dataStoreProxyURL: null,

@@ -26,10 +26,10 @@ Ext.define('Kort.controller.Profile', {
         },
         control: {
             profileContentComponent: {
-                initialize: 'onProfileContentComponentInitialize'
+                initialize: '_onProfileContentComponentInitialize'
             },
             profileBadgesDataView: {
-                itemtap: 'onProfileBadgesDataViewItemTap'
+                itemtap: '_onProfileBadgesDataViewItemTap'
             },
             profileRefreshButton: {
                 tap: 'onProfileRefreshButtonTap'
@@ -48,12 +48,14 @@ Ext.define('Kort.controller.Profile', {
         badgesContainer: null,
         itemTapDisabled: false
     },
-    
-    // @private
+
+    /**
+     *
+     * @private
+     */
     init: function() {
         var me = this;
         me.callParent(arguments);
-        
         me.getApplication().on({
             votesend: { fn: me.refreshProfile, scope: me },
             fixsend: { fn: me.refreshProfile, scope: me },
@@ -61,17 +63,30 @@ Ext.define('Kort.controller.Profile', {
         });
     },
 
-    // @private
-    onProfileContentComponentInitialize: function() {
+    /**
+     *
+     * @private
+     */
+    _onProfileContentComponentInitialize: function() {
         if(!Kort.user) {
-            Ext.defer(this.onProfileContentComponentInitialize, 500, this);
+            Ext.defer(this._onProfileContentComponentInitialize, 500, this);
         } else {
             this.getProfileContentComponent().setRecord(Kort.user);
         }
     },
 
-    // @private
-    onProfileBadgesDataViewItemTap: function(dataViewCmp, index, target, record, e) {
+    //ToDo current progress of commenting process
+    /**
+     *
+     * @private
+     * Displays news detail view for given news entry
+     * @param {Kort.view.news.List} list
+     * @param {Number} index
+     * @param {Ext.dataview.component.DataItem} target
+     * @param {Kort.model.News} record
+     * @param {Ext.EventObject} e
+     */
+    _onProfileBadgesDataViewItemTap: function(dataViewCmp, index, target, record, e) {
         var me = this,
             badgesContainer;
 

@@ -6,6 +6,10 @@ Ext.define('Kort.controller.Notifications', {
         }
     },
 
+    /**
+     *
+     * @private
+     */
     init: function() {
         var me = this;
         this.getApplication().on({
@@ -14,6 +18,10 @@ Ext.define('Kort.controller.Notifications', {
         });
     },
 
+    /**
+     *
+     * update news badge text according to number of unread news items in NewsLocal store
+     */
     updateNewsBadgeText: function() {
         this.getTabPanel().getTabBar().getComponent(3).setBadgeText(Ext.getStore('NewsLocal').getAmountOfUnreadNews());
     }

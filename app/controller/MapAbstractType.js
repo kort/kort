@@ -5,15 +5,13 @@
 Ext.define('Kort.controller.MapAbstractType', {
     extend: 'Ext.app.Controller',
     config: {
-        //must be set by derived class
-        name:null,
-        //must be set by derived class
+        //must be overridden by derived class
         dataStore: null,
-        //must be set by derived class
+        //must be overridden by derived class
         dataStoreProxyURL: null,
-        //must be set by derived class
+        //must be overridden by derived class
         lLayerGroup: null,
-        //must be set by derived class
+        //must be overridden by derived class
         lLayerGroupName:null,
 
         mapController:null,

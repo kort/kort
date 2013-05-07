@@ -5,6 +5,16 @@ Ext.define('Kort.controller.News', {
     extend: 'Ext.app.Controller',
 
     config: {
+
+        /**
+         * @event newsupdated
+         * Fired after news had been updated
+         */
+
+        /**
+         * @event newsacceptedlanguagesupdated
+         * Fired after the news language settings had been changed
+         */
         views: [
             'news.NavigationView',
             'news.newsEntry.Container',
@@ -23,14 +33,14 @@ Ext.define('Kort.controller.News', {
         },
         control: {
             newsNavigationView: {
-                push: 'onNewsNavigationViewDetailPush',
-                back: 'onNewsNavigationViewBack'
+                push: '_onNewsNavigationViewDetailPush',
+                back: '_onNewsNavigationViewBack'
             },
             newsRefreshButton: {
                 tap: 'refreshNews'
             },
             newsSettingsButton: {
-                tap: 'onNewsSettingsButtonTap'
+                tap: '_onNewsSettingsButtonTap'
             },
             newsSettingsSaveButton: {
                 tap: '_onNewsSettingsSaveButton'
@@ -45,34 +55,56 @@ Ext.define('Kort.controller.News', {
                 tap: '_onNewsSettingsClearAllLanguagesButton'
             },
             newsList: {
-                itemtap: 'onNewsListItemTap'
+                itemtap: '_onNewsListItemTap'
             }
 
         },
+        /**
+         * @private
+         */
         detailPushDisabled: false,
+        /**
+         * @private
+         */
         newsLocalStore:null,
+        /**
+         * @private
+         */
         settingsPanel:null
 
     },
 
+    /**
+     *
+     * @private
+     */
     init: function() {
         var me = this;
         this.setNewsLocalStore(Ext.getStore('NewsLocal'));
-        this.getNewsLocalStore().on('updaterecord',me.newsLocalStoreUpdated,me);
+        this.getNewsLocalStore().on('updaterecord',me._newsLocalStoreUpdated,me);
         me.getApplication().on({
             geolocationready: { fn: me.refreshNews, scope: me }
         });
     },
 
+    /**
+     * synchonizes news with atom feed defined in config file and stores them to the user's localstorage
+     */
     refreshNews: function() {
         var me = this;
         this.getNewsLocalStore().load({
-            callback:me.syncLocalNewsStoreWithRemoteNewsStore,
+            callback:me._syncLocalNewsStoreWithRemoteNewsStore,
             scope: me
         });
     },
 
-    syncLocalNewsStoreWithRemoteNewsStore: function() {
+    /**
+     *
+     * @private
+     * sync news items from the news remote store, which is directly connected to the atom feed provided in the config file, with
+     * the local storage. This allows to keep track of what articles the user has read.
+     */
+    _syncLocalNewsStoreWithRemoteNewsStore: function() {
         var me = this,
             newsRemoteStore = Ext.getStore('NewsRemote');
         newsRemoteStore.load({
@@ -93,16 +125,30 @@ Ext.define('Kort.controller.News', {
                 });
                 me.getNewsLocalStore().sync();
                 me.getNewsLocalStore().load();
-                me.newsLocalStoreUpdated();
+                me._newsLocalStoreUpdated();
             }
         });
     },
 
-    newsLocalStoreUpdated: function() {
+    /**
+     *
+     * @private
+     */
+    _newsLocalStoreUpdated: function() {
         this.getApplication().fireEvent('newsupdated');
     },
 
-    onNewsListItemTap: function(list, index, target, record, e) {
+    /**
+     *
+     * @private
+     * Displays news detail view for given news entry
+     * @param {Kort.view.news.List} list
+     * @param {Number} index
+     * @param {Ext.dataview.component.DataItem} target
+     * @param {Kort.model.News} record
+     * @param {Ext.EventObject} e
+     */
+    _onNewsListItemTap: function(list, index, target, record, e) {
         var me = this,
             newsNavigationView = me.getNewsNavigationView(),
             newsNewsEntryContainer;
@@ -128,12 +174,22 @@ Ext.define('Kort.controller.News', {
         }
     },
 
-    onNewsSettingsButtonTap: function() {
+    /**
+     *
+     * @private
+     * creates and displays news language settings panel
+     */
+    _onNewsSettingsButtonTap: function() {
         this.setSettingsPanel(Ext.create('Kort.view.news.settings.AcceptedLanguagePanel'));
         Ext.Viewport.add(this.getSettingsPanel());
         this.getSettingsPanel().show();
     },
 
+    /**
+     *
+     * @private
+     * store user made news settings to localstorage (via UserLocal store)
+     */
     _onNewsSettingsSaveButton: function() {
         var settingsValues = this.getSettingsPanel().getValues(),
             newAcceptedLanguageArray = [],
@@ -152,11 +208,19 @@ Ext.define('Kort.controller.News', {
         this.getApplication().fireEvent('newsacceptedlanguagesupdated');
     },
 
+    /**
+     *
+     * @private
+     */
     _onNewsSettingsCancelButton: function() {
         this.getSettingsPanel().destroy();
     },
 
-    // Select all languages
+    /**
+     *
+     * @private
+     * select all language checkboxes in news language settings panel
+     */
     _onNewsSettingsSelectAllLanguagesButton:function(){
         var fieldset = Ext.getCmp('acceptedLanguageFieldSet');
         fieldset.getItems().items.forEach(function(item) {
@@ -164,7 +228,11 @@ Ext.define('Kort.controller.News', {
         });
     },
 
-    //Deselect all languages
+    /**
+     *
+     * @private
+     * deselect all language checkboxes in news language settings panel
+     */
     _onNewsSettingsClearAllLanguagesButton:function(){
         var fieldset = Ext.getCmp('acceptedLanguageFieldSet');
         fieldset.getItems().items.forEach(function(item) {
@@ -172,12 +240,20 @@ Ext.define('Kort.controller.News', {
         });
     },
 
-    onNewsNavigationViewDetailPush: function() {
+    /**
+     *
+     * @private
+     */
+    _onNewsNavigationViewDetailPush: function() {
         this.getNewsRefreshButton().hide();
         this.getNewsSettingsButton().hide();
     },
 
-    onNewsNavigationViewBack: function() {
+    /**
+     *
+     * @private
+     */
+    _onNewsNavigationViewBack: function() {
         this.getNewsRefreshButton().show();
         this.getNewsSettingsButton().show();
     }
