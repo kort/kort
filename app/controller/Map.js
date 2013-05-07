@@ -86,7 +86,7 @@ Ext.define('Kort.controller.Map', {
 
     /**
      *
-     * add a layer group to the map at runtime
+     * Add a leaflet layer group to the leaflet map at runtime
      * @param {L.LayerGroup} lLayerGroup
      * @param {String} lLayerGroupName
      */
@@ -101,7 +101,7 @@ Ext.define('Kort.controller.Map', {
     },
 
     /**
-     * get the current gps coordiantes
+     * Get the current gps coordiantes
      * @returns {L.latLng}
      */
     getCurrentLocationLatLng: function() {
@@ -112,7 +112,7 @@ Ext.define('Kort.controller.Map', {
     /**
      *
      * @private
-     * creates LeafletMap component
+     * Creates LeafletMap component
      * @param {Kort.util.Geolocation} geo
      */
     _createLeafletMapWrapper: function (geo) {
@@ -140,7 +140,7 @@ Ext.define('Kort.controller.Map', {
     /**
      *
      * @private
-     * sets the coordinates and zoomlevel, to which the center of the map should jump after being successfully initialized
+     * Sets the coordinates and zoomlevel, to which the center of the map should jump after being successfully initialized
      * called by routes with locationToJump Object containing the optional keys:
      * lat = latitude
      * lng = longitude
