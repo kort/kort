@@ -62,7 +62,7 @@ Ext.define('Kort.controller.Fix', {
             });
             fix.save({
                 success: function(records, operation) {
-                    me.hideSendMask();
+                    me._hideSendMask();
                     me._fixSuccessfulSubmittedHandler(operation.getResponse().responseText);
                 },
                 failure: function() {
