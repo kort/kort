@@ -9,6 +9,7 @@ Ext.Loader.setPath({
 //</debug>
 
 /**
+ * @class Kort
  * Kort application.
  */
 Ext.application({
