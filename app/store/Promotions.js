@@ -1,8 +1,6 @@
 /**
- * Store for promotions
+ * Reader to convert unix timestamp to string representation of date property.
  */
-
-//define own reader to convert unix timestamp to string representation of date property
 Ext.define('My.PromotionReader', {
     extend: 'Ext.data.reader.Json',
     alias: 'reader.promotions',
@@ -20,6 +18,9 @@ Ext.define('My.PromotionReader', {
     }
 });
 
+/**
+ * Store for promotions.
+ */
 Ext.define('Kort.store.Promotions', {
     extend: 'Ext.data.Store',
 

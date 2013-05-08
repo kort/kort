@@ -1,10 +1,6 @@
 /**
  * Model for a mission
  */
-function determineMapMarkerState(v, record) {
-    return record.data.campaign_id ? Kort.util.Config.getMapMarkerState().missionPromotion : Kort.util.Config.getMapMarkerState().mission;
-}
-
 Ext.define('Kort.model.Mission', {
     extend: 'Ext.data.Model',
     config: {
@@ -25,7 +21,10 @@ Ext.define('Kort.model.Mission', {
             { name: 'fix_koin_count', type: 'int' },
             { name: 'campaign_id', type: 'int' },
             { name: 'campaign_extra_coins', type: 'int' },
-            { name: 'state', convert:determineMapMarkerState},
+            { name: 'state', convert:function(v, record) {
+                //ToDo Refactor
+                return record.data.campaign_id ? Kort.util.Config.getMapMarkerState().missionPromotion : Kort.util.Config.getMapMarkerState().mission;
+            }},
             { name: 'inOperationalRange', type: 'boolean', defaultValue: true}
         ]
     }

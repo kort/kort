@@ -3,6 +3,7 @@
  */
 Ext.define('Kort.controller.Notifications', {
     extend: 'Ext.app.Controller',
+
     config: {
         refs: {
             tabPanel: 'main'

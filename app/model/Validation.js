@@ -1,12 +1,6 @@
 /**
  * Model for a validation
  */
-
-function determineMapMarkerState(v, record) {
-    //ToDo Refactor
-    return record.data.campaign_id ? Kort.util.Config.getMapMarkerState().validationPromotion : Kort.util.Config.getMapMarkerState().validation;
-}
-
 Ext.define('Kort.model.Validation', {
     extend: 'Ext.data.Model',
     config: {
@@ -28,10 +22,12 @@ Ext.define('Kort.model.Validation', {
             { name: 'required_votes', type: 'int' },
             { name: 'latitude', type: 'string' },
             { name: 'longitude', type: 'string' },
-            //{ name: 'distance', type: 'int' },
             { name: 'formatted_distance', type: 'string' },
             { name: 'validation_koin_count', type: 'int' },
-            { name: 'state', convert:determineMapMarkerState},
+            { name: 'state', convert:function(v, record) {
+                //ToDo Refactor
+                return record.data.campaign_id ? Kort.util.Config.getMapMarkerState().validationPromotion : Kort.util.Config.getMapMarkerState().validation;
+            }},
             { name: 'inOperationalRange', type:'boolean', defaultValue:true }
         ]
     }
