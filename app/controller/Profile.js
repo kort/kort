@@ -202,7 +202,7 @@ Ext.define('Kort.controller.Profile', {
     
     /**
      * @private
-     * Called when user was successfull saved.
+     * Called when user was successfully saved.
      */
     _userSuccessfullSavedHandler: function() {
         this.getApplication().fireEvent('userchange');

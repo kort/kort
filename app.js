@@ -1,5 +1,3 @@
-/*jshint maxcomplexity:10 */
-
 //<debug>
 Ext.Loader.setPath({
     'Ext': 'touch/src',
@@ -10,6 +8,9 @@ Ext.Loader.setPath({
 });
 //</debug>
 
+/**
+ * Kort application.
+ */
 Ext.application({
     name: 'Kort',
 
