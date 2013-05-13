@@ -1,5 +1,3 @@
-create extension postgis with schema kort;
-
 create sequence kort.fix_id;
 create sequence kort.vote_id;
 create sequence kort.user_id;
