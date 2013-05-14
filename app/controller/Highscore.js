@@ -124,10 +124,12 @@ Ext.define('Kort.controller.Highscore', {
             this._showLoadMask();
         }
         // reset store and load first page
-        this.getHighscoreStore().loadPage(1, {
+        this.getHighscoreStore().loadPage(1 + Math.floor(Kort.user.get('ranking')/10), {
             addRecords: false
         });
+        this.refreshView();
     },
+
 
     /**
      * @private

@@ -4,29 +4,41 @@
 Ext.define('Kort.view.highscore.PullRefreshPlugin', {
     extend: 'Kort.plugin.PullRefresh',
     alias: 'plugin.highscorepullrefresh',
+
 	
 	config: {
        refreshFn: function() {
             var me = this,
                 store = me.getList().getStore(),
-                index,
+                rank,
                 clearOnPageLoad;
 
-            if (store) {
-                // reset store and load first page
-                index = 6;//store.findExact("user_id",you.id);
+            if (store && store.page > 1) {
+                // reset store and load page
+
+                rank = Kort.user.get('ranking');
                 clearOnPageLoad = store.getClearOnPageLoad();
-                console.log("index ist "+index);
-                store.load({},{
-                    page: 0,
-                   start: index -1,
-                    limit: 3,
-                    addRecords: !clearOnPageLoad
+                console.log("index ist "+rank + ", page " + (1+Math.floor(rank/10)));
+
+                store.loadPage(store.page -1/* 1 + Math.floor(rank/10)*/ , {
+                    addRecords: false
                 });
-//                store.loadPage(1, {
-//                    addRecords: false
-//                });
             }
         }
 	}
 });
+
+//original:
+//    config: {
+//        refreshFn: function() {
+//            var me = this,
+//                store = me.getList().getStore();
+//
+//            if (store) {
+//                // reset store and load first page
+//                store.loadPage(1, {
+//                    addRecords: false
+//                });
+//            }
+//        }
+//    }
