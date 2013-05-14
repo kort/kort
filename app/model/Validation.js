@@ -15,6 +15,7 @@ Ext.define('Kort.model.Validation', {
 			{ name: 'view_type', type: 'string' },
 			{ name: 'question', type: 'string' },
             { name: 'bug_question', type: 'string' },
+            { name: 'vote_koin_count', type: 'int' },
 			{ name: 'fixmessage', type: 'string' },
 			{ name: 'falsepositive', type: 'boolean' },
             { name: 'upratings', type: 'int' },
@@ -23,10 +24,10 @@ Ext.define('Kort.model.Validation', {
             { name: 'latitude', type: 'string' },
             { name: 'longitude', type: 'string' },
             { name: 'formatted_distance', type: 'string' },
-            { name: 'validation_koin_count', type: 'int' },
+            { name: 'promo_id', type: 'int' },
+            { name: 'extra_coins', type: 'int' },
             { name: 'state', convert:function(v, record) {
-                //ToDo Refactor
-                return record.data.campaign_id ? Kort.util.Config.getMapMarkerState().validationPromotion : Kort.util.Config.getMapMarkerState().validation;
+                return record.data.promo_id ? Kort.util.Config.getMapMarkerState().validationPromotion : Kort.util.Config.getMapMarkerState().validation;
             }},
             { name: 'inOperationalRange', type:'boolean', defaultValue:true }
         ]

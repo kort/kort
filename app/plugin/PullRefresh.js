@@ -1,4 +1,3 @@
-/*jshint maxcomplexity:10 */
 /**
  * Translated pull refresh plugin
  */

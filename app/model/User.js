@@ -1,4 +1,3 @@
-/*jshint maxcomplexity:10 */
 /**
  * Model for the user instance
  */

@@ -27,10 +27,24 @@ Ext.define('Kort.store.Promotions', {
     config: {
         model: 'Kort.model.Promotion',
         proxy: {
+            type: 'rest',
+            url: Kort.util.Config.getWebservices().promotion.url,
+            startParam: false,
+            extraParams: {
+                'lang': Kort.util.Config.getLanguage()
+            },
+            reader: {
+                type: 'json',
+                rootProperty: 'return'
+            }
+        }
+        /*
+        proxy: {
             type: 'ajax',
             url: './resources/stores/promotions.json',
             reader:'promotions'
         },
-        autoLoad:false
+        */
+
     }
 });

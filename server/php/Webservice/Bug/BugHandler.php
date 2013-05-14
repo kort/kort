@@ -35,7 +35,8 @@ class BugHandler extends DbProxyHandler
      */
     protected function getTable()
     {
-        return 'kort.errors';
+        //the query is more complex.
+        //return 'kort.errors';
     }
 
     /**
@@ -45,31 +46,28 @@ class BugHandler extends DbProxyHandler
      */
     protected function getFields()
     {
+        //fields from kort.errors aggregated with promo_id and extra_coins
         return array(
-            'id',
-            'schema',
-            'type',
-            'osm_id',
-            'osm_type',
-            'title',
-            'description',
-            'latitude',
-            'longitude',
-            'view_type',
-            'answer_placeholder',
-            'fix_koin_count',
-            'geom',
-            'txt1',
-            'txt2',
-            'txt3',
-            'txt4',
-            'txt5',
-            'campaign_id',
-            'campaign_extra_coins',
-            /*
-            'campaignId',
-            'campaignExtraCoins'
-            */
+            'e.id',
+            'e.schema',
+            'e.type',
+            'e.osm_id',
+            'e.osm_type',
+            'e.title',
+            'e.description',
+            'e.latitude',
+            'e.longitude',
+            'e.view_type',
+            'e.answer_placeholder',
+            'e.fix_koin_count',
+            'e.geom', //kort.errors.geom AS missiongeom
+            'e.txt1',
+            'e.txt2',
+            'e.txt3',
+            'e.txt4',
+            'e.txt5',
+            'p.promo_id',
+            'p.promo_extra_coins AS extra_coins'
         );
     }
 
@@ -89,6 +87,7 @@ class BugHandler extends DbProxyHandler
         $radius = empty($radius) ? 5000 : $radius;
         $userPosition =  PostGisSqlHelper::getLatLngGeom($lat, $lng);
 
+        /*
         $sql  = "select * from (";
         $sql .= "select " . implode($this->getFields(), ',');
         $sql .= " from " . $this->getTable();
@@ -96,53 +95,40 @@ class BugHandler extends DbProxyHandler
         $sql .= " limit " . $limit;
         $sql .= ") t";
         $sql .= " where " . "ST_Distance_Sphere(t.geom," . $userPosition . ") <= " . $radius;
+        */
+
+        /*
+        $sql = "WITH errors_within_operationalrange AS (";
+        $sql .= "SELECT * FROM (";
+        $sql .= "SELECT id, schema, type, osm_id, osm_type, title, description, latitude, longitude, view_type, answer_placeholder, fix_koin_count, geom, txt1, txt2, txt3, txt4, txt5 FROM kort.errors";
+        $sql .= " ORDER BY " . "geom <-> " . PostGisSqlHelper::getLatLngGeom($lat, $lng);
+        $sql .= " LIMIT " . $limit;
+        $sql .= ") t";
+        $sql .= " WHERE " . "ST_Distance_Sphere(geom," . $userPosition . ") <= " . $radius ." )";
+        $sql .= "SELECT ". implode($this->getFields(), ',') ." FROM errors_within_operationalrange e LEFT JOIN kort.aggregateddate_from_missions p ON ((e.id=p.mission_error_id) AND (e.schema=p.schema) AND (e.osm_id=p.osm_id))";
+        */
+
+        $sql  = "WITH aggregation1 AS (";
+        $sql .= "SELECT p.id AS promo_id, p.startdate, p.enddate, p.geom AS promogeom, pm.error_type, pm.mission_extra_coins AS extra_coins FROM kort.promotion p INNER JOIN kort.promo2mission pm ON p.id=pm.promo_id WHERE p.startdate < now() AND p.enddate > now())";
+        $sql .= ", aggregation2 AS (";
+        $sql .= "SELECT * FROM (";
+        $sql .= "SELECT id AS missionid, schema, type, osm_id, osm_type, title, description, latitude, longitude, view_type, answer_placeholder, fix_koin_count, geom AS missiongeom, txt1, txt2, txt3, txt4, txt5 FROM kort.errors";
+        $sql .= " ORDER BY " . "geom <-> " . PostGisSqlHelper::getLatLngGeom($lat, $lng);
+        $sql .= " LIMIT " . $limit;
+        $sql .= ") t";
+        $sql .= " WHERE " . "ST_Distance_Sphere(missiongeom," . $userPosition . ") <= " . $radius ." )";
+        $sql .= ", aggregation3 AS (";
+        $sql .= "SELECT ag2.missionid AS missionidtemp, ag1.promo_id, ag1.extra_coins FROM aggregation2 ag2 INNER JOIN aggregation1 ag1 ON ag2.type=ag1.error_type WHERE ST_WITHIN(ag2.missiongeom, ag1.promogeom))";
+        $sql .= "SELECT missionid AS id,schema,type,osm_id,osm_type,title,description,latitude,longitude,view_type,answer_placeholder,fix_koin_count,missiongeom AS geom,txt1,txt2,txt3,txt4,txt5,promo_id,extra_coins FROM aggregation2 ag2 LEFT JOIN aggregation3 ag3 ON ag2.missionid=ag3.missionidtemp";
 
         $params = array();
         $params['sql'] = $sql;
         $params['type'] = "SQL";
 
-
-        /*
-         * For frontend development purpose, use returnDummyBugArray method to create
-         * a demo bug. This bug is located right at your current position. For live version, uncomment
-         * all following lines and comment the returnDummyBugArray-Line.
-         */
-
         $position = $this->getDbProxy()->addToTransaction($params);
         $result = json_decode($this->getDbProxy()->sendTransaction(), true);
         $translatedData = array_map(array($this, "translateBug"), $result[$position - 1]);
-        //$translatedData = $this->returnDummyBugArray($lat,$lng);
         return json_encode($translatedData);
-    }
-
-    protected function returnDummyBugArray($lat, $lng) {
-
-
-        $toReturnArray = array(array(
-            "id" => "24044638",
-            "schema" => "15",
-            "type" => "missing_track_type",
-            "osm_id" => "115466810",
-            "osm_type" => "way",
-            "title" => "Dummy data track unknown",
-            "description" => "What kind of track is this?",
-            "latitude" => $lat,
-            "longitude" => $lng,
-            "view_type" => "select",
-            "answer_placeholder" => "Type",
-            "fix_koin_count" => "5",
-            "geom" => "0101000020E61000000A21318B9A2521408723FE17BEAC4740",
-            "txt1" => "",
-            "txt2" => "",
-            "txt3" => "",
-            "txt4" => "",
-            "txt5" => "",
-            "campaign_id" => "1",
-            "campaign_extra_coins" => "15",
-           )
-        );
-
-        return $toReturnArray;
     }
 
     /**

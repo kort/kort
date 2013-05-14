@@ -1,5 +1,5 @@
 /**
- * Main container for vote view
+ * Main container for user view.
  */
 Ext.define('Kort.view.highscore.user.Container', {
 	extend: 'Ext.Container',

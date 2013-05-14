@@ -6,10 +6,6 @@
 Ext.define('Kort.controller.Map', {
     extend: 'Ext.app.Controller',
     config: {
-        /**
-         * @event leafletmaprendered
-         * Fired when tile leaflet map is rendered.
-         */
 
         /**
          * @event maptypeupdaterequest

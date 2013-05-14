@@ -46,7 +46,7 @@ class ValidationHandler extends DbProxyHandler
     protected function getFields()
     {
         return array(
-            'id',
+            'validationid AS id',
             'type',
             'view_type',
             'fix_user_id',
@@ -57,17 +57,20 @@ class ValidationHandler extends DbProxyHandler
             'falsepositive',
             'question',
             'bug_question',
+            'vote_koin_count',
             'latitude',
             'longitude',
             'upratings',
             'downratings',
             'required_votes',
-            'geom',
+            'validationgeom AS geom',
             'txt1',
             'txt2',
             'txt3',
             'txt4',
-            'txt5'
+            'txt5',
+            'promo_id',
+            'extra_coins'
         );
     }
 
@@ -92,14 +95,21 @@ class ValidationHandler extends DbProxyHandler
         $where .= " (select 1 from kort.vote v ";
         $where .= " where v.fix_id = id and v.user_id = " . $_SESSION['user_id'] . ")";
 
-        $sql  = "select * from (";
-        $sql .= "select " . implode($this->getFields(), ',');
+
+        $sql  = "WITH aggregation1 AS (";
+        $sql .= "SELECT p.id AS promo_id, p.startdate, p.enddate, p.geom AS promogeom, pm.error_type, pm.validation_extra_coins AS extra_coins FROM kort.promotion p INNER JOIN kort.promo2mission pm ON p.id=pm.promo_id WHERE p.startdate < now() AND p.enddate > now())";
+        $sql .= ", aggregation2 AS (";
+        $sql .= "select * from (";
+        $sql .= "select id AS validationid,type,view_type,fix_user_id,osm_id,osm_type,title,fixmessage,falsepositive,question,bug_question,vote_koin_count,latitude,longitude,upratings,downratings,required_votes,geom AS validationgeom,txt1,txt2,txt3,txt4,txt5";
         $sql .= " from " . $this->getTable();
         $sql .= " where " . $where;
         $sql .= " order by " . "geom <-> " . PostGisSqlHelper::getLatLngGeom($lat, $lng);
         $sql .= " limit " . $limit;
         $sql .= ") t";
-        $sql .= " where " . "ST_Distance_Sphere(t.geom," . $userPosition . ") <= " . $radius;
+        $sql .= " where " . "ST_Distance_Sphere(validationgeom," . $userPosition . ") <= " . $radius . " )";
+        $sql .= ", aggregation3 AS (";
+        $sql .= "SELECT ag2.validationid AS validationidtemp, ag1.promo_id, ag1.extra_coins FROM aggregation2 ag2 INNER JOIN aggregation1 ag1 ON ag2.type=ag1.error_type WHERE ST_WITHIN(ag2.validationgeom, ag1.promogeom))";
+        $sql .= "SELECT ". implode($this->getFields(), ',') ." FROM aggregation2 ag2 LEFT JOIN aggregation3 ag3 ON ag2.validationid=ag3.validationidtemp";
 
         $params = array();
         $params['sql'] = $sql;

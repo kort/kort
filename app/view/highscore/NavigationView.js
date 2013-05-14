@@ -1,5 +1,5 @@
 /**
- * Main navigation view for highscore tab
+ * Main navigation view for highscore tab.
  */
 Ext.define('Kort.view.highscore.NavigationView', {
 	extend: 'Ext.navigation.View',

@@ -1,5 +1,3 @@
-/*jshint maxcomplexity:10 */
-
 /**
  * Controller for profile tab.
  */
@@ -9,10 +7,6 @@ Ext.define('Kort.controller.Profile', {
         'Ext.LoadMask'
     ],
     config: {
-        /**
-         * @event userchange
-         * Fired after a change in the user model successfully saved to localstorage.
-         */
 
         views: [
             'profile.Container',

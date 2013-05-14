@@ -1,3 +1,6 @@
+/**
+ * Local store for News.
+ */
 Ext.define('Kort.store.NewsLocal', {
     extend: 'Ext.data.Store',
     config: {
@@ -21,6 +24,10 @@ Ext.define('Kort.store.NewsLocal', {
         ]
    },
 
+    /**
+     * Returns the number of unread news in local storage.
+     * @returns {number} count Number of unread News.
+     */
     getAmountOfUnreadNews: function(){
     var count=0;
     this.each(function (item, index, length) {

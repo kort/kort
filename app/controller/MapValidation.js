@@ -92,7 +92,7 @@ Ext.define('Kort.controller.MapValidation', {
      */
     _showPromotionMessageBox: function () {
         Kort.view.map.validation.ValidationMessageBox.preventOpening=true;
-        Ext.create('Kort.view.map.validation.ValidationMessageBox').confirm(this.getPromotionStore().getById(this.getActiveRecord().get('campaign_id')), Ext.emptyFn, this, this.getActiveRecord().get('campaign_extra_coins'));
+        Ext.create('Kort.view.map.mission.PromotionMessageBox').confirm(this.getPromotionStore().getById(this.getActiveRecord().get('promo_id')), Ext.emptyFn, this, this.getActiveRecord().get('extra_coins'));
     },
 
     /**

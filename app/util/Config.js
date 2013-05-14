@@ -262,6 +262,9 @@ Ext.define('Kort.util.Config', {
                 radius: this.operationalRange,
                 limit: 25
             },
+            promotion: {
+                url: './server/webservices/kortpromotion/'
+            },
             user: {
                 url: './server/webservices/user/'
             },

@@ -1,3 +1,6 @@
+/**
+ * Store for news. Parse records from news atom feed.
+ */
 Ext.define('Kort.store.NewsRemote', {
     extend: 'Ext.data.Store',
     config: {

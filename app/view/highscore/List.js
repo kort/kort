@@ -1,5 +1,5 @@
 /**
- * Highscore list
+ * Highscore list.
  */
 Ext.define('Kort.view.highscore.List', {
 	extend: 'Ext.List',

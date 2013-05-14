@@ -1,5 +1,5 @@
 /**
- * Geolocation with distance calculation function
+ * Geolocation with distance calculation function.
  */
 Ext.define('Kort.util.Geolocation', {
     extend: 'Ext.util.Geolocation',
@@ -22,8 +22,8 @@ Ext.define('Kort.util.Geolocation', {
     /**
      * @private
      * Calculates the distance to given latitude / logitude. Source: http://www.movable-type.co.uk/scripts/latlong.html
-     * @param {Number} latitude Latitude
-     * @param {Number} longitude Longitude
+     * @param {Number} latitude Latitude.
+     * @param {Number} longitude Longitude.
      */
     getDistance: function(latitude, longitude) {
         var earthRadius = 6371000, // m
@@ -43,8 +43,8 @@ Ext.define('Kort.util.Geolocation', {
     },
 
     /**
-     * Returns distances with measurement unit
-     * @param {Number} distanceInMeters Distance to format
+     * Returns distances with measurement unit.
+     * @param {Number} distanceInMeters Distance to format.
      */
     getFormattedDistance: function(distanceInMeters) {
         if(distanceInMeters > 999) {

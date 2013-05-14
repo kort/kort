@@ -15,6 +15,47 @@ Ext.Loader.setPath({
 Ext.application({
     name: 'Kort',
 
+    /**
+     * @event geolocationready
+     * Fired when gps data is available.
+     * @param {Kort.util.Geolocation} geo Geolocation object.
+     */
+
+    /**
+     * @event leafletmaprendered
+     * Fired when tile leaflet map is rendered.
+     */
+
+    /**
+     * @event fixsend
+     * Fired when a fix was successfully submitted.
+     */
+
+    /**
+     * @event votesend
+     * Fired when a vote was successfully submitted.
+     */
+
+    /**
+     * @event userchange
+     * Fired when a change in the user settings was successfully saved.
+     */
+
+    /**
+     * @event maptypeupdaterequest
+     * Fired to trigger update process of map abstract types (markers on leaflet map).
+     */
+
+    /**
+     * @event newsupdated
+     * Fired after the news local storage was successfuly synced with online atom feed.
+     */
+
+    /**
+     * @event newsacceptedlanguagesupdated
+     * Fired when a change in the news settings was successfully saved.
+     */
+
     requires: [
         'patch.AjaxProxy',
         'Ext.MessageBox',

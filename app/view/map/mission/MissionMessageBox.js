@@ -1,5 +1,5 @@
 /**
- * Message box which shows mission details
+ * Message box which shows mission details.
  */
 Ext.define('Kort.view.map.mission.MissionMessageBox', {
 	extend: 'Ext.MessageBox',
@@ -24,7 +24,7 @@ Ext.define('Kort.view.map.mission.MissionMessageBox', {
         '<p>',
 
         '{[this.getMessage("map.mission.missionmessagebox.koins.earnpromotion", {fix_koin_count: values.fix_koin_count, ' +
-            'extra_coins: values.campaign_extra_coins})]}',
+            'extra_coins: values.extra_coins})]}',
         '<img src="./resources/images/promotion/promotionInfoButton@X2.png" id="promotionInfoButton"/>',
         '</p>',
         ' <tpl else>',
@@ -45,7 +45,7 @@ Ext.define('Kort.view.map.mission.MissionMessageBox', {
         '</div>',
 
         {
-            //member functions:
+            //checks if mission has promotion
             isPromotion: function(state) {
                 return state===Kort.util.Config.getMapMarkerState().missionPromotion;
             },

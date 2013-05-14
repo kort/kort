@@ -18,8 +18,8 @@ Ext.define('Kort.view.map.validation.ValidationMessageBox', {
         '<div class="content">',
         '<tpl if="this.isPromotion(state)">',
         '<p>',
-        '{[this.getMessage("map.validation.validationmessagebox.koins.earnpromotion", {validation_koin_count: values.validation_koin_count, ' +
-            'extra_coins: values.campaign_extra_coins})]}',
+        '{[this.getMessage("map.validation.validationmessagebox.koins.earnpromotion", {validation_koin_count: values.vote_koin_count, ' +
+            'extra_coins: values.extra_coins})]}',
         '<img src="./resources/images/promotion/promotionInfoButton@X2.png" id="promotionInfoButton"/>',
         '</p>',
         ' <tpl else>',

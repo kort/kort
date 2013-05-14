@@ -24,6 +24,11 @@ Ext.define('Kort.store.Validations', {
         autoLoad:false
 	},
 
+    /**
+     * For each validation in store, calculate if it is in the operational range and therefore solvable.
+     * @param {Kort.util.Geolocation} geo The geolocation object which holds the current user position.
+     * @param {number} distance The radius of the operational range.
+     */
     doOperationalRangeCheck: function(geo,distance) {
         console.log('doOperationalRangeCheck');
         if(!this.isLoading()) {
