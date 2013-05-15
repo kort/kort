@@ -44,17 +44,32 @@ Ext.define('Kort.controller.Highscore', {
      * @private
      */
     init: function() {
-        var me = this,
-            highscoreStore = Ext.getStore('Highscore');
+        var me = this;
         me.callParent(arguments);
-        me.setHighscoreStore(highscoreStore);
         me.getApplication().on({
             votesend: { fn: me._loadStore, scope: me },
             fixsend: { fn: me._loadStore, scope: me },
-            userchange: { fn: me._loadStore, scope: me }
+            userchange: { fn: me._loadStore, scope: me },
+            userloaded: { fn: me._loadHighscore, scope: me}
         });
+
+    },
+    /**
+     * Loads highscore list
+     */
+    _loadHighscore: function(){
+        var me = this,
+            highscoreStore = Ext.getStore('Highscore');
+
         highscoreStore.on({
-            load: { fn: me.refreshView, scope: me }
+                load: { fn: me.refreshView, scope: me }
+            }
+        );
+        me.setHighscoreStore(highscoreStore);
+        highscoreStore.pageSize = 10;
+
+        this.getHighscoreStore().loadPage(1 + Math.floor(Kort.user.get('ranking')/this.getHighscoreStore().pageSize), {
+            addRecords: false
         });
     },
 
@@ -120,14 +135,22 @@ Ext.define('Kort.controller.Highscore', {
      * @param {Boolean} showLoadmask
      */
     _loadStore: function(showLoadmask) {
+        console.log('loadStore fn');
         if(showLoadmask) {
             this._showLoadMask();
         }
-        // reset store and load first page
-        this.getHighscoreStore().loadPage(1 + Math.floor(Kort.user.get('ranking')/10), {
+        // reset store and load page
+        if (this.getHighscoreStore().pageSize !== undefined){
+            console.log("Pagesize: " + this.getHighscoreStore().pageSize);
+        this.getHighscoreStore().loadPage(1 + Math.floor(Kort.user.get('ranking')/this.getHighscoreStore().pageSize), {
             addRecords: false
         });
-        this.refreshView();
+//        this.refreshView();
+    }else{
+            this.getHighscoreStore().loadPage(1, {
+                addRecords: false
+            });
+        }
     },
 
 

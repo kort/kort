@@ -42,7 +42,7 @@ Ext.define('Kort.view.highscore.List', {
             },
             {
                 xclass: 'Ext.plugin.ListPaging',
-                autoPaging: true,
+                autoPaging: false,
                 loadMoreText: Ext.i18n.Bundle.message('listpaging.loadmore'),
                 noMoreRecordsText: Ext.i18n.Bundle.message('listpaging.nomorerecords')
             }

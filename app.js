@@ -36,6 +36,12 @@ Ext.application({
      * Fired when a vote was successfully submitted.
      */
 
+
+    /**
+     * @event userloaded
+     * Fired when a users data are correctly loaded
+     */
+
     /**
      * @event userchange
      * Fired when a change in the user settings was successfully saved.
@@ -226,6 +232,7 @@ Ext.application({
                     // enable auto update on geolocation
                     geo.setAutoUpdate(true);
                 }
+                me.fireEvent('userloaded')
             }
         });
     },
