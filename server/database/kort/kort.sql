@@ -84,6 +84,23 @@ create table kort.vote (
     foreign key (fix_id) references kort.fix (fix_id)
 );
 
+CREATE TABLE kort.promotion (
+  id integer PRIMARY KEY,
+  title varchar(40) NOT NULL,
+  lang varchar(5) NOT NULL,
+  startdate timestamp with time zone NOT NULL,
+  enddate timestamp with time zone NOT NULL,
+  region varchar(100) NOT NULL,
+  geom public.geometry(MultiPolygon,4326) NULL
+);
+
+CREATE TABLE kort.promo2mission (
+	promo_id integer references kort.promotion(id) NOT NULL,
+	error_type varchar(20) references kort.error_type(type) NOT NULL,
+	mission_extra_coins integer NOT NULL,
+	validation_extra_coins integer NOT NULL
+);
+
 create function check_fix_onlyone_pending_per_error(i_error_id integer, i_schema varchar, i_osm_id integer)
 returns boolean as
 $$

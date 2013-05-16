@@ -36,7 +36,7 @@ class BugHandler extends DbProxyHandler
     protected function getTable()
     {
         //the query is more complex.
-        //return 'kort.errors e';
+        return 'kort.errors e';
     }
 
     /**
@@ -47,6 +47,7 @@ class BugHandler extends DbProxyHandler
     protected function getFields()
     {
         //fields from kort.errors aggregated with promo_id and extra_coins
+        /*
         return array(
             'e.id',
             'e.schema',
@@ -70,6 +71,32 @@ class BugHandler extends DbProxyHandler
             //'e.extra_coins'
             'p.promo_extra_coins AS extra_coins'
         );
+        */
+
+        return array(
+            'id',
+            'schema',
+            'type',
+            'osm_id',
+            'osm_type',
+            'title',
+            'description',
+            'latitude',
+            'longitude',
+            'view_type',
+            'answer_placeholder',
+            'fix_koin_count',
+            'missiongeom', //kort.errors.geom AS missiongeom
+            'txt1',
+            'txt2',
+            'txt3',
+            'txt4',
+            'txt5',
+            //'promo_id',
+            //'e.extra_coins'
+            //'extra_coins'
+        );
+
     }
 
     /**
@@ -87,6 +114,17 @@ class BugHandler extends DbProxyHandler
         $limit = empty($limit) ? 20 : $limit;
         $radius = empty($radius) ? 5000 : $radius;
         $userPosition =  PostGisSqlHelper::getLatLngGeom($lat, $lng);
+
+
+        /*
+        $sql  = "select * from (";
+        $sql .= "select " . implode($this->getFields(), ',');
+        $sql .= " from kort.errorscomplete";
+        $sql .= " order by " . "missiongeom <-> " . PostGisSqlHelper::getLatLngGeom($lat, $lng);
+        $sql .= " limit " . $limit;
+        $sql .= ") t";
+        $sql .= " where " . "ST_Distance_Sphere(t.missiongeom," . $userPosition . ") <= " . $radius;
+        */
 
         /*
         $sql  = "select * from (";
@@ -106,9 +144,8 @@ class BugHandler extends DbProxyHandler
         $sql .= " LIMIT " . $limit;
         $sql .= ") t";
         $sql .= " WHERE " . "ST_Distance_Sphere(geom," . $userPosition . ") <= " . $radius ." )";
-        $sql .= "SELECT ". implode($this->getFields(), ',') ." FROM errors_within_operationalrange e LEFT JOIN kort.aggregateddate_from_missions p ON ((e.id=p.mission_error_id) AND (e.schema=p.schema) AND (e.osm_id=p.osm_id))";
-        */
-
+        $sql .= "SELECT e.id, e.schema, e.type, e.osm_id, e.osm_type, e.title, e.description, e.latitude, e.longitude, e.view_type, e.answer_placeholder, e.fix_koin_count, e.geom, e.txt1, e.txt2, e.txt3, e.txt4, e.txt5, p.promo_id, p.promo_extra_coins FROM errors_within_operationalrange e LEFT JOIN kort.missions_with_promotions p ON ((e.id=p.mission_error_id) AND (e.schema=p.schema) AND (e.osm_id=p.osm_id))";
+*/
 
         $sql  = "WITH aggregation1 AS (";
         $sql .= "SELECT p.id AS promo_id, p.startdate, p.enddate, p.geom AS promogeom, pm.error_type, pm.mission_extra_coins AS extra_coins FROM kort.promotion p INNER JOIN kort.promo2mission pm ON p.id=pm.promo_id WHERE p.startdate < now() AND p.enddate > now())";
@@ -122,7 +159,6 @@ class BugHandler extends DbProxyHandler
         $sql .= ", aggregation3 AS (";
         $sql .= "SELECT ag2.missionid AS missionidtemp, ag1.promo_id, ag1.extra_coins FROM aggregation2 ag2 INNER JOIN aggregation1 ag1 ON ag2.type=ag1.error_type WHERE ST_WITHIN(ag2.missiongeom, ag1.promogeom))";
         $sql .= "SELECT missionid AS id,schema,type,osm_id,osm_type,title,description,latitude,longitude,view_type,answer_placeholder,fix_koin_count,missiongeom AS geom,txt1,txt2,txt3,txt4,txt5,promo_id,extra_coins FROM aggregation2 ag2 LEFT JOIN aggregation3 ag3 ON ag2.missionid=ag3.missionidtemp";
-
 
         $params = array();
         $params['sql'] = $sql;

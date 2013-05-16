@@ -46,10 +46,11 @@ class RewardHandler
      */
     public static function updateKoinCountParams($user_id, $koinCountQuery)
     {
+        //$sql  = "update kort.user set koin_count = koin_count + 11 ";
         $sql  = "update kort.user set koin_count = koin_count + (" . $koinCountQuery . ") ";
         $sql .= "where user_id = ". $user_id . " ";
         $sql .= "returning koin_count koin_count_total, (" . $koinCountQuery . ") koin_count_new";
-
+        //$sql .= "returning koin_count koin_count_total, (11) koin_count_new";
         $params = array();
         $params['sql'] = $sql;
         $params['type'] = "SQL";

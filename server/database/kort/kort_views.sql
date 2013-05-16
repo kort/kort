@@ -203,6 +203,44 @@ select t.error_type_id,
        t.required_votes
 from   kort.error_type t;
 
+create or replace view kort.all_running_promotions as
+select p.id AS promo_id,
+	   p.startdate,
+       p.enddate,
+       p.geom AS promogeom,
+       pm.error_type,
+       pm.mission_extra_coins,
+	   pm.validation_extra_coins
+FROM   (kort.promotion p
+        join kort.promo2mission pm
+          ON (( p.id = pm.promo_id )))
+WHERE  ( ( p.startdate <= Now() )
+         AND ( p.enddate >= Now() ) );
+
+create or replace view kort.missions_with_promotions as
+SELECT e.id AS mission_error_id,
+ 	   e.schema,
+	   e.osm_id,
+       p.promo_id,
+	   p.mission_extra_coins AS promo_extra_coins
+FROM   (kort.errors e
+        join kort.all_running_promotions p
+          ON (( ( e.TYPE ) :: text = ( p.error_type ) :: text )))
+WHERE  public._st_contains(p.promogeom, e.geom);
+
+create or replace view kort.aggregateddate_from_missions as
+SELECT e.id AS mission_error_id,
+ 	   e.schema,
+	   e.osm_id,
+	   e.fix_koin_count,
+       p.promo_id,
+	   p.promo_extra_coins,
+	   e.fix_koin_count + coalesce(p.promo_extra_coins, 0) AS total_koin_count
+FROM   kort.errors e
+        left join kort.missions_with_promotions p
+               ON (( e.id = p.mission_error_id) AND (e.schema = p.schema) AND (e.osm_id = p.osm_id));
+
+
 create or replace view kort.statistics as
 select
 (select count(*) from kort.fix) fix_count,
