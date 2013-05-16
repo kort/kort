@@ -58,7 +58,7 @@ create table kort.badge (
 create table kort.user_badge (
     user_id integer,
     badge_id integer,
-    create_date timestamp not null,
+    create_date timestamp not null DEFAULT now(),
     primary key (user_id, badge_id),
     foreign key (badge_id) references kort.badge (badge_id),
     foreign key (user_id) references kort.user (user_id)
