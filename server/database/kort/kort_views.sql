@@ -152,6 +152,19 @@ select a.answer_id id,
        a.sorting
 from   kort.answer a;
 
+create or replace view kort.highscore as
+select rank() over (order by u.koin_count desc) ranking,
+       u.user_id user_id,
+       u.username,
+       u.pic_url,
+       u.oauth_user_id,
+       u.koin_count,
+       (select count(1) from kort.fix f where f.user_id = u.user_id) fix_count,
+       (select count(1) from kort.vote v where v.user_id = u.user_id) vote_count
+from   kort.user u
+where  u.username is not null
+order by ranking;
+
 create or replace view kort.user_model as
 select u.user_id id,
        u.name,
@@ -177,18 +190,6 @@ select b.badge_id id,
 from   kort.badge b
 order by b.sorting;
 
-create or replace view kort.highscore as
-select rank() over (order by u.koin_count desc) ranking,
-       u.user_id user_id,
-       u.username,
-       u.pic_url,
-       u.oauth_user_id,
-       u.koin_count,
-       (select count(1) from kort.fix f where f.user_id = u.user_id) fix_count,
-       (select count(1) from kort.vote v where v.user_id = u.user_id) vote_count
-from   kort.user u
-where  u.username is not null
-order by ranking;
 
 create or replace view kort.error_types as
 select t.error_type_id,
