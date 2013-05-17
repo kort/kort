@@ -24,7 +24,7 @@ Ext.define('Kort.view.map.validation.ValidationMessageBox', {
         '</p>',
         ' <tpl else>',
         '<p>',
-        '{[this.getMessage("map.validation.validationmessagebox.koins.earn", {validation_koin_count: values.validation_koin_count})]}',
+        '{[this.getMessage("map.validation.validationmessagebox.koins.earn", {validation_koin_count: values.vote_koin_count})]}',
         '</p>',
         '</tpl>',
         '</div>',
