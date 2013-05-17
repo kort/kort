@@ -239,6 +239,23 @@ FROM   (kort.all_errors e left join kort.error_types t on e.error_type_id = t.er
         left join kort.all_missions_with_promotions p
                ON (( er.error_id = p.mission_error_id) AND (er.schema = p.schema) AND (er.osm_id = p.osm_id));
 
+create or replace view kort.all_validations_with_promotions as
+SELECT v.id,
+	   p.promo_id,
+       p.validation_extra_coins AS promo_extra_coins
+FROM   kort.validations v left join kort.all_running_promotions p ON(v.type = p.error_type)
+WHERE public._st_contains(p.promogeom, v.geom);
+
+create or replace view kort.aggregateddata_from_all_validations as
+SELECT v.id,
+	   v.vote_koin_count,
+	   p.promo_id,
+       p.promo_extra_coins
+FROM   kort.validations v left join kort.all_validations_with_promotions p
+               ON (v.id = p.id);
+
+
+
 create or replace view kort.statistics as
 select
 (select count(*) from kort.fix) fix_count,

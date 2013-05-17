@@ -263,7 +263,7 @@ Ext.define('Kort.util.Config', {
                 limit: 25
             },
             promotion: {
-                url: './server/webservices/kortpromotion/'
+                url: './server/webservices/promotion/'
             },
             user: {
                 url: './server/webservices/user/'
