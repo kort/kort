@@ -73,7 +73,7 @@ markermap.bug.layername=Missions
 markermap.bugInactive.layername = Inactive Missions
 markermap.validation.layername=Validations
 markermap.validation.validationmessagebox.koins.earn=Earn {vote_koin_count} Koins
-markermap.validation.validationmessagebox.koins.earncamp=Earn {validation_koin_count} + {extra_coins} Koins
+markermap.validation.validationmessagebox.koins.earnpromotion=Earn {validation_koin_count} + {extra_coins} Koins
 markermap.validation.validationmessagebox.checkit=Check the solution
 
 
@@ -105,7 +105,7 @@ fix.alert.submit.failure.message=Oops! There was an error while sending your ans
 # Validation
 validation.title=Check
 validation.loadmask.message=Loading data...
-validation.emptytext=Bravo! You checked all messages.
+# validation.emptytext=Bravo! You checked all messages.
 validation.list.header={validations_left} positive ratings needed
 validation.distance=Distance
 

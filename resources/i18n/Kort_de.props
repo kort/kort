@@ -52,7 +52,7 @@ map.mission.layername=Aufträge
 map.missionInactive.layername = Inaktive Aufträge
 map.validation.layername=Überprüfungen
 map.validation.validationmessagebox.koins.earn=Verdiene dir {validation_koin_count} Koins
-map.validation.validationmessagebox.koins.earncamp=Verdiene dir {validation_koin_count} + {extra_coins} Koins
+map.validation.validationmessagebox.koins.earnpromotion=Verdiene dir {validation_koin_count} + {extra_coins} Koins
 map.mission.validationmessagebox.yes=Beantworten
 map.mission.validationmessagebox.no=Weiss nicht
 map.mission.validationmessagebox.close=Schliessen
@@ -61,18 +61,18 @@ map.validation.validationmessagebox.checkit=Überprüfe die Lösung
 #Markermap - should be obsolete
 markermap.title=Aufträge & Überprüfungen
 markermap.loadmask.message=Lade...
-markermap.bug.campaignmessagebox.close=Schliessen
-markermap.bug.campaignmessagebox.earn=Hol dir zusätzliche {extra_coins} Koins
-markermap.bug.campaignmessagebox.date={startdate} bis {enddate}
-markermap.bug.bugmessagebox.koins.earn=Verdiene dir {fix_koin_count} Koins
-markermap.bug.bugmessagebox.koins.earnpromotion=Verdiene dir {fix_koin_count} + {extra_coins} Koins
-markermap.bug.bugmessagebox.yes=Beantworten
-markermap.bug.bugmessagebox.no=Weiss nicht
+markermap.bug.promotionmessagebox.close=Schliessen
+markermap.bug.promotionmessagebox.earn=Hol dir zusätzliche {extra_coins} Koins
+markermap.bug.promotionmessagebox.date={startdate} bis {enddate}
+markermap.bug.missionmessagebox.koins.earn=Verdiene dir {fix_koin_count} Koins
+markermap.bug.missionmessagebox.koins.earnpromotion=Verdiene dir {fix_koin_count} + {extra_coins} Koins
+markermap.bug.missionmessagebox.yes=Beantworten
+markermap.bug.missionmessagebox.no=Weiss nicht
 markermap.bug.layername=Aufträge
 markermap.bugInactive.layername = Inaktive Aufträge
 markermap.validation.layername=Überprüfungen
 markermap.validation.validationmessagebox.koins.earn=Verdiene dir {vote_koin_count} Koins
-markermap.validation.validationmessagebox.koins.earncamp=Verdiene dir {validation_koin_count} + {extra_coins} Koins
+markermap.validation.validationmessagebox.koins.earnpromotion=Verdiene dir {validation_koin_count} + {extra_coins} Koins
 markermap.validation.validationmessagebox.checkit=Überprüfe die Lösung
 
 # Bugmap - should be obsolete
@@ -102,7 +102,7 @@ fix.alert.submit.failure.message=Ups\! Beim Übertragen der Lösung ist etwas sc
 # Validation
 validation.title=Prüfen
 validation.loadmask.message=Lade Überprüfungen...
-validation.emptytext=Bravo\! Du hast alle Meldungen überprüft.
+# validation.emptytext=Bravo\! Du hast alle Meldungen überprüft.
 validation.list.header={validations_left} positive Überprüfungen nötig
 validation.distance=Distanz
 
