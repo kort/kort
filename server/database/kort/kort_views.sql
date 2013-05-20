@@ -15,7 +15,7 @@ select  e1.error_id,
         e1.txt5
 from    keepright.errors e1
 where   e1.state in ('new', 'reopened')
-and     e1.object_id not in (1611867263, 1723313154, 111841602);
+and     e1.object_id not in (1611867263, 1723313154, 111841602)
 --save these objects until 15.1.2012
 union all
 select  e2.error_id,
@@ -32,7 +32,7 @@ select  e2.error_id,
         e2.txt3,
         e2.txt4,
         e2.txt5
-from osm_errors.errors e2
+from osm_errors.errors e2;
 
 create or replace view kort.errors as
 select  e.error_id id,
