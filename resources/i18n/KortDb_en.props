@@ -6,6 +6,7 @@ error_type.title.tracktype=Type of track unknown
 error_type.title.worship_religion=Place of worship without religion
 error_type.title.language_name=Language of the name unknown
 error_type.title.street_wo_name=Street without a name
+error_type.title.missing_cuisine=Restaurant without a cuisine
 
 # error type placeholders
 error_type.placeholder.ref=Reference
@@ -15,6 +16,7 @@ error_type.placeholder.speed_limit=Speed limit
 error_type.placeholder.language=Language
 error_type.placeholder.type=Type
 error_type.placeholder.street_name=Name of street
+error_type.placeholder.missing_cuisine=Cuisine
 
 # vote questions
 vote.question.ref=Is this the correct reference of this motorway?
@@ -24,6 +26,7 @@ vote.question.maxspeed=Is this the correct speed limit for this street?
 vote.question.language_unknown=Is the name '$2' in the following language?
 vote.question.tracktype=Is this path of the following kind?
 vote.question.street_name=Is this the correct name of the street?
+vote.question.missing_cuisine=Is this the correct cuisine type of $1?
 
 # badge names
 badge.name.first_place=1st place
@@ -126,6 +129,7 @@ bug.question.name_of_street=What's the name of this street?
 bug.question.language=In what language is the name '$2' written?
 bug.question.motorway_ref=What's the reference (e.g. A3 or E385) of this motorway?
 bug.question.place_of_worship=To which religion does this place of worship belong to?
+bug.question.cuisine_of_restaurant=What's the cuisine type of '$1'?
 
 # single values
 cafe=cafe

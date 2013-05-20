@@ -6,6 +6,7 @@ error_type.title.tracktype=Typ des Wegs unbekannt
 error_type.title.worship_religion=Kultstätte/Kirche ohne Religion
 error_type.title.language_name=Sprache des Namens unbekannt
 error_type.title.street_wo_name=Strasse ohne Namen
+error_type.title.missing_cuisine=Restaurant ohne Küche
 
 # error type placeholders
 error_type.placeholder.ref=Bezeichner
