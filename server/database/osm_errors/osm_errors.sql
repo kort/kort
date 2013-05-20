@@ -21,7 +21,7 @@ create table osm_errors.errors (
 );
 
 CREATE OR REPLACE RULE "osm_errors_replace" AS
-    ON INSERT TO "errors"
+    ON INSERT TO osm_errors.errors
     WHERE
       EXISTS(SELECT 1 FROM osm_errors.errors WHERE object_id=NEW.object_id)
     DO INSTEAD
