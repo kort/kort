@@ -48,8 +48,9 @@ The following commands must be run with user "postgres" (`su - postgres`):
 * Create a new empty database
     * `createdb osm_bugs`
 * Install schema keepright
-    * `server/database/setup_keepright_db.sh -o kortuser -n osm_bugs -d -m` (option -m installs a minimal setup, omit to load keepright data)
+    * `server/database/setup_keepright_db.sh -o kortuser -n osm_bugs -d` (option -m installs a minimal setup, omit to load keepright data)
+* Install schema osm_errors
+    * `/server/database/setup_osm_errors_db.sh -o kortuser -n osm_bugs`
 * Install schema kort
     * `server/database/setup_kort_db.sh -o kortuser -n osm_bugs -s kort`
-* Install missing parts
-    * `server/database/setup_keepright_missingparts_db.sh -o kortuser -n osm_bugs`
+

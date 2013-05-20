@@ -110,10 +110,3 @@ fi
 
 echo "Install PostGIS"
 $DIR/setup_postgis.sh -d $DB_NAME -s $DB_SCHEMA -t errors
-
-echo "Drop views for kort"
-for view in `psql -qAt -c "select table_schema || '.' || table_name from information_schema.views where table_schema = 'kort';" $DB_NAME` ; do  psql -c "drop table $view" $DB_NAME ; done
-
-echo "Create views for kort"
-psql -d $DB_NAME -f $DIR/kort/kort_views.sql
-for view in `psql -qAt -c "select table_schema || '.' || table_name from information_schema.views where table_schema = 'kort';" $DB_NAME` ; do  psql -c "alter table $view owner to $DB_OWNER" $DB_NAME ; done
