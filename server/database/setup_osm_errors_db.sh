@@ -44,7 +44,7 @@ echo "Transfer ownership of all objects to $DB_OWNER"
 for tbl in `psql -qAt -c "select schemaname || '.' || tablename from pg_tables where schemaname = '$DB_SCHEMA';" $DB_NAME` ; do  psql -c "alter table $tbl owner to $DB_OWNER" $DB_NAME ; done
 
 # Load osm_errors data
-psql -d $DB_NAME -f $DIR/osm_errors/osm_errors/queries/osm_errors_missingcuisine.sql
+psql -d $DB_NAME -f $DIR/osm_errors/queries/osm_errors_missingcuisine.sql
 
 echo "Creating indexes"
 psql -d $DB_NAME -f $DIR/osm_errors/osm_errors_index.sql
