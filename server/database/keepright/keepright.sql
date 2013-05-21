@@ -1,4 +1,4 @@
-create type keepright.state as enum('new','reopened','ignore_temporarily','ignore');
+create type errors.state as enum('new','reopened','ignore_temporarily','ignore');
 
 create type keepright.osm_type as enum('node','way','relation');
 

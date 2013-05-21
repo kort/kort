@@ -26,7 +26,7 @@ if [ -z $DB_NAME ] ; then
 fi
 
 if [ -z $DB_SCHEMA ] ; then
-    DB_SCHEMA="osm_errors"
+    DB_SCHEMA="all_errors"
 fi
 
 if [ -z $DB_OWNER ] ; then
@@ -39,21 +39,22 @@ psql -d $DB_NAME -c "drop schema if exists $DB_SCHEMA cascade;"
 
 # Create schema
 psql -d $DB_NAME -c "create schema $DB_SCHEMA authorization $DB_OWNER"
-psql -d $DB_NAME -f $DIR/osm_errors/osm_errors.sql
+psql -d $DB_NAME -f $DIR/all_errors/all_errors.sql
 echo "Transfer ownership of all objects to $DB_OWNER"
 for tbl in `psql -qAt -c "select schemaname || '.' || tablename from pg_tables where schemaname = '$DB_SCHEMA';" $DB_NAME` ; do  psql -c "alter table $tbl owner to $DB_OWNER" $DB_NAME ; done
 
-# Load osm_errors data
-psql -d $DB_NAME -f $DIR/osm_errors/queries/osm_errors_missingcuisine.sql
+# Consolidate all errors
+psql -d $DB_NAME -f $DIR/all_errors/all_errors_consolidate.sql
 
-#echo "Creating indexes"
-#psql -d $DB_NAME -f $DIR/osm_errors/osm_errors_index.sql
-    
-#if [[ $CLEANUP ]] ; then
-#    echo "Cleanup data"
-#    psql -d $DB_NAME -f $DIR/osm_errors/osm_errors_cleanup.sql
-#else
-#    echo "Omitting cleanup"
-#fi
+# Create indexes
+echo "Creating indexes"
+psql -d $DB_NAME -f $DIR/all_errors/all_errors_index.sql
+
+if [[ $CLEANUP ]] ; then
+    echo "Cleanup data"
+    psql -d $DB_NAME -f $DIR/all_errors/all_errors_cleanup.sql
+else
+    echo "Omitting cleanup"
+fi
 
 
