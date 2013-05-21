@@ -1,38 +1,20 @@
 create or replace view kort.all_errors as
-select  e1.error_id,
-        e1.schema,
-        e1.error_type_id,
-        e1.object_id osm_id,
-        e1.object_type osm_type,
-        e1.msgid description,
-        CAST(e1.lat AS NUMERIC)/10000000 latitude,
-        CAST(e1.lon AS NUMERIC)/10000000 longitude,
-        e1.geom,
-        e1.txt1,
-        e1.txt2,
-        e1.txt3,
-        e1.txt4,
-        e1.txt5
-from    keepright.errors e1
-where   e1.state in ('new', 'reopened')
-and     e1.object_id not in (1611867263, 1723313154, 111841602)
---save these objects until 15.1.2012
-union all
-select  e2.error_id,
-        e2.schema,
-        e2.error_type_id,
-        e2.object_id osm_id,
-        e2.object_type osm_type,
-        e2.msgid description,
-        CAST(e2.lat AS NUMERIC)/10000000 latitude,
-        CAST(e2.lon AS NUMERIC)/10000000 longitude,
-        e2.geom,
-        e2.txt1,
-        e2.txt2,
-        e2.txt3,
-        e2.txt4,
-        e2.txt5
-from osm_errors.errors e2;
+select  e.source,
+        e.error_id,
+        e.schema,
+        e.error_type_id,
+        e.osm_id,
+        e.osm_type,
+        e.description,
+        CAST(e.latitude AS NUMERIC)/10000000 latitude,
+        CAST(e.longitude AS NUMERIC)/10000000 longitude,
+        e.geom,
+        e.txt1,
+        e.txt2,
+        e.txt3,
+        e.txt4,
+        e.txt5
+from    all_errors.errors e
 
 create or replace view kort.errors as
 select  e.error_id id,
