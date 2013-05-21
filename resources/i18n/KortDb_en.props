@@ -116,6 +116,19 @@ answer.language.uzbek=Uzbek
 answer.language.vietnamese=Vietnamese
 answer.language.welsh=Welsh
 
+# missing_cuisine
+answer.missing_cuisine.traditional=traditional
+answer.missing_cuisine.french=french
+answer.missing_cuisine.regional=regional
+answer.missing_cuisine.indian_pakistani=indian_pakistani
+answer.missing_cuisine.creative=creative
+answer.missing_cuisine.contemporary=contemporary
+answer.missing_cuisine.bistro_brasserie=bistro_brasserie
+answer.missing_cuisine.other_countries=other_countries
+answer.missing_cuisine.seafood=seafood
+answer.missing_cuisine.italian=italian
+answer.missing_cuisine.mediterranean_oriental=mediterranean_oriental
+answer.missing_cuisine.asian=asian
 
 ################################################
 # THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT #

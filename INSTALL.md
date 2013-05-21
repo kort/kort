@@ -51,7 +51,9 @@ The following commands must be run with user "postgres" (`su - postgres`):
 * Install schema keepright
     * `server/database/setup_keepright_db.sh -o kortuser -n osm_bugs -s keepright -d` (option -m installs a minimal setup, omit to load keepright data)
 * Install schema osm_errors
-    * `server/database/setup_osm_errors_db.sh -o kortuser -n osm_bugs -s osm_errors `
+    * `server/database/setup_osm_errors_db.sh -o kortuser -n osm_bugs -s osm_errors`
+* Install schema all_errors
+    * `server/database/setup_all_errors_db.sh -o kortuser -n osm_bugs -s all_errors`
 * Install schema kort
     * `server/database/setup_kort_db.sh -o kortuser -n osm_bugs -s kort`
 

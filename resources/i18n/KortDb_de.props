@@ -6,7 +6,7 @@ error_type.title.tracktype=Typ des Wegs unbekannt
 error_type.title.worship_religion=Kultstätte/Kirche ohne Religion
 error_type.title.language_name=Sprache des Namens unbekannt
 error_type.title.street_wo_name=Strasse ohne Namen
-error_type.title.missing_cuisine=Restaurant ohne Küche
+error_type.placeholder.missing_cuisine=Cuisine
 
 # error type placeholders
 error_type.placeholder.ref=Bezeichner
@@ -25,6 +25,7 @@ vote.question.maxspeed=Darf man auf dieser Strasse mit dieser Geschwindigkeit fa
 vote.question.language_unknown=Ist der Name '$2' in folgender Sprache?
 vote.question.tracktype=Ist der Weg folgendermassen beschaffen?
 vote.question.street_name=Ist dieser Strassenname korrekt?
+vote.question.missing_cuisine=Is this the correct cuisine type of $1?
 
 # badge names
 badge.name.first_place=1. Rang
@@ -114,6 +115,20 @@ answer.language.uzbek=Uzbekisch
 answer.language.vietnamese=Vietnamesisch
 answer.language.welsh=Walisisch
 
+# missing_cuisine
+answer.missing_cuisine.traditional=traditional
+answer.missing_cuisine.french=french
+answer.missing_cuisine.regional=regional
+answer.missing_cuisine.indian_pakistani=indian_pakistani
+answer.missing_cuisine.creative=creative
+answer.missing_cuisine.contemporary=contemporary
+answer.missing_cuisine.bistro_brasserie=bistro_brasserie
+answer.missing_cuisine.other_countries=other_countries
+answer.missing_cuisine.seafood=seafood
+answer.missing_cuisine.italian=italian
+answer.missing_cuisine.mediterranean_oriental=mediterranean_oriental
+answer.missing_cuisine.asian=asian
+
 ################################################
 # THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT #
 ################################################
@@ -126,6 +141,7 @@ bug.question.name_of_street=Wie heisst diese Strasse?
 bug.question.language=In welcher Sprache ist der Name '$2' geschrieben?
 bug.question.motorway_ref=Wie lautet die Bezeichnung dieser Autobahn (z.B. A3 oder E385)?
 bug.question.place_of_worship=Zu welcher Religion gehört diese Kirche/Kultstätte?
+bug.question.cuisine_of_restaurant=What's the cuisine type of '$1'?
 
 # Single values
 cafe=Café
