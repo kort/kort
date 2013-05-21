@@ -14,7 +14,7 @@ select  e.source,
         e.txt3,
         e.txt4,
         e.txt5
-from    all_errors.errors e
+from    all_errors.errors e;
 
 create or replace view kort.errors as
 select  e.error_id id,
