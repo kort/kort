@@ -38,17 +38,14 @@
         <content type="html">Different en text</content>
     </entry>
     <entry>
-        <title xml:lang="fr">New News vom Zürichsee</title>
+        <title xml:lang="de">New News vom Zürichsee</title>
         <link href="http://example.org/2003/12/13/atom03"/>
         <id>urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efd3s</id>
         <updated>2013-04-12T18:30:02Z</updated>
-        <content type="html">Different en text oder einen etwas
-        längeren Text, damit man sieht wie es aussieht wenn etwas mehr Text da steht
-        wie zum Beispiel eine Ankündigung Es findet nämlich bald eine
-        erste Kort-Aktion statt, was auf Englisch Promotion heisst und wir wollen
-        jetzt sagen wann diese stattfindet und wo. Nur wissen wir leider noch nicht
-        genau wann und wo sie stattfindet. Wahrscheinlich in einer spannenden
-        Region wo noch viele Aufträge offen sind. Die Region erscheint dann im Titel.</content>
+        <content type="html">Am 1. Juni 2013 startet die erste Kort-Aktion! Rund um den ganzen
+        Zürichsee gibt es für jedes Gebäude, dessen Namen in der Kort-App eingetragen wird,
+        sechs zusätzliche Koins. Die Aktion endet am 30. Juni 2013. Also los, geht zum Zürichsee
+        und sucht die Namen der Gebäude, die noch namenlos sind.</content>
     </entry>
     <entry>
         <title xml:lang="fr">New News 4</title>
