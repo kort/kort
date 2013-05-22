@@ -98,12 +98,12 @@ if [ -z $MINIMAL_SETUP ] ; then
     # echo "Creating indexes"
     # psql -d $DB_NAME -f $DIR/keepright/keepright_index.sql
     
-    #if [[ $CLEANUP ]] ; then
-    #    echo "Cleanup data"
-    #    psql -d $DB_NAME -f $DIR/keepright/keepright_cleanup.sql
-    #else
-    #    echo "Omitting cleanup"
-    #fi
+    if [[ $CLEANUP ]] ; then
+        echo "Cleanup data"
+        psql -d $DB_NAME -f $DIR/keepright/keepright_cleanup.sql
+    else
+        echo "Omitting cleanup"
+    fi
 else
     echo "Use minimal setup, do not load data."
 fi
