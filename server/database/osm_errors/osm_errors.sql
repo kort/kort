@@ -24,6 +24,6 @@ create table osm_errors.errors (
 CREATE OR REPLACE RULE "osm_errors_replace" AS
     ON INSERT TO osm_errors.errors
     WHERE
-      EXISTS(SELECT 1 FROM osm_errors.errors WHERE ((schema=NEW.schema) AND (error_id=NEW.error_id))
+      EXISTS(SELECT 1 FROM osm_errors.errors WHERE ((schema=NEW.schema) AND (error_id=NEW.error_id)))
     DO INSTEAD
        (UPDATE osm_errors.errors SET (error_id, schema, error_type_id, error_name, object_type, msgid, lat, lon, geom, txt1, txt2, txt3, txt4, txt5)=(NEW.error_id, NEW.schema, NEW.error_type_id, NEW.error_name, NEW.object_type, NEW.msgid, NEW.lat, NEW.lon, NEW.geom, NEW.txt1, NEW.txt2, NEW.txt3, NEW.txt4, NEW.txt5) WHERE ((schema=NEW.schema) AND (error_id=NEW.error_id)));
