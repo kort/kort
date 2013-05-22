@@ -1,3 +1,22 @@
+drop view kort.aggregateddata_from_all_missions;
+drop view kort.aggregateddata_from_all_validations;
+drop view kort.all_missions_with_promotions;
+drop view kort.all_validations_with_promotions;
+drop view kort.all_running_promotions;
+drop view kort.validations;
+drop view kort.all_fixes;
+drop view kort.errors;
+drop view kort.all_errors;
+drop view kort.error_types;
+drop view kort.user_model;
+drop view kort.highscore;
+drop view kort.language;
+drop view kort.relationtype;
+drop view kort.religion;
+drop view kort.select_answer;
+drop view kort.statistics;
+drop view kort.user_badges;
+
 create or replace function check_fix_onlyone_pending_per_error(i_error_id bigint, i_schema varchar, i_osm_id bigint)
 returns boolean as
 $$

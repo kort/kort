@@ -26,9 +26,6 @@ if [ -z $DB_OWNER ] ; then
     DB_OWNER=`whoami`
 fi
 
-echo "Drop views for kort"
-for view in `psql -qAt -c "select table_schema || '.' || table_name from information_schema.views where table_schema = 'kort';" $DB_NAME` ; do  psql -c "drop table $view" $DB_NAME ; done
-
 psql -d $DB_NAME -f $DIR/migration_kortreloaded.sql
 
 echo "Create views for kort"
