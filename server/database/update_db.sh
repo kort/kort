@@ -25,8 +25,15 @@ if [ -z $DB_OWNER ] ; then
     DB_OWNER=`whoami`
 fi
 
-#### error sources ###
+####error sources###
 
+###drop all error sources###
+echo "drop all error sources..."
+psql -d $DB_NAME -c "drop schema if exists keepright cascade;"
+psql -d $DB_NAME -c "drop schema if exists osm_errors cascade;"
+psql -d $DB_NAME -c "drop schema if exists all_errors cascade;"
+
+###Update error sources###
 echo "update error sources..."
 
 ###Keepright reletaded###
@@ -49,8 +56,8 @@ echo "consolidation ended"
 echo "rebuild kort views and update kort data"
 $DIR/update_kort_db.sh -o kortuser -n osm_bugs -s kort
 # rebuild kort indexes
-psql -d $DB_NAME -c "REINDEX kort.answer;"
-psql -d $DB_NAME -c "REINDEX kort.error_type;"
+psql -d $DB_NAME -c "REINDEX TABLE kort.answer;"
+psql -d $DB_NAME -c "REINDEX TABLE kort.error_type;"
 
 
 
