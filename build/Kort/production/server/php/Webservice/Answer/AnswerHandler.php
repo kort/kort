@@ -65,8 +65,7 @@ class AnswerHandler extends DbProxyHandler
     {
         $this->getDbProxy()->setWhere("type = '" . $type ."'");
         $this->getDbProxy()->setOrderBy('sorting');
-        $data = $this->select();
-        return $data;//$this->select();
+        return $this->select();
     }
 
     /**

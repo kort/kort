@@ -6,6 +6,7 @@ error_type.title.tracktype=Type of track unknown
 error_type.title.worship_religion=Place of worship without religion
 error_type.title.language_name=Language of the name unknown
 error_type.title.street_wo_name=Street without a name
+error_type.title.missing_cuisine=Restaurant without a cuisine
 
 # error type placeholders
 error_type.placeholder.ref=Reference
@@ -15,6 +16,7 @@ error_type.placeholder.speed_limit=Speed limit
 error_type.placeholder.language=Language
 error_type.placeholder.type=Type
 error_type.placeholder.street_name=Name of street
+error_type.placeholder.missing_cuisine=Cuisine
 
 # vote questions
 vote.question.ref=Is this the correct reference of this motorway?
@@ -24,6 +26,7 @@ vote.question.maxspeed=Is this the correct speed limit for this street?
 vote.question.language_unknown=Is the name '$2' in the following language?
 vote.question.tracktype=Is this path of the following kind?
 vote.question.street_name=Is this the correct name of the street?
+vote.question.missing_cuisine=Is this the correct cuisine type of $1?
 
 # badge names
 badge.name.first_place=1st place
@@ -113,6 +116,19 @@ answer.language.uzbek=Uzbek
 answer.language.vietnamese=Vietnamese
 answer.language.welsh=Welsh
 
+# missing_cuisine
+answer.missing_cuisine.traditional=traditional
+answer.missing_cuisine.french=french
+answer.missing_cuisine.regional=regional
+answer.missing_cuisine.indian_pakistani=indian_pakistani
+answer.missing_cuisine.creative=creative
+answer.missing_cuisine.contemporary=contemporary
+answer.missing_cuisine.bistro_brasserie=bistro_brasserie
+answer.missing_cuisine.other_countries=other_countries
+answer.missing_cuisine.seafood=seafood
+answer.missing_cuisine.italian=italian
+answer.missing_cuisine.mediterranean_oriental=mediterranean_oriental
+answer.missing_cuisine.asian=asian
 
 ################################################
 # THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT #
@@ -126,6 +142,7 @@ bug.question.name_of_street=What's the name of this street?
 bug.question.language=In what language is the name '$2' written?
 bug.question.motorway_ref=What's the reference (e.g. A3 or E385) of this motorway?
 bug.question.place_of_worship=To which religion does this place of worship belong to?
+bug.question.cuisine_of_restaurant=What's the cuisine type of '$1'?
 
 # single values
 cafe=cafe

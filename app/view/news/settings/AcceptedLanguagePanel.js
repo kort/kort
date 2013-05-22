@@ -1,8 +1,11 @@
+
 Ext.define('Kort.view.news.settings.AcceptedLanguagePanel', {
-    extend: ('Ext.form.Panel'),
+    extend: 'Ext.form.Panel',
     requires: [
         'Ext.form.FieldSet',
-        'Ext.Label'
+        'Ext.Label',
+        'Ext.Toolbar',
+        'Ext.field.Checkbox'
     ],
     config: {
         id: 'newsSettingsPanel',
@@ -68,8 +71,10 @@ Ext.define('Kort.view.news.settings.AcceptedLanguagePanel', {
                 ]
             }
         ]
+
     },
     initialize: function(){
+
         var acceptedLanguagesByUser = Ext.getStore('UserLocal').getData().all[0].get('newsAcceptedLanguageArray'),
             fieldset = Ext.getCmp('acceptedLanguageFieldSet');
         Kort.util.Config.getSupportedLanguages().forEach(function(element,index,array){
@@ -82,5 +87,7 @@ Ext.define('Kort.view.news.settings.AcceptedLanguagePanel', {
                 checked: acceptedLanguagesByUser.indexOf(element)!==-1
            });
         });
+
     }
+
 });
