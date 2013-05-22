@@ -13,5 +13,3 @@ and   schema = $2
 and   osm_id = $3
 and   not complete
 $$ language 'sql';
-
-alter table kort.fix add constraint only_one_pending_per_error CHECK (check_fix_onlyone_pending_per_error(error_id, schema, osm_id));
