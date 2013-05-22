@@ -1,6 +1,6 @@
 create table all_errors.errors (
 	  source varchar(20) not null,
-    error_id integer not null,  
+    error_id bigint not null,
     schema varchar(6) not null,
     error_type_id integer not null,
     osm_id bigint not null, 
