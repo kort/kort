@@ -28,6 +28,6 @@ fi
 
 psql -d $DB_NAME -f $DIR/migration_kortreloaded.sql
 
-echo "Create views for kort"
-psql -d $DB_NAME -f $DIR/kort/kort_views.sql
-for view in `psql -qAt -c "select table_schema || '.' || table_name from information_schema.views where table_schema = 'kort';" $DB_NAME` ; do  psql -c "alter table $view owner to $DB_OWNER" $DB_NAME ; done
+#echo "Create views for kort"
+#psql -d $DB_NAME -f $DIR/kort/kort_views.sql
+#for view in `psql -qAt -c "select table_schema || '.' || table_name from information_schema.views where table_schema = 'kort';" $DB_NAME` ; do  psql -c "alter table $view owner to $DB_OWNER" $DB_NAME ; done
