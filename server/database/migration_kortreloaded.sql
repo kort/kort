@@ -13,3 +13,6 @@ and   schema = $2
 and   osm_id = $3
 and   not complete
 $$ language 'sql';
+
+ALTER TABLE kort.fix ALTER COLUMN error_id TYPE bigint USING error_id::bigint;
+ALTER TABLE kort.fix ALTER COLUMN osm_id TYPE bigint USING osm_id::bigint;
