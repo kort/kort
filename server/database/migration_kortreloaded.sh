@@ -27,7 +27,7 @@ if [ -z $DB_OWNER ] ; then
 fi
 
 echo "Drop views for kort"
-for view in `psql -qAt -c "select table_schema || '.' || table_name from information_schema.views where table_schema = 'kort';" $DB_NAME` ; do  psql -c "drop table $view" $DB_NAME ; done
+for view in `psql -qAt -c "select table_schema || '.' || table_name from information_schema.views where table_schema = 'kort';" $DB_NAME` ; do  psql -c "drop view $view" $DB_NAME ; done
 
 psql -d $DB_NAME -c "ALTER TABLE kort.fix ALTER COLUMN error_id TYPE bigint USING error_id::bigint;"
 psql -d $DB_NAME -c "ALTER TABLE kort.fix ALTER COLUMN osm_id TYPE bigint USING osm_id::bigint;"
