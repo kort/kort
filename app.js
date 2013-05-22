@@ -215,7 +215,7 @@ Ext.application({
 
                 // set global accessor to user
                 Kort.user = record;
-
+                console.log(record);
                 // check if user is logged in
                 if (!Kort.user.get('logged_in')) {
                     if(clientSecret && clientSecret !== 0) {

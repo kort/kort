@@ -405,7 +405,7 @@ Ext.define('Kort.util.Config', {
 
     /**
      * Constructs the correct Path to the mission icons depending
-     * on type, state and retina.
+     * on type, state, retina and if it is in operationalRange.
      */
     constructMissionIconURL: function(type, state, retina, inOperationalRange) {
         if(typeof(state)==='undefined') {state=Kort.util.Config.getMapMarkerState().mission;}

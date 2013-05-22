@@ -50,6 +50,7 @@ Ext.define('Kort.controller.Highscore', {
             votesend: { fn: me._loadStore, scope: me },
             fixsend: { fn: me._loadStore, scope: me },
             userchange: { fn: me._loadStore, scope: me },
+            //ToDo CSC: This call is dangerous because it leads to an error if user is not logged in (after logout)
             userloaded: { fn: me._loadHighscore, scope: me}
         });
 
