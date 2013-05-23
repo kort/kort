@@ -17,11 +17,11 @@ while getopts ":o:n:s:dcmp:" opt; do
         c)
             CLEANUP="true"
             ;;
-        m)
-            MINIMAL_SETUP="true"
-            ;;
         l)
             LEAVEOUT_POSTGIS="true"
+            ;;
+        m)
+            MINIMAL_SETUP="true"
             ;;
         p)
             PREVIOUS_DOWNLOAD="$OPTARG"
