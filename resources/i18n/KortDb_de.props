@@ -117,18 +117,26 @@ answer.language.vietnamese=Vietnamesisch
 answer.language.welsh=Walisisch
 
 # missing_cuisine
-answer.missing_cuisine.traditional=traditionell
-answer.missing_cuisine.french=französisch
-answer.missing_cuisine.regional=regional
-answer.missing_cuisine.indian_pakistani=indisch, pakistanisch
-answer.missing_cuisine.creative=kreativ
-answer.missing_cuisine.contemporary=zeitgemäss
+answer.missing_cuisine.regional=Regional
+answer.missing_cuisine.coffee_shop=Café
+answer.missing_cuisine.international=International
+answer.missing_cuisine.italian=Italienisch
+answer.missing_cuisine.turkish=Türkisch
+answer.missing_cuisine.chinese=Chinesisch
+answer.missing_cuisine.thai=Thailändisch
+answer.missing_cuisine.asian=Asiatisch
+answer.missing_cuisine.indian=Indisch
+answer.missing_cuisine.french=Französisch
+answer.missing_cuisine.mexican=Mexikanisch
+answer.missing_cuisine.american=Amerikanisch
+answer.missing_cuisine.japanese=Japanisch
+answer.missing_cuisine.greek=Griechisch
+answer.missing_cuisine.sandwich=Sandwich
+answer.missing_cuisine.steak_house=Steakhouse
+answer.missing_cuisine.chicken=Brathähnchen
 answer.missing_cuisine.bistro_brasserie=Bistro, Biergarten
-answer.missing_cuisine.other_countries=andere Länder
 answer.missing_cuisine.seafood=Meeresfrüchte
-answer.missing_cuisine.italian=italienisch
-answer.missing_cuisine.mediterranean_oriental=mediterran, orientalisch
-answer.missing_cuisine.asian=asiatisch
+answer.missing_cuisine.burger=Burger
 
 ################################################
 # THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT #

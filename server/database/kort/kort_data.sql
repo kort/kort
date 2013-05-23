@@ -80,17 +80,24 @@ insert into kort.answer (answer_id, type, value, title, sorting) VALUES (263, 'l
 insert into kort.answer (answer_id, type, value, title, sorting) VALUES (273, 'language_unknown', 'vi', 'answer.language.vietnamese', 3400);
 insert into kort.answer (answer_id, type, value, title, sorting) VALUES (276, 'language_unknown', 'cy', 'answer.language.welsh', 3500);
 
--- Insert religion
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1001, 'missing_cuisine', 'traditional','answer.missing_cuisine.traditional' , 110);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1002, 'missing_cuisine', 'french', 'answer.missing_cuisine.french', 120);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1003, 'missing_cuisine', 'regional', 'answer.missing_cuisine.regional', 130);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1004, 'missing_cuisine', 'indian_pakistani', 'answer.missing_cuisine.indian_pakistani', 140);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1005, 'missing_cuisine', 'creative', 'answer.missing_cuisine.creative', 150);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1006, 'missing_cuisine', 'contemporary', 'answer.missing_cuisine.contemporary', 160);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1007, 'missing_cuisine', 'bistro_brasserie', 'answer.missing_cuisine.bistro_brasserie', 170);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1008, 'missing_cuisine', 'other_countries', 'answer.missing_cuisine.other_countries', 180);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1009, 'missing_cuisine', 'seafood', 'answer.missing_cuisine.seafood', 190);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1010, 'missing_cuisine', 'italian', 'answer.missing_cuisine.italian', 200);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1011, 'missing_cuisine', 'mediterranean_oriental', 'answer.missing_cuisine.mediterranean_oriental', 210);
-insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1012, 'missing_cuisine', 'asian', 'answer.missing_cuisine.asian', 220);
-
+-- Insert cuisine
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1001, 'missing_cuisine', 'regional', 'answer.missing_cuisine.regional', 110);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1002, 'missing_cuisine', 'coffee_shop', 'answer.missing_cuisine.coffee_shop', 120);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1003, 'missing_cuisine', 'bistro_brasserie', 'answer.missing_cuisine.bistro_brasserie', 130);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1004, 'missing_cuisine', 'italian', 'answer.missing_cuisine.italian', 140);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1005, 'missing_cuisine', 'turkish', 'answer.missing_cuisine.turkish', 150);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1006, 'missing_cuisine', 'chinese', 'answer.missing_cuisine.chinese', 160);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1007, 'missing_cuisine', 'thai', 'answer.missing_cuisine.thai', 170);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1008, 'missing_cuisine', 'asian', 'answer.missing_cuisine.asian', 180);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1009, 'missing_cuisine', 'indian', 'answer.missing_cuisine.indian', 190);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1010, 'missing_cuisine', 'french', 'answer.missing_cuisine.french', 200);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1011, 'missing_cuisine', 'mexican', 'answer.missing_cuisine.mexican', 210);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1012, 'missing_cuisine', 'american', 'answer.missing_cuisine.american', 220);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1013, 'missing_cuisine', 'japanese', 'answer.missing_cuisine.japanese', 230);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1014, 'missing_cuisine', 'greek', 'answer.missing_cuisine.greek', 240);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1015, 'missing_cuisine', 'international', 'answer.missing_cuisine.international', 250);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1016, 'missing_cuisine', 'sandwich','answer.missing_cuisine.sandwich' , 260);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1017, 'missing_cuisine', 'chicken', 'answer.missing_cuisine.chicken', 270);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1018, 'missing_cuisine', 'seafood', 'answer.missing_cuisine.seafood', 280);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1019, 'missing_cuisine', 'burger', 'answer.missing_cuisine.burger', 290);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (1020, 'missing_cuisine', 'steak_house', 'answer.missing_cuisine.steak_house', 300);
