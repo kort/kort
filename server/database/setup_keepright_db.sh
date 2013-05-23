@@ -111,7 +111,7 @@ else
     echo "Use minimal setup, do not load data."
 fi
 
-if [[ ! $LEAVEOUT_POSTGIS ]] ; then
+if [[ -z $LEAVEOUT_POSTGIS ]] ; then
     echo "Install PostGIS"
     $DIR/setup_postgis.sh -d $DB_NAME -s $DB_SCHEMA -t errors
 else
