@@ -39,8 +39,13 @@ echo "update error sources..."
 ###Keepright reletaded###
 echo "start keepright related update"
 $DIR/setup_keepright_db.sh -o kortuser -n osm_bugs -s keepright -c -l
+# add geometry to table
+echo "Add geometry column to keepright.errors"
+psql -d $DB_NAME -c "select AddGeometryColumn ('keepright','errors','geom', 4326,'POINT',2);"
+
+# update table
 echo "Generate geometry objects based on lat/lng values"
-psql -d osm_bugs -c "update keepright.errors set geom = ST_SetSRID(ST_Point(lon/10000000.0,lat/10000000.0),4326);"
+psql -d $DB_NAME -c "update keepright.errors set geom = ST_SetSRID(ST_Point(lon/10000000.0,lat/10000000.0),4326);"
 echo "keepright related update ended"
 
 ###osm_errors reletaded###
