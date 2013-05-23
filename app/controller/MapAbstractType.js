@@ -6,6 +6,8 @@ Ext.define('Kort.controller.MapAbstractType', {
     extend: 'Ext.app.Controller',
     config: {
         //must be overridden or set by derived class before this class gets initialized
+        name: null,
+        //must be overridden or set by derived class before this class gets initialized
         dataStore: null,
         //must be overridden or set by derived class before this class gets initialized
         dataStoreProxyURL: null,
@@ -43,6 +45,7 @@ Ext.define('Kort.controller.MapAbstractType', {
         var me = this;
         this.setLLayerGroup(L.layerGroup());
         me.setMapController(me.getApplication().getController('Map'));
+        me.getMapController().registerMapType(this.getName());
         me.getApplication().on({
             leafletmaprendered: { fn: me._initData, scope:me },
             maptypeupdaterequest: { fn: me._onMapTypeUpdateRequest, scope: me }
@@ -119,6 +122,7 @@ Ext.define('Kort.controller.MapAbstractType', {
                     records.forEach(function(record) {
                         me.getLLayerGroup().addLayer(me._createLMarkerFromRecord(record));
                     });
+                    me.getMapController().markMapTypeAsLoaded(me.getName());
                 }
             });
         }

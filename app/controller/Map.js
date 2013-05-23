@@ -62,7 +62,9 @@ Ext.define('Kort.controller.Map', {
         /**
          * @private
          */
-        jumpZoomLevel:null
+        jumpZoomLevel:null,
+
+        mapTypeLoaded:[]
     },
 
     /**
@@ -102,6 +104,14 @@ Ext.define('Kort.controller.Map', {
         return L.latLng(geo.getLatitude(), geo.getLongitude());
     },
 
+    registerMapType: function(name) {
+        this.setMapTypeLoaded(this.getMapTypeLoaded()[name]=false);
+    },
+
+    markMapTypeAsLoaded: function(name) {
+        this.setMapTypeLoaded(this.getMapTypeLoaded()[name]=true);
+    },
+
     /**
      * @private
      * Creates LeafletMap component.
@@ -127,6 +137,7 @@ Ext.define('Kort.controller.Map', {
         }else {
             me._centerMapToCurrentPosition();
         }
+        this._enterLoadingState(true);
     },
 
     /**
@@ -168,6 +179,46 @@ Ext.define('Kort.controller.Map', {
     _triggerMapTypesUpdateProcess: function() {
         this.getApplication().fireEvent('maptypeupdaterequest');
     },
+
+    _enterLoadingState: function(overlayMask) {
+        if(overlayMask) {this._showLoadMask();}
+        if(this._checkIfAllMapTypesAreLoaded()) {
+            this._clearLoadingState(overlayMask);
+        }else {
+            Ext.defer(this._enterLoadingState,200,this,[overlayMask]);
+        }
+    },
+
+    _clearLoadingState: function(overlayMask) {
+        if(overlayMask) {this._hideLoadMask();}
+    },
+
+    _checkIfAllMapTypesAreLoaded: function() {
+        var toReturn = true;
+        Ext.Array.each(this.getMapTypeLoaded(), function(recordIsLoaded){
+            if(!recordIsLoaded) toReturn=false;
+        });
+        return toReturn;
+    },
+
+    _showLoadMask: function() {
+        this.getMapCenterButton().disable();
+        this.getMapRefreshButton().disable();
+        this.getMapSneakyPeakSegmentedButton().disable();
+        this.getMapNavigationView().setMasked({
+            xtype: 'loadmask',
+            message: 'loading',
+            zIndex: Kort.util.Config.getZIndex().overlayLeafletMap
+        });
+    },
+
+    _hideLoadMask: function() {
+        this.getMapNavigationView().setMasked(false);
+        this.getMapCenterButton().enable();
+        this.getMapRefreshButton().enable();
+        this.getMapSneakyPeakSegmentedButton().enable();
+    },
+
 
     /**
      * @private

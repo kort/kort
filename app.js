@@ -86,7 +86,6 @@ Ext.application({
         'Highscore',
         'Login',
         'Main',
-        //'MarkerMap',
         'Map',
         'MapMission',
         'MapValidation',
@@ -99,10 +98,8 @@ Ext.application({
 
     models: [
         'Badge',
-        //'Bug',
         'Mission',
         'Promotion',
-        //'Campaign',
         'Fix',
         'HighscoreEntry',
         'HighscoreUserBadge',
@@ -117,11 +114,8 @@ Ext.application({
     ],
 
     stores: [
-        //'Bugs',
-        //'BugsInactive',
         'Missions',
         'Promotions',
-        //'Campaigns',
         'Highscore',
         'HighscoreUserBadges',
         'SelectAnswers',

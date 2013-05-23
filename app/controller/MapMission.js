@@ -14,6 +14,11 @@ Ext.define('Kort.controller.MapMission', {
          * @private
          * override REQUIRED from base class
          */
+        name: 'mapmission',
+        /**
+         * @private
+         * override REQUIRED from base class
+         */
         dataStore: null,
         /**
          * @private

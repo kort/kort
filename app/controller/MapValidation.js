@@ -12,6 +12,11 @@ Ext.define('Kort.controller.MapValidation', {
          * @private
          * override REQUIRED from base class
          */
+        name: 'mapvalidation',
+        /**
+         * @private
+         * override REQUIRED from base class
+         */
         dataStore: null,
         /**
          * @private
