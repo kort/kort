@@ -21,7 +21,7 @@ while getopts ":o:n:s:dcmp:" opt; do
             MINIMAL_SETUP="true"
             ;;
         l)
-            INSTALL_POSTGIS="false"
+            LEAVEOUT_POSTGIS="true"
             ;;
         p)
             PREVIOUS_DOWNLOAD="$OPTARG"
@@ -46,10 +46,6 @@ fi
 
 if [ -z $DB_OWNER ] ; then
     DB_OWNER=`whoami`
-fi
-
-if [ -z $INSTALL_POSTGIS] ; then
-    INSTALL_POSTGIS="true"
 fi
 
 if [[ $PREVIOUS_DOWNLOAD && ! -f $PREVIOUS_DOWNLOAD ]] ; then
@@ -115,7 +111,7 @@ else
     echo "Use minimal setup, do not load data."
 fi
 
-if [[ $INSTALL_POSTGIS ]] ; then
+if [[ ! $LEAVEOUT_POSTGIS ]] ; then
     echo "Install PostGIS"
     $DIR/setup_postgis.sh -d $DB_NAME -s $DB_SCHEMA -t errors
 else
