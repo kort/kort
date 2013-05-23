@@ -38,7 +38,9 @@ echo "update error sources..."
 
 ###Keepright reletaded###
 echo "start keepright related update"
-$DIR/setup_keepright_db.sh -o kortuser -n osm_bugs -s keepright -c
+$DIR/setup_keepright_db.sh -o kortuser -n osm_bugs -s keepright -c -l
+echo "Generate geometry objects based on lat/lng values"
+psql -d osm_bugs -c "update keepright.errors set geom = ST_SetSRID(ST_Point(lon/10000000.0,lat/10000000.0),4326);"
 echo "keepright related update ended"
 
 ###osm_errors reletaded###
