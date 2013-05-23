@@ -3,7 +3,10 @@ SELECT osmq.osm_id, 100, 1000, 'missing cuisine', osmq.osm_id, 'way', 'Error fro
 FROM osm_errors.dblink('dbname=gis_db port=8080 host=152.96.80.44 user=readonly',
      'SELECT ceiling(ST_Y(ST_Transform(ST_Centroid(way),4326))::numeric * 10000000) AS lat, ceiling(ST_X(ST_Transform(ST_Centroid(way),4326))::numeric * 10000000) AS lon, ST_Transform(ST_Centroid(way),4326) AS geom, osm_id, name AS txt1
 			FROM osm_poi
-			WHERE tags @> hstore(''amenity'', ''restaurant'')
+			WHERE
+			osm_id>0
+			AND tags @> hstore(''amenity'', ''restaurant'')
 			AND (hstore("tags")->''cuisine'') IS NULL
 			AND (hstore("tags")->''name'') IS NOT NULL
+
 			LIMIT 10000') AS osmq(lat integer,lon integer,geom public.geometry(Point,4326), osm_id int8, txt1 text)
