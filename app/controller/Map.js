@@ -180,19 +180,32 @@ Ext.define('Kort.controller.Map', {
         this.getApplication().fireEvent('maptypeupdaterequest');
     },
 
-    _enterLoadingState: function(overlayMask) {
-        if(overlayMask) {this._showLoadMask();}
+    /**
+     * @private
+     * @param {boolean} overlayMask
+     * @param {boolean} recursiveCall
+     */
+    _enterLoadingState: function(overlayMask,recursiveCall) {
+        if(overlayMask && !recursiveCall) {this._showLoadMask();}
         if(this._checkIfAllMapTypesAreLoaded()) {
             this._clearLoadingState(overlayMask);
         }else {
-            Ext.defer(this._enterLoadingState,200,this,[overlayMask]);
+            Ext.defer(this._enterLoadingState,200,this,[overlayMask,true]);
         }
     },
 
+    /**
+     * @private
+     * @param overlayMask
+     */
     _clearLoadingState: function(overlayMask) {
-        if(overlayMask) {this._hideLoadMask();}
+        //if(overlayMask) {this._hideLoadMask();}
     },
 
+    /**
+     * @private
+     * @returns {boolean}
+     */
     _checkIfAllMapTypesAreLoaded: function() {
         var toReturn = true;
         Ext.Array.each(this.getMapTypeLoaded(), function(recordIsLoaded){
@@ -201,17 +214,23 @@ Ext.define('Kort.controller.Map', {
         return toReturn;
     },
 
+    /**
+     * @private
+     */
     _showLoadMask: function() {
         this.getMapCenterButton().disable();
         this.getMapRefreshButton().disable();
         this.getMapSneakyPeakSegmentedButton().disable();
-        this.getMapNavigationView().setMasked({
+        this.getMapNavigationView().push({
             xtype: 'loadmask',
             message: 'loading',
             zIndex: Kort.util.Config.getZIndex().overlayLeafletMap
         });
     },
 
+    /**
+     * @private
+     */
     _hideLoadMask: function() {
         this.getMapNavigationView().setMasked(false);
         this.getMapCenterButton().enable();
