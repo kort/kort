@@ -49,7 +49,7 @@ if [ -z $DB_OWNER ] ; then
 fi
 
 if [ -z $INSTALL_POSTGIS] ; then
-    INSTALL_POSTGIS=true
+    INSTALL_POSTGIS="true"
 fi
 
 if [[ $PREVIOUS_DOWNLOAD && ! -f $PREVIOUS_DOWNLOAD ]] ; then
