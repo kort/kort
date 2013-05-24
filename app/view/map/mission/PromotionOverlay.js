@@ -1,5 +1,5 @@
 /**
- *
+ * Plots the promotion background to screen.
  */
 Ext.define('Kort.view.map.mission.PromotionOverlay', {
     alias: 'widget.promotionoverlay',

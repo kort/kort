@@ -1,4 +1,6 @@
-
+/**
+ * News settings panel.
+ */
 Ext.define('Kort.view.news.settings.AcceptedLanguagePanel', {
     extend: 'Ext.form.Panel',
     requires: [

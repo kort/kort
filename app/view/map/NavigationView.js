@@ -1,15 +1,9 @@
 /**
- * Main navigation view for map tap.
+ * Main navigation view for map tab.
  */
 Ext.define('Kort.view.map.NavigationView', {
     extend: 'Ext.navigation.View',
     alias: 'widget.mapnavigationview',
-
-    /**
-     * @event sneakypeaktoggled
-     * Fired when sneaky peak segmented button was pressed.
-     * @param {Boolean} isPressed State of service (on or off).
-     */
 
     requires: [
         'Kort.view.LeafletMap',

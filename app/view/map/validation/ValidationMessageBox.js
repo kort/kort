@@ -1,3 +1,6 @@
+/**
+ * Messagbox which shows details about a validation.
+ */
 Ext.define('Kort.view.map.validation.ValidationMessageBox', {
     extend: 'Ext.MessageBox',
     alias: 'widget.validationmessagebox',

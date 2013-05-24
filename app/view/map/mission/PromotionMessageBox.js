@@ -1,5 +1,5 @@
 /**
- *
+ * Message box which shows details about a promotion.
  */
 Ext.define('Kort.view.map.mission.PromotionMessageBox', {
     extend: 'Ext.MessageBox',
