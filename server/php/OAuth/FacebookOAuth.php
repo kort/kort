@@ -17,20 +17,35 @@ class FacebookOAuth extends AbstractOAuthCallback
     protected $user = null;
 
     /**
+     * The api key of the kort application
      *
-     * App config
+     * @var string
      */
     private $app_id = "290615117735384";
+
+    /**
+     * The app secret of the kort application
+     *
+     * @var string
+     */
     private $app_secret = "778070fcfea0bad67c0d3131f0e33260";
+
+    /**
+     * The callback url
+     *
+     * @var string
+     */
     private $my_url = "";
 
     /**
-     * member variables
+     * The facebook access token
+     *
+     * @var string
      */
     private $accessToken = null;
 
     /**
-     * Creates a new instance of GoogleOAuth.
+     * Creates a new instance of FacebookOAuth.
      */
     public function __construct()
     {
@@ -85,7 +100,7 @@ class FacebookOAuth extends AbstractOAuthCallback
     {
         if (empty($this->user)) {
             $graph_url = "https://graph.facebook.com/me?access_token=" . $this->accessToken;
-            $this->user = json_decode(file_get_contents($graph_url),true);
+            $this->user = json_decode(file_get_contents($graph_url), true);
         }
         return $this->user;
     }
