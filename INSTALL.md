@@ -13,7 +13,7 @@
     * `apt-get install php5`
     * `apt-get install php5-curl`
 * PhantomJS
-    * `apt-get install phantomjs
+    * `apt-get install phantomjs`
 * Composer
     * `curl -s https://getcomposer.org/installer | php`
     * `php composer.phar install --dev`

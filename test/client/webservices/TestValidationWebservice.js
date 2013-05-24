@@ -4,7 +4,7 @@ module("kort-ValidationWebservice", {
     }
 });
 
-test("position", function () {
+testSkip("position", function () {
     var type = 'GET',
         data = null,
         url = urlLib.getAppUrl() + '/' + this.path + '/position/47.2332342000000000,8.8210699000000000';
