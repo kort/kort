@@ -209,7 +209,7 @@ Ext.define('Kort.controller.Map', {
     _checkIfAllMapTypesAreLoaded: function() {
         var toReturn = true;
         Ext.Array.each(this.getMapTypeLoaded(), function(recordIsLoaded){
-            if(!recordIsLoaded) toReturn=false;
+            if(!recordIsLoaded) {toReturn=false;}
         });
         return toReturn;
     },

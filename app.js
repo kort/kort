@@ -226,7 +226,7 @@ Ext.application({
                     // enable auto update on geolocation
                     geo.setAutoUpdate(true);
                 }
-                me.fireEvent('userloaded')
+                me.fireEvent('userloaded');
             }
         });
     },
