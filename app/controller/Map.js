@@ -233,7 +233,8 @@ Ext.define('Kort.controller.Map', {
      */
     _triggerMapTypesUpdateProcess: function(context) {
         var me = this;
-        if(typeof(context)!=='undefined') {me=context;}
+        //change context according to parameter. Exclude sencha internal context call.
+        if(typeof(context)!=='undefined' && typeof(context.fn)==='undefined') {me=context;}
         me.getApplication().fireEvent('maptypeupdaterequest',me.getIsSneakyPeakActivated());
         me._enterLoadingState(true);
     },
