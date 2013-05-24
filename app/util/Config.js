@@ -225,6 +225,8 @@ Ext.define('Kort.util.Config', {
          * @cfg {Function} webservices.validation.getUrl (required) Returns url of validation webservice with given position (latitude, longitude)
          * @cfg {Number} webservices.validation.radius (required) Maximum range for validations selection (in meters)
          * @cfg {Number} webservices.validation.limit (required) Limits validations to given number
+         * @cfg {Object} webservices.promotion Configuration of promotion webservice
+         * @cfg {Object} webservices.user.url Url of promotion webservice
          * @cfg {Object} webservices.user Configuration of user webservice
          * @cfg {Object} webservices.user.url Url of user webservice
          * @cfg {Object} webservices.userLogout Configuration of userlogout webservice
@@ -295,8 +297,13 @@ Ext.define('Kort.util.Config', {
         },
 
         /**
-         * @cfg {String} enumeration of all possible mission states
-         */
+        * @cfg {Object} mapMarkerState Enumeration of all possible mission states
+        * @cfg {String} mapMarkerState.mission Enum-key for mission state
+        * @cfg {String} mapMarkerState.missionPromotion Enum-key for missionPromotion state
+        * @cfg {String} mapMarkerState.validation Enum-key for validation state
+        * @cfg {String} mapMarkerState.validationPromotion Enum-key for validationPromotion state
+        * @cfg {String} mapMarkerState.inactive Enum-key for inactive state
+        */
         mapMarkerState: {
             mission: 'missionState',
             missionPromotion: 'missionPromotionState',
@@ -304,18 +311,6 @@ Ext.define('Kort.util.Config', {
             validationPromotion: 'validationPromotionState',
             inactive: 'inactiveState'
         },
-
-        /**
-         * @cfg {String} enumeration of all possible mission states
-         */
-        /*
-        missionState: {
-            mission: 'bugState',
-            bugCampaign: 'bugCampaignState',
-            validation: 'validationSate',
-            validationCampaign: 'validationCampaignState'
-        },
-        *)
 
         /**
          * @cfg {String} URL of Atom news feed

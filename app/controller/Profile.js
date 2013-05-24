@@ -1,3 +1,5 @@
+/*jshint maxcomplexity:10 */
+
 /**
  * Controller for profile tab.
  */

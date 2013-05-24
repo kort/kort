@@ -115,7 +115,7 @@ Ext.define('Ext.ux.LeafletMap', {
         tileLayer: null,
 
         /**
-         * @cfg {L.TileLayer} tileLayer
+         * @cfg {L.Control.Layers} additionalLayers
          * Additional layers.
          * @accessor
          */
@@ -406,9 +406,6 @@ Ext.define('Ext.ux.LeafletMap', {
         }
     },
 
-    /**
-     *
-     */
     getMapCenter: function() {
         return this.getMap().getCenter();
     },

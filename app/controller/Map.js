@@ -70,7 +70,7 @@ Ext.define('Kort.controller.Map', {
         /**
          * @private
          */
-        mapMarkerTypeArray: new Array(),
+        mapMarkerTypeArray: [],
         /**
          * @private
          */
