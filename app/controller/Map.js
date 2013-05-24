@@ -16,7 +16,8 @@ Ext.define('Kort.controller.Map', {
             mapNavigationView: '#mapNavigationView',
             mapCenterButton: '#mapNavigationView .button[cls=mapCenterButton]',
             mapRefreshButton: '#mapNavigationView .button[cls=mapRefreshButton]',
-            mapSneakyPeakSegmentedButton: '#mapNavigationView .segmentedbutton[cls=sneakyPeak]'
+            mapSneakyPeakSegmentedButton: '#mapNavigationView .segmentedbutton[cls=sneakyPeak]',
+            mapLoadingIcon: '#mapNavigationView .button[cls=mapLoadingIcon]'
         },
         control: {
             mapNavigationView: {
@@ -45,26 +46,39 @@ Ext.define('Kort.controller.Map', {
 
         /**
          * @private
+         * The leaflet map [L.Map](http://leafletjs.com/reference.html#map-class).
          */
         lMap: null,
         /**
          * @private
+         * The {Kort.view.LeafletMap} component.
          */
         lMapWrapper: null,
         /**
          * @private
+         * The leaflet layer control [L.Layer](http://leafletjs.com/reference.html#control)
          */
         lLayerControl: null,
         /**
          * @private
          */
-        jumpLLatLong:null,
+        permalinkLLatLong:null,
         /**
          * @private
          */
-        jumpZoomLevel:null,
-
-        mapTypeLoaded:[]
+        permalinkZoomLevel:null,
+        /**
+         * @private
+         */
+        mapMarkerTypeArray: new Array(),
+        /**
+         * @private
+         */
+        isSneakyPeakActivated: false,
+        /**
+         * @private
+         */
+        sneakyPeakTimeout: null
     },
 
     /**
@@ -72,12 +86,12 @@ Ext.define('Kort.controller.Map', {
      */
     init: function(){
         var me = this;
-        me.callParent(arguments);
         me.getApplication().on({
             fixsend: {fn: me._triggerMapTypesUpdateProcess, scope:me },
             votesend: {fn: me._triggerMapTypesUpdateProcess, scope:me },
             geolocationready: { fn: me._createLeafletMapWrapper, scope: me }
         });
+
     },
 
     /**
@@ -104,20 +118,18 @@ Ext.define('Kort.controller.Map', {
         return L.latLng(geo.getLatitude(), geo.getLongitude());
     },
 
-    registerMapType: function(name) {
-        this.setMapTypeLoaded(this.getMapTypeLoaded()[name]=false);
+    registerMapType: function(mapType) {
+       this.getMapMarkerTypeArray().push(mapType);
     },
 
-    markMapTypeAsLoaded: function(name) {
-        this.setMapTypeLoaded(this.getMapTypeLoaded()[name]=true);
-    },
 
     /**
      * @private
-     * Creates LeafletMap component.
+     * Creates LeafletMap component. Is called right after the user's geolocation is available.
      * @param {Kort.util.Geolocation} geo
      */
     _createLeafletMapWrapper: function (geo) {
+        this._enterLoadingState(false);
         var me = this,
             lMapWrapper = Ext.create('Kort.view.LeafletMap', {
                 title: Ext.i18n.Bundle.message('map.title'),
@@ -126,35 +138,40 @@ Ext.define('Kort.controller.Map', {
                 id: 'leafletmapwrapper'
             });
         lMapWrapper.on('maprender', me._onLMapRendered,me);
+        //omit false movestart and moveend events right after the map has been created
+        Ext.defer(function() {
+            lMapWrapper.on('movestart',me._onMapMoveStart,me);
+            lMapWrapper.on('moveend',me._onMapMoveEnd,me);
+        },1000);
         me.setLMapWrapper(lMapWrapper);
         me.getMapNavigationView().add(lMapWrapper);
+        me.getMapNavigationView().on('sneakypeaktoggled', me._onSneakyPeakToggeled,me);
         //if there is a JumpPosition set through route query, use this one as starting center position.
-        if(me.getJumpLLatLong()) {
-            me._centerMapToJumpPosition();
-            if(me.getJumpZoomLevel()) {
-                me._zoomMapToJumpZoomLevel();
+        if(me.getPermalinkLLatLong()) {
+            me._centerMapToPermalinkPosition();
+            if(me.getPermalinkZoomLevel()) {
+                me._zoomMapToPermalinkZoomLevel();
             }
         }else {
             me._centerMapToCurrentPosition();
         }
-        this._enterLoadingState(true);
+
     },
 
     /**
      * @private
      * Sets the coordinates and zoomlevel, to which the center of the map should jump after being successfully initialized.
-     * Called by routes with locationToJump Object containing the optional keys:
+     * Called by routes with permalink Object containing the optional keys:
      * lat = latitude
      * lng = longitude
      * z = zoom level (0 - 18)
-     * @param {Object} locationToJump
+     * @param {Object} permalink
      */
-    _jumpToDifferentGeoLocation: function(locationToJump) {
-
-        if(locationToJump.lat && locationToJump.lng) {
-            this.setJumpLLatLong(L.latLng(locationToJump.lat,locationToJump.lng));
-            if(locationToJump.z && locationToJump.z>=0 && locationToJump.z <=18) {
-                this.setJumpZoomLevel(locationToJump.z);
+    _jumpToDifferentGeoLocation: function(permalink) {
+        if(permalink.lat && permalink.lng) {
+            this.setPermalinkLLatLong(L.latLng(permalink.lat,permalink.lng));
+            if(permalink.z && permalink.z>=0 && permalink.z <=18) {
+                this.setPermalinkZoomLevel(permalink.z);
             }
         }
     },
@@ -175,41 +192,76 @@ Ext.define('Kort.controller.Map', {
 
     /**
      * @private
+     * @param {Ext.SegmentedButton} segmentedButton
+     * @param {Ext.Button} button
+     * @param {Boolean} isPressed
+     * @param {Object} eOpts
      */
-    _triggerMapTypesUpdateProcess: function() {
-        this.getApplication().fireEvent('maptypeupdaterequest');
+    _onSneakyPeakSegmentedButtonToggle: function(segmentedButton, button, isPressed, eOpts) {
+        this.setIsSneakyPeakActivated(isPressed);
+        this._triggerMapTypesUpdateProcess();
     },
 
     /**
      * @private
-     * @param {boolean} overlayMask
-     * @param {boolean} recursiveCall
+     * Called when a leaflet map [moveend event](http://leafletjs.com/reference.html#map-events) was detected.
      */
-    _enterLoadingState: function(overlayMask,recursiveCall) {
-        if(overlayMask && !recursiveCall) {this._showLoadMask();}
-        if(this._checkIfAllMapTypesAreLoaded()) {
-            this._clearLoadingState(overlayMask);
-        }else {
-            Ext.defer(this._enterLoadingState,200,this,[overlayMask,true]);
+    _onMapMoveEnd: function() {
+        var me = this;
+        if(me.getIsSneakyPeakActivated()) {
+            //prevent exhausting ajax calls when user scrolls heavily on map: User has to stay "calm" on one
+            // point for 2 seconds to trigger the sneaky peak update call.
+            me.setSneakyPeakTimeout(setTimeout(function(){me._triggerMapTypesUpdateProcess(me);},2000));
         }
     },
 
     /**
      * @private
-     * @param overlayMask
+     * Called when a leaflet map [movestart event](http://leafletjs.com/reference.html#map-events) was detected.
      */
-    _clearLoadingState: function(overlayMask) {
-        if(overlayMask) {this._hideLoadMask();}
+    _onMapMoveStart: function() {
+        if(this.getSneakyPeakTimeout()) {
+            window.clearTimeout(this.getSneakyPeakTimeout());
+        }
+    },
+
+    /**
+     *
+     * @private
+     * @param context This function is sometimes called via javascript timeout. In that case, the correct "this context"
+     * is passed via parameter.
+     */
+    _triggerMapTypesUpdateProcess: function(context) {
+        var me = this;
+        if(typeof(context)!=='undefined') {me=context;}
+        me.getApplication().fireEvent('maptypeupdaterequest',me.getIsSneakyPeakActivated());
+        me._enterLoadingState(true);
     },
 
     /**
      * @private
-     * @returns {boolean}
+     * @param {boolean} silentLoading Indicates whether a blocking loading message should be overlaid or not.
+     * @param {boolean} recursiveCall Private param that should always be false when called from outside.
+     */
+    _enterLoadingState: function(silentLoading,recursiveCall) {
+        if(!recursiveCall) {
+            this._showLoadMask(silentLoading);
+        }
+        if(this._checkIfAllMapTypesAreLoaded()) {
+            this._hideLoadMask(silentLoading);
+        }else {
+            Ext.defer(this._enterLoadingState,200,this,[silentLoading,true]);
+        }
+    },
+
+    /**
+     * @private
+     * @returns {boolean} True if all MapTypes are successfulyy loaded to map.
      */
     _checkIfAllMapTypesAreLoaded: function() {
         var toReturn = true;
-        Ext.Array.each(this.getMapTypeLoaded(), function(recordIsLoaded){
-            if(!recordIsLoaded) {toReturn=false;}
+        this.getMapMarkerTypeArray().forEach(function(element, index, array) {
+            if(element.isLoaded()===false) {toReturn=false;}
         });
         return toReturn;
     },
@@ -217,25 +269,29 @@ Ext.define('Kort.controller.Map', {
     /**
      * @private
      */
-    _showLoadMask: function() {
-        this.getMapCenterButton().disable();
-        this.getMapRefreshButton().disable();
+    _showLoadMask: function(silentLoading) {
         this.getMapSneakyPeakSegmentedButton().disable();
-        this.getMapNavigationView().setMasked({
-            xtype: 'loadmask',
-            message: 'loading',
-            zIndex: Kort.util.Config.getZIndex().overlayLeafletMap
-        });
+        this.getMapCenterButton().disable();
+        this.getMapRefreshButton().hide();
+        this.getMapLoadingIcon().show();
+        if(!silentLoading) {
+            this.getMapNavigationView().setMasked({
+                xtype: 'loadmask',
+                message: Ext.i18n.Bundle.message('map.loadmask.message'),
+                zIndex: Kort.util.Config.getZIndex().overlayLeafletMap
+            });
+        }
     },
 
     /**
      * @private
      */
-    _hideLoadMask: function() {
-        this.getMapNavigationView().setMasked(false);
-        this.getMapCenterButton().enable();
-        this.getMapRefreshButton().enable();
+    _hideLoadMask: function(silentLoading) {
+        this.getMapLoadingIcon().hide();
         this.getMapSneakyPeakSegmentedButton().enable();
+        this.getMapCenterButton().enable();
+        this.getMapRefreshButton().show();
+        if(!silentLoading) {this.getMapNavigationView().setMasked(false);}
     },
 
 
@@ -287,26 +343,15 @@ Ext.define('Kort.controller.Map', {
     /**
      * @private
      */
-    _centerMapToJumpPosition: function() {
-        this.getLMapWrapper().setMapCenter(this.getJumpLLatLong());
+    _centerMapToPermalinkPosition: function() {
+        this.getLMapWrapper().setMapCenter(this.getPermalinkLLatLong());
     },
 
     /**
      * @private
      */
-    _zoomMapToJumpZoomLevel: function() {
-        this.getLMapWrapper().setMapZoomLevel(this.getJumpZoomLevel());
-    },
-
-    /**
-     * @private
-     * @param {Ext.SegmentedButton} segmentedButton
-     * @param {Ext.Button} button
-     * @param {Boolean} isPressed
-     * @param {Object} eOpts
-     */
-    _onSneakyPeakSegmentedButtonToggle: function(segmentedButton, button, isPressed, eOpts) {
-        this.getMapNavigationView().fireEvent('sneakypeaktoggled',isPressed);
+    _zoomMapToPermalinkZoomLevel: function() {
+        this.getLMapWrapper().setMapZoomLevel(this.getPermalinkZoomLevel());
     }
 
 });

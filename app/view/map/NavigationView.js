@@ -45,6 +45,13 @@ Ext.define('Kort.view.map.NavigationView', {
                     align: 'right'
                 },
                 {
+                    cls: 'mapLoadingIcon',
+                    icon : './resources/images/transparent_loader.gif',
+                    align: 'right',
+                    hidden: true
+
+                },
+                {
                     xtype: 'button',
                     cls: 'mapRefreshButton',
                     iconCls: 'refresh',

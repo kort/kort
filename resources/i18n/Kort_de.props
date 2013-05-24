@@ -37,9 +37,7 @@ geolocationerror.loadmask.message=Lade App neu...
 
 #Map
 map.title=Aufträge & Überprüfungen
-map.loadmask.message=Lade...
-map.sneakypeaksegmentedbutton.on=Sneaky Peak On
-map.sneakypeaksegmentedbutton.off=Sneaky Peak Off
+map.loadmask.message=Lade Aufträge...
 map.mission.promotionmessagebox.close=Schliessen
 map.mission.promotionmessagebox.earn=Hol dir zusätzliche {extra_coins} Koins
 map.mission.promotionmessagebox.date={startdate} bis {enddate}

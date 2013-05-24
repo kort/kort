@@ -1,12 +1,10 @@
 /**
- * Abstract class MapAbstractType is extended by all Map{Type} classes.
- * Defines basic functionallity to plot markers on lafeletmap and handels iteraction with them.
+ * Abstract class MapAbstractType is extended by all MapType classes.
+ * Provides basic functionality to plot markers on a lafelet map and handles interaction with them.
  */
 Ext.define('Kort.controller.MapAbstractType', {
     extend: 'Ext.app.Controller',
     config: {
-        //must be overridden or set by derived class before this class gets initialized
-        name: null,
         //must be overridden or set by derived class before this class gets initialized
         dataStore: null,
         //must be overridden or set by derived class before this class gets initialized
@@ -16,7 +14,7 @@ Ext.define('Kort.controller.MapAbstractType', {
 
         refs: {
             mapNavigationView: '#mapNavigationView',
-            //available after leafletmaprendered event
+            //{Kort.view.LeafletMap} available after leafletmaprendered event
             lMapWrapper: '#leafletmapwrapper'
         },
 
@@ -35,7 +33,7 @@ Ext.define('Kort.controller.MapAbstractType', {
         /**
          * @private
          */
-        isSneakyPeakActivated: false
+        isLoaded: false
     },
 
     /**
@@ -45,7 +43,7 @@ Ext.define('Kort.controller.MapAbstractType', {
         var me = this;
         this.setLLayerGroup(L.layerGroup());
         me.setMapController(me.getApplication().getController('Map'));
-        me.getMapController().registerMapType(this.getName());
+        me.getMapController().registerMapType(this);
         me.getApplication().on({
             leafletmaprendered: { fn: me._initData, scope:me },
             maptypeupdaterequest: { fn: me._onMapTypeUpdateRequest, scope: me }
@@ -61,17 +59,20 @@ Ext.define('Kort.controller.MapAbstractType', {
     },
 
     /**
+     * Returns if the corresponding map type has been loaded successfully.
+     * @returns {boolean}
+     */
+    isLoaded: function() {
+        return this.getIsLoaded();
+    },
+
+    /**
      * @private
      * Add layergroup to leaflet map and trigger update process to generate markers.
      * Called after leaflet map component is ready.
      */
     _initData: function() {
         var me = this;
-        me.getMapNavigationView().on('sneakypeaktoggled', me._onSneakyPeakToggeled,me);
-        //omit false moveend events right after the map has been created
-        Ext.defer(function() {
-            me.getLMapWrapper().on('moveend',me._onMapMoveEnd,me);
-        },1000);
         me.getMapController().addLayerGroupToMap(me.getLLayerGroup(),me.getLLayerGroupName());
         me.updateDataStoreProxyUrl();
         me._updateData();
@@ -87,22 +88,15 @@ Ext.define('Kort.controller.MapAbstractType', {
      * @private
      * Abstract function; MUST be overidden by derived class.
      */
-    updateDataStoreProxyUrl: function() {},
+    updateDataStoreProxyUrl: function(useMapCenterInsteadOfGPS) {},
+
 
     /**
      * @private
      */
-    _onMapMoveEnd: function() {
-        if(this.getIsSneakyPeakActivated()) {
-            this.updateDataStoreProxyUrl(true);
-            this._updateData();
-        }
-    },
-
-    /**
-     * @private
-     */
-    _onMapTypeUpdateRequest: function() {
+    _onMapTypeUpdateRequest: function(useMapCenterInsteadOfGPS) {
+        this.setIsLoaded(false);
+        this.updateDataStoreProxyUrl(useMapCenterInsteadOfGPS);
         this._updateData();
     },
 
@@ -122,7 +116,7 @@ Ext.define('Kort.controller.MapAbstractType', {
                     records.forEach(function(record) {
                         me.getLLayerGroup().addLayer(me._createLMarkerFromRecord(record));
                     });
-                    me.getMapController().markMapTypeAsLoaded(me.getName());
+                    me.setIsLoaded(true);
                 }
             });
         }
@@ -160,21 +154,6 @@ Ext.define('Kort.controller.MapAbstractType', {
         marker.lastClickTimestamp = 0;
         marker.on('click', me._onMarkerClick,me);
         return marker;
-    },
-
-    /**
-     * @private
-     * @param state
-     */
-    _onSneakyPeakToggeled: function(state) {
-        if(state) {
-            this.setIsSneakyPeakActivated(true);
-            this._onMapMoveEnd();
-        }else {
-            this.setIsSneakyPeakActivated(false);
-            this.updateDataStoreProxyUrl(false);
-            this._updateData();
-        }
     }
 });
 
