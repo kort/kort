@@ -210,6 +210,9 @@ Ext.define('Kort.util.Config', {
             }
         },
 
+        /**
+         * @cfg {Number} operationalRange Default parameter for what distance in meteres from user's gps coordinates a mission is considered to be solvable.
+         */
         operationalRange: 5000,
 
         /**
@@ -241,16 +244,9 @@ Ext.define('Kort.util.Config', {
          * @cfg {Function} webservices.osm.getUrl (required) Returns url of osm webservice with given osm object(id, type)
          */
         webservices: {
-            bug: {
+            mission: {
                 getUrl: function(latitude, longitude) {
                     return './server/webservices/mission/position/' + latitude + ',' + longitude;
-                },
-                radius: this.operationalRange,
-                limit: 25
-            },
-            campaign: {
-                getUrl: function() {
-                    return './server/webservices/mission/position/';
                 },
                 radius: this.operationalRange,
                 limit: 25

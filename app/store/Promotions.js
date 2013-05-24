@@ -1,6 +1,3 @@
-/**
- * Reader to convert unix timestamp to string representation of date property.
- */
 /*
 Ext.define('My.PromotionReader', {
     extend: 'Ext.data.reader.Json',

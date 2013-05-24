@@ -13,8 +13,8 @@ Ext.define('Kort.store.Missions', {
             startParam: false,
             extraParams: {
                 'lang': Kort.util.Config.getLanguage(),
-                'limit': Kort.util.Config.getWebservices().bug.limit,
-                'radius': Kort.util.Config.getWebservices().bug.radius
+                'limit': Kort.util.Config.getWebservices().mission.limit,
+                'radius': Kort.util.Config.getWebservices().mission.radius
             },
             reader: {
                 type: 'json',

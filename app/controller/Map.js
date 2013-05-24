@@ -199,7 +199,7 @@ Ext.define('Kort.controller.Map', {
      * @param overlayMask
      */
     _clearLoadingState: function(overlayMask) {
-        //if(overlayMask) {this._hideLoadMask();}
+        if(overlayMask) {this._hideLoadMask();}
     },
 
     /**
@@ -221,7 +221,7 @@ Ext.define('Kort.controller.Map', {
         this.getMapCenterButton().disable();
         this.getMapRefreshButton().disable();
         this.getMapSneakyPeakSegmentedButton().disable();
-        this.getMapNavigationView().push({
+        this.getMapNavigationView().setMasked({
             xtype: 'loadmask',
             message: 'loading',
             zIndex: Kort.util.Config.getZIndex().overlayLeafletMap

@@ -71,8 +71,7 @@ Ext.define('Kort.controller.MapMission', {
      */
     updateDataStoreProxyUrl: function(useMapCenterInsteadOfGPS) {
         var coordinateSource = (useMapCenterInsteadOfGPS && this.getLMapWrapper()) ? this.getLMapWrapper().getMapCenter() : this.getCurrentLocationLatLng();
-        //ToDo Refactor
-        this.setDataStoreProxyURL(Kort.util.Config.getWebservices().bug.getUrl(coordinateSource.lat, coordinateSource.lng));
+        this.setDataStoreProxyURL(Kort.util.Config.getWebservices().mission.getUrl(coordinateSource.lat, coordinateSource.lng));
     },
 
     /**
