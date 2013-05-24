@@ -37,12 +37,12 @@ class DbConfig
      *
      * @var string
      */
-    public $user = "postgres";
+    public $user = "kortuser";
 
     /**
      * The password of the database user.
      *
      * @var string
      */
-    public $password = "postgres";
+    public $password = "kortuser";
 }
