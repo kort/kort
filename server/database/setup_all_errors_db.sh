@@ -1,6 +1,6 @@
 #!/bin/bash
 DIR="$( cd "$( dirname "$0" )" && pwd )"
-while getopts ":o:n:s:c:" opt; do
+while getopts ":o:n:s:dclmp:" opt; do
     case $opt in
         o)
             DB_OWNER="$OPTARG"
