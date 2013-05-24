@@ -56,7 +56,7 @@ echo "osm_errors related update ended"
 ### consolidate error sources and build indexes###
 echo "consolidate error sources..."
 echo "start consolidation"
-$DIR/setup_all_errors_db.sh -o kortuser -n osm_bugs -s all_errors
+$DIR/setup_all_errors_db.sh -o kortuser -n osm_bugs -s all_errors -c
 echo "consolidation ended"
 
 ### rebuild kort views and update kort data - errors are possible and tolerated ###
