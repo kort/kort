@@ -1,6 +1,6 @@
 #!/bin/bash
 DIR="$( cd "$( dirname "$0" )" && pwd )"
-while getopts ":o:n:s:dcmp:" opt; do
+while getopts ":o:n:s:c:" opt; do
     case $opt in
         o)
             DB_OWNER="$OPTARG"
@@ -10,6 +10,9 @@ while getopts ":o:n:s:dcmp:" opt; do
             ;;
         s)
             DB_SCHEMA="$OPTARG"
+            ;;
+        c)
+            CLEANUP="true"
             ;;
         \?) # fall-through
             ;&
