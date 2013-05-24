@@ -17,28 +17,28 @@ class FacebookOAuth extends AbstractOAuthCallback
     protected $user = null;
 
     /**
-     * The api key of the kort application
+     * The api key of the kort application.
      *
      * @var string
      */
     private $app_id = "290615117735384";
 
     /**
-     * The app secret of the kort application
+     * The app secret of the kort application.
      *
      * @var string
      */
     private $app_secret = "778070fcfea0bad67c0d3131f0e33260";
 
     /**
-     * The callback url
+     * The callback url.
      *
      * @var string
      */
     private $my_url = "";
 
     /**
-     * The facebook access token
+     * The facebook access token.
      *
      * @var string
      */
