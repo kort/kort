@@ -70,12 +70,12 @@ class BugHandler extends DbProxyHandler
     }
 
     /**
-     * Returns bugs around the users position.
+     * Returns missions around the users position.
      *
-     * @param float   $lat    Latitide of the user position.
+     * @param float   $lat    Latitude of the user position.
      * @param float   $lng    Longitude of the user position.
      * @param integer $limit  Amount of bugs to return.
-     * @param integer $radius Radius around the users psotion to look for.
+     * @param integer $radius Radius around the users position to look for.
      *
      * @return string JSON-formatted bugs
      */
