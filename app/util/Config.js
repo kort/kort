@@ -374,8 +374,8 @@ Ext.define('Kort.util.Config', {
      * @param {String} type Type of marker
      */
     getMarkerIcon: function(type, state, inOperationalRange) {
-        var iconWidth = 32,
-            iconHeight = 37,
+        var iconWidth = 35,
+            iconHeight = 42,
             shadowWidth = 51,
             shadowHeight = 37,
             icon,
