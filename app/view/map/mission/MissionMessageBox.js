@@ -55,8 +55,6 @@ Ext.define('Kort.view.map.mission.MissionMessageBox', {
         }
     ),
 
-
-
     statics: {
         YESNO: [
             { text: Ext.i18n.Bundle.message('map.mission.missionmessagebox.yes'), itemId: 'yes', ui: 'action'},

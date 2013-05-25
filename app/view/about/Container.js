@@ -1,5 +1,5 @@
 /**
- * Main container for about tab
+ * Main container for about tab.
  */
 Ext.define('Kort.view.about.Container', {
 	extend: 'Ext.Container',

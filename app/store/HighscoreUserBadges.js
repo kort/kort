@@ -1,5 +1,5 @@
 /**
- * Store for highscore user badges
+ * Store for highscore user badges.
  */
 Ext.define('Kort.store.HighscoreUserBadges', {
     extend: 'Ext.data.Store',

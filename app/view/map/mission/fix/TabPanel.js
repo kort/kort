@@ -17,7 +17,10 @@ Ext.define('Kort.view.map.mission.fix.TabPanel', {
             minHeight: '1em'
         }
 	},
-    
+
+    /**
+     * @private
+     */
     initialize: function () {
         var fixForm,
             fixMap;

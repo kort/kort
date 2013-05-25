@@ -1,5 +1,5 @@
 /**
- * Login panel which overlays main panel if user isn't logged in
+ * Login panel which overlays main panel if user isn't logged in.
  */
 Ext.define('Kort.view.overlay.login.Panel', {
 	extend: 'Ext.Panel',

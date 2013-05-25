@@ -1,5 +1,5 @@
 /**
- * Select answer type for fix view
+ * Select answer type for fix view.
  */
 Ext.define('Kort.view.map.mission.fix.type.Select', {
 	extend: 'Ext.field.Select',
@@ -22,7 +22,10 @@ Ext.define('Kort.view.map.mission.fix.type.Select', {
         },
         type: ''
 	},
-    
+
+    /**
+     * @private
+     */
     initialize: function() {
         this.callParent(arguments);
         

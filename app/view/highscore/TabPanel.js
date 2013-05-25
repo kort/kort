@@ -1,5 +1,5 @@
 /**
- * Main tab panel for highscore view
+ * Main tab panel for highscore view.
  */
 Ext.define('Kort.view.highscore.TabPanel', {
 	extend: 'Ext.tab.Panel',

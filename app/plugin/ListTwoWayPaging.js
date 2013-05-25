@@ -1,24 +1,62 @@
+/**
+ * A plugin for highscore data views that allows bidirectional traversals and userrelative starting points.
+ */
 Ext.define('Kort.plugin.ListTwoWayPaging', {
     extend: 'Ext.Component',
     alias: 'plugin.listtwowaypaging',
 
     config: {
+        /**
+         * @cfg {Boolean} bidirectional True to allow bidirectional page loading.
+         */
         bidirectional: false,
+        /**
+         * @cfg {Number} offsetUntilLoading Pixels the scroller must be overpushed/overpulled to trigger page loading.
+         */
         offsetUntilLoading: 30,
+        /**
+         * @cfg {Number} startingPage The pagenumber where the list should start.
+         */
         startingPage: 1,
+        /**
+         * @cfg {Boolean} useUserPositionAsStartingPage True if the starting page should be calculated through the user's highscore position.
+         */
         useUserPositionAsStartingPage: false,
-
+        /**
+         * @private
+         */
         list: null,
+        /**
+         * @private
+         */
         scroller: null,
+        /**
+         * @private
+         */
         store: null,
-
+        /**
+         * @private
+         */
         topPagePointer:null,
+        /**
+         * @private
+         */
         bottomPagePointer:null,
-
+        /**
+         * @private
+         */
         scrollEventLocked: false,
+        /**
+         * @private
+         */
         topLoadTriggered: false,
+        /**
+         * @private
+         */
         bottomLoadTriggered: false,
-
+        /**
+         * @private
+         */
         loadMoreTopComponent: Ext.create('Ext.Component', {
             baseCls: 'x-list-paging x-loading',
             html:  ['<div class="x-loading-spinner" style="font-size: 180%; margin: 10px auto;">',
@@ -31,6 +69,9 @@ Ext.define('Kort.plugin.ListTwoWayPaging', {
             docked: 'top',
             hidden: true
         }),
+        /**
+         * @private
+         */
         loadMoreBottomComponent: Ext.create('Ext.Component', {
             baseCls: 'x-list-paging x-loading',
             html: ['<div class="x-loading-spinner" style="font-size: 180%; margin: 10px auto;">',
@@ -43,9 +84,12 @@ Ext.define('Kort.plugin.ListTwoWayPaging', {
             docked: 'bottom',
             hidden: true
         })
-
     },
 
+    /**
+     * @private
+     * @param {Ext.List} list A higscore list.
+     */
     init: function(list) {
         var me=this,
             list = list,
@@ -72,6 +116,12 @@ Ext.define('Kort.plugin.ListTwoWayPaging', {
         }
     },
 
+    /**
+     * @private
+     * @param {Ext.scroll.Scroller} scroller
+     * @param {Number} x
+     * @param {Number} y
+     */
     _onScroll: function(scroller, x, y) {
         if(this.getBidirectional() && !this.getScrollEventLocked() && this.getTopPagePointer()>1 && y<-this.getOffsetUntilLoading()) {
             this.setScrollEventLocked(true);
@@ -83,6 +133,12 @@ Ext.define('Kort.plugin.ListTwoWayPaging', {
         }
     },
 
+    /**
+     * @private
+     * @param {Ext.scroll.Scroller} scroller
+     * @param {Number} x
+     * @param {Number} y
+     */
     _onScrollEnd: function(scroller, x, y) {
         if(this.getTopLoadTriggered()) {
             this.setTopLoadTriggered(false);
@@ -96,6 +152,9 @@ Ext.define('Kort.plugin.ListTwoWayPaging', {
         }
     },
 
+    /**
+     * @private
+     */
     _loadPreviousPage: function() {
         var me = this;
         if(me.getBidirectional()) {
@@ -110,6 +169,9 @@ Ext.define('Kort.plugin.ListTwoWayPaging', {
         }
     },
 
+    /**
+     * @private
+     */
     _loadNextPage: function() {
         var me = this;
         me.setScrollEventLocked(true);
@@ -121,31 +183,46 @@ Ext.define('Kort.plugin.ListTwoWayPaging', {
         });
     },
 
+    /**
+     * @private
+     */
     _onListInitialized: function() {
         if(!this.getUseUserPositionAsStartingPage()){this.getStore().loadPage(this.getStartingPage());}
         if(this.getBidirectional()) {this.getList().add(this.getLoadMoreTopComponent());}
         this.getList().add(this.getLoadMoreBottomComponent());
     },
 
+    /**
+     * @private
+     */
     _previousPageFinishedLoading: function() {
         this.setScrollEventLocked(false);
         this.getLoadMoreTopComponent().hide();
         this.getList().refresh();
     },
 
+    /**
+     * @private
+     */
     _nextPageFinishedLoading: function() {
         this.setScrollEventLocked(false);
         this.getLoadMoreBottomComponent().hide();
     },
 
+    /**
+     * @private
+     */
     _resetPageCounters: function() {
         if(this.getUseUserPositionAsStartingPage()) {this.setStartingPage(this._calculateStartingPageBasedOnUsersPosition());}
         this.setTopPagePointer(this.getStartingPage());
         this.setBottomPagePointer(this.getStartingPage());
     },
 
+    /**
+     * @private
+     * @returns {Number}
+     */
     _calculateStartingPageBasedOnUsersPosition: function() {
-        console.log(Kort.user.get('rownumber'));
         if(typeof(Kort.user.get('rownumber'))!=='undefined') {
             return 1 + Math.floor(Kort.user.get('rownumber')/this.getStore().getPageSize());
         }else {

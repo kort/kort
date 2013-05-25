@@ -1,5 +1,5 @@
 /**
- * Main navigation view for news tab
+ * Main navigation view for news tab.
  */
 Ext.define('Kort.view.news.NavigationView', {
     extend: 'Ext.navigation.View',

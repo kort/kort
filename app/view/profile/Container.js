@@ -1,5 +1,5 @@
 /**
- * Main container for profile tab
+ * Main container for profile tab.
  */
 Ext.define('Kort.view.profile.Container', {
 	extend: 'Ext.Container',

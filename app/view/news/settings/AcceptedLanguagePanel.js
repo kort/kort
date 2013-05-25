@@ -75,6 +75,10 @@ Ext.define('Kort.view.news.settings.AcceptedLanguagePanel', {
         ]
 
     },
+
+    /**
+     * @private
+     */
     initialize: function(){
 
         var acceptedLanguagesByUser = Ext.getStore('UserLocal').getData().all[0].get('newsAcceptedLanguageArray'),

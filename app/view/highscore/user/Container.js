@@ -15,7 +15,10 @@ Ext.define('Kort.view.highscore.user.Container', {
         scrollable: true,
         layout: 'vbox'
 	},
-    
+
+    /**
+     * @private
+     */
     initialize: function () {
         var highscoreUserContentComponent,
             highscoreUserBadgesDataView;

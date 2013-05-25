@@ -1,5 +1,5 @@
 /**
- * Store for validations
+ * Store for validations.
  */
 Ext.define('Kort.store.Validations', {
     extend: 'Ext.data.Store',

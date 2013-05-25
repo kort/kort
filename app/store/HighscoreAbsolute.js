@@ -1,5 +1,5 @@
 /**
- * Store for highscore entries
+ * Store for aboslute highscore entries.
  */
 Ext.define('Kort.store.HighscoreAbsolute', {
     extend: 'Ext.data.Store',

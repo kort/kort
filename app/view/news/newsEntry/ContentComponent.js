@@ -1,5 +1,5 @@
 /**
- * Component which shows news content
+ * Component which shows news content.
  */
 Ext.define('Kort.view.news.newsEntry.ContentComponent', {
     extend: 'Ext.Component',

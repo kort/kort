@@ -1,5 +1,5 @@
 /**
- * News list
+ * News list.
  */
 Ext.define('Kort.view.news.List', {
     extend: 'Ext.List',

@@ -1,5 +1,5 @@
 /**
- * Controller for highscore tab.
+ * Controller for highscore tab and lists.
  */
 Ext.define('Kort.controller.Highscore', {
     extend: 'Ext.app.Controller',

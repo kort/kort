@@ -1,5 +1,5 @@
 /**
- * Geolocation error panel which overlays main panel if geolocation isn't available
+ * Geolocation error panel which overlays main panel if geolocation isn't available.
  */
 Ext.define('Kort.view.overlay.geolocationerror.Panel', {
 	extend: 'Ext.Panel',

@@ -1,5 +1,5 @@
 /**
- * Main container for vote view
+ * Main container for vote view.
  */
 Ext.define('Kort.view.map.validation.Container', {
 	extend: 'Ext.Container',
@@ -16,6 +16,9 @@ Ext.define('Kort.view.map.validation.Container', {
         layout: 'vbox'
 	},
 
+    /**
+     * @private
+     */
     initialize: function () {
         var me = this,
             selectAnswersStore = Ext.getStore('SelectAnswers'),

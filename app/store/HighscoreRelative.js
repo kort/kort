@@ -1,5 +1,5 @@
 /**
- * Store for highscore entries
+ * Store for relative highscore entries.
  */
 Ext.define('Kort.store.HighscoreRelative', {
     extend: 'Ext.data.Store',

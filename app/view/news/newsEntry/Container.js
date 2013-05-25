@@ -1,5 +1,5 @@
 /**
- * Main container for news detail view
+ * Main container for news detail view.
  */
 Ext.define('Kort.view.news.newsEntry.Container', {
     extend: 'Ext.Container',
@@ -15,6 +15,9 @@ Ext.define('Kort.view.news.newsEntry.Container', {
         layout: 'vbox'
     },
 
+    /**
+     * @private
+     */
     initialize: function () {
         var newsnewsEntryContentComponent;
 

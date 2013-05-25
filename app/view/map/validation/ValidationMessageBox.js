@@ -54,8 +54,6 @@ Ext.define('Kort.view.map.validation.ValidationMessageBox', {
         }
     ),
 
-
-
     statics: {
         YESNO: [
             { text: Ext.i18n.Bundle.message('map.mission.validationmessagebox.yes'), itemId: 'yes', ui: 'action'},

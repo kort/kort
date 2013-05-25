@@ -1,5 +1,5 @@
 /**
- * Answer form for fix view
+ * Answer form for fix view.
  */
 Ext.define('Kort.view.map.mission.fix.Form', {
 	extend: 'Ext.Container',
@@ -14,7 +14,10 @@ Ext.define('Kort.view.map.mission.fix.Form', {
         scrollable: true,
         title: Ext.i18n.Bundle.message('fix.form.title')
 	},
-    
+
+    /**
+     * @private
+     */
     initialize: function () {
         var fixContentComponent,
             fixFormPanel,
@@ -74,7 +77,7 @@ Ext.define('Kort.view.map.mission.fix.Form', {
                     )
         };
         
-        fixField = this.createFixField(this.getRecord());
+        fixField = this._createFixField(this.getRecord());
         
         fixFormPanel = {
             xtype: 'formpanel',
@@ -99,8 +102,13 @@ Ext.define('Kort.view.map.mission.fix.Form', {
         
         this.add([fixContentComponent, fixFormPanel]);
     },
-    
-    createFixField: function(bug) {
+
+    /**
+     * @private
+     * @param {Kort.model.Mission} mission
+     * @returns {*}
+     */
+    _createFixField: function(mission) {
         var fixField,
             fieldConfig = {
                 name: 'fixfield',
@@ -109,13 +117,13 @@ Ext.define('Kort.view.map.mission.fix.Form', {
                 showAnimation: { type: 'fadeIn', duration: 500}
             };
         
-        if(bug.get('view_type') === 'select') {
+        if(mission.get('view_type') === 'select') {
             fieldConfig = Ext.merge(fieldConfig, {
-                type: bug.get('type')
+                type: mission.get('type')
             });
             
             fixField = Ext.create('Kort.view.map.mission.fix.type.Select', fieldConfig);
-        } else if(bug.get('view_type') === 'number') {
+        } else if(mission.get('view_type') === 'number') {
             fixField = Ext.create('Ext.field.Number', fieldConfig);
         } else {
             fixField = Ext.create('Ext.field.Text', fieldConfig);

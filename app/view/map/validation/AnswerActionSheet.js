@@ -1,5 +1,5 @@
 /**
- * ActionSheet with answers for vote view
+ * ActionSheet with answers for vote view.
  */
 Ext.define('Kort.view.map.validation.AnswerActionSheet', {
     extend: 'Ext.ActionSheet',
