@@ -88,11 +88,11 @@ Ext.define('Kort.plugin.ListTwoWayPaging', {
 
     /**
      * @private
-     * @param {Ext.List} list A higscore list.
+     * @param {Ext.List} listParam A higscore list.
      */
-    init: function(list) {
+    init: function(listParam) {
         var me=this,
-            list = list,
+            list = listParam,
             scroller=list.getScrollable().getScroller(),
             store=list.getStore();
 
@@ -162,7 +162,7 @@ Ext.define('Kort.plugin.ListTwoWayPaging', {
             me.getLoadMoreTopComponent().show();
             me.getStore().loadPage(me.getTopPagePointer(),{
                 addRecords: true,
-                callback: function(){me._previousPageFinishedLoading()},
+                callback: function(){me._previousPageFinishedLoading();},
                 scope:me
             });
 
@@ -178,7 +178,7 @@ Ext.define('Kort.plugin.ListTwoWayPaging', {
         me.getLoadMoreBottomComponent().show();
         me.getStore().loadPage(me.getBottomPagePointer(),{
             addRecords: true,
-            callback: function(){me._nextPageFinishedLoading()},
+            callback: function(){me._nextPageFinishedLoading();},
             scope:me
         });
     },
@@ -229,5 +229,4 @@ Ext.define('Kort.plugin.ListTwoWayPaging', {
             return this.getStartingPage();
         }
     }
-
-})
+});

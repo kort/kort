@@ -56,7 +56,7 @@ Ext.define('Kort.model.User', {
                         scope = scope || this;
                         callback.call(scope);
                     }
-                    Kort.app.fireEvent('userrefreshed')
+                    Kort.app.fireEvent('userrefreshed');
                 }
             });
         }
