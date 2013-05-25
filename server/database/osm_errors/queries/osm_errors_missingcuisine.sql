@@ -9,4 +9,4 @@ FROM osm_errors.dblink('dbname=gis_db port=8080 host=152.96.80.44 user=readonly'
 			AND (hstore("tags")->''cuisine'') IS NULL
 			AND (hstore("tags")->''name'') IS NOT NULL
 
-			LIMIT 10000') AS osmq(lat integer,lon integer,geom public.geometry(Point,4326), osm_id int8, txt1 text)
+			LIMIT 10000') AS osmq(osm_type keepright.osm_type,lat integer,lon integer,geom public.geometry(Point,4326), osm_id int8, txt1 text)
