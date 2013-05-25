@@ -30,8 +30,6 @@ class BugHandler extends DbProxyHandler
 
     /**
      * Returns the table used by this handler.
-     *
-     * @return string the table name used by this handler.
      */
     protected function getTable()
     {

@@ -37,9 +37,7 @@ geolocationerror.loadmask.message=Reloading app...
 
 #Map
 map.title=Missions & Checks
-map.loadmask.message=Loading...
-map.sneakypeaksegmentedbutton.on=Sneaky Peak On
-map.sneakypeaksegmentedbutton.off=Sneaky Peak Off
+map.loadmask.message=Loading missions...
 map.mission.promotionmessagebox.close=Close
 map.mission.promotionmessagebox.earn=Earn additional {extra_coins} Koins
 map.mission.promotionmessagebox.date={startdate} to {enddate}
@@ -75,16 +73,6 @@ markermap.validation.layername=Validations
 markermap.validation.validationmessagebox.koins.earn=Earn {vote_koin_count} Koins
 markermap.validation.validationmessagebox.koins.earnpromotion=Earn {validation_koin_count} + {extra_coins} Koins
 markermap.validation.validationmessagebox.checkit=Check the solution
-
-
-# Bugmap - should be obsolete
-bugmap.title=Missions
-bugmap.loadmask.message=Loading missions...
-bugmap.messagebox.koins.earn=Earn {fix_koin_count} Koins
-bugmap.messagebox.koins.earncamp=Earn {fix_koin_count} + {extra_coins} Koins
-bugmap.messagebox.yes=Answer
-bugmap.messagebox.no=Don't know
-
 
 ## Fix
 fix.form.title=Mission
@@ -123,6 +111,8 @@ vote.alert.submit.failure.message=Oops! There was an error while sending your an
 
 # Highscore
 highscore.title=Highscore
+highscore.absolute.tabtitle=Absolute
+highscore.relative.tabtitle=Relative
 highscore.loadmask.message=Loading highscore...
 highscore.emptytext=Can't load highscore.
 highscore.you=This is you!
@@ -169,7 +159,7 @@ news.settings.save=Save
 news.settings.cancel=Cancel
 news.settings.acceptNoLanguage=Deselect all
 news.settings.acceptAllLanguages=Select all
-news.settings.label=Die News welcher Sprache möchtest du erhalten?
+news.settings.label=I want to receive news in the following languages:
 
 # About
 about.title=About

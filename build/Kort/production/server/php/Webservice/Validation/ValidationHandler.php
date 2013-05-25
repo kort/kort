@@ -30,8 +30,6 @@ class ValidationHandler extends DbProxyHandler
 
     /**
      * Returns the database table to be used with this Handler.
-     *
-     * @return the database table as a string.
      */
     protected function getTable()
     {

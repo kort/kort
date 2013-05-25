@@ -117,18 +117,26 @@ answer.language.vietnamese=Vietnamese
 answer.language.welsh=Welsh
 
 # missing_cuisine
-answer.missing_cuisine.traditional=traditional
-answer.missing_cuisine.french=french
-answer.missing_cuisine.regional=regional
-answer.missing_cuisine.indian_pakistani=indian_pakistani
-answer.missing_cuisine.creative=creative
-answer.missing_cuisine.contemporary=contemporary
-answer.missing_cuisine.bistro_brasserie=bistro_brasserie
-answer.missing_cuisine.other_countries=other_countries
-answer.missing_cuisine.seafood=seafood
-answer.missing_cuisine.italian=italian
-answer.missing_cuisine.mediterranean_oriental=mediterranean_oriental
-answer.missing_cuisine.asian=asian
+answer.missing_cuisine.regional=Regional
+answer.missing_cuisine.coffee_shop=Coffee Shop
+answer.missing_cuisine.international=International
+answer.missing_cuisine.italian=Italian
+answer.missing_cuisine.turkish=Turkish
+answer.missing_cuisine.chinese=Chinese
+answer.missing_cuisine.thai=Thai
+answer.missing_cuisine.asian=Asian
+answer.missing_cuisine.indian=Indian
+answer.missing_cuisine.french=French
+answer.missing_cuisine.mexican=Mexican
+answer.missing_cuisine.american=American
+answer.missing_cuisine.japanese=Japanese
+answer.missing_cuisine.greek=Greek
+answer.missing_cuisine.sandwich=Sandwich
+answer.missing_cuisine.steak_house=Steakhouse
+answer.missing_cuisine.chicken=Chicken
+answer.missing_cuisine.bistro_brasserie=Bistro, Brasserie
+answer.missing_cuisine.seafood=Seafood
+answer.missing_cuisine.burger=Burger
 
 ################################################
 # THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT #

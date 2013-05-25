@@ -44,7 +44,7 @@ test("missing_track_type", function() {
     });
 });
 
-test("not existings type", function() {
+testSkip("not existings type", function() {
 	var type = 'GET',
         data = null,
         url = urlLib.getAppUrl() + '/' + this.path + '/does_not_exist_test';

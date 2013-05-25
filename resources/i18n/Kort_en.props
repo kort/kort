@@ -159,7 +159,7 @@ news.settings.save=Save
 news.settings.cancel=Cancel
 news.settings.acceptNoLanguage=Deselect all
 news.settings.acceptAllLanguages=Select all
-news.settings.label=Die News welcher Sprache möchtest du erhalten?
+news.settings.label=I want to receive news in the following languages:
 
 # About
 about.title=About

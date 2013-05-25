@@ -50,7 +50,7 @@ test("position - no params, no trailing slash", function() {
     }, true);
 });
 
-test("fix", function() {
+testSkip("fix", function() {
 	var type = 'POST',
         data = {
             id: 12345,
