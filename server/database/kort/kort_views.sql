@@ -150,21 +150,32 @@ select a.answer_id id,
        a.sorting
 from   kort.answer a;
 
-create or replace view kort.highscore as
-select rank() over (order by u.koin_count desc) ranking,
-       u.user_id user_id,
+CREATE or replace VIEW highscore AS
+SELECT Rank()
+         over (
+           ORDER BY u.koin_count DESC)    AS ranking,
+	   ROW_NUMBER()
+		 over (
+		   ORDER BY u.koin_count DESC) AS rownumber,
+       u.user_id,
        u.username,
        u.pic_url,
        u.oauth_user_id,
        u.koin_count,
-       (select count(1) from kort.fix f where f.user_id = u.user_id) fix_count,
-       (select count(1) from kort.vote v where v.user_id = u.user_id) vote_count
-from   kort.user u
-where  u.username is not null
-order by ranking;
+       (SELECT Count(1) AS count
+        FROM   fix f
+        WHERE  ( f.user_id = u.user_id )) AS fix_count,
+       (SELECT Count(1) AS count
+        FROM   vote v
+        WHERE  ( v.user_id = u.user_id )) AS vote_count
+FROM   "user" u
+WHERE  ( u.username IS NOT NULL )
+ORDER  BY Rank()
+            over (
+              ORDER BY u.koin_count DESC);
 
-create or replace view kort.user_model as
-select u.user_id id,
+CREATE or replace VIEW user_model AS
+SELECT u.user_id                           AS id,
        u.name,
        u.username,
        u.pic_url,
@@ -173,10 +184,23 @@ select u.user_id id,
        u.token,
        u.secret,
        u.koin_count,
-       (select count(1) from kort.fix f where f.user_id = u.user_id) fix_count,
-       (select count(1) from kort.vote v where v.user_id = u.user_id) vote_count,
-       (select ranking from (select ranking, user_id from kort.highscore) hs where user_id = u.user_id) ranking
-from   kort.user u;
+       (SELECT Count(1) AS count
+        FROM   fix f
+        WHERE  ( f.user_id = u.user_id ))  AS fix_count,
+       (SELECT Count(1) AS count
+        FROM   vote v
+        WHERE  ( v.user_id = u.user_id ))  AS vote_count,
+       (SELECT hs.ranking
+        FROM   (SELECT highscore.ranking,
+                       highscore.user_id
+                FROM   highscore) hs
+        WHERE  ( hs.user_id = u.user_id )) AS ranking,
+       (SELECT hs2.rownumber
+        FROM   (SELECT highscore.rownumber,
+                       highscore.user_id
+                FROM   highscore) hs2
+        WHERE  ( hs2.user_id = u.user_id )) AS rownumber
+FROM   "user" u;
 
 create or replace view kort.user_badges as
 select b.badge_id id,

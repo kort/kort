@@ -54,7 +54,8 @@ class HighscoreHandler extends DbProxyHandler
             'koin_count',
             'fix_count',
             'vote_count',
-            'ranking'
+            'ranking',
+            'rownumber'
         );
     }
 

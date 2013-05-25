@@ -145,8 +145,9 @@ Ext.define('Kort.plugin.ListTwoWayPaging', {
     },
 
     _calculateStartingPageBasedOnUsersPosition: function() {
-        if(typeof(Kort.user.get('ranking'))!=='undefined') {
-            return 1 + Math.floor(Kort.user.get('ranking')/this.getStore().getPageSize());
+        console.log(Kort.user.get('rownumber'));
+        if(typeof(Kort.user.get('rownumber'))!=='undefined') {
+            return 1 + Math.floor(Kort.user.get('rownumber')/this.getStore().getPageSize());
         }else {
             return this.getStartingPage();
         }
