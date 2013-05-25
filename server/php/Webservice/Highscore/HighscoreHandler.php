@@ -66,10 +66,10 @@ class HighscoreHandler extends DbProxyHandler
      *
      * @return string|bool the JSON-encoded highscore if successful, false otherwise
      */
-    public function getHighscore($limit, $page)
+    public function getAbsoluteHighscore($limit, $page)
     {
         $offset = ($page * $limit) - $limit;
-        
+
         $sql  = "select * from (select " . implode($this->getFields(), ',');
         $sql .= " from " . $this->getTable();
         $sql .= " limit " . $limit . " offset " . $offset;
@@ -79,7 +79,6 @@ class HighscoreHandler extends DbProxyHandler
         $sql .= " from " . $this->getTable();
         $sql .= " ) my where my.user_id = " . $_SESSION['user_id'];
         $sql .= " order by ranking";
-
 
         $params = array();
         $params['sql'] = $sql;
@@ -96,6 +95,40 @@ class HighscoreHandler extends DbProxyHandler
 
         return json_encode($scoreList);
     }
+
+    /**
+     * Return the current highscore with users, points etc.
+     *
+     * @param integer $limit The amount of entries this method should return.
+     * @param integer $page  The current page which should be loaded.
+     *
+     * @return string|bool the JSON-encoded highscore if successful, false otherwise
+     */
+    public function getRelativeHighscore($limit, $page)
+    {
+        $offset = ($page * $limit) - $limit;
+
+        $sql  = "select * from (select " . implode($this->getFields(), ',');
+        $sql .= " from " . $this->getTable();
+        $sql .= " limit " . $limit . " offset " . $offset;
+        $sql .= ") hs order by ranking ";
+
+        $params = array();
+        $params['sql'] = $sql;
+        $params['type'] = "SQL";
+
+        $position = $this->getDbProxy()->addToTransaction($params);
+        $result = json_decode($this->getDbProxy()->sendTransaction(), true);
+        $scoreList = $result[$position - 1];
+        if (!$scoreList) {
+            return false;
+        }
+        $scoreList = array_map("self::isYourScore", $scoreList);
+        $scoreList = array_map("self::setPicUrl", $scoreList);
+
+        return json_encode($scoreList);
+    }
+
 
     /**
      * Adds a field to a score to indicate whether a user is the currently logged in user or not.

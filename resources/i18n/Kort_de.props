@@ -56,31 +56,6 @@ map.mission.validationmessagebox.no=Weiss nicht
 map.mission.validationmessagebox.close=Schliessen
 map.validation.validationmessagebox.checkit=Überprüfe die Lösung
 
-#Markermap - should be obsolete
-markermap.title=Aufträge & Überprüfungen
-markermap.loadmask.message=Lade...
-markermap.bug.promotionmessagebox.close=Schliessen
-markermap.bug.promotionmessagebox.earn=Hol dir zusätzliche {extra_coins} Koins
-markermap.bug.promotionmessagebox.date={startdate} bis {enddate}
-markermap.bug.missionmessagebox.koins.earn=Verdiene dir {fix_koin_count} Koins
-markermap.bug.missionmessagebox.koins.earnpromotion=Verdiene dir {fix_koin_count} + {extra_coins} Koins
-markermap.bug.missionmessagebox.yes=Beantworten
-markermap.bug.missionmessagebox.no=Weiss nicht
-markermap.bug.layername=Aufträge
-markermap.bugInactive.layername = Inaktive Aufträge
-markermap.validation.layername=Überprüfungen
-markermap.validation.validationmessagebox.koins.earn=Verdiene dir {vote_koin_count} Koins
-markermap.validation.validationmessagebox.koins.earnpromotion=Verdiene dir {validation_koin_count} + {extra_coins} Koins
-markermap.validation.validationmessagebox.checkit=Überprüfe die Lösung
-
-# Bugmap - should be obsolete
-bugmap.title=Aufträge in deiner Nähe
-bugmap.loadmask.message=Lade Aufträge...
-bugmap.messagebox.koins.earn=Verdiene dir {fix_koin_count} Koins
-bugmap.messagebox.koins.earncamp=Verdiene dir {fix_koin_count} + {extra_coins} Koins
-bugmap.messagebox.yes=Beantworten
-bugmap.messagebox.no=Weiss nicht
-
 ## Fix
 fix.form.title=Auftrag
 fix.form.koins.earn=Hol dir die {fix_koin_count} Koins\!
@@ -118,6 +93,8 @@ vote.alert.submit.failure.message=Ups\! Beim Übertragen deiner Antwort ist etwa
 
 # Highscore
 highscore.title=Highscore
+highscore.absolute.tabtitle=Absolut
+highscore.relative.tabtitle=Relativ
 highscore.loadmask.message=Lade Highscore...
 highscore.emptytext=Highscore kann nicht geladen werden.
 highscore.you=Das bist du\!

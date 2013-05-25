@@ -39,12 +39,17 @@ Ext.application({
 
     /**
      * @event userloaded
-     * Fired when a users data are correctly loaded
+     * Fired when a users data is correctly loaded.
+     */
+
+    /**
+     * @event userrefreshed
+     * Fired when a users data has been correctly refreshed.
      */
 
     /**
      * @event userchange
-     * Fired when a change in the user settings was successfully saved.
+     * Fired when a change in the user's settings was successfully saved.
      */
 
     /**
@@ -116,7 +121,8 @@ Ext.application({
     stores: [
         'Missions',
         'Promotions',
-        'Highscore',
+        'HighscoreAbsolute',
+        'HighscoreRelative',
         'HighscoreUserBadges',
         'SelectAnswers',
         'UserBadges',
@@ -264,8 +270,8 @@ Ext.application({
     loadStores: function(mainPanel, geo) {
         var me = this,
             userBadges = Ext.getStore('UserBadges'),
-            selectAnswersStore = Ext.getStore('SelectAnswers'),
-            highscoreStore = Ext.getStore('Highscore');
+            selectAnswersStore = Ext.getStore('SelectAnswers');
+            //highscoreStore = Ext.getStore('Highscore');
 
         // wait until correct position is found
         Ext.defer(me.fireEvent, 500, me, ['geolocationready', geo]);
@@ -278,7 +284,7 @@ Ext.application({
         userBadges.load();
         
         // load highscore
-        highscoreStore.load();
+        //highscoreStore.load();
 
         this.showMainPanel(mainPanel);
     },

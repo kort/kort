@@ -6,7 +6,7 @@ Ext.define('Kort.view.highscore.NavigationView', {
 	alias: 'widget.highscorenavigationview',
     requires: [
         'Ext.TitleBar',
-        'Kort.view.highscore.List'
+        'Kort.view.highscore.TabPanel'
     ],
 	
 	config: {
@@ -34,7 +34,7 @@ Ext.define('Kort.view.highscore.NavigationView', {
 		items: [
 			{
                 title: Ext.i18n.Bundle.message('highscore.title'),
-                xtype: 'highscorelist'
+                xtype: 'highscoretabpanel'
 			}
 		]
 	}

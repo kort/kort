@@ -7,15 +7,13 @@ Ext.define('Kort.controller.Highscore', {
     config: {
         views: [
             'highscore.NavigationView',
-            'highscore.AbsoluteList',
-            'highscore.RelativeList',
+            'highscore.List',
             'highscore.user.Container'
         ],
         refs: {
             mainTabPanel: '#mainTabPanel',
             highscoreNavigationView: '#highscoreNavigationView',
-            highscoreAbsoluteList: '#highScoreAbsoluteList',
-            highscoreRelativeList: '#highScoreRelativeList',
+            highscoreList: '.highscorelist',
             highscoreRefreshButton: '#highscoreNavigationView .button[cls=highscoreRefreshButton]',
             profileContainer: '#profileContainer'
         },
@@ -27,10 +25,7 @@ Ext.define('Kort.controller.Highscore', {
                 detailpush: '_onHighscoreNavigationViewDetailPush',
                 back: '_onHighscoreNavigationViewBack'
             },
-            highscoreAbsoluteList: {
-                itemtap: '_onHighscoreListItemTap'
-            },
-            highscoreRelativeList: {
+            highscoreList: {
                 itemtap: '_onHighscoreListItemTap'
             }
         },
@@ -42,7 +37,7 @@ Ext.define('Kort.controller.Highscore', {
         /**
          * @private
          */
-        storesInLoadingState: []
+        highscoreStore: null
     },
 
     /**
@@ -52,10 +47,41 @@ Ext.define('Kort.controller.Highscore', {
         var me = this;
         me.callParent(arguments);
         me.getApplication().on({
-            votesend: { fn: me._loadStores, scope: me },
-            fixsend: { fn: me._loadStores, scope: me },
-            userchange: { fn: me._loadStores, scope: me }
+            votesend: { fn: me._loadStore, scope: me },
+            fixsend: { fn: me._loadStore, scope: me },
+            userchange: { fn: me._loadStore, scope: me },
+            //ToDo CSC: This call is dangerous because it leads to an error if user is not logged in (after logout)
+            userloaded: { fn: me._loadHighscore, scope: me}
         });
+
+    },
+    /**
+     * Loads highscore list
+     */
+    _loadHighscore: function(){
+        var me = this,
+            highscoreStore = Ext.getStore('Highscore');
+
+        highscoreStore.on({
+                load: { fn: me.refreshView, scope: me }
+            }
+        );
+        me.setHighscoreStore(highscoreStore);
+        highscoreStore.pageSize = 10;
+
+        this.getHighscoreStore().loadPage(1 + Math.floor(Kort.user.get('ranking')/this.getHighscoreStore().pageSize), {
+            addRecords: false
+        });
+    },
+
+    /**
+     * Refreshes highscore list.
+     */
+    refreshView: function() {
+        if(this.getHighscoreList()) {
+            this.getHighscoreList().refresh();
+        }
+        this._hideLoadMask();
     },
 
 
@@ -63,27 +89,7 @@ Ext.define('Kort.controller.Highscore', {
      * @private
      */
     _onHighscoreRefreshButtonTap: function() {
-        this._loadStores();
-    },
-
-    /**
-     * @private
-     */
-    _loadStores: function() {
-        var me = this;
-        me.getHighscoreRefreshButton().disable();
-        me.getStoresInLoadingState().push(me.getHighscoreAbsoluteList());
-        me.getStoresInLoadingState().push(me.getHighscoreRelativeList());
-
-        me.getStoresInLoadingState().forEach(function(list, index, listArray) {
-            me._showLoadMaskOnList(list);
-            list.getStore().removeAll();
-            list.getStore().loadPage(list.getPlugins()[0].getStartingPage(), {
-                addRecords: true,
-                callback: function(){me._hideLoadMaskOnList(list);},
-                scope:me
-            });
-        });
+        this._loadStore(true);
     },
 
     /**
@@ -127,9 +133,34 @@ Ext.define('Kort.controller.Highscore', {
 
     /**
      * @private
+     * @param {Boolean} showLoadmask
      */
-    _showLoadMaskOnList: function(list) {
-        list.setMasked({
+    _loadStore: function(showLoadmask) {
+        console.log('loadStore fn');
+        if(showLoadmask) {
+            this._showLoadMask();
+        }
+        // reset store and load page
+        if (this.getHighscoreStore().pageSize !== undefined){
+            console.log("Pagesize: " + this.getHighscoreStore().pageSize);
+        this.getHighscoreStore().loadPage(1 + Math.floor(Kort.user.get('ranking')/this.getHighscoreStore().pageSize), {
+            addRecords: false
+        });
+//        this.refreshView();
+    }else{
+            this.getHighscoreStore().loadPage(1, {
+                addRecords: false
+            });
+        }
+    },
+
+
+    /**
+     * @private
+     */
+    _showLoadMask: function() {
+        this.getHighscoreRefreshButton().disable();
+        this.getHighscoreNavigationView().setMasked({
             xtype: 'loadmask',
             message: Ext.i18n.Bundle.message('highscore.loadmask.message'),
             zIndex: Kort.util.Config.getZIndex().overlayLeafletMap
@@ -139,12 +170,9 @@ Ext.define('Kort.controller.Highscore', {
     /**
      * @private
      */
-    _hideLoadMaskOnList: function(list) {
-        list.setMasked(false);
-        this.getStoresInLoadingState().pop();
-        if(!this.getStoresInLoadingState().lenth) {
-            this.getHighscoreRefreshButton().enable();
-        }
+    _hideLoadMask: function() {
+        this.getHighscoreNavigationView().setMasked(false);
+        this.getHighscoreRefreshButton().enable();
     },
 
     /**
