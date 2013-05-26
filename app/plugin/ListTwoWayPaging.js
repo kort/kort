@@ -115,7 +115,7 @@ Ext.define('Kort.plugin.ListTwoWayPaging', {
             me.setUpdateCallbackFunctionName(callbackFnName);
             me.setUpdateCallbackScope(callbackScope);
             if(!waitForUserRefreshedEvent || !me.getUseUserPositionAsStartingPage()){me._updateStore();}
-        }
+        };
 
         list.on('initialize',me._onListInitialized,me);
         scroller.on('scroll',me._onScroll,me);
