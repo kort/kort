@@ -38,7 +38,7 @@ echo "update error sources..."
 
 ###Keepright reletaded###
 echo "start keepright related update"
-$DIR/setup_keepright_db.sh -o kortuser -n osm_bugs -s keepright -c -l
+$DIR/setup_keepright_db.sh -o osm -n osm_bugs -s keepright -c -l
 # add geometry to table
 echo "Add geometry column to keepright.errors"
 psql -d $DB_NAME -c "select AddGeometryColumn ('keepright','errors','geom', 4326,'POINT',2);"
@@ -50,18 +50,18 @@ echo "keepright related update ended"
 
 ###osm_errors reletaded###
 echo "start osm_errors related update"
-$DIR/setup_osm_errors_db.sh -o kortuser -n osm_bugs -s osm_errors
+$DIR/setup_osm_errors_db.sh -o osm -n osm_bugs -s osm_errors
 echo "osm_errors related update ended"
 
 ### consolidate error sources and build indexes###
 echo "consolidate error sources..."
 echo "start consolidation"
-$DIR/setup_all_errors_db.sh -o kortuser -n osm_bugs -s all_errors -c
+$DIR/setup_all_errors_db.sh -o osm -n osm_bugs -s all_errors -c
 echo "consolidation ended"
 
 ### rebuild kort views and update kort data - errors are possible and tolerated ###
 echo "rebuild kort views and update kort data"
-$DIR/update_kort_db.sh -o kortuser -n osm_bugs -s kort
+$DIR/update_kort_db.sh -o osm -n osm_bugs -s kort
 # rebuild kort indexes
 psql -d $DB_NAME -c "REINDEX TABLE kort.answer;"
 psql -d $DB_NAME -c "REINDEX TABLE kort.error_type;"
