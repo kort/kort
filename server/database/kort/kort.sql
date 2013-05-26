@@ -21,9 +21,9 @@ create table kort.fix (
     fix_id integer primary key default nextval('kort.fix_id'),
     user_id integer,
     create_date timestamp not null default now(),
-    error_id integer not null,
+    error_id bigint not null,
     schema character varying(50) not null,
-    osm_id integer not null,
+    osm_id bigint not null,
     message text,
     falsepositive boolean not null default false,
     complete boolean not null default false,
@@ -101,7 +101,7 @@ CREATE TABLE kort.promo2mission (
 	validation_extra_coins integer NOT NULL
 );
 
-create function check_fix_onlyone_pending_per_error(i_error_id integer, i_schema varchar, i_osm_id integer)
+create function check_fix_onlyone_pending_per_error(i_error_id bigint, i_schema varchar, i_osm_id bigint)
 returns boolean as
 $$
 select
