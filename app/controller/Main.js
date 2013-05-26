@@ -51,6 +51,7 @@ Ext.define('Kort.controller.Main', {
      */
     showHighscore: function() {
         this._showView(this.getHighscoreNavigationView());
+        Kort.app.getController('Highscore').refreshAllLists();
     },
     
     /**

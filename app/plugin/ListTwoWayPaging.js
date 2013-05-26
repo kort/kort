@@ -83,7 +83,15 @@ Ext.define('Kort.plugin.ListTwoWayPaging', {
             scrollDock: 'bottom',
             docked: 'bottom',
             hidden: true
-        })
+        }),
+        /**
+         * @private
+         */
+        updateCallbackFunctionName: null,
+        /**
+         * @private
+         */
+        updateCallbackScope:null
     },
 
     /**
@@ -103,17 +111,68 @@ Ext.define('Kort.plugin.ListTwoWayPaging', {
         me.setTopPagePointer(me.getStartingPage());
         me.setBottomPagePointer(me.getStartingPage());
 
-        store.on('clear',me._resetPageCounters,me);
+        store.requestToWayUpdate=function(waitForUserRefreshedEvent,callbackFnName,callbackScope){
+            me.setUpdateCallbackFunctionName(callbackFnName);
+            me.setUpdateCallbackScope(callbackScope);
+            if(!waitForUserRefreshedEvent || !me.getUseUserPositionAsStartingPage()){me._updateStore();}
+        }
+
         list.on('initialize',me._onListInitialized,me);
         scroller.on('scroll',me._onScroll,me);
         scroller.on('scrollend',me._onScrollEnd,me);
 
         if(me.getUseUserPositionAsStartingPage()) {
-            Kort.app.on('userloaded',function() {
-                me._resetPageCounters(false);
-                store.loadPage(me.getStartingPage());
-            });
+            Kort.app.on('userloaded',me._updateStore,me);
+            Kort.app.on('userrefreshed',me._updateStore,me);
         }
+    },
+
+    /**
+     * @private
+     */
+    _updateStore: function() {
+        var me =this;
+        me._showLoadMask();
+        me._resetPageCounters();
+        me.getStore().removeAll();
+        this.getStore().loadPage(me.getStartingPage(), {
+            addRecords: true,
+            callback: function(){me._storeUpdated();},
+            scope:me
+        });
+    },
+
+    /**
+     * @private
+     */
+    _storeUpdated: function() {
+        var callbackFunctionName=this.getUpdateCallbackFunctionName(),
+            callbackScope=this.getUpdateCallbackScope();
+        this.getList().refresh();
+        this._hideLoadMask();
+        if(callbackFunctionName && callbackScope) {
+            this.setUpdateCallbackFunctionName(null);
+            this.setUpdateCallbackScope(null);
+            callbackScope[callbackFunctionName]();
+        }
+    },
+
+    /**
+     * @private
+     */
+    _showLoadMask: function() {
+        this.getList().setMasked({
+            xtype: 'loadmask',
+            message: Ext.i18n.Bundle.message('highscore.loadmask.message'),
+            zIndex: Kort.util.Config.getZIndex().overlayLeafletMap
+        });
+    },
+
+    /**
+     * @private
+     */
+    _hideLoadMask: function() {
+        this.getList().setMasked(false);
     },
 
     /**
@@ -155,6 +214,15 @@ Ext.define('Kort.plugin.ListTwoWayPaging', {
     /**
      * @private
      */
+    _onListInitialized: function() {
+        if(!this.getUseUserPositionAsStartingPage()){this.getStore().loadPage(this.getStartingPage());}
+        if(this.getBidirectional()) {this.getList().add(this.getLoadMoreTopComponent());}
+        this.getList().add(this.getLoadMoreBottomComponent());
+    },
+
+    /**
+     * @private
+     */
     _loadPreviousPage: function() {
         var me = this;
         if(me.getBidirectional()) {
@@ -181,15 +249,6 @@ Ext.define('Kort.plugin.ListTwoWayPaging', {
             callback: function(){me._nextPageFinishedLoading();},
             scope:me
         });
-    },
-
-    /**
-     * @private
-     */
-    _onListInitialized: function() {
-        if(!this.getUseUserPositionAsStartingPage()){this.getStore().loadPage(this.getStartingPage());}
-        if(this.getBidirectional()) {this.getList().add(this.getLoadMoreTopComponent());}
-        this.getList().add(this.getLoadMoreBottomComponent());
     },
 
     /**
@@ -223,9 +282,9 @@ Ext.define('Kort.plugin.ListTwoWayPaging', {
      * @returns {Number}
      */
     _calculateStartingPageBasedOnUsersPosition: function() {
-        if(typeof(Kort.user.get('rownumber'))!=='undefined') {
-            return 1 + Math.floor(Kort.user.get('rownumber')/this.getStore().getPageSize());
-        }else {
+        try {
+            return 1 + Math.floor((Kort.user.get('rownumber')-1)/this.getStore().getPageSize());
+        }catch(err) {
             return this.getStartingPage();
         }
     }

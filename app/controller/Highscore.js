@@ -13,6 +13,7 @@ Ext.define('Kort.controller.Highscore', {
         ],
         refs: {
             mainTabPanel: '#mainTabPanel',
+            highscoreTabPanel: '#highscoreTabPanelId',
             highscoreNavigationView: '#highscoreNavigationView',
             highscoreAbsoluteList: '#highScoreAbsoluteList',
             highscoreRelativeList: '#highScoreRelativeList',
@@ -52,10 +53,18 @@ Ext.define('Kort.controller.Highscore', {
         var me = this;
         me.callParent(arguments);
         me.getApplication().on({
-            votesend: { fn: me._loadStores, scope: me },
-            fixsend: { fn: me._loadStores, scope: me },
-            userchange: { fn: me._loadStores, scope: me }
+            votesend: { fn: function(){me._loadStores(true);}, scope: me },
+            fixsend: { fn: function(){me._loadStores(true);}, scope: me },
+            userchange: { fn: function(){me._loadStores(false);}, scope: me }
         });
+    },
+
+    /**
+     * Refreshes all highscore lists from it's corresponding stores without update the stores itself (no ajax call).
+     */
+    refreshAllLists: function() {
+        this.getHighscoreAbsoluteList().refresh();
+        this.getHighscoreRelativeList().refresh();
     },
 
 
@@ -63,27 +72,36 @@ Ext.define('Kort.controller.Highscore', {
      * @private
      */
     _onHighscoreRefreshButtonTap: function() {
-        this._loadStores();
+        this._loadStores(false);
     },
 
     /**
      * @private
+     * Delegate the load store request to the lists underlying ListTwoWayPaging-Plugin. When a list has finished loading,
+     * the _loadCallback function gets called (once for each list).
      */
-    _loadStores: function() {
+    _loadStores: function(waitForUserRefreshedEvent) {
         var me = this;
         me.getHighscoreRefreshButton().disable();
         me.getStoresInLoadingState().push(me.getHighscoreAbsoluteList());
         me.getStoresInLoadingState().push(me.getHighscoreRelativeList());
 
         me.getStoresInLoadingState().forEach(function(list, index, listArray) {
-            me._showLoadMaskOnList(list);
-            list.getStore().removeAll();
-            list.getStore().loadPage(list.getPlugins()[0].getStartingPage(), {
-                addRecords: true,
-                callback: function(){me._hideLoadMaskOnList(list);},
-                scope:me
-            });
+            list.getStore().requestToWayUpdate(waitForUserRefreshedEvent,'_loadCallback',me);
         });
+
+    },
+
+    /**
+     * @private
+     * Callback function for the highscore list ListTwoWayPaging plugin. Gets called after a list has finished loading.
+     * If a callback from the last loading list is received, reenables the loading button.
+     */
+    _loadCallback: function() {
+        this.getStoresInLoadingState().pop();
+        if(!this.getStoresInLoadingState().lenth) {
+            this.getHighscoreRefreshButton().enable();
+        }
     },
 
     /**
@@ -122,28 +140,6 @@ Ext.define('Kort.controller.Highscore', {
                 highscoreNavigationView.push(highscoreUserContainer);
                 highscoreNavigationView.fireEvent('detailpush', highscoreNavigationView);
             }
-        }
-    },
-
-    /**
-     * @private
-     */
-    _showLoadMaskOnList: function(list) {
-        list.setMasked({
-            xtype: 'loadmask',
-            message: Ext.i18n.Bundle.message('highscore.loadmask.message'),
-            zIndex: Kort.util.Config.getZIndex().overlayLeafletMap
-        });
-    },
-
-    /**
-     * @private
-     */
-    _hideLoadMaskOnList: function(list) {
-        list.setMasked(false);
-        this.getStoresInLoadingState().pop();
-        if(!this.getStoresInLoadingState().lenth) {
-            this.getHighscoreRefreshButton().enable();
         }
     },
 

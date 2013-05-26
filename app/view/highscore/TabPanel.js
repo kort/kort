@@ -12,6 +12,7 @@ Ext.define('Kort.view.highscore.TabPanel', {
 	config: {
         title: '',
         fullscreen: true,
+        id: 'highscoreTabPanelId',
         cls: 'highscoreTabPanel',
         tabBar: {
             minHeight: '1em'
