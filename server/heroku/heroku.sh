@@ -18,6 +18,7 @@ if [[ $DEPLOY == "true" ]] ; then
     bash $CI_HOME/server/heroku/heroku_add.sh >/dev/null
     bash $CI_HOME/server/heroku/heroku_push.sh
     heroku config:add KORT_DB_API_KEY=$KORT_DB_API_KEY | sed s/$KORT_DB_API_KEY/-secure-/
+    heroku addons:add newrelic:standard
 else
     echo "Omitting deployment to heroku."
 fi

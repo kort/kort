@@ -99,12 +99,7 @@
    <target name="php-docs">
        <echo message="Generating PHP docs (phpDocumentor)"/>
        <mkdir dir="${php.doc.dir}"/>
-       <exec executable="phpdoc">
-           <arg value="-d"/>
-           <arg value="${php.dir}"/>
-           <arg value="-t"/>
-           <arg value="${php.doc.dir}"/>
-       </exec>
+       <exec executable="bin/phpdoc.php" />
    </target>
 
 	<target name="css">

@@ -3,8 +3,10 @@
         "mockery/mockery": ">=0.7.2"
     },
     "minimum-version": "dev",
+    "minimum-stability": "dev",
     "require-dev": {
-        "squizlabs/php_codesniffer": "dev-master"
+        "squizlabs/php_codesniffer": "dev-master",
+        "phpdocumentor/phpdocumentor": "dev-develop"
     },
     "config": {
         "bin-dir": "bin"

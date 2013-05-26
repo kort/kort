@@ -8,7 +8,7 @@ Ext.define('Kort.util.Config', {
         /**
          * @cfg {String} version Current version number of application
          */
-        version: '1.2.${env.TRAVIS_BUILD_NUMBER}',
+        version: '1.2.{BUILD_NR}',
         
         /**
          * @cfg {String[]} supportedLanguages Supported languages of the app
@@ -129,7 +129,7 @@ Ext.define('Kort.util.Config', {
             information: [
                 '<a href="http://www.kort.ch" target="_blank">kort.ch</a>',
                 '<a href="http://kort.uservoice.com" target="_blank">UserVoice Contact</a>',
-                '<a href="https://github.com/odi86/kort/issues" target="_blank">GitHub</a>'
+                '<a href="https://github.com/kort/kort/issues" target="_blank">GitHub</a>'
             ],
             developers: [
                 'Jürg Hunziker',

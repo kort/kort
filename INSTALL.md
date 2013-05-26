@@ -12,20 +12,9 @@
 * PHP (5.3 or 5.4)
     * `apt-get install php5`
     * `apt-get install php5-curl`
-* PhantomJS
-    * `apt-get install phantomjs`
 * Composer
     * `curl -s https://getcomposer.org/installer | php`
     * `php composer.phar install --dev`
-* PEAR
-    * `apt-get install php-pear`
-    * `pear channel-discover pear.phpdoc.org`
-    * `pear install phpdoc/phpDocumentor-alpha`
-* Mockery
-    * `pear channel-discover pear.survivethedeepend.com`
-    * `pear channel-discover hamcrest.googlecode.com/svn/pear`
-    * `pear install --alldeps deepend/Mockery`
-	
 * RubyGems 
     * `apt-get install rubygems`
     * `gem install sass`
@@ -34,8 +23,6 @@
 * NPM
     * `apt-get install npm`
     * `npm -g install grunt`
-* Graphviz
-    * `apt-get install graphviz`
 * Ant
     * `apt-get install ant`
     * `ant -f build_kort.xml build`

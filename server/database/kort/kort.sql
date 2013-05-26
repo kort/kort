@@ -13,7 +13,7 @@ create table kort.error_type (
     bug_question character varying(255),
     vote_koin_count integer not null,
     fix_koin_count integer not null,
-    required_votes integer not null,     
+    required_votes integer not null,
     unique(type)
 );
 
