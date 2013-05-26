@@ -150,7 +150,7 @@ select a.answer_id id,
        a.sorting
 from   kort.answer a;
 
-CREATE or replace VIEW highscore AS
+CREATE or replace VIEW kort.highscore AS
 SELECT Rank()
          over (
            ORDER BY u.koin_count DESC)    AS ranking,
@@ -174,7 +174,7 @@ ORDER  BY Rank()
             over (
               ORDER BY u.koin_count DESC);
 
-CREATE or replace VIEW user_model AS
+CREATE or replace VIEW kort.user_model AS
 SELECT u.user_id                           AS id,
        u.name,
        u.username,
