@@ -168,7 +168,7 @@ SELECT Rank()
        (SELECT Count(1) AS count
         FROM   vote v
         WHERE  ( v.user_id = u.user_id )) AS vote_count
-FROM   "user" u
+FROM   kort.user u
 WHERE  ( u.username IS NOT NULL )
 ORDER  BY Rank()
             over (
@@ -200,7 +200,7 @@ SELECT u.user_id                           AS id,
                        highscore.user_id
                 FROM   highscore) hs2
         WHERE  ( hs2.user_id = u.user_id )) AS rownumber
-FROM   "user" u;
+FROM   kort.user u;
 
 create or replace view kort.user_badges as
 select b.badge_id id,
