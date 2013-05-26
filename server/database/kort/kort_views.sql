@@ -163,10 +163,10 @@ SELECT Rank()
        u.oauth_user_id,
        u.koin_count,
        (SELECT Count(1) AS count
-        FROM   fix f
+        FROM   kort.fix f
         WHERE  ( f.user_id = u.user_id )) AS fix_count,
        (SELECT Count(1) AS count
-        FROM   vote v
+        FROM   kort.vote v
         WHERE  ( v.user_id = u.user_id )) AS vote_count
 FROM   kort.user u
 WHERE  ( u.username IS NOT NULL )
@@ -185,20 +185,20 @@ SELECT u.user_id                           AS id,
        u.secret,
        u.koin_count,
        (SELECT Count(1) AS count
-        FROM   fix f
+        FROM   kort.fix f
         WHERE  ( f.user_id = u.user_id ))  AS fix_count,
        (SELECT Count(1) AS count
-        FROM   vote v
+        FROM   kort.vote v
         WHERE  ( v.user_id = u.user_id ))  AS vote_count,
        (SELECT hs.ranking
         FROM   (SELECT highscore.ranking,
                        highscore.user_id
-                FROM   highscore) hs
+                FROM   kort.highscore) hs
         WHERE  ( hs.user_id = u.user_id )) AS ranking,
        (SELECT hs2.rownumber
         FROM   (SELECT highscore.rownumber,
                        highscore.user_id
-                FROM   highscore) hs2
+                FROM   kort.highscore) hs2
         WHERE  ( hs2.user_id = u.user_id )) AS rownumber
 FROM   kort.user u;
 
