@@ -119,5 +119,5 @@ exception
 end;
 $$ language plpgsql;
 
-create trigger only_one_pending_per_error before insert or update on kort.fix
+create trigger only_one_pending_per_error after insert or update on kort.fix
 for each row execute procedure check_fix_onlyone_pending_per_error();
