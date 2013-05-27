@@ -101,9 +101,6 @@ CREATE TABLE kort.promo2mission (
 	validation_extra_coins integer NOT NULL
 );
 
-create function check_fix_onlyone_pending_per_error(i_error_id bigint, i_schema varchar, i_osm_id bigint)
-returns boolean as
-
 create or replace function check_fix_onlyone_pending_per_error()
 returns trigger as
 $$

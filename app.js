@@ -211,8 +211,6 @@ Ext.application({
         }
         Kort.model.User.load(clientSecret, {
             success: function(record, operation) {
-                console.log('user loaded');
-
                 // set global accessor to user
                 Kort.user = record;
                 // check if user is logged in
@@ -285,7 +283,6 @@ Ext.application({
         
         // load highscore
         //highscoreStore.load();
-
         this.showMainPanel(mainPanel);
     },
 

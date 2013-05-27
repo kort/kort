@@ -38,7 +38,7 @@ echo "update error sources..."
 
 ###Keepright reletaded###
 echo "start keepright related update"
-$DIR/setup_keepright_db.sh -o $DB_OWNER -n $DB_NAME -s keepright -c
+$DIR/setup_keepright_db.sh -o $DB_OWNER -n $DB_NAME -s keepright -c -l
 # add geometry to table
 echo "Add geometry column to keepright.errors"
 psql -d $DB_NAME -c "select AddGeometryColumn ('keepright','errors','geom', 4326,'POINT',2);"
