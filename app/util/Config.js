@@ -133,7 +133,9 @@ Ext.define('Kort.util.Config', {
             ],
             developers: [
                 'Jürg Hunziker',
-                'Stefan Oderbolz'
+                'Stefan Oderbolz',
+                'Annrita Egli',
+                'Carmelo Schumacher'
             ],
             project: {
                 title: 'Bachelorarbeit HS2012/13',
