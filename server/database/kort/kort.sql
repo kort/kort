@@ -84,21 +84,26 @@ create table kort.vote (
     foreign key (fix_id) references kort.fix (fix_id)
 );
 
-create function check_fix_onlyone_pending_per_error(i_error_id integer, i_schema varchar, i_osm_id integer)
-returns boolean as
+create or replace function check_fix_onlyone_pending_per_error()
+returns trigger as
 $$
-select
-case count(1)
-	when 0 then true
-	when 1 then true
-	else false
+declare
+    pending_count integer;
+begin
+    select  count(1)
+    into pending_count
+    from kort.fix
+    where error_id = new.error_id
+    and   schema = new.schema
+    and   osm_id = new.osm_id
+    and   not complete;
+
+    if pending_count > 1 then
+        raise exception 'There may only be one pending fix (%, %, %)', new.error_id, new.schema, new.osm_id;
+    end if;
+    return new;
 end
-from kort.fix
-where error_id = $1
-and   schema = $2
-and   osm_id = $3
-and   not complete
-$$ language 'sql';
+$$ language plpgsql;
 
 create or replace function reset_kort() returns boolean as $$
 begin
@@ -114,4 +119,5 @@ exception
 end;
 $$ language plpgsql;
 
-alter table kort.fix add constraint only_one_pending_per_error CHECK (check_fix_onlyone_pending_per_error(error_id, schema, osm_id));
+create trigger only_one_pending_per_error before insert or update on kort.fix
+for each row execute procedure check_fix_onlyone_pending_per_error();
