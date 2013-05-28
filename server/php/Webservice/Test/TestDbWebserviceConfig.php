@@ -14,7 +14,6 @@ class TestDbWebserviceConfig extends AbstractKortUnitTestCase
     public function testDbWebServiceURL()
     {
         $config = new DbWebserviceConfig();
-        //$this->assertEqual($config->getUrl(), "http://db.kort.ch/webservices/db");
-        $this->assertEqual($config->getUrl(), "http://online.db.kort.ch/webservices/db");
+        $this->assertEqual($config->getUrl(), "http://db.kort.ch/webservices/db");
     }
 }
