@@ -6,6 +6,7 @@ error_type.title.tracktype=Tip de drum nespecificat
 error_type.title.worship_religion=Loc de rugăciune fără religie precizată
 error_type.title.language_name=Limba numelui necunoscută
 error_type.title.street_wo_name=Stradă fără nume
+error_type.title.missing_cuisine=Restaurant without a cuisine
 
 # error type placeholders
 error_type.placeholder.ref=Referință
@@ -15,6 +16,7 @@ error_type.placeholder.speed_limit=Limită de viteză
 error_type.placeholder.language=Limbă
 error_type.placeholder.type=Tip
 error_type.placeholder.street_name=Numele străzii
+error_type.placeholder.missing_cuisine=Cuisine
 
 # vote questions
 vote.question.ref=Este aceasta referința corectă pentru autostradă?
@@ -24,6 +26,7 @@ vote.question.maxspeed=Este aceasta limita de viteză corectă pentru această s
 vote.question.language_unknown=Este numele '$2' în limba următoare?
 vote.question.tracktype=Este această cale de tipul următor?
 vote.question.street_name=Este acesta numele corect al străzii?
+vote.question.missing_cuisine=Is this the correct cuisine type of $1?
 
 # badge names
 badge.name.first_place=Locul 1
@@ -113,10 +116,32 @@ answer.language.uzbek=Uzbecă
 answer.language.vietnamese=Vietnameză
 answer.language.welsh=Galeză
 
+# missing_cuisine
+answer.missing_cuisine.regional=Regional
+answer.missing_cuisine.coffee_shop=Coffee Shop
+answer.missing_cuisine.international=International
+answer.missing_cuisine.italian=Italian
+answer.missing_cuisine.turkish=Turkish
+answer.missing_cuisine.chinese=Chinese
+answer.missing_cuisine.thai=Thai
+answer.missing_cuisine.asian=Asian
+answer.missing_cuisine.indian=Indian
+answer.missing_cuisine.french=French
+answer.missing_cuisine.mexican=Mexican
+answer.missing_cuisine.american=American
+answer.missing_cuisine.japanese=Japanese
+answer.missing_cuisine.greek=Greek
+answer.missing_cuisine.sandwich=Sandwich
+answer.missing_cuisine.steak_house=Steakhouse
+answer.missing_cuisine.chicken=Chicken
+answer.missing_cuisine.bistro_brasserie=Bistro, Brasserie
+answer.missing_cuisine.seafood=Seafood
+answer.missing_cuisine.burger=Burger
 
-################################################
-# THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT #
-################################################
+
+##############################################################
+# THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT AND OSM_ERRORS#
+##############################################################
 
 # error descriptions (KeepRight)
 bug.question.track=ce fel de traseu este acesta?
@@ -126,6 +151,7 @@ bug.question.name_of_street=Care este numele acestei străzi?
 bug.question.language=În ce limbă este numele $2 scris?
 bug.question.motorway_ref=Care este referința (de ex. A3 sau E385) acestei autostrăzi?
 bug.question.place_of_worship=Cărei religii aparține acest loc de rugăciune?
+bug.question.cuisine_of_restaurant=What's the cuisine type of '$1'?
 
 # single values
 cafe=cafenea

@@ -6,6 +6,7 @@ error_type.title.tracktype=Tracktype onbekend
 error_type.title.worship_religion=Religieuze plaats zonder godsdienstovertuiging
 error_type.title.language_name=Taal van de naam onbekend
 error_type.title.street_wo_name=Straat zonder naam
+error_type.title.missing_cuisine=Restaurant without a cuisine
 
 # error type placeholders
 error_type.placeholder.ref=Referentie
@@ -15,6 +16,7 @@ error_type.placeholder.speed_limit=Maximumsnelheid
 error_type.placeholder.language=Taal
 error_type.placeholder.type=Type
 error_type.placeholder.street_name=Straatnaam
+error_type.placeholder.missing_cuisine=Cuisine
 
 # vote questions
 vote.question.ref=Is de referentie voor deze autosnelweg correct?
@@ -24,6 +26,7 @@ vote.question.maxspeed=Klopt de snelheidsbeperking van deze straat?
 vote.question.language_unknown=Is de naam $2 in de volgende taal?
 vote.question.tracktype=Is dit pad van de volgende soort?
 vote.question.street_name=Klopt de naam van deze straat?
+vote.question.missing_cuisine=Is this the correct cuisine type of $1?
 
 # badge names
 badge.name.first_place=1ste plaats
@@ -113,10 +116,32 @@ answer.language.uzbek=Oezbeeks
 answer.language.vietnamese=Vietnamees
 answer.language.welsh=Welsh
 
+# missing_cuisine
+answer.missing_cuisine.regional=Regional
+answer.missing_cuisine.coffee_shop=Coffee Shop
+answer.missing_cuisine.international=International
+answer.missing_cuisine.italian=Italian
+answer.missing_cuisine.turkish=Turkish
+answer.missing_cuisine.chinese=Chinese
+answer.missing_cuisine.thai=Thai
+answer.missing_cuisine.asian=Asian
+answer.missing_cuisine.indian=Indian
+answer.missing_cuisine.french=French
+answer.missing_cuisine.mexican=Mexican
+answer.missing_cuisine.american=American
+answer.missing_cuisine.japanese=Japanese
+answer.missing_cuisine.greek=Greek
+answer.missing_cuisine.sandwich=Sandwich
+answer.missing_cuisine.steak_house=Steakhouse
+answer.missing_cuisine.chicken=Chicken
+answer.missing_cuisine.bistro_brasserie=Bistro, Brasserie
+answer.missing_cuisine.seafood=Seafood
+answer.missing_cuisine.burger=Burger
 
-################################################
-# THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT #
-################################################
+
+##############################################################
+# THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT AND OSM_ERRORS#
+##############################################################
 
 # error descriptions (KeepRight)
 bug.question.track=Welk soort veldweg is dit?
@@ -126,6 +151,7 @@ bug.question.name_of_street=Hoe heet deze straat?
 bug.question.language=In welke taal is de naam '$2' geschreven?
 bug.question.motorway_ref=Wat is de referentie (bv. A3 of E385) voor deze autosnelweg?
 bug.question.place_of_worship=Tot welke religie behoort deze gebedsplaats?
+bug.question.cuisine_of_restaurant=What's the cuisine type of '$1'?
 
 # single values
 cafe=café

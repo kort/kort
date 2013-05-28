@@ -7,52 +7,20 @@
     <author>
         <name>Kort Team</name>
     </author>
-    <id>urn:uuid:60a76c80-d399-11d9-b93C-0003939e0af6</id>
-
+    <id>hsr.ch_kort</id>
     <entry>
-        <title xml:lang="en">Atom-Powered Robots Run Amok</title>
-        <link href="http://example.org/2003/12/13/atom03"/>
-        <id>urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa7a</id>
-        <updated>2013-04-16T18:30:02Z</updated>
-        <content type="html">Different en text</content>
+        <title xml:lang="de">Kort Reloaded!</title>
+        <link href="#"/>
+        <id>hsr.ch_kort_annrita_1</id>
+        <updated>2013-05-28T14:30:02Z</updated>
+        <content type="html"></content>
     </entry>
     <entry>
-        <title xml:lang="fr">Atom-Powered Robots Run Amok 2</title>
-        <link href="http://example.org/2003/12/13/atom03"/>
-        <id>urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa8a</id>
-        <updated>2013-04-16T18:30:02Z</updated>
-        <content type="html">Different fr text 2</content>
-    </entry>
-    <entry>
-        <title xml:lang="fr">New News 2</title>
-        <link href="http://example.org/2003/12/13/atom03"/>
-        <id>urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efb3s</id>
-        <updated>2013-04-13T18:30:02Z</updated>
-        <content type="html">Different en text</content>
-    </entry>
-    <entry>
-        <title xml:lang="fr">New News 3 deleted and readded</title>
-        <link href="http://example.org/2003/12/13/atom03"/>
-        <id>urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344eaa3s</id>
-        <updated>2013-04-14T18:30:02Z</updated>
-        <content type="html">Different en text</content>
-    </entry>
-    <entry>
-        <title xml:lang="de">New News vom Zürichsee</title>
-        <link href="http://example.org/2003/12/13/atom03"/>
-        <id>urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efd3s</id>
-        <updated>2013-04-12T18:30:02Z</updated>
-        <content type="html">Am 1. Juni 2013 startet die erste Kort-Aktion! Rund um den ganzen
-        Zürichsee gibt es für jedes Gebäude, dessen Namen in der Kort-App eingetragen wird,
-        sechs zusätzliche Koins. Die Aktion endet am 30. Juni 2013. Also los, geht zum Zürichsee
-        und sucht die Namen der Gebäude, die noch namenlos sind.</content>
-    </entry>
-    <entry>
-        <title xml:lang="fr">New News 4</title>
-        <link href="http://example.org/2003/12/13/atom03"/>
-        <id>urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efe3s</id>
-        <updated>2013-04-15T18:30:02Z</updated>
-        <content type="html">Different en text</content>
+        <title xml:lang="en">Kort Reloaded!</title>
+        <link href="#"/>
+        <id>hsr.ch_kort_carmelo_1</id>
+        <updated>2013-05-28T14:30:02Z</updated>
+        <content type="html"></content>
     </entry>
 
 </feed>

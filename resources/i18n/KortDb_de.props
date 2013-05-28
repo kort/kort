@@ -138,9 +138,9 @@ answer.missing_cuisine.bistro_brasserie=Bistro, Biergarten
 answer.missing_cuisine.seafood=Meeresfrüchte
 answer.missing_cuisine.burger=Burger
 
-################################################
-# THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT #
-################################################
+##############################################################
+# THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT AND OSM_ERRORS#
+##############################################################
 
 # error descriptions (KeepRight)
 bug.question.track=Um welchen Weg-Typ handelt es sich hier?
