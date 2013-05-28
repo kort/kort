@@ -1,2 +1,2 @@
-DELETE FROM keepright.errors;
-DELETE FROM osm_errors.errors;
+TRUNCATE keepright.errors;
+TRUNCATE osm_errors.errors;
