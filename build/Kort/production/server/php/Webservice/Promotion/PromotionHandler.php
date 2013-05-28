@@ -48,8 +48,8 @@ class PromotionHandler extends DbProxyHandler
         return array(
             'id',
             'title',
-            'startdate::timestamp::date',
-            'enddate::timestamp::date',
+            'to_char(startdate, \'DD.MM.YYYY\')AS startdate',
+            'to_char(enddate, \'DD.MM.YYYY\')AS enddate',
         );
     }
 

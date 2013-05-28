@@ -1,9 +1,11 @@
 # Main View (TabPanel)
+tab.map=Map
 tab.bugmap=ミッション
 tab.validation=チェック
 tab.highscore=ハイスコア
 tab.profile=プロフィール
 tab.about=Kortについて
+tab.news=News
 
 # Login
 login.kort.description.1=ミッション完了
@@ -15,6 +17,7 @@ login.kort.introduction.3=解決済みのミッションへは、別のプレー
 login.kort.introduction.4=ミッションを開始するにはログインしてください\!
 login.button.google=Googleでログイン
 login.button.osm=OpenStreetMapでログイン
+login.button.facebook=Login with Facebook
 login.loadmask.message=ログイン...
 
 # Firststeps
@@ -32,16 +35,31 @@ geolocationerror.introduction=Kortをプレイするには、ブラウザの位�
 geolocationerror.button.reload=アプリを再読み込み
 geolocationerror.loadmask.message=アプリを再読み込み中...
 
-# Bugmap
-bugmap.title=近くのミッション
-bugmap.loadmask.message=ミッションを読み込み中...
-bugmap.messagebox.koins.earn={fix_koin_count} 個のKoinを獲得
-bugmap.messagebox.yes=回答
-bugmap.messagebox.no=分かりません
+# Map
+map.title=近くのミッション
+map.loadmask.message=ミッションを読み込み中...
+map.mission.promotionmessagebox.close=Close
+map.mission.promotionmessagebox.earn=Earn additional {extra_coins} Koins
+map.mission.promotionmessagebox.date={startdate} to {enddate}
+map.mission.missionmessagebox.koins.earn={fix_koin_count} 個のKoinを獲得
+map.mission.missionmessagebox.koins.earnpromotion=Earn {fix_koin_count} + {extra_coins} Koins
+map.mission.missionmessagebox.yes=Answer
+map.mission.missionmessagebox.no=Don't know
+map.mission.missionmessagebox.close=Close
+map.mission.layername=Missions
+map.missionInactive.layername = Inactive Missions
+map.validation.layername=Validations
+map.validation.validationmessagebox.koins.earn=Earn {validation_koin_count} Koins
+map.validation.validationmessagebox.koins.earnpromotion=Earn {validation_koin_count} + {extra_coins} Koins
+map.mission.validationmessagebox.yes=回答
+map.mission.validationmessagebox.no=分かりません
+map.mission.validationmessagebox.close=Close
+map.validation.validationmessagebox.checkit=Check the solution
 
 ## Fix
 fix.form.title=ミッション
 fix.form.koins.earn={fix_koin_count} 個のKoinを獲得しました\!
+fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins!
 fix.form.message.placeholder=あなたの回答...
 fix.form.button.showonmap=マップ上で見る
 fix.form.button.submit=ミッション完了
@@ -57,7 +75,6 @@ fix.alert.submit.failure.message=すみません、あなたの解答を投稿�
 # Validation
 validation.title=チェック
 validation.loadmask.message=データを読み込み中...
-validation.emptytext=お疲れさまでした\! すべてのメッセージをチェックしました。
 validation.list.header=あと {validations_left} 以上の評価が必要です
 validation.distance=距離
 
@@ -75,6 +92,9 @@ vote.alert.submit.failure.message=おおっと\! 回答を送信中にエラー�
 
 # Highscore
 highscore.title=ハイスコア
+highscore.title=Highscore
+highscore.absolute.tabtitle=Absolute
+highscore.relative.tabtitle=Relative
 highscore.loadmask.message=ハイスコア読み込み中...
 highscore.emptytext=ハイスコアを読み込めません。
 highscore.you=あなたです\!
@@ -111,6 +131,18 @@ profile.alert.username.specialchars.message=ユーザー名には英数字のみ
 profile.alert.submit.failure.title=送信エラー
 profile.alert.submit.failure.message=おおっと\! ユーザ名を送信中にエラーが発生しました。アプリケーションを再起動してもう一度入力をお願いします
 
+#News
+news.title=News
+news.unread=Unread
+news.read=Read
+news.list.emptytext=No entries
+news.updated=Updated
+news.settings.save=Save
+news.settings.cancel=Cancel
+news.settings.acceptNoLanguage=Deselect all
+news.settings.acceptAllLanguages=Select all
+news.settings.label=I want to receive news in the following languages:
+
 # About
 about.title=概要
 about.version.title=バージョン
@@ -128,16 +160,6 @@ about.credits.tiledata=タイル\:
 about.credits.markers=マーカーアイコン\:
 about.legal.title=Legal note\:
 about.legal.message=他の誰かの著作物を許可無く転載しないなど、OpenStreetMapのガイドラインに従ってください。
-
-# PullRefresh Plugin
-pullrefresh.pullrefresh=プルダウンで更新
-pullrefresh.releaserefresh=更新するには離してください...
-pullrefresh.loading=読み込み中...
-pullrefresh.lastupdated=最終更新\:
-
-# ListPaging Plugin
-listpaging.loadmore=続きを読み込む...
-listpaging.nomorerecords=より以前の履歴はありません
 
 # Button
 button.back=戻る
@@ -162,6 +184,21 @@ reward.alert.badges.title=バッジを獲得
 update.title=アプリの新バージョン
 update.message=アプリケーションのバージョンが新しくなりました。再読み込みしますか？
 
+#Languages
+en=English
+de=German
+it=Italian
+fr=French
+sl=Slovenian
+hr=Croatian
+cs=Czech
+nl=Dutch
+gl=Galician
+pt=Portuguese
+ro=Romanian
+ja=Japanese
+ca=Catalan
+es=Spanish
 
 ###############################
 # Labels used directly in source files (without Ext.i18n.Bundle plugin)
@@ -175,6 +212,3 @@ startscreen.browsererror=ご利用中のブラウザーにはまだ対応して�
 # app/util/Config.js
 ## Firststeps
 firststeps.form.username.placeholder=ユーザー名
-
-## PullRefresh Plugin
-pullrefresh.dateformat=Y/m/d h\:iA
