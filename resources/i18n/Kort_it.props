@@ -1,9 +1,11 @@
 # Main View (TabPanel)
+tab.map=Map
 tab.bugmap=Incarichi
 tab.validation=Verifica
 tab.highscore=Highscore
 tab.profile=Profilo
 tab.about=A proposito di Kort
+tab.news=News
 
 # Login
 login.kort.description.1=Risolvi incarichi
@@ -15,6 +17,7 @@ login.kort.introduction.3=Gli incarichi risolti possono essere verificati da alt
 login.kort.introduction.4=Fai login per cominciare\!
 login.button.google=Login con Google
 login.button.osm=Login con OpenStreetMap
+login.button.facebook=Login con Facebook
 login.loadmask.message=Login...
 
 # Firststeps
@@ -32,16 +35,31 @@ geolocationerror.introduction=Per poter usare Kort è necessario accedere alla t
 geolocationerror.button.reload=Ricarica l'applicazione
 geolocationerror.loadmask.message=Ricarico l'applicazione...
 
-# Bugmap
-bugmap.title=Incarichi nei dintorni
-bugmap.loadmask.message=Caricamento incarichi...
-bugmap.messagebox.koins.earn=Guadagna {fix_koin_count} Koins
-bugmap.messagebox.yes=Rispondi
-bugmap.messagebox.no=Non so
+# Map
+map.title=Incarichi nei dintorni
+map.loadmask.message=Caricamento incarichi...
+map.mission.promotionmessagebox.close=Close
+map.mission.promotionmessagebox.earn=Earn additional {extra_coins} Koins
+map.mission.promotionmessagebox.date={startdate} to {enddate}
+map.mission.missionmessagebox.koins.earn=Guadagna {fix_koin_count} Koins
+map.mission.missionmessagebox.koins.earnpromotion=Earn {fix_koin_count} + {extra_coins} Koins
+map.mission.missionmessagebox.yes=Answer
+map.mission.missionmessagebox.no=Don't know
+map.mission.missionmessagebox.close=Close
+map.mission.layername=Missions
+map.missionInactive.layername = Inactive Missions
+map.validation.layername=Validations
+map.validation.validationmessagebox.koins.earn=Earn {validation_koin_count} Koins
+map.validation.validationmessagebox.koins.earnpromotion=Earn {validation_koin_count} + {extra_coins} Koins
+map.mission.validationmessagebox.yes=Rispondi
+map.mission.validationmessagebox.no=Non so
+map.mission.validationmessagebox.close=Close
+map.validation.validationmessagebox.checkit=Check the solution
 
 ## Fix
 fix.form.title=Incarico
 fix.form.koins.earn=Prendi i {fix_koin_count} Koins\!
+fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins!
 fix.form.message.placeholder=La tua risposta...
 fix.form.button.showonmap=Mostra sulla mappa
 fix.form.button.submit=Risolvi l'incarico
@@ -57,7 +75,6 @@ fix.alert.submit.failure.message=C'è stato un problema nell'invio della riposta
 # Validation
 validation.title=Verifica
 validation.loadmask.message=Carico dati...
-validation.emptytext=Congratulazioni\! Tutte le risposte sono state verificate.
 validation.list.header={validations_left} valutazioni positive richieste
 validation.distance=Distanza
 
@@ -75,6 +92,8 @@ vote.alert.submit.failure.message=C'è stato un problema nell'invio della ripost
 
 # Highscore
 highscore.title=Highscore
+highscore.absolute.tabtitle=Absolute
+highscore.relative.tabtitle=Relative
 highscore.loadmask.message=Carico Highscore...
 highscore.emptytext=Impossibile caricare gli Highscore.
 highscore.you=Sei tu\!
@@ -111,6 +130,18 @@ profile.alert.username.specialchars.message=Il nome utente puó contenere solo l
 profile.alert.submit.failure.title=Errore nell'invio
 profile.alert.submit.failure.message=C'è stato un problema nell'invio del nome utente. Potrebbe essere necessario un riavvio dell'applicazione.
 
+#News
+news.title=News
+news.unread=Unread
+news.read=Read
+news.list.emptytext=No entries
+news.updated=Updated
+news.settings.save=Save
+news.settings.cancel=Cancel
+news.settings.acceptNoLanguage=Deselect all
+news.settings.acceptAllLanguages=Select all
+news.settings.label=I want to receive news in the following languages:
+
 # About
 about.title=A proposito
 about.version.title=Versione
@@ -128,16 +159,6 @@ about.credits.tiledata=Mappe (tiles)\:
 about.credits.markers=Icone dei marker\:
 about.legal.title=Indicazioni legali
 about.legal.message=Segui le indicazioni legali di OpenStreetMap, ad esempio non utilizzare sorgenti protette senza permesso.
-
-# PullRefresh Plugin
-pullrefresh.pullrefresh=Trascinare in basso per aggiornare
-pullrefresh.releaserefresh=Rilasciare per aggiornare...
-pullrefresh.loading=sto aggiornando...
-pullrefresh.lastupdated=Ultimo aggiornamento\:
-
-# ListPaging Plugin
-listpaging.loadmore=Carica altri...
-listpaging.nomorerecords=Non ci sono altre voci da visualizzare.
 
 # Button
 button.back=Indietro
@@ -162,6 +183,21 @@ reward.alert.badges.title=Nuovo Badge
 update.title=Nuova versione dell'app
 update.message=L'app è stata aggiornata all'ultima versione. Ricaricare?
 
+#Languages
+en=English
+de=German
+it=Italian
+fr=French
+sl=Slovenian
+hr=Croatian
+cs=Czech
+nl=Dutch
+gl=Galician
+pt=Portuguese
+ro=Romanian
+ja=Japanese
+ca=Catalan
+es=Spanish
 
 ###############################
 # Labels used directly in source files (without Ext.i18n.Bundle plugin)
@@ -175,6 +211,3 @@ startscreen.browsererror=Questo browser non è supportato al momento. Prova dal 
 # app/util/Config.js
 ## Firststeps
 firststeps.form.username.placeholder=Nome utente
-
-## PullRefresh Plugin
-pullrefresh.dateformat=d.m.Y h\:i\:s

@@ -56,24 +56,6 @@ map.mission.validationmessagebox.no=Don't know
 map.mission.validationmessagebox.close=Close
 map.validation.validationmessagebox.checkit=Check the solution
 
-
-#Markermap - should be obsolete
-markermap.title=Missions & Checks
-markermap.loadmask.message=Loading...
-markermap.bug.campaignmessagebox.close=Close
-markermap.bug.campaignmessagebox.earn=Earn additional {extra_coins} Koins
-markermap.bug.campaignmessagebox.date={startdate} to {enddate}
-markermap.bug.bugmessagebox.koins.earn=Earn {fix_koin_count} Koins
-markermap.bug.bugmessagebox.koins.earncamp=Earn {fix_koin_count} + {extra_coins} Koins
-markermap.bug.bugmessagebox.yes=Answer
-markermap.bug.bugmessagebox.no=Don't know
-markermap.bug.layername=Missions
-markermap.bugInactive.layername = Inactive Missions
-markermap.validation.layername=Validations
-markermap.validation.validationmessagebox.koins.earn=Earn {vote_koin_count} Koins
-markermap.validation.validationmessagebox.koins.earnpromotion=Earn {validation_koin_count} + {extra_coins} Koins
-markermap.validation.validationmessagebox.checkit=Check the solution
-
 ## Fix
 fix.form.title=Mission
 fix.form.koins.earn=Get the {fix_koin_count} Koins!
@@ -93,7 +75,6 @@ fix.alert.submit.failure.message=Oops! There was an error while sending your ans
 # Validation
 validation.title=Check
 validation.loadmask.message=Loading data...
-# validation.emptytext=Bravo! You checked all messages.
 validation.list.header={validations_left} positive ratings needed
 validation.distance=Distance
 
@@ -179,16 +160,6 @@ about.credits.markers=Marker Icons:
 about.legal.title=Legal note:
 about.legal.message=Please follow the guidelines of OpenStreetMap and don't use copyright protected sources without permission.
 
-# PullRefresh Plugin
-pullrefresh.pullrefresh=Pull down to refresh
-pullrefresh.releaserefresh=Release to refresh...
-pullrefresh.loading=loading...
-pullrefresh.lastupdated=Last updated:
-
-# ListPaging Plugin
-listpaging.loadmore=Load more...
-listpaging.nomorerecords=No more records available.
-
 # Button
 button.back=Back
 
@@ -241,6 +212,3 @@ startscreen.browsererror=Your browser is not supported yet. Try it on your mobil
 # app/util/Config.js
 ## Firststeps
 firststeps.form.username.placeholder=Username
-
-## PullRefresh Plugin
-pullrefresh.dateformat=m/d/Y h:iA

@@ -161,16 +161,6 @@ about.credits.markers=Marker Icons\:
 about.legal.title=Rechtliche Hinweise\:
 about.legal.message=Halte die Richtlinien von OpenStreetMap ein und verwende z.B. keine urheberrechtlich geschützten Quellen ohne Erlaubnis.
 
-# PullRefresh Plugin
-pullrefresh.pullrefresh=Zum Aktualisieren herunterziehen
-pullrefresh.releaserefresh=Zum Aktualisieren loslassen...
-pullrefresh.loading=wird aktualisiert...
-pullrefresh.lastupdated=Zuletzt aktualisiert\:
-
-# ListPaging Plugin
-listpaging.loadmore=Weitere Einträge laden...
-listpaging.nomorerecords=Keine weiteren Einträge vorhanden.
-
 # Button
 button.back=Zurück
 
@@ -223,6 +213,3 @@ startscreen.browsererror=Dein Browser wird leider noch nicht unterstützt. Kort 
 # app/util/Config.js
 ## Firststeps
 firststeps.form.username.placeholder=Benutzername
-
-## PullRefresh Plugin
-pullrefresh.dateformat=d.m.Y H\:i\:s
