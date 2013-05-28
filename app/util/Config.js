@@ -138,7 +138,7 @@ Ext.define('Kort.util.Config', {
                 'Carmelo Schumacher'
             ],
             project: {
-                title: 'Bachelorarbeit HS2012/13',
+                title: 'Bachelorarbeit HS2012/13<br>Semesterarbeit FS 2013',
                 school: 'HSR Hochschule für Technik Rapperswil',
                 advisor: 'Prof. Stefan Keller, <a href="http://wiki.hsr.ch/StefanKeller/wiki.cgi?GeometaLab" target="_blank">Geometa Lab</a>'
             },
