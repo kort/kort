@@ -24,7 +24,7 @@ testSkip("root", function() {
     });
 });
 
-testSkip("missing_track_type", function() {
+test("missing_track_type", function() {
 	var type = 'GET',
         data = null,
         url = urlLib.getAppUrl() + '/' + this.path + '/missing_track_type?limit=5';

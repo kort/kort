@@ -1,6 +1,6 @@
 #!/bin/bash
 DIR="$( cd "$( dirname "$0" )" && pwd )"
-while getopts ":o:n:s:dcmp:" opt; do
+while getopts ":o:n:s:dclmp:" opt; do
     case $opt in
         o)
             DB_OWNER="$OPTARG"
@@ -16,6 +16,9 @@ while getopts ":o:n:s:dcmp:" opt; do
             ;;
         c)
             CLEANUP="true"
+            ;;
+        l)
+            LEAVEOUT_POSTGIS="true"
             ;;
         m)
             MINIMAL_SETUP="true"
@@ -95,8 +98,8 @@ if [ -z $MINIMAL_SETUP ] ; then
     echo "Delete all part files"
     rm /tmp/kr_part*
     
-    echo "Creating indexes"
-    psql -d $DB_NAME -f $DIR/keepright/keepright_index.sql
+    # echo "Creating indexes"
+    # psql -d $DB_NAME -f $DIR/keepright/keepright_index.sql
     
     if [[ $CLEANUP ]] ; then
         echo "Cleanup data"
@@ -108,12 +111,9 @@ else
     echo "Use minimal setup, do not load data."
 fi
 
-echo "Install PostGIS"
-$DIR/setup_postgis.sh -d $DB_NAME -s $DB_SCHEMA -t errors
-
-echo "Drop views for kort"
-for view in `psql -qAt -c "select table_schema || '.' || table_name from information_schema.views where table_schema = 'kort';" $DB_NAME` ; do  psql -c "drop table $view" $DB_NAME ; done
-
-echo "Create views for kort"
-psql -d $DB_NAME -f $DIR/kort/kort_views.sql
-for view in `psql -qAt -c "select table_schema || '.' || table_name from information_schema.views where table_schema = 'kort';" $DB_NAME` ; do  psql -c "alter table $view owner to $DB_OWNER" $DB_NAME ; done
+if [[ -z $LEAVEOUT_POSTGIS ]] ; then
+    echo "Install PostGIS"
+    $DIR/setup_postgis.sh -d $DB_NAME -s $DB_SCHEMA -t errors
+else
+    echo "Omitting postgis install"
+fi

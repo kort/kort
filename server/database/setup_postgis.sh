@@ -30,7 +30,7 @@ if [ -z $SCHEMA_NAME ] ; then
 fi
 
 if [ -z $TABLE_NAME ] ; then
-    DB_NAME="errors"
+    TABLE_NAME="errors"
 fi
 
 # Install postgis 2.1 using apt-get: apt-get install postgresql-9.1-postgis
@@ -60,5 +60,5 @@ echo "Generate geometry objects based on lat/lng values"
 psql -d $DB_NAME -c "update $SCHEMA_NAME.$TABLE_NAME set geom = ST_SetSRID(ST_Point(lon/10000000.0,lat/10000000.0),4326);"
 
 # create spatial index
-echo "Create spatial index"
-psql -d $DB_NAME -c "create index geom_idx on $SCHEMA_NAME.$TABLE_NAME using gist(geom);"
+#echo "Create spatial index"
+#psql -d $DB_NAME -c "create index geom_idx on $SCHEMA_NAME.$TABLE_NAME using gist(geom);"

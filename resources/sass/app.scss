@@ -36,6 +36,9 @@ $tabs-dark: #111;
 @include pictos-iconmask('add_black');
 @include pictos-iconmask('minus_black1');
 @include pictos-iconmask('help');
+@include pictos-iconmask('bulb');
+@include pictos-iconmask('look');
+
 
 .x-toolbar-light .x-title {
     color: #fff;
@@ -44,4 +47,9 @@ $tabs-dark: #111;
 
 .x-button-back .x-button-label {
     color: #fff;
+}
+
+.transparentPanel .x-panel-inner{
+  background-color: transparent!important;
+  border:none;
 }

@@ -1,9 +1,11 @@
 # Main View (TabPanel)
+tab.map=Map
 tab.bugmap=Mise
 tab.validation=Kontroly
 tab.highscore=Žebříček
 tab.profile=Profil
 tab.about=O Kortu
+tab.news=News
 
 # Login
 login.kort.description.1=Splněné mise
@@ -15,6 +17,7 @@ login.kort.introduction.3=Každou vyřešenou misi později zkontrolují jiní h
 login.kort.introduction.4=Přihlaste se a zahajte misi\!
 login.button.google=Přihlásit přes Google
 login.button.osm=Přihlásit přes OpenStreetMap
+login.button.facebook=Přihlásit přes Facebook
 login.loadmask.message=Přihlašuji...
 
 # Firststeps
@@ -32,16 +35,31 @@ geolocationerror.introduction=Pro hraní Kortu je nezbytný přístup ke sledov�
 geolocationerror.button.reload=Znovu načíst aplikaci
 geolocationerror.loadmask.message=Načítám znovu...
 
-# Bugmap
-bugmap.title=Mise v okolí
-bugmap.loadmask.message=Nahrávám mise...
-bugmap.messagebox.koins.earn=Získejte {fix_koin_count} Koinů
-bugmap.messagebox.yes=Odpovědět
-bugmap.messagebox.no=Nevím
+# Map
+map.title=Mise v okolí
+map.loadmask.message=Nahrávám mise...
+map.mission.promotionmessagebox.close=Close
+map.mission.promotionmessagebox.earn=Earn additional {extra_coins} Koins
+map.mission.promotionmessagebox.date={startdate} to {enddate}
+map.mission.missionmessagebox.koins.earn=Získejte {fix_koin_count} Koinů
+map.mission.missionmessagebox.koins.earnpromotion=Earn {fix_koin_count} + {extra_coins} Koins
+map.mission.missionmessagebox.yes=Answer
+map.mission.missionmessagebox.no=Don't know
+map.mission.missionmessagebox.close=Close
+map.mission.layername=Missions
+map.missionInactive.layername = Inactive Missions
+map.validation.layername=Validations
+map.validation.validationmessagebox.koins.earn=Earn {validation_koin_count} Koins
+map.validation.validationmessagebox.koins.earnpromotion=Earn {validation_koin_count} + {extra_coins} Koins
+map.mission.validationmessagebox.yes=Odpovědět
+map.mission.validationmessagebox.no=Nevím
+map.mission.validationmessagebox.close=Close
+map.validation.validationmessagebox.checkit=Check the solution
 
 ## Fix
 fix.form.title=Mise
 fix.form.koins.earn=Získejte {fix_koin_count} Koinů\!
+fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins!
 fix.form.message.placeholder=Vaše odpověď...
 fix.form.button.showonmap=Ukaž na mapě
 fix.form.button.submit=Dokončit misi
@@ -57,7 +75,6 @@ fix.alert.submit.failure.message=Ajaj\! Při odesílání vaší odpovědi se vy
 # Validation
 validation.title=Kontrola
 validation.loadmask.message=Nahrávám data...
-validation.emptytext=Bravo\! Zkontroloval jste všechny zprávy.
 validation.list.header=je potřeba {validations_left} pozitivních hodnocení
 validation.distance=Vzdálenost
 
@@ -75,6 +92,8 @@ vote.alert.submit.failure.message=Ajaj\! Při odesílání vaší odpovědi se v
 
 # Highscore
 highscore.title=Žebříček
+highscore.absolute.tabtitle=Absolute
+highscore.relative.tabtitle=Relative
 highscore.loadmask.message=Nahrávám žebříček...
 highscore.emptytext=Nemohu nahrát žebříček.
 highscore.you=To jste vy\!
@@ -111,6 +130,18 @@ profile.alert.username.specialchars.message=Používejte prosím pouze písmena 
 profile.alert.submit.failure.title=Chyba při odesílání
 profile.alert.submit.failure.message=Ajaj\! Při odesílání uživatelského jména nastala chyba. Mohlo by pomoci restartování aplikace. 
 
+#News
+news.title=News
+news.unread=Unread
+news.read=Read
+news.list.emptytext=No entries
+news.updated=Updated
+news.settings.save=Save
+news.settings.cancel=Cancel
+news.settings.acceptNoLanguage=Deselect all
+news.settings.acceptAllLanguages=Select all
+news.settings.label=I want to receive news in the following languages:
+
 # About
 about.title=O
 about.version.title=Verze
@@ -128,16 +159,6 @@ about.credits.tiledata=Mapové dlaždice\:
 about.credits.markers=Ikony značek\:
 about.legal.title=Právní poznámka\:
 about.legal.message=Prosím respektujte zásady OpenStreetMap a nepoužívejte zdoje chráněné copyrightem bez povolení.
-
-# PullRefresh Plugin
-pullrefresh.pullrefresh=Stáhněte pro obnovení
-pullrefresh.releaserefresh=Stáhněte pro obnovení...
-pullrefresh.loading=nahrávám...
-pullrefresh.lastupdated=Poslední aktualizace\:
-
-# ListPaging Plugin
-listpaging.loadmore=Load more...
-listpaging.nomorerecords=No more records available.
 
 # Button
 button.back=Zpět
@@ -162,6 +183,21 @@ reward.alert.badges.title=Získané odznaky
 update.title=Nová verze aplikace
 update.message=Aplikace byla aktualizována na nejnovější verzi. Načíst znovu?
 
+#Languages
+en=English
+de=German
+it=Italian
+fr=French
+sl=Slovenian
+hr=Croatian
+cs=Czech
+nl=Dutch
+gl=Galician
+pt=Portuguese
+ro=Romanian
+ja=Japanese
+ca=Catalan
+es=Spanish
 
 ###############################
 # Labels used directly in source files (without Ext.i18n.Bundle plugin)
@@ -175,6 +211,3 @@ startscreen.browsererror=Your browser is not supported yet. Try it on your mobil
 # app/util/Config.js
 ## Firststeps
 firststeps.form.username.placeholder=Uživatelské jméno
-
-## PullRefresh Plugin
-pullrefresh.dateformat=d.m.Y H\:i\:s

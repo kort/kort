@@ -1,5 +1,5 @@
 /**
- * Main container for vote view
+ * Main container for user view.
  */
 Ext.define('Kort.view.highscore.user.Container', {
 	extend: 'Ext.Container',
@@ -15,7 +15,10 @@ Ext.define('Kort.view.highscore.user.Container', {
         scrollable: true,
         layout: 'vbox'
 	},
-    
+
+    /**
+     * @private
+     */
     initialize: function () {
         var highscoreUserContentComponent,
             highscoreUserBadgesDataView;

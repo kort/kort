@@ -1,5 +1,5 @@
 /**
- * Carousel view for badges
+ * Carousel view for badges.
  */
 Ext.define('Kort.view.profile.BadgesCarousel', {
 	extend: 'Ext.Carousel',
@@ -20,7 +20,10 @@ Ext.define('Kort.view.profile.BadgesCarousel', {
                     '</div>'
                 )
 	},
-    
+
+    /**
+     * @private
+     */
     initialize: function() {
         this.callParent(arguments);
         

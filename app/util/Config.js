@@ -71,6 +71,17 @@ Ext.define('Kort.util.Config', {
             },
             osm: {
                 url: './server/oauth2callback/osm/authorize.php'
+            },
+            facebook: {
+                url: 'https://www.facebook.com/dialog/oauth',
+                scopes: [
+                    'email'
+                ],
+                redirect_path: 'server/oauth2callback/facebook',
+                response_type: 'code',
+                client_id: '290615117735384'
+
+
             }
         },
 
@@ -122,10 +133,12 @@ Ext.define('Kort.util.Config', {
             ],
             developers: [
                 'Jürg Hunziker',
-                'Stefan Oderbolz'
+                'Stefan Oderbolz',
+                'Annrita Egli',
+                'Carmelo Schumacher'
             ],
             project: {
-                title: 'Bachelorarbeit HS2012/13',
+                title: 'Bachelorarbeit HS2012/13<br>Semesterarbeit FS 2013',
                 school: 'HSR Hochschule für Technik Rapperswil',
                 advisor: 'Prof. Stefan Keller, <a href="http://wiki.hsr.ch/StefanKeller/wiki.cgi?GeometaLab" target="_blank">Geometa Lab</a>'
             },
@@ -200,15 +213,22 @@ Ext.define('Kort.util.Config', {
         },
 
         /**
+         * @cfg {Number} operationalRange Default parameter for what distance in meteres from user's gps coordinates a mission is considered to be solvable.
+         */
+        operationalRange: 5000,
+
+        /**
          * @cfg {Object} webservices Configuration of webservices
-         * @cfg {Object} webservices.bug Configuration of bug webservice
-         * @cfg {Function} webservices.bug.getUrl (required) Returns url of bug webservice with given position (latitude, longitude)
-         * @cfg {Number} webservices.bug.radius (required) Maximum range for bugs selection (in meters)
-         * @cfg {Number} webservices.bug.limit (required) Limits bugs to given number
+         * @cfg {Object} webservices.mission Configuration of mission webservice
+         * @cfg {Function} webservices.mission.getUrl (required) Returns url of mission webservice with given position (latitude, longitude)
+         * @cfg {Number} webservices.mission.radius (required) Maximum range for bugs selection (in meters)
+         * @cfg {Number} webservices.mission.limit (required) Limits bugs to given number
          * @cfg {Object} webservices.validation Configuration of validation webservice
          * @cfg {Function} webservices.validation.getUrl (required) Returns url of validation webservice with given position (latitude, longitude)
          * @cfg {Number} webservices.validation.radius (required) Maximum range for validations selection (in meters)
          * @cfg {Number} webservices.validation.limit (required) Limits validations to given number
+         * @cfg {Object} webservices.promotion Configuration of promotion webservice
+         * @cfg {Object} webservices.user.url Url of promotion webservice
          * @cfg {Object} webservices.user Configuration of user webservice
          * @cfg {Object} webservices.user.url Url of user webservice
          * @cfg {Object} webservices.userLogout Configuration of userlogout webservice
@@ -228,19 +248,22 @@ Ext.define('Kort.util.Config', {
          * @cfg {Function} webservices.osm.getUrl (required) Returns url of osm webservice with given osm object(id, type)
          */
         webservices: {
-            bug: {
+            mission: {
                 getUrl: function(latitude, longitude) {
-                    return './server/webservices/bug/position/' + latitude + ',' + longitude;
+                    return './server/webservices/mission/position/' + latitude + ',' + longitude;
                 },
-                radius: 50000,
+                radius: this.operationalRange,
                 limit: 25
             },
             validation: {
                 getUrl: function(latitude, longitude) {
                     return './server/webservices/validation/position/' + latitude + ',' + longitude;
                 },
-                radius: 20000,
-                limit: 15
+                radius: this.operationalRange,
+                limit: 25
+            },
+            promotion: {
+                url: './server/webservices/promotion/'
             },
             user: {
                 url: './server/webservices/user/'
@@ -256,14 +279,15 @@ Ext.define('Kort.util.Config', {
                 }
             },
             highscore: {
-                url: './server/webservices/highscore/',
+                absoluteUrl: './server/webservices/highscore/absolute',
+                relativeUrl: './server/webservices/highscore/relative',
                 limit: 10
             },
             answer: {
                 url: './server/webservices/answer/'
             },
             fix: {
-                url: './server/webservices/bug/fix'
+                url: './server/webservices/mission/fix'
             },
             vote: {
                 url: './server/webservices/validation/vote'
@@ -273,7 +297,28 @@ Ext.define('Kort.util.Config', {
                     return './server/webservices/osm/' + objectType + '/' + objectId;
                 }
             }
-        }
+        },
+
+        /**
+        * @cfg {Object} mapMarkerState Enumeration of all possible mission states
+        * @cfg {String} mapMarkerState.mission Enum-key for mission state
+        * @cfg {String} mapMarkerState.missionPromotion Enum-key for missionPromotion state
+        * @cfg {String} mapMarkerState.validation Enum-key for validation state
+        * @cfg {String} mapMarkerState.validationPromotion Enum-key for validationPromotion state
+        * @cfg {String} mapMarkerState.inactive Enum-key for inactive state
+        */
+        mapMarkerState: {
+            mission: 'missionState',
+            missionPromotion: 'missionPromotionState',
+            validation: 'validationSate',
+            validationPromotion: 'validationPromotionState',
+            inactive: 'inactiveState'
+        },
+
+        /**
+         * @cfg {String} URL of Atom news feed
+         */
+        newsAtomFeedUrl: './resources/stores/news_default.xml'
 	},
 
     /**
@@ -325,22 +370,24 @@ Ext.define('Kort.util.Config', {
         return false;
 	},
 
+
     /**
      * Returns a Leaflet marker icon for a given type
      * @param {String} type Type of marker
      */
-    getMarkerIcon: function(type) {
-        var iconWidth = 32,
-            iconHeight = 37,
+    getMarkerIcon: function(type, state, inOperationalRange) {
+        var iconWidth = 35,
+            iconHeight = 42,
             shadowWidth = 51,
             shadowHeight = 37,
-            icon;
+            icon,
+            iconCenterCorrectionFactor=0.064;
 
         icon = L.icon({
-            iconUrl: './resources/images/marker_icons/' + type + '.png',
-            iconRetinaUrl: './resources/images/marker_icons/' + type + '@2x.png',
+            iconUrl: this.constructMissionIconURL(type,state,false, inOperationalRange),
+            iconRetinaUrl: this.constructMissionIconURL(type,state,true, inOperationalRange),
             iconSize: [iconWidth, iconHeight],
-            iconAnchor: [(iconWidth/2), iconHeight],
+            iconAnchor: [((iconWidth/2)*(1-iconCenterCorrectionFactor)), iconHeight],
             shadowUrl: './resources/images/marker_icons/shadow.png',
             shadowRetinaUrl: './resources/images/marker_icons/shadow@2x.png',
             shadowSize: [shadowWidth, shadowHeight],
@@ -348,5 +395,29 @@ Ext.define('Kort.util.Config', {
             popupAnchor: [0, -(2*iconHeight/3)]
         });
         return icon;
+    },
+
+    /**
+     * Constructs the correct Path to the mission icons depending
+     * on type, state, retina and if it is in operationalRange.
+     */
+    constructMissionIconURL: function(type, state, retina, inOperationalRange) {
+        if(typeof(state)==='undefined') {state=Kort.util.Config.getMapMarkerState().mission;}
+        if(typeof(retina)==='undefined') {retina=false;}
+        if(typeof(inOperationalRange)==='undefined') {inOperationalRange=true;}
+
+        var pathToResourceFolder = './resources/images/marker_icons/',
+            stateToPathSuffix = [],
+            retinaPathSuffix = retina ? '@2x' : '',
+            inOperationalStatePathSuffix = inOperationalRange ? '' : 'inactive';
+
+        stateToPathSuffix[Kort.util.Config.getMapMarkerState().mission] = 'mission';
+        stateToPathSuffix[Kort.util.Config.getMapMarkerState().missionPromotion] = 'missionpromotion';
+        stateToPathSuffix[Kort.util.Config.getMapMarkerState().validation] = 'validation';
+        stateToPathSuffix[Kort.util.Config.getMapMarkerState().validationPromotion] = 'validationpromotion';
+
+        return pathToResourceFolder + type  + '_' + stateToPathSuffix[state] + inOperationalStatePathSuffix + retinaPathSuffix + '.png';
     }
+
+
 });

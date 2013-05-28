@@ -16,7 +16,6 @@ $googleOAuth = new \OAuth\GoogleOAuth();
 if (isset($_GET['code'])) {
     $googleOAuth->authenticate($_GET['code']);
     $dbUser = $googleOAuth->saveApplicationUser();
-
     session_start();
     $_SESSION['secret'] = $dbUser['secret'];
     $_SESSION['user_id'] = $dbUser['user_id'];

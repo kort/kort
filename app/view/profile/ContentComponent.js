@@ -1,5 +1,5 @@
 /**
- * Component which shows user content
+ * Component which shows user content.
  */
 Ext.define('Kort.view.profile.ContentComponent', {
 	extend: 'Ext.Component',

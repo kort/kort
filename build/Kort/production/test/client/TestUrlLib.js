@@ -5,7 +5,7 @@ module("kort-UrlLib", {
   },
 
   generateLocalUrl: function() {
-    return "http://localhost/some/test/url/";
+    return "http://localhost/kort/test/client/";
 }
 });
 

@@ -41,6 +41,7 @@ class UserGetHandler extends DbProxyHandler
             'vote_count',
             'koin_count',
             'ranking',
+            'rownumber',
             'secret'
         );
     }

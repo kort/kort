@@ -1,9 +1,11 @@
 # Main View (TabPanel)
+tab.map=Map
 tab.bugmap=Opdrachten
 tab.validation=Controleer
 tab.highscore=Hoogste score
 tab.profile=Profiel
 tab.about=Over Kort
+tab.news=News
 
 # Login
 login.kort.description.1=Voltooide opdrachten
@@ -15,6 +17,7 @@ login.kort.introduction.3=Elke opgeloste opdracht wordt later door andere speler
 login.kort.introduction.4=Log nu in om te beginnen met je opdracht\!
 login.button.google=Inloggen met Google
 login.button.osm=Inloggen met Openstreetmap
+login.button.facebook=Inloggen met Facebook
 login.loadmask.message=Inloggen...
 
 # Firststeps
@@ -32,16 +35,31 @@ geolocationerror.introduction=Om dit spel te kunnen spelen, is het essentieel da
 geolocationerror.button.reload=Herlaad applicatie
 geolocationerror.loadmask.message=Applicatie opnieuw laden...
 
-# Bugmap
-bugmap.title=Opdrachten in de buurt
-bugmap.loadmask.message=Opdrachten aan het laden...
-bugmap.messagebox.koins.earn=Verdien {fix_koin_count} Koins
-bugmap.messagebox.yes=Antwoord
-bugmap.messagebox.no=Weet niet
+# Map
+map.title=Opdrachten in de buurt
+map.loadmask.message=Opdrachten aan het laden...
+map.mission.promotionmessagebox.close=Close
+map.mission.promotionmessagebox.earn=Earn additional {extra_coins} Koins
+map.mission.promotionmessagebox.date={startdate} to {enddate}
+map.mission.missionmessagebox.koins.earn=Verdien {fix_koin_count} Koins
+map.mission.missionmessagebox.koins.earnpromotion=Earn {fix_koin_count} + {extra_coins} Koins
+map.mission.missionmessagebox.yes=Answer
+map.mission.missionmessagebox.no=Don't know
+map.mission.missionmessagebox.close=Close
+map.mission.layername=Missions
+map.missionInactive.layername = Inactive Missions
+map.validation.layername=Validations
+map.validation.validationmessagebox.koins.earn=Earn {validation_koin_count} Koins
+map.validation.validationmessagebox.koins.earnpromotion=Earn {validation_koin_count} + {extra_coins} Koins
+map.mission.validationmessagebox.yes=Antwoord
+map.mission.validationmessagebox.no=Weet niet
+map.mission.validationmessagebox.close=Close
+map.validation.validationmessagebox.checkit=Check the solution
 
 ## Fix
 fix.form.title=Opdracht
 fix.form.koins.earn=Krijg de
+fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins!
 fix.form.message.placeholder=Je antwoord...
 fix.form.button.showonmap=Laat zien op de kaart
 fix.form.button.submit=Voltooi opdracht
@@ -57,7 +75,6 @@ fix.alert.submit.failure.message=Oeps\! Oeps\! Er was een fout tijdens het verze
 # Validation
 validation.title=Controleer
 validation.loadmask.message=Data aan het ophalen...
-validation.emptytext=Bravo\! Je hebt al je opdrachten gecontroleerd.
 validation.list.header={validations_left} benodigd aantal positieve beoordelingen
 validation.distance=Afstand
 
@@ -75,6 +92,8 @@ vote.alert.submit.failure.message=Oeps\! Er was een fout tijdens het versturen v
 
 # Highscore
 highscore.title=Hoogste score
+highscore.absolute.tabtitle=Absolute
+highscore.relative.tabtitle=Relative
 highscore.loadmask.message=Hoogste score aan het laden...
 highscore.emptytext=Kan hoogste score niet laden.
 highscore.you=Dit ben jij\!
@@ -111,6 +130,18 @@ profile.alert.username.specialchars.message=Gebruik alleen letters en cijfers vo
 profile.alert.submit.failure.title=Fout tijdens versturen
 profile.alert.submit.failure.message=Oeps\! Er was een fout tijdens het versturen van de gebruikersnaam. Start de app opnieuw op.
 
+#News
+news.title=News
+news.unread=Unread
+news.read=Read
+news.list.emptytext=No entries
+news.updated=Updated
+news.settings.save=Save
+news.settings.cancel=Cancel
+news.settings.acceptNoLanguage=Deselect all
+news.settings.acceptAllLanguages=Select all
+news.settings.label=I want to receive news in the following languages:
+
 # About
 about.title=Over
 about.version.title=Versie
@@ -128,16 +159,6 @@ about.credits.tiledata=Tiles\:
 about.credits.markers=Symbolen\:
 about.legal.title=Juridisch\:
 about.legal.message=Volg de richtlijnen van Openstreetmap. Gebruik zonder toestemming geen data die auteursrechtelijk beschermd zijn.
-
-# PullRefresh Plugin
-pullrefresh.pullrefresh=Sleep naar beneden om te verversen
-pullrefresh.releaserefresh=Laat los om te verversen...
-pullrefresh.loading=Ophalen...
-pullrefresh.lastupdated=Laatst bijgewerkt\:
-
-# ListPaging Plugin
-listpaging.loadmore=Laad nieuwe in...
-listpaging.nomorerecords=Geen nieuwe records beschikbaar.
 
 # Button
 button.back=Terug
@@ -162,6 +183,21 @@ reward.alert.badges.title=Gewonnen badges
 update.title=Nieuwe versie van de app
 update.message=The app moet bijgewerkt worden naar de nieuwste versie. Herladen?
 
+#Languages
+en=English
+de=German
+it=Italian
+fr=French
+sl=Slovenian
+hr=Croatian
+cs=Czech
+nl=Dutch
+gl=Galician
+pt=Portuguese
+ro=Romanian
+ja=Japanese
+ca=Catalan
+es=Spanish
 
 ###############################
 # Labels used directly in source files (without Ext.i18n.Bundle plugin)
@@ -175,6 +211,3 @@ startscreen.browsererror=Je browser wordt nog niet ondersteund. Probeer het op j
 # app/util/Config.js
 ## Firststeps
 firststeps.form.username.placeholder=Gebruikersnaam
-
-## PullRefresh Plugin
-pullrefresh.dateformat=m/d/J u\:m

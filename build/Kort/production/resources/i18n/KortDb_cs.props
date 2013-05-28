@@ -6,6 +6,7 @@ error_type.title.tracktype=Neznámá kvalita povrchu cesty
 error_type.title.worship_religion=Svatostánek bez určení náboženství
 error_type.title.language_name=Neznámý jazyk jména
 error_type.title.street_wo_name=Ulice bez jména
+error_type.title.missing_cuisine=Restaurant without a cuisine
 
 # error type placeholders
 error_type.placeholder.ref=Reference
@@ -15,6 +16,7 @@ error_type.placeholder.speed_limit=Maximální dovolená rychlost
 error_type.placeholder.language=Jazyk
 error_type.placeholder.type=Typ
 error_type.placeholder.street_name=Jméno ulice
+error_type.placeholder.missing_cuisine=Cuisine
 
 # vote questions
 vote.question.ref=Je číslo této dálnice správně?
@@ -24,6 +26,7 @@ vote.question.maxspeed=Je maximální dovolená rychlost na této ulici správn�
 vote.question.language_unknown=Je jméno  '$2' v tomto jazyce?
 vote.question.tracktype=Je uvedený druh této cesty správně?
 vote.question.street_name=Je to správné jméno ulice?
+vote.question.missing_cuisine=Is this the correct cuisine type of $1?
 
 # badge names
 badge.name.first_place=1. místo
@@ -113,10 +116,32 @@ answer.language.uzbek=Uzbecký
 answer.language.vietnamese=Vietnamský
 answer.language.welsh=Velšský
 
+# missing_cuisine
+answer.missing_cuisine.regional=Regional
+answer.missing_cuisine.coffee_shop=Coffee Shop
+answer.missing_cuisine.international=International
+answer.missing_cuisine.italian=Italian
+answer.missing_cuisine.turkish=Turkish
+answer.missing_cuisine.chinese=Chinese
+answer.missing_cuisine.thai=Thai
+answer.missing_cuisine.asian=Asian
+answer.missing_cuisine.indian=Indian
+answer.missing_cuisine.french=French
+answer.missing_cuisine.mexican=Mexican
+answer.missing_cuisine.american=American
+answer.missing_cuisine.japanese=Japanese
+answer.missing_cuisine.greek=Greek
+answer.missing_cuisine.sandwich=Sandwich
+answer.missing_cuisine.steak_house=Steakhouse
+answer.missing_cuisine.chicken=Chicken
+answer.missing_cuisine.bistro_brasserie=Bistro, Brasserie
+answer.missing_cuisine.seafood=Seafood
+answer.missing_cuisine.burger=Burger
 
-################################################
-# THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT #
-################################################
+
+##############################################################
+# THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT AND OSM_ERRORS#
+##############################################################
 
 # error descriptions (KeepRight)
 bug.question.track=Jaký má cesta povrch?
@@ -126,6 +151,7 @@ bug.question.name_of_street=Jaké je jméno této ulice?
 bug.question.language=V jakém jazyce je jméno '$2' ?
 bug.question.motorway_ref=Jaké je číslo (např. D1 nebo R65) této dálnice?
 bug.question.place_of_worship=Jakému náboženství náleží tento svatostánek?
+bug.question.cuisine_of_restaurant=What's the cuisine type of '$1'?
 
 # single values
 cafe=kavárna

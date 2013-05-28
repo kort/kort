@@ -468,7 +468,6 @@ Ext.define('Ext.dataview.List', {
 
     headerTranslateFn: function(record, transY, headerTranslate) {
         var headerString = this.getStore().getGroupString(record);
-
         if (this.currentHeader !== headerString) {
             this.currentHeader = headerString;
             this.header.setHtml(headerString);

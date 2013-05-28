@@ -1,5 +1,5 @@
 /**
- * DataView which displays all badges
+ * DataView which displays all badges.
  */
 Ext.define('Kort.view.highscore.user.BadgesDataView', {
 	extend: 'Ext.DataView',

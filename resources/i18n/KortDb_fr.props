@@ -6,6 +6,7 @@ error_type.title.tracktype=Type de voie inconnu
 error_type.title.worship_religion=Place de culte sans religion
 error_type.title.language_name=Langue du nom inconnue
 error_type.title.street_wo_name=Rue sans nom
+error_type.title.missing_cuisine=Restaurant without a cuisine
 
 # error type placeholders
 error_type.placeholder.ref=Référence
@@ -15,6 +16,7 @@ error_type.placeholder.speed_limit=Vitesse maximale autorisée
 error_type.placeholder.language=Langue
 error_type.placeholder.type=Type
 error_type.placeholder.street_name=Nom de rue
+error_type.placeholder.missing_cuisine=Cuisine
 
 # vote questions
 vote.question.ref=S'agit-il de la bonne référence pour cette autoroute ?
@@ -24,6 +26,7 @@ vote.question.maxspeed=S'agit-il de la bonne vitesse maximale autorisée pour ce
 vote.question.language_unknown=Le nom '$2' est-il dans la langue suivante ?
 vote.question.tracktype=Ce chemin est-il du type suivant ?
 vote.question.street_name=S'agit-il du bon nom pour cette rue ?
+vote.question.missing_cuisine=Is this the correct cuisine type of $1?
 
 # badge names
 badge.name.first_place=1ère place
@@ -113,6 +116,28 @@ answer.language.uzbek=Ouzbek
 answer.language.vietnamese=Vietnamien
 answer.language.welsh=Gallois
 
+# missing_cuisine
+answer.missing_cuisine.regional=Regional
+answer.missing_cuisine.coffee_shop=Coffee Shop
+answer.missing_cuisine.international=International
+answer.missing_cuisine.italian=Italian
+answer.missing_cuisine.turkish=Turkish
+answer.missing_cuisine.chinese=Chinese
+answer.missing_cuisine.thai=Thai
+answer.missing_cuisine.asian=Asian
+answer.missing_cuisine.indian=Indian
+answer.missing_cuisine.french=French
+answer.missing_cuisine.mexican=Mexican
+answer.missing_cuisine.american=American
+answer.missing_cuisine.japanese=Japanese
+answer.missing_cuisine.greek=Greek
+answer.missing_cuisine.sandwich=Sandwich
+answer.missing_cuisine.steak_house=Steakhouse
+answer.missing_cuisine.chicken=Chicken
+answer.missing_cuisine.bistro_brasserie=Bistro, Brasserie
+answer.missing_cuisine.seafood=Seafood
+answer.missing_cuisine.burger=Burger
+
 
 ################################################
 # THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT #
@@ -126,6 +151,7 @@ bug.question.name_of_street=Quel est le nom de cette rue ?
 bug.question.language=Dans quelle langue le nom '$2' est-il écrit ?
 bug.question.motorway_ref=Quelle est la référence (ex. A3 ou E385) de cette autoroute ?
 bug.question.place_of_worship=A quelle religion ce lieu de culte appartient-il ?
+bug.question.cuisine_of_restaurant=What's the cuisine type of '$1'?
 
 # single values
 cafe=café

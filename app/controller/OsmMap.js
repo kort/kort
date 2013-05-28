@@ -1,5 +1,5 @@
 /**
- * Controller for map components with osm objects
+ * Controller for map components with osm objects.
  */
 Ext.define('Kort.controller.OsmMap', {
     extend: 'Ext.app.Controller',
@@ -10,7 +10,7 @@ Ext.define('Kort.controller.OsmMap', {
 
     /**
      * @private
-     * Called when map component gets rendered
+     * Called when map component gets rendered.
      * @param {Ext.ux.LeafletMap} cmp Map component
      * @param {L.Map} map Leaflet map object
      * @param {L.TileLayer} tileLayer Leaflet TileLayer object
@@ -25,8 +25,8 @@ Ext.define('Kort.controller.OsmMap', {
     
     /**
      * @private
-     * Renders OpenStreetMap object from a given Kort.model.Bug instance on map
-     * @param {Kort.model.Bug} record Bug which should be rendered
+     * Renders OpenStreetMap object from a given Kort.model.Bug instance on map.
+     * @param {Kort.model.Mission} record Mission which should be rendered.
      */
     renderOsmElement: function(record) {
         var me = this,
@@ -49,12 +49,12 @@ Ext.define('Kort.controller.OsmMap', {
 
     /**
      * @private
-     * Adds osm object feature to map
-     * @param {String} xml OSM-XML data which should be drawn
-     * @param {Kort.model.Bug} record Bug which should be rendered
+     * Adds osm object feature to map.
+     * @param {String} xml OSM-XML data which should be drawn.
+     * @param {Kort.model.Mission} record Mission which should be rendered
      */
     addFeature: function(xml, record) {
-        var icon = Kort.util.Config.getMarkerIcon(record.get('type')),
+        var icon = Kort.util.Config.getMarkerIcon(record.get('type'),record.get('state')),
             layer;
 
         layer = new L.OSM.DataLayer(xml, {
@@ -81,12 +81,12 @@ Ext.define('Kort.controller.OsmMap', {
     
     /**
      * @private
-     * sets zoomlevel of map to layer bounds
-     * @param {L.OSM.DataLayer} layer Layer for zoomlevel
+     * Sets zoomlevel of map to layer bounds.
+     * @param {L.OSM.DataLayer} layer Layer for zoomlevel.
      */
     setZoomToLayerBounds: function(layer) {
         var bounds;
-        
+
         bounds = layer.getBounds();
         // reading private variables to check if layer has any bounds
         if(bounds.hasOwnProperty('_northEast') || bounds.hasOwnProperty('_southWest')) {

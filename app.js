@@ -1,5 +1,3 @@
-/*jshint maxcomplexity:10 */
-
 //<debug>
 Ext.Loader.setPath({
     'Ext': 'touch/src',
@@ -10,15 +8,72 @@ Ext.Loader.setPath({
 });
 //</debug>
 
+/**
+ * @class Kort
+ * Kort application.
+ */
 Ext.application({
     name: 'Kort',
+
+    /**
+     * @event geolocationready
+     * Fired when gps data is available.
+     * @param {Kort.util.Geolocation} geo Geolocation object.
+     */
+
+    /**
+     * @event leafletmaprendered
+     * Fired when tile leaflet map is rendered.
+     */
+
+    /**
+     * @event fixsend
+     * Fired when a fix was successfully submitted.
+     */
+
+    /**
+     * @event votesend
+     * Fired when a vote was successfully submitted.
+     */
+
+
+    /**
+     * @event userloaded
+     * Fired when a users data is correctly loaded.
+     */
+
+    /**
+     * @event userrefreshed
+     * Fired when a users data has been correctly refreshed.
+     */
+
+    /**
+     * @event userchange
+     * Fired when a change in the user's settings was successfully saved.
+     */
+
+    /**
+     * @event maptypeupdaterequest
+     * Fired to trigger update process of map abstract types (markers on leaflet map).
+     */
+
+    /**
+     * @event newsupdated
+     * Fired after the news local storage was successfuly synced with online atom feed.
+     */
+
+    /**
+     * @event newsacceptedlanguagesupdated
+     * Fired when a change in the news settings was successfully saved.
+     */
 
     requires: [
         'patch.AjaxProxy',
         'Ext.MessageBox',
         'Ext.i18n.Bundle',
         'Kort.util.Config',
-        'Kort.util.Geolocation'
+        'Kort.util.Geolocation',
+        'Kort.plugin.QueryRouter'
     ],
 
     views: [
@@ -30,23 +85,26 @@ Ext.application({
 
     controllers: [
         'About',
-        'Bugmap',
         'Firststeps',
         'Fix',
         'GeolocationError',
         'Highscore',
         'Login',
         'Main',
-        'MarkerMap',
+        'Map',
+        'MapMission',
+        'MapValidation',
         'OsmMap',
         'Profile',
-        'Validation',
-        'Vote'
+        'Vote',
+        'News',
+        'Notifications'
     ],
 
     models: [
         'Badge',
-        'Bug',
+        'Mission',
+        'Promotion',
         'Fix',
         'HighscoreEntry',
         'HighscoreUserBadge',
@@ -56,18 +114,27 @@ Ext.application({
         'UserBadge',
         'UserLocal',
         'Validation',
-        'Vote'
+        'Vote',
+        'News'
     ],
 
     stores: [
-        'Bugs',
-        'Highscore',
+        'Missions',
+        'Promotions',
+        'HighscoreAbsolute',
+        'HighscoreRelative',
         'HighscoreUserBadges',
         'SelectAnswers',
         'UserBadges',
         'UserLocal',
-        'Validations'
+        'Validations',
+        'NewsLocal',
+        'NewsRemote'
     ],
+
+    router: {
+        xclass: 'Kort.plugin.QueryRouter'
+    },
 
     icon: './resources/images/kort-icon.png',
 
@@ -106,7 +173,6 @@ Ext.application({
 
     loadGeolocation: function(mainPanel) {
         var me = this;
-
         Kort.geolocation = Ext.create('Kort.util.Geolocation');
         Kort.geolocation.updateLocation(function(geo) {
             // Destroy the #appStartscreen element
@@ -145,11 +211,8 @@ Ext.application({
         }
         Kort.model.User.load(clientSecret, {
             success: function(record, operation) {
-                console.log('user loaded');
-
                 // set global accessor to user
                 Kort.user = record;
-
                 // check if user is logged in
                 if (!Kort.user.get('logged_in')) {
                     if(clientSecret && clientSecret !== 0) {
@@ -166,6 +229,7 @@ Ext.application({
                     // enable auto update on geolocation
                     geo.setAutoUpdate(true);
                 }
+                me.fireEvent('userloaded');
             }
         });
     },
@@ -204,8 +268,8 @@ Ext.application({
     loadStores: function(mainPanel, geo) {
         var me = this,
             userBadges = Ext.getStore('UserBadges'),
-            selectAnswersStore = Ext.getStore('SelectAnswers'),
-            highscoreStore = Ext.getStore('Highscore');
+            selectAnswersStore = Ext.getStore('SelectAnswers');
+            //highscoreStore = Ext.getStore('Highscore');
 
         // wait until correct position is found
         Ext.defer(me.fireEvent, 500, me, ['geolocationready', geo]);
@@ -218,8 +282,7 @@ Ext.application({
         userBadges.load();
         
         // load highscore
-        highscoreStore.load();
-
+        //highscoreStore.load();
         this.showMainPanel(mainPanel);
     },
 

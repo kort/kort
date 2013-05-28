@@ -1,30 +1,11 @@
 /**
- * Store for validations
+ * Store for validations.
  */
 Ext.define('Kort.store.Validations', {
     extend: 'Ext.data.Store',
 
 	config: {
 		model: 'Kort.model.Validation',
-
-		grouper: {
-            groupFn: function(record) {
-                var validationsLeft = record.get('required_votes') - record.get('upratings') + record.get('downratings');
-                return '<span class="text">' + Ext.i18n.Bundle.message('validation.list.header', { 'validations_left': validationsLeft }) + '</span>';
-            }
-        },
-        sorters: [
-            {
-                // Sort by distance
-                sorterFn: function(record1, record2) {
-                    var distance1 = record1.get('distance'),
-                        distance2 = record2.get('distance');
-                    return distance1 > distance2 ? 1 : (distance1 === distance2 ? 0 : -1);
-                },
-                direction: 'ASC'
-            }
-        ],
-
 		proxy: {
 			type: 'rest',
             url: './resources/stores/validations.json',
@@ -39,21 +20,20 @@ Ext.define('Kort.store.Validations', {
                 type: 'json',
                 rootProperty: 'return'
             }
-		}
+		},
+        autoLoad:false
 	},
 
     /**
-     * Update distances of trails in store
-     * @param {Kort.util.Geolocation} geo Geolocation to calculate distance
+     * For each validation in store, calculate if it is in the operational range and therefore solvable.
+     * @param {Kort.util.Geolocation} geo The geolocation object which holds the current user position.
+     * @param {number} distance The radius of the operational range.
      */
-	updateDistances: function(geo) {
-        console.log('updatedistances');
-		if(!this.isLoading()) {
-			this.each(function(record, index, length) {
-				record.set('distance', geo.getDistance(record.get('latitude'), record.get('longitude')));
-				record.set('formatted_distance', geo.getFormattedDistance(record.get('distance')));
-			});
-			this.sort();
-		}
-	}
+    doOperationalRangeCheck: function(geo,distance) {
+        if(!this.isLoading()) {
+            this.each(function(record, index, length) {
+                record.set('inOperationalRange', (geo.getDistance(record.get('latitude'), record.get('longitude')) < distance) ? true : false);
+            });
+        }
+    }
 });

@@ -13,8 +13,11 @@ docs/Kort
 docs/Kort-backend
 docs/Ext.ux.LeafletMap
 composer.phar
+composer.lock
 npm-debug.log
 vendor/
 bin/
+.sencha_backup/      
+.idea/
+/Icon
 data/
-.sencha_backup/

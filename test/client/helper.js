@@ -48,7 +48,7 @@ function api_test(url, type, data, callback, raw) {
             } else if (result.status === 404) {
                 ok(false, '404 error');
             } else {
-                callback($.parseJSON(result.responseText));
+                callback($.parseJSON(result.responseText).return);
             }
         };
     }

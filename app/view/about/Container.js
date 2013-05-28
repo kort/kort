@@ -1,5 +1,5 @@
 /**
- * Main container for about tab
+ * Main container for about tab.
  */
 Ext.define('Kort.view.about.Container', {
 	extend: 'Ext.Container',
@@ -37,6 +37,8 @@ Ext.define('Kort.view.about.Container', {
                                 '<dt>' + Ext.i18n.Bundle.message('about.developers.title') + '</dt>' +
                                 '<dd>' +  Kort.util.Config.getAbout().developers[0] + '</dd>' +
                                 '<dd>' +  Kort.util.Config.getAbout().developers[1] + '</dd>' +
+                                '<dd>' +  Kort.util.Config.getAbout().developers[2] + '</dd>' +
+                                '<dd>' +  Kort.util.Config.getAbout().developers[3] + '</dd>' +
                                 '<dt>' + Ext.i18n.Bundle.message('about.project.title') + '</dt>' +
                                 '<dd>' + Kort.util.Config.getAbout().project.title + '</dd>' +
                                 '<dd>' + Kort.util.Config.getAbout().project.school + '</dd>' +

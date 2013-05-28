@@ -1,4 +1,3 @@
-/*jshint maxcomplexity:10 */
 /**
  * Model for the user instance
  */
@@ -20,6 +19,7 @@ Ext.define('Kort.model.User', {
 			{ name: 'vote_count', type: 'int' },
 			{ name: 'koin_count', type: 'int' },
 			{ name: 'ranking', type: 'int' },
+            { name: 'rownumber', type: 'int' },
             { name: 'secret', type: 'string' }
         ],
         
@@ -56,6 +56,7 @@ Ext.define('Kort.model.User', {
                         scope = scope || this;
                         callback.call(scope);
                     }
+                    Kort.app.fireEvent('userrefreshed');
                 }
             });
         }

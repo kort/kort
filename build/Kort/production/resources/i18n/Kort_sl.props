@@ -1,9 +1,11 @@
 # Main View (TabPanel)
+tab.map=Map
 tab.bugmap=Naloge
 tab.validation=Preveri
 tab.highscore=Dosežki
 tab.profile=Profil
 tab.about=O Kortu
+tab.news=News
 
 # Login
 login.kort.description.1=Reši naloge
@@ -15,6 +17,7 @@ login.kort.introduction.3=Vsako rešeno nalogo preverijo tudi ostali igralci. Ta
 login.kort.introduction.4=Prijavi se zdaj in začni svojo nalogo
 login.button.google=Prijavi se z Google
 login.button.osm=Prijavi se z OpenStreetMap
+login.button.facebook=Prijavi se z Facebook
 login.loadmask.message=Prijavi se
 
 # Firststeps
@@ -32,16 +35,31 @@ geolocationerror.introduction=Če želiš uporabiti Kort, je potreben dostop do 
 geolocationerror.button.reload=Ponovno naloži aplikacijo
 geolocationerror.loadmask.message=Ponovno nalaganje aplikacije...
 
-# Bugmap
-bugmap.title=Naloge v bližini
-bugmap.loadmask.message=Nalaganje nalog...
-bugmap.messagebox.koins.earn=Zaslužite {fiy_koin_count} Koins
-bugmap.messagebox.yes=Odgovor
-bugmap.messagebox.no=Ne vem
+# Map
+map.title=Naloge v bližini
+map.loadmask.message=Nalaganje nalog...
+map.mission.promotionmessagebox.close=Close
+map.mission.promotionmessagebox.earn=Earn additional {extra_coins} Koins
+map.mission.promotionmessagebox.date={startdate} to {enddate}
+map.mission.missionmessagebox.koins.earn=Zaslužite {fiy_koin_count} Koins
+map.mission.missionmessagebox.koins.earnpromotion=Earn {fix_koin_count} + {extra_coins} Koins
+map.mission.missionmessagebox.yes=Answer
+map.mission.missionmessagebox.no=Don't know
+map.mission.missionmessagebox.close=Close
+map.mission.layername=Missions
+map.missionInactive.layername = Inactive Missions
+map.validation.layername=Validations
+map.validation.validationmessagebox.koins.earn=Earn {validation_koin_count} Koins
+map.validation.validationmessagebox.koins.earnpromotion=Earn {validation_koin_count} + {extra_coins} Koins
+map.mission.validationmessagebox.yes=Odgovor
+map.mission.validationmessagebox.no=Ne vem
+map.mission.validationmessagebox.close=Close
+map.validation.validationmessagebox.checkit=Check the solution
 
 ## Fix
 fix.form.title=Naloga
 fix.form.koins.earn=Zasluži {fix_koin_count} Koins\!
+fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins!
 fix.form.message.placeholder=Tvoj odgovor...
 fix.form.button.showonmap=Prikaži na zemljevidu
 fix.form.button.submit=Reši nalogo
@@ -57,7 +75,6 @@ fix.alert.submit.failure.message=Ups\! Prišlo je do napake pri pošiljanju odgo
 # Validation
 validation.title=Preveri
 validation.loadmask.message=Nalaganje podatkov...
-validation.emptytext=Čestitam\! Preveril si vsa sporočila
 validation.list.header={validations_left} pozitivne ocene potrebne
 validation.distance=Razdalja
 
@@ -75,6 +92,8 @@ vote.alert.submit.failure.message=Ups\! Prišlo je do napake pri pošiljanju va�
 
 # Highscore
 highscore.title=Dosežki
+highscore.absolute.tabtitle=Absolute
+highscore.relative.tabtitle=Relative
 highscore.loadmask.message=Nalaganje dosežkov...
 highscore.emptytext=Ne morem naložiti statistike.
 highscore.you=To si ti\!
@@ -111,6 +130,18 @@ profile.alert.username.specialchars.message=Uporabi samo črke in številke za s
 profile.alert.submit.failure.title=Napaka pri pošiljanju
 profile.alert.submit.failure.message=Ups\! Prišlo je do napake pri pošiljanju uporabniškega imena. Ponovno poizkusi zagnati aplikacijo.
 
+#News
+news.title=News
+news.unread=Unread
+news.read=Read
+news.list.emptytext=No entries
+news.updated=Updated
+news.settings.save=Save
+news.settings.cancel=Cancel
+news.settings.acceptNoLanguage=Deselect all
+news.settings.acceptAllLanguages=Select all
+news.settings.label=I want to receive news in the following languages:
+
 # About
 about.title=O
 about.version.title=Različica
@@ -128,16 +159,6 @@ about.credits.tiledata=Ploščice
 about.credits.markers=Označevalne ikone
 about.legal.title=Pravno opozorilo\:
 about.legal.message=Prosimo, upoštevaj smernice OpenStreetMap in ne uporabljaj avtorsko zaščitenih virov brez dovoljenja.
-
-# PullRefresh Plugin
-pullrefresh.pullrefresh=Potegni dol za osvežitev
-pullrefresh.releaserefresh=Sprosti za osvežitev...
-pullrefresh.loading=nalagam...
-pullrefresh.lastupdated=Zadnja posodobitev\:
-
-# ListPaging Plugin
-listpaging.loadmore=Naloži več...
-listpaging.nomorerecords=Ni več zapisov na razpolago.
 
 # Button
 button.back=Nazaj
@@ -162,6 +183,21 @@ reward.alert.badges.title=Pridobljene značke
 update.title=Nova različica aplikacije
 update.message=Aplikacija mora biti posodobljena z novo verzijo. Osveži?
 
+#Languages
+en=English
+de=German
+it=Italian
+fr=French
+sl=Slovenian
+hr=Croatian
+cs=Czech
+nl=Dutch
+gl=Galician
+pt=Portuguese
+ro=Romanian
+ja=Japanese
+ca=Catalan
+es=Spanish
 
 ###############################
 # Labels used directly in source files (without Ext.i18n.Bundle plugin)
@@ -175,6 +211,3 @@ startscreen.browsererror=Tvoj brskalnik še ne podpira uporabe. Poskusi s tvojim
 # app/util/Config.js
 ## Firststeps
 firststeps.form.username.placeholder=Uporabniško ime
-
-## PullRefresh Plugin
-pullrefresh.dateformat=d/m/l h\:iA

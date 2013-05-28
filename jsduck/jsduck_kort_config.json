@@ -1,3 +1,4 @@
 {
-    "--title": "Kort"
+    "--title": "Kort",
+    "--warnings":["-link","-inheritdoc"]
 }

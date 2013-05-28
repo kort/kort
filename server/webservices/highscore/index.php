@@ -22,12 +22,23 @@ $highscoreHandler = new HighscoreHandler();
 
 // define REST resources
 $app->get(
-    '/',
+    '/absolute',
     function () use ($highscoreHandler, $app, $slim) {
         $highscoreHandler->setLanguage($app->request()->params('lang'));
         $limit = $app->request()->params('limit');
         $page = $app->request()->params('page');
-        $highscoreData = $highscoreHandler->getHighscore($limit, $page);
+        $highscoreData = $highscoreHandler->getAbsoluteHighscore($limit, $page);
+        $slim->returnData($highscoreData);
+    }
+);
+
+$app->get(
+    '/relative',
+    function () use ($highscoreHandler, $app, $slim) {
+        $highscoreHandler->setLanguage($app->request()->params('lang'));
+        $limit = $app->request()->params('limit');
+        $page = $app->request()->params('page');
+        $highscoreData = $highscoreHandler->getRelativeHighscore($limit, $page);
         $slim->returnData($highscoreData);
     }
 );

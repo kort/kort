@@ -1,19 +1,15 @@
 /**
- * Controller for fix panel
+ * Controller for fix panel.
  */
 Ext.define('Kort.controller.Fix', {
     extend: 'Kort.controller.OsmMap',
-
+    requires: [
+        'Kort.view.map.mission.fix.type.Select',
+        'Kort.view.RewardMessageBox'
+    ],
     config: {
-        views: [
-            'bugmap.NavigationView',
-            'bugmap.fix.TabPanel',
-            'bugmap.fix.Form',
-            'LeafletMap',
-            'RewardMessageBox'
-        ],
         refs: {
-            bugmapNavigationView: '#bugmapNavigationView',
+            mapNavigationView: '#mapNavigationView',
             detailComponent: '.fixtabpanel',
             fixFormSubmitButton: '.fixtabpanel .formpanel .button[cls=fixSubmitButton]',
             fixField: '.fixtabpanel .formpanel .field[name=fixfield]',
@@ -22,22 +18,24 @@ Ext.define('Kort.controller.Fix', {
         },
         control: {
             fixFormSubmitButton: {
-                tap: 'onFixFormSubmitButtonTap'
+                tap: '_onFixFormSubmitButtonTap'
             },
             fixField: {
-                keyup: 'onFixFieldKeyUp'
+                keyup: '_onFixFieldKeyUp'
             },
             fixFalsepositiveToggleField: {
-                change: 'onFixFalsepositiveToggleFieldChange'
+                change: '_onFixFalsepositiveToggleFieldChange'
             },
             fixmap: {
                 maprender: 'onMaprender'
             }
         }
     },
-    
-    // @private
-    onFixFormSubmitButtonTap: function() {
+
+    /**
+     * @private
+     */
+    _onFixFormSubmitButtonTap: function() {
         var me = this,
             detailComponent = this.getDetailComponent(),
             fixFieldValue = this.getFixField().getValue(),
@@ -48,7 +46,7 @@ Ext.define('Kort.controller.Fix', {
             messageBox;
 
         if ((fixFieldValue && fixFieldValue !== '') || falsepositive) {
-            me.showSendMask();
+            me._showSendMask();
             // for valid post request field has to be a string
             falsepositiveString = falsepositive.toString();
             if(falsepositive) {
@@ -64,11 +62,11 @@ Ext.define('Kort.controller.Fix', {
             });
             fix.save({
                 success: function(records, operation) {
-                    me.hideSendMask();
-                    me.fixSuccessfulSubmittedHandler(operation.getResponse().responseText);
+                    me._hideSendMask();
+                    me._fixSuccessfulSubmittedHandler(operation.getResponse().responseText);
                 },
                 failure: function() {
-                    me.hideSendMask();
+                    me._hideSendMask();
                     var messageBox = Ext.create('Kort.view.NotificationMessageBox');
                     messageBox.alert(Ext.i18n.Bundle.message('fix.alert.submit.failure.title'), Ext.i18n.Bundle.message('fix.alert.submit.failure.message'), Ext.emptyFn);
                 }
@@ -79,18 +77,26 @@ Ext.define('Kort.controller.Fix', {
         }
     },
 
-    // @private
-    onFixFieldKeyUp: function(field, e) {
+    /**
+     * @private
+     * @param {Ext.field.Text} field
+     * @param {Ext.event.Event} e
+     */
+    _onFixFieldKeyUp: function(field, e) {
         // submit form if return key was pressed
         if (e.event.keyCode === 13){
             this.onFixFormSubmitButtonTap();
         }
     },
-    
-    // @private
-    onFixFalsepositiveToggleFieldChange: function(cmp, newValue, oldValue) {
-        var value = cmp.getValue();
-        if(value) {
+
+    /**
+     * @private
+     * @param {Ext.field.Toggle} cmp
+     * @param {Object} newValue
+     * @param {Object} oldValue
+     */
+    _onFixFalsepositiveToggleFieldChange: function(cmp, newValue, oldValue) {
+        if(cmp.getValue()) {
             this.getFixField().hide();
         } else {
             this.getFixField().show();
@@ -99,41 +105,45 @@ Ext.define('Kort.controller.Fix', {
 
     /**
      * @private
-     * Called when a fix was successfully submitted
-     * @param {String} responseText Response from server
+     * Called when a fix was successfully submitted.
+     * @param {String} responseText Response from server.
      */
-    fixSuccessfulSubmittedHandler: function(responseText) {
+    _fixSuccessfulSubmittedHandler: function(responseText) {
         var rewardConfig = JSON.parse(responseText),
             reward = Ext.create('Kort.model.Reward', rewardConfig),
-            bugmapNavigationView = this.getBugmapNavigationView();
+            mapNavigationView = this.getMapNavigationView();
         
-        this.showRewardMessageBox(reward);
+        this._showRewardMessageBox(reward);
         // remove detail panel
-        bugmapNavigationView.pop();
-        bugmapNavigationView.fireEvent('back', bugmapNavigationView);
+        mapNavigationView.pop();
+        mapNavigationView.fireEvent('back', mapNavigationView);
         this.getApplication().fireEvent('fixsend');
     },
-    
-    // @private
-    showSendMask: function() {
-        this.getBugmapNavigationView().setMasked({
+
+    /**
+     * @private
+     */
+    _showSendMask: function() {
+        this.getMapNavigationView().setMasked({
             xtype: 'loadmask',
             message: Ext.i18n.Bundle.message('fix.sendmask.message'),
             zIndex: Kort.util.Config.getZIndex().overlayLeafletMap
         });
     },
-    
-    // @private
-    hideSendMask: function() {
-        this.getBugmapNavigationView().setMasked(false);
+
+    /**
+     * @private
+     */
+    _hideSendMask: function() {
+        this.getMapNavigationView().setMasked(false);
     },
     
     /**
      * @private
-     * Shows message box with rewards
-     * @param {Kort.model.Reward} reward Won reward
+     * Shows message box with rewards.
+     * @param {Kort.model.Reward} reward Won reward.
      */
-	showRewardMessageBox: function(reward) {
+	_showRewardMessageBox: function(reward) {
         var messageBox = Ext.create('Kort.view.RewardMessageBox', {
             record: reward
         });
