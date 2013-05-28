@@ -1,9 +1,11 @@
 # Main View (TabPanel)
+tab.map=Map
 tab.bugmap=Missões
 tab.validation=Verificar
 tab.highscore=Highscore
 tab.profile=Perfil
 tab.about=Sobre Kort
+tab.news=News
 
 # Login
 login.kort.description.1=missão cumprida
@@ -15,6 +17,7 @@ login.kort.introduction.3=Cada missão resolvida é verificada mais tarde por ou
 login.kort.introduction.4=Entra agora na aplicação para iniciar a sua missão\!
 login.button.google=Entrar com Google
 login.button.osm=Entrat com OpenStreetMap
+login.button.facebook=Entrat com Facebook
 login.loadmask.message=Entrar
 
 # Firststeps
@@ -32,16 +35,31 @@ geolocationerror.introduction=Para usar o Kort, aceder à sua posição geo é e
 geolocationerror.button.reload=Recargar aplicação
 geolocationerror.loadmask.message=Recaregando aplicação
 
-# Bugmap
-bugmap.title=Missões mais próximas
-bugmap.loadmask.message=Carregando missões
-bugmap.messagebox.koins.earn=Ganhe {fix_koin_count} Moedas
-bugmap.messagebox.yes=Resposta
-bugmap.messagebox.no=Não sei
+# Map
+map.title=Missões mais próximas
+map.loadmask.message=Carregando missões
+map.mission.promotionmessagebox.close=Close
+map.mission.promotionmessagebox.earn=Earn additional {extra_coins} Koins
+map.mission.promotionmessagebox.date={startdate} to {enddate}
+map.mission.missionmessagebox.koins.earn=Ganhe {fix_koin_count} Moedas
+map.mission.missionmessagebox.koins.earnpromotion=Earn {fix_koin_count} + {extra_coins} Koins
+map.mission.missionmessagebox.yes=Answer
+map.mission.missionmessagebox.no=Don't know
+map.mission.missionmessagebox.close=Close
+map.mission.layername=Missions
+map.missionInactive.layername = Inactive Missions
+map.validation.layername=Validations
+map.validation.validationmessagebox.koins.earn=Earn {validation_koin_count} Koins
+map.validation.validationmessagebox.koins.earnpromotion=Earn {validation_koin_count} + {extra_coins} Koins
+map.mission.validationmessagebox.yes=Resposta
+map.mission.validationmessagebox.no=Não sei
+map.mission.validationmessagebox.close=Close
+map.validation.validationmessagebox.checkit=Check the solution
 
 ## Fix
 fix.form.title=Missão
 fix.form.koins.earn=Obtenha as {fix_koin_count} Moedas\!
+fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins!
 fix.form.message.placeholder=Sua resposta
 fix.form.button.showonmap=Me mostrar no mapa
 fix.form.button.submit=Missão cumprida\n
@@ -57,7 +75,6 @@ fix.alert.submit.failure.message=Oops\! Ocorreu um erro ao enviar a sua resposta
 # Validation
 validation.title=Verifique
 validation.loadmask.message=carregando\n
-validation.emptytext=Bravo\! Selecionou todas as mensagens.
 validation.list.header={validations_left} classificações positivas necessárias
 validation.distance=distancia
 
@@ -75,6 +92,8 @@ vote.alert.submit.failure.message=Oops\! Ocorreu um erro ao enviar a sua respost
 
 # Highscore
 highscore.title=Melhor resultado
+highscore.absolute.tabtitle=Absolute
+highscore.relative.tabtitle=Relative
 highscore.loadmask.message=A carregar o melhor resultado...
 highscore.emptytext=Não é possível carregar o melhor resultado.
 highscore.you=Isto és tu\!
@@ -111,6 +130,18 @@ profile.alert.username.specialchars.message=Por favor utilize apenas letras e d�
 profile.alert.submit.failure.title=Erro ao enviar
 profile.alert.submit.failure.message=Oops\! Ocorreu um erro ao enviar o nome de utilizador. Reiniciar a aplicação pode resolver a situação.
 
+#News
+news.title=News
+news.unread=Unread
+news.read=Read
+news.list.emptytext=No entries
+news.updated=Updated
+news.settings.save=Save
+news.settings.cancel=Cancel
+news.settings.acceptNoLanguage=Deselect all
+news.settings.acceptAllLanguages=Select all
+news.settings.label=I want to receive news in the following languages:
+
 # About
 about.title=Acerca de
 about.version.title=Versão
@@ -128,16 +159,6 @@ about.credits.tiledata=Títulos\:
 about.credits.markers=Ícones marcadores\:
 about.legal.title=Nota legal\:
 about.legal.message=Por favor siga as indicações do OpenStreetMap e não use fontes protegidas por direitos de autor sem autorização.
-
-# PullRefresh Plugin
-pullrefresh.pullrefresh=Puxe para refrescar
-pullrefresh.releaserefresh=Solte para refrescar...
-pullrefresh.loading=a carregar...
-pullrefresh.lastupdated=Última atualização\:
-
-# ListPaging Plugin
-listpaging.loadmore=Load more...
-listpaging.nomorerecords=No more records available.
 
 # Button
 button.back=Retroceder
@@ -162,6 +183,21 @@ reward.alert.badges.title=Ganhou emblemas
 update.title=Nova versão da aplicação
 update.message=A aplicação foi atualizada para a versão mais recente. Recarregar?
 
+#Languages
+en=English
+de=German
+it=Italian
+fr=French
+sl=Slovenian
+hr=Croatian
+cs=Czech
+nl=Dutch
+gl=Galician
+pt=Portuguese
+ro=Romanian
+ja=Japanese
+ca=Catalan
+es=Spanish
 
 ###############################
 # Labels used directly in source files (without Ext.i18n.Bundle plugin)
@@ -175,6 +211,3 @@ startscreen.browsererror=Your browser is not supported yet. Try it on your mobil
 # app/util/Config.js
 ## Firststeps
 firststeps.form.username.placeholder=Nome do usuario
-
-## PullRefresh Plugin
-pullrefresh.dateformat=m/d/Y h\:iA

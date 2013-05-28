@@ -1,5 +1,5 @@
 /**
- * Main controller for application
+ * Main controller for application.
  */
 Ext.define('Kort.controller.Main', {
     extend: 'Ext.app.Controller',
@@ -7,85 +7,87 @@ Ext.define('Kort.controller.Main', {
     config: {
         views: [
             'Main',
-            'NotificationMessageBox',
-            'LeafletMap'
+            'NotificationMessageBox'
         ],
         refs: {
             mainTabPanel: '#mainTabPanel',
             aboutContainer: '#aboutContainer',
-            bugmapNavigationView: '#bugmapNavigationView',
+            mapNavigationView: '#mapNavigationView',
             highscoreNavigationView: '#highscoreNavigationView',
-            highscoreList: '#highscoreNavigationView .highscorelist',
             profileContainer: '#profileContainer',
-            validationNavigationView: '#validationNavigationView'
+            newsNavigationView: '#newsNavigationView'
         },
         control: {
             mainTabPanel: {
-                activeitemchange: 'onMainTabPanelActiveItemChange'
+                activeitemchange: '_onMainTabPanelActiveItemChange'
             }
         },
 
         routes: {
             'about': 'showAbout',
-            'bugmap': 'showBugmap',
+            'map': 'showMap',
             'highscore': 'showHighscore',
             'profile': 'showProfile',
-            'validation': 'showValidation'
+            'news': 'showNews'
+        }
+    },
+
+    /**
+     * Redirects to about tab.
+     */
+    showAbout: function() {
+        this._showView(this.getAboutContainer());
+    },
+    
+    /**
+     * Redirects to map tab.
+     */
+    showMap: function() {
+        this._showView(this.getMapNavigationView());
+    },
+    
+    /**
+     * Redirects to highscore tab.
+     */
+    showHighscore: function() {
+        this._showView(this.getHighscoreNavigationView());
+        Kort.app.getController('Highscore').refreshAllLists();
+    },
+    
+    /**
+     * Redirects to profile tab.
+     */
+    showProfile: function() {
+        this._showView(this.getProfileContainer());
+    },
+
+    /**
+     * Redirects to news tab.
+     */
+    showNews: function(){
+        this._showView(this.getNewsNavigationView());
+    },
+    
+    /**
+     * @private
+     * Redirects to given component.
+     * @param {Ext.Component} viewCmp Component which should be displayed.
+     */
+    _showView: function(viewCmp) {
+        if(this.getMainTabPanel()) {
+            this.getMainTabPanel().setActiveItem(viewCmp);
         }
     },
 
     /**
      * @private
-     * Called when active item of main tabpanel changes
+     * Called when active item of main tabpanel changes.
+     * @param {Ext.Container} container
+     * @param {Object} newCmp
+     * @param {Object} oldCmp
+     * @param {Object} eOpts
      */
-    onMainTabPanelActiveItemChange: function(container, newCmp, oldCmp, eOpts) {
+    _onMainTabPanelActiveItemChange: function(container, newCmp, oldCmp, eOpts) {
         this.redirectTo(newCmp.getUrl());
-    },
-    
-    /**
-     * redirects to about tab
-     */
-    showAbout: function() {
-        this.showView(this.getAboutContainer());
-    },
-    
-    /**
-     * redirects to bugmap tab
-     */
-    showBugmap: function() {
-        this.showView(this.getBugmapNavigationView());
-    },
-    
-    /**
-     * redirects to highscore tab
-     */
-    showHighscore: function() {
-        this.showView(this.getHighscoreNavigationView());
-        this.getHighscoreList().refresh();
-    },
-    
-    /**
-     * redirects to profile tab
-     */
-    showProfile: function() {
-        this.showView(this.getProfileContainer());
-    },
-    
-    /**
-     * redirects to validation tab
-     */
-    showValidation: function() {
-        this.showView(this.getValidationNavigationView());
-    },
-    
-    /**
-     * @private
-     * redirects to given component
-     * @param {Ext.Component} viewCmp Component which should be displayed
-     */
-    showView: function(viewCmp) {
-        if(this.getMainTabPanel()) {
-            this.getMainTabPanel().setActiveItem(viewCmp);
-        }
     }
 });

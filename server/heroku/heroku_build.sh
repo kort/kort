@@ -32,6 +32,7 @@ else
     cp -r $SOURCE_DIR/proposals $BUILD_DIR
 
     cp -r $SOURCE_DIR/lib/Leaflet-0.5.0/dist/ $BUILD_DIR/lib/Leaflet-0.5.0/
+    cp -r $SOURCE_DIR/lib/leafletplugins/ $BUILD_DIR/lib/leafletplugins/
     cp -r $SOURCE_DIR/lib/Slim-2.1.0/Slim/ $BUILD_DIR/lib/Slim-2.1.0/
     cp -r $SOURCE_DIR/lib/google-api-php-client/src $BUILD_DIR/lib/google-api-php-client/
     cp -r $SOURCE_DIR/lib/oauth-php/library $BUILD_DIR/lib/oauth-php/

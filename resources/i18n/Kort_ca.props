@@ -1,9 +1,11 @@
 # Main View (TabPanel)
+tab.map=Map
 tab.bugmap=Missions
 tab.validation=Comprovar
 tab.highscore=Màxima puntuació
 tab.profile=Perfil
 tab.about=A sobre de Kort
+tab.news=News
 
 # Login
 login.kort.description.1=Missions completades
@@ -15,6 +17,7 @@ login.kort.introduction.3=Cada missió resolta és comprovada per altres jugador
 login.kort.introduction.4=Inicia la sessió per a començar la teua missió\!
 login.button.google=Inicia la sessió amb Google
 login.button.osm=Inicia la sessió amb OpenStreetMap
+login.button.facebook=Inicia la sessió amb Facebook
 login.loadmask.message=Iniciant sessió...
 
 # Firststeps
@@ -32,16 +35,31 @@ geolocationerror.introduction=Per utilitzar Kort, és necessari accedir a la teu
 geolocationerror.button.reload=Recarregar aplicació
 geolocationerror.loadmask.message=Recarregant aplicació...
 
-# Bugmap
-bugmap.title=Missions properes
-bugmap.loadmask.message=Carregant missions
-bugmap.messagebox.koins.earn=Guanyar {fix_koin_count} Koins
-bugmap.messagebox.yes=Resposta
-bugmap.messagebox.no=No ho sé.
+# Map
+map.title=Missions & Checks
+map.loadmask.message=Carregant missions
+map.mission.promotionmessagebox.close=Close
+map.mission.promotionmessagebox.earn=Earn additional {extra_coins} Koins
+map.mission.promotionmessagebox.date={startdate} to {enddate}
+map.mission.missionmessagebox.koins.earn=Guanyar {fix_koin_count} Koins
+map.mission.missionmessagebox.koins.earnpromotion=Earn {fix_koin_count} + {extra_coins} Koins
+map.mission.missionmessagebox.yes=Answer
+map.mission.missionmessagebox.no=Don't know
+map.mission.missionmessagebox.close=Close
+map.mission.layername=Missions
+map.missionInactive.layername = Inactive Missions
+map.validation.layername=Validations
+map.validation.validationmessagebox.koins.earn=Earn {validation_koin_count} Koins
+map.validation.validationmessagebox.koins.earnpromotion=Earn {validation_koin_count} + {extra_coins} Koins
+map.mission.validationmessagebox.yes=Resposta
+map.mission.validationmessagebox.no=No ho sé.
+map.mission.validationmessagebox.close=Close
+map.validation.validationmessagebox.checkit=Check the solution
 
 ## Fix
 fix.form.title=Missió
 fix.form.koins.earn=Aconsegueix {fix_koin_count} Koins\!
+fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins!
 fix.form.message.placeholder=La teua resposta...
 fix.form.button.showonmap=Mostrar al mapa
 fix.form.button.submit=Completar missió
@@ -57,7 +75,6 @@ fix.alert.submit.failure.message=Ui\! S'ha produit un error mentre s'enviava la 
 # Validation
 validation.title=Comprovar
 validation.loadmask.message=Carregant dades...
-validation.emptytext=Fantàstic\! Has comprovat tots els missatges.
 validation.list.header=Es necessiten {validations_left} valoracions positives
 validation.distance=Distància
 
@@ -75,6 +92,8 @@ vote.alert.submit.failure.message=Ui\! S'ha produit un error mentre s'enviava la
 
 # Highscore
 highscore.title=Màxima puntuació
+highscore.absolute.tabtitle=Absolute
+highscore.relative.tabtitle=Relative
 highscore.loadmask.message=Carregant puntuació màxima
 highscore.emptytext=No es pot carregar la puntuació màxima
 highscore.you=Eres tu\!
@@ -111,6 +130,18 @@ profile.alert.username.specialchars.message=Per favor, utilitza només lletres i
 profile.alert.submit.failure.title=Error a l'enviar
 profile.alert.submit.failure.message=Ui\! S'ha produit un error mentre s'enviava el nom d'usuari. Reiniciar l'aplicació podria ajudar a resoldre'l.
 
+#News
+news.title=News
+news.unread=Unread
+news.read=Read
+news.list.emptytext=No entries
+news.updated=Updated
+news.settings.save=Save
+news.settings.cancel=Cancel
+news.settings.acceptNoLanguage=Deselect all
+news.settings.acceptAllLanguages=Select all
+news.settings.label=I want to receive news in the following languages:
+
 # About
 about.title=A sobre
 about.version.title=Versió
@@ -128,16 +159,6 @@ about.credits.tiledata=Tessel·la\:
 about.credits.markers=Marcadors\:
 about.legal.title=Nota legal_
 about.legal.message=Per favor, segueix les directrius d'OpenStreetMap i no utilitzes fonts protegides amb copyright sense permís.
-
-# PullRefresh Plugin
-pullrefresh.pullrefresh=Arrossega cap a baix per a actualitzar
-pullrefresh.releaserefresh=Deixa anar per a actualitzar...
-pullrefresh.loading=Carregant...
-pullrefresh.lastupdated=Última actualització\:
-
-# ListPaging Plugin
-listpaging.loadmore=Carregar més...
-listpaging.nomorerecords=No hi ha més registres disponibles.
 
 # Button
 button.back=Arrere
@@ -162,6 +183,21 @@ reward.alert.badges.title=Medalles guanyades
 update.title=Nova versió de l'aplicació
 update.message=L'aplicació ha sigut actualitzada a la darrera versió. Recarregar?
 
+#Languages
+en=English
+de=German
+it=Italian
+fr=French
+sl=Slovenian
+hr=Croatian
+cs=Czech
+nl=Dutch
+gl=Galician
+pt=Portuguese
+ro=Romanian
+ja=Japanese
+ca=Catalan
+es=Spanish
 
 ###############################
 # Labels used directly in source files (without Ext.i18n.Bundle plugin)
@@ -175,6 +211,3 @@ startscreen.browsererror=El teu navegador encara no està suportat. Prova amb el
 # app/util/Config.js
 ## Firststeps
 firststeps.form.username.placeholder=Nom d'usuari
-
-## PullRefresh Plugin
-pullrefresh.dateformat=m/d/Y h\:iA

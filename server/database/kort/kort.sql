@@ -21,9 +21,9 @@ create table kort.fix (
     fix_id integer primary key default nextval('kort.fix_id'),
     user_id integer,
     create_date timestamp not null default now(),
-    error_id integer not null,
+    error_id bigint not null,
     schema character varying(50) not null,
-    osm_id integer not null,
+    osm_id bigint not null,
     message text,
     falsepositive boolean not null default false,
     complete boolean not null default false,
@@ -58,7 +58,7 @@ create table kort.badge (
 create table kort.user_badge (
     user_id integer,
     badge_id integer,
-    create_date timestamp not null,
+    create_date timestamp not null DEFAULT now(),
     primary key (user_id, badge_id),
     foreign key (badge_id) references kort.badge (badge_id),
     foreign key (user_id) references kort.user (user_id)
@@ -82,6 +82,23 @@ create table kort.vote (
     unique(user_id, fix_id),
     foreign key (user_id) references kort.user (user_id),
     foreign key (fix_id) references kort.fix (fix_id)
+);
+
+CREATE TABLE kort.promotion (
+  id integer PRIMARY KEY,
+  title varchar(40) NOT NULL,
+  lang varchar(5) NOT NULL,
+  startdate timestamp with time zone NOT NULL,
+  enddate timestamp with time zone NOT NULL,
+  region varchar(100) NOT NULL,
+  geom public.geometry(MultiPolygon,4326) NULL
+);
+
+CREATE TABLE kort.promo2mission (
+	promo_id integer references kort.promotion(id) NOT NULL,
+	error_type varchar(20) references kort.error_type(type) NOT NULL,
+	mission_extra_coins integer NOT NULL,
+	validation_extra_coins integer NOT NULL
 );
 
 create or replace function check_fix_onlyone_pending_per_error()

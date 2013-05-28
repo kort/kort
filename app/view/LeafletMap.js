@@ -1,5 +1,5 @@
 /**
- * LeafletMap component
+ * LeafletMap component.
  */
 Ext.define('Kort.view.LeafletMap', {
     extend: 'Ext.ux.LeafletMap',

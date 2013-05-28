@@ -1,9 +1,11 @@
 # Main View (TabPanel)
+tab.map=Karte
 tab.bugmap=Aufträge
 tab.validation=Prüfen
 tab.highscore=Highscore
 tab.profile=Profil
 tab.about=Über Kort
+tab.news=News
 
 # Login
 login.kort.description.1=Löse Aufträge
@@ -15,6 +17,7 @@ login.kort.introduction.3=Gelöste Aufträge können dann wiederum von anderen S
 login.kort.introduction.4=Logge dich jetzt ein, um damit zu beginnen\!
 login.button.google=Login mit Google
 login.button.osm=Login mit OpenStreetMap
+login.button.facebook=Login mit Facebook
 login.loadmask.message=Login...
 
 # Firststeps
@@ -32,16 +35,31 @@ geolocationerror.introduction=Um Kort verwenden zu können, muss auf deine Posit
 geolocationerror.button.reload=Applikation neu laden
 geolocationerror.loadmask.message=Lade App neu...
 
-# Bugmap
-bugmap.title=Aufträge in deiner Nähe
-bugmap.loadmask.message=Lade Aufträge...
-bugmap.messagebox.koins.earn=Verdiene dir {fix_koin_count} Koins
-bugmap.messagebox.yes=Beantworten
-bugmap.messagebox.no=Weiss nicht
+#Map
+map.title=Aufträge & Überprüfungen
+map.loadmask.message=Lade Aufträge...
+map.mission.promotionmessagebox.close=Schliessen
+map.mission.promotionmessagebox.earn=Hol dir zusätzliche {extra_coins} Koins
+map.mission.promotionmessagebox.date={startdate} bis {enddate}
+map.mission.missionmessagebox.koins.earn=Verdiene dir {fix_koin_count} Koins
+map.mission.missionmessagebox.koins.earnpromotion=Verdiene dir {fix_koin_count} + {extra_coins} Koins
+map.mission.missionmessagebox.yes=Beantworten
+map.mission.missionmessagebox.no=Weiss nicht
+map.mission.missionmessagebox.close=Schliessen
+map.mission.layername=Aufträge
+map.missionInactive.layername = Inaktive Aufträge
+map.validation.layername=Überprüfungen
+map.validation.validationmessagebox.koins.earn=Verdiene dir {validation_koin_count} Koins
+map.validation.validationmessagebox.koins.earnpromotion=Verdiene dir {validation_koin_count} + {extra_coins} Koins
+map.mission.validationmessagebox.yes=Beantworten
+map.mission.validationmessagebox.no=Weiss nicht
+map.mission.validationmessagebox.close=Schliessen
+map.validation.validationmessagebox.checkit=Überprüfe die Lösung
 
 ## Fix
 fix.form.title=Auftrag
 fix.form.koins.earn=Hol dir die {fix_koin_count} Koins\!
+fix.form.koins.earnpromotion=Hol dir die {fix_koin_count} + {extra_coins} Koins\!
 fix.form.message.placeholder=Deine Antwort...
 fix.form.button.showonmap=Auf der Karte anzeigen
 fix.form.button.submit=Auftrag abschliessen
@@ -57,7 +75,7 @@ fix.alert.submit.failure.message=Ups\! Beim Übertragen der Lösung ist etwas sc
 # Validation
 validation.title=Prüfen
 validation.loadmask.message=Lade Überprüfungen...
-validation.emptytext=Bravo\! Du hast alle Meldungen überprüft.
+# validation.emptytext=Bravo\! Du hast alle Meldungen überprüft.
 validation.list.header={validations_left} positive Überprüfungen nötig
 validation.distance=Distanz
 
@@ -75,6 +93,8 @@ vote.alert.submit.failure.message=Ups\! Beim Übertragen deiner Antwort ist etwa
 
 # Highscore
 highscore.title=Highscore
+highscore.absolute.tabtitle=Absolut
+highscore.relative.tabtitle=Relativ
 highscore.loadmask.message=Lade Highscore...
 highscore.emptytext=Highscore kann nicht geladen werden.
 highscore.you=Das bist du\!
@@ -111,6 +131,18 @@ profile.alert.username.specialchars.message=Verwende bitte nur Buchstaben und Za
 profile.alert.submit.failure.title=Fehler beim Senden
 profile.alert.submit.failure.message=Ups\! Beim Übertragen deines Benutzernamens ist etwas schief gelaufen. Eventuell hilft ein Neustart der App.
 
+#News
+news.title=News
+news.unread=Ungelesen
+news.read=Gelesen
+news.list.emptytext=Derzeit keine News
+news.updated=Publiziert am
+news.settings.save=Speichern
+news.settings.cancel=Abbrechen
+news.settings.acceptNoLanguage=Keine auswählen
+news.settings.acceptAllLanguages=Alle auswählen
+news.settings.label=Die News welcher Sprache möchtest du erhalten?
+
 # About
 about.title=Über
 about.version.title=Version
@@ -119,7 +151,7 @@ about.information.homepage=Webseite\:
 about.information.feedback=Feedback/FAQ\:
 about.information.bugs=Fehler melden\:
 about.developers.title=Entwickler
-about.project.title=Projekt
+about.project.title=Projekte
 about.project.advisor=Leitung\:
 about.credits.title=Credits
 about.credits.partner=Partner\:
@@ -128,16 +160,6 @@ about.credits.tiledata=Kartenkacheln\:
 about.credits.markers=Marker Icons\:
 about.legal.title=Rechtliche Hinweise\:
 about.legal.message=Halte die Richtlinien von OpenStreetMap ein und verwende z.B. keine urheberrechtlich geschützten Quellen ohne Erlaubnis.
-
-# PullRefresh Plugin
-pullrefresh.pullrefresh=Zum Aktualisieren herunterziehen
-pullrefresh.releaserefresh=Zum Aktualisieren loslassen...
-pullrefresh.loading=wird aktualisiert...
-pullrefresh.lastupdated=Zuletzt aktualisiert\:
-
-# ListPaging Plugin
-listpaging.loadmore=Weitere Einträge laden...
-listpaging.nomorerecords=Keine weiteren Einträge vorhanden.
 
 # Button
 button.back=Zurück
@@ -162,6 +184,22 @@ reward.alert.badges.title=Gewonnene Auszeichnungen
 update.title=Neue App-Version
 update.message=Die App wurde auf die neuste Version aktualisiert. App neu laden?
 
+#Languages
+en=Englisch
+de=Deutsch
+it=Italienisch
+fr=Französisch
+sl=Slowenisch
+hr=Kroatisch
+cs=Tschechisch
+nl=Holländisch
+gl=Galizisch
+pt=Portugiesisch
+ro=Rumänisch
+ja=Japanisch
+ca=Katalanisch
+es=Spanisch
+
 
 ###############################
 # Labels used directly in source files (without Ext.i18n.Bundle plugin)
@@ -175,6 +213,3 @@ startscreen.browsererror=Dein Browser wird leider noch nicht unterstützt. Kort 
 # app/util/Config.js
 ## Firststeps
 firststeps.form.username.placeholder=Benutzername
-
-## PullRefresh Plugin
-pullrefresh.dateformat=d.m.Y H\:i\:s

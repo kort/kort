@@ -115,10 +115,18 @@ Ext.define('Ext.ux.LeafletMap', {
         tileLayer: null,
 
         /**
+         * @cfg {L.Control.Layers} additionalLayers
+         * Additional layers.
+         * @accessor
+         */
+        additionalLayers: [],
+
+        /**
          * @cfg {Ext.util.Geolocation} geo
          * Geolocation provider for the map.
          * @accessor
          */
+
         geo: null,
 
         /**
@@ -231,6 +239,8 @@ Ext.define('Ext.ux.LeafletMap', {
         }
     },
 
+
+
     getMapOptions: function () {
         return Ext.merge({}, this.options || this.getInitialConfig('mapOptions'));
     },
@@ -239,10 +249,12 @@ Ext.define('Ext.ux.LeafletMap', {
         return Ext.merge({}, this.options || this.getInitialConfig('tileLayerOptions'));
     },
 
+    //ToDo Check
     updateUseCurrentLocation: function (useCurrentLocation) {
         this.setGeo(useCurrentLocation);
         if (!this.getMap() && (!useCurrentLocation || !this.getInitialCenter())) {
-            this.renderMap();
+           //csc on 26.04.2013: This call causes error in combination with initialCenter=false config.
+           //this.renderMap();
         }
     },
 
@@ -304,7 +316,7 @@ Ext.define('Ext.ux.LeafletMap', {
 
             me.setTileLayer(new ll.TileLayer(me.getTileLayerUrl(), me.getTileLayerOptions()));
             tileLayer = me.getTileLayer();
-            mapOptions.layers = [tileLayer];
+            mapOptions.layers = [tileLayer].concat(this.getAdditionalLayers());
 
             me.setMap(new ll.Map(element.dom, mapOptions));
             map = me.getMap();
@@ -326,8 +338,8 @@ Ext.define('Ext.ux.LeafletMap', {
     onGeoUpdate: function (geo) {
         var ll = window.L,
             ownPositionMarker = this.getOwnPositionMarker();
-
         if (ll && geo && (this.getAutoMapCenter() || this.getInitialCenter())) {
+        //if (ll && geo && (this.getAutoMapCenter())) {
             this.setMapCenter(new ll.LatLng(geo.getLatitude(), geo.getLongitude()));
             this.setInitialCenter(false);
         }
@@ -343,6 +355,7 @@ Ext.define('Ext.ux.LeafletMap', {
             this.renderMap();
         }
     },
+
 
     /**
      * Moves the map center to the designated coordinates hash of the form:
@@ -385,6 +398,19 @@ Ext.define('Ext.ux.LeafletMap', {
                 });
             }
         }
+    },
+
+    setMapZoomLevel: function(zoomLevel) {
+        if(zoomLevel && zoomLevel>=0 && zoomLevel<=18) {
+            this.getMap().setZoom(zoomLevel);
+        }
+    },
+
+    getMapCenter: function() {
+        return this.getMap().getCenter();
+    },
+    getMapZoomLevel: function() {
+        return this.getMap().getZoom();
     },
 
     /**
@@ -433,10 +459,11 @@ Ext.define('Ext.ux.LeafletMap', {
 
     // @private
     onMoveEnd: function () {
+        /*
         var map = this.getMap(),
             tileLayer = this.getTileLayer();
-
-        this.fireEvent('moveend', this, map, tileLayer);
+        */
+        this.fireEvent('moveend');
     },
 
     // @private

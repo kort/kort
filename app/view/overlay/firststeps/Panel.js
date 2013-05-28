@@ -1,5 +1,5 @@
 /**
- * First steps panel which overlays main panel if no username is given
+ * First steps panel which overlays main panel if no username is given.
  */
 Ext.define('Kort.view.overlay.firststeps.Panel', {
 	extend: 'Ext.Panel',

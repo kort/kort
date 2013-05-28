@@ -6,6 +6,7 @@ error_type.title.tracktype=Vrsta neznane poti
 error_type.title.worship_religion=Mesto čaščenja brez religije
 error_type.title.language_name=Jezik imena neznan
 error_type.title.street_wo_name=Ulica brez naziva
+error_type.title.missing_cuisine=Restaurant without a cuisine
 
 # error type placeholders
 error_type.placeholder.ref=Sklic
@@ -15,6 +16,7 @@ error_type.placeholder.speed_limit=Omejitev hitrosti
 error_type.placeholder.language=Jezik
 error_type.placeholder.type=Vrsta
 error_type.placeholder.street_name=Naziv ulice
+error_type.placeholder.missing_cuisine=Cuisine
 
 # vote questions
 vote.question.ref=Ali se to nanaša na to avtocesto?
@@ -24,6 +26,7 @@ vote.question.maxspeed=Ali je to omejitev hitrosti te ceste?
 vote.question.language_unknown=Ali je naziv '$2' v danem jeziku?
 vote.question.tracktype=Ali je to pot dane vrste?
 vote.question.street_name=Ali je to pravi naziv ceste?
+vote.question.missing_cuisine=Is this the correct cuisine type of $1?
 
 # badge names
 badge.name.first_place=1. mesto
@@ -113,10 +116,32 @@ answer.language.uzbek=uzbeški jezik
 answer.language.vietnamese=vietnamščina
 answer.language.welsh=valižanščina
 
+# missing_cuisine
+answer.missing_cuisine.regional=Regional
+answer.missing_cuisine.coffee_shop=Coffee Shop
+answer.missing_cuisine.international=International
+answer.missing_cuisine.italian=Italian
+answer.missing_cuisine.turkish=Turkish
+answer.missing_cuisine.chinese=Chinese
+answer.missing_cuisine.thai=Thai
+answer.missing_cuisine.asian=Asian
+answer.missing_cuisine.indian=Indian
+answer.missing_cuisine.french=French
+answer.missing_cuisine.mexican=Mexican
+answer.missing_cuisine.american=American
+answer.missing_cuisine.japanese=Japanese
+answer.missing_cuisine.greek=Greek
+answer.missing_cuisine.sandwich=Sandwich
+answer.missing_cuisine.steak_house=Steakhouse
+answer.missing_cuisine.chicken=Chicken
+answer.missing_cuisine.bistro_brasserie=Bistro, Brasserie
+answer.missing_cuisine.seafood=Seafood
+answer.missing_cuisine.burger=Burger
 
-################################################
-# THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT #
-################################################
+
+##############################################################
+# THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT AND OSM_ERRORS#
+##############################################################
 
 # error descriptions (KeepRight)
 bug.question.track=Katere vrste poti je to?
@@ -126,6 +151,7 @@ bug.question.name_of_street=Kakšen je naziv te ceste?
 bug.question.language=V katerem jeziku je napisan naziv za $2?
 bug.question.motorway_ref=Kakšen je sklic (e.g. A3 or E385) za to avtocesto?
 bug.question.place_of_worship=Kateri religiji pripada to mesto čaščenja?
+bug.question.cuisine_of_restaurant=What's the cuisine type of '$1'?
 
 # single values
 cafe=kavarna

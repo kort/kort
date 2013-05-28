@@ -19,7 +19,8 @@
     <property name="test.dir" value="test" />
 
 
-	<target name="build" depends="css,version,lint,docs,test">
+	<!--<target name="build" depends="css,version,lint,docs,test">-->
+    <target name="build" depends="css,version,lint,docs,test">
 		<echo message="BUILD FINISHED!"/>
 	</target>
 
@@ -38,6 +39,7 @@
         <antcall target="php-docs"/>
     </target>
 
+
     <target name="php-test">
 		<echo message="Running tests"/>
 		<foreach target="exec_test_php" param="filename">
@@ -46,6 +48,7 @@
 			</path>
 		</foreach>
     </target>
+
 
 	<target name="js-test">
 		<echo message="Running tests"/>
@@ -67,7 +70,7 @@
 
     <target name="php-lint">
         <echo message="Linting PHP files"/>
-        <exec executable="bin/phpcs">
+        <exec executable="/usr/bin/phpcs">
             <arg value="--standard=code_standard.xml"/>
             <arg value="--report-width=60"/>
             <arg value="${php.dir}"/>
@@ -133,13 +136,13 @@
     </target>
 
     <target name="exec_test_php">
-		<basename file="${filename}" property="basename"/>
-		<echo message="Run ${basename}"/>
-		<exec executable="php" dir="${php.dir}" logError="true" failonerror="true">
-			<arg value="-f"/>
-			<arg value="${basedir}/${test.dir}/index.php"/>
-			<arg value="${filename}" />
-		</exec>
-	</target>
+	<basename file="${filename}" property="basename"/>
+	<echo message="Run ${basename}"/>
+	<exec executable="php" dir="${php.dir}" logError="true" failonerror="true">
+		<arg value="-f"/>
+		<arg value="${basedir}/${test.dir}/index.php"/>
+		<arg value="${filename}" />
+	</exec>
+   </target>
 
 </project>

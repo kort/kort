@@ -1,5 +1,5 @@
 /**
- * Badges container which overlays profile when a badge gets tapped
+ * Badges container which overlays profile when a badge gets tapped.
  */
 Ext.define('Kort.view.profile.BadgesContainer', {
 	extend: 'Ext.Container',
@@ -42,7 +42,10 @@ Ext.define('Kort.view.profile.BadgesContainer', {
         
         selectedBadgeIndex: 0
 	},
-    
+
+    /**
+     * @private
+     */
     initialize: function() {
         this.callParent(arguments);
         

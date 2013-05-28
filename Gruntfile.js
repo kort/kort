@@ -26,7 +26,7 @@ module.exports = function(grunt) {
                 devel: true,
                 trailing: true,
                 white:  false,
-                maxcomplexity: 3,
+                maxcomplexity: 4,
                 globals: {
                     Kort: true,
                     Ext: true,
@@ -61,7 +61,7 @@ module.exports = function(grunt) {
 
     // Default task.
     grunt.registerTask('default', 'jshint:kort');
-    
+
     // Linting task.
     grunt.registerTask('lint', 'jshint:kort');
 

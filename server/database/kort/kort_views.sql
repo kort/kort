@@ -1,20 +1,20 @@
 create or replace view kort.all_errors as
-select  e.error_id,
+select  e.source,
+        e.error_id,
         e.schema,
         e.error_type_id,
-        e.object_id osm_id,
-        e.object_type osm_type,
-        e.msgid description,
-        CAST(e.lat AS NUMERIC)/10000000 latitude,
-        CAST(e.lon AS NUMERIC)/10000000 longitude,
+        e.osm_id,
+        e.osm_type,
+        e.description,
+        CAST(e.latitude AS NUMERIC)/10000000 latitude,
+        CAST(e.longitude AS NUMERIC)/10000000 longitude,
         e.geom,
         e.txt1,
         e.txt2,
         e.txt3,
         e.txt4,
         e.txt5
-from    keepright.errors e
-where   e.state in ('new', 'reopened');
+from    all_errors.errors e;
 
 create or replace view kort.errors as
 select  e.error_id id,
@@ -150,21 +150,32 @@ select a.answer_id id,
        a.sorting
 from   kort.answer a;
 
-create or replace view kort.highscore as
-select rank() over (order by u.koin_count desc) ranking,
-       u.user_id user_id,
+CREATE or replace VIEW kort.highscore AS
+SELECT Rank()
+         over (
+           ORDER BY u.koin_count DESC)    AS ranking,
+	   ROW_NUMBER()
+		 over (
+		   ORDER BY u.koin_count DESC) AS rownumber,
+       u.user_id,
        u.username,
        u.pic_url,
        u.oauth_user_id,
        u.koin_count,
-       (select count(1) from kort.fix f where f.user_id = u.user_id) fix_count,
-       (select count(1) from kort.vote v where v.user_id = u.user_id) vote_count
-from   kort.user u
-where  u.username is not null
-order by ranking;
+       (SELECT Count(1) AS count
+        FROM   kort.fix f
+        WHERE  ( f.user_id = u.user_id )) AS fix_count,
+       (SELECT Count(1) AS count
+        FROM   kort.vote v
+        WHERE  ( v.user_id = u.user_id )) AS vote_count
+FROM   kort.user u
+WHERE  ( u.username IS NOT NULL )
+ORDER  BY Rank()
+            over (
+              ORDER BY u.koin_count DESC);
 
-create or replace view kort.user_model as
-select u.user_id id,
+CREATE or replace VIEW kort.user_model AS
+SELECT u.user_id                           AS id,
        u.name,
        u.username,
        u.pic_url,
@@ -173,10 +184,23 @@ select u.user_id id,
        u.token,
        u.secret,
        u.koin_count,
-       (select count(1) from kort.fix f where f.user_id = u.user_id) fix_count,
-       (select count(1) from kort.vote v where v.user_id = u.user_id) vote_count,
-       (select ranking from (select ranking, user_id from kort.highscore) hs where user_id = u.user_id) ranking
-from   kort.user u;
+       (SELECT Count(1) AS count
+        FROM   kort.fix f
+        WHERE  ( f.user_id = u.user_id ))  AS fix_count,
+       (SELECT Count(1) AS count
+        FROM   kort.vote v
+        WHERE  ( v.user_id = u.user_id ))  AS vote_count,
+       (SELECT hs.ranking
+        FROM   (SELECT highscore.ranking,
+                       highscore.user_id
+                FROM   kort.highscore) hs
+        WHERE  ( hs.user_id = u.user_id )) AS ranking,
+       (SELECT hs2.rownumber
+        FROM   (SELECT highscore.rownumber,
+                       highscore.user_id
+                FROM   kort.highscore) hs2
+        WHERE  ( hs2.user_id = u.user_id )) AS rownumber
+FROM   kort.user u;
 
 create or replace view kort.user_badges as
 select b.badge_id id,
@@ -187,6 +211,7 @@ select b.badge_id id,
        b.sorting
 from   kort.badge b
 order by b.sorting;
+
 
 create or replace view kort.error_types as
 select t.error_type_id,
@@ -199,6 +224,59 @@ select t.error_type_id,
        t.fix_koin_count,
        t.required_votes
 from   kort.error_type t;
+
+create or replace view kort.all_running_promotions as
+select p.id AS promo_id,
+	   p.startdate,
+       p.enddate,
+       p.geom AS promogeom,
+       pm.error_type,
+       pm.mission_extra_coins,
+	   pm.validation_extra_coins
+FROM   (kort.promotion p
+        join kort.promo2mission pm
+          ON (( p.id = pm.promo_id )))
+WHERE  ( ( p.startdate <= Now() )
+         AND ( p.enddate >= Now() ) );
+
+create or replace view kort.all_missions_with_promotions AS
+SELECT er.error_id AS mission_error_id,
+       er.schema,
+       er.osm_id,
+       p.promo_id,
+       p.mission_extra_coins AS promo_extra_coins
+FROM   ((kort.all_errors e left join kort.error_types t on e.error_type_id = t.error_type_id) er
+        join kort.all_running_promotions p
+          ON (( ( er.type ) :: text = ( p.error_type ) :: text )))
+WHERE  public._st_contains(p.promogeom, er.geom);
+
+create or replace view kort.aggregateddata_from_all_missions as
+SELECT er.error_id AS mission_error_id,
+ 	   er.schema,
+	   er.osm_id,
+	   er.fix_koin_count,
+       p.promo_id,
+	   p.promo_extra_coins
+FROM   (kort.all_errors e left join kort.error_types t on e.error_type_id = t.error_type_id) er
+        left join kort.all_missions_with_promotions p
+               ON (( er.error_id = p.mission_error_id) AND (er.schema = p.schema) AND (er.osm_id = p.osm_id));
+
+create or replace view kort.all_validations_with_promotions as
+SELECT v.id,
+	   p.promo_id,
+       p.validation_extra_coins AS promo_extra_coins
+FROM   kort.validations v left join kort.all_running_promotions p ON(v.type = p.error_type)
+WHERE public._st_contains(p.promogeom, v.geom);
+
+create or replace view kort.aggregateddata_from_all_validations as
+SELECT v.id,
+	   v.vote_koin_count,
+	   p.promo_id,
+       p.promo_extra_coins
+FROM   kort.validations v left join kort.all_validations_with_promotions p
+               ON (v.id = p.id);
+
+
 
 create or replace view kort.statistics as
 select

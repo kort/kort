@@ -1,5 +1,5 @@
 /**
- * Login panel which overlays main panel if user isn't logged in
+ * Login panel which overlays main panel if user isn't logged in.
  */
 Ext.define('Kort.view.overlay.login.Panel', {
 	extend: 'Ext.Panel',
@@ -52,6 +52,13 @@ Ext.define('Kort.view.overlay.login.Panel', {
                         id: 'loginButtonGoogle',
                         baseCls: Ext.baseCSSPrefix + 'zocial-button',
                         cls: 'zocial google'
+                    },
+                    {
+                        xtype: 'button',
+                        text: Ext.i18n.Bundle.message('login.button.facebook'),
+                        id: 'loginButtonFacebook',
+                        baseCls: Ext.baseCSSPrefix + 'zocial-button',
+                        cls: 'zocial facebook'
                     }
                 ]
             }
