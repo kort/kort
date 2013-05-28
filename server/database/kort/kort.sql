@@ -84,21 +84,22 @@ create table kort.vote (
     foreign key (fix_id) references kort.fix (fix_id)
 );
 
-CREATE TABLE kort.promotion (
-  id integer PRIMARY KEY,
-  title varchar(40) NOT NULL,
-  lang varchar(5) NOT NULL,
-  startdate timestamp with time zone NOT NULL,
-  enddate timestamp with time zone NOT NULL,
-  region varchar(100) NOT NULL,
-  geom public.geometry(MultiPolygon,4326) NULL
+create table kort.promotion (
+    id integer primary key,
+    title varchar(40) not null,
+    lang varchar(5) not null,
+    startdate timestamp with time zone not null,
+    enddate timestamp with time zone not null,
+    region varchar(100) not null,
+    geom public.geometry(MultiPolygon,4326) NULL
 );
 
-CREATE TABLE kort.promo2mission (
-	promo_id integer references kort.promotion(id) NOT NULL,
-	error_type varchar(20) references kort.error_type(type) NOT NULL,
-	mission_extra_coins integer NOT NULL,
-	validation_extra_coins integer NOT NULL
+create table kort.promo2mission (
+    promo_id integer references kort.promotion(id) not null,
+    error_type varchar(20) references kort.error_type(type) not null,
+    mission_extra_coins integer not null,
+    validation_extra_coins integer not null,
+    primary key (promo_id, error_type)
 );
 
 create or replace function check_fix_onlyone_pending_per_error()
