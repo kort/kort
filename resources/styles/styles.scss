@@ -505,20 +505,26 @@ $message-box-background-color:#232e39;
 .newsNewsEntryContentComponent{
   .newsclass{
     padding: $panel-padding;
-
+    max-width: 500px;
     .title{
      // font-family: "Helvetica";
-      font-size: 1.2em;
-      color: #b30000;
+      font-size: 1.5em;
+      font-weight: bold;
+      color: black;
+      //color: #747474;
     }
     .date{
-      font-style: italic;
+      //font-style: italic;
       font-size: 0.8em;
     }
     .text{
       margin-top:  1.0em;
       font-size: 1.0em;
-      font-family: "Georgia, serif";
+      //font-family: "Georgia, serif";
+    }
+    a:link, a:visited {
+      font-style: normal;
+      color: black;
     }
   }
 }
