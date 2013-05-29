@@ -120,9 +120,8 @@ Ext.define('Kort.plugin.ListTwoWayPaging', {
         list.on('initialize',me._onListInitialized,me);
         scroller.on('scroll',me._onScroll,me);
         scroller.on('scrollend',me._onScrollEnd,me);
-
+        Kort.app.on('userloaded',me._updateStore,me);
         if(me.getUseUserPositionAsStartingPage()) {
-            Kort.app.on('userloaded',me._updateStore,me);
             Kort.app.on('userrefreshed',me._updateStore,me);
         }
     },
@@ -215,7 +214,6 @@ Ext.define('Kort.plugin.ListTwoWayPaging', {
      * @private
      */
     _onListInitialized: function() {
-        if(!this.getUseUserPositionAsStartingPage()){this.getStore().loadPage(this.getStartingPage());}
         if(this.getBidirectional()) {this.getList().add(this.getLoadMoreTopComponent());}
         this.getList().add(this.getLoadMoreBottomComponent());
     },
