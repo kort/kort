@@ -24,5 +24,5 @@ create table keepright.errors (
     txt3 text,
     txt4 text,
     txt5 text,
-    PRIMARY KEY(schema, error_id, object_id)
+    PRIMARY KEY(schema, error_id, object_id, lat, lon)
 );
