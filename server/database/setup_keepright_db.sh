@@ -88,7 +88,8 @@ if [ -z $MINIMAL_SETUP ] ; then
     for part_file in /tmp/kr_part*
     do
         echo $part_file
-        psql -d $DB_NAME -c "copy $DB_SCHEMA.errors from '$part_file' DELIMITER '	' null '\N' CSV;"
+        #psql -d $DB_NAME -c "copy $DB_SCHEMA.errors from '$part_file' DELIMITER '	' null '\N' CSV;"
+        psql -d $DB_NAME -c "copy $DB_SCHEMA.errors from '$part_file';"
     done
     echo "End."
     
