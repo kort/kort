@@ -62,9 +62,9 @@ echo "consolidation ended"
 ### rebuild kort views and update kort data - errors are possible and tolerated ###
 echo "rebuild kort views and update kort data"
 $DIR/update_kort_db.sh -o $DB_OWNER -n $DB_NAME -s kort
-# rebuild kort indexes
-psql -d $DB_NAME -c "REINDEX TABLE kort.answer;"
-psql -d $DB_NAME -c "REINDEX TABLE kort.error_type;"
+### reindex database ###
+echo "reindex database"
+psql -d $DB_NAME -c "REINDEX DATABASE osm_bugs;"
 
 
 
