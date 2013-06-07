@@ -288,6 +288,7 @@ select
 (select count(*) from kort.user where koin_count > 0) active_user_count,
 (select count(*) from kort.user where oauth_provider = 'OpenStreetMap') osm_user_count,
 (select count(*) from kort.user where oauth_provider = 'Google') google_user_count,
+(select count(*) from kort.user where oauth_provider = 'Facebook') fb_user_count,
 (select count(*) from kort.vote) vote_count,
 (select count(*) from kort.vote where valid) valid_vote_count,
 (select count(*) from kort.vote where not valid) invalid_vote_count,
