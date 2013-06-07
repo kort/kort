@@ -9,6 +9,7 @@ resources/styles/styles.css
 server/php/Webservice/Database/DbConfig.php
 build/Kort/production/server/php/Webservice/Database/DbConfig.php
 *.bak
+.idea/
 docs/Kort
 docs/Kort-backend
 docs/Ext.ux.LeafletMap
