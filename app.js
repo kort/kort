@@ -140,9 +140,9 @@ Ext.application({
 
     startupImage: {
         // Non-retina iPhone, iPod touch, and all Android devices
-        '320x460': './resources/images/kort-startup-320x460.jpg',
+        '320x460': './resources/images/kort-startup-alldev-320x460.png',
         // Retina iPhone and iPod touch
-        '640x920': './resources/images/kort-startup-640x920.png'
+        '640x920': './resources/images/kort-startup-alldev-640x920.png'
     },
 
     viewport: {
