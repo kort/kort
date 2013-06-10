@@ -93,8 +93,8 @@ vote.alert.submit.failure.message=Ups\! Beim Übertragen deiner Antwort ist etwa
 
 # Highscore
 highscore.title=Highscore
-highscore.absolute.tabtitle=Absolut
-highscore.relative.tabtitle=Relativ
+highscore.absolute.tabtitle=Top
+highscore.relative.tabtitle=Meine Platzierung
 highscore.loadmask.message=Lade Highscore...
 highscore.emptytext=Highscore kann nicht geladen werden.
 highscore.you=Das bist du\!

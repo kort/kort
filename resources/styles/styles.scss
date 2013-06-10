@@ -172,12 +172,21 @@ $message-box-background-color:#232e39;
 }
 
 .mapLoadingIcon {
-  .x-button-icon {
-    width: 1.1em!important;
-    height: 1.1em!important;
-    -webkit-mask-size: 1.1em!important;
-  }
+    .x-button-icon {
+        width: 1.1em!important;
+        height: 1.1em!important;
+        -webkit-mask-size: 1.1em!important;
+    }
+}
 
+#mapNavigationView {
+    .x-toolbar {
+        .x-title {
+            .x-innerhtml {
+                font-size: 0.8em;
+            }
+        }
+    }
 }
 
 /* -----------------------
