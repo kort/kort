@@ -99,7 +99,7 @@ Ext.define('Kort.controller.Highscore', {
      */
     _loadCallback: function() {
         this.getStoresInLoadingState().pop();
-        if(!this.getStoresInLoadingState().lenth) {
+        if(!this.getStoresInLoadingState().length) {
             this.getHighscoreRefreshButton().enable();
         }
     },
