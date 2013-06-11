@@ -38,7 +38,7 @@ Ext.define('Kort.view.map.mission.fix.Form', {
                                 '</div>',
                                 '<div class="content">',
                                     '<p>',
-                                        '<tpl if="this.isPromotion(promo_id)">',
+                                        '<tpl if="this.isPromotion(state)">',
                                             '{[this.getMessage("fix.form.koins.earnpromotion", {fix_koin_count: values.fix_koin_count, extra_coins: values.extra_coins})]}',
                                         ' <tpl else>',
                                             '{[this.getMessage("fix.form.koins.earn", {fix_koin_count: values.fix_koin_count})]}',
@@ -48,7 +48,7 @@ Ext.define('Kort.view.map.mission.fix.Form', {
                             '</div>',
                             '<div class="textpic">',
                                 '<div class="image">',
-                                    '<img class="missiontype-image" src="{[this.constructMissiontypeIcon(values.type,values.promo_id,values.inOperationalRange)]}" />',
+                                    '<img class="missiontype-image" src="{[this.constructMissiontypeIcon(values.type,values.state,values.inOperationalRange)]}" />',
                                 '</div>',
                                 '<div class="content">',
                                     '<p>{description}</p>',
@@ -57,24 +57,15 @@ Ext.define('Kort.view.map.mission.fix.Form', {
                         '</div>',
 
                 {
-                    //member functions:
-                    isPromotion: function(promo_id) {
-                        if(promo_id) {
-                            return true;
-                        }else {
-                            return false;
-                        }
+                    //checks if mission has promotion
+                    isPromotion: function(state) {
+                        return state===Kort.util.Config.getMapMarkerState().missionPromotion;
                     },
-                    constructMissiontypeIcon: function(type,promo_id,inOperationalRange) {
-                        var state = Kort.util.Config.getMapMarkerState().mission;
-                        if(promo_id) {
-                            state = Kort.util.Config.getMapMarkerState().missionPromotion;
-                        }
+                    constructMissiontypeIcon: function(type,state,inOperationalRange) {
                         return Kort.util.Config.constructMissionIconURL(type,state,true,inOperationalRange);
                     }
                 }
-                
-                    )
+            )
         };
         
         fixField = this._createFixField(this.getRecord());

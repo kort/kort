@@ -1,6 +1,7 @@
 create sequence kort.fix_id;
 create sequence kort.vote_id;
 create sequence kort.user_id;
+create sequence kort.promotion_id;
 
 create table kort.error_type (
     error_type_id integer primary key,
@@ -85,7 +86,7 @@ create table kort.vote (
 );
 
 create table kort.promotion (
-    id integer primary key,
+    id integer primary key default nextval('kort.promotion_id'),
     title varchar(40) not null,
     lang varchar(5) not null,
     startdate timestamp with time zone not null,
