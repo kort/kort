@@ -92,8 +92,8 @@ vote.alert.submit.failure.message=Oops! There was an error while sending your an
 
 # Highscore
 highscore.title=Highscore
-highscore.absolute.tabtitle=Absolute
-highscore.relative.tabtitle=Relative
+highscore.absolute.tabtitle=Top
+highscore.relative.tabtitle=My score
 highscore.loadmask.message=Loading highscore...
 highscore.emptytext=Can't load highscore.
 highscore.you=This is you!
