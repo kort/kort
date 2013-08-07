@@ -47,7 +47,7 @@ map.mission.missionmessagebox.yes=Beantworten
 map.mission.missionmessagebox.no=Weiss nicht
 map.mission.missionmessagebox.close=Schliessen
 map.mission.layername=Aufträge
-map.missionInactive.layername = Inaktive Aufträge
+map.missionInactive.layername=Inaktive Aufträge
 map.validation.layername=Überprüfungen
 map.validation.validationmessagebox.koins.earn=Verdiene dir {validation_koin_count} Koins
 map.validation.validationmessagebox.koins.earnpromotion=Verdiene dir {validation_koin_count} + {extra_coins} Koins
@@ -71,13 +71,6 @@ fix.alert.fixfield.empty.title=Felder ausfüllen
 fix.alert.fixfield.empty.message=Bitte alle Felder ausfüllen.
 fix.alert.submit.failure.title=Fehler beim Senden
 fix.alert.submit.failure.message=Ups\! Beim Übertragen der Lösung ist etwas schief gelaufen. Eventuell hilft ein Neustart der App.
-
-# Validation
-validation.title=Prüfen
-validation.loadmask.message=Lade Überprüfungen...
-# validation.emptytext=Bravo\! Du hast alle Meldungen überprüft.
-validation.list.header={validations_left} positive Überprüfungen nötig
-validation.distance=Distanz
 
 ## Vote
 vote.falsepositive.question=Es wurde angegeben, dass es keine Lösung zu dieser Frage gibt. Ist dies korrekt?
@@ -161,6 +154,16 @@ about.credits.markers=Marker Icons\:
 about.legal.title=Rechtliche Hinweise\:
 about.legal.message=Halte die Richtlinien von OpenStreetMap ein und verwende z.B. keine urheberrechtlich geschützten Quellen ohne Erlaubnis.
 
+# PullRefresh Plugin
+pullrefresh.pullrefresh=Zum Aktualisieren herunterziehen
+pullrefresh.releaserefresh=Zum Aktualisieren loslassen...
+pullrefresh.loading=wird aktualisiert...
+pullrefresh.lastupdated=Zuletzt aktualisiert\:
+
+# ListPaging Plugin
+listpaging.loadmore=Weitere Einträge laden...
+listpaging.nomorerecords=Keine weiteren Einträge vorhanden.
+
 # Button
 button.back=Zurück
 
@@ -200,7 +203,6 @@ ja=Japanisch
 ca=Katalanisch
 es=Spanisch
 
-
 ###############################
 # Labels used directly in source files (without Ext.i18n.Bundle plugin)
 ###############################
@@ -213,3 +215,6 @@ startscreen.browsererror=Dein Browser wird leider noch nicht unterstützt. Kort 
 # app/util/Config.js
 ## Firststeps
 firststeps.form.username.placeholder=Benutzername
+
+## PullRefresh Plugin
+pullrefresh.dateformat=d.m.Y H\:i\:s
