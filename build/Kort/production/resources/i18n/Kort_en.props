@@ -14,21 +14,21 @@ login.kort.description.3=Improve OpenStreetMap
 login.kort.introduction.1=Kort helps to improve the data in OpenStreetMap.
 login.kort.introduction.2=Hence you'll see your missions on a map. By completing missions you get Koins and earn badges.
 login.kort.introduction.3=Each solved mission is later checked by other players for its correctness. As soon as enough positive ratings are entered for a suggested solution, it is ready to be sent back to OpenStreetMap.
-login.kort.introduction.4=Login now to begin your mission!
+login.kort.introduction.4=Login now to begin your mission\!
 login.button.google=Login with Google
 login.button.osm=Login with OpenStreetMap
 login.button.facebook=Login with Facebook
 login.loadmask.message=Login...
 
 # Firststeps
-firststeps.introduction=Welcome to Kort! Choose a username:
-firststeps.form.button.submit=Start Mission!
+firststeps.introduction=Welcome to Kort\! Choose a username\:
+firststeps.form.button.submit=Start Mission\!
 firststeps.alert.username.empty.title=Enter username
 firststeps.alert.username.empty.message=Please enter a username.
 firststeps.alert.username.specialchars.title=Problem with character
 firststeps.alert.username.specialchars.message=Please only use letters and digits for your username.
 firststeps.alert.submit.failure.title=Error while sending
-firststeps.alert.submit.failure.message=Oops! There was an error while sending the username. Restarting the app might help.
+firststeps.alert.submit.failure.message=Oops\! There was an error while sending the username. Restarting the app might help.
 
 # Geolocation error
 geolocationerror.introduction=To use Kort, accessing your geo-position is essential.
@@ -47,7 +47,7 @@ map.mission.missionmessagebox.yes=Answer
 map.mission.missionmessagebox.no=Don't know
 map.mission.missionmessagebox.close=Close
 map.mission.layername=Missions
-map.missionInactive.layername = Inactive Missions
+map.missionInactive.layername=Inactive Missions
 map.validation.layername=Checks
 map.validation.validationmessagebox.koins.earn=Earn {validation_koin_count} Koins
 map.validation.validationmessagebox.koins.earnpromotion=Earn {validation_koin_count} + {extra_coins} Koins
@@ -58,8 +58,8 @@ map.validation.validationmessagebox.checkit=Check the solution
 
 ## Fix
 fix.form.title=Mission
-fix.form.koins.earn=Get the {fix_koin_count} Koins!
-fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins!
+fix.form.koins.earn=Get the {fix_koin_count} Koins\!
+fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins\!
 fix.form.message.placeholder=Your answer...
 fix.form.button.showonmap=Show on map
 fix.form.button.submit=Complete mission
@@ -70,13 +70,7 @@ fix.sendmask.message=Sending solution...
 fix.alert.fixfield.empty.title=Fill in the fields
 fix.alert.fixfield.empty.message=Please fill in all fields.
 fix.alert.submit.failure.title=Error while sending
-fix.alert.submit.failure.message=Oops! There was an error while sending your answer. Restarting the app might help.
-
-# Validation
-validation.title=Check
-validation.loadmask.message=Loading data...
-validation.list.header={validations_left} positive ratings needed
-validation.distance=Distance
+fix.alert.submit.failure.message=Oops\! There was an error while sending your answer. Restarting the app might help.
 
 ## Vote
 vote.falsepositive.question=This mission is flagged as 'unable to solve'. Is this correct?
@@ -88,7 +82,7 @@ vote.answeractionsheet.button.cancel=Don't know
 vote.answeractionsheet.question=Is the answer correct?
 vote.sendmask.message=Sending answer...
 vote.alert.submit.failure.title=Error while sending
-vote.alert.submit.failure.message=Oops! There was an error while sending your answer. Restarting the app might help.
+vote.alert.submit.failure.message=Oops\! There was an error while sending your answer. Restarting the app might help.
 
 # Highscore
 highscore.title=Highscore
@@ -96,10 +90,10 @@ highscore.absolute.tabtitle=Top
 highscore.relative.tabtitle=My score
 highscore.loadmask.message=Loading highscore...
 highscore.emptytext=Can't load highscore.
-highscore.you=This is you!
+highscore.you=This is you\!
 highscore.koins=Koins
-highscore.fixcount=Missions:
-highscore.votecount=Checks:
+highscore.fixcount=Missions\:
+highscore.votecount=Checks\:
 highscore.user.badges.emptytext=Could not load badges.
 
 # Profil
@@ -120,7 +114,7 @@ profile.content.badges.header=Won badges
 profile.logout.loadmask.message=Logout...
 profile.refresh.loadmask.message=Loading profile...
 profile.badges.title=Your badges
-profile.badges.recieved=Received on:
+profile.badges.recieved=Received on\:
 profile.badges.emptytext=Your badges could not be loaded.
 profile.badges.button.close=Close
 profile.alert.username.empty.title=Enter username
@@ -128,7 +122,7 @@ profile.alert.username.empty.message=Please enter a username.
 profile.alert.username.specialchars.title=Problem with character
 profile.alert.username.specialchars.message=Please only use letters and digits for your username.
 profile.alert.submit.failure.title=Error while sending
-profile.alert.submit.failure.message=Oops! There was an error while sending the username. Restarting the app might help.
+profile.alert.submit.failure.message=Oops\! There was an error while sending the username. Restarting the app might help.
 
 #News
 news.title=News
@@ -140,25 +134,35 @@ news.settings.save=Save
 news.settings.cancel=Cancel
 news.settings.acceptNoLanguage=Deselect all
 news.settings.acceptAllLanguages=Select all
-news.settings.label=I want to receive news in the following languages:
+news.settings.label=I want to receive news in the following languages\:
 
 # About
 about.title=About
 about.version.title=Version
 about.information.title=More information
-about.information.homepage=Website:
-about.information.feedback=Feedback/FAQ:
-about.information.bugs=Report a bug:
+about.information.homepage=Website\:
+about.information.feedback=Feedback/FAQ\:
+about.information.bugs=Report a bug\:
 about.developers.title=Developer
 about.project.title=Projects
-about.project.advisor=Lead:
+about.project.advisor=Lead\:
 about.credits.title=Credits
-about.credits.partner=Partner:
-about.credits.mapdata=Geo data:
-about.credits.tiledata=Tiles:
-about.credits.markers=Marker Icons:
-about.legal.title=Legal note:
+about.credits.partner=Partner\:
+about.credits.mapdata=Geo data\:
+about.credits.tiledata=Tiles\:
+about.credits.markers=Marker Icons\:
+about.legal.title=Legal note\:
 about.legal.message=Please follow the guidelines of OpenStreetMap and don't use copyright protected sources without permission.
+
+# PullRefresh Plugin
+pullrefresh.pullrefresh=Pull down to refresh
+pullrefresh.releaserefresh=Release to refresh...
+pullrefresh.loading=loading...
+pullrefresh.lastupdated=Last updated\:
+
+# ListPaging Plugin
+listpaging.loadmore=Load more...
+listpaging.nomorerecords=No more records available.
 
 # Button
 button.back=Back
@@ -174,8 +178,8 @@ picker.done=Finish
 picker.cancel=Cancel
 
 # Reward
-reward.alert.title=You increased your reputation!
-reward.alert.koins.new=Bravo! You have won {koin_count_new} Koins.
+reward.alert.title=You increased your reputation\!
+reward.alert.koins.new=Bravo\! You have won {koin_count_new} Koins.
 reward.alert.koins.total=You now have a total amount of {koin_count_total} Koins.
 reward.alert.badges.title=Won badges
 
@@ -199,7 +203,6 @@ ja=Japanese
 ca=Catalan
 es=Spanish
 
-
 ###############################
 # Labels used directly in source files (without Ext.i18n.Bundle plugin)
 ###############################
@@ -212,3 +215,6 @@ startscreen.browsererror=Your browser is not supported yet. Try it on your mobil
 # app/util/Config.js
 ## Firststeps
 firststeps.form.username.placeholder=Username
+
+## PullRefresh Plugin
+pullrefresh.dateformat=m/d/Y h\:iA

@@ -85,6 +85,7 @@ answer.language.french=Francés
 answer.language.german=Alemán
 answer.language.greek=Grego
 answer.language.hebrew=Hebreu
+answer.language.hungarian=Hungarian
 answer.language.irish=Irlandés
 answer.language.icelandic=Islandés
 answer.language.italian=Italiano
@@ -138,7 +139,6 @@ answer.missing_cuisine.bistro_brasserie=Bistro, Brasserie
 answer.missing_cuisine.seafood=Seafood
 answer.missing_cuisine.burger=Burger
 
-
 ##############################################################
 # THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT AND OSM_ERRORS#
 ##############################################################
@@ -154,20 +154,20 @@ bug.question.place_of_worship=A que relixión pertence este lugar de culto?
 bug.question.cuisine_of_restaurant=What's the cuisine type of '$1'?
 
 # single values
-cafe=Cafetería
-fast_food=Restaurante de comida rápida
-restaurant=Restaurante
-school=Escola
-pharmacy=Farmacia
-fuel=Estación de servizo
-cinema=Cine
-bank=Banco
-university=Universidade
-theatre=Teatro
-pub=Cervecería
-place_of_worship=Lugar de culto
-library=Biblioteca
-hospital=Hospital
-courthouse=Xulgado
+cafe=cafetería
+fast_food=restaurante de comida rápida
+restaurant=restaurante
+school=escola
+pharmacy=farmacia
+fuel=estación de servizo
+cinema=cine
+bank=banco
+university=universidade
+theatre=teatro
+pub=cervecería
+place_of_worship=lugar de culto
+library=biblioteca
+hospital=hospital
+courthouse=xulgado
 way=vial
 node=lugar
