@@ -49,6 +49,7 @@ Ext.define('Kort.view.about.Container', {
                                 '<dd>' + Ext.i18n.Bundle.message('about.credits.mapdata') + ' ' + Kort.util.Config.getAbout().credits.mapdata + '</dd>' +
                                 '<dd>' + Ext.i18n.Bundle.message('about.credits.tiledata') + ' ' + Kort.util.Config.getAbout().credits.tiledata + '</dd>' +
                                 '<dd>' + Ext.i18n.Bundle.message('about.credits.markers') + ' ' + Kort.util.Config.getAbout().credits.markers + '</dd>' +
+                                '<dd>' + Ext.i18n.Bundle.message('about.credits.translation') + ' ' + Kort.util.Config.getAbout().credits.translation + '</dd>' +
                                 '<dt>' + Ext.i18n.Bundle.message('about.legal.title') + '</dt>' +
                                 '<dd>' + Ext.i18n.Bundle.message('about.legal.message') + '</dd>' +
                             '</dl>' +
