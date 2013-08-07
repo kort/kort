@@ -6,7 +6,7 @@ error_type.title.tracktype=Typ des Wegs unbekannt
 error_type.title.worship_religion=Kultstätte/Kirche ohne Religion
 error_type.title.language_name=Sprache des Namens unbekannt
 error_type.title.street_wo_name=Strasse ohne Namen
-error_type.title.missing_cuisine=Restaurant ohne Küchentyp
+error_type.title.missing_cuisine=Art des Restaurants
 
 # error type placeholders
 error_type.placeholder.ref=Bezeichner
@@ -85,6 +85,7 @@ answer.language.french=Französisch
 answer.language.german=Deutsch
 answer.language.greek=Griechisch
 answer.language.hebrew=Hebräisch
+answer.language.hungarian=Ungarisch
 answer.language.irish=Irisch
 answer.language.icelandic=Isländisch
 answer.language.italian=Italienisch
@@ -152,7 +153,7 @@ bug.question.motorway_ref=Wie lautet die Bezeichnung dieser Autobahn (z.B. A3 od
 bug.question.place_of_worship=Zu welcher Religion gehört diese Kirche/Kultstätte?
 bug.question.cuisine_of_restaurant=Welche Art der Küche hat '$1'?
 
-# Single values
+# single values
 cafe=Café
 fast_food=Fast-Food Restaurant
 restaurant=Restaurant

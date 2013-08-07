@@ -85,6 +85,7 @@ answer.language.french=Français
 answer.language.german=Allemand
 answer.language.greek=Grecque
 answer.language.hebrew=Hébreux
+answer.language.hungarian=Hungarian
 answer.language.irish=Irlandais
 answer.language.icelandic=Islandais
 answer.language.italian=Italien
@@ -138,10 +139,9 @@ answer.missing_cuisine.bistro_brasserie=Bistro, Brasserie
 answer.missing_cuisine.seafood=Seafood
 answer.missing_cuisine.burger=Burger
 
-
-################################################
-# THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT #
-################################################
+##############################################################
+# THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT AND OSM_ERRORS#
+##############################################################
 
 # error descriptions (KeepRight)
 bug.question.track=De quel type de piste s'agit-il ?

@@ -1,18 +1,18 @@
 # error types
-error_type.title.motorway_ref=高速道路の道路番号 (ref) が指定されていません
-error_type.title.poi_wo_name=オブジェクトに 名前 (name) がついていません
-error_type.title.missing_speedlimit=最高速度 (speed limit) が指定されていません
-error_type.title.tracktype=道路種別が不明です
-error_type.title.worship_religion=礼拝施設に宗教 (religion) が指定されていません
-error_type.title.language_name=登録外の言語で名前が記載されています
-error_type.title.street_wo_name=道路の名称が不明のままです
+error_type.title.motorway_ref=道路番号の指定なし
+error_type.title.poi_wo_name=オブジェクト名称が未設定
+error_type.title.missing_speedlimit=最高速度制限の設定なし
+error_type.title.tracktype=道路種別が未設定
+error_type.title.worship_religion=宗教指定のない礼拝施設
+error_type.title.language_name=名称の言語指定なし
+error_type.title.street_wo_name=道路名称が不明
 error_type.title.missing_cuisine=Restaurant without a cuisine
 
 # error type placeholders
-error_type.placeholder.ref=参照番号
+error_type.placeholder.ref=道路番号
 error_type.placeholder.religion=宗教
 error_type.placeholder.name=名称
-error_type.placeholder.speed_limit=最高速度
+error_type.placeholder.speed_limit=最高速度制限
 error_type.placeholder.language=言語
 error_type.placeholder.type=種別
 error_type.placeholder.street_name=道路名称
@@ -29,17 +29,17 @@ vote.question.street_name=この道路の名称はこれで正しいですか？
 vote.question.missing_cuisine=Is this the correct cuisine type of $1?
 
 # badge names
-badge.name.first_place=最初のポイント
-badge.name.second_place=2つめのポイント
-badge.name.third_place=3つめのポイント
-badge.name.100_missions=100 ミッション
-badge.name.50_missions=50 ミッション
-badge.name.10_missions=10 ミッション
-badge.name.1000_checks=1000 チェック項目
-badge.name.100_checks=100 チェック項目
-badge.name.10_checks=10 チェック項目
+badge.name.first_place=1位獲得
+badge.name.second_place=2位獲得
+badge.name.third_place=3位獲得
+badge.name.100_missions=100 ミッション達成
+badge.name.50_missions=50 ミッション達成
+badge.name.10_missions=10 ミッション達成
+badge.name.1000_checks=1000 チェック完了
+badge.name.100_checks=100 チェック完了
+badge.name.10_checks=10 チェック完了
 badge.name.first_mission=最初のミッション
-badge.name.first_check=最初のチェック項目
+badge.name.first_check=最初のチェック
 
 # badge descriptions
 badge.description.reached_1st_place=スコアが1位にランクインしました
@@ -48,17 +48,17 @@ badge.description.reached_3rd_place=スコアが3位にランクインしまし�
 badge.description.100_missions_completed=100ミッション達成！
 badge.description.50_missions_completed=50ミッション達成！
 badge.description.10_missions_completed=10ミッション達成！
-badge.description.1000_checks=1000回めのチェック項目に回答しました
-badge.description.100_checks=100回めのチェック項目に回答しました
-badge.description.10_checks=10回めのチェック項目に回答しました
+badge.description.1000_checks=1000回めのチェックに回答しました
+badge.description.100_checks=100回めのチェックに回答しました
+badge.description.10_checks=10回めのチェックに回答しました
 badge.description.1st_mission=最初のミッションを達成しました！
-badge.description.1st_check=最初のチェック項目に回答しました！
+badge.description.1st_check=最初のチェックに回答しました！
 
 # missing_track_types (http://wiki.openstreetmap.org/wiki/Key:tracktype)
 answer.track_type.grade1=アスファルトやコンクリート、玉砂利舗装
 answer.track_type.grade2=砂利道
 answer.track_type.grade3=硬軟混合
-answer.track_type.grade4=地面や砂地、芝生
+answer.track_type.grade4=むき出しの地面や砂地、芝生
 answer.track_type.grade5=未舗装道路
 
 # religion (http://wiki.openstreetmap.org/wiki/Key:religion)
@@ -74,7 +74,7 @@ answer.religion.multiple=多宗教合祀
 
 # language (http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
 answer.language.arabic=アラビア語
-answer.language.catalan=カタルーニャ語
+answer.language.catalan=カタロニア語
 answer.language.chinese=中国語
 answer.language.danish=デンマーク語
 answer.language.dutch=オランダ語
@@ -85,6 +85,7 @@ answer.language.french=フランス語
 answer.language.german=ドイツ語
 answer.language.greek=ギリシャ語
 answer.language.hebrew=ヘブライ語
+answer.language.hungarian=Hungarian
 answer.language.irish=アイルランド語
 answer.language.icelandic=アイスランド語
 answer.language.italian=イタリア語
@@ -97,7 +98,7 @@ answer.language.norwegian=ノルウェー語
 answer.language.persian=ペルシア語
 answer.language.polish=ポーランド語
 answer.language.portuguese=ポルトガル語
-answer.language.romansh=ルーマニア語
+answer.language.romansh=ローマ語
 answer.language.romanian=ルーマニア語
 answer.language.russian=ロシア語
 answer.language.sardinian=サルディーニャ語
@@ -154,7 +155,7 @@ bug.question.cuisine_of_restaurant=What's the cuisine type of '$1'?
 
 # single values
 cafe=喫茶店
-fast_food=ファストフード店
+fast_food=ファストフード
 restaurant=レストラン
 school=学校
 pharmacy=薬局

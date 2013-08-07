@@ -85,6 +85,7 @@ answer.language.french=Francouzský
 answer.language.german=Německý
 answer.language.greek=Řecký
 answer.language.hebrew=Hebrejský
+answer.language.hungarian=Hungarian
 answer.language.irish=Irský
 answer.language.icelandic=Islandský
 answer.language.italian=Italský
@@ -137,7 +138,6 @@ answer.missing_cuisine.chicken=Chicken
 answer.missing_cuisine.bistro_brasserie=Bistro, Brasserie
 answer.missing_cuisine.seafood=Seafood
 answer.missing_cuisine.burger=Burger
-
 
 ##############################################################
 # THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT AND OSM_ERRORS#
