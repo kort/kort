@@ -55,6 +55,7 @@ insert into kort.answer (answer_id, type, value, title, sorting) VALUES (142, 'l
 insert into kort.answer (answer_id, type, value, title, sorting) VALUES (141, 'language_unknown', 'fi', 'answer.language.finnish', 900);
 insert into kort.answer (answer_id, type, value, title, sorting) VALUES (152, 'language_unknown', 'el', 'answer.language.greek', 1000);
 insert into kort.answer (answer_id, type, value, title, sorting) VALUES (157, 'language_unknown', 'he', 'answer.language.hebrew', 1100);
+insert into kort.answer (answer_id, type, value, title, sorting) VALUES (281, 'language_unknown', 'hu', 'answer.language.hungarian', 1150);
 insert into kort.answer (answer_id, type, value, title, sorting) VALUES (165, 'language_unknown', 'ga', 'answer.language.irish', 1200);
 insert into kort.answer (answer_id, type, value, title, sorting) VALUES (169, 'language_unknown', 'is', 'answer.language.icelandic', 1300);
 insert into kort.answer (answer_id, type, value, title, sorting) VALUES (172, 'language_unknown', 'ja', 'answer.language.japanese', 1400);
