@@ -3,11 +3,11 @@
  *
  * To use this component you must include an additional JavaScript an a CSS file from Leaflet:
  *
- *     <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
- *     <link rel="stylesheet" type="text/css" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css">
+ *     <link rel="stylesheet" type="text/css" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css">
+ *     <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
  *
  * ## Example
- * 
+ *
  *     Ext.Viewport.add({
  *         xtype: 'leafletmap',
  *         useCurrentLocation: true
@@ -78,7 +78,7 @@ Ext.define('Ext.ux.LeafletMap', {
         /**
          * @cfg {Object} mapOptions
          * MapOptions as specified by the Leaflet documentation:
-         * [http://leaflet.cloudmade.com/reference.html#map-options](http://leaflet.cloudmade.com/reference.html#map-options)
+         * [http://leafletjs.com/reference.html#map-class](http://leafletjs.com/reference.html#map-class)
          * @accessor
          */
         mapOptions: {},
@@ -86,16 +86,16 @@ Ext.define('Ext.ux.LeafletMap', {
         /**
          * @cfg {String} [tileLayerUrl="http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"]
          * URL template for tile-layer in the following form
-         * 
+         *
          *     'http://{s}.somedomain.com/blabla/{z}/{x}/{y}.png'
-         * 
-         * {s} means one of the randomly chosen subdomains (their range is specified in options; a, b or c by default, 
+         *
+         * {s} means one of the randomly chosen subdomains (their range is specified in options; a, b or c by default,
          * can be omitted), {z} — zoom level, {x} and {y} — tile coordinates.
-         * 
+         *
          * You can use custom keys in the template, which will be evaluated from {@link Ext.ux.LeafletMap#tileLayerOptions}, like this:
-         * 
+         *
          *     tileLayerUrl: 'http://{s}.somedomain.com/{foo}/{z}/{x}/{y}.png', tileLayerOptions: {foo: 'bar'};
-         * 
+         *
          * @accessor
          */
         tileLayerUrl: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -115,18 +115,10 @@ Ext.define('Ext.ux.LeafletMap', {
         tileLayer: null,
 
         /**
-         * @cfg {L.Control.Layers} additionalLayers
-         * Additional layers.
-         * @accessor
-         */
-        additionalLayers: [],
-
-        /**
          * @cfg {Ext.util.Geolocation} geo
          * Geolocation provider for the map.
          * @accessor
          */
-
         geo: null,
 
         /**
@@ -239,8 +231,6 @@ Ext.define('Ext.ux.LeafletMap', {
         }
     },
 
-
-
     getMapOptions: function () {
         return Ext.merge({}, this.options || this.getInitialConfig('mapOptions'));
     },
@@ -249,12 +239,10 @@ Ext.define('Ext.ux.LeafletMap', {
         return Ext.merge({}, this.options || this.getInitialConfig('tileLayerOptions'));
     },
 
-    //ToDo Check
     updateUseCurrentLocation: function (useCurrentLocation) {
         this.setGeo(useCurrentLocation);
         if (!this.getMap() && (!useCurrentLocation || !this.getInitialCenter())) {
-           //csc on 26.04.2013: This call causes error in combination with initialCenter=false config.
-           //this.renderMap();
+            this.renderMap();
         }
     },
 
@@ -304,19 +292,19 @@ Ext.define('Ext.ux.LeafletMap', {
             return;
         }
 
-        if (ll) {
-            if (element.dom.firstChild) {
-                Ext.fly(element.dom.firstChild).destroy();
-            }
-
+        if (ll && !element.dom._leaflet) {
             // if no center property is given -> use default position
-            if (!mapOptions.hasOwnProperty('center') || !(mapOptions.center instanceof ll.LatLng)) {
+            if (!mapOptions.hasOwnProperty('center')) {
                 mapOptions.center = new ll.LatLng(47.36865, 8.539183); // default: Zuerich
+            }
+            
+            if (mapOptions.center && mapOptions.center.lat && mapOptions.center.lng) {
+                mapOptions.center = new ll.LatLng(mapOptions.center.lat, mapOptions.center.lng);
             }
 
             me.setTileLayer(new ll.TileLayer(me.getTileLayerUrl(), me.getTileLayerOptions()));
             tileLayer = me.getTileLayer();
-            mapOptions.layers = [tileLayer].concat(this.getAdditionalLayers());
+            mapOptions.layers = [tileLayer];
 
             me.setMap(new ll.Map(element.dom, mapOptions));
             map = me.getMap();
@@ -338,13 +326,13 @@ Ext.define('Ext.ux.LeafletMap', {
     onGeoUpdate: function (geo) {
         var ll = window.L,
             ownPositionMarker = this.getOwnPositionMarker();
+
         if (ll && geo && (this.getAutoMapCenter() || this.getInitialCenter())) {
-        //if (ll && geo && (this.getAutoMapCenter())) {
             this.setMapCenter(new ll.LatLng(geo.getLatitude(), geo.getLongitude()));
             this.setInitialCenter(false);
         }
         if(ownPositionMarker) {
-            ownPositionMarker.setLatLng(L.latLng(geo.getLatitude(), geo.getLongitude()));
+            ownPositionMarker.setLatLng(ll.latLng(geo.getLatitude(), geo.getLongitude()));
         }
     },
 
@@ -355,7 +343,6 @@ Ext.define('Ext.ux.LeafletMap', {
             this.renderMap();
         }
     },
-
 
     /**
      * Moves the map center to the designated coordinates hash of the form:
@@ -400,35 +387,23 @@ Ext.define('Ext.ux.LeafletMap', {
         }
     },
 
-    setMapZoomLevel: function(zoomLevel) {
-        if(zoomLevel && zoomLevel>=0 && zoomLevel<=18) {
-            this.getMap().setZoom(zoomLevel);
-        }
-    },
-
-    getMapCenter: function() {
-        return this.getMap().getCenter();
-    },
-    getMapZoomLevel: function() {
-        return this.getMap().getZoom();
-    },
-
     /**
      * @private
      * Adds own position marker to map
      */
     addOwnPositionMarker: function() {
         var me = this,
+            ll = window.L,
             icon,
             iconOptions,
             ownPositionMarker,
             markerOptions;
 
         iconOptions = Ext.merge({}, me.getOwnPositionMarkerIcon());
-        icon = L.icon(iconOptions);
+        icon = ll.icon(iconOptions);
 
         markerOptions = Ext.merge({ icon: icon }, me.getOwnPositionMarkerOptions());
-        ownPositionMarker = L.marker([me.getGeo().getLatitude(), me.getGeo().getLongitude()], markerOptions);
+        ownPositionMarker = ll.marker([me.getGeo().getLatitude(), me.getGeo().getLongitude()], markerOptions);
         me.setOwnPositionMarker(ownPositionMarker);
         ownPositionMarker.addTo(me.getMap());
     },
@@ -459,11 +434,10 @@ Ext.define('Ext.ux.LeafletMap', {
 
     // @private
     onMoveEnd: function () {
-        /*
         var map = this.getMap(),
             tileLayer = this.getTileLayer();
-        */
-        this.fireEvent('moveend');
+
+        this.fireEvent('moveend', this, map, tileLayer);
     },
 
     // @private
