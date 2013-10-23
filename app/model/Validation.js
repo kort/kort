@@ -27,7 +27,7 @@ Ext.define('Kort.model.Validation', {
             { name: 'promo_id', type: 'int' },
             { name: 'extra_coins', type: 'int' },
             { name: 'state', convert:function(v, record) {
-                return (record.data.promo_id && record.data.extra_coins!=0) ? Kort.util.Config.getMapMarkerState().validationPromotion : Kort.util.Config.getMapMarkerState().validation;
+                return (record.data.promo_id && record.data.extra_coins !== 0) ? Kort.util.Config.getMapMarkerState().validationPromotion : Kort.util.Config.getMapMarkerState().validation;
             }},
             { name: 'inOperationalRange', type:'boolean', defaultValue:true }
         ]

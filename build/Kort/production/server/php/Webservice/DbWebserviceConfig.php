@@ -12,7 +12,7 @@ class DbWebserviceConfig
     /**
      * The URL of the database webservice.
      *
-     * @var string
+     * @var string The URL of the database webservice
      */
     #protected $url = "http://online.db.kort.ch/webservices/db";
     protected $url = "http://db.kort.ch/webservices/db";
