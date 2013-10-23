@@ -554,7 +554,7 @@ Ext.define('Ext.data.reader.Reader', {
             recordCount = 0,
             total, value, records, message;
 
-        if (isArray && !data.length) {
+        if (isArray && Ext.isEmpty(data.length)) {
             return me.nullResultSet;
         }
 
