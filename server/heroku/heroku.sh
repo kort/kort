@@ -1,9 +1,13 @@
 #!/bin/bash
-if [[ $TRAVIS_SECURE_ENV_VARS == "false" || $TRAVIS_BRANCH != "master" ]] ; then
+if [[ $TRAVIS_SECURE_ENV_VARS == "false" ]] ; then
     DEPLOY="false"
 fi
 
 echo "=> on branch $TRAVIS_BRANCH"
+if [[ $TRAVIS_BRANCH != "master" && $TARGET_ENV == "prod" ]] ; then
+    DEPLOY="false"
+fi
+
 
 if [[ $DEPLOY == "true" ]] ; then
     if [ -z $BUILD_DIR -a -z $CI_HOME -a -z $TARGET_ENV ] ; then
