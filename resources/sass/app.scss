@@ -4,7 +4,8 @@
 @import 'sencha-touch/default';
 @import 'sencha-touch/default/all';
 
-// Custom code goes here..
-
-// Examples of using the icon mixin:
-// @include icon('user');
+// adding icon mixins
+@include icon('news');
+@include icon('minus');
+@include icon('add2');
+@include icon('eye');

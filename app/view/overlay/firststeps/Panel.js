@@ -40,7 +40,7 @@ Ext.define('Kort.view.overlay.firststeps.Panel', {
             {
                 xtype: 'formpanel',
                 id: 'usernameForm',
-                scrollable: false,
+                scrollable: null,
                 layout: 'vbox',
                 items: [
                     {

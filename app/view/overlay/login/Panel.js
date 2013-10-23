@@ -36,7 +36,7 @@ Ext.define('Kort.view.overlay.login.Panel', {
             {
                 xtype: 'container',
                 layout: 'vbox',
-                scrollable: false,
+                scrollable: null,
                 cls: 'loginButtons',
                 items: [
                     {
