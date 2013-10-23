@@ -152,6 +152,7 @@ about.credits.mapdata=Geo data\:
 about.credits.tiledata=Tiles\:
 about.credits.markers=Marker Icons\:
 about.credits.translation=Translation\:
+about.credits.dbhosting=DB Hosting\:
 about.legal.title=Legal note\:
 about.legal.message=Please follow the guidelines of OpenStreetMap and don't use copyright protected sources without permission.
 
