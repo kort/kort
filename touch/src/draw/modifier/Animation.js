@@ -1,15 +1,12 @@
 /**
- * @class Ext.draw.modifier.Animation
- * @extends Ext.draw.modifier.Modifier
- *
  * The Animation modifier.
- * 
+ *
  * Sencha Touch allows users to use transitional animation on sprites. Simply set the duration
  * and easing in the animation modifier, then all the changes to the sprites will be animated.
- * 
+ *
  * Also, you can use different durations and easing functions on different attributes by using
- * {@link customDuration} and {@link customEasings}.
- * 
+ * {@link #customDuration} and {@link #customEasings}.
+ *
  * By default, an animation modifier will be created during the initialization of a sprite.
  * You can get the modifier of `sprite` by `sprite.fx`.
  *
@@ -110,8 +107,8 @@ Ext.define("Ext.draw.modifier.Animation", {
 
     /**
      * Set special easings on the given attributes.
-     * @param attrs The source attributes.
-     * @param easing The special easings.
+     * @param {Object} attrs The source attributes.
+     * @param {String} easing The special easings.
      */
     setEasingOn: function (attrs, easing) {
         attrs = Ext.Array.from(attrs).slice();
@@ -127,7 +124,7 @@ Ext.define("Ext.draw.modifier.Animation", {
 
     /**
      * Remove special easings on the given attributes.
-     * @param attrs The source attributes.
+     * @param {Object} attrs The source attributes.
      */
     clearEasingOn: function (attrs) {
         attrs = Ext.Array.from(attrs, true);
@@ -156,8 +153,8 @@ Ext.define("Ext.draw.modifier.Animation", {
 
     /**
      * Set special duration on the given attributes.
-     * @param attrs The source attributes.
-     * @param duration The special duration.
+     * @param {Object} attrs The source attributes.
+     * @param {String} duration The special duration.
      */
     setDurationOn: function (attrs, duration) {
         attrs = Ext.Array.from(attrs).slice();
@@ -173,7 +170,7 @@ Ext.define("Ext.draw.modifier.Animation", {
 
     /**
      * Remove special easings on the given attributes.
-     * @param attrs The source attributes.
+     * @param {Object} attrs The source attributes.
      */
     clearDurationOn: function (attrs) {
         attrs = Ext.Array.from(attrs, true);
@@ -187,8 +184,8 @@ Ext.define("Ext.draw.modifier.Animation", {
     /**
      * @private
      * Initializes Animator for the animation.
-     * @param attributes The source attributes.
-     * @param animating The animating flag.
+     * @param {Object} attributes The source attributes.
+     * @param {String} animating The animating flag.
      */
     setAnimating: function (attributes, animating) {
         var me = this,
@@ -323,7 +320,7 @@ Ext.define("Ext.draw.modifier.Animation", {
      * Update attributes to current value according to current animation time.
      * This method will not effect the values of lower layers, but may delete a
      * value from it.
-     * @param attr The source attributes.
+     * @param {Object} attr The source attributes.
      * @return {Object} the changes to popup.
      */
     updateAttributes: function (attr) {

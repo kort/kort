@@ -33,6 +33,15 @@ Ext.define("Ext.chart.series.sprite.Polar", {
                 dataMaxY: 'number',
 
                 /**
+                 * @cfg {Array} Data range derived from all the series bound to the x-axis.
+                 */
+                rangeX: 'data',
+                /**
+                 * @cfg {Array} Data range derived from all the series bound to the y-axis.
+                 */
+                rangeY: 'data',
+
+                /**
                  * @cfg {Object} [dataY=null] Data items on the y-axis.
                  */
                 dataY: 'data',
@@ -123,7 +132,11 @@ Ext.define("Ext.chart.series.sprite.Polar", {
     },
 
     config: {
-        dataItems: null,
+        /**
+         * @private
+         * @cfg {Object} store The store that is passed to the renderer.
+         */
+        store: null,
         field: null
     },
     

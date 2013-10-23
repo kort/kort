@@ -89,9 +89,9 @@ Ext.define('Ext.field.Input', {
         useMask: 'auto',
 
         /**
-         * @cfg {String} type The type attribute for input fields -- e.g. radio, text, password, file (defaults
-         * to 'text'). The types 'file' and 'password' must be used to render those field types currently -- there are
-         * no separate Ext components for those.
+         * @cfg {String} type The type attribute for input fields -- e.g. radio, text, password.
+         *
+         * If you want to use a `file` input, please use the {@link Ext.field.File} component instead.
          * @accessor
          */
         type: 'text',
@@ -132,7 +132,7 @@ Ext.define('Ext.field.Input', {
 
         /**
          * @cfg {Number} tabIndex The `tabIndex` for this field.
-         * 
+         *
          * __Note:__ This only applies to fields that are rendered, not those which are built via `applyTo`.
          * @accessor
          */
@@ -211,7 +211,7 @@ Ext.define('Ext.field.Input', {
          *     Ext.define('Ux.field.Pattern', {
          *         extend : 'Ext.field.Text',
          *         xtype  : 'patternfield',
-         *         
+         *
          *         config : {
          *             component : {
          *                 pattern : '[0-9]*'
@@ -241,7 +241,17 @@ Ext.define('Ext.field.Input', {
          * __This will be `undefined` until the Field has been visited.__ Compare {@link #originalValue}.
          * @accessor
          */
-        startValue: false
+        startValue: false,
+
+        /**
+         * @cfg {Boolean} fastFocus
+         *
+         * Enable Fast Input Focusing on iOS, using this workaround will stop some touchstart events in order to prevent
+         * delayed focus issues.
+         *
+         * @accessor
+         */
+        fastFocus: true
     },
 
     /**
@@ -257,15 +267,14 @@ Ext.define('Ext.field.Input', {
                 tag: this.tag
             },
             {
+                reference: 'mask',
+                classList: [this.config.maskCls]
+            },
+            {
                 reference: 'clearIcon',
                 cls: 'x-clear-icon'
             }
         ];
-
-        items.push({
-            reference: 'mask',
-            classList: [this.config.maskCls]
-        });
 
         return items;
     },
@@ -283,20 +292,57 @@ Ext.define('Ext.field.Input', {
             focus: 'onFocus',
             blur: 'onBlur',
             input: 'onInput',
-            paste: 'onPaste'
+            paste: 'onPaste',
+            tap: 'onInputTap'
         });
 
         me.mask.on({
-            tap: 'onMaskTap',
-            scope: me
+            scope: me,
+            tap: 'onMaskTap'
         });
 
         if (me.clearIcon) {
             me.clearIcon.on({
                 tap: 'onClearIconTap',
+                touchstart: 'onClearIconPress',
+                touchend: 'onClearIconRelease',
                 scope: me
             });
         }
+
+        // Hack for IE10. Seems like keyup event is not fired for 'enter' keyboard button, so we use keypress event instead to handle enter.
+        if(Ext.browser.is.ie && Ext.browser.version.major >=10){
+            me.input.on({
+                scope: me,
+                keypress: 'onKeyPress'
+            });
+        }
+    },
+
+    updateFastFocus: function(newValue) {
+       // This is used to prevent 300ms delayed focus bug on iOS
+       if (newValue) {
+           if (this.getFastFocus() && Ext.os.is.iOS) {
+               this.input.on({
+                   scope: this,
+                   touchstart: "onTouchStart"
+               });
+           }
+       } else {
+           this.input.un({
+               scope: this,
+               touchstart: "onTouchStart"
+           });
+       }
+    },
+
+    /**
+     * Manual Max Length processing is required for the stock "Browser" on Android
+     * @private
+     * @return {Boolean} 'true' if non-chrome browser is detected on Android
+     */
+    useManualMaxLength: function() {
+        return Boolean((Ext.os.is.Android && !Ext.browser.is.Chrome));
     },
 
     applyUseMask: function(useMask) {
@@ -325,7 +371,7 @@ Ext.define('Ext.field.Input', {
     updateFieldAttribute: function(attribute, newValue) {
         var input = this.input;
 
-        if (newValue) {
+        if (!Ext.isEmpty(newValue, true)) {
             input.dom.setAttribute(attribute, newValue);
         } else {
             input.dom.removeAttribute(attribute);
@@ -441,7 +487,9 @@ Ext.define('Ext.field.Input', {
      * @private
      */
     updateMaxLength: function(newMaxLength) {
-        this.updateFieldAttribute('maxlength', newMaxLength);
+        if (!this.useManualMaxLength()) {
+            this.updateFieldAttribute('maxlength', newMaxLength);
+        }
     },
 
     /**
@@ -581,7 +629,11 @@ Ext.define('Ext.field.Input', {
     doSetDisabled: function(disabled) {
         this.callParent(arguments);
 
-        this.input.dom.disabled = disabled;
+        if (Ext.browser.is.Safari && !Ext.os.is.BlackBerry) {
+            this.input.dom.tabIndex = (disabled) ? -1 : 0;
+        }
+
+        this.input.dom.disabled = (Ext.browser.is.Safari && !Ext.os.is.BlackBerry) ? false : disabled;
 
         if (!disabled) {
             this.blur();
@@ -609,6 +661,23 @@ Ext.define('Ext.field.Input', {
     },
 
     // @private
+    onInputTap: function(e) {
+        this.fireAction('inputtap', [this, e], 'doInputTap');
+    },
+
+    // @private
+    doInputTap: function(me, e) {
+        if (me.getDisabled()) {
+            return false;
+        }
+
+        // Fast focus switching
+        if (this.getFastFocus() && Ext.os.is.iOS) {
+            me.focus();
+        }
+    },
+
+    // @private
     onMaskTap: function(e) {
         this.fireAction('masktap', [this, e], 'doMaskTap');
     },
@@ -619,20 +688,19 @@ Ext.define('Ext.field.Input', {
             return false;
         }
 
-        me.maskCorrectionTimer = Ext.defer(me.showMask, 1000, me);
-        me.hideMask();
+        me.focus();
     },
 
     // @private
-    showMask: function(e) {
-        if (this.mask) {
+    showMask: function() {
+        if (this.getUseMask()) {
             this.mask.setStyle('display', 'block');
         }
     },
 
     // @private
-    hideMask: function(e) {
-        if (this.mask) {
+    hideMask: function() {
+        if (this.getUseMask()) {
             this.mask.setStyle('display', 'none');
         }
     },
@@ -689,16 +757,18 @@ Ext.define('Ext.field.Input', {
     doFocus: function(e) {
         var me = this;
 
-        if (me.mask) {
-            if (me.maskCorrectionTimer) {
-                clearTimeout(me.maskCorrectionTimer);
-            }
-            me.hideMask();
-        }
+        me.hideMask();
 
         if (!me.getIsFocused()) {
-            me.setIsFocused(true);
             me.setStartValue(me.getValue());
+        }
+        me.setIsFocused(true);
+    },
+
+    onTouchStart: function(e) {
+        // This will prevent 300ms delayed focus from occurring on iOS
+        if(document.activeElement != e.target) {
+            e.preventDefault();
         }
     },
 
@@ -708,9 +778,11 @@ Ext.define('Ext.field.Input', {
 
     // @private
     doBlur: function(e) {
-        var me         = this,
-            value      = me.getValue(),
+        var me = this,
+            value = me.getValue(),
             startValue = me.getStartValue();
+
+        me.showMask();
 
         me.setIsFocused(false);
 
@@ -718,7 +790,6 @@ Ext.define('Ext.field.Input', {
             me.onChange(me, value, startValue);
         }
 
-        me.showMask();
     },
 
     // @private
@@ -732,19 +803,36 @@ Ext.define('Ext.field.Input', {
         }
     },
 
+    onClearIconPress: function() {
+        this.clearIcon.addCls(Ext.baseCSSPrefix + 'pressing');
+    },
+
+    onClearIconRelease: function() {
+        this.clearIcon.removeCls(Ext.baseCSSPrefix + 'pressing');
+    },
+
     onClick: function(e) {
         this.fireEvent('click', e);
     },
 
     onChange: function(me, value, startValue) {
+        if (this.useManualMaxLength()) {
+            this.trimValueToMaxLength();
+        }
         this.fireEvent('change', me, value, startValue);
     },
 
     onPaste: function(e) {
+        if (this.useManualMaxLength()) {
+            this.trimValueToMaxLength();
+        }
         this.fireEvent('paste', e);
     },
 
     onKeyUp: function(e) {
+        if (this.useManualMaxLength()) {
+            this.trimValueToMaxLength();
+        }
         this.fireEvent('keyup', e);
     },
 
@@ -773,7 +861,24 @@ Ext.define('Ext.field.Input', {
         }, 10);
     },
 
+    // Hack for IE10 mobile. Handle pressing 'enter' button and fire keyup event in this case.
+    onKeyPress: function(e) {
+        if(e.browserEvent.keyCode == 13){
+            this.fireEvent('keyup', e);
+        }
+    },
+
     onMouseDown: function(e) {
         this.fireEvent('mousedown', e);
+    },
+
+    trimValueToMaxLength: function() {
+        var maxLength = this.getMaxLength();
+        if (maxLength) {
+            var value = this.getValue();
+            if (value.length > this.getMaxLength()) {
+                this.setValue(value.slice(0, maxLength));
+            }
+        }
     }
 });

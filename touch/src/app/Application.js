@@ -26,7 +26,7 @@
  *         }
  *     });
  *
- * Creating an Application instance is the only time in Sencha Touch 2 that we don't use Ext.create to create the new
+ * Creating an Application instance is the only time in Sencha Touch that we don't use Ext.create to create the new
  * instance. Instead, the {@link Ext#application} function instantiates an Ext.app.Application internally,
  * automatically loading the Ext.app.Application class if it is not present on the page already and hooking in to
  * {@link Ext#onReady} before creating the instance itself. An alternative is to use Ext.create inside an Ext.onReady
@@ -59,7 +59,7 @@
  *
  * ### Nested Dependencies
  *
- * For larger apps it's common to split the models, views and controllers into subfolders so keep the project
+ * For larger apps it's common to split the models, views and controllers into subfolders to keep the project
  * organized. This is especially true of views - it's not unheard of for large apps to have over a hundred separate
  * view classes so organizing them into folders can make maintenance much simpler.
  *
@@ -172,9 +172,9 @@
  *
  * ## Find out more
  *
- * If you are not already familiar with writing applications with Sencha Touch 2 we recommend reading the
+ * If you are not already familiar with writing applications with Sencha Touch we recommend reading the
  * [intro to applications guide](#!/guide/apps_intro), which lays out the core principles of writing apps
- * with Sencha Touch 2.
+ * with Sencha Touch.
  */
 Ext.define('Ext.app.Application', {
     extend: 'Ext.app.Controller',
@@ -343,7 +343,8 @@ Ext.define('Ext.app.Application', {
 
         /**
          * @cfg {Ext.app.History} history The global {@link Ext.app.History History} instance attached to this
-         * Application.
+         * Application. For more information, see 
+         * [Routing, Deep Linking, and the Back Button](http://docs.sencha.com/touch/#!/guide/history_support).
          * @accessor
          * @readonly
          */
@@ -352,7 +353,7 @@ Ext.define('Ext.app.Application', {
         /**
          * @cfg {String} name The name of the Application. This should be a single word without spaces or periods
          * because it is used as the Application's global namespace. All classes in your application should be
-         * namespaced undef the Application's name - for example if your application name is 'MyApp', your classes
+         * namespaced under the Application's name - for example if your application name is 'MyApp', your classes
          * should be named 'MyApp.model.User', 'MyApp.controller.Users', 'MyApp.view.Main' etc
          * @accessor
          */
@@ -411,7 +412,6 @@ Ext.define('Ext.app.Application', {
         enableLoader: true,
 
         /**
-         * @private
          * @cfg {String[]} requires An array of extra dependencies, to be required after this application's {@link #name} config
          * has been processed properly, but before anything else to ensure overrides get executed first.
          * @accessor
@@ -553,6 +553,7 @@ Ext.define('Ext.app.Application', {
      * @param {String} name The name of the Controller.
      * @param {String} [profileName] Optional profile name. If passed, this is the same as calling
      * `getController('profileName.controllerName')`.
+     * @return {Ext.app.Controller} controller instance or undefined.
      */
     getController: function(name, profileName) {
         var instances = this.getControllerInstances(),

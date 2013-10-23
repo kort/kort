@@ -64,6 +64,9 @@ Ext.define('Ext.chart.series.Cartesian', {
                 store = me.getStore(),
                 item;
 
+            if(me.getHidden()) {
+                return null;
+            }
             if (sprite) {
                 var index = sprite.getIndexNearPoint(x, y);
                 if (index !== -1) {

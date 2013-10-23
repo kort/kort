@@ -1,37 +1,20 @@
 /**
- * A Sprite is an object rendered in a Drawing surface. There are different options and types of sprites.
- * The configuration of a Sprite is an object with the following properties:
+ * A sprite is an object rendered in a drawing {@link Ext.draw.Surface}.
+ * The Sprite class itself is an abstract class and is not meant to be used directly.
+ * Every sprite in the Draw and Chart packages is a subclass of the Ext.draw.sprite.Sprite.
+ * The standard Sprite subclasses are:
  *
- * Additionally there are three transform objects that can be set with `setAttributes` which are `translate`, `rotate` and
- * `scale`.
- *
- * For translate, the configuration object contains `x` and `y` attributes that indicate where to
- * translate the object. For example:
- *
- *     sprite.setAttributes({
- *       translate: {
- *        x: 10,
- *        y: 10
- *       }
- *     }, true);
- *
- * For rotation, the configuration object contains `x` and `y` attributes for the center of the rotation (which are optional),
- * and a `degrees` attribute that specifies the rotation in degrees. For example:
- *
- *     sprite.setAttributes({
- *       rotate: {
- *        degrees: 90
- *       }
- *     }, true);
- *
- * For scaling, the configuration object contains `x` and `y` attributes for the x-axis and y-axis scaling. For example:
- *
- *     sprite.setAttributes({
- *       scale: {
- *        x: 10,
- *        y: 3
- *       }
- *     }, true);
+ * * {@link Ext.draw.sprite.Path} - A sprite that represents a path.
+ * * {@link Ext.draw.sprite.Rect} - A sprite that represents a rectangle.
+ * * {@link Ext.draw.sprite.Circle} - A sprite that represents a circle.
+ * * {@link Ext.draw.sprite.Sector} - A sprite representing a pie slice.
+ * * {@link Ext.draw.sprite.Arc} - A sprite that represents a circular arc.
+ * * {@link Ext.draw.sprite.Ellipse} - A sprite that represents an ellipse.
+ * * {@link Ext.draw.sprite.EllipticalArc} - A sprite that represents an elliptical arc.
+ * * {@link Ext.draw.sprite.Text} - A sprite that represents text.
+ * * {@link Ext.draw.sprite.Image} -  A sprite that represents an image.
+ * * {@link Ext.draw.sprite.Instancing} - A sprite that represents multiple instances based on the given template.
+ * * {@link Ext.draw.sprite.Composite} - Represents a group of sprites.
  *
  * Sprites can be created with a reference to a {@link Ext.draw.Surface}
  *
@@ -42,33 +25,17 @@
  *      var sprite = Ext.create('Ext.draw.sprite.Sprite', {
  *          type: 'circle',
  *          fill: '#ff0',
- *          surface: drawComponent.surface,
+ *          surface: drawComponent.getSurface('main'),
  *          radius: 5
  *      });
  *
  * Sprites can also be added to the surface as a configuration object:
  *
- *      var sprite = drawComponent.surface.add({
+ *      var sprite = drawComponent.getSurface('main').add({
  *          type: 'circle',
  *          fill: '#ff0',
  *          radius: 5
  *      });
- *
- * In order to properly apply properties and render the sprite we have to
- * `show` the sprite setting the option `redraw` to `true`:
- *
- *      sprite.show(true);
- *
- * The constructor configuration object of the Sprite can also be used and passed into the {@link Ext.draw.Surface}
- * `add` method to append a new sprite to the canvas. For example:
- *
- *     drawComponent.surface.add({
- *         type: 'circle',
- *         fill: '#ffc',
- *         radius: 100,
- *         x: 100,
- *         y: 100
- *     });
  */
 Ext.define('Ext.draw.sprite.Sprite', {
     alias: 'sprite.sprite',
@@ -216,7 +183,9 @@ Ext.define('Ext.draw.sprite.Sprite', {
                 /**
                  * @cfg {Number} [scalingCenterY=null] The central coordinate of the sprite's scale operation on the y-axis.
                  */
-                scalingCenterY: "number"
+                scalingCenterY: "number",
+                
+                constrainGradients: "bool"
             },
 
             aliases: {
@@ -270,7 +239,9 @@ Ext.define('Ext.draw.sprite.Sprite', {
                 scalingX: 1,
                 scalingY: 1,
                 scalingCenterX: null,
-                scalingCenterY: null
+                scalingCenterY: null,
+                
+                constrainGradients: false
             },
 
             dirtyTriggers: {
@@ -304,7 +275,9 @@ Ext.define('Ext.draw.sprite.Sprite', {
                 scalingX: "transform",
                 scalingY: "transform",
                 scalingCenterX: "transform",
-                scalingCenterY: "transform"
+                scalingCenterY: "transform",
+                
+                constrainGradients: "canvas"
             },
 
             updaters: {
@@ -334,6 +307,12 @@ Ext.define('Ext.draw.sprite.Sprite', {
             }
         }
     },
+
+    /**
+     * @property {Object} attr
+     * The visual attributes of the sprite, e.g. strokeStyle, fillStyle, lineWidth...
+     */
+    attr: {},
 
     config: {
         parent: null
@@ -522,7 +501,6 @@ Ext.define('Ext.draw.sprite.Sprite', {
 
     /**
      * @protected
-     * @function
      * Subclass will fill the plain object with `x`, `y`, `width`, `height` information of the plain bounding box of
      * this sprite.
      *
@@ -536,7 +514,7 @@ Ext.define('Ext.draw.sprite.Sprite', {
      * bounding box of this sprite.
      *
      * @param {Object} transform Target object.
-     * @param {Object} plain Auxilary object providing information of plain object.
+     * @param {Object} plain Auxiliary object providing information of plain object.
      */
     updateTransformedBBox: function (transform, plain) {
         this.attr.matrix.transformBBox(plain, 0, transform);
@@ -581,7 +559,7 @@ Ext.define('Ext.draw.sprite.Sprite', {
         return this;
     },
 
-    useAttributes: function (ctx) {
+    useAttributes: function (ctx, region) {
         this.applyTransformations();
         var attrs = this.attr,
             canvasAttributes = attrs.canvasAttributes,
@@ -613,7 +591,11 @@ Ext.define('Ext.draw.sprite.Sprite', {
             }
         }
 
-        ctx.setGradientBBox(this.getBBox(this.attr.transformFillStroke));
+        if(attrs.constrainGradients) {
+            ctx.setGradientBBox({x: region[0], y: region[1], width: region[2], height: region[3]});
+        } else {
+            ctx.setGradientBBox(this.getBBox(attrs.transformFillStroke));
+        }
     },
 
     // @private

@@ -78,7 +78,7 @@ Ext.define("Ext.chart.axis.segmenter.Segmenter", {
      * @param {*} estStepSize The estimated step size.
      * @return {Object} Return the step size by an object of step x unit.
      * @return {Number} return.step The step count of units.
-     * @return {*} return.unit The unit.
+     * @return {Number|Object} return.unit The unit.
      */
     preferredStep: Ext.emptyFn
 });

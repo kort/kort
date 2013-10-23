@@ -115,13 +115,13 @@ Ext.define('Ext.chart.interactions.Abstract', {
                 name,
                 // wrap the handler so it does not fire if the event is locked by another interaction
                 me.listeners[name] = function (e) {
-                    var locks = me.getLocks();
+                    var locks = me.getLocks(), result;
                     if (!(name in locks) || locks[name] === me) {
-                        if (e && e.stopPropagation) {
+                        result = (Ext.isFunction(fn) ? fn : me[fn]).apply(this, arguments);
+                        if (result === false && e && e.stopPropagation) {
                             e.stopPropagation();
-                            e.preventDefault();
                         }
-                        return (Ext.isFunction(fn) ? fn : me[fn]).apply(this, arguments);
+                        return result;
                     }
                 },
                 me
@@ -173,7 +173,10 @@ Ext.define('Ext.chart.interactions.Abstract', {
     },
 
     isMultiTouch: function () {
-        return !(Ext.os.is.MultiTouch === false || (Ext.os.is.Android3 || Ext.os.is.Android2) || Ext.os.is.Desktop);
+        if (Ext.browser.is.IE10) {
+            return true;
+        }
+        return !(Ext.os.is.MultiTouch === false || Ext.browser.is.AndroidStock2 || Ext.os.is.Desktop);
     },
 
     initializeDefaults: Ext.emptyFn,
@@ -222,7 +225,7 @@ Ext.define('Ext.chart.interactions.Abstract', {
         this.callSuper();
     }
 }, function () {
-    if (Ext.os.is.Android2) {
+    if (Ext.browser.is.AndroidStock2) {
         this.prototype.throttleGap = 20;
     } else if (Ext.os.is.Android4) {
         this.prototype.throttleGap = 40;

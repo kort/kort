@@ -93,7 +93,6 @@ Ext.define('Ext.dataview.IndexBar', {
          */
         listPrefix: null
     },
-
     // @private
     itemCls: Ext.baseCSSPrefix + '',
 
@@ -140,27 +139,26 @@ Ext.define('Ext.dataview.IndexBar', {
 
         this.innerElement.on({
             touchstart: this.onTouchStart,
-            touchend: this.onTouchEnd,
-            touchmove: this.onTouchMove,
+            dragend: this.onDragEnd,
+            drag: this.onDrag,
             scope: this
         });
     },
 
-    // @private
-    onTouchStart: function(e, t) {
+    onTouchStart: function(e) {
         e.stopPropagation();
         this.innerElement.addCls(this.getBaseCls() + '-pressed');
         this.pageBox = this.innerElement.getPageBox();
-        this.onTouchMove(e);
+        this.onDrag(e);
     },
 
     // @private
-    onTouchEnd: function(e, t) {
+    onDragEnd: function() {
         this.innerElement.removeCls(this.getBaseCls() + '-pressed');
     },
 
     // @private
-    onTouchMove: function(e) {
+    onDrag: function(e) {
         var point = Ext.util.Point.fromEvent(e),
             target,
             pageBox = this.pageBox;
