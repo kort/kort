@@ -84,7 +84,7 @@ class OsmOAuth extends AbstractOAuthCallback
         $this->key = $key;
         $this->secret = $secret;
         if (!$unitTest) {
-            \OAuthStore::instance("Session", $this->getOAuthOptions());
+            \OAuthStore::instance("Session", $this->getOauthOptions());
         }
     }
 
@@ -93,7 +93,7 @@ class OsmOAuth extends AbstractOAuthCallback
      *
      * @return array Options for OAuth
      */
-    protected function getOAuthOptions()
+    protected function getOauthOptions()
     {
         $options = array(
             'consumer_key'      => $this->key,
@@ -152,7 +152,7 @@ class OsmOAuth extends AbstractOAuthCallback
      *
      * @return array The current user array
      */
-    public function getOAuthUser()
+    public function getOauthUser()
     {
         if (empty($this->user)) {
             $request = new \OAuthRequester($this->userUrl, "GET", $_GET);
@@ -179,9 +179,9 @@ class OsmOAuth extends AbstractOAuthCallback
      *
      * @return mixed Identifier for this OAuth user
      */
-    protected function getOAuthUserId()
+    protected function getOauthUserId()
     {
-        $user = $this->getOAuthUser();
+        $user = $this->getOauthUser();
         return $user['id'];
     }
     
@@ -192,7 +192,7 @@ class OsmOAuth extends AbstractOAuthCallback
      */
     public function getPictureUrl()
     {
-        $user = $this->getOAuthUser();
+        $user = $this->getOauthUser();
         return $user['pic_url'];
     }
 
@@ -201,7 +201,7 @@ class OsmOAuth extends AbstractOAuthCallback
      *
      * @return string Name of the OAuth provider
      */
-    public function getOAuthProvider()
+    public function getOauthProvider()
     {
         return "OpenStreetMap";
     }

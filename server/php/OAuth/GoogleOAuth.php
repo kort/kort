@@ -80,7 +80,7 @@ class GoogleOAuth extends AbstractOAuthCallback
      *
      * @return array The current user array
      */
-    public function getOAuthUser()
+    public function getOauthUser()
     {
         if (empty($this->user)) {
             $this->user = $this->oAuthService->userinfo->get();
@@ -93,9 +93,9 @@ class GoogleOAuth extends AbstractOAuthCallback
      *
      * @return mixed Identifier for this OAuth user
      */
-    protected function getOAuthUserId()
+    protected function getOauthUserId()
     {
-        $user = $this->getOAuthUser();
+        $user = $this->getOauthUser();
         return $user['email'];
     }
 
@@ -104,7 +104,7 @@ class GoogleOAuth extends AbstractOAuthCallback
      *
      * @return string Name of the OAuth provider
      */
-    public function getOAuthProvider()
+    public function getOauthProvider()
     {
         return "Google";
     }
@@ -116,7 +116,7 @@ class GoogleOAuth extends AbstractOAuthCallback
      */
     public function getPictureUrl()
     {
-        $user = $this->getOAuthUser();
+        $user = $this->getOauthUser();
         return $user['picture'];
     }
 }

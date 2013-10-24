@@ -83,7 +83,7 @@ class UserGetHandler extends DbProxyHandler
      *
      * @return string|bool a JSON-encoded user object if successfull, false otherwise
      */
-    public function getUserByOAuthUserId($oauth_user_id)
+    public function getUserByOauthUserId($oauth_user_id)
     {
         $this->getDbProxy()->setWhere("oauth_user_id = '". $oauth_user_id . "'");
 

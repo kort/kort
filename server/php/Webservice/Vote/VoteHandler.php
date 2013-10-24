@@ -131,7 +131,9 @@ class VoteHandler extends DbProxyHandler implements IKoinCount
      */
     public function getKoinCountQuery(array $data)
     {
-        return "select adfv.vote_koin_count + COALESCE(adfv.promo_extra_coins,0) from kort.aggregateddata_from_all_validations adfv where adfv.id = " . $data['fix_id'];
-        //return "select vote_koin_count from kort.validations where id = " . $data['fix_id'];
+        $query  = "select adfv.vote_koin_count + COALESCE(adfv.promo_extra_coins,0) ";
+        $query .= "from kort.aggregateddata_from_all_validations adfv ";
+        $query .= "where adfv.id = " . $data['fix_id'];
+        return $query;
     }
 }
