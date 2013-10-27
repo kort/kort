@@ -15,7 +15,7 @@ env:
     - TARGET_ENV="dev"
     - TARGET_ENV="prod"
 
-before_script:
+before_install:
   - gem install sass
   - gem install compass
   - gem install jsduck
@@ -23,6 +23,10 @@ before_script:
   - npm install -g grunt-cli
   - npm install 
   - curl -s http://getcomposer.org/installer | php --
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq graphviz
+
+before_script:
   - php composer.phar install --dev
   - export PATH="$PATH:$CI_HOME:/usr/local/heroku/bin"
   - mv $CI_HOME/server/php/Webservice/Database/DbConfig.example.php $CI_HOME/server/php/Webservice/Database/DbConfig.php
