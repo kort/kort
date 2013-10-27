@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-    <title>Kort Newstitle></title>
+    <title>Kort News</title>
     <link href="http://kort.ch/"/>
-    <updated>2013-12-13T18:30:02Z</updated>
+    <updated>2013-10-28T00:15:07Z</updated>
     <author>
         <name>Kort Team</name>
     </author>
     <id>hsr.ch_kort</id>
 
+    <entry>
+        <title xml:lang="en">Kort is nominated for the Swisscom Innovation Award</title>
+        <link href="#"/>
+        <id>hsr.ch_kort_odi_1</id>
+        <updated>2013-10-28T00:15:07Z</updated>
+        <content type="text/html"><![CDATA[
+            <p style="margin-bottom: 12px;">
+                Kort is one of three finalists for the Swisscom Innovation Award. Apart from the jury there is an online voting, where you can support us by voting
+                for our project. The ceremony will take place on the <span style="font-weight:bold;">7th of November 2013</span>, until then you have time to give us your vote!
+            </p>
+            <p>Please support us now by voting for our bachelor thesis "Gamified Mobile App für die Verbesserung von OpenStreetMap": 
+                <a style="color: #115F9C; font-weight:bold;" ref="http://labs.swisscom.ch/t5/News/Innovationspreis-2013-Stimm-ab-f%C3%BCr-die-beste-Arbeit/ba-p/215601" target="_blank">
+                    Swisscom Innovation Award Voting
+                </a>
+            </p>
+        ]]></content>
+    </entry>
     <entry>
         <title xml:lang="en">Kort Reloaded!</title>
         <link href="#"/>
