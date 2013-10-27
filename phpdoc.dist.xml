@@ -5,10 +5,10 @@
     <target>data/output</target>
   </parser>
   <transformer>
-    <target>data/output</target>
+    <target>docs/Kort-backend</target>
   </transformer>
   <transformations>
-      <template name="responsive/"/>
+    <template name="responsive/"/>
   </transformations>
   <files>
     <directory>server/php</directory>
