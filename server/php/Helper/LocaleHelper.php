@@ -40,7 +40,7 @@ class LocaleHelper
         "ca",
         "es"
     );
-    
+
     /**
      * The properties array are the core of this class, it contains all available translation.
      *
