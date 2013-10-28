@@ -36,7 +36,7 @@ geolocationerror.button.reload=Recarregar aplicació
 geolocationerror.loadmask.message=Recarregant aplicació...
 
 # Map
-map.title=Missions & Checks
+map.title=Missions
 map.loadmask.message=Carregant missions
 map.mission.promotionmessagebox.close=Close
 map.mission.promotionmessagebox.earn=Earn additional {extra_coins} Koins

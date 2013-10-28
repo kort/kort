@@ -36,7 +36,7 @@ geolocationerror.button.reload=Ricarica l'applicazione
 geolocationerror.loadmask.message=Ricarico l'applicazione...
 
 # Map
-map.title=Incarichi nei dintorni
+map.title=Incarichi
 map.loadmask.message=Caricamento incarichi...
 map.mission.promotionmessagebox.close=Close
 map.mission.promotionmessagebox.earn=Earn additional {extra_coins} Koins

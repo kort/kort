@@ -36,7 +36,7 @@ geolocationerror.button.reload=Applikation neu laden
 geolocationerror.loadmask.message=Lade App neu...
 
 #Map
-map.title=Aufträge & Überprüfungen
+map.title=Aufträge
 map.loadmask.message=Lade Aufträge...
 map.mission.promotionmessagebox.close=Schliessen
 map.mission.promotionmessagebox.earn=Hol dir zusätzliche {extra_coins} Koins
