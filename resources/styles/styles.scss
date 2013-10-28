@@ -32,6 +32,10 @@ $message-box-background-color:#232e39;
 
 // Login
 #loginPanel {
+    .x-panel-inner {
+        padding: 1em;
+    }
+    
     ul.kort-description {
         margin-top: 0.5em;
         border-radius: 0.5em;
@@ -46,10 +50,6 @@ $message-box-background-color:#232e39;
         }
     }
     
-    .x-panel-inner {
-        padding: 1em;
-    }
-    
     .loginButtons {
         margin: 0.5em 0;
         
@@ -58,15 +58,13 @@ $message-box-background-color:#232e39;
         }
         .x-zocial-button.x-layout-box-item {
             display: list-item !important;
+            list-style: none;
         }
     }
     
     #loginButtonOsm {
         &.zocial.pinboard {
             background-color: #68C03F;
-        }
-        .x-button-label {
-            font-size: 0.9em;
         }
     }
 }
@@ -107,25 +105,11 @@ $message-box-background-color:#232e39;
 /* -----------------------
    Map
    ----------------------- */
-.popup-content {
-    h1 {
-        font-size: 1.4em;
-        font-weight: bold;
-        margin: 0 0 0.3em 0;
-    }
-    
-    p {
-        margin: 0 0 0.5em 0;
-    }
-}
-
 .fixTabPanel {
     .fixContentComponent {
         padding: $panel-padding;
         
         .fix-content {
-            text-align: left;
-
             .textpic {
                 overflow: hidden;
                 margin: 0.5em 0;
@@ -133,7 +117,7 @@ $message-box-background-color:#232e39;
                 .image {
                     float: left;
                     width: 40px;
-                    height: 40px;
+                    height: 45px;
 
                     .missiontype-image {
                         $missiontype-image-width: 70px;
@@ -149,9 +133,8 @@ $message-box-background-color:#232e39;
                     }
                 }
                 .content {
-                    font-size: $default-font-size;
-                    line-height: 1.3em;
                     margin-left: 45px;
+                    margin-top: 5px;
                 }
             }
         }
@@ -165,8 +148,11 @@ $message-box-background-color:#232e39;
             margin-bottom: 0.3em;
         }
         .x-toggle-field {
-            font-size: 0.8em;
             margin-bottom: 0.5em;
+            
+            .x-form-label {
+                padding-left: 0;
+            }
         }
     }
 }
@@ -176,16 +162,6 @@ $message-box-background-color:#232e39;
         width: 1.1em!important;
         height: 1.1em!important;
         -webkit-mask-size: 1.1em!important;
-    }
-}
-
-#mapNavigationView {
-    .x-toolbar {
-        .x-title {
-            .x-innerhtml {
-                font-size: 0.8em;
-            }
-        }
     }
 }
 
@@ -374,7 +350,7 @@ $message-box-background-color:#232e39;
    Highscore
    ----------------------- */
 #highscoreNavigationView {
-    .x-list-item-body {
+    .x-list-item.x-list-item-tpl .x-innerhtml {
         padding: 0;
     }
     
@@ -382,7 +358,6 @@ $message-box-background-color:#232e39;
         overflow: hidden;
         font-size: $default-font-size;
         padding: 0.65em 0.8em;
-        box-shadow: inset 0 0 1em #D1D1D1;
         
         .ranking {
             float: left;
@@ -397,21 +372,18 @@ $message-box-background-color:#232e39;
         }
         &.firstPlace {
             background-color: #fff4b8;
-            box-shadow: inset 0 0 1em #A29F6F;
             .ranking {
                 background-color: #ffe139;
             }
         }
         &.secondPlace {
             background-color: #d1d1d1;
-            box-shadow: inset 0 0 1em #979797;
             .ranking {
                 background-color: #7d7d7d;
             }
         }
         &.thirdPlace {
             background-color: #e2c89b;
-            box-shadow: inset 0 0 1em #B68768;
             .ranking {
                 background-color: #8f6823;
             }
@@ -478,64 +450,39 @@ $message-box-background-color:#232e39;
 /* -----------------------
    News
    ----------------------- */
-
-#newsSettingsPanel {
-  .newsSettingsTitle {
-    padding: 6px 0px 6px 12px;
-    font-size:$default-font-size;
-    background:$message-box-background-color;
-    border-bottom: 1px solid white;
-  }
-
-  .newsSettingsBottomToolbar, .newsSettingsSelectionToolbar{
-    background:$message-box-background-color;
-  }
-
-
-}
-
-  .newsItem{
-    ul {
-      padding-left:1em;
-      li {
-        list-style-image: url('../images/listStarIcon.png');
-      }
+#newsNavigationView {
+    .newsItem {
+        ul {
+            padding-left:1em;
+            li {
+                list-style-image: url('../images/listStarIcon.png');
+            }
+        }
+    }
+    .unreadstyle {
+        font-weight: bold;
     }
 
+    .newsNewsEntryContentComponent {
+        .newsclass {
+            padding: $panel-padding;
 
-
-  }
-  .unreadstyle {
-    font-weight: bold;
-  }
-
-
-
-.newsNewsEntryContentComponent{
-  .newsclass{
-    padding: $panel-padding;
-    max-width: 500px;
-    .title{
-     // font-family: "Helvetica";
-      font-size: 1.5em;
-      font-weight: bold;
-      color: black;
-      //color: #747474;
+            .title {
+                font-size: 1.5em;
+                font-weight: bold;
+            }
+            .date {
+                font-size: 0.8em;
+            }
+            .text {
+                margin-top:  1.0em;
+                font-size: 1.0em;
+            }
+            a:link, a:visited {
+                font-style: normal;
+            }
+        }
     }
-    .date{
-      //font-style: italic;
-      font-size: 0.8em;
-    }
-    .text{
-      margin-top:  1.0em;
-      font-size: 1.0em;
-      //font-family: "Georgia, serif";
-    }
-    a:link, a:visited {
-      font-style: normal;
-      color: black;
-    }
-  }
 }
 
 /* -----------------------
@@ -543,8 +490,8 @@ $message-box-background-color:#232e39;
    ----------------------- */
 .profileContentComponent,
 .highscoreUserContentComponent {
+    padding: $panel-padding;
     .info {
-        padding: $panel-padding;
         overflow: hidden;
     
         .picture {
@@ -569,18 +516,18 @@ $message-box-background-color:#232e39;
     }
     
     .user-header {
-        font-size: 0.9em;
-        margin: 0.5em 0;
-        text-transform: uppercase;
-        
-        .x-list-header {
-            text-shadow: rgba(0, 0, 0, 0.25) 0 0.08em 0;
-            color: #fff;
+        clear: both;
+
+        .header-content {
+            font-size: 0.6em;
+            margin-top: 0.8em;
+            margin-bottom: 0.1em;
+            color: #4b4b4b;
+            text-transform: uppercase;
         }
     }
     .koins,
     .ranking {
-        padding: 0.1em $panel-padding;
         clear: both;
         
         .koins-image,
@@ -611,7 +558,6 @@ $message-box-background-color:#232e39;
 
 .profileBadgesDataView,
 .highscoreUserBadgesDataView {
-    padding: $panel-padding;
     
     .badge {
         $badge-image-size: 160px;
@@ -857,24 +803,6 @@ $message-box-background-color:#232e39;
     font-size: 0.8em;
 }
 
-// TabPanel tabBar
-.fixTabPanel,
-.voteTabPanel,
-.highscoreTabPanel,
-{
-    .x-tabbar.x-docked-top {
-        height: auto;
-        min-height: 1.6em !important;
-        font-size: 0.9em;
-    }
-    .x-tabbar .x-tab {
-        -webkit-border-radius: 0;
-        border-radius: 0;
-        height: auto;
-        margin: 0;
-        padding: 0.6em 0.8em;
-    }
-}
 
 .kort-label {
     font-weight: bold;
