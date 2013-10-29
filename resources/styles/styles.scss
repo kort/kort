@@ -519,9 +519,8 @@ $message-box-background-color:#232e39;
         clear: both;
 
         .header-content {
-            font-size: 0.6em;
-            margin-top: 0.8em;
-            margin-bottom: 0.1em;
+            margin-top: 1em;
+            margin-bottom: 0.4em;
             color: #4b4b4b;
             text-transform: uppercase;
         }
@@ -652,135 +651,137 @@ $message-box-background-color:#232e39;
    Message Boxes
    ----------------------- */
 .promotionMessageBox {
-  background-image: url('../images/promotion/promotionCircle.png');
-  background-position:center top;
-  background-repeat: no-repeat;
-  background-color: transparent;
-  overflow: auto;
-  width:320px;
-  height:301px;
-  box-shadow:none!important;
-  border:none!important;
+    background-image: url('../images/promotion/promotionCircle.png');
+    background-position:center top;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    overflow: auto;
+    width:320px;
+    height:301px;
+    box-shadow:none!important;
+    border:none!important;
 
-  #promotionMessageBox-wrapper {
-    max-width: 270px;
-    max-height:200px;
-    padding: 35px 0px 60px 25px;
-    overflow: hidden;
-  }
+    #promotionMessageBox-wrapper {
+        max-width: 270px;
+        max-height:200px;
+        padding: 35px 0px 60px 25px;
+        overflow: hidden;
+    }
 
+    .titleText {
+        font-weight: bold;
+        padding: 0px 0px 13px 0px;
+    }
 
-  .titleText {
-    font-weight: bold;
-    padding: 0px 0px 13px 0px;
-  }
-
-  .dateText {
-    font-style: italic;
-  }
-
-  .koinsText {
-
-  }
+    .dateText {
+        font-style: italic;
+    }
 }
 
 
 .validationMessageBox{
-  .messagebox-content {
-    text-align: left;
-  }
-  .textpic {
-    overflow: hidden;
-    margin: 0.5em 0;
-  .image {
-    float: left;
-    width: 40px;
-    height: 40px;
+    .messagebox-content {
+        text-align: left;
+    }
+    .textpic {
+        $image-width: 40px;
+        overflow: hidden;
+        margin: 0.5em 0;
 
-    .missiontype-image {
-      float: left;;
-      $missiontype-image-width: 70px;
-      $missiontype-image-height: 83px;
-      width: $missiontype-image-width/2;
-      height: $missiontype-image-height/2;
+        .image {
+            float: left;
+            width: $image-width;
+            height: 43px;
+
+            .missiontype-image {
+                float: left;
+                $missiontype-image-width: 70px;
+                $missiontype-image-height: 83px;
+                width: $missiontype-image-width/2;
+                height: $missiontype-image-height/2;
+            }
+            .koin-image {
+                $koin-image-width: 70px;
+                $koin-image-height: 70px;
+                width: $koin-image-width/2;
+                height: $koin-image-height/2;
+            }
+        }
+        .content {
+            margin-top: 5px;
+            margin-left: $image-width + 5px;
+        }
+            
     }
-    .koin-image {
-      $koin-image-width: 70px;
-      $koin-image-height: 70px;
-      width: $koin-image-width/2;
-      height: $koin-image-height/2;
-    }
-  }}
 }
 
 
 .missionMessageBox ,
 .notificationMessageBox {
-  .x-msgbox-text {
-    padding: 0.5em;
+    .x-msgbox-text {
+        padding: 0.5em;
 
-    .messagebox-content {
-      text-align: left;
+        .messagebox-content {
+            text-align: left;
 
-      .text {
-        .content {
-          font-size: $default-font-size;
+            .text {
+                .content {
+                    font-size: $default-font-size;
 
+                    h1 {
+                        font-weight: bold;
+                    }
 
-          h1 {
-            font-weight: bold;
-          }
+                    .badges {
+                        $badge-image-size: 110px;
+                        overflow: hidden;
 
-          .badges {
-            $badge-image-size: 110px;
-            overflow: hidden;
+                        .badge {
+                            float: left;
+                            width: $badge-image-size/2;
+                            margin: 0.2em 0.5em;
+                            text-align: center;
+                            overflow: hidden;
 
-            .badge {
-              float: left;
-              width: $badge-image-size/2;
-              margin: 0.2em 0.5em;
-              text-align: center;
-              overflow: hidden;
-
-              img {
-                width: $badge-image-size/2;
-                height: $badge-image-size/2;
-              }
+                            img {
+                                width: $badge-image-size/2;
+                                height: $badge-image-size/2;
+                            }
+                        }
+                    }
+                }
             }
-          }
-        }
-      }
 
-      .textpic {
-        overflow: hidden;
-        margin: 0.5em 0;
+            .textpic {
+                overflow: hidden;
+                margin: 0.5em 0;
 
-        .image {
-          float: left;
-          width: 40px;
-          height: 40px;
+                .image {
+                    float: left;
+                    width: 40px;
+                    height: 40px;
 
-          .missiontype-image {
-            $missiontype-image-width: 70px;
-            $missiontype-image-height: 80px;
-            width: $missiontype-image-width/2;
-            height: $missiontype-image-height/2;
-          }
-          .koin-image {
-            $koin-image-width: 70px;
-            $koin-image-height: 70px;
-            width: $koin-image-width/2;
-            height: $koin-image-height/2;
-          }
+                    .missiontype-image {
+                        $missiontype-image-width: 70px;
+                        $missiontype-image-height: 80px;
+                        width: $missiontype-image-width/2;
+                        height: $missiontype-image-height/2;
+                    }
+                    .koin-image {
+                        $koin-image-width: 70px;
+                        $koin-image-height: 70px;
+                        width: $koin-image-width/2;
+                        height: $koin-image-height/2;
+                    }
+                }
+                .content {
+                    font-size: $default-font-size;
+                    line-height: 1.3em;
+                    margin-left: 50px;
+                }
+            }
         }
-        .content {
-          font-size: $default-font-size;
-          line-height: 1.3em;
-          margin-left: 50px;
-        }
-      }
     }
-  }
 }
 
 /* -----------------------
@@ -814,14 +815,13 @@ $message-box-background-color:#232e39;
 
 .kort-definitionlist {
     dt {
-        font-size: 0.6em;
+        font-size: 0.7em;
         margin-top: 0.8em;
         margin-bottom: 0.1em;
         color: $dark-grey;
         text-transform: uppercase;
     }
     dd {
-        font-size: $default-font-size;
         margin: 0.2em 0;
     }
 }
@@ -859,38 +859,45 @@ $message-box-background-color:#232e39;
 }
 
 .map-promotion-overlay {
-  background-image: url('../images/promotion/promotionCircle.png');
-  background-position:center top;
-  background-repeat: no-repeat;
-  position:absolute;
-  left:50%;
-  top:50%;
-  margin-left:-160px;
-  margin-top:-150px;
-  width:320px;
-  height:301px;}
+    background-image: url('../images/promotion/promotionCircle.png');
+    background-position: center top;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -160px;
+    margin-top: -150px;
+    width: 320px;
+    height: 301px;
+}
 
 #promotionInfoButton {
-  $promotionInfoButton-width: 40px;
-  $promotionInfoButton-height: 40px;
-  width: $promotionInfoButton-width/2;
-  height: $promotionInfoButton-height/2;
-  position: absolute;
-  margin-left:5px;
+    $promotionInfoButton-width: 40px;
+    $promotionInfoButton-height: 40px;
+    width: $promotionInfoButton-width/2;
+    height: $promotionInfoButton-height/2;
+    position: absolute;
+    margin-left: 5px;
 }
 
 //should become obsolete
 #campaignInfoButton {
-  $campaignInfoButton-width: 40px;
-  $campaignInfoButton-height: 40px;
-  width: $campaignInfoButton-width/2;
-  height: $campaignInfoButton-height/2;
-  position: absolute;
-  margin-left:5px;
+    $campaignInfoButton-width: 40px;
+    $campaignInfoButton-height: 40px;
+    width: $campaignInfoButton-width/2;
+    height: $campaignInfoButton-height/2;
+    position: absolute;
+    margin-left: 5px;
 }
 
 .x-msgbox {
-  min-width: 305px;
-  max-width: 305px;
+    min-width: 305px;
+    max-width: 305px;
 }
-.emptyMessageBox {background: url('../images/promotion/promotionCircle.png');width:320px;height:301px;box-shadow:none!important;border:none!important}
+.emptyMessageBox {
+    background: url('../images/promotion/promotionCircle.png');
+    width: 320px;
+    height: 301px;
+    box-shadow: none !important;
+    border: none !important
+}

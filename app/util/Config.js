@@ -18,7 +18,7 @@ Ext.define('Kort.util.Config', {
         /**
          * @cfg {String[]} supportedBrowsers List of supported browsers
          */
-        supportedBrowsers: ['WebKit'],
+        supportedBrowsers: ['WebKit', 'IE', 'Firefox'],
         
         /**
          * @cfg {String} defaultLanguage Default language of app when no language setting could be detected
