@@ -35,31 +35,31 @@ geolocationerror.introduction=Para usar o Kort, aceder à sua posição geo é e
 geolocationerror.button.reload=Recargar aplicação
 geolocationerror.loadmask.message=Recaregando aplicação
 
-# Map
-map.title=Missões mais próximas
+#Map
+map.title=Missions
 map.loadmask.message=Carregando missões
 map.mission.promotionmessagebox.close=Close
 map.mission.promotionmessagebox.earn=Earn additional {extra_coins} Koins
 map.mission.promotionmessagebox.date={startdate} to {enddate}
 map.mission.missionmessagebox.koins.earn=Ganhe {fix_koin_count} Moedas
 map.mission.missionmessagebox.koins.earnpromotion=Earn {fix_koin_count} + {extra_coins} Koins
-map.mission.missionmessagebox.yes=Answer
-map.mission.missionmessagebox.no=Don't know
+map.mission.missionmessagebox.yes=Resposta
+map.mission.missionmessagebox.no=Não sei.
 map.mission.missionmessagebox.close=Close
 map.mission.layername=Missions
-map.missionInactive.layername = Inactive Missions
-map.validation.layername=Validations
+map.missionInactive.layername=Inactive Missions
+map.validation.layername=Checks
 map.validation.validationmessagebox.koins.earn=Earn {validation_koin_count} Koins
 map.validation.validationmessagebox.koins.earnpromotion=Earn {validation_koin_count} + {extra_coins} Koins
 map.mission.validationmessagebox.yes=Resposta
-map.mission.validationmessagebox.no=Não sei
+map.mission.validationmessagebox.no=Não sei.
 map.mission.validationmessagebox.close=Close
 map.validation.validationmessagebox.checkit=Check the solution
 
 ## Fix
 fix.form.title=Missão
 fix.form.koins.earn=Obtenha as {fix_koin_count} Moedas\!
-fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins!
+fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins\!
 fix.form.message.placeholder=Sua resposta
 fix.form.button.showonmap=Me mostrar no mapa
 fix.form.button.submit=Missão cumprida\n
@@ -71,12 +71,6 @@ fix.alert.fixfield.empty.title=Preencha os campos.
 fix.alert.fixfield.empty.message=Por favor preencha todos os campos.
 fix.alert.submit.failure.title=Erro de envio.
 fix.alert.submit.failure.message=Oops\! Ocorreu um erro ao enviar a sua resposta. Reiniciar a aplicação pode resolver a situação.
-
-# Validation
-validation.title=Verifique
-validation.loadmask.message=carregando\n
-validation.list.header={validations_left} classificações positivas necessárias
-validation.distance=distancia
 
 ## Vote
 vote.falsepositive.question=Esta missão está marcada como 'incapaz de resolver'. Isto está correto?
@@ -92,8 +86,8 @@ vote.alert.submit.failure.message=Oops\! Ocorreu um erro ao enviar a sua respost
 
 # Highscore
 highscore.title=Melhor resultado
-highscore.absolute.tabtitle=Absolute
-highscore.relative.tabtitle=Relative
+highscore.absolute.tabtitle=Top
+highscore.relative.tabtitle=My score
 highscore.loadmask.message=A carregar o melhor resultado...
 highscore.emptytext=Não é possível carregar o melhor resultado.
 highscore.you=Isto és tu\!
@@ -140,7 +134,7 @@ news.settings.save=Save
 news.settings.cancel=Cancel
 news.settings.acceptNoLanguage=Deselect all
 news.settings.acceptAllLanguages=Select all
-news.settings.label=I want to receive news in the following languages:
+news.settings.label=I want to receive news in the following languages\:
 
 # About
 about.title=Acerca de
@@ -150,7 +144,7 @@ about.information.homepage=Website\:
 about.information.feedback=Comentários/FAQ\:
 about.information.bugs=Reportar um problema\:
 about.developers.title=Desenvolvedor
-about.project.title=Projeto
+about.project.title=Projects
 about.project.advisor=Liderar\:
 about.credits.title=Créditos
 about.credits.partner=Parceiro\:
@@ -158,8 +152,19 @@ about.credits.mapdata=Dados Geo\:
 about.credits.tiledata=Títulos\:
 about.credits.markers=Ícones marcadores\:
 about.credits.translation=Translation\:
+about.credits.dbhosting=DB Hosting\:
 about.legal.title=Nota legal\:
 about.legal.message=Por favor siga as indicações do OpenStreetMap e não use fontes protegidas por direitos de autor sem autorização.
+
+# PullRefresh Plugin
+pullrefresh.pullrefresh=Puxe para refrescar
+pullrefresh.releaserefresh=Solte para refrescar...
+pullrefresh.loading=a carregar...
+pullrefresh.lastupdated=Última atualização\:
+
+# ListPaging Plugin
+listpaging.loadmore=Load more...
+listpaging.nomorerecords=No more records available.
 
 # Button
 button.back=Retroceder
@@ -212,3 +217,6 @@ startscreen.browsererror=Your browser is not supported yet. Try it on your mobil
 # app/util/Config.js
 ## Firststeps
 firststeps.form.username.placeholder=Nome do usuario
+
+## PullRefresh Plugin
+pullrefresh.dateformat=m/d/Y h\:iA
