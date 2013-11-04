@@ -13,7 +13,7 @@ Ext.define('Kort.util.Config', {
         /**
          * @cfg {String[]} supportedLanguages Supported languages of the app
          */
-        supportedLanguages: ['en', 'de', 'it', 'fr', 'sl', 'hr', 'cs', 'nl', 'gl', 'pt', 'ro', 'ja', 'ca', 'es'],
+        supportedLanguages: ['ca', 'cs', 'de', 'en', 'es', 'fr', 'gl', 'hr', 'hu', 'id', 'is', 'it', 'ja', 'nl', 'pt', 'ro', 'ru', 'sk', 'sl', 'sr', 'tr', 'vi'],
         
         /**
          * @cfg {String[]} supportedBrowsers List of supported browsers
@@ -156,6 +156,14 @@ Ext.define('Kort.util.Config', {
          * @cfg {Object} messages Ext.i18n.bundle plugin doesn't work for form placeholders so these are stored in config file
          */
         messages: {
+            ca: {
+                'firststeps.form.username.placeholder': "Nom d'usuari",
+                'pullrefresh.dateformat': 'm/d/Y h:iA'
+            },
+            cs: {
+                'firststeps.form.username.placeholder': 'Uživatelské jméno',
+                'pullrefresh.dateformat': 'd.m.Y H:i:s'
+            },
             de: {
                 'firststeps.form.username.placeholder': 'Benutzername',
                 'pullrefresh.dateformat': 'd.m.Y H:i:s'
@@ -164,33 +172,45 @@ Ext.define('Kort.util.Config', {
                 'firststeps.form.username.placeholder': 'Username',
                 'pullrefresh.dateformat': 'm/d/Y h:iA'
             },
-            it: {
-                'firststeps.form.username.placeholder': 'Nome utente',
-                'pullrefresh.dateformat': 'd.m.Y h:i:s'
+            es: {
+                'firststeps.form.username.placeholder': 'Nombre de usuario',
+                'pullrefresh.dateformat': 'd/m/Y  h:i A'
             },
             fr: {
                 'firststeps.form.username.placeholder': "Nom d'utilisateur",
                 'pullrefresh.dateformat': 'd/m/Y H:i'
             },
-            sl: {
-                'firststeps.form.username.placeholder': 'Uporabniško ime',
-                'pullrefresh.dateformat': 'd/m/l h:iA'
+            gl: {
+                'firststeps.form.username.placeholder': 'Nome de usuario',
+                'pullrefresh.dateformat': 'm/d/A h:iA'
             },
             hr: {
                 'firststeps.form.username.placeholder': 'Korisničko ime',
                 'pullrefresh.dateformat': 'd/m/Y h:iA'
             },
-            cs: {
-                'firststeps.form.username.placeholder': 'Uživatelské jméno',
-                'pullrefresh.dateformat': 'd.m.Y H:i:s'
+            hu: {
+                'firststeps.form.username.placeholder': 'Felhasználónév',
+                'pullrefresh.dateformat': 'Y. m. d. h\:iA'
+            },
+            id: {
+                'firststeps.form.username.placeholder': 'Nama pengguna',
+                'pullrefresh.dateformat': 'm/d/Y h:iA'
+            },
+            is: {
+                'firststeps.form.username.placeholder': 'Notandanafn',
+                'pullrefresh.dateformat': 'd/m/Y h:iA'
+            },
+            it: {
+                'firststeps.form.username.placeholder': 'Nome utente',
+                'pullrefresh.dateformat': 'd.m.Y h:i:s'
+            },
+            ja: {
+                'firststeps.form.username.placeholder': 'ユーザー名',
+                'pullrefresh.dateformat': 'Y/m/d h:iA'
             },
             nl: {
                 'firststeps.form.username.placeholder': 'Gebruikersnaam',
                 'pullrefresh.dateformat': 'm/d/J u:m'
-            },
-            gl: {
-                'firststeps.form.username.placeholder': 'Nome de usuario',
-                'pullrefresh.dateformat': 'm/d/A h:iA'
             },
             pt: {
                 'firststeps.form.username.placeholder': 'Nome do usuario',
@@ -200,17 +220,29 @@ Ext.define('Kort.util.Config', {
                 'firststeps.form.username.placeholder': 'Nume de utilizator',
                 'pullrefresh.dateformat': 'm/d/Y h:iA'
             },
-            ja: {
-                'firststeps.form.username.placeholder': 'ユーザー名',
-                'pullrefresh.dateformat': 'Y/m/d h:iA'
+            ru: {
+                'firststeps.form.username.placeholder': 'Имя',
+                'pullrefresh.dateformat': 'd.m.Y H:i'
             },
-            ca: {
-                'firststeps.form.username.placeholder': "Nom d'usuari",
-                'pullrefresh.dateformat': 'm/d/Y h:iA'
+            sk: {
+                'firststeps.form.username.placeholder': 'Používateľské meno',
+                'pullrefresh.dateformat': 'd. m. Y H:i'
             },
-            es: {
-                'firststeps.form.username.placeholder': 'Nombre de usuario',
-                'pullrefresh.dateformat': 'd/m/Y  h:i A'
+            sl: {
+                'firststeps.form.username.placeholder': 'Uporabniško ime',
+                'pullrefresh.dateformat': 'd/m/l h:iA'
+            },
+            sr: {
+                'firststeps.form.username.placeholder': 'Корисничко име',
+                'pullrefresh.dateformat': 'd/m/Y h:iA'
+            },
+            tr: {
+                'firststeps.form.username.placeholder': 'Kullanıcı adı',
+                'pullrefresh.dateformat': 'd/m/Y h:iA'
+            },
+            vi: {
+                'firststeps.form.username.placeholder': 'tên người dùng',
+                'pullrefresh.dateformat': 'd.m.Y H:i:s'
             }
         },
 
