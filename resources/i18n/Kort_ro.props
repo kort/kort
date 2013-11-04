@@ -36,19 +36,19 @@ geolocationerror.button.reload=Reîncărcarea aplicației
 geolocationerror.loadmask.message=Aplicația se încarcă...
 
 # Map
-map.title=Misiune în apropiere
+map.title=Missions
 map.loadmask.message=Misiunile se încarcă...
 map.mission.promotionmessagebox.close=Close
 map.mission.promotionmessagebox.earn=Earn additional {extra_coins} Koins
 map.mission.promotionmessagebox.date={startdate} to {enddate}
 map.mission.missionmessagebox.koins.earn=Câștigă {fix_koin_count} Monede
 map.mission.missionmessagebox.koins.earnpromotion=Earn {fix_koin_count} + {extra_coins} Koins
-map.mission.missionmessagebox.yes=Answer
-map.mission.missionmessagebox.no=Don't know
+map.mission.missionmessagebox.yes=Răspuns
+map.mission.missionmessagebox.no=Nu știu
 map.mission.missionmessagebox.close=Close
 map.mission.layername=Missions
-map.missionInactive.layername = Inactive Missions
-map.validation.layername=Validations
+map.missionInactive.layername=Inactive Missions
+map.validation.layername=Checks
 map.validation.validationmessagebox.koins.earn=Earn {validation_koin_count} Koins
 map.validation.validationmessagebox.koins.earnpromotion=Earn {validation_koin_count} + {extra_coins} Koins
 map.mission.validationmessagebox.yes=Răspuns
@@ -59,7 +59,7 @@ map.validation.validationmessagebox.checkit=Check the solution
 ## Fix
 fix.form.title=Misiune
 fix.form.koins.earn=Obține {fix_koin_count} Monede\!
-fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins!
+fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins\!
 fix.form.message.placeholder=Răspunsul tău...
 fix.form.button.showonmap=Arată pe hartă
 fix.form.button.submit=Termină misiunea
@@ -71,12 +71,6 @@ fix.alert.fixfield.empty.title=Umpleți câmpurile
 fix.alert.fixfield.empty.message=Vă rugăm umpleți câmpurile.
 fix.alert.submit.failure.title=Eroare în timpul trimiterii
 fix.alert.submit.failure.message=Oops\! A existat o eroare la trimitere răspunsului tău. Restartarea aplicației s-ar putea să ajute.
-
-# Validation
-validation.title=Verifică
-validation.loadmask.message=Datele se încarcă...
-validation.list.header={validations_left} aprecieri pozitive necesare
-validation.distance=Distanță
 
 ## Vote
 vote.falsepositive.question=Această misiune este marcată ca "Fără soluție". Este corect?
@@ -92,8 +86,8 @@ vote.alert.submit.failure.message=Oops\! A existat o eroare la trimiterea răspu
 
 # Highscore
 highscore.title=Punctaj maxim
-highscore.absolute.tabtitle=Absolute
-highscore.relative.tabtitle=Relative
+highscore.absolute.tabtitle=Top
+highscore.relative.tabtitle=My score
 highscore.loadmask.message=Punctajul maxim se încarcă
 highscore.emptytext=Punctajul maxim nu se poate încărca
 highscore.you=Acesta ești tu\!
@@ -140,7 +134,7 @@ news.settings.save=Save
 news.settings.cancel=Cancel
 news.settings.acceptNoLanguage=Deselect all
 news.settings.acceptAllLanguages=Select all
-news.settings.label=I want to receive news in the following languages:
+news.settings.label=I want to receive news in the following languages\:
 
 # About
 about.title=Despre
@@ -150,7 +144,7 @@ about.information.homepage=Website
 about.information.feedback=Feedback/Întrebări frecvente
 about.information.bugs=Raportează un bug.
 about.developers.title=Dezvoltator
-about.project.title=Proiect
+about.project.title=Projects
 about.project.advisor=În frunte\:
 about.credits.title=Mulțumiri\:
 about.credits.partner=Partener\:
@@ -158,8 +152,19 @@ about.credits.mapdata=Date geografice\:
 about.credits.tiledata=Pătrate-imagine care compun harta\:
 about.credits.markers=Pictogramele marcajelor\:
 about.credits.translation=Translation\:
+about.credits.dbhosting=DB Hosting\:
 about.legal.title=Precizare legală\:
 about.legal.message=Vă rugăm urmați principiile directoare ale OpenStreetMap și nu utilizați surse protejate de copyright fără permisiune.
+
+# PullRefresh Plugin
+pullrefresh.pullrefresh=Trageți în jos pentru refresh
+pullrefresh.releaserefresh=Eliberați pentru refresh...
+pullrefresh.loading=e
+pullrefresh.lastupdated=Ultima actualizare\:
+
+# ListPaging Plugin
+listpaging.loadmore=Încarcă mai multe...
+listpaging.nomorerecords=Nu mai sunt disponibile alte înregistrări.
 
 # Button
 button.back=Înapoi
@@ -212,3 +217,6 @@ startscreen.browsererror=Navigatorul dumneavoastră web nu este încă suportat.
 # app/util/Config.js
 ## Firststeps
 firststeps.form.username.placeholder=Nume de utilizator
+
+## PullRefresh Plugin
+pullrefresh.dateformat=m/d/Y h\:iA

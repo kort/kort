@@ -35,7 +35,7 @@ geolocationerror.introduction=To use Kort, accessing your geo-position is essent
 geolocationerror.button.reload=Reload application
 geolocationerror.loadmask.message=Reloading app...
 
-#Map
+# Map
 map.title=Missions
 map.loadmask.message=Loading missions...
 map.mission.promotionmessagebox.close=Close
@@ -124,7 +124,7 @@ profile.alert.username.specialchars.message=Please only use letters and digits f
 profile.alert.submit.failure.title=Error while sending
 profile.alert.submit.failure.message=Oops\! There was an error while sending the username. Restarting the app might help.
 
-#News
+# News
 news.title=News
 news.unread=Unread
 news.read=Read
@@ -189,7 +189,7 @@ reward.alert.badges.title=Won badges
 update.title=New version of app
 update.message=The app has be updated to the newest version. Reload?
 
-#Languages
+# Languages
 en=English
 de=German
 it=Italian
