@@ -35,7 +35,7 @@ geolocationerror.introduction=Per utilitzar Kort, és necessari accedir a la teu
 geolocationerror.button.reload=Recarregar aplicació
 geolocationerror.loadmask.message=Recarregant aplicació...
 
-# Map
+#Map
 map.title=Missions
 map.loadmask.message=Carregant missions
 map.mission.promotionmessagebox.close=Close
@@ -43,12 +43,12 @@ map.mission.promotionmessagebox.earn=Earn additional {extra_coins} Koins
 map.mission.promotionmessagebox.date={startdate} to {enddate}
 map.mission.missionmessagebox.koins.earn=Guanyar {fix_koin_count} Koins
 map.mission.missionmessagebox.koins.earnpromotion=Earn {fix_koin_count} + {extra_coins} Koins
-map.mission.missionmessagebox.yes=Answer
-map.mission.missionmessagebox.no=Don't know
+map.mission.missionmessagebox.yes=Resposta
+map.mission.missionmessagebox.no=No ho sé.
 map.mission.missionmessagebox.close=Close
 map.mission.layername=Missions
-map.missionInactive.layername = Inactive Missions
-map.validation.layername=Validations
+map.missionInactive.layername=Inactive Missions
+map.validation.layername=Checks
 map.validation.validationmessagebox.koins.earn=Earn {validation_koin_count} Koins
 map.validation.validationmessagebox.koins.earnpromotion=Earn {validation_koin_count} + {extra_coins} Koins
 map.mission.validationmessagebox.yes=Resposta
@@ -59,7 +59,7 @@ map.validation.validationmessagebox.checkit=Check the solution
 ## Fix
 fix.form.title=Missió
 fix.form.koins.earn=Aconsegueix {fix_koin_count} Koins\!
-fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins!
+fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins\!
 fix.form.message.placeholder=La teua resposta...
 fix.form.button.showonmap=Mostrar al mapa
 fix.form.button.submit=Completar missió
@@ -71,12 +71,6 @@ fix.alert.fixfield.empty.title=Ompli els camps
 fix.alert.fixfield.empty.message=Per favor, ompli tots els camps.
 fix.alert.submit.failure.title=Error a l'enviar
 fix.alert.submit.failure.message=Ui\! S'ha produit un error mentre s'enviava la teua resposta. Reiniciar l'aplicació podria ajudar a resoldre'l.
-
-# Validation
-validation.title=Comprovar
-validation.loadmask.message=Carregant dades...
-validation.list.header=Es necessiten {validations_left} valoracions positives
-validation.distance=Distància
 
 ## Vote
 vote.falsepositive.question=Esta missió ha sigut marcada com a 'incapaç de resoldre'. És correcte?
@@ -92,8 +86,8 @@ vote.alert.submit.failure.message=Ui\! S'ha produit un error mentre s'enviava la
 
 # Highscore
 highscore.title=Màxima puntuació
-highscore.absolute.tabtitle=Absolute
-highscore.relative.tabtitle=Relative
+highscore.absolute.tabtitle=Top
+highscore.relative.tabtitle=My score
 highscore.loadmask.message=Carregant puntuació màxima
 highscore.emptytext=No es pot carregar la puntuació màxima
 highscore.you=Eres tu\!
@@ -140,7 +134,7 @@ news.settings.save=Save
 news.settings.cancel=Cancel
 news.settings.acceptNoLanguage=Deselect all
 news.settings.acceptAllLanguages=Select all
-news.settings.label=I want to receive news in the following languages:
+news.settings.label=I want to receive news in the following languages\:
 
 # About
 about.title=A sobre
@@ -150,7 +144,7 @@ about.information.homepage=Lloc web\:
 about.information.feedback=Preguntes més freqüents\:
 about.information.bugs=Informa d'un error\:
 about.developers.title=Desenvolupador
-about.project.title=Projecte
+about.project.title=Projects
 about.project.advisor=Guiat\:
 about.credits.title=Crèdits
 about.credits.partner=Soci\:
@@ -158,8 +152,19 @@ about.credits.mapdata=Geodades\:
 about.credits.tiledata=Tessel·la\:
 about.credits.markers=Marcadors\:
 about.credits.translation=Translation\:
+about.credits.dbhosting=DB Hosting\:
 about.legal.title=Nota legal_
 about.legal.message=Per favor, segueix les directrius d'OpenStreetMap i no utilitzes fonts protegides amb copyright sense permís.
+
+# PullRefresh Plugin
+pullrefresh.pullrefresh=Arrossega cap a baix per a actualitzar
+pullrefresh.releaserefresh=Deixa anar per a actualitzar...
+pullrefresh.loading=Carregant...
+pullrefresh.lastupdated=Última actualització\:
+
+# ListPaging Plugin
+listpaging.loadmore=Carregar més...
+listpaging.nomorerecords=No hi ha més registres disponibles.
 
 # Button
 button.back=Arrere
@@ -212,3 +217,6 @@ startscreen.browsererror=El teu navegador encara no està suportat. Prova amb el
 # app/util/Config.js
 ## Firststeps
 firststeps.form.username.placeholder=Nom d'usuari
+
+## PullRefresh Plugin
+pullrefresh.dateformat=m/d/Y h\:iA

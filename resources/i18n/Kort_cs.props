@@ -35,20 +35,20 @@ geolocationerror.introduction=Pro hraní Kortu je nezbytný přístup ke sledov�
 geolocationerror.button.reload=Znovu načíst aplikaci
 geolocationerror.loadmask.message=Načítám znovu...
 
-# Map
-map.title=Mise v okolí
+#Map
+map.title=Missions
 map.loadmask.message=Nahrávám mise...
 map.mission.promotionmessagebox.close=Close
 map.mission.promotionmessagebox.earn=Earn additional {extra_coins} Koins
 map.mission.promotionmessagebox.date={startdate} to {enddate}
 map.mission.missionmessagebox.koins.earn=Získejte {fix_koin_count} Koinů
 map.mission.missionmessagebox.koins.earnpromotion=Earn {fix_koin_count} + {extra_coins} Koins
-map.mission.missionmessagebox.yes=Answer
-map.mission.missionmessagebox.no=Don't know
+map.mission.missionmessagebox.yes=Odpovědět
+map.mission.missionmessagebox.no=Nevím
 map.mission.missionmessagebox.close=Close
 map.mission.layername=Missions
-map.missionInactive.layername = Inactive Missions
-map.validation.layername=Validations
+map.missionInactive.layername=Inactive Missions
+map.validation.layername=Checks
 map.validation.validationmessagebox.koins.earn=Earn {validation_koin_count} Koins
 map.validation.validationmessagebox.koins.earnpromotion=Earn {validation_koin_count} + {extra_coins} Koins
 map.mission.validationmessagebox.yes=Odpovědět
@@ -59,7 +59,7 @@ map.validation.validationmessagebox.checkit=Check the solution
 ## Fix
 fix.form.title=Mise
 fix.form.koins.earn=Získejte {fix_koin_count} Koinů\!
-fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins!
+fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins\!
 fix.form.message.placeholder=Vaše odpověď...
 fix.form.button.showonmap=Ukaž na mapě
 fix.form.button.submit=Dokončit misi
@@ -71,12 +71,6 @@ fix.alert.fixfield.empty.title=Vyplňte odpovědi
 fix.alert.fixfield.empty.message=Prosím vyplňte všechna pole.
 fix.alert.submit.failure.title=Chyba při odesílání
 fix.alert.submit.failure.message=Ajaj\! Při odesílání vaší odpovědi se vyskytla chyba. Mohlo by pomoci restartování aplikace.
-
-# Validation
-validation.title=Kontrola
-validation.loadmask.message=Nahrávám data...
-validation.list.header=je potřeba {validations_left} pozitivních hodnocení
-validation.distance=Vzdálenost
 
 ## Vote
 vote.falsepositive.question=Mise je označena jako "neřešitelná". Je to v pořádku?
@@ -92,8 +86,8 @@ vote.alert.submit.failure.message=Ajaj\! Při odesílání vaší odpovědi se v
 
 # Highscore
 highscore.title=Žebříček
-highscore.absolute.tabtitle=Absolute
-highscore.relative.tabtitle=Relative
+highscore.absolute.tabtitle=Top
+highscore.relative.tabtitle=My score
 highscore.loadmask.message=Nahrávám žebříček...
 highscore.emptytext=Nemohu nahrát žebříček.
 highscore.you=To jste vy\!
@@ -140,7 +134,7 @@ news.settings.save=Save
 news.settings.cancel=Cancel
 news.settings.acceptNoLanguage=Deselect all
 news.settings.acceptAllLanguages=Select all
-news.settings.label=I want to receive news in the following languages:
+news.settings.label=I want to receive news in the following languages\:
 
 # About
 about.title=O
@@ -150,7 +144,7 @@ about.information.homepage=Web\:
 about.information.feedback=Připomínky/FAQ\:
 about.information.bugs=Hlášení chyb\:
 about.developers.title=Vývojáři
-about.project.title=Projekt
+about.project.title=Projects
 about.project.advisor=Vedení\:
 about.credits.title=Děkujeme
 about.credits.partner=Partner\:
@@ -158,8 +152,19 @@ about.credits.mapdata=Geo data\:
 about.credits.tiledata=Mapové dlaždice\:
 about.credits.markers=Ikony značek\:
 about.credits.translation=Translation\:
+about.credits.dbhosting=DB Hosting\:
 about.legal.title=Právní poznámka\:
 about.legal.message=Prosím respektujte zásady OpenStreetMap a nepoužívejte zdoje chráněné copyrightem bez povolení.
+
+# PullRefresh Plugin
+pullrefresh.pullrefresh=Stáhněte pro obnovení
+pullrefresh.releaserefresh=Stáhněte pro obnovení...
+pullrefresh.loading=nahrávám...
+pullrefresh.lastupdated=Poslední aktualizace\:
+
+# ListPaging Plugin
+listpaging.loadmore=Load more...
+listpaging.nomorerecords=No more records available.
 
 # Button
 button.back=Zpět
@@ -212,3 +217,6 @@ startscreen.browsererror=Your browser is not supported yet. Try it on your mobil
 # app/util/Config.js
 ## Firststeps
 firststeps.form.username.placeholder=Uživatelské jméno
+
+## PullRefresh Plugin
+pullrefresh.dateformat=d.m.Y H\:i\:s
