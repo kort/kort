@@ -35,20 +35,20 @@ geolocationerror.introduction=Om dit spel te kunnen spelen, is het essentieel da
 geolocationerror.button.reload=Herlaad applicatie
 geolocationerror.loadmask.message=Applicatie opnieuw laden...
 
-# Map
-map.title=Opdrachten in de buurt
+#Map
+map.title=Missions
 map.loadmask.message=Opdrachten aan het laden...
 map.mission.promotionmessagebox.close=Close
 map.mission.promotionmessagebox.earn=Earn additional {extra_coins} Koins
 map.mission.promotionmessagebox.date={startdate} to {enddate}
 map.mission.missionmessagebox.koins.earn=Verdien {fix_koin_count} Koins
 map.mission.missionmessagebox.koins.earnpromotion=Earn {fix_koin_count} + {extra_coins} Koins
-map.mission.missionmessagebox.yes=Answer
-map.mission.missionmessagebox.no=Don't know
+map.mission.missionmessagebox.yes=Antwoord
+map.mission.missionmessagebox.no=Weet niet
 map.mission.missionmessagebox.close=Close
 map.mission.layername=Missions
-map.missionInactive.layername = Inactive Missions
-map.validation.layername=Validations
+map.missionInactive.layername=Inactive Missions
+map.validation.layername=Checks
 map.validation.validationmessagebox.koins.earn=Earn {validation_koin_count} Koins
 map.validation.validationmessagebox.koins.earnpromotion=Earn {validation_koin_count} + {extra_coins} Koins
 map.mission.validationmessagebox.yes=Antwoord
@@ -59,7 +59,7 @@ map.validation.validationmessagebox.checkit=Check the solution
 ## Fix
 fix.form.title=Opdracht
 fix.form.koins.earn=Krijg de
-fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins!
+fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins\!
 fix.form.message.placeholder=Je antwoord...
 fix.form.button.showonmap=Laat zien op de kaart
 fix.form.button.submit=Voltooi opdracht
@@ -71,12 +71,6 @@ fix.alert.fixfield.empty.title=Vul de velden in
 fix.alert.fixfield.empty.message=Vul s.v.p. de velden in
 fix.alert.submit.failure.title=Fout tijdens versturen
 fix.alert.submit.failure.message=Oeps\! Oeps\! Er was een fout tijdens het verzenden van je antwoord. Start de app opnieuw op.
-
-# Validation
-validation.title=Controleer
-validation.loadmask.message=Data aan het ophalen...
-validation.list.header={validations_left} benodigd aantal positieve beoordelingen
-validation.distance=Afstand
 
 ## Vote
 vote.falsepositive.question=Deze opdracht is gemarkeerd als 'niet op te lossen'. Is dit juist?
@@ -92,8 +86,8 @@ vote.alert.submit.failure.message=Oeps\! Er was een fout tijdens het versturen v
 
 # Highscore
 highscore.title=Hoogste score
-highscore.absolute.tabtitle=Absolute
-highscore.relative.tabtitle=Relative
+highscore.absolute.tabtitle=Top
+highscore.relative.tabtitle=My score
 highscore.loadmask.message=Hoogste score aan het laden...
 highscore.emptytext=Kan hoogste score niet laden.
 highscore.you=Dit ben jij\!
@@ -140,7 +134,7 @@ news.settings.save=Save
 news.settings.cancel=Cancel
 news.settings.acceptNoLanguage=Deselect all
 news.settings.acceptAllLanguages=Select all
-news.settings.label=I want to receive news in the following languages:
+news.settings.label=I want to receive news in the following languages\:
 
 # About
 about.title=Over
@@ -150,7 +144,7 @@ about.information.homepage=Website\:
 about.information.feedback=Feedback/FAQ\:
 about.information.bugs=Rapporteer een fout\:
 about.developers.title=Ontwikkelaar
-about.project.title=Project
+about.project.title=Projects
 about.project.advisor=Lead\:
 about.credits.title=Credits\:
 about.credits.partner=Partner\:
@@ -158,8 +152,19 @@ about.credits.mapdata=Geodata\:
 about.credits.tiledata=Tiles\:
 about.credits.markers=Symbolen\:
 about.credits.translation=Translation\:
+about.credits.dbhosting=DB Hosting\:
 about.legal.title=Juridisch\:
 about.legal.message=Volg de richtlijnen van Openstreetmap. Gebruik zonder toestemming geen data die auteursrechtelijk beschermd zijn.
+
+# PullRefresh Plugin
+pullrefresh.pullrefresh=Sleep naar beneden om te verversen
+pullrefresh.releaserefresh=Laat los om te verversen...
+pullrefresh.loading=Ophalen...
+pullrefresh.lastupdated=Laatst bijgewerkt\:
+
+# ListPaging Plugin
+listpaging.loadmore=Laad nieuwe in...
+listpaging.nomorerecords=Geen nieuwe records beschikbaar.
 
 # Button
 button.back=Terug
@@ -212,3 +217,6 @@ startscreen.browsererror=Je browser wordt nog niet ondersteund. Probeer het op j
 # app/util/Config.js
 ## Firststeps
 firststeps.form.username.placeholder=Gebruikersnaam
+
+## PullRefresh Plugin
+pullrefresh.dateformat=m/d/J u\:m

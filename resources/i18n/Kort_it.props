@@ -1,5 +1,5 @@
 # Main View (TabPanel)
-tab.map=Map
+tab.map=Mappa
 tab.bugmap=Incarichi
 tab.validation=Verifica
 tab.highscore=Highscore
@@ -35,31 +35,31 @@ geolocationerror.introduction=Per poter usare Kort è necessario accedere alla t
 geolocationerror.button.reload=Ricarica l'applicazione
 geolocationerror.loadmask.message=Ricarico l'applicazione...
 
-# Map
+#Map
 map.title=Incarichi
 map.loadmask.message=Caricamento incarichi...
-map.mission.promotionmessagebox.close=Close
-map.mission.promotionmessagebox.earn=Earn additional {extra_coins} Koins
-map.mission.promotionmessagebox.date={startdate} to {enddate}
+map.mission.promotionmessagebox.close=Chiudi
+map.mission.promotionmessagebox.earn=Ricevi {extra_coins} Koins aggiuntivi
+map.mission.promotionmessagebox.date=da {startdate} a {enddate}
 map.mission.missionmessagebox.koins.earn=Guadagna {fix_koin_count} Koins
-map.mission.missionmessagebox.koins.earnpromotion=Earn {fix_koin_count} + {extra_coins} Koins
-map.mission.missionmessagebox.yes=Answer
-map.mission.missionmessagebox.no=Don't know
-map.mission.missionmessagebox.close=Close
-map.mission.layername=Missions
-map.missionInactive.layername = Inactive Missions
-map.validation.layername=Validations
-map.validation.validationmessagebox.koins.earn=Earn {validation_koin_count} Koins
-map.validation.validationmessagebox.koins.earnpromotion=Earn {validation_koin_count} + {extra_coins} Koins
-map.mission.validationmessagebox.yes=Rispondi
+map.mission.missionmessagebox.koins.earnpromotion=Ricevi {fix_koin_count} + {extra_coins} Koins
+map.mission.missionmessagebox.yes=Rispondere
+map.mission.missionmessagebox.no=Non so
+map.mission.missionmessagebox.close=Chiudi
+map.mission.layername=Incarichi
+map.missionInactive.layername=Missioni non attive
+map.validation.layername=Verifiche
+map.validation.validationmessagebox.koins.earn=Ricevi {validation_koin_count} Koins
+map.validation.validationmessagebox.koins.earnpromotion=Ricevi {validation_koin_count} + {extra_coins} Koins
+map.mission.validationmessagebox.yes=Rispondere
 map.mission.validationmessagebox.no=Non so
-map.mission.validationmessagebox.close=Close
-map.validation.validationmessagebox.checkit=Check the solution
+map.mission.validationmessagebox.close=Chiudi
+map.validation.validationmessagebox.checkit=Verifica la soluzione
 
 ## Fix
 fix.form.title=Incarico
 fix.form.koins.earn=Prendi i {fix_koin_count} Koins\!
-fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins!
+fix.form.koins.earnpromotion=Prendi i {fix_koin_count} + {extra_coins} Koins\!
 fix.form.message.placeholder=La tua risposta...
 fix.form.button.showonmap=Mostra sulla mappa
 fix.form.button.submit=Risolvi l'incarico
@@ -71,12 +71,6 @@ fix.alert.fixfield.empty.title=Campo vuoto\!
 fix.alert.fixfield.empty.message=È necessario compilare tutti i campi.
 fix.alert.submit.failure.title=Errore nell'invio
 fix.alert.submit.failure.message=C'è stato un problema nell'invio della riposta. Potrebbe essere necessario un riavvio dell'applicazione.
-
-# Validation
-validation.title=Verifica
-validation.loadmask.message=Carico dati...
-validation.list.header={validations_left} valutazioni positive richieste
-validation.distance=Distanza
 
 ## Vote
 vote.falsepositive.question=È stato detto che non è possibile rispondere a quest domanda. È vero?
@@ -92,8 +86,8 @@ vote.alert.submit.failure.message=C'è stato un problema nell'invio della ripost
 
 # Highscore
 highscore.title=Highscore
-highscore.absolute.tabtitle=Absolute
-highscore.relative.tabtitle=Relative
+highscore.absolute.tabtitle=Top
+highscore.relative.tabtitle=Il mio punteggio
 highscore.loadmask.message=Carico Highscore...
 highscore.emptytext=Impossibile caricare gli Highscore.
 highscore.you=Sei tu\!
@@ -132,15 +126,15 @@ profile.alert.submit.failure.message=C'è stato un problema nell'invio del nome 
 
 #News
 news.title=News
-news.unread=Unread
-news.read=Read
-news.list.emptytext=No entries
-news.updated=Updated
-news.settings.save=Save
-news.settings.cancel=Cancel
-news.settings.acceptNoLanguage=Deselect all
-news.settings.acceptAllLanguages=Select all
-news.settings.label=I want to receive news in the following languages:
+news.unread=Non letti
+news.read=Letti
+news.list.emptytext=Lista vuota
+news.updated=Aggiornato
+news.settings.save=Salva
+news.settings.cancel=Annulla
+news.settings.acceptNoLanguage=Deseleziona tutti
+news.settings.acceptAllLanguages=Seleziona tutti
+news.settings.label=Voglio ricevere gli aggiornamenti in queste lingue\:
 
 # About
 about.title=A proposito
@@ -150,16 +144,27 @@ about.information.homepage=Sito web\:
 about.information.feedback=Feedback/FAQ\:
 about.information.bugs=Segnalazione errori\:
 about.developers.title=Sviluppo
-about.project.title=Progetto
+about.project.title=Progetti
 about.project.advisor=Responsabile\:
 about.credits.title=Credits
 about.credits.partner=Partner\:
 about.credits.mapdata=Dati geografici\:
 about.credits.tiledata=Mappe (tiles)\:
 about.credits.markers=Icone dei marker\:
-about.credits.translation=Translation\:
+about.credits.translation=Traduzione\:
+about.credits.dbhosting=Hosting Database\:
 about.legal.title=Indicazioni legali
 about.legal.message=Segui le indicazioni legali di OpenStreetMap, ad esempio non utilizzare sorgenti protette senza permesso.
+
+# PullRefresh Plugin
+pullrefresh.pullrefresh=Trascinare in basso per aggiornare
+pullrefresh.releaserefresh=Rilasciare per aggiornare...
+pullrefresh.loading=sto aggiornando...
+pullrefresh.lastupdated=Ultimo aggiornamento\:
+
+# ListPaging Plugin
+listpaging.loadmore=Carica altri...
+listpaging.nomorerecords=Non ci sono altre voci da visualizzare.
 
 # Button
 button.back=Indietro
@@ -185,20 +190,20 @@ update.title=Nuova versione dell'app
 update.message=L'app è stata aggiornata all'ultima versione. Ricaricare?
 
 #Languages
-en=English
-de=German
-it=Italian
-fr=French
-sl=Slovenian
-hr=Croatian
-cs=Czech
-nl=Dutch
-gl=Galician
-pt=Portuguese
-ro=Romanian
-ja=Japanese
-ca=Catalan
-es=Spanish
+en=Inglese
+de=Tedesco
+it=Italiano
+fr=Francese
+sl=Sloveno
+hr=Croato
+cs=Ceco
+nl=Fiammingo
+gl=Gallego
+pt=Portoghese
+ro=Rumeno
+ja=Giapponese
+ca=Catalano
+es=Spagnolo
 
 ###############################
 # Labels used directly in source files (without Ext.i18n.Bundle plugin)
@@ -212,3 +217,6 @@ startscreen.browsererror=Questo browser non è supportato al momento. Prova dal 
 # app/util/Config.js
 ## Firststeps
 firststeps.form.username.placeholder=Nome utente
+
+## PullRefresh Plugin
+pullrefresh.dateformat=d.m.Y h\:i\:s
