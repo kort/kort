@@ -83,19 +83,7 @@
      */
     "css": [
         {
-            "path": "resources/css/ie10.css",
-            "platform": ["ie10"],
-            "theme": "Windows"
-        },
-        {
-            "path": "resources/css/mountainview.css",
-            "platform": ["android", "chrome", "safari"],
-            "theme": "Android"
-        },
-        {
-            "path": "resources/css/app.css",
-            "platform": ["ios", "firefox"],
-            "theme": "Default"
+            "path": "resources/css/app.css"
         },
         {
             "path": "lib/Leaflet-0.6.4/dist/leaflet.css"

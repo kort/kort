@@ -55,6 +55,10 @@ $message-box-background-color:#232e39;
         
         .x-zocial-button {
             margin: 0.2em 0;
+
+            .x-button-label {
+                line-height: inherit;
+            }
         }
         .x-zocial-button.x-layout-box-item {
             display: list-item !important;
@@ -149,10 +153,6 @@ $message-box-background-color:#232e39;
         }
         .x-toggle-field {
             margin-bottom: 0.5em;
-            
-            .x-form-label {
-                padding-left: 0;
-            }
         }
     }
 }
@@ -900,4 +900,8 @@ $message-box-background-color:#232e39;
     height: 301px;
     box-shadow: none !important;
     border: none !important
+}
+
+.x-mask .x-mask-message {
+    color: #fff;
 }

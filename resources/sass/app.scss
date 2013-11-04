@@ -1,8 +1,20 @@
+// Let's start with the basics
+$base-color: #7c92ae;
+$base-gradient: 'glossy';
+
+// Lists
+$list-active-gradient: 'bevel';
+$list-header-bg-color: transparentize(saturate($base-color, 10%), .25);
+$list-header-gradient: 'matte';
+
+// Tabs
+$tabs-dark: #111;
+
 // The following two lines import the default Sencha Touch theme. If you are building
 // a new theme, remove them and the add your own CSS on top of the base CSS (which
 // is already included in your app.json file).
-@import 'sencha-touch/cupertino';
-@import 'sencha-touch/cupertino/all';
+@import 'sencha-touch/default';
+@import 'sencha-touch/default/all';
 
 // adding icon mixins
 @include icon('news');
