@@ -35,20 +35,20 @@ geolocationerror.introduction=Če želiš uporabiti Kort, je potreben dostop do 
 geolocationerror.button.reload=Ponovno naloži aplikacijo
 geolocationerror.loadmask.message=Ponovno nalaganje aplikacije...
 
-# Map
-map.title=Naloge v bližini
+#Map
+map.title=Missions
 map.loadmask.message=Nalaganje nalog...
 map.mission.promotionmessagebox.close=Close
 map.mission.promotionmessagebox.earn=Earn additional {extra_coins} Koins
 map.mission.promotionmessagebox.date={startdate} to {enddate}
-map.mission.missionmessagebox.koins.earn=Zaslužite {fiy_koin_count} Koins
+map.mission.missionmessagebox.koins.earn=Zaslužite {fix_koin_count} Koins
 map.mission.missionmessagebox.koins.earnpromotion=Earn {fix_koin_count} + {extra_coins} Koins
-map.mission.missionmessagebox.yes=Answer
-map.mission.missionmessagebox.no=Don't know
+map.mission.missionmessagebox.yes=Odgovor
+map.mission.missionmessagebox.no=Ne vem
 map.mission.missionmessagebox.close=Close
 map.mission.layername=Missions
-map.missionInactive.layername = Inactive Missions
-map.validation.layername=Validations
+map.missionInactive.layername=Inactive Missions
+map.validation.layername=Checks
 map.validation.validationmessagebox.koins.earn=Earn {validation_koin_count} Koins
 map.validation.validationmessagebox.koins.earnpromotion=Earn {validation_koin_count} + {extra_coins} Koins
 map.mission.validationmessagebox.yes=Odgovor
@@ -59,7 +59,7 @@ map.validation.validationmessagebox.checkit=Check the solution
 ## Fix
 fix.form.title=Naloga
 fix.form.koins.earn=Zasluži {fix_koin_count} Koins\!
-fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins!
+fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins\!
 fix.form.message.placeholder=Tvoj odgovor...
 fix.form.button.showonmap=Prikaži na zemljevidu
 fix.form.button.submit=Reši nalogo
@@ -71,12 +71,6 @@ fix.alert.fixfield.empty.title=Izpolni polja
 fix.alert.fixfield.empty.message=Prosim, izpolni vsa polja
 fix.alert.submit.failure.title=Napaka pri pošiljanju
 fix.alert.submit.failure.message=Ups\! Prišlo je do napake pri pošiljanju odgovora. Poiskusi ponovno zagnati aplikacijo.
-
-# Validation
-validation.title=Preveri
-validation.loadmask.message=Nalaganje podatkov...
-validation.list.header={validations_left} pozitivne ocene potrebne
-validation.distance=Razdalja
 
 ## Vote
 vote.falsepositive.question=Ta naloga je označena kot "ne morem rešiti". Je to pravilno?
@@ -92,8 +86,8 @@ vote.alert.submit.failure.message=Ups\! Prišlo je do napake pri pošiljanju va�
 
 # Highscore
 highscore.title=Dosežki
-highscore.absolute.tabtitle=Absolute
-highscore.relative.tabtitle=Relative
+highscore.absolute.tabtitle=Top
+highscore.relative.tabtitle=My score
 highscore.loadmask.message=Nalaganje dosežkov...
 highscore.emptytext=Ne morem naložiti statistike.
 highscore.you=To si ti\!
@@ -140,7 +134,7 @@ news.settings.save=Save
 news.settings.cancel=Cancel
 news.settings.acceptNoLanguage=Deselect all
 news.settings.acceptAllLanguages=Select all
-news.settings.label=I want to receive news in the following languages:
+news.settings.label=I want to receive news in the following languages\:
 
 # About
 about.title=O
@@ -150,7 +144,7 @@ about.information.homepage=Spletna stran\:
 about.information.feedback=Predlogi/vprašanja\:
 about.information.bugs=Prijavite napako\:
 about.developers.title=Razvijalec
-about.project.title=Projekt
+about.project.title=Projects
 about.project.advisor=Vodja
 about.credits.title=Zahvale
 about.credits.partner=Partner\:
@@ -158,8 +152,19 @@ about.credits.mapdata=Geo podatki\:
 about.credits.tiledata=Ploščice
 about.credits.markers=Označevalne ikone
 about.credits.translation=Translation\:
+about.credits.dbhosting=DB Hosting\:
 about.legal.title=Pravno opozorilo\:
 about.legal.message=Prosimo, upoštevaj smernice OpenStreetMap in ne uporabljaj avtorsko zaščitenih virov brez dovoljenja.
+
+# PullRefresh Plugin
+pullrefresh.pullrefresh=Potegni dol za osvežitev
+pullrefresh.releaserefresh=Sprosti za osvežitev...
+pullrefresh.loading=nalagam...
+pullrefresh.lastupdated=Zadnja posodobitev\:
+
+# ListPaging Plugin
+listpaging.loadmore=Naloži več...
+listpaging.nomorerecords=Ni več zapisov na razpolago.
 
 # Button
 button.back=Nazaj
@@ -212,3 +217,6 @@ startscreen.browsererror=Tvoj brskalnik še ne podpira uporabe. Poskusi s tvojim
 # app/util/Config.js
 ## Firststeps
 firststeps.form.username.placeholder=Uporabniško ime
+
+## PullRefresh Plugin
+pullrefresh.dateformat=d/m/l h\:iA
