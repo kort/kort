@@ -35,20 +35,20 @@ geolocationerror.introduction=Pour utiliser Kort, accéder à votre position gé
 geolocationerror.button.reload=Rechargez l'application
 geolocationerror.loadmask.message=Rechargement en cours...
 
-# Map
-map.title=Missions à proximité
+#Map
+map.title=Missions
 map.loadmask.message=Chargement des missions...
 map.mission.promotionmessagebox.close=Close
 map.mission.promotionmessagebox.earn=Earn additional {extra_coins} Koins
 map.mission.promotionmessagebox.date={startdate} to {enddate}
 map.mission.missionmessagebox.koins.earn={fix_koin_count} Koins à votre actif
 map.mission.missionmessagebox.koins.earnpromotion=Earn {fix_koin_count} + {extra_coins} Koins
-map.mission.missionmessagebox.yes=Answer
-map.mission.missionmessagebox.no=Don't know
+map.mission.missionmessagebox.yes=Réponse
+map.mission.missionmessagebox.no=Ne sait pas
 map.mission.missionmessagebox.close=Close
 map.mission.layername=Missions
-map.missionInactive.layername = Inactive Missions
-map.validation.layername=Validations
+map.missionInactive.layername=Inactive Missions
+map.validation.layername=Checks
 map.validation.validationmessagebox.koins.earn=Earn {validation_koin_count} Koins
 map.validation.validationmessagebox.koins.earnpromotion=Earn {validation_koin_count} + {extra_coins} Koins
 map.mission.validationmessagebox.yes=Réponse
@@ -59,7 +59,7 @@ map.validation.validationmessagebox.checkit=Check the solution
 ## Fix
 fix.form.title=Mission
 fix.form.koins.earn=Obtenir {fix_koin_count} Krédits \!
-fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins!
+fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins\!
 fix.form.message.placeholder=Votre réponse...
 fix.form.button.showonmap=Voir sur la carte
 fix.form.button.submit=Accomplir la mission
@@ -71,12 +71,6 @@ fix.alert.fixfield.empty.title=Complétez les champs
 fix.alert.fixfield.empty.message=Merci de bien vouloir remplir tous les champs
 fix.alert.submit.failure.title=Erreur au cours de l'envoi
 fix.alert.submit.failure.message=Aïe \! Une erreur est survenue lors de l'envoi de votre réponse. Relancer l'application devrait aider.
-
-# Validation
-validation.title=Vérification
-validation.loadmask.message=Chargement des données...
-validation.list.header={validations_left} évaluations positives requises
-validation.distance=Distance
 
 ## Vote
 vote.falsepositive.question=Cette mission est signalée comme 'impossible à résoudre'. Est-ce correct ?
@@ -92,8 +86,8 @@ vote.alert.submit.failure.message=Aïe \! Une erreur est survenue lors de l'envo
 
 # Highscore
 highscore.title=Classement
-highscore.absolute.tabtitle=Absolute
-highscore.relative.tabtitle=Relative
+highscore.absolute.tabtitle=Top
+highscore.relative.tabtitle=My score
 highscore.loadmask.message=Chargement du classement...
 highscore.emptytext=Chargement du classement impossible.
 highscore.you=C'est vous \!
@@ -140,7 +134,7 @@ news.settings.save=Save
 news.settings.cancel=Cancel
 news.settings.acceptNoLanguage=Deselect all
 news.settings.acceptAllLanguages=Select all
-news.settings.label=I want to receive news in the following languages:
+news.settings.label=I want to receive news in the following languages\:
 
 # About
 about.title=À propos
@@ -150,7 +144,7 @@ about.information.homepage=Site web
 about.information.feedback=Feedback/FAQ
 about.information.bugs=Rapporter un bogue \:
 about.developers.title=Développeur
-about.project.title=Projet
+about.project.title=Projects
 about.project.advisor=Responsable \:
 about.credits.title=Crédits
 about.credits.partner=Partenaire \:
@@ -158,8 +152,19 @@ about.credits.mapdata=Données géo \:
 about.credits.tiledata=Tuiles \:
 about.credits.markers=Icônes \:
 about.credits.translation=Translation\:
+about.credits.dbhosting=DB Hosting\:
 about.legal.title=Notice légale \:
 about.legal.message=Veuillez suivre les directive d'OpenStreetMap et n'utilisez pas de sources protégées par un copyright sans autorisation.
+
+# PullRefresh Plugin
+pullrefresh.pullrefresh=Tirer pour actualiser
+pullrefresh.releaserefresh=Relâcher pour actualiser...
+pullrefresh.loading=chargement...
+pullrefresh.lastupdated=Mis à jour le \:
+
+# ListPaging Plugin
+listpaging.loadmore=Charger davantage...
+listpaging.nomorerecords=Aucun autre enregistrement disponible.
 
 # Button
 button.back=Retour
@@ -212,3 +217,6 @@ startscreen.browsererror=Votre navigateur n'est pas encore supporté. Veuillez e
 # app/util/Config.js
 ## Firststeps
 firststeps.form.username.placeholder=Nom d'utilisateur
+
+## PullRefresh Plugin
+pullrefresh.dateformat=d/m/Y H\:i

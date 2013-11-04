@@ -35,20 +35,20 @@ geolocationerror.introduction=Kako bi koristili Kort, potrebna nam je Vaša geo-
 geolocationerror.button.reload=Ponovo pokrenite aplikaciju.
 geolocationerror.loadmask.message=Ponovno pokretanje...
 
-# Map
-map.title=Misije koje su blizu
+#Map
+map.title=Missions
 map.loadmask.message=Učitavanje misija...
 map.mission.promotionmessagebox.close=Close
 map.mission.promotionmessagebox.earn=Earn additional {extra_coins} Koins
 map.mission.promotionmessagebox.date={startdate} to {enddate}
 map.mission.missionmessagebox.koins.earn=Zaradi {fix_koin_count} Koinova
 map.mission.missionmessagebox.koins.earnpromotion=Earn {fix_koin_count} + {extra_coins} Koins
-map.mission.missionmessagebox.yes=Answer
-map.mission.missionmessagebox.no=Don't know
+map.mission.missionmessagebox.yes=Odgovor
+map.mission.missionmessagebox.no=Ne znam
 map.mission.missionmessagebox.close=Close
 map.mission.layername=Missions
-map.missionInactive.layername = Inactive Missions
-map.validation.layername=Validations
+map.missionInactive.layername=Inactive Missions
+map.validation.layername=Checks
 map.validation.validationmessagebox.koins.earn=Earn {validation_koin_count} Koins
 map.validation.validationmessagebox.koins.earnpromotion=Earn {validation_koin_count} + {extra_coins} Koins
 map.mission.validationmessagebox.yes=Odgovor
@@ -59,7 +59,7 @@ map.validation.validationmessagebox.checkit=Check the solution
 ## Fix
 fix.form.title=Misija
 fix.form.koins.earn=Zaradi {fix_koin_count} Koinova\!
-fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins!
+fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins\!
 fix.form.message.placeholder=Vaš odgovor...
 fix.form.button.showonmap=Pokaži na karti
 fix.form.button.submit=Dovrši misiju
@@ -71,12 +71,6 @@ fix.alert.fixfield.empty.title=Ispunite polja
 fix.alert.fixfield.empty.message=Molim Vas, ispunite sva polja.
 fix.alert.submit.failure.title=Pogreška kod slanja
 fix.alert.submit.failure.message=Opa\! Dobili smo grešku kod slanja odgovora. Ponovo pokretanje aplikacije bi pomoglo.
-
-# Validation
-validation.title=Provjeri
-validation.loadmask.message=Učitavanje podataka...
-validation.list.header=potrebno {validations_left} pozitivnih ocjena
-validation.distance=Udaljenost
 
 ## Vote
 vote.falsepositive.question=Misija je označena kao 'neriješiva'. Je li ovo točno?
@@ -92,8 +86,8 @@ vote.alert.submit.failure.message=Opa\! Dobili smo grešku kod slanja odgovora. 
 
 # Highscore
 highscore.title=Najviši rezultat
-highscore.absolute.tabtitle=Absolute
-highscore.relative.tabtitle=Relative
+highscore.absolute.tabtitle=Top
+highscore.relative.tabtitle=My score
 highscore.loadmask.message=Učitavanje najviših rezultata...
 highscore.emptytext=Ne mogu učitati najviše rezultate.
 highscore.you=Ovo si ti\!
@@ -140,7 +134,7 @@ news.settings.save=Save
 news.settings.cancel=Cancel
 news.settings.acceptNoLanguage=Deselect all
 news.settings.acceptAllLanguages=Select all
-news.settings.label=I want to receive news in the following languages:
+news.settings.label=I want to receive news in the following languages\:
 
 # About
 about.title=Više o
@@ -150,7 +144,7 @@ about.information.homepage=Web stranica\:
 about.information.feedback=Povratna informacija/ČPP\:
 about.information.bugs=Prijavi bug\:
 about.developers.title=Razvoj
-about.project.title=Projekt
+about.project.title=Projects
 about.project.advisor=Vođa\:
 about.credits.title=Zasluge
 about.credits.partner=Partner\:
@@ -158,8 +152,19 @@ about.credits.mapdata=Geo podaci\:
 about.credits.tiledata=Pločice karte\:
 about.credits.markers=Markeri\:
 about.credits.translation=Translation\:
+about.credits.dbhosting=DB Hosting\:
 about.legal.title=Pravna uputa\:
 about.legal.message=Molim slijedite upute OpenStreetMapa i nemojte koristiti izvore zaštićene autorskim pravom bez dopuštenja.
+
+# PullRefresh Plugin
+pullrefresh.pullrefresh=Odvuci dolje za osvježavanje
+pullrefresh.releaserefresh=Pusti za osvježavanje...
+pullrefresh.loading=učitavanje...
+pullrefresh.lastupdated=Zadnji put ažurirano\:
+
+# ListPaging Plugin
+listpaging.loadmore=Load more...
+listpaging.nomorerecords=No more records available.
 
 # Button
 button.back=Natrag
@@ -212,3 +217,6 @@ startscreen.browsererror=Your browser is not supported yet. Try it on your mobil
 # app/util/Config.js
 ## Firststeps
 firststeps.form.username.placeholder=Korisničko ime
+
+## PullRefresh Plugin
+pullrefresh.dateformat=d/m/Y h\:iA
