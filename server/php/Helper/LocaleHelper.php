@@ -24,7 +24,23 @@ class LocaleHelper
      *
      * @var array(string)
      */
-    protected $supportedLanguages = array("de", "en", "it", "fr", "sl", "hr", "cs", "nl", "gl", "pt", "ro", "ja", "ca", "es");
+    protected $supportedLanguages = array(
+        "de",
+        "en",
+        "it",
+        "fr",
+        "sl",
+        "hr",
+        "cs",
+        "nl",
+        "gl",
+        "pt",
+        "ro",
+        "ja",
+        "ca",
+        "es"
+    );
+
     /**
      * The properties array are the core of this class, it contains all available translation.
      *

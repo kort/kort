@@ -30,11 +30,13 @@ class ValidationHandler extends DbProxyHandler
 
     /**
      * Returns the database table to be used with this Handler.
+     *
+     * @return string the table name used by this handler
      */
     protected function getTable()
     {
         //not used. please see query for more details.
-        //return 'kort.validations';
+        return '';
     }
 
     /**
@@ -88,41 +90,91 @@ class ValidationHandler extends DbProxyHandler
         $radius = empty($radius) ? 5000 : $radius;
         $userPosition =  PostGisSqlHelper::getLatLngGeom($lat, $lng);
 
-        /*
-        $where  = "fix_user_id != " . $_SESSION['user_id'];
-        $where .= " AND not exists ";
-        $where .= " (select 1 from kort.vote v ";
-        $where .= " where v.fix_id = id and v.user_id = " . $_SESSION['user_id'] . ")";
-
-        $sql  = "select * from (";
-        $sql .= "select " . implode($this->getFields(), ',');
-        $sql .= " from " . $this->getTable();
-        $sql .= " where " . $where;
-        $sql .= " order by " . "geom <-> " . PostGisSqlHelper::getLatLngGeom($lat, $lng);
-        $sql .= " limit " . $limit;
-        $sql .= ") t";
-        $sql .= " where " . "ST_Distance_Sphere(t.geom," . $userPosition . ") <= " . $radius;
-        */
-
         //aggregation1 : join promotion with promo2error_type
         $sql  = "WITH aggregation1 AS (";
-        $sql .= "SELECT p.id AS promo_id, p.startdate, p.enddate, p.geom AS promogeom, pm.error_type, pm.validation_extra_coins AS extra_coins FROM kort.promotion p INNER JOIN kort.promo2mission pm ON p.id=pm.promo_id WHERE p.startdate < now() AND p.enddate > now())";
+        $sql .= "SELECT p.id AS promo_id, ";
+        $sql .= "       p.startdate, ";
+        $sql .= "       p.enddate, ";
+        $sql .= "       p.geom AS promogeom, ";
+        $sql .= "       pm.error_type, ";
+        $sql .= "       pm.validation_extra_coins AS extra_coins ";
+        $sql .= "FROM kort.promotion p ";
+        $sql .= "INNER JOIN kort.promo2mission pm ON p.id=pm.promo_id ";
+        $sql .= "WHERE p.startdate < now() AND p.enddate > now())";
         //aggregation2: get limited validations around the user's position as before
         $sql .= ", aggregation2 AS (";
         $sql .= "select * from (";
-        $sql .= "select id AS validationid,type,view_type,fix_user_id,osm_id,osm_type,title,fixmessage,falsepositive,question,bug_question,vote_koin_count,latitude,longitude,upratings,downratings,required_votes,geom AS validationgeom,txt1,txt2,txt3,txt4,txt5";
+        $sql .= "select id AS validationid, ";
+        $sql .= "       type, ";
+        $sql .= "       view_type,";
+        $sql .= "       fix_user_id, ";
+        $sql .= "       osm_id, ";
+        $sql .= "       osm_type, ";
+        $sql .= "       title, ";
+        $sql .= "       fixmessage, ";
+        $sql .= "       falsepositive, ";
+        $sql .= "       question, ";
+        $sql .= "       bug_question, ";
+        $sql .= "       vote_koin_count, ";
+        $sql .= "       latitude, ";
+        $sql .= "       longitude, ";
+        $sql .= "       upratings, ";
+        $sql .= "       downratings, ";
+        $sql .= "       required_votes,geom AS validationgeom,";
+        $sql .= "       txt1, ";
+        $sql .= "       txt2, ";
+        $sql .= "       txt3, ";
+        $sql .= "       txt4, ";
+        $sql .= "       txt5 ";
         $sql .= " from kort.validations";
-        $sql .= " where fix_user_id != " . $_SESSION['user_id'] . " AND not exists (select 1 from kort.vote v where v.fix_id = id and v.user_id = " . $_SESSION['user_id'] . ")";
+        $sql .= " where fix_user_id != " . $_SESSION['user_id'] . " ";
+        $sql .= " AND not exists (select 1 ";
+        $sql .= "                 from kort.vote v ";
+        $sql .= "                 where v.fix_id = id ";
+        $sql .= "                 and v.user_id = " . $_SESSION['user_id'] . ")";
         $sql .= " order by " . "geom <-> " . PostGisSqlHelper::getLatLngGeom($lat, $lng);
         $sql .= " limit " . $limit;
         $sql .= ") t";
         $sql .= " where " . "ST_Distance_Sphere(validationgeom," . $userPosition . ") <= " . $radius . " )";
-        //aggregation3: join aggregation2 and aggregation1 and check where validation_geom is within promotion_geom. As result, we get
-        //all the validations around the user's position who actualy belongs to a active promotion
+        //aggregation3: join aggregation2 and aggregation1 and check where validation_geom is within promotion_geom.
+        //As result, we get all the validations around the user's position who actualy belongs to a active promotion
         $sql .= ", aggregation3 AS (";
-        $sql .= "SELECT ag2.validationid AS validationidtemp, ag1.promo_id, ag1.extra_coins FROM aggregation2 ag2 INNER JOIN aggregation1 ag1 ON ag2.type=ag1.error_type WHERE ST_WITHIN(ag2.validationgeom, ag1.promogeom))";
-        //left join the validations around the user (aggregation2) with the subset of the validations who belongs to a promotion (aggregation3) => the fields promo_id and extra_coins is either null or holds the corresponding promotion values
-        $sql .= "SELECT validationid AS id,type,view_type,fix_user_id,osm_id,osm_type,title,fixmessage,falsepositive,question,bug_question,vote_koin_count,latitude,longitude,upratings,downratings,required_votes,validationgeom AS geom,txt1,txt2,txt3,txt4,txt5,promo_id,extra_coins FROM aggregation2 ag2 LEFT JOIN aggregation3 ag3 ON ag2.validationid=ag3.validationidtemp";
+        $sql .= "SELECT ag2.validationid AS validationidtemp, ";
+        $sql .= "       ag1.promo_id, ";
+        $sql .= "       ag1.extra_coins ";
+        $sql .= "FROM aggregation2 ag2 ";
+        $sql .= "INNER JOIN aggregation1 ag1 ON ag2.type=ag1.error_type ";
+        $sql .= "WHERE ST_WITHIN(ag2.validationgeom, ag1.promogeom))";
+        //left join the validations around the user (aggregation2) with the subset of the validations
+        //who belongs to a promotion (aggregation3)
+        //=> the fields promo_id and extra_coins is either null or holds the corresponding promotion values
+        $sql .= "SELECT validationid AS id,";
+        $sql .= "       type, ";
+        $sql .= "       view_type, ";
+        $sql .= "       fix_user_id, ";
+        $sql .= "       osm_id, ";
+        $sql .= "       osm_type, ";
+        $sql .= "       title, ";
+        $sql .= "       fixmessage, ";
+        $sql .= "       falsepositive, ";
+        $sql .= "       question, ";
+        $sql .= "       bug_question, ";
+        $sql .= "       vote_koin_count, ";
+        $sql .= "       latitude, ";
+        $sql .= "       longitude, ";
+        $sql .= "       upratings, ";
+        $sql .= "       downratings, ";
+        $sql .= "       required_votes, ";
+        $sql .= "       validationgeom AS geom, ";
+        $sql .= "       txt1, ";
+        $sql .= "       txt2, ";
+        $sql .= "       txt3, ";
+        $sql .= "       txt4, ";
+        $sql .= "       txt5, ";
+        $sql .= "       promo_id, ";
+        $sql .= "       extra_coins ";
+        $sql .= "FROM aggregation2 ag2 ";
+        $sql .= "LEFT JOIN aggregation3 ag3 ON ag2.validationid=ag3.validationidtemp";
 
         $params = array();
         $params['sql'] = $sql;
