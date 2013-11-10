@@ -190,7 +190,7 @@ Ext.define('Kort.util.Config', {
             },
             hu: {
                 'firststeps.form.username.placeholder': 'Felhasználónév',
-                'pullrefresh.dateformat': 'Y. m. d. h\:iA'
+                'pullrefresh.dateformat': 'Y. m. d. h:iA'
             },
             id: {
                 'firststeps.form.username.placeholder': 'Nama pengguna',
