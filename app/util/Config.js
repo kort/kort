@@ -28,20 +28,16 @@ Ext.define('Kort.util.Config', {
         /**
          * @cfg {Object} leafletMap Configuration for {@link Ext.ux.LeafletMap} component
          * @cfg {Number} [leafletMap.zoom=15] (required) Default zoom level of leaflet map
-         * @cfg {Function} [leafletMap.getTileLayerUrl] (required) URL to tile server
+         * @cfg {String} [leafletMap.tileLayerUrl] (required) URL to tile server
+         * @cfg {String} [leafletMap.retinaTileLayerUrl] (required) URL to retina tile server
          * @cfg {String} [leafletMap.tileLayerAttribution="Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>"] (required) Copyright information of map
          * @cfg {String} [leafletMap.apiKey=729242682cb24de8aa825c8aed993cba] (required) API key for cloudmade tiles
          * @cfg {Number} [leafletMap.styleId=997] (required) Style id for cloudmade tiles
          */
 		leafletMap: {
             zoom: 15,
-			getTileLayerUrl: function(isRetina) {
-                if(isRetina) {
-                    return 'http://{s}.tile.cloudmade.com/{apiKey}/{styleId}@2x/256/{z}/{x}/{y}.png';
-                } else {
-                    return 'http://{s}.tile.cloudmade.com/{apiKey}/{styleId}/256/{z}/{x}/{y}.png';
-                }
-            },
+			tileLayerUrl: 'http://{s}.tile.cloudmade.com/{apiKey}/{styleId}/256/{z}/{x}/{y}.png',
+            retinaTileLayerUrl: 'http://{s}.tile.cloudmade.com/{apiKey}/{styleId}@2x/256/{z}/{x}/{y}.png',
             tileLayerAttribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>',
 			apiKey: '729242682cb24de8aa825c8aed993cba',
             styleId: 997

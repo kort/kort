@@ -108,6 +108,32 @@ Ext.define('Ext.ux.LeafletMap', {
         tileLayerOptions: {},
 
         /**
+         * @cfg {String} [retinaTileLayerUrl="http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"]
+         * URL template for tile-layer with retina tiles in the following form
+         *
+         *     'http://{s}.somedomain.com/style@2x/{z}/{x}/{y}.png'
+         *
+         * {s} means one of the randomly chosen subdomains (their range is specified in options; a, b or c by default,
+         * can be omitted), {z} — zoom level, {x} and {y} — tile coordinates.
+         *
+         * If retina url is defined it's used if the device has a retina display.
+         *
+         * You can use custom keys in the template, which will be evaluated from {@link Ext.ux.LeafletMap#retinaTileLayerOptions}, like this:
+         *
+         *     retinaTileLayerUrl: 'http://{s}.somedomain.com/{foo}@2x/{z}/{x}/{y}.png', retinaTileLayerOptions: {foo: 'bar'};
+         *
+         * @accessor
+         */
+        retinaTileLayerUrl: null,
+
+        /**
+         * @cfg {Object} retinaTileLayerOptions
+         * Retina tile-layer options which should be used in the L.TileLayer constructor.
+         * @accessor
+         */
+        retinaTileLayerOptions: {},
+
+        /**
          * @cfg {L.TileLayer} tileLayer
          * The wrapped layer.
          * @accessor
@@ -239,6 +265,10 @@ Ext.define('Ext.ux.LeafletMap', {
         return Ext.merge({}, this.options || this.getInitialConfig('tileLayerOptions'));
     },
 
+    getRetinaTileLayerOptions: function () {
+        return Ext.merge({}, this.options || this.getInitialConfig('retinaTileLayerOptions'));
+    },
+
     updateUseCurrentLocation: function (useCurrentLocation) {
         this.setGeo(useCurrentLocation);
         if (!this.getMap() && (!useCurrentLocation || !this.getInitialCenter())) {
@@ -297,12 +327,16 @@ Ext.define('Ext.ux.LeafletMap', {
             if (!mapOptions.hasOwnProperty('center')) {
                 mapOptions.center = new ll.LatLng(47.36865, 8.539183); // default: Zuerich
             }
-            
+
             if (mapOptions.center && mapOptions.center.lat && mapOptions.center.lng) {
                 mapOptions.center = new ll.LatLng(mapOptions.center.lat, mapOptions.center.lng);
             }
 
-            me.setTileLayer(new ll.TileLayer(me.getTileLayerUrl(), me.getTileLayerOptions()));
+            if(me.getRetinaTileLayerUrl() !== null && me.getRetinaTileLayerUrl() !== "" && ll.Browser.retina) {
+                me.setTileLayer(new ll.TileLayer(me.getRetinaTileLayerUrl(), me.getRetinaTileLayerOptions()));
+            } else {
+                me.setTileLayer(new ll.TileLayer(me.getTileLayerUrl(), me.getTileLayerOptions()));
+            }
             tileLayer = me.getTileLayer();
             mapOptions.layers = [tileLayer];
 
