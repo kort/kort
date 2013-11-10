@@ -37,9 +37,9 @@ Ext.define('Kort.util.Config', {
             zoom: 15,
 			getTileLayerUrl: function(isRetina) {
                 if(isRetina) {
-                    return 'http://{s}.tile.cloudmade.com/{apikey}/{styleId}@2x/256/{z}/{x}/{y}.png';
+                    return 'http://{s}.tile.cloudmade.com/{apiKey}/{styleId}@2x/256/{z}/{x}/{y}.png';
                 } else {
-                    return 'http://{s}.tile.cloudmade.com/{apikey}/{styleId}/256/{z}/{x}/{y}.png';
+                    return 'http://{s}.tile.cloudmade.com/{apiKey}/{styleId}/256/{z}/{x}/{y}.png';
                 }
             },
             tileLayerAttribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>',
