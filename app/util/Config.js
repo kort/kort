@@ -31,15 +31,15 @@ Ext.define('Kort.util.Config', {
          * @cfg {String} [leafletMap.tileLayerUrl] (required) URL to tile server
          * @cfg {String} [leafletMap.retinaTileLayerUrl] (required) URL to retina tile server
          * @cfg {String} [leafletMap.tileLayerAttribution="Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>"] (required) Copyright information of map
-         * @cfg {String} [leafletMap.apiKey=729242682cb24de8aa825c8aed993cba] (required) API key for cloudmade tiles
+         * @cfg {String} [leafletMap.apikey=729242682cb24de8aa825c8aed993cba] (required) API key for cloudmade tiles
          * @cfg {Number} [leafletMap.styleId=997] (required) Style id for cloudmade tiles
          */
 		leafletMap: {
             zoom: 15,
-			tileLayerUrl: 'http://{s}.tile.cloudmade.com/{apiKey}/{styleId}/256/{z}/{x}/{y}.png',
-            retinaTileLayerUrl: 'http://{s}.tile.cloudmade.com/{apiKey}/{styleId}@2x/256/{z}/{x}/{y}.png',
+			tileLayerUrl: 'http://{s}.tile.cloudmade.com/{apikey}/{styleId}/256/{z}/{x}/{y}.png',
+            retinaTileLayerUrl: 'http://{s}.tile.cloudmade.com/{apikey}/{styleId}@2x/256/{z}/{x}/{y}.png',
             tileLayerAttribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>',
-			apiKey: '729242682cb24de8aa825c8aed993cba',
+			apikey: '729242682cb24de8aa825c8aed993cba',
             styleId: 997
 		},
 

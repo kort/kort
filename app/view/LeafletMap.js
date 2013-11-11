@@ -15,7 +15,7 @@ Ext.define('Kort.view.LeafletMap', {
         tileLayerUrl: Kort.util.Config.getLeafletMap().tileLayerUrl,
         retinaTileLayerUrl: Kort.util.Config.getLeafletMap().retinaTileLayerUrl,
         tileLayerOptions: {
-            apiKey: Kort.util.Config.getLeafletMap().apiKey,
+            apikey: Kort.util.Config.getLeafletMap().apikey,
             styleId: Kort.util.Config.getLeafletMap().styleId,
             attribution: Kort.util.Config.getLeafletMap().tileLayerAttribution,
             detectRetina: true
