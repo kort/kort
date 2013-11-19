@@ -12,7 +12,6 @@ Ext.define('Kort.view.overlay.firststeps.Panel', {
 
 	config: {
 		id: 'firststepsPanel',
-        modal: true,
         scrollable: true,
         cls: 'overlayLeafletMap',
 
