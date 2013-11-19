@@ -48,10 +48,10 @@
             "x-bootstrap": true
         },
         {
-            "path": "lib/Leaflet-0.6.4/dist/leaflet-src.js"
+            "path": "lib/Leaflet-0.7/dist/leaflet-src.js"
         },
         {
-            "path": "lib/Leaflet-0.6.4/dist/leaflet-osm.js"
+            "path": "lib/Leaflet-0.7/dist/leaflet-osm.js"
         },
         {
             "path": "lib/kort-libs/UrlLib.js"
@@ -86,7 +86,7 @@
             "path": "resources/css/app.css"
         },
         {
-            "path": "lib/Leaflet-0.6.4/dist/leaflet.css"
+            "path": "lib/Leaflet-0.7/dist/leaflet.css"
         },
         {
             "path": "lib/zocial/css/zocial.css"
@@ -172,7 +172,7 @@
         "resources/styles/styles.css",
         "resources/i18n",
         "resources/stores",
-        "lib/Leaflet-0.6.4/dist/images",
+        "lib/Leaflet-0.7/dist/images",
         "lib/Slim-2.1.0/Slim",
         "lib/google-api-php-client/src",
         "lib/oauth-php/library",
