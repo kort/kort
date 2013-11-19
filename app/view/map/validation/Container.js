@@ -12,8 +12,7 @@ Ext.define('Kort.view.map.validation.Container', {
         scrollable: {
             direction: 'vertical',
             directionLock: true
-        },
-        layout: 'vbox'
+        }
 	},
 
     /**

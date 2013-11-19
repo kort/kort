@@ -9,7 +9,6 @@ Ext.define('Kort.view.map.mission.fix.Form', {
     ],
     
 	config: {
-		layout: 'vbox',
         cls: 'fixform',
         scrollable: true,
         title: Ext.i18n.Bundle.message('fix.form.title')
