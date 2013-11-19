@@ -15,7 +15,7 @@
     <property name="js.leaflet.dir" value="ux" />
     <property name="js.leaflet.doc.dir" value="docs/Ext.ux.LeafletMap"/>
     <property name="js.config" value="app/util/Config.js" />
-    <property name="js.config.prod" value="build/Kort/production/app.js" />
+    <property name="js.config.prod" value="build/production/Kort/app.js" />
     <property name="test.dir" value="test" />
 
 

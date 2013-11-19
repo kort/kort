@@ -158,7 +158,7 @@ abstract class AbstractOAuthCallback
             $appUrl .= "/kort";
 
             if (isset($_GET['state']) && !empty($_GET['state'])) {
-                $appUrl .= "/build/Kort/" . $_GET['state'] . "/";
+                $appUrl .= "/build/" . $_GET['state'] . "/Kort/";
             }
         }
         return $appUrl;
