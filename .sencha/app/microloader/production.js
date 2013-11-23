@@ -291,7 +291,7 @@
             return;
         }
 
-        if (!isShared) {
+        if (!isShared && asset.version && asset.version.length) {
             var onRequestSuccess = onSuccess,
                 version = asset.version,
                 versionLn = version.length,

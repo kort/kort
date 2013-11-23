@@ -58,7 +58,7 @@
 	 * @required
 	 * This is where the built application file with be saved. Make sure that output path is not in your input path, you may get into endless recursive copying
 	 */
-	"outputPath":"build/Kort/packager/",
+	"outputPath":"build/packager/Kort/",
 
 	/**
 	 * @cfg  configuration

@@ -128,8 +128,9 @@
             <x-ant-call target="-compile-sass"/>
 
             <x-compass-compile
-                dir="${build.dir}"
-                trace="${compass.comiple.trace}"
+                rubyPath="${build.ruby.path}"
+                dir="${compass.working.dir}"
+                trace="${compass.compile.trace}"
                 boring="${compass.compile.boring}"
                 force="${compass.compile.force}"
                 sassdir="${compass.sass.dir}"
@@ -163,6 +164,7 @@
             
             <echo>Compiling sass directory : @{theme}/sass</echo>
             <x-compass-compile 
+                rubyPath="${build.ruby.path}"
                 boring="${compass.compile.boring}" 
                 force="${compass.compile.force}" 
                 trace="${compass.compile.trace}" 
@@ -197,7 +199,8 @@
     <target name="-compass-compile-sass-dir">
         <x-run-if-true value="${enable.touch.themes}">
             <x-compass-compile
-                trace="${compass.comiple.trace}"
+                rubyPath="${build.ruby.path}"
+                trace="${compass.compile.trace}"
                 boring="${compass.compile.boring}"
                 force="${compass.compile.force}"
                 dir="${compass.sass.dir}"/>

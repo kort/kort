@@ -60,8 +60,12 @@
         <property name="CR" value="&#10;"/>
         
         <x-load-properties>
+            <!-- Load user-defined properties for environment then general: -->
             <file path="${app.config.dir}/${build.environment}.properties" required="false"/>
             <file path="${app.config.dir}/build.properties" required="false"/>
+            <!-- Pick up the defaults by framework/environment followed by general: -->
+            <file path="${app.config.dir}/${framework.name}.properties" required="true"/>
+            <file path="${app.config.dir}/${build.environment}.defaults.properties" required="true"/>
             <file path="${app.config.dir}/defaults.properties" required="true"/>
         </x-load-properties>
         
@@ -81,7 +85,7 @@
         </condition>
         
         <property name="build.compression" value=""/>
-        
+
         <x-verify-app-cmd-ver/>
 
         <!--

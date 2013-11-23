@@ -17,11 +17,7 @@ Ext.Loader.addClassPathMappings({
   "Ext.device.sqlite.SQLResultSetRowList": "touch/src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLTransaction": "touch/src/device/sqlite/Sencha.js",
   "Ext.draw.engine.SvgContext.Gradient": "touch/src/draw/engine/SvgContext.js",
-  "Ext.i18n": "i18n",
-  "Ext.ux.LeafletMap": "ux/LeafletMap.js",
-  "Kort": "app",
-  "Kort.MessageBox": "app.js",
-  "patch": "patch"
+  "MyApp": "app"
 });
 Ext.ClassManager.addNameAlternateMappings({
   "Ext.AbstractComponent": [],
@@ -122,6 +118,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.chart.grid.VerticalGrid": [],
   "Ext.chart.interactions.Abstract": [],
   "Ext.chart.interactions.CrossZoom": [],
+  "Ext.chart.interactions.Crosshair": [],
   "Ext.chart.interactions.ItemHighlight": [],
   "Ext.chart.interactions.ItemInfo": [],
   "Ext.chart.interactions.PanZoom": [],
@@ -143,7 +140,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.chart.series.Scatter": [],
   "Ext.chart.series.Series": [],
   "Ext.chart.series.StackedCartesian": [],
-  "Ext.chart.series.sprite.AbstractRadial": [],
   "Ext.chart.series.sprite.Aggregative": [],
   "Ext.chart.series.sprite.Area": [],
   "Ext.chart.series.sprite.Bar": [],
@@ -451,6 +447,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.draw.engine.Svg": [],
   "Ext.draw.engine.SvgContext": [],
   "Ext.draw.engine.SvgContext.Gradient": [],
+  "Ext.draw.engine.SvgExporter": [],
   "Ext.draw.gradient.Gradient": [],
   "Ext.draw.gradient.Linear": [],
   "Ext.draw.gradient.Radial": [],
@@ -466,8 +463,10 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.draw.sprite.Composite": [],
   "Ext.draw.sprite.Ellipse": [],
   "Ext.draw.sprite.EllipticalArc": [],
+  "Ext.draw.sprite.GradientDefinition": [],
   "Ext.draw.sprite.Image": [],
   "Ext.draw.sprite.Instancing": [],
+  "Ext.draw.sprite.Line": [],
   "Ext.draw.sprite.Path": [],
   "Ext.draw.sprite.Rect": [],
   "Ext.draw.sprite.Sector": [],
@@ -608,9 +607,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.fx.runner.Css": [],
   "Ext.fx.runner.CssAnimation": [],
   "Ext.fx.runner.CssTransition": [],
-  "Ext.i18n.Bundle": [],
-  "Ext.i18n.model.Property": [],
-  "Ext.i18n.reader.Property": [],
   "Ext.layout.Abstract": [],
   "Ext.layout.Box": [],
   "Ext.layout.Card": [],
@@ -692,9 +688,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.util.Grouper": [],
   "Ext.util.HashMap": [],
   "Ext.util.Inflector": [],
-  "Ext.util.InputBlocker": [
-    "InputBlocker"
-  ],
+  "Ext.util.InputBlocker": [],
   "Ext.util.LineSegment": [],
   "Ext.util.MixedCollection": [],
   "Ext.util.Offset": [],
@@ -725,7 +719,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.ux.ActionOverFlowMenuButton": [],
   "Ext.ux.ApplicationMenu": [],
   "Ext.ux.ContextMenu": [],
-  "Ext.ux.LeafletMap": [],
   "Ext.ux.MenuButton": [],
   "Ext.ux.TabMenuButton": [],
   "Ext.ux.device.Analytics": [],
@@ -750,89 +743,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.viewport.WindowsPhone": [
     "Ext.viewport.WP"
   ],
-  "Kort.MessageBox": [],
-  "Kort.controller.About": [],
-  "Kort.controller.Firststeps": [],
-  "Kort.controller.Fix": [],
-  "Kort.controller.GeolocationError": [],
-  "Kort.controller.Highscore": [],
-  "Kort.controller.Login": [],
-  "Kort.controller.Main": [],
-  "Kort.controller.Map": [],
-  "Kort.controller.MapAbstractType": [],
-  "Kort.controller.MapMission": [],
-  "Kort.controller.MapValidation": [],
-  "Kort.controller.News": [],
-  "Kort.controller.Notifications": [],
-  "Kort.controller.OsmMap": [],
-  "Kort.controller.Profile": [],
-  "Kort.controller.Vote": [],
-  "Kort.model.Badge": [],
-  "Kort.model.Fix": [],
-  "Kort.model.HighscoreEntry": [],
-  "Kort.model.HighscoreUserBadge": [],
-  "Kort.model.Mission": [],
-  "Kort.model.News": [],
-  "Kort.model.Promotion": [],
-  "Kort.model.Reward": [],
-  "Kort.model.SelectAnswer": [],
-  "Kort.model.User": [],
-  "Kort.model.UserBadge": [],
-  "Kort.model.UserLocal": [],
-  "Kort.model.Validation": [],
-  "Kort.model.Vote": [],
-  "Kort.plugin.ListTwoWayPaging": [],
-  "Kort.plugin.QueryRoute": [],
-  "Kort.plugin.QueryRouter": [],
-  "Kort.store.HighscoreAbsolute": [],
-  "Kort.store.HighscoreRelative": [],
-  "Kort.store.HighscoreUserBadges": [],
-  "Kort.store.Missions": [],
-  "Kort.store.NewsLocal": [],
-  "Kort.store.NewsRemote": [],
-  "Kort.store.Promotions": [],
-  "Kort.store.SelectAnswers": [],
-  "Kort.store.UserBadges": [],
-  "Kort.store.UserLocal": [],
-  "Kort.store.Validations": [],
-  "Kort.util.Config": [],
-  "Kort.util.Geolocation": [],
-  "Kort.view.LeafletMap": [],
-  "Kort.view.Main": [],
-  "Kort.view.NotificationMessageBox": [],
-  "Kort.view.RewardMessageBox": [],
-  "Kort.view.about.Container": [],
-  "Kort.view.highscore.AbsoluteList": [],
-  "Kort.view.highscore.NavigationView": [],
-  "Kort.view.highscore.RelativeList": [],
-  "Kort.view.highscore.TabPanel": [],
-  "Kort.view.highscore.user.BadgesDataView": [],
-  "Kort.view.highscore.user.Container": [],
-  "Kort.view.highscore.user.ContentComponent": [],
-  "Kort.view.map.NavigationView": [],
-  "Kort.view.map.mission.MissionMessageBox": [],
-  "Kort.view.map.mission.PromotionMessageBox": [],
-  "Kort.view.map.mission.PromotionOverlay": [],
-  "Kort.view.map.mission.fix.Form": [],
-  "Kort.view.map.mission.fix.TabPanel": [],
-  "Kort.view.map.mission.fix.type.Select": [],
-  "Kort.view.map.validation.AnswerActionSheet": [],
-  "Kort.view.map.validation.Container": [],
-  "Kort.view.map.validation.ValidationMessageBox": [],
-  "Kort.view.news.List": [],
-  "Kort.view.news.NavigationView": [],
-  "Kort.view.news.newsEntry.Container": [],
-  "Kort.view.news.newsEntry.ContentComponent": [],
-  "Kort.view.news.settings.AcceptedLanguagePanel": [],
-  "Kort.view.overlay.firststeps.Panel": [],
-  "Kort.view.overlay.geolocationerror.Panel": [],
-  "Kort.view.overlay.login.Panel": [],
-  "Kort.view.profile.BadgesCarousel": [],
-  "Kort.view.profile.BadgesContainer": [],
-  "Kort.view.profile.BadgesDataView": [],
-  "Kort.view.profile.Container": [],
-  "Kort.view.profile.ContentComponent": [],
-  "patch.AjaxProxy": []
+  "MyApp.view.Main": []
 });
 Ext.ClassManager.addNameAliasMappings({
   "Ext.AbstractComponent": [],
@@ -1007,6 +918,9 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.chart.interactions.CrossZoom": [
     "interaction.crosszoom"
   ],
+  "Ext.chart.interactions.Crosshair": [
+    "interaction.crosshair"
+  ],
   "Ext.chart.interactions.ItemHighlight": [
     "interaction.itemhighlight"
   ],
@@ -1056,7 +970,6 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "Ext.chart.series.Series": [],
   "Ext.chart.series.StackedCartesian": [],
-  "Ext.chart.series.sprite.AbstractRadial": [],
   "Ext.chart.series.sprite.Aggregative": [],
   "Ext.chart.series.sprite.Area": [
     "sprite.areaSeries"
@@ -1368,6 +1281,7 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.draw.engine.Svg": [],
   "Ext.draw.engine.SvgContext": [],
   "Ext.draw.engine.SvgContext.Gradient": [],
+  "Ext.draw.engine.SvgExporter": [],
   "Ext.draw.gradient.Gradient": [],
   "Ext.draw.gradient.Linear": [],
   "Ext.draw.gradient.Radial": [],
@@ -1399,11 +1313,15 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.draw.sprite.EllipticalArc": [
     "sprite.ellipticalArc"
   ],
+  "Ext.draw.sprite.GradientDefinition": [],
   "Ext.draw.sprite.Image": [
     "sprite.image"
   ],
   "Ext.draw.sprite.Instancing": [
     "sprite.instancing"
+  ],
+  "Ext.draw.sprite.Line": [
+    "sprite.line"
   ],
   "Ext.draw.sprite.Path": [
     "sprite.path"
@@ -1600,13 +1518,6 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.fx.runner.Css": [],
   "Ext.fx.runner.CssAnimation": [],
   "Ext.fx.runner.CssTransition": [],
-  "Ext.i18n.Bundle": [
-    "widget.bundle"
-  ],
-  "Ext.i18n.model.Property": [],
-  "Ext.i18n.reader.Property": [
-    "reader.property"
-  ],
   "Ext.layout.Abstract": [],
   "Ext.layout.Box": [
     "layout.tablebox"
@@ -1746,9 +1657,6 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.ux.ActionOverFlowMenuButton": [],
   "Ext.ux.ApplicationMenu": [],
   "Ext.ux.ContextMenu": [],
-  "Ext.ux.LeafletMap": [
-    "widget.leafletmap"
-  ],
   "Ext.ux.MenuButton": [],
   "Ext.ux.TabMenuButton": [],
   "Ext.ux.device.Analytics": [],
@@ -1779,153 +1687,7 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.Ios": [],
   "Ext.viewport.Viewport": [],
   "Ext.viewport.WindowsPhone": [],
-  "Kort.MessageBox": [],
-  "Kort.controller.About": [],
-  "Kort.controller.Firststeps": [],
-  "Kort.controller.Fix": [],
-  "Kort.controller.GeolocationError": [],
-  "Kort.controller.Highscore": [],
-  "Kort.controller.Login": [],
-  "Kort.controller.Main": [],
-  "Kort.controller.Map": [],
-  "Kort.controller.MapAbstractType": [],
-  "Kort.controller.MapMission": [],
-  "Kort.controller.MapValidation": [],
-  "Kort.controller.News": [],
-  "Kort.controller.Notifications": [],
-  "Kort.controller.OsmMap": [],
-  "Kort.controller.Profile": [],
-  "Kort.controller.Vote": [],
-  "Kort.model.Badge": [],
-  "Kort.model.Fix": [],
-  "Kort.model.HighscoreEntry": [],
-  "Kort.model.HighscoreUserBadge": [],
-  "Kort.model.Mission": [],
-  "Kort.model.News": [],
-  "Kort.model.Promotion": [],
-  "Kort.model.Reward": [],
-  "Kort.model.SelectAnswer": [],
-  "Kort.model.User": [],
-  "Kort.model.UserBadge": [],
-  "Kort.model.UserLocal": [],
-  "Kort.model.Validation": [],
-  "Kort.model.Vote": [],
-  "Kort.plugin.ListTwoWayPaging": [
-    "plugin.listtwowaypaging"
-  ],
-  "Kort.plugin.QueryRoute": [],
-  "Kort.plugin.QueryRouter": [],
-  "Kort.store.HighscoreAbsolute": [],
-  "Kort.store.HighscoreRelative": [],
-  "Kort.store.HighscoreUserBadges": [],
-  "Kort.store.Missions": [],
-  "Kort.store.NewsLocal": [],
-  "Kort.store.NewsRemote": [],
-  "Kort.store.Promotions": [],
-  "Kort.store.SelectAnswers": [],
-  "Kort.store.UserBadges": [],
-  "Kort.store.UserLocal": [],
-  "Kort.store.Validations": [],
-  "Kort.util.Config": [],
-  "Kort.util.Geolocation": [],
-  "Kort.view.LeafletMap": [
-    "widget.kortleafletmap"
-  ],
-  "Kort.view.Main": [
+  "MyApp.view.Main": [
     "widget.main"
-  ],
-  "Kort.view.NotificationMessageBox": [
-    "widget.notificationmessagebox"
-  ],
-  "Kort.view.RewardMessageBox": [
-    "widget.rewardmessagebox"
-  ],
-  "Kort.view.about.Container": [
-    "widget.aboutcontainer"
-  ],
-  "Kort.view.highscore.AbsoluteList": [
-    "widget.highscoreabsolutelist"
-  ],
-  "Kort.view.highscore.NavigationView": [
-    "widget.highscorenavigationview"
-  ],
-  "Kort.view.highscore.RelativeList": [
-    "widget.highscorerelativelist"
-  ],
-  "Kort.view.highscore.TabPanel": [
-    "widget.highscoretabpanel"
-  ],
-  "Kort.view.highscore.user.BadgesDataView": [
-    "widget.highscoreuserbadgesdataview"
-  ],
-  "Kort.view.highscore.user.Container": [
-    "widget.usercontainer"
-  ],
-  "Kort.view.highscore.user.ContentComponent": [
-    "widget.highscoreusercontentcomponent"
-  ],
-  "Kort.view.map.NavigationView": [
-    "widget.mapnavigationview"
-  ],
-  "Kort.view.map.mission.MissionMessageBox": [
-    "widget.missionmessagebox"
-  ],
-  "Kort.view.map.mission.PromotionMessageBox": [],
-  "Kort.view.map.mission.PromotionOverlay": [
-    "widget.promotionoverlay"
-  ],
-  "Kort.view.map.mission.fix.Form": [
-    "widget.fixform"
-  ],
-  "Kort.view.map.mission.fix.TabPanel": [
-    "widget.fixtabpanel"
-  ],
-  "Kort.view.map.mission.fix.type.Select": [],
-  "Kort.view.map.validation.AnswerActionSheet": [
-    "widget.voteansweractionsheet"
-  ],
-  "Kort.view.map.validation.Container": [
-    "widget.votecontainer"
-  ],
-  "Kort.view.map.validation.ValidationMessageBox": [
-    "widget.validationmessagebox"
-  ],
-  "Kort.view.news.List": [
-    "widget.newslist"
-  ],
-  "Kort.view.news.NavigationView": [
-    "widget.newsnavigationview"
-  ],
-  "Kort.view.news.newsEntry.Container": [
-    "widget.newscontainer"
-  ],
-  "Kort.view.news.newsEntry.ContentComponent": [
-    "widget.newsnewsentrycontentcomponent"
-  ],
-  "Kort.view.news.settings.AcceptedLanguagePanel": [],
-  "Kort.view.overlay.firststeps.Panel": [
-    "widget.firststepspanel"
-  ],
-  "Kort.view.overlay.geolocationerror.Panel": [
-    "widget.geolocationerrorpanel"
-  ],
-  "Kort.view.overlay.login.Panel": [
-    "widget.loginpanel"
-  ],
-  "Kort.view.profile.BadgesCarousel": [
-    "widget.badgescarousel"
-  ],
-  "Kort.view.profile.BadgesContainer": [
-    "widget.badgescontainer"
-  ],
-  "Kort.view.profile.BadgesDataView": [
-    "widget.profilebadgesdataview"
-  ],
-  "Kort.view.profile.Container": [
-    "widget.profilecontainer"
-  ],
-  "Kort.view.profile.ContentComponent": [
-    "widget.profilecontentcomponent"
-  ],
-  "patch.AjaxProxy": []
+  ]
 });

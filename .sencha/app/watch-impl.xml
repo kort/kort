@@ -10,7 +10,8 @@
 
     <target name="-watch-theme-package-css">
         <x-compass-watch
-            dir="${build.dir}"
+            rubyPath="${build.ruby.path}"
+            dir="${compass.working.dir}"
             trace="${compass.compile.trace}"
             boring="${compass.compile.boring}"
             force="${compass.compile.force}"
@@ -24,6 +25,7 @@
         <attribute name="directory"/>
         <sequential>
             <x-compass-watch
+                rubyPath="${build.ruby.path}"
                 dir="@{directory}"
                 trace="${compass.compile.trace}"
                 boring="${compass.compile.boring}"

@@ -192,7 +192,7 @@ this file in most cases.
             depends="refresh,
                      resolve,
                      js,
-                     copy-resources,
+                     resources,
                      sass,
                      slice,
                      page,
@@ -285,15 +285,23 @@ this file in most cases.
     ===============================================================
     -->
     <import file="${basedir}/.sencha/app/resources-impl.xml"/>
-    <target name="copy-resources" 
+    <target name="resources" 
             depends="init"
             description="Copy resources to build folder.">
         <x-ant-call unless="skip.resources">
+            <target name="-before-resources"/>
+
+            <!-- Legacy targets: -->
             <target name="-before-inherit-resources"/>
             <target name="-before-copy-resources"/>
-            <target name="-compile-resources"/>
+
+            <target name="-resources"/>
+           
+            <!-- Legacy targets: -->
             <target name="-after-copy-resources"/>
             <target name="-after-inherit-resources"/>
+
+            <target name="-after-resources"/>
         </x-ant-call>
     </target>
     

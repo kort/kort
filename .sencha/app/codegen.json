@@ -1,22 +1,22 @@
 {
   "sources": {
     "build.properties.merge": {
-      "c6e9ce3ed0c79ce24c58d6bc68741d0a8f51e02b": "eJytUbtuwzAM3P0VBNIx0dItgIeiU4c+0AbdFYu2icqSQFExgiL/Xjq10yLoWC0S78jjUVxB/Z+nWsGupwwteYTE8UAOM9gA8YDMGkCKFATayOCwtcULHCyT3XvNU4QCOqAAKjTz2ahOQhbCbKqVEg+PL8+vu7unHWzgDUPTW7gfHIzkPQzIHcIxFgbFQ6eqI0kPJBniGMAVptBBSR1bdxaEXQR7iOTUmmAQsotKE0PrqdHKb36wH1Ott0quIY+IaYqXPhJVTJbpJ+X//doKw/RNRmJpeiM9Dphr4YLVvpB3JhZJRcxg+aOkGPyxbq3PCztaaXpkI5N7yfXmDGyyzXnjiNdz3MQhqXueq4Sp635XMbaMua90ustK1cplmZMeqB42EvlYTXKKmAk2Ctc3nzalS3iqFu9JKIbzql1ppJ7v7XnWq5yBwjty1nf989zeXmXNhrThnx1O62viR0tdfQH7kQwQ"
+      "ec0f832e80d63d776086203cffe9fed5c73b4294": "eJytUstOw0AMvPcrRuoNQT8AiQPixIGHoD/gZp3E6saOdjeJ+vc4fagSQZy6N3vs8YzXazzd8q3W2LaSUUtk9MlGCZxBChs5JQ/Qm2hBbQmBaxpiwUhJaBe9zjOiHCCK0nJmZ4s2cXImsSTlcOTNj6u1I8ADig1Vu/E5PacinM/pu82ZOy+xP5FZtl01Es7gATvKLsgUu0Fi2LCOkkw7dg+iuTAFUAi4krkmZzNlWH1ygVaa9h8T3huGqojpUm3hXESbJaBUZORlvqdqTw3/dvf69vnxtX1+33rJN2vVEl66gEliRMepYRxsSPC8Nu5hktJCSoZNijAkl4ChbxL5b25Oy6LRxH1b8VUIXVgq0zpK5Z0nvKP93BvJwXvkibmf48uc467K5WBm5tte4w874erN"
     },
     "native.properties.merge": {
-      "07d1a1ee61bad4a32197342ffc02dcc8402c1813": "eJytkUtuwzAMRPc6BYF0mQjoAbwouuqiH7S+AGPRDhtZFPRxEBS5e+kkBtIC3dU7znCeiPEKmv/8zAraHWfo2RPEJBM7yoABZKKUdIAoHAr0ksBRj9UXmDAxbr3uqcKBHHAABW0re2cVEikVPmPcEso3ujUr3X56fnt9bx9eWtjAB4Vuh/A4Ojiw9zBSGgiOUhOoHgZlHbjsgEsGOQRwNXEYoMYhoTsDoRXASdjpvYVCYVwonYTec6fJiz/ifs56VHMN+UAU53l5p4jCylLJTP7fvhVIYW4PjpX1uDEmypklmEt9N4rVjebeXNZtLloneglkRwzcUy5NSZXMNSixaCY3d18/ZutoWwfrOM+U0/q37WUYKP3tX//fyWCMduQuiRftPNmAIzVFr9D27Gc2Ju85qlp4ok3Ebo8DNT36TOYb0kbmEg\u003d\u003d"
+      "2c8c063f9588eecff09624782d7369a8a000d61c": "eJytkEsOwjAMRPecYkT3vQF3YMEFguJSi2BXjgni9rgfFQ5AdrEm743T4fTPc+hwGbli4EKYTBtnqkgCbWQWF0zK4hjUkGlIz+JoyThdS+RiwkIZLAiQJOdG/RarfeAmMmeqfUioLoJtgmQElfIGPyY1D8hrJMH1ySWz3AI3K30kHFfuESSNTeVB4v2hi8T5i/tp4vs+nu6zk9XY38tGK/+nWQx87hK0pU3RlAMzu3fv8qaG8s9f/wFV3ZB9"
     },
     "package.properties.merge": {
-      "3227481d91059b21defcf41e7c96aca501184796": "eJytkc9OwzAMxu99CkvjOCLxAD0gThz4I+gLZI2bGdI4cpJWE9q7426rNJC4kZu/z/7Z+rKB9j9fs4FuTxkGCghJeCKHGWwEnlBEC0hMscDAAg4HW0OByQrZXdA+VSiiA4qgoF2l4IxCEkqhE8atQ/lKN81Gux+fXl/euvvnDm7hHWO/t/AwOpgpBBhRPMKBq4Dq0StrprIHKhl4juCqUPRQkxfrTkDoGOzE5PTegrGQXSk9xyFQr5Nnf7Sfy2ywam4hz4hpqdc9hRVW1kgW8v/mrUCMS3pwqKTHjUkwZ+LYnOO7Uox2tHfNxeBUVMvtzdeP2jjcVW8c5QV63P62A3uP8rd/+Z9jY1MyI/XCgTVTMdGO2BbMRdMxH7lpvgH3W9AR"
+      "c6c1fb2fb1dda28480ad0f6e5caffc9b97d196ae": "eJytkUFygzAMRfc5hSZsOxygM11223aRCwgsQBNH8tiCTG5fGWjDAcLOsnjvS27g45XfqYHLxAUGjgQp68KBCqCALpSzHyApi8GgGQINOEeDBTNjF73PKywUgAUclLC/4kjt3lda5yXKxlRat1BZDXsFMBOoxAfwLWk2p9wnEuhmjoFldF512kRw3sFnIFk4q9xIrD013vLz5B2y2P9EhtcqZc1sj3WmTXCI5gWrYZy2xomKwTFV/hSvP5XN+fV9+Xzftjb7SDoc+jClWJmmIGi80N9SwnbVe1HlDUTdWfNvt1togpGEMkYoLP1K7tVfIHKXfeVU/S9+/V9rlbyW"
     },
     "production.properties.merge": {
-      "ae3049a5e12609718b8e3bd82a2264347f69262f": "eJytkU1OxDAMhfc9haVhOeQGXSBWLPgR9AJp4raGJI7y0wqhuTvuzFQwSOwmO/s9f7Ged9Be8zU76CbKMJBDiIlnsphBB+AZU5ICIlMoMHACi4OursCsE+neiU86FNACBRBQX8lZJZCIqdARY7eh/Kuvmp24Hx5fnl+7u6cObuENg5k03HsLCzkHHtOI8Mk1gfTDKKyFygRUMvASwNZEYYQax6TtEQgdg56ZrOxbMBTSG8VwGBwZmTzpXn+ss06LuIe8IMa13v4pLLCyRbKSr5t3g2HNTll0Ree2pIpby2gzofI60IC5XEgJs4RhxMM+SpGJw8lwCv1sQ9+jtWh/IIN2GZuzi2ORudzefF3UsktfR2Upr5DD/q/seBwx/a+fT3xodIzKk0nsWM6SVNAeW7m7rWZ1qvfcNN82PutW"
+      "cbdf9712e9b5d37cecb4d0530ba1fccd0ed004a3": "eJytkUEOwjAMBO+8YkXv/QF/4MAHAnGpRbArxy3i97gFQbk3t6ycmbXS4LDl2TU49VzRcSEMphNnqkgCncgsLhiUxdGpIVOXxuKYknE6l5iLhIUyWBCgeJ7Hi7NK+xmtbWQDmTPVNkRUF8knQTKCSnmC74OaB+jRk+A8csks10DOWu8J+x97D5KJTeVO4u2uianjD7lq5N+9PN1mL6uxP5fN3o5Vuwh87hO0pVHRlAMz+//cy7sa2o2/4QV6LJW9"
     },
     "sencha.cfg.tpl.merge": {
       "d2e6e42720f88befc892f12df5fd7bab587f7879": "eJxtUDEOwjAM3PsKSzAi6MaUhQfwAhaTujTQNpHtClWof8cpamFgSU53F/sumNK+x47cK59TUaARNRt+Rn641wrPX9m3KJJQG7e9DGV5PGWyCjwdMrjL7g9dFBvQJggkjolYR5BEPtSBBBB87DoEoYSMShW0QRRiDXmJmNorhj70NxvCJHFgb880mpLGfGtDcB1CW4HtI6+RxznpYt7Pg9wn/mzMwZb4uZ71MdsqTYefDp+feQN/i2pK"
     },
     "testing.properties.merge": {
-      "004322eb00e7dbb83fc2fcdf96fcd4949b9e208d": "eJytkE1OwzAQhfc5xUhlWXyDLhArFvyo5AJuPHEHnBlr7CRCqHdn0hIJkNjVuzdv3mf7bWB3zdNsoD1SgZ4SQlaZKGABzyATqpqALMQVelEI2PsxVZi8kj8k27MJMQYgBgMdRkrBGSSjVjpjwhoqP+au2dj2w+PL8769e2rhFl6Ru6OH+yHATCnBgBoRPmRUsDlHY81Uj0C1gMwMYVTiCGOO6sMZCK2An4SCvbciV/IrpRPuE3WWvPiDf1+yyZu5hTIj5kWv91QxWF0rWcjX7bu5tCS5knDZ3Xz+0i7gYYwOeen3tP3rJokR9V/7u+tT43N2A3UqSawfdewH3FUs1X7q3krTfAEJRr1D"
+      "360e715956c81757e53736789fe20be045acb544": "eJytkMENwjAMRe+d4oveuwE7cGCBoLjUItiVY4q6PW6pKAM0t1g/732nxfnI07S4DlzRcyGMphNnqkgCncgsLhiVxdGrIVOfXsUxJeN0K5GLCQtlsCBATtVZ7t2Wq13wRjJnql1YqK6GbYJkBJUyg5+jmgflPZDg9uKSgxK8xekD4bSBTyCZ2FSeJN41bUQuO++vi/828vRYpKzGPq87fQV/1WLgS5mgrXWKphyYRb6L10c1nAf//gdqIpHi"
     },
     "app.js.tpl.merge": {
       "bf7e5518d2efd28e0a64077e1e7666428cf994ae": "eJx1VdtuEzEQfc9XjILQblDkpCEtEFRxKTxEAlRxkxDiwV1PErdee/GlSajCtzP2ZnMhiR/2NnPOzBx7Zh8ey7Iy1l/z4o5PMS9MyRzqYsZZ8FJ1Hq96T1pA6+tMOphIhUD3KWq03KMArgWESqTnmyV8SVC4KgWDHyZAwTWgkB78Bs5d4tOIgjATY2FpggVeVUoW3Euju3ATIgIdJrCDuVQKZvwewRu4QSjRTlPARLUNCvMZaqBwFVpiLh0URmCTLlGD5+7OgQvFjBLZGPSU8pknspIAynUJqL01SqF1QDneS5y7VG0KYYPWEdWutYrZkwxTywW2WSsRjQVypZZAZj1FFzPfijA3QYlYiZKlbHQsjfNksXdbszAaE5vUYEgRC5XiBbHlTQlX2zw7DMaTXTVIfW18rVZSOVE1CcWQUdztZkaxulG+pHdljQgFbRi0awaSZEJ75NtUCPeRMPEl57idsUSLzijap5LrEMtnrSe9Vuv9wrOdDc4f6iPASxxB9kCWT/S4yrq1chZ/B0lEI/iZ3uPKIsVHdI4O6VuzyJLh1xqQNmfP+yOXet9HUvYjeNi6nD/LKHjMN1hStBcdXG9MV1bpKeWy8Xw2OOX5V1Zc/O9+djY85f96sDjwHp70TuwNJCFWTTEu2q8tUrtWxqEYgbcB11bnufWhGpek1V7JTwf9xfCivx9v7d1bG9lttZffxbC/eDE4gVkbDwS7eL446/eHx0GN9QA1jN8Hp1Br64F+508vFoN+//lx2MZ8qPuLaBiewjXmQ/EVD9RhI5jQLZ3mzo7GvR68Q0cduYwDDB7R2f5guKBZMdYiHn+aJaiwRO03mHi0J2qZZ0ecsw4TNV/eednaDTPW0kuu5B9MkUo68akR9mi/04c43hkXIo8fCovU6vm26VjEsNQvHYqwW6jR3+rJfqLW1JJuyuJckLbMN4a42m+2/Q41T7u775F+KTtjgSa8g9tAQ5CGG22Gm4Q4QG+QBm7zj0lTlMYmvZDfPU09AjL4jIqEA23mr/6Lssmc/ine6LHYraBZcgIbO1xeXkK2RJcd84xrLrUwc6ZMnTazKXi+Vm93rVrH3xqhWyt6+geQsUAZ"
@@ -40,7 +40,7 @@
   "targets": {
     ".sencha/app/build.properties": {
       "source": "build.properties.merge",
-      "version": "c6e9ce3ed0c79ce24c58d6bc68741d0a8f51e02b",
+      "version": "ec0f832e80d63d776086203cffe9fed5c73b4294",
       "parameters": {
         "viewNamespace": "MyApp.view",
         "frameworkName": "touch",
@@ -49,7 +49,7 @@
         "appModels": "",
         "appControllers": "",
         "appViews": "",
-        "uniqueId": "fbb39b29-532a-449b-bc50-7d1890386993",
+        "uniqueId": "70f3c7a0-0ce1-45a0-8b7e-8c4c54721ee0",
         "appName": "MyApp",
         "modelNamespace": "MyApp.model",
         "name": "MyApp",
@@ -60,7 +60,7 @@
     },
     ".sencha/app/native.properties": {
       "source": "native.properties.merge",
-      "version": "07d1a1ee61bad4a32197342ffc02dcc8402c1813",
+      "version": "2c8c063f9588eecff09624782d7369a8a000d61c",
       "parameters": {
         "viewNamespace": "MyApp.view",
         "frameworkName": "touch",
@@ -69,7 +69,7 @@
         "appModels": "",
         "appControllers": "",
         "appViews": "",
-        "uniqueId": "fbb39b29-532a-449b-bc50-7d1890386993",
+        "uniqueId": "70f3c7a0-0ce1-45a0-8b7e-8c4c54721ee0",
         "appName": "MyApp",
         "modelNamespace": "MyApp.model",
         "name": "MyApp",
@@ -80,7 +80,7 @@
     },
     ".sencha/app/package.properties": {
       "source": "package.properties.merge",
-      "version": "3227481d91059b21defcf41e7c96aca501184796",
+      "version": "c6c1fb2fb1dda28480ad0f6e5caffc9b97d196ae",
       "parameters": {
         "viewNamespace": "MyApp.view",
         "frameworkName": "touch",
@@ -89,7 +89,7 @@
         "appModels": "",
         "appControllers": "",
         "appViews": "",
-        "uniqueId": "fbb39b29-532a-449b-bc50-7d1890386993",
+        "uniqueId": "70f3c7a0-0ce1-45a0-8b7e-8c4c54721ee0",
         "appName": "MyApp",
         "modelNamespace": "MyApp.model",
         "name": "MyApp",
@@ -100,7 +100,7 @@
     },
     ".sencha/app/production.properties": {
       "source": "production.properties.merge",
-      "version": "ae3049a5e12609718b8e3bd82a2264347f69262f",
+      "version": "cbdf9712e9b5d37cecb4d0530ba1fccd0ed004a3",
       "parameters": {
         "viewNamespace": "MyApp.view",
         "frameworkName": "touch",
@@ -109,7 +109,7 @@
         "appModels": "",
         "appControllers": "",
         "appViews": "",
-        "uniqueId": "fbb39b29-532a-449b-bc50-7d1890386993",
+        "uniqueId": "70f3c7a0-0ce1-45a0-8b7e-8c4c54721ee0",
         "appName": "MyApp",
         "modelNamespace": "MyApp.model",
         "name": "MyApp",
@@ -129,7 +129,7 @@
         "appModels": "",
         "appControllers": "",
         "appViews": "",
-        "uniqueId": "fbb39b29-532a-449b-bc50-7d1890386993",
+        "uniqueId": "70f3c7a0-0ce1-45a0-8b7e-8c4c54721ee0",
         "appName": "MyApp",
         "modelNamespace": "MyApp.model",
         "name": "MyApp",
@@ -140,7 +140,7 @@
     },
     ".sencha/app/testing.properties": {
       "source": "testing.properties.merge",
-      "version": "004322eb00e7dbb83fc2fcdf96fcd4949b9e208d",
+      "version": "360e715956c81757e53736789fe20be045acb544",
       "parameters": {
         "viewNamespace": "MyApp.view",
         "frameworkName": "touch",
@@ -149,7 +149,7 @@
         "appModels": "",
         "appControllers": "",
         "appViews": "",
-        "uniqueId": "fbb39b29-532a-449b-bc50-7d1890386993",
+        "uniqueId": "70f3c7a0-0ce1-45a0-8b7e-8c4c54721ee0",
         "appName": "MyApp",
         "modelNamespace": "MyApp.model",
         "name": "MyApp",
@@ -169,7 +169,7 @@
         "appModels": "",
         "appControllers": "",
         "appViews": "",
-        "uniqueId": "fbb39b29-532a-449b-bc50-7d1890386993",
+        "uniqueId": "70f3c7a0-0ce1-45a0-8b7e-8c4c54721ee0",
         "appName": "MyApp",
         "modelNamespace": "MyApp.model",
         "name": "MyApp",
@@ -189,7 +189,7 @@
         "appModels": "",
         "appControllers": "",
         "appViews": "",
-        "uniqueId": "fbb39b29-532a-449b-bc50-7d1890386993",
+        "uniqueId": "70f3c7a0-0ce1-45a0-8b7e-8c4c54721ee0",
         "appName": "MyApp",
         "modelNamespace": "MyApp.model",
         "name": "MyApp",
@@ -209,7 +209,7 @@
         "appModels": "",
         "appControllers": "",
         "appViews": "",
-        "uniqueId": "fbb39b29-532a-449b-bc50-7d1890386993",
+        "uniqueId": "70f3c7a0-0ce1-45a0-8b7e-8c4c54721ee0",
         "appName": "MyApp",
         "modelNamespace": "MyApp.model",
         "name": "MyApp",
@@ -229,7 +229,7 @@
         "appModels": "",
         "appControllers": "",
         "appViews": "",
-        "uniqueId": "fbb39b29-532a-449b-bc50-7d1890386993",
+        "uniqueId": "70f3c7a0-0ce1-45a0-8b7e-8c4c54721ee0",
         "appName": "MyApp",
         "modelNamespace": "MyApp.model",
         "name": "MyApp",
@@ -249,7 +249,7 @@
         "appModels": "",
         "appControllers": "",
         "appViews": "",
-        "uniqueId": "fbb39b29-532a-449b-bc50-7d1890386993",
+        "uniqueId": "70f3c7a0-0ce1-45a0-8b7e-8c4c54721ee0",
         "appName": "MyApp",
         "modelNamespace": "MyApp.model",
         "name": "MyApp",
@@ -269,7 +269,7 @@
         "appModels": "",
         "appControllers": "",
         "appViews": "",
-        "uniqueId": "fbb39b29-532a-449b-bc50-7d1890386993",
+        "uniqueId": "70f3c7a0-0ce1-45a0-8b7e-8c4c54721ee0",
         "appName": "MyApp",
         "modelNamespace": "MyApp.model",
         "name": "MyApp",
