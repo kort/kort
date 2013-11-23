@@ -4,10 +4,10 @@
  *
  * Cartesian sprite.
  */
-Ext.define("Ext.chart.series.sprite.Cartesian", {
+Ext.define('Ext.chart.series.sprite.Cartesian', {
     extend: 'Ext.draw.sprite.Sprite',
     mixins: {
-        markerHolder: "Ext.chart.MarkerHolder"
+        markerHolder: 'Ext.chart.MarkerHolder'
     },
     homogeneous: true,
     ascending: true,
@@ -69,7 +69,11 @@ Ext.define("Ext.chart.series.sprite.Cartesian", {
                  */
                 selectionTolerance: 'number',
 
+                /**
+                 * @cfg {Boolean} If flipXY is 'true', the series is flipped.
+                 */
                 flipXY: 'bool',
+
                 renderer: 'default',
 
                 // PanZoom information
@@ -116,7 +120,7 @@ Ext.define("Ext.chart.series.sprite.Cartesian", {
                 innerHeight: 'panzoom'
             },
             updaters: {
-                'dataX': function (attrs) {
+                dataX: function (attrs) {
                     this.processDataX();
                     if (!attrs.dirtyFlags.dataY) {
                         attrs.dirtyFlags.dataY = [];
@@ -124,11 +128,11 @@ Ext.define("Ext.chart.series.sprite.Cartesian", {
                     attrs.dirtyFlags.dataY.push('dataY');
                 },
 
-                'dataY': function () {
+                dataY: function () {
                     this.processDataY();
                 },
 
-                'panzoom': function (attrs) {
+                panzoom: function (attrs) {
                     var dx = attrs.visibleMaxX - attrs.visibleMinX,
                         dy = attrs.visibleMaxY - attrs.visibleMinY,
                         innerWidth = attrs.flipXY ? attrs.innerHeight : attrs.innerWidth,
@@ -146,11 +150,6 @@ Ext.define("Ext.chart.series.sprite.Cartesian", {
     },
 
     config: {
-        /**
-         * @cfg {Boolean} flipXY 'true' if the series is flipped
-         */
-        flipXY: false,
-
         /**
          * @private
          * @cfg {Object} store The store that is passed to the renderer.
@@ -206,8 +205,8 @@ Ext.define("Ext.chart.series.sprite.Cartesian", {
 
     render: function (surface, ctx, region) {
         var me = this,
-            flipXY = me.getFlipXY(),
             attr = me.attr,
+            flipXY = attr.flipXY,
             inverseMatrix = attr.inverseMatrix.clone();
 
         inverseMatrix.appendMatrix(surface.inverseMatrix);

@@ -4,9 +4,9 @@
  * 
  * Polar sprite.
  */
-Ext.define("Ext.chart.series.sprite.Polar", {
+Ext.define('Ext.chart.series.sprite.Polar', {
     mixins: {
-        markerHolder: "Ext.chart.MarkerHolder"
+        markerHolder: 'Ext.chart.MarkerHolder'
     },
     extend: 'Ext.draw.sprite.Sprite',
     inheritableStatics: {

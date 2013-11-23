@@ -608,7 +608,7 @@ Ext.define('Ext.field.Input', {
      * @private
      */
     updateReadOnly: function(readOnly) {
-        this.updateFieldAttribute('readonly', readOnly);
+        this.updateFieldAttribute('readonly', readOnly ? true : null);
     },
 
     //<debug>

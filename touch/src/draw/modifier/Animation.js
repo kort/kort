@@ -107,30 +107,30 @@ Ext.define("Ext.draw.modifier.Animation", {
 
     /**
      * Set special easings on the given attributes.
-     * @param {Object} attrs The source attributes.
+     * @param {String/Array} attrs The source attribute(s).
      * @param {String} easing The special easings.
      */
     setEasingOn: function (attrs, easing) {
         attrs = Ext.Array.from(attrs).slice();
-        var customEasing = {},
+        var customEasings = {},
             i = 0,
             ln = attrs.length;
 
         for (; i < ln; i++) {
-            customEasing[attrs[i]] = easing;
+            customEasings[attrs[i]] = easing;
         }
-        this.setDurationEasings(customEasing);
+        this.setCustomEasings(customEasings);
     },
 
     /**
      * Remove special easings on the given attributes.
-     * @param {Object} attrs The source attributes.
+     * @param {String/Array} attrs The source attribute(s).
      */
     clearEasingOn: function (attrs) {
         attrs = Ext.Array.from(attrs, true);
         var i = 0, ln = attrs.length;
         for (; i < ln; i++) {
-            delete this._customEasing[attrs[i]];
+            delete this._customEasings[attrs[i]];
         }
     },
 
@@ -153,8 +153,8 @@ Ext.define("Ext.draw.modifier.Animation", {
 
     /**
      * Set special duration on the given attributes.
-     * @param {Object} attrs The source attributes.
-     * @param {String} duration The special duration.
+     * @param {String/Array} attrs The source attributes.
+     * @param {Number} duration The special duration.
      */
     setDurationOn: function (attrs, duration) {
         attrs = Ext.Array.from(attrs).slice();

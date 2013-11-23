@@ -1,3 +1,36 @@
+/**
+ * {@link Ext.Menu}'s are used with {@link Ext.Viewport#setMenu}. A menu can be linked with any side of the screen (top, left, bottom or right)
+ *  and will simply describe the contents of your menu. To use this menu you will call various menu related functions on the {@link Ext.Viewport}
+ * such as {@link Ext.Viewport#showMenu}, {@link Ext.Viewport#hideMenu}, {@link Ext.Viewport#toggleMenu}, {@link Ext.Viewport#hideOtherMenus},
+ * or {@link Ext.Viewport#hideAllMenus}.
+ *
+ *      @example preview
+ *      var menu = Ext.create('Ext.Menu', {
+ *          items: [
+ *              {
+ *                  text: 'Settings',
+ *                  iconCls: 'settings'
+ *              },
+ *              {
+ *                  text: 'New Item',
+ *                  iconCls: 'compose'
+ *              },
+ *              {
+ *                  text: 'Star',
+ *                  iconCls: 'star'
+ *              }
+ *          ]
+ *      });
+ *
+ *      Ext.Viewport.setMenu(menu, {
+ *          side: 'left',
+ *          reveal: true
+ *      });
+ *
+ *      Ext.Viewport.showMenu('left');
+ *
+ * The {@link #defaultType} of a Menu item is a {@link Ext.Button button}.
+ */
 Ext.define('Ext.Menu', {
     extend: 'Ext.Sheet',
     xtype: 'menu',
@@ -102,7 +135,7 @@ Ext.define('Ext.Menu', {
     updateUi: function(newUi, oldUi) {
         this.callParent(arguments);
 
-        if (newUi != oldUi && Ext.theme.name == 'Blackberry') {
+        if (newUi != oldUi && Ext.theme.is.Blackberry) {
             if (newUi == 'context') {
                 this.innerElement.swapCls('x-vertical', 'x-horizontal');
             }

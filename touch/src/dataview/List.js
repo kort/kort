@@ -181,7 +181,7 @@ Ext.define('Ext.dataview.List', {
          * Whether or not to group items in the provided Store with a header for each item.
          * @accessor
          */
-        grouped: false,
+        grouped: null,
 
         /**
          * @cfg {Boolean/Function/Object} onItemDisclosure
@@ -889,8 +889,8 @@ Ext.define('Ext.dataview.List', {
             header = useHeaders && item.getHeader(),
             scrollDockItems = me.scrollDockItems,
             updatedItems = me.updatedItems,
-            currentItemCls = item.renderElement.classList,
-            currentHeaderCls = useHeaders && header.renderElement.classList,
+            currentItemCls = item.renderElement.classList.slice(),
+            currentHeaderCls = useHeaders && header.renderElement.classList.slice(),
             infinite = me.getInfinite(),
             storeCount = info.store.getCount(),
             itemCls = [],
@@ -984,8 +984,8 @@ Ext.define('Ext.dataview.List', {
 
                 if (!infinite) {
                     header.renderElement.insertBefore(item.renderElement);
-                    header.show();
                 }
+                header.show();
             } else {
                 if (infinite) {
                     header.translate(0, -10000);
@@ -997,6 +997,10 @@ Ext.define('Ext.dataview.List', {
                 itemCls.push(info.footerCls);
                 headerCls.push(info.footerCls);
             }
+        }
+
+        if (!info.grouped && useHeaders) {
+            header.hide();
         }
 
         if (index === 0) {
@@ -1061,9 +1065,8 @@ Ext.define('Ext.dataview.List', {
 
         if (item.classCache !== classCache) {
             item.renderElement.setCls(itemCls);
+            item.classCache = classCache;
         }
-
-        item.classCache = classCache;
 
         if (useHeaders) {
             header.renderElement.setCls(headerCls);
@@ -1284,11 +1287,16 @@ Ext.define('Ext.dataview.List', {
         if (grouped) {
             me.addCls(cls);
             me.removeCls(unCls);
-        } else {
+        }
+        else {
             me.addCls(unCls);
             me.removeCls(cls);
         }
 
+        if (me.getInfinite()) {
+            me.refreshHeaderIndices();
+            me.handleItemHeights();
+        }
         me.updateAllListItems();
     },
 
@@ -1470,11 +1478,15 @@ Ext.define('Ext.dataview.List', {
             store = me.getStore(),
             storeLn = store && store.getCount(),
             groups = store.getGroups(),
+            grouped = me.getGrouped(),
             groupLn = groups.length,
             headerIndices = me.headerIndices = {},
             footerIndices = me.footerIndices = {},
             i, previousIndex, firstGroupedRecord, storeIndex;
 
+        if (!grouped) {
+            return footerIndices;
+        }
         me.groups = groups;
 
         for (i = 0; i < groupLn; i++) {
@@ -1518,6 +1530,14 @@ Ext.define('Ext.dataview.List', {
         }
     },
 
+    /**
+     *
+     * Scrolls the list so that the specified record is at the top.
+     *
+     * @param record {Ext.data.Model} Record in the lists store to scroll to
+     * @param animate {Boolean} Determines if scrolling is animated to a cut
+     * @param overscroll {Boolean} Determines if list can be overscrolled
+     */
     scrollToRecord: function(record, animate, overscroll) {
         var me = this,
             scroller = me.container.getScrollable().getScroller(),
@@ -1666,7 +1686,7 @@ Ext.define('Ext.dataview.List', {
 
         var item = me.getItemAt(me.getStore().indexOf(record));
         if (me.container && !me.isDestroyed && item && item.isComponent) {
-            item.classCache = item.renderElement.classList;
+            item.classCache = item.renderElement.classList.slice();
         }
     },
 
@@ -1675,7 +1695,7 @@ Ext.define('Ext.dataview.List', {
 
         var item = me.getItemAt(me.getStore().indexOf(record));
         if (item && item.isComponent) {
-            item.classCache = item.renderElement.classList;
+            item.classCache = item.renderElement.classList.slice();
         }
     },
 

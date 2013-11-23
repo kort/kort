@@ -203,6 +203,13 @@
                 }
             }
 
+					&.x-item-pressed {
+						> .x-innerhtml,
+						> .x-dock-body {
+							background: $list-pressed-color none;
+						}
+					}
+
             &.x-item-selected {
                 > .x-innerhtml,
                 > .x-dock-body {

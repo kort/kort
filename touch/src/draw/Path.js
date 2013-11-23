@@ -3,7 +3,7 @@
  * Designed to be compatible with [CanvasPathMethods](http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#canvaspathmethods)
  * and will hopefully be replaced by the browsers' implementation of the Path object.
  */
-Ext.define("Ext.draw.Path", {
+Ext.define('Ext.draw.Path', {
     requires: ['Ext.draw.Draw', 'Ext.draw.Solver'],
     statics: {
         pathRe: /,?([achlmqrstvxz]),?/gi,

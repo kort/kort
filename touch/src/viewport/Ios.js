@@ -201,8 +201,15 @@ Ext.define('Ext.viewport.Ios', {
                     window.scrollTo(0, 0);
 
                     this.callOverridden(arguments);
+                },
+
+                onElementBlur: function() {
+                    this.callOverridden(arguments);
+                    if (window.scrollY !== 0) {
+                        window.scrollTo(0, 0);
+                    }
                 }
-            })
+            });
         }
     }
 });

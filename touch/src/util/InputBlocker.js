@@ -5,7 +5,6 @@
  */
 Ext.define('Ext.util.InputBlocker', {
     singleton: true,
-    alternateClassName: "InputBlocker",
     blockInputs: function () {
         if (Ext.browser.is.ie) {
             Ext.select('.x-field-text .x-field-input:not(.x-item-disabled) .x-input-el, .x-field-textarea .x-field-input:not(.x-item-disabled) .x-input-el, .x-field-search .x-field-input:not(.x-item-disabled) .x-input-el').each(function (item) {

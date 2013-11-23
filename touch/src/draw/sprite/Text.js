@@ -189,7 +189,7 @@ Ext.define("Ext.draw.sprite.Text", {
                                 attrs.fontFamily = part.replace(Ext.draw.sprite.Text.shortHand4Re, ' ');
                             }
                         }
-                        this.setAttributesBypassingNormalization(attrs);
+                        this.setAttributes(attrs, true);
                     };
                 })({
                     "italic": "fontStyles",
@@ -222,9 +222,9 @@ Ext.define("Ext.draw.sprite.Text", {
                     if (attrs.fontFamily) {
                         font += attrs.fontFamily + ' ';
                     }
-                    this.setAttributesBypassingNormalization({
+                    this.setAttributes({
                         font: font.substr(0, font.length - 1)
-                    });
+                    }, true);
                 }
             }
         }
@@ -293,7 +293,7 @@ Ext.define("Ext.draw.sprite.Text", {
     },
 
     setText: function (text) {
-        this.setAttributesBypassingNormalization({text: text});
+        this.setAttributes({text: text}, true);
     },
 
     setElementStyles: function (element, styles) {

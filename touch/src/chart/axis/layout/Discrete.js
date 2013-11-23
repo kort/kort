@@ -4,7 +4,7 @@
  *
  * Simple processor for data that cannot be interpolated.
  */
-Ext.define("Ext.chart.axis.layout.Discrete", {
+Ext.define('Ext.chart.axis.layout.Discrete', {
     extend: 'Ext.chart.axis.layout.Layout',
     alias: 'axisLayout.discrete',
 

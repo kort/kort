@@ -104,7 +104,6 @@ Ext.define('Ext.chart.interactions.Rotate', {
         return Math.sqrt(dx * dx + dy * dy);
     },
 
-    // todo: add return for the case if does not trigger
     onGestureStart: function(e) {
         var me = this,
             chart = me.getChart(),
@@ -119,7 +118,6 @@ Ext.define('Ext.chart.interactions.Rotate', {
         }
     },
 
-    // todo: add return for the case if does not trigger
     onGesture: function(e) {
         var me = this,
             chart = me.getChart(),
@@ -180,7 +178,6 @@ Ext.define('Ext.chart.interactions.Rotate', {
         chart.resumeAnimation();
     },
 
-    // todo: add return for the case if does not trigger
     onGestureEnd: function(e) {
         var me = this;
 

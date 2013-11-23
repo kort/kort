@@ -209,7 +209,7 @@ Ext.define('Ext.fx.runner.Css', {
             formattedName = cache[name];
 
         if (!formattedName) {
-            if (!Ext.feature.has.CssTransformNoPrefix && this.prefixedProperties[name]) {
+            if ((Ext.os.is.Tizen || !Ext.feature.has.CssTransformNoPrefix) && this.prefixedProperties[name]) {
                 formattedName = this.vendorPrefix + name;
             }
             else {

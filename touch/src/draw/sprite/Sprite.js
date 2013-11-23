@@ -65,7 +65,7 @@ Ext.define('Ext.draw.sprite.Sprite', {
                 strokeStyle: "color",
 
                 /**
-                 * @cfg {String} [fillStyle="none"] The color of the shadow (a CSS color value).
+                 * @cfg {String} [fillStyle="none"] The color of the shape (a CSS color value).
                  */
                 fillStyle: "color",
 
@@ -93,6 +93,16 @@ Ext.define('Ext.draw.sprite.Sprite', {
                  * @cfg {String} [lineJoin="miter"] The style of the line join.
                  */
                 lineJoin: "enums(round,bevel,miter)",
+
+                /**
+                 * @cfg {Array} An array of non-negative numbers specifying a dash/space sequence.
+                 */
+                lineDash: "data",
+
+                /**
+                 * @cfg {Number} A number specifying how far into the line dash sequence drawing commences.
+                 */
+                lineDashOffset: "number",
 
                 /**
                  * @cfg {Number} [miterLimit=1] Sets the distance between the inner corner and the outer corner where two lines meet.
@@ -217,6 +227,8 @@ Ext.define('Ext.draw.sprite.Sprite', {
                 strokeStyle: "none",
                 fillStyle: "none",
                 lineWidth: 1,
+                lineDash: [],
+                lineDashOffset: 0,
                 lineCap: "butt",
                 lineJoin: "miter",
                 miterLimit: 1,
@@ -260,6 +272,8 @@ Ext.define('Ext.draw.sprite.Sprite', {
                 lineWidth: "canvas",
                 lineCap: "canvas",
                 lineJoin: "canvas",
+                lineDash: "canvas",
+                lineDashOffset: "canvas",
                 miterLimit: "canvas",
 
                 shadowColor: "canvas",
@@ -559,12 +573,19 @@ Ext.define('Ext.draw.sprite.Sprite', {
         return this;
     },
 
+    /**
+     * Applies sprite's attributes to the given context.
+     * @param {Object} ctx Context to apply sprite's attributes to.
+     * @param {Array} region The region of the context to be affected by gradients.
+     */
     useAttributes: function (ctx, region) {
         this.applyTransformations();
         var attrs = this.attr,
             canvasAttributes = attrs.canvasAttributes,
             strokeStyle = canvasAttributes.strokeStyle,
             fillStyle = canvasAttributes.fillStyle,
+            lineDash = canvasAttributes.lineDash,
+            lineDashOffset = canvasAttributes.lineDashOffset,
             id;
 
         if (strokeStyle) {
@@ -585,6 +606,14 @@ Ext.define('Ext.draw.sprite.Sprite', {
             }
         }
 
+        if (lineDash && ctx.setLineDash) {
+            ctx.setLineDash(lineDash);
+        }
+
+        if (lineDashOffset && typeof ctx.lineDashOffset === 'number') {
+            ctx.lineDashOffset = lineDashOffset;
+        }
+
         for (id in canvasAttributes) {
             if (canvasAttributes[id] !== undefined && canvasAttributes[id] !== ctx[id]) {
                 ctx[id] = canvasAttributes[id];
@@ -598,7 +627,12 @@ Ext.define('Ext.draw.sprite.Sprite', {
         }
     },
 
-    // @private
+    /**
+     * @private
+     *
+     * Calculates forward and inverse transform matrices.
+     * @param {Boolean} force Forces recalculation of transform matrices even when sprite's transform attributes supposedly haven't changed.
+     */
     applyTransformations: function (force) {
         if (!force && !this.attr.dirtyTransform) {
             return;

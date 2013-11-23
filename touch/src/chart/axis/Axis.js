@@ -368,14 +368,14 @@ Ext.define('Ext.chart.axis.Axis', {
         switch (this.getPosition()) {
             case 'left':
             case 'right':
-                return "vertical";
+                return 'vertical';
             case 'top':
             case 'bottom':
-                return "horizontal";
+                return 'horizontal';
             case 'radial':
-                return "radial";
+                return 'radial';
             case 'angular':
-                return "angular";
+                return 'angular';
         }
     },
 
@@ -387,12 +387,12 @@ Ext.define('Ext.chart.axis.Axis', {
         switch (this.getPosition()) {
             case 'left':
             case 'right':
-                return "horizontal";
+                return 'horizontal';
             case 'top':
             case 'bottom':
-                return "vertical";
+                return 'vertical';
             case 'radial':
-                return "circular";
+                return 'circular';
             case 'angular':
                 return "radial";
         }

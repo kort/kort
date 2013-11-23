@@ -321,6 +321,10 @@ Ext.define('Ext.dataview.NestedList', {
             toolbar: {
                 splitNavigation: true
             }
+        },
+        {
+            theme: ['Tizen'],
+            backText: ''
         }
     ],
 
@@ -606,8 +610,8 @@ Ext.define('Ext.dataview.NestedList', {
         }
 
         if (newStore) {
-            me.goToNode(newStore.getRoot());
             newStore.on(listeners);
+            me.goToNode(newStore.getRoot());
         }
     },
 

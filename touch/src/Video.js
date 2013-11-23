@@ -58,7 +58,7 @@ Ext.define('Ext.Video', {
          * @cfg
          * @inheritdoc
          */
-        cls: Ext.baseCSSPrefix + 'video'
+        baseCls: Ext.baseCSSPrefix + 'video'
     },
 
     template: [{

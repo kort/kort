@@ -37,13 +37,22 @@
             .x-innerhtml:after {
                 position: absolute;
                 width: 12px;
-                right: -16px;
                 line-height: 64px;
                 top: 0;
                 height: 64px;
                 font-family: 'Pictos';
                 font-size: 12px;
             }
+        }
+
+        &.x-column-align-left,
+        &.x-column-align-center {
+            .x-innerhtml:after {
+                right: -16px;
+            }
+        }
+        &.x-column-align-right .x-innerhtml:after {
+            left: -16px;
         }
 
         &.x-column-sorted-asc .x-innerhtml:after {

@@ -9,13 +9,15 @@ Ext.define('Ext.draw.engine.SvgContext', {
      * Properties to be saved/restored in `save` and `restore` method.
      */
     toSave: ["strokeOpacity", "strokeStyle", "fillOpacity", "fillStyle", "globalAlpha", "lineWidth", "lineCap",
-             "lineJoin", "miterLimit", "shadowOffsetX", "shadowOffsetY", "shadowBlur", "shadowColor",
-             "globalCompositeOperation", "position"],
+             "lineJoin", "lineDash", "lineDashOffset", "miterLimit", "shadowOffsetX", "shadowOffsetY", "shadowBlur",
+             "shadowColor", "globalCompositeOperation", "position"],
 
     "strokeOpacity": 1,
     "strokeStyle": "none",
     "fillOpacity": 1,
     "fillStyle": "none",
+    "lineDash": [],
+    "lineDashOffset": 0,
     "globalAlpha": 1,
     "lineWidth": 1,
     "lineCap": "butt",
@@ -330,6 +332,12 @@ Ext.define('Ext.draw.engine.SvgContext', {
                 "stroke-opacity": this.strokeOpacity,
                 "style": "font: " + this.font
             });
+            if (this.lineDash.length) {
+                this.surface.setElementAttributes(element, {
+                    "stroke-dasharray": this.lineDash.join(','),
+                    "stroke-dashoffset": this.lineDashOffset
+                });
+            }
             if (tspan.dom.firstChild) {
                 tspan.dom.removeChild(tspan.dom.firstChild);
             }
@@ -466,6 +474,12 @@ Ext.define('Ext.draw.engine.SvgContext', {
                 "stroke-width": this.lineWidth,
                 "stroke-opacity": this.strokeOpacity * this.globalAlpha
             });
+            if (this.lineDash.length) {
+                this.surface.setElementAttributes(element, {
+                    "stroke-dasharray": this.lineDash.join(','),
+                    "stroke-dashoffset": this.lineDashOffset
+                });
+            }
         }
     },
 

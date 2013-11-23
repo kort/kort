@@ -30,12 +30,10 @@
 
 		&.x-item-pressed {
 			background-color: $list-item-pressed-color;
-			border-top: 1px solid $list-item-pressed-color;
 		}
 
 		&.x-item-selected.x-list-item-tpl {
 			background-color: $list-item-selected-color;
-			border-top: 1px solid $list-item-selected-color;
 			.x-list-disclosure {
 				background-color: transparent;
 			}
@@ -59,28 +57,6 @@
 		&.x-item-pressed.x-list-item-tpl:before, &.x-item-selected.x-list-item-tpl:before, &.x-list-footer-wrap.x-list-item-tpl:before{
 			border-bottom: solid 1px transparent;
 		}
-
-		&.x-list-header-wrap.x-list-item-tpl {
-			border-top: solid 1px $list-item-border-color;
-		}
-
-		&.x-list-footer-wrap.x-list-item-tpl {
-			border-bottom: solid 1px $list-item-border-color;
-		}
-
-		&:last-child {
-			border-bottom: solid 1px $list-item-border-color;
-		}
-	}
-}
-
-.x-list-grouped {
-	.x-list-item.x-list-header-wrap.x-list-item-tpl {
-		border-top: solid 1px transparent;
-	}
-
-	.x-list-item.x-list-footer-wrap.x-list-item-tpl {
-		border-bottom: solid 1px transparent;
 	}
 }
 

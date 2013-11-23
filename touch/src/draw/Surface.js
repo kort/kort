@@ -615,7 +615,6 @@ Ext.define('Ext.draw.Surface', {
 
             for (i = 0, ln = items.length; i < ln; i++) {
                 item = items[i];
-                item.applyTransformations();
                 if (false === me.renderSprite(item)) {
                     return;
                 }

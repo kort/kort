@@ -3080,22 +3080,29 @@ input[type="search"]::-webkit-search-cancel-button {
 .x-grid .x-grid-column.x-column-sorted-asc .x-innerhtml:after, .x-grid .x-grid-column.x-column-sorted-desc .x-innerhtml:after {
   position: absolute;
   width: 12px;
-  right: -16px;
   line-height: 64px;
   top: 0;
   height: 64px;
   font-family: 'Pictos';
   font-size: 12px;
 }
-/* line 49, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 50, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+.x-grid .x-grid-column.x-column-align-left .x-innerhtml:after, .x-grid .x-grid-column.x-column-align-center .x-innerhtml:after {
+  right: -16px;
+}
+/* line 54, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+.x-grid .x-grid-column.x-column-align-right .x-innerhtml:after {
+  left: -16px;
+}
+/* line 58, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-column.x-column-sorted-asc .x-innerhtml:after {
   content: "{";
 }
-/* line 52, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 61, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-column.x-column-sorted-desc .x-innerhtml:after {
   content: "}";
 }
-/* line 57, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 66, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-headergroup {
   display: inline-block;
   position: relative;
@@ -3103,7 +3110,7 @@ input[type="search"]::-webkit-search-cancel-button {
   height: 64px;
   padding-top: 32px;
 }
-/* line 64, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 73, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-headergroup .x-inner > .x-innerhtml {
   height: 32px;
   line-height: 28px;
@@ -3119,18 +3126,18 @@ input[type="search"]::-webkit-search-cancel-button {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-/* line 80, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 89, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-headergroup .x-grid-column {
   height: 32px !important;
   line-height: 27px !important;
   font-size: 0.7em;
 }
-/* line 87, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 96, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-headergroup .x-grid-column.x-column-sorted-asc .x-innerhtml:after, .x-grid .x-grid-headergroup .x-grid-column.x-column-sorted-desc .x-innerhtml:after {
   line-height: 27px;
   height: 27px;
 }
-/* line 95, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 104, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-row {
   position: absolute;
   left: 0;
@@ -3138,7 +3145,7 @@ input[type="search"]::-webkit-search-cancel-button {
   border-width: 0 0 1px 0;
   border-style: solid;
 }
-/* line 103, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 112, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-cell {
   display: inline-block;
   vertical-align: middle;
@@ -3148,26 +3155,26 @@ input[type="search"]::-webkit-search-cancel-button {
   overflow: hidden;
   border-width: 0 1px 0 0;
 }
-/* line 114, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 123, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-cell-align-center,
 .x-grid .x-grid-column-align-center {
   text-align: center;
 }
-/* line 119, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 128, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-cell-align-right,
 .x-grid .x-grid-column-align-right {
   text-align: right;
 }
-/* line 123, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 132, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions {
   border-width: 0 0 0 1px;
   border-style: solid;
 }
-/* line 127, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 136, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-list-item .x-innerhtml {
   padding: 0px !important;
 }
-/* line 131, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 140, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-column-options-header {
   height: 32px;
   line-height: 28px;
@@ -3177,7 +3184,7 @@ input[type="search"]::-webkit-search-cancel-button {
   overflow: hidden;
   padding-left: 10px;
 }
-/* line 144, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 153, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-column-options-sortablehandle,
 .x-grid .x-grid-viewoptions .x-column-options-visibleindicator,
 .x-grid .x-grid-viewoptions .x-column-options-folder,
@@ -3187,7 +3194,7 @@ input[type="search"]::-webkit-search-cancel-button {
   position: absolute;
   bottom: 0;
 }
-/* line 150, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 159, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-column-options-sortablehandle:after,
 .x-grid .x-grid-viewoptions .x-column-options-visibleindicator:after,
 .x-grid .x-grid-viewoptions .x-column-options-folder:after,
@@ -3204,49 +3211,49 @@ input[type="search"]::-webkit-search-cancel-button {
   content: "l";
   vertical-align: middle;
 }
-/* line 165, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 174, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-column-options-sortablehandle {
   left: 0;
 }
-/* line 167, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 176, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-column-options-sortablehandle:after {
   line-height: 54px;
 }
-/* line 171, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 180, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-column-options-visibleindicator {
   right: 0;
 }
-/* line 173, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 182, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-column-options-visibleindicator:after {
   font-size: 30px;
   line-height: 54px;
   content: "E";
 }
-/* line 181, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 190, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-column-options-folder,
 .x-grid .x-grid-viewoptions .x-column-options-leaf {
   width: 30px;
   left: 40px;
 }
-/* line 185, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 194, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-column-options-folder:after,
 .x-grid .x-grid-viewoptions .x-column-options-leaf:after {
   line-height: 52px;
   content: "o";
 }
-/* line 191, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 200, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-column-options-leaf:after {
   content: "F";
 }
-/* line 195, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 204, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-list-item.x-item-selected.x-list-item-tpl {
   background: transparent;
 }
-/* line 197, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 206, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-list-item.x-item-selected.x-list-item-tpl .x-innerhtml {
   background: transparent;
 }
-/* line 202, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 211, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-column-options-text {
   display: block;
   height: 30px;
@@ -3255,16 +3262,16 @@ input[type="search"]::-webkit-search-cancel-button {
   vertical-align: middle;
   line-height: 28px;
 }
-/* line 212, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 221, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-columnoptions {
   border-width: 0 0 1px;
 }
-/* line 216, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 225, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-multiselection-column {
   position: relative;
   padding: 0;
 }
-/* line 220, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 229, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-multiselection-column:after {
   position: absolute;
   top: 0;
@@ -3277,12 +3284,12 @@ input[type="search"]::-webkit-search-cancel-button {
   text-align: center;
   content: "2";
 }
-/* line 234, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 243, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-multiselection-cell {
   position: relative;
   padding: 0;
 }
-/* line 238, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 247, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-multiselection-cell:after {
   position: absolute;
   top: 0;
@@ -3295,20 +3302,20 @@ input[type="search"]::-webkit-search-cancel-button {
   text-align: center;
   content: "_";
 }
-/* line 252, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 261, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-item-selected .x-grid-multiselection-cell:after {
   content: "3";
 }
-/* line 257, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 266, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-pagingtoolbar > .x-body {
   padding: 0 30px 0 50px;
 }
-/* line 262, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 271, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-pagingtoolbar-currentpage {
   position: relative;
   height: 22px;
 }
-/* line 266, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 275, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-pagingtoolbar-currentpage span {
   position: absolute;
   right: 0;
@@ -3316,20 +3323,20 @@ input[type="search"]::-webkit-search-cancel-button {
   line-height: 22px;
   height: 22px;
 }
-/* line 275, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 284, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-summaryrow {
   height: 32px;
   font-size: 0.8em;
   position: relative;
 }
-/* line 280, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 289, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-summaryrow .x-grid-cell {
   height: 32px;
   line-height: 30px;
   border-width: 0 0 1px;
   border-style: solid;
 }
-/* line 288, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 297, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-summaryrow .x-grid-multiselection-cell:after {
   content: '';
 }
@@ -3356,58 +3363,67 @@ input[type="search"]::-webkit-search-cancel-button {
   position: absolute;
   min-width: 100%;
   min-height: 100%;
-  width: auto !important;
   height: auto !important;
+  width: auto !important;
+  		/*
+  		&.x-scroll-scroller-vertical {
+  			height: auto !important;
+  		}
+  
+  		&.x-scroll-scroller-horizontal {
+  			width: auto !important;
+  		}
+  		*/
 }
 
-/* line 25, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 36, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-stretcher {
   position: absolute;
   visibility: hidden;
 }
 
-/* line 30, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 41, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-grid-wrapper {
   position: absolute;
   width: 100%;
   height: 100%;
 }
 
-/* line 36, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 47, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-grid {
   display: table;
   width: 100%;
   height: 100%;
 }
-/* line 41, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 52, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-grid > * {
   display: table-row;
 }
-/* line 45, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 56, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-grid > * > * {
   display: table-cell;
 }
-/* line 49, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 60, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-grid > :first-child > :first-child {
   width: 100%;
   height: 100%;
 }
-/* line 54, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 65, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-grid > :first-child > :nth-child(2) {
   padding: 3px 3px 0 0;
 }
-/* line 58, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 69, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-grid > :nth-child(2) > :first-child {
   padding: 0 0 3px 3px;
 }
 
-/* line 63, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 74, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar {
   position: relative;
   overflow: hidden;
 }
 
-/* line 68, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 79, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-stretcher {
   position: absolute;
   visibility: hidden;
@@ -3415,77 +3431,77 @@ input[type="search"]::-webkit-search-cancel-button {
   height: 100%;
 }
 
-/* line 75, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 86, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-x {
   width: 100%;
 }
-/* line 78, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 89, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-x > .x-scroll-bar-stretcher {
   width: 300%;
 }
-/* line 82, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 93, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-x.active {
   height: 6px;
 }
 
-/* line 87, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 98, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-y {
   height: 100%;
 }
-/* line 90, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 101, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-y > .x-scroll-bar-stretcher {
   height: 300%;
 }
-/* line 94, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 105, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-y.active {
   width: 6px;
 }
 
-/* line 99, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 110, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator {
   background: #333;
   position: absolute;
   z-index: 3;
 }
 
-/* line 105, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 116, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator-x {
   height: 100%;
 }
 
-/* line 109, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 120, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator-y {
   width: 100%;
 }
 
-/* line 113, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 124, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded {
   background: none;
 }
-/* line 116, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 127, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded > * {
   position: absolute;
   background-color: #333;
 }
-/* line 121, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 132, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded > :nth-child(2) {
   -webkit-transform-origin: 0% 0%;
   background: none;
   content: url(data:image/bmp;base64,Qk08AAAAAAAAADYAAAAoAAAAAQAAAAEAAAABABAAAAAAAAYAAAASCwAAEgsAAAAAAAAAAAAAxhgAAAAA);
 }
-/* line 128, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 139, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded.x-scroll-indicator-light > * {
   background-color: #eee;
 }
-/* line 132, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 143, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded.x-scroll-indicator-light > :nth-child(2) {
   content: url(data:image/bmp;base64,Qk08AAAAAAAAADYAAAAoAAAAAQAAAAEAAAABABAAAAAAAAYAAAASCwAAEgsAAAAAAAAAAAAAvXcAAAAA);
 }
-/* line 138, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 149, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded.x-scroll-indicator-y > * {
   width: 100%;
 }
-/* line 142, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 153, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded.x-scroll-indicator-y > :first-child {
   height: 3px;
   -moz-border-radius-topleft: 3px;
@@ -3495,11 +3511,11 @@ input[type="search"]::-webkit-search-cancel-button {
   -webkit-border-top-right-radius: 3px;
   border-top-right-radius: 3px;
 }
-/* line 147, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 158, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded.x-scroll-indicator-y > :nth-child(2) {
   height: 1px;
 }
-/* line 151, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 162, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded.x-scroll-indicator-y > :last-child {
   height: 3px;
   -moz-border-radius-bottomleft: 3px;
@@ -3509,11 +3525,11 @@ input[type="search"]::-webkit-search-cancel-button {
   -webkit-border-bottom-right-radius: 3px;
   border-bottom-right-radius: 3px;
 }
-/* line 158, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 169, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded.x-scroll-indicator-x > * {
   height: 100%;
 }
-/* line 162, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 173, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded.x-scroll-indicator-x > :first-child {
   width: 3px;
   -moz-border-radius-topleft: 3px;
@@ -3523,11 +3539,11 @@ input[type="search"]::-webkit-search-cancel-button {
   -webkit-border-bottom-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
-/* line 167, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 178, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded.x-scroll-indicator-x > :nth-child(2) {
   width: 1px;
 }
-/* line 171, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 182, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded.x-scroll-indicator-x > :last-child {
   width: 3px;
   -moz-border-radius-topright: 3px;
@@ -3538,18 +3554,18 @@ input[type="search"]::-webkit-search-cancel-button {
   border-bottom-right-radius: 3px;
 }
 
-/* line 180, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 191, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-list-light .x-scroll-indicator,
 .x-dataview-light .x-scroll-indicator {
   background: #fff;
 }
 
-/* line 186, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 197, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-ios .x-scroll-scroller {
   -webkit-transform: translate3d(0, 0, 0);
 }
 
-/* line 191, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 202, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-ie .x-scroll-bar-y {
   position: absolute;
   margin-left: -5px;

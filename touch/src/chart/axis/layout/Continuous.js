@@ -4,7 +4,7 @@
  * 
  * Processor for axis data that can be interpolated.
  */
-Ext.define("Ext.chart.axis.layout.Continuous", {
+Ext.define('Ext.chart.axis.layout.Continuous', {
     extend: 'Ext.chart.axis.layout.Layout',
     alias: 'axisLayout.continuous',
     config: {

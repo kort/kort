@@ -311,7 +311,17 @@ Ext.define('Ext.form.Panel', {
          * @cfg {Boolean} multipartDetection
          * If this is enabled the form will automatically detect the need to use 'multipart/form-data' during submission.
          */
-        multipartDetection: true
+        multipartDetection: true,
+
+        /**
+         * @cfg {Boolean} enableSubmissionForm
+         * The submission form is generated but never added to the dom. It is a submittable version of your form panel, allowing for fields
+         * that are not simple textfields to be properly submitted to servers. It will also send values that are easier to parse
+         * with server side code.
+         *
+         * If this is false we will attempt to subject the raw form inside the form panel.
+         */
+        enableSubmissionForm: true
     },
 
     getElementConfig: function() {
@@ -507,8 +517,12 @@ Ext.define('Ext.form.Panel', {
      */
     submit: function(options, e) {
         var me = this,
-            form = me.element.dom || {},
-            formValues;
+            formValues = me.getValues(me.getStandardSubmit() || !options.submitDisabled),
+            form = me.element.dom || {};
+
+        if(this.getEnableSubmissionForm()) {
+            form = this.createSubmissionForm(form, formValues);
+        }
 
         options = Ext.apply({
             url : me.getUrl() || form.action,
@@ -523,15 +537,48 @@ Ext.define('Ext.form.Panel', {
             failure : null
         }, options || {});
 
-        formValues = me.getValues(me.getStandardSubmit() || !options.submitDisabled);
-
         return me.fireAction('beforesubmit', [me, formValues, options, e], 'doBeforeSubmit');
     },
 
-    doBeforeSubmit: function(me, formValues, options) {
-        var form = me.element.dom || {};
+    createSubmissionForm: function(form, values) {
+        var fields = this.getFields(),
+            name, input, field, fileinputElement, inputComponent;
 
-        var multipartDetected = false;
+        if(form.nodeType === 1) {
+            form = form.cloneNode(false);
+
+            for (name in values) {
+                input = document.createElement("input");
+                input.setAttribute("type", "text");
+                input.setAttribute("name", name);
+                input.setAttribute("value", values[name]);
+                form.appendChild(input);
+            }
+        }
+
+        for (name in fields) {
+            if (fields.hasOwnProperty(name)) {
+                field = fields[name];
+                if(field.isFile) {
+                    if(!form.$fileswap) form.$fileswap = [];
+
+                    inputComponent = field.getComponent().input;
+                    fileinputElement = inputComponent.dom;
+                    input = fileinputElement.cloneNode(true);
+                    fileinputElement.parentNode.insertBefore(input, fileinputElement.nextSibling);
+                    form.appendChild(fileinputElement);
+                    form.$fileswap.push({original: fileinputElement, placeholder: input});
+                }
+            }
+        }
+
+        return form;
+    },
+
+    doBeforeSubmit: function(me, formValues, options) {
+        var form = options.form || {},
+            multipartDetected = false;
+
         if(this.getMultipartDetection() === true) {
             this.getFieldsAsArray().forEach(function(field) {
                 if(field.isFile === true) {
@@ -648,10 +695,22 @@ Ext.define('Ext.form.Panel', {
                     options.headers || {}
                 );
                 request.callback = function(callbackOptions, success, response) {
-                    var me = this,
-                        responseText = response.responseText,
+                    var responseText = response.responseText,
                         responseXML = response.responseXML,
                         statusResult = Ext.Ajax.parseStatus(response.status, response);
+
+                    if(form.$fileswap) {
+                        var original, placeholder;
+                        Ext.each(form.$fileswap, function(item) {
+                            original = item.original;
+                            placeholder = item.placeholder;
+
+                            placeholder.parentNode.insertBefore(original, placeholder.nextSibling);
+                            placeholder.parentNode.removeChild(placeholder);
+                        });
+                        form.$fileswap = null;
+                        delete form.$fileswap;
+                    }
 
                     me.setMasked(false);
 
@@ -1005,7 +1064,7 @@ Ext.define('Ext.form.Panel', {
         // Function which you give a field and a name, and it will add it into the values
         // object accordingly
         addValue = function(field, name) {
-            if (!all && (!name || name === 'null')) {
+            if (!all && (!name || name === 'null') || field.isFile) {
                 return;
             }
 

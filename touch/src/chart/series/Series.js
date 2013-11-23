@@ -549,7 +549,7 @@ Ext.define('Ext.chart.series.Series', {
             i, x;
         for (i = 0; i < length; i++) {
             x = items[i].data[field];
-            data[i] = x ? coord(x, field, i, items) : 0;
+            data[i] = !Ext.isEmpty(x) ? coord(x, field, i, items) : 0;
         }
         return data;
     },

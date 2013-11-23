@@ -31,7 +31,8 @@ Ext.define('Ext.field.File', {
 
     config : {
         component: {
-            xtype : 'fileinput'
+            xtype : 'fileinput',
+            fastFocus: false
         }
     },
 

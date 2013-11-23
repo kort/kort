@@ -76,7 +76,7 @@ Ext.define('Ext.chart.series.sprite.Line', {
         plain.height = ymax - ymin;
     },
 
-    drawStroke: function (surface, ctx, list, xAxis) {
+    drawStroke: function (surface, ctx, start, end, list, xAxis) {
         var attr = this.attr,
             matrix = attr.matrix,
             xx = matrix.getXX(),
@@ -85,15 +85,26 @@ Ext.define('Ext.chart.series.sprite.Line', {
             dy = matrix.getDY(),
             smooth = attr.smooth,
             step = attr.step,
-            start = list[2],
+            scale = Math.pow(2, power(attr.dataX.length, end)),
             smoothX = this.smoothX,
             smoothY = this.smoothY,
             i, j, lineConfig, changes,
             cx1, cy1, cx2, cy2, x, y, x0, y0, saveOpacity;
+
+        function power(count, end) {
+            var power = 0,
+                n = count;
+            while (n < end) {
+                power++;
+                n += count >> power;
+            }
+            return power > 0 ? power - 1 : power;
+        }
+
         ctx.beginPath();
         if (smooth && smoothX && smoothY) {
             ctx.moveTo(smoothX[start * 3] * xx + dx, smoothY[start * 3] * yy + dy);
-            for (i = 0, j = start * 3 + 1; i < list.length - 3; i += 3, j += 3) {
+            for (i = 0, j = start * 3 + 1; i < list.length - 3; i += 3, j += 3 * scale) {
                 cx1 = smoothX[j] * xx + dx;
                 cy1 = smoothY[j] * yy + dy;
                 cx2 = smoothX[j + 1] * xx + dx;
@@ -338,7 +349,7 @@ Ext.define('Ext.chart.series.sprite.Line', {
                     me.drawLabel(labels[index], x, y, index, region);
                 }
             }
-            me.drawStroke(surface, ctx, list, region[1] - pixel);
+            me.drawStroke(surface, ctx, start, end, list, region[1] - pixel);
             if (!attr.renderer) {
                 var lastPointX = dataX[dataX.length - 1] * xx + dx + pixel,
                     lastPointY = dataY[dataY.length - 1] * yy + dy,
@@ -362,7 +373,7 @@ Ext.define('Ext.chart.series.sprite.Line', {
                 if (attr.transformFillStroke) {
                     attr.inverseMatrix.toContext(ctx);
                 }
-                me.drawStroke(surface, ctx, list, region[1] - pixel);
+                me.drawStroke(surface, ctx, start, end, list, region[1] - pixel);
                 if (attr.transformFillStroke) {
                     attr.matrix.toContext(ctx);
                 }

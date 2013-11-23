@@ -24,6 +24,9 @@ Ext.define('Ext.env.Feature', {
             };
         }
 
+        Ext.theme.is = {};
+        Ext.theme.is[Ext.theme.name] = true;
+
         Ext.onDocumentReady(function() {
             this.registerTest({
                 ProperHBoxStretching: function() {

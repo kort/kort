@@ -105,7 +105,7 @@ Ext.define('Ext.chart.series.sprite.PieSlice', {
             surfaceMatrix = me.surfaceMatrix,
             labelCfg = me.labelCfg || (me.labelCfg = {}),
             labelTpl = me.getBoundMarker('labels')[0].getTemplate(),
-            labelBox, x, y;
+            labelBox, x, y, changes;
 
         surfaceMatrix.appendMatrix(attr.matrix);
 

@@ -140,7 +140,7 @@
  *                 // iterate over the OrderItems for each Order
  *                 order.orderItems().each(function(orderItem) {
  *                     // We know that the Product data is already loaded, so we can use the
- *                     // synchronous getProduct() method. Usually, we would use the 
+ *                     // synchronous getProduct() method. Usually, we would use the
  *                     // asynchronous version (see Ext.data.association.BelongsTo).
  *                     var product = orderItem.getProduct();
  *                     output.push(orderItem.get("quantity") + " orders of " + product.get("name"));

@@ -34,16 +34,14 @@ Ext.define('Ext.chart.series.sprite.Bar', {
                 /**
                  * @cfg {Number} [inGroupGapWidth=3] The gap between grouped bars.
                  */
-                inGroupGapWidth: 'number',
-                renderer: 'default'
+                inGroupGapWidth: 'number'
             },
             defaults: {
                 minBarWidth: 2,
                 maxBarWidth: 100,
                 minGapWidth: 5,
                 inGroupGapWidth: 3,
-                radius: 0,
-                renderer: null
+                radius: 0
             }
         }
     },

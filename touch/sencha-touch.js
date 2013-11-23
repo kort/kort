@@ -16,7 +16,7 @@ requirements will be met: http://www.gnu.org/copyleft/gpl.html.
 If you are unsure which license is appropriate for your use, please contact the sales department
 at http://www.sencha.com/contact.
 
-Build date: 2013-09-24 16:24:22 (5e4fc2d806d7b959eddaf31a21c4d4837b133e07)
+Build date: 2013-11-08 13:58:42 (d989f4377b0a56f9f540fd415741d1f2db1c7977)
 */
 //@tag foundation,core
 //@define Ext
@@ -9033,7 +9033,7 @@ var noArgs = [],
  *
  * [getting_started]: #!/guide/getting_started
  */
-Ext.setVersion('touch', '2.3.0');
+Ext.setVersion('touch', '2.3.1');
 
 Ext.apply(Ext, {
     /**
@@ -11123,6 +11123,9 @@ Ext.define('Ext.env.Feature', {
             };
         }
 
+        Ext.theme.is = {};
+        Ext.theme.is[Ext.theme.name] = true;
+
         Ext.onDocumentReady(function() {
             this.registerTest({
                 ProperHBoxStretching: function() {
@@ -12454,6 +12457,35 @@ Ext.define('Ext.dom.Element', {
                 }
             }
             return data.substr(0, data.length - 1);
+        },
+
+        /**
+         * Serializes a DOM element and its children recursively into a string.
+         * @param {Object} node DOM element to serialize.
+         * @returns {String}
+         */
+        serializeNode: function (node) {
+            var result = '',
+                i, n, attr, child;
+            if (node.nodeType === document.TEXT_NODE) {
+                return node.nodeValue;
+            }
+            result += '<' + node.nodeName;
+            if (node.attributes.length) {
+                for (i = 0, n = node.attributes.length; i < n; i++) {
+                    attr = node.attributes[i];
+                    result += ' ' + attr.name + '="' + attr.value + '"';
+                }
+            }
+            result += '>';
+            if (node.childNodes && node.childNodes.length) {
+                for (i = 0, n = node.childNodes.length; i < n; i++) {
+                    child = node.childNodes[i];
+                    result += this.serializeNode(child);
+                }
+            }
+            result += '</' + node.nodeName + '>';
+            return result;
         }
     },
 
@@ -13520,18 +13552,19 @@ Ext.dom.Element.override({
      */
     getPageBox: function(getRegion) {
         var me = this,
-            el = me.dom,
-            w = el.offsetWidth,
+            el = me.dom;
+
+        if (!el) {
+            return new Ext.util.Region();
+        }
+
+        var w = el.offsetWidth,
             h = el.offsetHeight,
             xy = me.getXY(),
             t = xy[1],
             r = xy[0] + w,
             b = xy[1] + h,
             l = xy[0];
-
-        if (!el) {
-            return new Ext.util.Region();
-        }
 
         if (getRegion) {
             return new Ext.util.Region(t, r, b, l);
@@ -15151,6 +15184,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.chart.grid.VerticalGrid": [],
   "Ext.chart.interactions.Abstract": [],
   "Ext.chart.interactions.CrossZoom": [],
+  "Ext.chart.interactions.Crosshair": [],
   "Ext.chart.interactions.ItemHighlight": [],
   "Ext.chart.interactions.ItemInfo": [],
   "Ext.chart.interactions.PanZoom": [],
@@ -15172,7 +15206,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.chart.series.Scatter": [],
   "Ext.chart.series.Series": [],
   "Ext.chart.series.StackedCartesian": [],
-  "Ext.chart.series.sprite.AbstractRadial": [],
   "Ext.chart.series.sprite.Aggregative": [],
   "Ext.chart.series.sprite.Area": [],
   "Ext.chart.series.sprite.Bar": [],
@@ -15479,6 +15512,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.draw.engine.Svg": [],
   "Ext.draw.engine.SvgContext": [],
   "Ext.draw.engine.SvgContext.Gradient": [],
+  "Ext.draw.engine.SvgExporter": [],
   "Ext.draw.gradient.Gradient": [],
   "Ext.draw.gradient.Linear": [],
   "Ext.draw.gradient.Radial": [],
@@ -15494,8 +15528,10 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.draw.sprite.Composite": [],
   "Ext.draw.sprite.Ellipse": [],
   "Ext.draw.sprite.EllipticalArc": [],
+  "Ext.draw.sprite.GradientDefinition": [],
   "Ext.draw.sprite.Image": [],
   "Ext.draw.sprite.Instancing": [],
+  "Ext.draw.sprite.Line": [],
   "Ext.draw.sprite.Path": [],
   "Ext.draw.sprite.Rect": [],
   "Ext.draw.sprite.Sector": [],
@@ -15726,9 +15762,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.util.Grouper": [],
   "Ext.util.HashMap": [],
   "Ext.util.Inflector": [],
-  "Ext.util.InputBlocker": [
-    "InputBlocker"
-  ],
+  "Ext.util.InputBlocker": [],
   "Ext.util.LineSegment": [],
   "Ext.util.MixedCollection": [],
   "Ext.util.Offset": [],
@@ -15957,6 +15991,9 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.chart.interactions.CrossZoom": [
     "interaction.crosszoom"
   ],
+  "Ext.chart.interactions.Crosshair": [
+    "interaction.crosshair"
+  ],
   "Ext.chart.interactions.ItemHighlight": [
     "interaction.itemhighlight"
   ],
@@ -16006,7 +16043,6 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "Ext.chart.series.Series": [],
   "Ext.chart.series.StackedCartesian": [],
-  "Ext.chart.series.sprite.AbstractRadial": [],
   "Ext.chart.series.sprite.Aggregative": [],
   "Ext.chart.series.sprite.Area": [
     "sprite.areaSeries"
@@ -16315,6 +16351,7 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.draw.engine.Svg": [],
   "Ext.draw.engine.SvgContext": [],
   "Ext.draw.engine.SvgContext.Gradient": [],
+  "Ext.draw.engine.SvgExporter": [],
   "Ext.draw.gradient.Gradient": [],
   "Ext.draw.gradient.Linear": [],
   "Ext.draw.gradient.Radial": [],
@@ -16346,11 +16383,15 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.draw.sprite.EllipticalArc": [
     "sprite.ellipticalArc"
   ],
+  "Ext.draw.sprite.GradientDefinition": [],
   "Ext.draw.sprite.Image": [
     "sprite.image"
   ],
   "Ext.draw.sprite.Instancing": [
     "sprite.instancing"
+  ],
+  "Ext.draw.sprite.Line": [
+    "sprite.line"
   ],
   "Ext.draw.sprite.Path": [
     "sprite.path"

@@ -581,25 +581,28 @@ Ext.define('Ext.chart.axis.sprite.Axis', {
     renderAxisLine: function (surface, ctx, layout, clipRegion) {
         var me = this,
             attr = me.attr,
-            halfWidth = attr.lineWidth * 0.5,
-            docked = attr.position;
+            halfLineWidth = attr.lineWidth * 0.5,
+            docked = attr.position,
+            position;
         if (attr.axisLine) {
             switch (docked) {
                 case 'left':
-                    ctx.moveTo(clipRegion[2] - halfWidth, -attr.endGap);
-                    ctx.lineTo(clipRegion[2] - halfWidth, attr.length + attr.startGap);
+                    position = surface.roundPixel(clipRegion[2]) - halfLineWidth;
+                    ctx.moveTo(position, -attr.endGap);
+                    ctx.lineTo(position, attr.length + attr.startGap);
                     break;
                 case 'right':
-                    ctx.moveTo(halfWidth, -attr.endGap);
-                    ctx.lineTo(halfWidth, attr.length + attr.startGap);
+                    ctx.moveTo(halfLineWidth, -attr.endGap);
+                    ctx.lineTo(halfLineWidth, attr.length + attr.startGap);
                     break;
                 case 'bottom':
-                    ctx.moveTo(-attr.startGap, halfWidth);
-                    ctx.lineTo(attr.length + attr.endGap, halfWidth);
+                    ctx.moveTo(-attr.startGap, halfLineWidth);
+                    ctx.lineTo(attr.length + attr.endGap, halfLineWidth);
                     break;
                 case 'top':
-                    ctx.moveTo(-attr.startGap, clipRegion[3] - halfWidth);
-                    ctx.lineTo(attr.length + attr.endGap, clipRegion[3] - halfWidth);
+                    position = surface.roundPixel(clipRegion[3]) - halfLineWidth;
+                    ctx.moveTo(-attr.startGap, position);
+                    ctx.lineTo(attr.length + attr.endGap, position);
                     break;
                 case 'angular':
                     ctx.moveTo(attr.centerX + attr.length, attr.centerY);

@@ -4,7 +4,7 @@
  * 
  * Numeric data type.
  */
-Ext.define("Ext.chart.axis.segmenter.Numeric", {
+Ext.define('Ext.chart.axis.segmenter.Numeric', {
     extend: 'Ext.chart.axis.segmenter.Segmenter',
     alias: 'segmenter.numeric',
 

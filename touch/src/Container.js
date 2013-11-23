@@ -1279,6 +1279,8 @@ Ext.define('Ext.Container', {
         if (modal) {
             modal.setHidden(false);
         }
+
+        return this;
     },
 
     hide:function(){
@@ -1289,6 +1291,8 @@ Ext.define('Ext.Container', {
         if (modal) {
             modal.setHidden(true);
         }
+
+        return this;
     },
 
     doSetHidden: function(hidden) {

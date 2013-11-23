@@ -63,7 +63,7 @@ Ext.define('Ext.data.proxy.WebStorage', {
         if (!this.getId()) {
             this.setId(model.modelName);
         }
-        
+
         this.callParent(arguments);
     },
 
@@ -350,6 +350,7 @@ Ext.define('Ext.data.proxy.WebStorage', {
             me.setIds(ids);
         }
 
+        delete this.cache[id];
         me.getStorageObject().removeItem(me.getRecordKey(id));
     },
 

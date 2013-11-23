@@ -11,12 +11,7 @@
         .x-dock-horizontal {
             border-top: 0;
         }
-
-        .x-list-item-body,
-        &.x-list-item-tpl .x-innerhtml {
-            padding: 1px 5px;
-        }
-
+			
         &.x-item-selected {
             .x-dock-horizontal,
             &.x-list-item-tpl .x-innerhtml {

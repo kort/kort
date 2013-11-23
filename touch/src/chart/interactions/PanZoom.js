@@ -102,9 +102,10 @@ Ext.define('Ext.chart.interactions.PanZoom', {
          * @cfg {Object/Array} axes
          * Specifies which axes should be made navigable. The config value can take the following formats:
          *
-         * - An Object whose keys correspond to the {@link Ext.chart.axis.Axis#position position} of each
+         * - An Object with keys corresponding to the {@link Ext.chart.axis.Axis#position position} of each
          *   axis that should be made navigable. Each key's value can either be an Object with further
          *   configuration options for each axis or simply `true` for a default set of options.
+         *
          *       {
          *           type: 'panzoom',
          *           axes: {

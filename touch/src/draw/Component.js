@@ -47,7 +47,8 @@ Ext.define('Ext.draw.Component', {
     requires: [
         'Ext.draw.Surface',
         'Ext.draw.engine.Svg',
-        'Ext.draw.engine.Canvas'
+        'Ext.draw.engine.Canvas',
+        'Ext.draw.sprite.GradientDefinition'
     ],
     engine: 'Ext.draw.engine.Canvas',
     statics: {
@@ -87,27 +88,100 @@ Ext.define('Ext.draw.Component', {
 
         background: null,
 
-        sprites: null
+        sprites: null,
+
+        /**
+         * @cfg {Object[]} gradients
+         * Defines a set of gradients that can be used as color properties
+         * (fillStyle and strokeStyle, but not shadowColor) in sprites.
+         * The gradients array is an array of objects with the following properties:
+         * - **id** - string - The unique name of the gradient.
+         * - **type** - string, optional - The type of the gradient. Available types are: 'linear', 'radial'. Defaults to 'linear'.
+         * - **angle** - number, optional - The angle of the gradient in degrees.
+         * - **stops** - array - An array of objects with 'color' and 'offset' properties, where 'offset' is a real number from 0 to 1.
+         *
+         * For example:
+         *
+         *     gradients: [{
+         *         id: 'gradientId1',
+         *         type: 'linear',
+         *         angle: 45,
+         *         stops: [{
+         *             offset: 0,
+         *             color: 'red'
+         *         }, {
+         *            offset: 1,
+         *            color: 'yellow'
+         *         }]
+         *     }, {
+         *        id: 'gradientId2',
+         *        type: 'radial',
+         *        stops: [{
+         *            offset: 0,
+         *            color: '#555',
+         *        }, {
+         *            offset: 1,
+         *            color: '#ddd',
+         *        }]
+         *     }]
+         *
+         * Then the sprites can use 'gradientId1' and 'gradientId2' by setting the color attributes to those ids, for example:
+         *
+         *     sprite.setAttributes({
+         *         fillStyle: 'url(#gradientId1)',
+         *         strokeStyle: 'url(#gradientId2)'
+         *     });
+         */
+        gradients: []
     },
 
     constructor: function (config) {
         config = config || {};
-        // If we used `items` config, they are actually using `sprites`
-        // TODO: Do we really need to allow for 'items' in config?
-        // TODO: Ext.draw.Component's items are actually surfaces, not sprites.
-        if (config.items) {
-            config.sprites = config.items;
-            delete config.items;
-        }
         this.callSuper(arguments);
         this.frameCallbackId = Ext.draw.Animator.addFrameCallback('renderFrame', this);
+    },
+
+    applyGradients: function (gradients) {
+        var result = [],
+            i, n, gradient;
+        if (!Ext.isArray(gradients)) {
+            return result;
+        }
+        for (i = 0, n = gradients.length; i < n; i++) {
+            gradient = gradients[i];
+            if (!Ext.isObject(gradient)) {
+                continue;
+            }
+            // ExtJS only supported linear gradients, so we didn't have to specify their type
+            if (typeof gradient.type !== 'string') {
+                gradient.type = 'linear';
+            }
+            if (gradient.angle) {
+                gradient.degrees = gradient.angle;
+                delete gradient.angle;
+            }
+            // Convert ExtJS stops object to Touch stops array
+            if (Ext.isObject(gradient.stops)) {
+                gradient.stops = (function (stops) {
+                    var result = [], stop;
+                    for (offset in stops) {
+                        stop = stops[offset];
+                        stop.offset = offset / 100;
+                        result.push(stop);
+                    }
+                    return result;
+                })(gradient.stops);
+            }
+            result.push(gradient);
+        }
+        Ext.draw.sprite.GradientDefinition.add(result);
+        return result;
     },
 
     initialize: function () {
         var me = this;
         me.callSuper();
         me.element.on('resize', 'onResize', this);
-
     },
 
     applySprites: function (sprites) {

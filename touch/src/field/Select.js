@@ -172,6 +172,10 @@ Ext.define('Ext.field.Select', {
         {
             theme: ['Windows'],
             pickerSlotAlign: 'left'
+        },
+        {
+            theme: ['Tizen'],
+            usePicker: false
         }
     ],
 
@@ -193,7 +197,7 @@ Ext.define('Ext.field.Select', {
             component.input.dom.disabled = true;
         }
 
-        if (Ext.theme.name === "Blackberry") {
+        if (Ext.theme.is.Blackberry) {
             this.label.on({
                 scope: me,
                 tap: "onFocus"
@@ -202,7 +206,7 @@ Ext.define('Ext.field.Select', {
     },
 
     getElementConfig: function() {
-        if (Ext.theme.name === "Blackberry") {
+        if (Ext.theme.is.Blackberry) {
                 var prefix = Ext.baseCSSPrefix;
 
                 return {
@@ -581,7 +585,7 @@ Ext.define('Ext.field.Select', {
 
     // @private
     updateLabelWidth: function() {
-        if (Ext.theme.name === "Blackberry") {
+        if (Ext.theme.is.Blackberry) {
             return;
         } else {
             this.callParent(arguments);
@@ -590,7 +594,7 @@ Ext.define('Ext.field.Select', {
 
     // @private
     updateLabelAlign: function() {
-        if (Ext.theme.name === "Blackberry") {
+        if (Ext.theme.is.Blackberry) {
             return;
         } else {
             this.callParent(arguments);

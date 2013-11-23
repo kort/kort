@@ -32,7 +32,7 @@
  *
  * [getting_started]: #!/guide/getting_started
  */
-Ext.setVersion('touch', '2.3.0');
+Ext.setVersion('touch', '2.3.1');
 
 Ext.apply(Ext, {
     /**

@@ -164,7 +164,7 @@ Ext.define('Ext.TitleBar', {
     },
 
     platformConfig: [{
-        theme: ['Blackberry'],
+        theme: ['Blackberry', 'Tizen'],
         titleAlign: 'left'
     }, {
         theme: ['Cupertino'],
@@ -332,18 +332,24 @@ Ext.define('Ext.TitleBar', {
             }
         }
 
-        var spacerBox = this.spacer.renderElement.getPageBox(),
-            titleBox = titleElement.getPageBox(),
+        var spacerBox = this.spacer.renderElement.getPageBox();
+
+        if (Ext.browser.is.IE) {
+            titleElement.setWidth(spacerBox.width);
+        }
+
+        var titleBox = titleElement.getPageBox(),
             widthDiff = titleBox.width - spacerBox.width,
             titleLeft = titleBox.left,
             titleRight = titleBox.right,
             halfWidthDiff, leftDiff, rightDiff;
 
+
         if (widthDiff > 0) {
-            titleElement.setWidth(spacerBox.width);
             halfWidthDiff = widthDiff / 2;
             titleLeft += halfWidthDiff;
             titleRight -= halfWidthDiff;
+            titleElement.setWidth(spacerBox.width);
         }
 
         leftDiff = spacerBox.left - titleLeft;
