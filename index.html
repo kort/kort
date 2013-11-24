@@ -31,6 +31,9 @@
                 supportedBrowsersLen = supportedBrowsers.length,
                 i;
 
+            if(!Ext.browser) {
+                return true;
+            }
             for(i = 0; i < supportedBrowsersLen; i++) {
                 if(Ext.browser.is(supportedBrowsers[i])) {
                     return true;

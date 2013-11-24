@@ -3,6 +3,9 @@
  */
 Ext.define('Kort.store.UserLocal', {
     extend: 'Ext.data.Store',
+    requires: [
+        'Ext.data.proxy.LocalStorage'
+    ],
 
 	config: {
 		model: 'Kort.model.UserLocal',
