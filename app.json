@@ -48,19 +48,24 @@
             "x-bootstrap": true
         },
         {
-            "path": "lib/Leaflet-0.7/dist/leaflet-src.js"
+            "path": "lib/Leaflet-0.7/dist/leaflet-src.js",
+            "update": "full"
         },
         {
-            "path": "lib/Leaflet-0.7/dist/leaflet-osm.js"
+            "path": "lib/Leaflet-0.7/dist/leaflet-osm.js",
+            "update": "full"
         },
         {
-            "path": "lib/kort-libs/UrlLib.js"
+            "path": "lib/kort-libs/UrlLib.js",
+            "update": "full"
         },
         {
-            "path": "lib/kort-libs/Math.js"
+            "path": "lib/kort-libs/Math.js",
+            "update": "full"
         },
         {
             "path": "app.js",
+            "update": "full",
             "bundle": true  /* Indicates that all class dependencies are concatenated into this file when build */
         }
     ],
