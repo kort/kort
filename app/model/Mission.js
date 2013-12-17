@@ -22,7 +22,7 @@ Ext.define('Kort.model.Mission', {
             { name: 'promo_id', type: 'int' },
             { name: 'extra_coins', type: 'int' },
             { name: 'state', convert:function(v, record) {
-                return (record.data.promo_id && record.data.extra_coins!=0) ? Kort.util.Config.getMapMarkerState().missionPromotion : Kort.util.Config.getMapMarkerState().mission;
+                return (record.data.promo_id && record.data.extra_coins !== 0) ? Kort.util.Config.getMapMarkerState().missionPromotion : Kort.util.Config.getMapMarkerState().mission;
             }},
             { name: 'inOperationalRange', type: 'boolean', defaultValue: true}
         ]

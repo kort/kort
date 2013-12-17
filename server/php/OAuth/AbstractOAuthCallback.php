@@ -43,21 +43,21 @@ abstract class AbstractOAuthCallback
      *
      * @return array The OAuth user infos
      */
-    abstract public function getOAuthUser();
+    abstract public function getOauthUser();
 
     /**
      * Returns an identifier for this OAuth user.
      *
      * @return mixed Identifier for this OAuth user
      */
-    abstract protected function getOAuthUserId();
+    abstract protected function getOauthUserId();
 
     /**
      * The name of the OAuth provider.
      *
      * @return string Name of the OAuth provider
      */
-    abstract public function getOAuthProvider();
+    abstract public function getOauthProvider();
     
     /**
      * The URL of the user's picture (avatar).
@@ -75,9 +75,9 @@ abstract class AbstractOAuthCallback
      */
     public function getUser()
     {
-        $user = $this->getOAuthUser();
-        $user['oauth_provider'] = $this->getOAuthProvider();
-        $user['oauth_user_id'] = $this->getOAuthUserId();
+        $user = $this->getOauthUser();
+        $user['oauth_provider'] = $this->getOauthProvider();
+        $user['oauth_user_id'] = $this->getOauthUserId();
         $user['pic_url'] = $this->getPictureUrl();
         return $user;
     }
@@ -90,7 +90,7 @@ abstract class AbstractOAuthCallback
     protected function getApplicationUser()
     {
         $userGetHandler = new UserGetHandler();
-        $userDataJson = $userGetHandler->getUserByOAuthUserId($this->getOAuthUserId());
+        $userDataJson = $userGetHandler->getUserByOauthUserId($this->getOauthUserId());
 
         return json_decode($userDataJson, true);
     }

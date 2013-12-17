@@ -136,6 +136,8 @@ Ext.application({
         xclass: 'Kort.plugin.QueryRouter'
     },
 
+    statusBarStyle: 'black',
+
     icon: './resources/images/kort-icon.png',
 
     startupImage: {

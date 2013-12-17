@@ -96,7 +96,7 @@ class FacebookOAuth extends AbstractOAuthCallback
      *
      * @return array The current user array
      */
-    public function getOAuthUser()
+    public function getOauthUser()
     {
         if (empty($this->user)) {
             $graph_url = "https://graph.facebook.com/me?access_token=" . $this->accessToken;
@@ -110,9 +110,9 @@ class FacebookOAuth extends AbstractOAuthCallback
      *
      * @return mixed Identifier for this OAuth user
      */
-    protected function getOAuthUserId()
+    protected function getOauthUserId()
     {
-        $user = $this->getOAuthUser();
+        $user = $this->getOauthUser();
         return $user['email'];
     }
 
@@ -121,7 +121,7 @@ class FacebookOAuth extends AbstractOAuthCallback
      *
      * @return string Name of the OAuth provider
      */
-    public function getOAuthProvider()
+    public function getOauthProvider()
     {
         return "Facebook";
     }
@@ -133,7 +133,7 @@ class FacebookOAuth extends AbstractOAuthCallback
      */
     public function getPictureUrl()
     {
-        $user = $this->getOAuthUser();
+        $user = $this->getOauthUser();
         return 'https://graph.facebook.com/'.$user['id'].'/picture?width=80&height=80';
     }
 }

@@ -45,7 +45,7 @@ class TestOsmOAuth extends AbstractKortUnitTestCase
         $this->assertEqual("secret_kort.php", OsmOAuth::getSecretFile("kort.herokuapp.com"));
     }
 
-    public function testGetSecretFileKortWWW()
+    public function testGetSecretFileKortWww()
     {
         $this->assertEqual("secret_www.php", OsmOAuth::getSecretFile("www.kort.ch"));
     }

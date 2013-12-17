@@ -103,9 +103,9 @@ abstract class DbProxyHandler
     }
 
     /**
-     * Returns the table fields used by this handler.
+     * Returns the table name used by this handler.
      *
-     * @return array the table fields used by this handler.
+     * @return string the table name used by this handler
      */
     abstract protected function getTable();
 

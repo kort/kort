@@ -147,7 +147,8 @@ Ext.define('Kort.util.Config', {
                 mapdata: '<a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap-Mitwirkende</a> (ODbL)',
                 tiledata: '<a href="http://cloudmade.com" target="_blank">CloudMade</a> (CC-BY-SA)',
                 markers: '<a href="http://mapicons.nicolasmollet.com" target="_blank">mapicons collection</a>',
-                translation: '<a href="https://www.transifex.com/projects/p/kort/" target="_blank">Transifex</a>'
+                translation: '<a href="https://www.transifex.com/projects/p/kort/" target="_blank">Transifex</a>',
+                dbhosting: '<a href="http://www.sourcepole.ch" target="_blank">sourcepole</a>'
             }
         },
 
