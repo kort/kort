@@ -14,8 +14,7 @@ class DbWebserviceConfig
      *
      * @var string The URL of the database webservice
      */
-    #protected $url = "http://online.db.kort.ch/webservices/db";
-    protected $url = "http://db.kort.ch/webservices/db";
+    protected $url = "http://kort.sourcepole.ch/db";
 
     /**
      * Getter for the API key (which must be set in the environment.
