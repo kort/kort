@@ -6,7 +6,7 @@ error_type.title.tracktype=Tipo di strada sconosciuto
 error_type.title.worship_religion=Luogo di culto senza religione
 error_type.title.language_name=Lingua del nome sconosciuta
 error_type.title.street_wo_name=Strada senza nome
-error_type.title.missing_cuisine=Restaurant without a cuisine
+error_type.title.missing_cuisine=Ristorante senza tipo di cucina
 
 # error type placeholders
 error_type.placeholder.ref=Riferimento
@@ -16,7 +16,7 @@ error_type.placeholder.speed_limit=Limite di velocità
 error_type.placeholder.language=Lingua
 error_type.placeholder.type=Tipo
 error_type.placeholder.street_name=Nome della strada
-error_type.placeholder.missing_cuisine=Cuisine
+error_type.placeholder.missing_cuisine=Cucina
 
 # vote questions
 vote.question.ref=Il riferimento di questa strada è corretto?
@@ -26,7 +26,7 @@ vote.question.maxspeed=Il limite di velocità di questa strada è corretto?
 vote.question.language_unknown=Il nome '$2' è in questa lingua?
 vote.question.tracktype=Il percorso è di questo tipo?
 vote.question.street_name=È questo il nome della strada?
-vote.question.missing_cuisine=Is this the correct cuisine type of $1?
+vote.question.missing_cuisine=E' il tipo di cucina corretto di $1?
 
 # badge names
 badge.name.first_place=Prima posizione
@@ -85,7 +85,7 @@ answer.language.french=Francese
 answer.language.german=Tedesco
 answer.language.greek=Greco
 answer.language.hebrew=Ebraico
-answer.language.hungarian=Hungarian
+answer.language.hungarian=Ungherese
 answer.language.irish=Irlandese
 answer.language.icelandic=Islandese
 answer.language.italian=Italiano
@@ -113,31 +113,32 @@ answer.language.thai=Thailandese
 answer.language.tibetan=Tibetano
 answer.language.czech=Ceco
 answer.language.turkish=Turco
+answer.language.ukrainian=Ucraino
 answer.language.uzbek=Utzbeko
 answer.language.vietnamese=Vietnamita
 answer.language.welsh=Gallese
 
 # missing_cuisine
-answer.missing_cuisine.regional=Regional
-answer.missing_cuisine.coffee_shop=Coffee Shop
-answer.missing_cuisine.international=International
-answer.missing_cuisine.italian=Italian
-answer.missing_cuisine.turkish=Turkish
-answer.missing_cuisine.chinese=Chinese
-answer.missing_cuisine.thai=Thai
-answer.missing_cuisine.asian=Asian
-answer.missing_cuisine.indian=Indian
-answer.missing_cuisine.french=French
-answer.missing_cuisine.mexican=Mexican
-answer.missing_cuisine.american=American
-answer.missing_cuisine.japanese=Japanese
-answer.missing_cuisine.greek=Greek
+answer.missing_cuisine.regional=Regionale
+answer.missing_cuisine.coffee_shop=Caffetteria
+answer.missing_cuisine.international=Internazionale
+answer.missing_cuisine.italian=Italiana
+answer.missing_cuisine.turkish=Turca
+answer.missing_cuisine.chinese=Cinese
+answer.missing_cuisine.thai=Tailandese
+answer.missing_cuisine.asian=Asiatica
+answer.missing_cuisine.indian=Indiana
+answer.missing_cuisine.french=Francese
+answer.missing_cuisine.mexican=Messicana
+answer.missing_cuisine.american=Americana
+answer.missing_cuisine.japanese=Giapponese
+answer.missing_cuisine.greek=Greca
 answer.missing_cuisine.sandwich=Sandwich
-answer.missing_cuisine.steak_house=Steakhouse
-answer.missing_cuisine.chicken=Chicken
-answer.missing_cuisine.bistro_brasserie=Bistro, Brasserie
-answer.missing_cuisine.seafood=Seafood
-answer.missing_cuisine.burger=Burger
+answer.missing_cuisine.steak_house=Braceria
+answer.missing_cuisine.chicken=Pollo
+answer.missing_cuisine.bistro_brasserie=Bistrò, Birreria
+answer.missing_cuisine.seafood=Pesce
+answer.missing_cuisine.burger=Hamburger
 
 ##############################################################
 # THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT AND OSM_ERRORS#
@@ -151,7 +152,7 @@ bug.question.name_of_street=Qual'è il nome di questa strada?
 bug.question.language=Qual'è la lingua del nome '$2'?
 bug.question.motorway_ref=Qualè il riferimento di questa strada (es. A3 o E385)?
 bug.question.place_of_worship=Quale religione si professa in questo luogo di culto?
-bug.question.cuisine_of_restaurant=What's the cuisine type of '$1'?
+bug.question.cuisine_of_restaurant=Qual'è il tipo di cucina di '$1'?
 
 # single values
 cafe=Bar/Caffé

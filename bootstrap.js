@@ -6,6 +6,7 @@
  */
 Ext.Loader.addClassPathMappings({
   "Ext": "touch/src",
+  "Ext.data.proxy.Sql": "touch/src/data/proxy/SQL.js",
   "Ext.device.Purchases.Product": "touch/src/device/purchases/Sencha.js",
   "Ext.device.filesystem.DirectoryEntry": "touch/src/device/filesystem/HTML5.js",
   "Ext.device.filesystem.Entry": "touch/src/device/filesystem/HTML5.js",
