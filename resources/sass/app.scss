@@ -10,46 +10,14 @@ $list-header-gradient: 'matte';
 // Tabs
 $tabs-dark: #111;
 
+// The following two lines import the default Sencha Touch theme. If you are building
+// a new theme, remove them and the add your own CSS on top of the base CSS (which
+// is already included in your app.json file).
+@import 'sencha-touch/default';
 @import 'sencha-touch/default/all';
 
-// You may remove any of the following modules that you
-// do not use in order to create a smaller css file.
-@include sencha-panel;
-@include sencha-buttons;
-@include sencha-sheet;
-@include sencha-picker;
-@include sencha-tabs;
-@include sencha-toolbar;
-@include sencha-toolbar-forms;
-@include sencha-list;
-@include sencha-list-paging;
-@include sencha-list-pullrefresh;
-@include sencha-layout;
-@include sencha-form;
-@include sencha-msgbox;
-@include sencha-loading-spinner;
-@include sencha-carousel;
-
-// adding pictors
-@include pictos-iconmask('list');
-@include pictos-iconmask('check_black2');
-@include pictos-iconmask('add_black');
-@include pictos-iconmask('minus_black1');
-@include pictos-iconmask('help');
-@include pictos-iconmask('bulb');
-@include pictos-iconmask('look');
-
-
-.x-toolbar-light .x-title {
-    color: #fff;
-    text-shadow: rgba(0, 0, 0, 0.5) 0 -0.08em 0;
-}
-
-.x-button-back .x-button-label {
-    color: #fff;
-}
-
-.transparentPanel .x-panel-inner{
-  background-color: transparent!important;
-  border:none;
-}
+// adding icon mixins
+@include icon('news');
+@include icon('minus');
+@include icon('add2');
+@include icon('eye');

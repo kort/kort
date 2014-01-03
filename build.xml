@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project name="Kort" default=".help">
+    <!--
+    The build-impl.xml file imported here contains the guts of the build process. It is
+    a great idea to read that file to understand how the process works, but it is best to
+    limit your changes to this file.
+    -->
     <import file="${basedir}/.sencha/app/build-impl.xml"/>
     <import file="${basedir}/build_kort.xml"/>
 
@@ -34,5 +39,29 @@
             <target name="-before-build"/>
             <target name="-after-build"/>
     -->
-
+    
+    <!-- Specify preprocessor options -->
+    <!--
+    <target name="-before-init">
+        <property name="build.options.production.debug" value="debug:false"/>
+        <property name="build.options.production.logger" value="logger:true"/>
+        <property name="build.options.production.minVersion" value="minVersion:3"/>
+        <property name="build.options.production.product" value="product:touch"/>
+        
+        <property name="build.options.testing.debug" value="debug:false"/>
+        <property name="build.options.testing.logger" value="logger:true"/>
+        <property name="build.options.testing.minVersion" value="minVersion:3"/>
+        <property name="build.options.testing.product" value="product:touch"/>
+        
+        <property name="build.options.package.debug" value="debug:false"/>
+        <property name="build.options.package.logger" value="logger:true"/>
+        <property name="build.options.package.minVersion" value="minVersion:3"/>
+        <property name="build.options.package.product" value="product:touch"/>
+        
+        <property name="build.options.native.debug" value="debug:false"/>
+        <property name="build.options.native.logger" value="logger:true"/>
+        <property name="build.options.native.minVersion" value="minVersion:3"/>
+        <property name="build.options.native.product" value="product:touch"/>
+    </target>
+    -->
 </project>

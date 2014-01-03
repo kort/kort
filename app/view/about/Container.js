@@ -13,7 +13,6 @@ Ext.define('Kort.view.about.Container', {
 		url: 'about',
 		id: 'aboutContainer',
 		iconCls: 'info',
-		layout: 'vbox',
         scrollable: true,
 		items: [
 			{

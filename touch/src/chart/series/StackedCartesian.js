@@ -104,23 +104,27 @@ Ext.define('Ext.chart.series.StackedCartesian', {
                 itemInstancing = me.getItemInstancing(),
                 sprites = me.getSprites(),
                 store = me.getStore(),
+                hidden = me.getHidden(),
                 item;
 
             for (i = 0, ln = sprites.length; i < ln; i++) {
-                sprite = sprites[i];
-                var index = sprite.getIndexNearPoint(x, y);
-                if (index !== -1) {
-                    item = {
-                        series: me,
-                        index: index,
-                        category: itemInstancing ? 'items' : 'markers',
-                        record: store.getData().items[index],
-                        field: this.getYField()[i],
-                        sprite: sprite
-                    };
-                    return item;
+                if(!hidden[i]) {
+                    sprite = sprites[i];
+                    var index = sprite.getIndexNearPoint(x, y);
+                    if (index !== -1) {
+                        item = {
+                            series: me,
+                            index: index,
+                            category: itemInstancing ? 'items' : 'markers',
+                            record: store.getData().items[index],
+                            field: this.getYField()[i],
+                            sprite: sprite
+                        };
+                        return item;
+                    }
                 }
             }
+            return null;
         }
     },
 

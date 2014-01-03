@@ -32,7 +32,7 @@ Ext.define('Kort.view.map.NavigationView', {
                     allowMultiple: true,
                     items: [
                         {
-                            iconCls: 'look',
+                            iconCls: 'eye',
                             iconMask: true
                         }
                     ],

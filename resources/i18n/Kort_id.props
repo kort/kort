@@ -1,0 +1,222 @@
+# Main View (TabPanel)
+# tab.map=Map
+tab.bugmap=Misi
+tab.validation=Cek
+tab.highscore=Nilai Tertinggi
+tab.profile=Profil
+tab.about=Tentang Kort
+tab.news=News
+
+# Login
+login.kort.description.1=Misi yang terselesaikan
+login.kort.description.2=Mengumpulkan Koin
+login.kort.description.3=Meningkatkan OpenStreetMap
+login.kort.introduction.1=Kort membantu untuk meningkatkan data di OpenStreetMap.
+login.kort.introduction.2=Anda akan melihat misi anda pada peta. Dengan menyelesaikan misi anda akan mendapatkan koind dan medali.
+login.kort.introduction.3=Setiap misi yang terselesaikan akan di cek oleh pengguna lain untuk ketepatannya. Begitu penilaian positif sudah dimasukkan untuk setiap solusi yang disarankan, perbaikan tersebut akan siap dimasukkan kembali ke OpenStreetMap.
+login.kort.introduction.4=Masuk sekarang untuk memulai misi anda\!
+login.button.google=Masuk dengan Google
+login.button.osm=Masuk dengan OpenStreetMap
+login.button.facebook=Masuk dengan Facebook
+login.loadmask.message=Masuk...
+
+# Firststeps
+firststeps.introduction=Selamat datang di Kort\! Masukkan nama pengguna anda\:
+firststeps.form.button.submit=Memulai Misi\!
+firststeps.alert.username.empty.title=Masukkan nama pengguna
+firststeps.alert.username.empty.message=Harap masukkan nama pengguna.
+firststeps.alert.username.specialchars.title=Terjadi masalah dengan karakter spesifik
+firststeps.alert.username.specialchars.message=Harap gunakan huruf dan angka saja untuk nama pengguna anda.
+firststeps.alert.submit.failure.title=Terjadi error ketika mengirim
+firststeps.alert.submit.failure.message=Opps\! Terdapat error ketika mengirimkan nama pengguna. Coba buka kembali aplikasi ini untuk menyelesaikannya.
+
+# Geolocation error
+geolocationerror.introduction=Untuk menggunakan Kort, akses kedalam posisi geografis anda sangatlah penting.
+geolocationerror.button.reload=Mengulang kembali aplikasi
+geolocationerror.loadmask.message=Sedang mengulang kembali aplikasi...
+
+#Map
+map.title=Missions
+map.loadmask.message=Sedang memulai misi...
+map.mission.promotionmessagebox.close=Close
+map.mission.promotionmessagebox.earn=Earn additional {extra_coins} Koins
+map.mission.promotionmessagebox.date={startdate} to {enddate}
+map.mission.missionmessagebox.koins.earn=Mendapatkan {fix_koin_count} koin
+map.mission.missionmessagebox.koins.earnpromotion=Earn {fix_koin_count} + {extra_coins} Koins
+map.mission.missionmessagebox.yes=Jawaban
+map.mission.missionmessagebox.no=Tidak tahu
+map.mission.missionmessagebox.close=Close
+map.mission.layername=Missions
+map.missionInactive.layername=Inactive Missions
+map.validation.layername=Checks
+map.validation.validationmessagebox.koins.earn=Earn {validation_koin_count} Koins
+map.validation.validationmessagebox.koins.earnpromotion=Earn {validation_koin_count} + {extra_coins} Koins
+map.mission.validationmessagebox.yes=Jawaban
+map.mission.validationmessagebox.no=Tidak tahu
+map.mission.validationmessagebox.close=Close
+map.validation.validationmessagebox.checkit=Check the solution
+
+## Fix
+fix.form.title=Misi
+fix.form.koins.earn=Dapatkan {fix_koin_count} koin\!
+fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins\!
+fix.form.message.placeholder=Jawaban anda...
+fix.form.button.showonmap=Tampilkan pada peta
+fix.form.button.submit=Misi selesai
+fix.form.loadmask.message=Sedang memuat jawaban...
+fix.form.falsepositive.toggle.label=Tidak dapat diselesaikan
+fix.map.title=Peta
+fix.sendmask.message=Mengirimkan solusi...
+fix.alert.fixfield.empty.title=Isi pada tempat yang disediakan
+fix.alert.fixfield.empty.message=Harap isi di semua tempat yang disediakan
+fix.alert.submit.failure.title=Error ketika mengirimkan
+fix.alert.submit.failure.message=Oops\! Terjadi error ketika mengirim jawaban anda. Coba mengulang kembali aplikasi untuk menyelesaikannya.
+
+## Vote
+vote.falsepositive.question=Misi ini ditandai sebagai 'tidak dapat terselesaikan', apakah ini benar?
+vote.container.button.answer=Jawaban
+vote.container.votes.left={votes_left} rating yang dibutuhkan
+vote.answeractionsheet.button.accept=Ya
+vote.answeractionsheet.button.decline=Tidak
+vote.answeractionsheet.button.cancel=Tidak tahu
+vote.answeractionsheet.question=Apakah jawaban ini benar?
+vote.sendmask.message=Mengirim jawaban...
+vote.alert.submit.failure.title=Error ketika mengirmkan
+vote.alert.submit.failure.message=Oops\! Terjadi error ketika mengirim jawaban anda. Coba mengulang kembali aplikasi untuk menyelesaikannya.
+
+# Highscore
+highscore.title=Nilai Tertinggi
+highscore.absolute.tabtitle=Top
+highscore.relative.tabtitle=My score
+highscore.loadmask.message=Memuat nilai tertinggi...
+highscore.emptytext=Tidak dapat memuat nilai tertinggi.
+highscore.you=Ini anda\!
+highscore.koins=Koin
+highscore.fixcount=Misi\:
+highscore.votecount=Cek\:
+highscore.user.badges.emptytext=Tidak bisa memuat lencana.
+
+# Profil
+profile.title=Profil
+profile.button.logout=Keluar
+profile.button.changeusername=Ubah nama pengguna
+profile.settings.messagebox.title=Pengaturan
+profile.settings.messagebox.message=Masukkan nama pengguna baru anda
+profile.username.loadmask.message=Menyimpan nama pengguna...
+profile.content.username=Nama pengguna
+profile.content.oauthprovider=Masuk melalui
+profile.content.fixes=Misi terselesaikan
+profile.content.votes=Melakukan pengecekan
+profile.content.koins.header=Mengumpulkan koin
+profile.content.koins.title=Koin
+profile.content.ranking.title=Tempat
+profile.content.badges.header=Lencana yang dimenangkan
+profile.logout.loadmask.message=Keluar...
+profile.refresh.loadmask.message=Memuat profil..
+profile.badges.title=Lencana anda
+profile.badges.recieved=Diterima pada\:
+profile.badges.emptytext=Lencana anda tidak dapat dimuat.
+profile.badges.button.close=Tutup
+profile.alert.username.empty.title=Masukkan nama pengguna
+profile.alert.username.empty.message=Harap masukkan nama pengguna.
+profile.alert.username.specialchars.title=Terjadi masalah dengan karakter spesifik
+profile.alert.username.specialchars.message=Harap gunakan huruf dan angka saja untuk nama pengguna anda.
+profile.alert.submit.failure.title=Error ketika mengirimkan
+profile.alert.submit.failure.message=Opps\! Terdapat error ketika mengirimkan nama pengguna. Coba buka kembali aplikasi ini untuk menyelesaikannya.
+
+#News
+news.title=News
+news.unread=Unread
+news.read=Read
+news.list.emptytext=No entries
+news.updated=Updated
+news.settings.save=Save
+news.settings.cancel=Cancel
+news.settings.acceptNoLanguage=Deselect all
+news.settings.acceptAllLanguages=Select all
+news.settings.label=I want to receive news in the following languages\:
+
+# About
+about.title=Tentang
+about.version.title=Versi
+about.information.title=Informasi lebih lanjut
+about.information.homepage=Situs\:
+about.information.feedback=Feedback/FAQ\:
+about.information.bugs=Laporkan bug\:
+about.developers.title=Pengembang
+about.project.title=Projects
+about.project.advisor=Pempimpin\:
+about.credits.title=Kredit
+about.credits.partner=Partner\:
+about.credits.mapdata=Data geografi\:
+about.credits.tiledata=Judul\:
+about.credits.markers=Ikon penanda\:
+about.credits.translation=Translation\:
+about.credits.dbhosting=DB Hosting\:
+about.legal.title=Catatan hukum\:
+about.legal.message=Harap ikuti petunjuk dari OpenStreetMap dan jangan gunakan sumber yang dilindungi hak cipta tanpa pemberitahuan.
+
+# PullRefresh Plugin
+pullrefresh.pullrefresh=Tarik kebawah untuk memuat ulang
+pullrefresh.releaserefresh=Lepas untuk memuat ulang...
+pullrefresh.loading=Sedang memuat...
+pullrefresh.lastupdated=Perubahan terakhir\:
+
+# ListPaging Plugin
+listpaging.loadmore=Memuat lebih banyak...
+listpaging.nomorerecords=Tidak ada lagi catatan.
+
+# Button
+button.back=Kembali
+
+# MessageBox
+messagebox.ok=OK
+messagebox.yes=Ya
+messagebox.no=Tidak
+messagebox.cancel=Batal
+
+# Picker
+picker.done=Selesai
+picker.cancel=Batal
+
+# Reward
+reward.alert.title=Anda menambah reputasi anda\!
+reward.alert.koins.new=Selamat\! Anda mendapatkan {koin_count_new} koin.
+reward.alert.koins.total=Sekarang anda mendapatkan sejumlah total {koin_count_total} koin.
+reward.alert.badges.title=Lencana yang dimenangkan
+
+# App update
+update.title=Versi baru dari aplikasi
+update.message=Aplikasi ini sudah diperbaharui untuk versi yang baru. Memuat kembali?
+
+#Languages
+en=English
+de=German
+it=Italian
+fr=French
+sl=Slovenian
+hr=Croatian
+cs=Czech
+nl=Dutch
+gl=Galician
+pt=Portuguese
+ro=Romanian
+ja=Japanese
+ca=Catalan
+es=Spanish
+
+###############################
+# Labels used directly in source files (without Ext.i18n.Bundle plugin)
+###############################
+
+# index.html
+## App startscreen
+startscreen.loadingtext=Kort sedang dimuat. Siap siap...
+startscreen.browsererror=Browser internet anda belum mendukung. Cobalah di handphone anda.
+
+# app/util/Config.js
+## Firststeps
+firststeps.form.username.placeholder=Nama pengguna
+
+## PullRefresh Plugin
+pullrefresh.dateformat=m/d/Y h\:iA

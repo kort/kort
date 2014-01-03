@@ -12,8 +12,7 @@ Ext.define('Kort.view.highscore.user.Container', {
 	
 	config: {
         cls: 'highscoreUserContainer',
-        scrollable: true,
-        layout: 'vbox'
+        scrollable: true
 	},
 
     /**

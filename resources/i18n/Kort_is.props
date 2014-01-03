@@ -1,0 +1,222 @@
+# Main View (TabPanel)
+tab.map=Kort
+tab.bugmap=Verkefni
+tab.validation=Athuga
+tab.highscore=Stigatafla
+tab.profile=Prófíll
+tab.about=Um Kort
+tab.news=Fréttir
+
+# Login
+login.kort.description.1=Kláraðu verkefni
+login.kort.description.2=Safna Koins
+login.kort.description.3=Bættu OpenStreetMap
+login.kort.introduction.1=Kort aðstoðar við að bæta gögnin í OpenStreetMap.
+login.kort.introduction.2=Þess vegna muntu sjá verkefni á kortinu. Með því að klára þau færðu Koins og vinna þér inn skildi.
+login.kort.introduction.3=Hver lausn er síðan athuguð af öðrum spilurum. Um leið og nógu margir spilarar hafa staðfest hana ratar hún á OpenStreetMap.
+login.kort.introduction.4=Skráðu þig inn núna til að hefja þátttöku\!
+login.button.google=Innskráning með Google
+login.button.osm=Innskráning með OpenStreetMap
+login.button.facebook=Innskráning með Facebook
+login.loadmask.message=Innskrá...
+
+# Firststeps
+firststeps.introduction=Velkomin á Kort\! Veldu notandanafn\:
+firststeps.form.button.submit=Hefja verkefni\!
+firststeps.alert.username.empty.title=Slá inn notandanafn
+firststeps.alert.username.empty.message=Vinsamlegast sláðu inn notandanafn.
+firststeps.alert.username.specialchars.title=Vandamál með staftákn
+firststeps.alert.username.specialchars.message=Vinsamlegast notaðu eingöngu bókstafi og tölustafi í notandanafninu þínu.
+firststeps.alert.submit.failure.title=Villa í sendingu
+firststeps.alert.submit.failure.message=Úps\! Villa kom upp við sendingu notandanafnsins. Að endurræsa forritið gæti hjálpað.
+
+# Geolocation error
+geolocationerror.introduction=Til að nota Kort er nauðsynlegt að fá GPS staðsetninguna þína.
+geolocationerror.button.reload=Endurhlaða forrit
+geolocationerror.loadmask.message=Endurhlaða forrit...
+
+#Map
+map.title=Missions
+map.loadmask.message=Hleð verkefni...
+map.mission.promotionmessagebox.close=Loka
+map.mission.promotionmessagebox.earn=Earn additional {extra_coins} Koins
+map.mission.promotionmessagebox.date={startdate} til {enddate}
+map.mission.missionmessagebox.koins.earn=Vinndu þér inn {fix_koin_count} Koins
+map.mission.missionmessagebox.koins.earnpromotion=Earn {fix_koin_count} + {extra_coins} Koins
+map.mission.missionmessagebox.yes=Svar
+map.mission.missionmessagebox.no=Veit ekki
+map.mission.missionmessagebox.close=Loka
+map.mission.layername=Verkefni
+map.missionInactive.layername=Inactive Missions
+map.validation.layername=Checks
+map.validation.validationmessagebox.koins.earn=Earn {validation_koin_count} Koins
+map.validation.validationmessagebox.koins.earnpromotion=Earn {validation_koin_count} + {extra_coins} Koins
+map.mission.validationmessagebox.yes=Svar
+map.mission.validationmessagebox.no=Veit ekki
+map.mission.validationmessagebox.close=Loka
+map.validation.validationmessagebox.checkit=Check the solution
+
+## Fix
+fix.form.title=Verkefni
+fix.form.koins.earn=Náðu {fix_koin_count} Koins\!
+fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins\!
+fix.form.message.placeholder=Þitt svar...
+fix.form.button.showonmap=Sýna á korti
+fix.form.button.submit=Klára verkefni
+fix.form.loadmask.message=Hleð svör...
+fix.form.falsepositive.toggle.label=Get ekki leyst
+fix.map.title=Kort
+fix.sendmask.message=Sendi svar...
+fix.alert.fixfield.empty.title=Fylla inn í reitina
+fix.alert.fixfield.empty.message=Vinsamlegast fylltu inn á alla reitina.
+fix.alert.submit.failure.title=Villa við sendingu
+fix.alert.submit.failure.message=Úps\! Villa kom upp við sendingu lausnarinnar. Að endurræsa forritið gæti hjálpað.
+
+## Vote
+vote.falsepositive.question=Þetta verkefni er merkt sem 'get ekki leyst'. Er það rétt?
+vote.container.button.answer=Svar
+vote.container.votes.left=Þarf {votes_left} staðfestingar
+vote.answeractionsheet.button.accept=Já
+vote.answeractionsheet.button.decline=Nei
+vote.answeractionsheet.button.cancel=Veit ekki
+vote.answeractionsheet.question=Er svarið rétt?
+vote.sendmask.message=Er að senda svar...
+vote.alert.submit.failure.title=Villa við sendingu
+vote.alert.submit.failure.message=Úps\! Villa kom upp við sendingu svarsins. Að endurræsa forritið gæti hjálpað.
+
+# Highscore
+highscore.title=Stigatafla
+highscore.absolute.tabtitle=Top
+highscore.relative.tabtitle=Stigin mín
+highscore.loadmask.message=Hleð inn stigatöflu...
+highscore.emptytext=Get ekki hlaðið stigatöflu.
+highscore.you=Þetta ert þú\!
+highscore.koins=Koins
+highscore.fixcount=Verkefni\:
+highscore.votecount=Athuganir\:
+highscore.user.badges.emptytext=Gat ekki hlaðið skildi.
+
+# Profil
+profile.title=Prófíll
+profile.button.logout=Útskráning
+profile.button.changeusername=Breyta notandanafni
+profile.settings.messagebox.title=Stillingar
+profile.settings.messagebox.message=Sláðu inn nýja notandanafnið þitt
+profile.username.loadmask.message=Vista notandanafn...
+profile.content.username=Notandanafn
+profile.content.oauthprovider=Innskrá gegnum
+profile.content.fixes=Kláruð verkefni
+profile.content.votes=Framkvæmdar athuganir
+profile.content.koins.header=Söfnuð Koin
+profile.content.koins.title=Koins
+profile.content.ranking.title=Staður
+profile.content.badges.header=Áunnir skildir
+profile.logout.loadmask.message=Útskrá...
+profile.refresh.loadmask.message=Hleð prófíl...
+profile.badges.title=Þínir skildir
+profile.badges.recieved=Móttekið þann\:
+profile.badges.emptytext=Ekki tókst að hlaða inn skjöldunum þínum.
+profile.badges.button.close=Loka
+profile.alert.username.empty.title=Slá inn notandanafn
+profile.alert.username.empty.message=Vinsamlegast sláðu inn notandanafn.
+profile.alert.username.specialchars.title=Vandamál með staftákn
+profile.alert.username.specialchars.message=Vinsamlegast notaðu eingöngu bókstafi og tölustafi í notandanafninu þínu.
+profile.alert.submit.failure.title=Villa í sendingu
+profile.alert.submit.failure.message=Úps\! Villa kom upp við sendingu notandanafnsins. Að endurræsa forritið gæti hjálpað.
+
+#News
+news.title=Fréttir
+news.unread=Unread
+news.read=Read
+news.list.emptytext=No entries
+news.updated=Updated
+news.settings.save=Save
+news.settings.cancel=Cancel
+news.settings.acceptNoLanguage=Deselect all
+news.settings.acceptAllLanguages=Select all
+news.settings.label=Ég vil fá fréttir á eftirfarandi tungumálum\:
+
+# About
+about.title=Um
+about.version.title=Útgáfa
+about.information.title=Meiri upplýsingar
+about.information.homepage=Vefur\:
+about.information.feedback=Viðbrögð/SoS\:
+about.information.bugs=Tilkynna villu\:
+about.developers.title=Hönnuður
+about.project.title=Verkefni
+about.project.advisor=Leitt af\:
+about.credits.title=Credits
+about.credits.partner=Samstarfsaðili\:
+about.credits.mapdata=Landupplýsingar\:
+about.credits.tiledata=Flísar\:
+about.credits.markers=Kortamerki
+about.credits.translation=Þýðing
+about.credits.dbhosting=DB Hosting\:
+about.legal.title=Lagaleg athugasemd\:
+about.legal.message=Vinsamlegast fylgið leiðbeiningum OpenStreetMaps og ekki nota höfundaréttarvarðar heimildir án leyfis.
+
+# PullRefresh Plugin
+pullrefresh.pullrefresh=Ýttu niður til að endurhlaða
+pullrefresh.releaserefresh=Slepptu til að endurhlaða...
+pullrefresh.loading=hleð...
+pullrefresh.lastupdated=Seinast uppfært\:
+
+# ListPaging Plugin
+listpaging.loadmore=Hleð fleirum...
+listpaging.nomorerecords=Engar fleiri færslur í boði.
+
+# Button
+button.back=Til baka
+
+# MessageBox
+messagebox.ok=Í lagi
+messagebox.yes=Já
+messagebox.no=Nei
+messagebox.cancel=Hætta við
+
+# Picker
+picker.done=Klára
+picker.cancel=Hætta við
+
+# Reward
+reward.alert.title=Þú ert vinsælari\!
+reward.alert.koins.new=Bravó\! Þú hefur hlotið {koin_count_new} fleiri Koin.
+reward.alert.koins.total=Þú hefur samtals {koin_count_total} Koins.
+reward.alert.badges.title=Áunnir skildir
+
+# App update
+update.title=Ný útgáfa af forritinu
+update.message=Forritið hefur verið uppfært í nýjustu útgáfuna. Endurhlaða?
+
+#Languages
+en=English
+de=German
+it=Italian
+fr=French
+sl=Slovenian
+hr=Croatian
+cs=Czech
+nl=Dutch
+gl=Galician
+pt=Portuguese
+ro=Romanian
+ja=Japanese
+ca=Catalan
+es=Spanish
+
+###############################
+# Labels used directly in source files (without Ext.i18n.Bundle plugin)
+###############################
+
+# index.html
+## App startscreen
+startscreen.loadingtext=Kort er að hlaðast. Gerðu þig tilbúin(n)...
+startscreen.browsererror=Vafrinn þinn er ekki enn studdur. Reyndu forritið á farsímanum þínum.
+
+# app/util/Config.js
+## Firststeps
+firststeps.form.username.placeholder=Notandanafn
+
+## PullRefresh Plugin
+pullrefresh.dateformat=d/m/Y h\:iA

@@ -25,13 +25,13 @@ Ext.define('Kort.view.map.validation.AnswerActionSheet', {
             {
                 ui: 'confirm',
                 cls: 'voteAnswerConfirmButton',
-                iconCls: 'add_black',
+                iconCls: 'add2',
                 text: Ext.i18n.Bundle.message('vote.answeractionsheet.button.accept')
             },
             {
                 ui: 'decline',
                 cls: 'voteAnswerDeclineButton',
-                iconCls: 'minus_black1',
+                iconCls: 'minus',
                 text: Ext.i18n.Bundle.message('vote.answeractionsheet.button.decline')
             },
             {

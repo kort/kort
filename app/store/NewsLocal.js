@@ -3,6 +3,10 @@
  */
 Ext.define('Kort.store.NewsLocal', {
     extend: 'Ext.data.Store',
+    requires: [
+        'Ext.data.proxy.LocalStorage'
+    ],
+
     config: {
         model: 'Kort.model.News',
         proxy: {

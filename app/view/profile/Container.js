@@ -17,7 +17,6 @@ Ext.define('Kort.view.profile.Container', {
 		id: 'profileContainer',
         scrollable: true,
 		iconCls: 'user',
-		layout: 'vbox',
         
 		items: [
 			{

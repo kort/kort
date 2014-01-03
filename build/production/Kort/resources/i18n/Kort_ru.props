@@ -1,0 +1,222 @@
+# Main View (TabPanel)
+tab.map=Карта
+tab.bugmap=Миссии
+tab.validation=Проверить
+tab.highscore=Счёт
+tab.profile=Профиль
+tab.about=Об игре
+tab.news=Новости
+
+# Login
+login.kort.description.1=Завершить миссию
+login.kort.description.2=Собрать коины
+login.kort.description.3=Улучшить данные OpenStreetMap
+login.kort.introduction.1=Kort помогает улучшать данные OpenStreetMap.
+login.kort.introduction.2=Итак, на карте вы видите свои миссии. За их прохождение  вы  будете  получать Koins и зарабатывать значки.
+login.kort.introduction.3=Каждая законченная миссия позже будет проверена другими игроками на корректность. Как только достаточное количество положительных голосов будет получено, она будет отправлена на OpenStreetMap.
+login.kort.introduction.4=Войдите, чтобы начать миссию\!
+login.button.google=Войти с помощью аккаунта Google
+login.button.osm=Войдите с помощью аккаунта OpenStreetMap
+login.button.facebook=Войти с помощью Facebook
+login.loadmask.message=Заходим...
+
+# Firststeps
+firststeps.introduction=Добро пожаловать в Kort\! Выберите имя\:
+firststeps.form.button.submit=Начать миссию\!
+firststeps.alert.username.empty.title=Введите имя
+firststeps.alert.username.empty.message=Пожалуйста, введите имя.
+firststeps.alert.username.specialchars.title=Проблема с персонажем
+firststeps.alert.username.specialchars.message=Пожалуйста, используйте только буквы и цифры для своего имени.
+firststeps.alert.submit.failure.title=Произошла ошибка при отправке
+firststeps.alert.submit.failure.message=Ой\! Произошла ошибка пока мы отправляли ваше имя на сервер. Перезагрузка приложения может помочь.
+
+# Geolocation error
+geolocationerror.introduction=Для использования Kort необходим доступ к вашему местоположению.
+geolocationerror.button.reload=Перезагрузить приложение
+geolocationerror.loadmask.message=Перезагружаем...
+
+#Map
+map.title=Missions
+map.loadmask.message=Загрузка миссий...
+map.mission.promotionmessagebox.close=Close
+map.mission.promotionmessagebox.earn=Earn additional {extra_coins} Koins
+map.mission.promotionmessagebox.date={startdate} to {enddate}
+map.mission.missionmessagebox.koins.earn=Заработано {fix_koin_count} Koins.
+map.mission.missionmessagebox.koins.earnpromotion=Earn {fix_koin_count} + {extra_coins} Koins
+map.mission.missionmessagebox.yes=Ответ
+map.mission.missionmessagebox.no=Не знаю
+map.mission.missionmessagebox.close=Close
+map.mission.layername=Миссии
+map.missionInactive.layername=Неактивные миссии
+map.validation.layername=Проверки
+map.validation.validationmessagebox.koins.earn=Earn {validation_koin_count} Koins
+map.validation.validationmessagebox.koins.earnpromotion=Earn {validation_koin_count} + {extra_coins} Koins
+map.mission.validationmessagebox.yes=Ответ
+map.mission.validationmessagebox.no=Не знаю
+map.mission.validationmessagebox.close=Close
+map.validation.validationmessagebox.checkit=Check the solution
+
+## Fix
+fix.form.title=Миссии
+fix.form.koins.earn=Получи {fix_koin_count} Коины\!
+fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins\!
+fix.form.message.placeholder=Ваш ответ...
+fix.form.button.showonmap=Показать на карте
+fix.form.button.submit=Завершить миссию
+fix.form.loadmask.message=Загружаем ответы...
+fix.form.falsepositive.toggle.label=Невозможно решить
+fix.map.title=Карта
+fix.sendmask.message=Отправляем решение...
+fix.alert.fixfield.empty.title=Заполните поля
+fix.alert.fixfield.empty.message=Пожалуйста, заполните все поля.
+fix.alert.submit.failure.title=Произошла ошибка при отправке
+fix.alert.submit.failure.message=Ой\! Произошла ошибка пока мы отправляли ваш ответ на сервер. Перезагрузка приложения может помочь.
+
+## Vote
+vote.falsepositive.question=Эта миссия помечена, как "невозможно решить". Это действительно так?
+vote.container.button.answer=Ответ
+vote.container.votes.left=Нужно ещё {votes_left} голосов
+vote.answeractionsheet.button.accept=Да
+vote.answeractionsheet.button.decline=Нет
+vote.answeractionsheet.button.cancel=Не знаю
+vote.answeractionsheet.question=Правильный ответ?
+vote.sendmask.message=Отправляем ответ...
+vote.alert.submit.failure.title=Ошибка при отправке
+vote.alert.submit.failure.message=Ой\! Произошла ошибка при отправке вашего ответа на сервер. Перезагрузка приложения может помочь.
+
+# Highscore
+highscore.title=Топ пользователей
+highscore.absolute.tabtitle=Top
+highscore.relative.tabtitle=Мой счет
+highscore.loadmask.message=Загружаем топ пользователей..
+highscore.emptytext=Невозможно загрузить топ пользователей.
+highscore.you=Это вы\!
+highscore.koins=Коины
+highscore.fixcount=Миссии\:
+highscore.votecount=Проверки\:
+highscore.user.badges.emptytext=Невозможно загрузить значки.
+
+# Profil
+profile.title=Профиль
+profile.button.logout=Выйти
+profile.button.changeusername=Сменить имя
+profile.settings.messagebox.title=Настройки
+profile.settings.messagebox.message=Введите своё новое имя
+profile.username.loadmask.message=Сохраняем имя...
+profile.content.username=Имя
+profile.content.oauthprovider=Вход с помощью
+profile.content.fixes=Завершённые миссии
+profile.content.votes=Выполненные проверки
+profile.content.koins.header=Собранные Koins
+profile.content.koins.title=Коины
+profile.content.ranking.title=Место
+profile.content.badges.header=Выигранные значки
+profile.logout.loadmask.message=Выходим...
+profile.refresh.loadmask.message=Загружаем профиль...
+profile.badges.title=Ваши значки
+profile.badges.recieved=Получено за\:
+profile.badges.emptytext=Ваши значки не могут быть загружены
+profile.badges.button.close=Закрыть
+profile.alert.username.empty.title=Введите имя
+profile.alert.username.empty.message=Пожалуйста, введите имя
+profile.alert.username.specialchars.title=Проблема с персонажем
+profile.alert.username.specialchars.message=Пожалуйста, используйте только буквы и цифры для своего имени.
+profile.alert.submit.failure.title=Произошла ошибка при отправке
+profile.alert.submit.failure.message=Ой\! Произошла ошибка пока мы отправляли ваше имя на сервер. Перезагрузка приложения может помочь.
+
+#News
+news.title=Новости
+news.unread=Непрочитано
+news.read=Прочитано
+news.list.emptytext=No entries
+news.updated=Updated
+news.settings.save=Сохранить
+news.settings.cancel=Отмена
+news.settings.acceptNoLanguage=Снять всё выделение
+news.settings.acceptAllLanguages=Выбрать всё
+news.settings.label=Я хочу получать новости на следующих языках\:
+
+# About
+about.title=О программе
+about.version.title=Версия
+about.information.title=Больше информации
+about.information.homepage=Вебсайт\:
+about.information.feedback=Обратная связь/FAQ\:
+about.information.bugs=Сообщить об ошибке
+about.developers.title=Разработчик
+about.project.title=Проекты
+about.project.advisor=Ведущий\:
+about.credits.title=Спасибо
+about.credits.partner=Партнер
+about.credits.mapdata=Геоданные
+about.credits.tiledata=Тайлы\:
+about.credits.markers=Иконки маркеров\:
+about.credits.translation=Перевод\:
+about.credits.dbhosting=DB Hosting\:
+about.legal.title=Юридическое примечание\:
+about.legal.message=Пожалуйста, следуйте идеям OpenStreetMap и не используйте чужие данные без разрешения.
+
+# PullRefresh Plugin
+pullrefresh.pullrefresh=Потяните, чтобы обновить
+pullrefresh.releaserefresh=Проведите, чтобы обновить...
+pullrefresh.loading=загрузка...
+pullrefresh.lastupdated=Последнее обновление\:
+
+# ListPaging Plugin
+listpaging.loadmore=Загрузить ещё...
+listpaging.nomorerecords=Рекорды больше недоступны
+
+# Button
+button.back=Назад
+
+# MessageBox
+messagebox.ok=ОК
+messagebox.yes=Да
+messagebox.no=Нет
+messagebox.cancel=Отмена
+
+# Picker
+picker.done=Закончить
+picker.cancel=Отмена
+
+# Reward
+reward.alert.title=Вы повысили свою репутацию\!
+reward.alert.koins.new=Браво\! Вы выиграли {koin_count_new} Koins.
+reward.alert.koins.total=У вас сейчас на руках {koin_count_total} Коинов.
+reward.alert.badges.title=Выигранные значки
+
+# App update
+update.title=Новая версия приложения
+update.message=Приложение было обновлено до последней версии. Перезагрузить?
+
+#Languages
+en=Английский
+de=Немецкий
+it=Итальянский
+fr=Французский
+sl=Словенский
+hr=Хорватский
+cs=Чешский
+nl=Нидерландский
+gl=Галисийский
+pt=Португальский
+ro=Румынский
+ja=Японский
+ca=Каталонский
+es=Испанский
+
+###############################
+# Labels used directly in source files (without Ext.i18n.Bundle plugin)
+###############################
+
+# index.html
+## App startscreen
+startscreen.loadingtext=Kort загружается. Приготовьтесь...
+startscreen.browsererror=Ваш браузер пока не поддерживается. Попробуйте игру через мобильный телефон.
+
+# app/util/Config.js
+## Firststeps
+firststeps.form.username.placeholder=Имя
+
+## PullRefresh Plugin
+pullrefresh.dateformat=d.m.Y H\:i

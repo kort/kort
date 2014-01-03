@@ -1,0 +1,222 @@
+# Main View (TabPanel)
+tab.map=Térkép
+tab.bugmap=Küldetések
+tab.validation=Ellenőrzés
+tab.highscore=Toplista
+tab.profile=Profil
+tab.about=A Kortról
+tab.news=Hírek
+
+# Login
+login.kort.description.1=Teljesíts küldetéseket
+login.kort.description.2=Gyűjts Koinokat
+login.kort.description.3=Javítsd az OpenStreetMapet
+login.kort.introduction.1=A Kort segíti az OpenStreetMap adatainak javítását.
+login.kort.introduction.2=Ezentúl a küldetéseket a térképen fogod látni. Küldetések teljesítésével Koinokat kapsz és jelvényeket nyerhetsz.
+login.kort.introduction.3=A teljesített küldetések helyességét később más játékosok ellenőrzik. Amint egy javaslat elegendő számú pozitív értékelést kap, készen áll az OpenStreetMap-re történő visszaküldésre.
+login.kort.introduction.4=Jelentkezz be, hogy elkezd a küldetésed\!
+login.button.google=Bejelentkezés Google fiókkal
+login.button.osm=Bejelentkezés OpenStreetMap fiókkal
+login.button.facebook=Belépés Facebookkal
+login.loadmask.message=Bejelentkezés...
+
+# Firststeps
+firststeps.introduction=Üdvözöl a Kort\! Válassz egy felhasználónevet\:
+firststeps.form.button.submit=Küldetés indítása\!
+firststeps.alert.username.empty.title=Felhasználónév megadása
+firststeps.alert.username.empty.message=Kérlek, adj meg egy felhasználónevet.
+firststeps.alert.username.specialchars.title=Gond van a karakterrel
+firststeps.alert.username.specialchars.message=Kérlek csak betűket és számjegyeket használj a felhasználónévben.
+firststeps.alert.submit.failure.title=Hiba a küldés közben
+firststeps.alert.submit.failure.message=Ajjaj\! Hiba történt a felhasználónév elküldése közben. Az alkalmazás újraindítása segíthet.
+
+# Geolocation error
+geolocationerror.introduction=A Kort használatához elengedhetetlen a földrajzi helyzetedhez történő hozzáférés.
+geolocationerror.button.reload=Az alkalmazás újraindítása
+geolocationerror.loadmask.message=Az alkalmazás újraindítása...
+
+#Map
+map.title=Küldetések
+map.loadmask.message=Küldetések betöltése...
+map.mission.promotionmessagebox.close=Bezárás
+map.mission.promotionmessagebox.earn=A fizetség {extra_coins} további Koin.
+map.mission.promotionmessagebox.date={startdate} - {enddate}
+map.mission.missionmessagebox.koins.earn=A fizetség {fix_koin_count} Koin.
+map.mission.missionmessagebox.koins.earnpromotion=A fizetség {fix_koin_count} + {extra_coins} Koin.
+map.mission.missionmessagebox.yes=Válasz
+map.mission.missionmessagebox.no=Nem tudom
+map.mission.missionmessagebox.close=Bezárás
+map.mission.layername=Küldetések
+map.missionInactive.layername=Inaktív küldetések
+map.validation.layername=Ellenőrzések
+map.validation.validationmessagebox.koins.earn=A fizetség {validation_koin_count} Koin.
+map.validation.validationmessagebox.koins.earnpromotion=A fizetség {validation_koin_count} + {extra_coins} Koin.
+map.mission.validationmessagebox.yes=Válasz
+map.mission.validationmessagebox.no=Nem tudom
+map.mission.validationmessagebox.close=Bezárás
+map.validation.validationmessagebox.checkit=A megoldás ellenőrzése
+
+## Fix
+fix.form.title=Küldetés
+fix.form.koins.earn=Szerzel {fix_koin_count} Koint.
+fix.form.koins.earnpromotion=Szerezz {fix_koin_count} + {extra_coins} Koint\!
+fix.form.message.placeholder=A válaszod...
+fix.form.button.showonmap=Mutasd a térképen
+fix.form.button.submit=Küldetés teljesítése
+fix.form.loadmask.message=Válaszok betöltése...
+fix.form.falsepositive.toggle.label=Megoldhatatlan
+fix.map.title=Térkép
+fix.sendmask.message=Megoldás küldése...
+fix.alert.fixfield.empty.title=Töltsd ki a mezőket
+fix.alert.fixfield.empty.message=Kérlek tölts ki minden mezőt.
+fix.alert.submit.failure.title=Hiba a küldés közben
+fix.alert.submit.failure.message=Ajjaj\! Hiba történt a válaszod elküldése közben. Az alkalmazás újratöltése segíthet.
+
+## Vote
+vote.falsepositive.question=A küldetés megoldhatatlannak lett jelölve. Helyes?
+vote.container.button.answer=Válasz
+vote.container.votes.left={votes_left} értékelés szükséges
+vote.answeractionsheet.button.accept=Igen
+vote.answeractionsheet.button.decline=Nem
+vote.answeractionsheet.button.cancel=Nem tudom
+vote.answeractionsheet.question=A válasz helyes?
+vote.sendmask.message=Válasz küldése...
+vote.alert.submit.failure.title=Hiba a küldés közben
+vote.alert.submit.failure.message=Ajjaj\! Hiba történt a válaszod elküldése közben. Az alkalmazás újratöltése segíthet.
+
+# Highscore
+highscore.title=Toplista
+highscore.absolute.tabtitle=Toplista
+highscore.relative.tabtitle=Az én pontjaim
+highscore.loadmask.message=Toplista betöltése...
+highscore.emptytext=Nem sikerült betölteni a toplistát.
+highscore.you=Ez te vagy\!
+highscore.koins=Koinok
+highscore.fixcount=Küldetések\:
+highscore.votecount=Ellenőrzések\:
+highscore.user.badges.emptytext=Nem sikerült a jelvények betöltése.
+
+# Profil
+profile.title=Profil
+profile.button.logout=Kijelentkezés
+profile.button.changeusername=Felhasználónév megváltoztatása
+profile.settings.messagebox.title=Beállítások
+profile.settings.messagebox.message=Add meg az új felhasználóneved
+profile.username.loadmask.message=Felhasználónév mentése...
+profile.content.username=Felhasználónév
+profile.content.oauthprovider=Bejelentkezve ezzel\:
+profile.content.fixes=Teljesített küldetések
+profile.content.votes=Végrehajtott ellenőrzések
+profile.content.koins.header=Összegyűjtött Koinok
+profile.content.koins.title=Koinok
+profile.content.ranking.title=Helyezés
+profile.content.badges.header=Megnyert jelvények
+profile.logout.loadmask.message=Kijelentkezés...
+profile.refresh.loadmask.message=Profil betöltése...
+profile.badges.title=Jelvényeid
+profile.badges.recieved=Megnyerve\:
+profile.badges.emptytext=A jelvényeid nem tölthetőek be.
+profile.badges.button.close=Bezárás
+profile.alert.username.empty.title=Felhasználónév megadása
+profile.alert.username.empty.message=Kérlek adj meg egy felhasználónevet.
+profile.alert.username.specialchars.title=Gond van a karakterrel
+profile.alert.username.specialchars.message=Kérlek csak betűket és számjegyeket használj a felhasználónévben.
+profile.alert.submit.failure.title=Hiba a küldés közben
+profile.alert.submit.failure.message=Ajjaj\! Hiba történt a felhasználónév elküldése közben. Az alkalmazás újraindítása segíthet.
+
+#News
+news.title=Hírek
+news.unread=Olvasatlan
+news.read=Olvasott
+news.list.emptytext=Nincs bejegyzés
+news.updated=Frissített
+news.settings.save=Mentés
+news.settings.cancel=Mégsem
+news.settings.acceptNoLanguage=A kijelölés megszüntetése
+news.settings.acceptAllLanguages=Az összes kijelölése
+news.settings.label=Az alábbi nyelveken szeretnék híreket kapni\:
+
+# About
+about.title=Névjegy
+about.version.title=Verzió
+about.information.title=További információ
+about.information.homepage=Weblap\:
+about.information.feedback=Visszajelzés/GYIK\:
+about.information.bugs=Hibajelentés\:
+about.developers.title=Fejlesztő
+about.project.title=Projektek
+about.project.advisor=Vezető\:
+about.credits.title=Stáblista
+about.credits.partner=Partner\:
+about.credits.mapdata=Földrajzi adatok\:
+about.credits.tiledata=Csempék\:
+about.credits.markers=Jelölő ikonok\:
+about.credits.translation=Fordítás\:
+about.credits.dbhosting=DB Hosting\:
+about.legal.title=Jogi nyilatkozat\:
+about.legal.message=Kérlek kövesd az OpenStreetMap irányelveit, és ne használj jogvédett forrásokat engedély nélkül.
+
+# PullRefresh Plugin
+pullrefresh.pullrefresh=Húzd le a frissítéshez
+pullrefresh.releaserefresh=Engedd el a frissítéshez...
+pullrefresh.loading=betöltés...
+pullrefresh.lastupdated=Utolsó frissítés\:
+
+# ListPaging Plugin
+listpaging.loadmore=Továbbiak betöltése...
+listpaging.nomorerecords=Nincs több elérhető sor.
+
+# Button
+button.back=Vissza
+
+# MessageBox
+messagebox.ok=OK
+messagebox.yes=Igen
+messagebox.no=Nem
+messagebox.cancel=Mégsem
+
+# Picker
+picker.done=Befejezés
+picker.cancel=Mégsem
+
+# Reward
+reward.alert.title=Növelted a hírneved\!
+reward.alert.koins.new=Gratulálunk\! Nyertél {koin_count_new} Koint.
+reward.alert.koins.total=Összesen {koin_count_total} Koinod van.
+reward.alert.badges.title=Megnyert jelvények
+
+# App update
+update.title=Az alkalmazás új verziója
+update.message=Az alkalmazás újabb verzióra frissült. Újratöltés lehet?
+
+#Languages
+en=angol
+de=német
+it=olasz
+fr=francia
+sl=szlovén
+hr=horvát
+cs=cseh
+nl=holland
+gl=galíciai
+pt=portugál
+ro=román
+ja=japán
+ca=katalán
+es=spanyol
+
+###############################
+# Labels used directly in source files (without Ext.i18n.Bundle plugin)
+###############################
+
+# index.html
+## App startscreen
+startscreen.loadingtext=A Kort töltődik. Készülj...
+startscreen.browsererror=A böngésződ jelenleg nem támogatjuk. Próbáld ki a mobilodon\!
+
+# app/util/Config.js
+## Firststeps
+firststeps.form.username.placeholder=Felhasználónév
+
+## PullRefresh Plugin
+pullrefresh.dateformat=Y. m. d. h\:iA

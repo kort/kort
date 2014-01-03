@@ -10,7 +10,6 @@ Ext.define('Kort.view.overlay.geolocationerror.Panel', {
 
 	config: {
 		id: 'geolocationerrorPanel',
-		layout: 'vbox',
         modal: true,
         scrollable: true,
         cls: 'overlayLeafletMap',
