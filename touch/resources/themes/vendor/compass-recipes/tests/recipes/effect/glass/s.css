@@ -1,128 +1,52 @@
-html {
-  padding: 1em;
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #dddddd), color-stop(100%, #ffffff)) no-repeat;
-  background: -webkit-linear-gradient(#dddddd, #ffffff) no-repeat;
-  background: -moz-linear-gradient(#dddddd, #ffffff) no-repeat;
-  background: -o-linear-gradient(#dddddd, #ffffff) no-repeat;
-  background: -ms-linear-gradient(#dddddd, #ffffff) no-repeat;
-  background: linear-gradient(#dddddd, #ffffff) no-repeat;
-}
+/*
+Syntax error: File to import not found or unreadable: tests.
+              Load path: D:/xampp/htdocs/kort/lib/touch-2.3.1/resources/themes/vendor/compass-recipes/tests/recipes/effect/glass
+        on line 1 of s.scss
 
-h1 {
-  font-size: 2em;
-  margin-bottom: 1em;
-}
+1: @import "tests";
+2: @import "recipes/effect/glass";
+3: 
+4: .body
+5: {
+6:     
 
-h2 {
-  font-size: 1.4em;
-  margin-bottom: .6em;
-}
-
-.doc {
-  background: #fff;
-  border: #ddd;
-  padding: 1em;
-  color: #aaa;
-  margin: 1em;
-  font-style: italic;
-}
-.doc a {
-  color: #999;
-}
-
-/**
- * Glass effect
- * Use this on image for better effect render
- * 
- * Inspired from Simurai's IMDB redisign
- *
- * @link http://lab.simurai.com/redesign/imdb
- * @thanks Simurai @simurai
- */
-/**
- * Note IE7/6 doesn't understand pseudo element as ::before and ::after
- * IE8 need to have :before and not ::before
- * So use only : and not :: if you want to support IE8
- * IE9 Webkit Firefox Opera understand ::
- */
-.glass,
-.glass-blue {
-  width: 400px;
-  height: 400px;
-  margin: 20px auto;
-  background: #000;
-}
-
-.glass {
-  position: relative;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -o-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -khtml-border-radius: 4px;
-  border-radius: 4px;
-}
-.glass:after {
-  content: "";
-  position: asolute;
-  display: block;
-  overflow: hidden;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  border: transparent solid 1px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -o-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -khtml-border-radius: 4px;
-  border-radius: 4px;
-  -moz-box-shadow: inset white 0 0 2px, inset rgba(255, 255, 255, 0.4) 0 5px 10px;
-  -webkit-box-shadow: inset white 0 0 2px, inset rgba(255, 255, 255, 0.4) 0 5px 10px;
-  -o-box-shadow: inset white 0 0 2px, inset rgba(255, 255, 255, 0.4) 0 5px 10px;
-  box-shadow: inset white 0 0 2px, inset rgba(255, 255, 255, 0.4) 0 5px 10px;
-  background: -webkit-gradient(linear, -45deg, -45deg, color-stop(50%, rgba(255, 255, 255, 0.12)), color-stop(50.5%, rgba(255, 255, 255, 0)));
-  background: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.12) 50%, rgba(255, 255, 255, 0) 50.5%);
-  background: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.12) 50%, rgba(255, 255, 255, 0) 50.5%);
-  background: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.12) 50%, rgba(255, 255, 255, 0) 50.5%);
-  background: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.12) 50%, rgba(255, 255, 255, 0) 50.5%);
-  background: linear-gradient(-45deg, rgba(255, 255, 255, 0.12) 50%, rgba(255, 255, 255, 0) 50.5%);
-}
-
-.glass-blue {
-  position: relative;
-  -moz-border-radius: 1em;
-  -webkit-border-radius: 1em;
-  -o-border-radius: 1em;
-  -ms-border-radius: 1em;
-  -khtml-border-radius: 1em;
-  border-radius: 1em;
-}
-.glass-blue:after {
-  content: "";
-  position: asolute;
-  display: block;
-  overflow: hidden;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  border: transparent solid 1px;
-  -moz-border-radius: 1em;
-  -webkit-border-radius: 1em;
-  -o-border-radius: 1em;
-  -ms-border-radius: 1em;
-  -khtml-border-radius: 1em;
-  border-radius: 1em;
-  -moz-box-shadow: inset #ddddff 0 0 2px, inset rgba(221, 221, 255, 0.4) 0 5px 10px;
-  -webkit-box-shadow: inset #ddddff 0 0 2px, inset rgba(221, 221, 255, 0.4) 0 5px 10px;
-  -o-box-shadow: inset #ddddff 0 0 2px, inset rgba(221, 221, 255, 0.4) 0 5px 10px;
-  box-shadow: inset #ddddff 0 0 2px, inset rgba(221, 221, 255, 0.4) 0 5px 10px;
-  background: -webkit-gradient(linear, -20deg, -20deg, color-stop(50%, rgba(221, 221, 255, 0.12)), color-stop(50.5%, rgba(221, 221, 255, 0)));
-  background: -webkit-linear-gradient(-20deg, rgba(221, 221, 255, 0.12) 50%, rgba(221, 221, 255, 0) 50.5%);
-  background: -moz-linear-gradient(-20deg, rgba(221, 221, 255, 0.12) 50%, rgba(221, 221, 255, 0) 50.5%);
-  background: -o-linear-gradient(-20deg, rgba(221, 221, 255, 0.12) 50%, rgba(221, 221, 255, 0) 50.5%);
-  background: -ms-linear-gradient(-20deg, rgba(221, 221, 255, 0.12) 50%, rgba(221, 221, 255, 0) 50.5%);
-  background: linear-gradient(-20deg, rgba(221, 221, 255, 0.12) 50%, rgba(221, 221, 255, 0) 50.5%);
-}
+Backtrace:
+s.scss:1
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/import_node.rb:64:in `rescue in import'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/import_node.rb:42:in `import'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/import_node.rb:25:in `imported_file'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:227:in `rescue in visit_import'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:232:in `visit_import'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:37:in `visit'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:98:in `visit'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:53:in `map'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:107:in `block in visit_children'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:119:in `with_environment'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:106:in `visit_children'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:37:in `block in visit'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:126:in `visit_root'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:37:in `visit'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:98:in `visit'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:7:in `visit'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/root_node.rb:20:in `render'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/engine.rb:315:in `_render'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/engine.rb:262:in `render'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/plugin/compiler.rb:340:in `update_stylesheet'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/plugin/compiler.rb:202:in `block in update_stylesheets'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/plugin/compiler.rb:200:in `each'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/plugin/compiler.rb:200:in `update_stylesheets'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/plugin.rb:81:in `update_stylesheets'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/exec.rb:411:in `watch_or_update'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/exec.rb:302:in `process_result'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/exec.rb:41:in `parse'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/exec.rb:21:in `parse!'
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.2.1/bin/scss:8:in `<top (required)>'
+C:/Ruby193/bin/scss:23:in `load'
+C:/Ruby193/bin/scss:23:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: File to import not found or unreadable: tests.\A               Load path: D:/xampp/htdocs/kort/lib/touch-2.3.1/resources/themes/vendor/compass-recipes/tests/recipes/effect/glass\A         on line 1 of s.scss\A \A 1: @import \"tests\";\A 2: @import \"recipes/effect/glass\";\A 3: \A 4: .body\A 5: {\A 6:     "; }

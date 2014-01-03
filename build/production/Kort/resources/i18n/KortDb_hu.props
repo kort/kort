@@ -1,0 +1,173 @@
+# error types
+error_type.title.motorway_ref=Útszám nélküli autópálya
+error_type.title.poi_wo_name=Név nélküli objektum
+error_type.title.missing_speedlimit=Hiányzó sebességkorlát
+error_type.title.tracktype=A földút típusa ismeretlen
+error_type.title.worship_religion=Kegyhely vallás nélkül
+error_type.title.language_name=A név nyelve nem ismert
+error_type.title.street_wo_name=Névtelen utca
+error_type.title.missing_cuisine=Konyhatípus néküli étterem
+
+# error type placeholders
+error_type.placeholder.ref=Útszám
+error_type.placeholder.religion=Vallás
+error_type.placeholder.name=Név
+error_type.placeholder.speed_limit=Sebességkorlát
+error_type.placeholder.language=Nyelv
+error_type.placeholder.type=Típus
+error_type.placeholder.street_name=Az utca neve
+error_type.placeholder.missing_cuisine=Konyha
+
+# vote questions
+vote.question.ref=Ez a helyes útszáma ennek az autópályának?
+vote.question.place_of_worship=Ez a hely ennek a vallásnak a kegyhelye?
+vote.question.name=Ennek ez a neve\: $1?
+vote.question.maxspeed=Ez a helyes sebességkorlát ezen az úton?
+vote.question.language_unknown=Az alábbi nyelvű ez a név\: '$2'?
+vote.question.tracktype=A megadott típusú ez a földút?
+vote.question.street_name=Ez az utca helyes neve?
+vote.question.missing_cuisine=Ez a $1 megfelelő konyhatípusa?
+
+# badge names
+badge.name.first_place=1. hely
+badge.name.second_place=2. hely
+badge.name.third_place=3. hely
+badge.name.100_missions=100 küldetés
+badge.name.50_missions=50 küldetés
+badge.name.10_missions=10 küldetés
+badge.name.1000_checks=1000 ellenőrzés
+badge.name.100_checks=100 ellenőrzés
+badge.name.10_checks=10 ellenőrzés
+badge.name.first_mission=1. küldetés
+badge.name.first_check=1. ellenőrzés
+
+# badge descriptions
+badge.description.reached_1st_place=Első helyet értél el a toplistán.
+badge.description.reached_2nd_place=Második helyet értél el a toplistán.
+badge.description.reached_3rd_place=Harmadik helyet értél el a toplistán.
+badge.description.100_missions_completed=100 teljesített küldetés.
+badge.description.50_missions_completed=50 teljesített küldetés.
+badge.description.10_missions_completed=10 teljesített küldetés.
+badge.description.1000_checks=1000 ellenőrzött válasz.
+badge.description.100_checks=100 ellenőrzött válasz.
+badge.description.10_checks=10 ellenőrzött válasz.
+badge.description.1st_mission=Első teljesített küldetés.
+badge.description.1st_check=Első ellenőrzött válasz.
+
+# missing_track_types (http://wiki.openstreetmap.org/wiki/Key:tracktype)
+answer.track_type.grade1=Aszfalt, beton, vagy macskakő
+answer.track_type.grade2=Kavicsos út
+answer.track_type.grade3=Kemény és puha anyagok keveréke
+answer.track_type.grade4=Talaj, homok, vagy fű
+answer.track_type.grade5=Burkolatlan földút
+
+# religion (http://wiki.openstreetmap.org/wiki/Key:religion)
+answer.religion.buddhist=Buddhista (templom)
+answer.religion.christian=Keresztély (templom)
+answer.religion.hindu=Hindu (templom)
+answer.religion.jewish=Zsidó (zsinagóga)
+answer.religion.muslim=Muszlim (mecset)
+answer.religion.pastafari=Pasztafárián
+answer.religion.shinto=Sintó (szentély)
+answer.religion.sikh=Sikh (Gurdwara)
+answer.religion.multiple=Több vallás
+
+# language (http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
+answer.language.arabic=arab
+answer.language.catalan=katalán
+answer.language.chinese=kínai
+answer.language.danish=dán
+answer.language.dutch=holland
+answer.language.english=angol
+answer.language.estonian=észt
+answer.language.finnish=finn
+answer.language.french=francia
+answer.language.german=német
+answer.language.greek=görög
+answer.language.hebrew=héber
+answer.language.hungarian=magyar
+answer.language.irish=ír
+answer.language.icelandic=izlandi
+answer.language.italian=olasz
+answer.language.japanese=japán
+answer.language.korean=koreai
+answer.language.croatian=horvát
+answer.language.latin=latin
+answer.language.luxembourgish=luxemburgi
+answer.language.norwegian=norvég
+answer.language.persian=perzsa
+answer.language.polish=lengyel
+answer.language.portuguese=portugál
+answer.language.romansh=romans
+answer.language.romanian=román
+answer.language.russian=orosz
+answer.language.sardinian=szardíniai
+answer.language.scottish_gaelic=skót
+answer.language.swiss_german=svájci német
+answer.language.serbian=szerb
+answer.language.slovakian=szlovák
+answer.language.slovenian=szlovén
+answer.language.spanish=spanyol
+answer.language.swedish=svéd
+answer.language.thai=thai
+answer.language.tibetan=tibeti
+answer.language.czech=cseh
+answer.language.turkish=török
+answer.language.uzbek=üzbég
+answer.language.vietnamese=vietnámi
+answer.language.welsh=walesi
+
+# missing_cuisine
+answer.missing_cuisine.regional=regionális
+answer.missing_cuisine.coffee_shop=kávézó
+answer.missing_cuisine.international=nemzetközi
+answer.missing_cuisine.italian=olasz
+answer.missing_cuisine.turkish=török
+answer.missing_cuisine.chinese=kínai
+answer.missing_cuisine.thai=thai
+answer.missing_cuisine.asian=ázsiai
+answer.missing_cuisine.indian=indiai
+answer.missing_cuisine.french=francia
+answer.missing_cuisine.mexican=mexikói
+answer.missing_cuisine.american=amerikai
+answer.missing_cuisine.japanese=japán
+answer.missing_cuisine.greek=görög
+answer.missing_cuisine.sandwich=szendvics
+answer.missing_cuisine.steak_house=steak-ház
+answer.missing_cuisine.chicken=csirke
+answer.missing_cuisine.bistro_brasserie=Bisztró, söröző
+answer.missing_cuisine.seafood=tengeri ételek
+answer.missing_cuisine.burger=hamburger
+
+##############################################################
+# THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT AND OSM_ERRORS#
+##############################################################
+
+# error descriptions (KeepRight)
+bug.question.track=Ez milyen jellegű földút?
+bug.question.poi=Mi a $1 neve?
+bug.question.speed=Mennyi a sebességkorlát ezen az úton?
+bug.question.name_of_street=Mi a neve ennek az utcának?
+bug.question.language=Milyen nyelven írták '$2' nevét?
+bug.question.motorway_ref=Mi a száma (pl. M1 vagy E385), ennek az autópályának?
+bug.question.place_of_worship=Ez a hely melyik valláshoz tartozik?
+bug.question.cuisine_of_restaurant=Mi a $1 konyhatípusa?
+
+# single values
+cafe=kávézó
+fast_food=gyorsétterem
+restaurant=étterem
+school=iskola
+pharmacy=gyógyszertár
+fuel=benzinkút
+cinema=mozi
+bank=bank
+university=egyetem
+theatre=színház
+pub=kocsma
+place_of_worship=kegyhely
+library=könvytár
+hospital=kórház
+courthouse=bíróság
+way=út
+node=hely

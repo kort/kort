@@ -1,6 +1,6 @@
 {
 	/**
-	 * @cfg {String} applicationName
+	 * @cfg  applicationName
 	 * @required
 	 * This is the name of your application, which is displayed on the device when the app is installed. On IOS, this should match
 	 * the name of your application in the Apple Provisioning Portal.
@@ -8,59 +8,60 @@
 	"applicationName":"Kort",
 
 	/**
-	 * @cfg {String} applicationId
+	 * @cfg  applicationId
 	 * This is the name namespace for your application. On IOS, this should match the name of your application in the Apple Provisioning Portal.
 	 */
 	"applicationId":"com.herokuapp.Kort",
 
 	/**
-	 * @cfg {String} bundleSeedId
+	 * @cfg  bundleSeedId
 	 * A ten character string which stands before aplication ID in Apple Provisioning Portal
 	 */
 	"bundleSeedId":"KPXFEPZ6EF",
 
 	/**
-	 * @cfg {String} versionString
+	 * @cfg  versionString
 	 * @required
 	 * This is the version of your application.
 	 */
-	"versionString":"1.0.0",
+	"versionString":"2.0.0",
 
 	/**
-	 * @cfg {Integer} versionCode
+	 * @cfg  versionCode
 	 * @required
 	 * This is the integer version code of your application, or you can refer to it as a build number. Used only for Android builds.
 	 */
 	"versionCode":"1",
 
 	/**
-	 * @cfg {Object} icon
+	 * @cfg  icon
 	 * For iOS, please refer to their documentation about icon sizes:
 	 * https://developer.apple.com/library/ios/#documentation/userexperience/conceptual/mobilehig/IconsImages/IconsImages.html
 	 *
 	 * For Android, please refer to the Google Launcher icons guide:
 	 * http://developer.android.com/guide/practices/ui_guidelines/icon_design_launcher.html
+	 * iOS uses 57, 72, 114 and 144; Android uses 36, 48 and 72; if you package for Android you can ignore iOS icons and vice verca
 	 */
 	"icon": {
 		"114":"resources/images/kort-icon.png"
 	},
 
 	/**
-	 * @cfg {String} inputPath
+	 * @cfg  inputPath
 	 * @required
 	 * This is location of your Sencha Touch 2 application, relative to this configuration file.
 	 */
 	"inputPath":"./",
 
 	/**
-	 * @cfg {String} outputPath
+	 * @cfg  outputPath
 	 * @required
 	 * This is where the built application file with be saved. Make sure that output path is not in your input path, you may get into endless recursive copying
 	 */
-	"outputPath":"build/Kort/packager/",
+	"outputPath":"build/packager/Kort/",
 
 	/**
-	 * @cfg {String} configuration
+	 * @cfg  configuration
 	 * @required
 	 * This is configuration for your application. `Debug` should always be used unless you are submitting your app to an online
 	 * store - in which case `Release` should be specified.
@@ -68,7 +69,7 @@
 	"configuration":"Debug",
 
 	/**
-	 * @cfg {String} platform
+	 * @cfg  platform
 	 * @required
 	 * This is the platform where you will be running your application. Available options are:
 	 *  - iOSSimulator
@@ -79,7 +80,7 @@
 	"platform":"Android",
 
 	/**
-	 * @cfg {String} deviceType
+	 * @cfg  deviceType
 	 * @required
 	 * This is device type that your application will be running on.
 	 *
@@ -93,14 +94,14 @@
 	"deviceType":"Universal",
 
 	/**
-	 * @cfg {String} certificatePath
+	 * @cfg  certificatePath
 	 * This is the location of your certificate.
 	 * This is required when you are developing for Android or you are developing on Windows.
 	 */
 	"certificatePath":"kort.keystore",
 
 	/**
-	 * @cfg {String} certificateAlias
+	 * @cfg  certificateAlias
 	 * This is the name of your certificate.
 	 *
 	 * IF you do not specify this on OSX, we will try and automatically find the certificate for you using the applicationId.
@@ -113,41 +114,44 @@
 	"certificateAlias":"kort",
     
 	/**
-	 * @cfg {String} certificatePassword
+	 * @cfg  certificatePassword
 	 * The password which was specified during certificate export
 	 */
-	"certificatePassword":"osm2012",
+	"certificatePassword":"",
     
 	/**
-	 * @cfg {String} provisionProfile
+	 * @cfg  provisionProfile
 	 * The path to the provision profile (APP_NAME.mobileprovision) which you can create and then download from Apple's provisioning portal
 	 */
 	"provisionProfile":"",
-
 	/**
-	 * @cfg {String} sdkPath
+	 * @cfg  notificationConfiguration
+	 * Notification configuration for push notifications, can be "debug", "release" or empty if you don't use push notifications in your project.
+	 */
+	"notificationConfiguration":"",
+	/**
+	 * @cfg  sdkPath
 	 * This is the path to the Android SDK, if you are developing an Android application.
 	 */
 	"sdkPath":"C:\\AndroidSDK\\sdk",
 
 	/**
-	 * @cfg {String} androidAPILevel
+	 * @cfg  androidAPILevel
 	 * This is android API level, the version of Android SDK to use, you can read more about it here: http://developer.android.com/guide/appendix/api-levels.html.
 	 * Be sure to install corresponding platform API in android SDK manager (android_sdk/tools/android)
 	 */
-	"androidAPILevel":"17",
+	"androidAPILevel":"8",
 
-	/**
-	/**
+        /**
 	 * @cfg {Array[String]} permissions
 	 * Array of permissions that is used by an application (Android only) 
 	 * Full list of permissions for Android application can be found here: http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_CHECKIN_PROPERTIES
 	 */
 	"permissions":[
-					"INTERNET",
-					"ACCESS_NETWORK_STATE",
-    				"ACCESS_FINE_LOCATION",
-    				"ACCESS_COARSE_LOCATION"
+        "INTERNET",
+        "ACCESS_NETWORK_STATE",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION"
     ],
 
 	/**

@@ -32,7 +32,7 @@
      *                                      //  - "delta" to enable over-the-air delta update for this file
      *                                      //  - "full" means full update will be made when this file changes
      *          "x-bootstrap": true         // (Optional)
-     *                                      // Indicates a development mode only dependency.
+     *                                      // Indicates a development mode only dependency.  
      *                                      // These files will not be copied into the build directory or referenced
      *                                      // in the generate app.json manifest for the micro loader.
      *
@@ -44,19 +44,28 @@
             "x-bootstrap": true
         },
         {
-            "path": "lib/Leaflet-0.5.0/dist/leaflet-src.js"
+            "path": "bootstrap.js",
+            "x-bootstrap": true
         },
         {
-            "path": "lib/Leaflet-0.5.0/dist/leaflet-osm.js"
+            "path": "lib/Leaflet-0.7/dist/leaflet-src.js",
+            "update": "full"
         },
         {
-            "path": "lib/kort-libs/UrlLib.js"
+            "path": "lib/Leaflet-0.7/dist/leaflet-osm.js",
+            "update": "full"
         },
         {
-            "path": "lib/kort-libs/Math.js"
+            "path": "lib/kort-libs/UrlLib.js",
+            "update": "full"
+        },
+        {
+            "path": "lib/kort-libs/Math.js",
+            "update": "full"
         },
         {
             "path": "app.js",
+            "update": "full",
             "bundle": true  /* Indicates that all class dependencies are concatenated into this file when build */
         }
     ],
@@ -82,7 +91,7 @@
             "path": "resources/css/app.css"
         },
         {
-            "path": "lib/Leaflet-0.5.0/dist/leaflet.css"
+            "path": "lib/Leaflet-0.7/dist/leaflet.css"
         },
         {
             "path": "lib/zocial/css/zocial.css"
@@ -108,10 +117,14 @@
             "resources/images/kort-icon.png",
             "resources/images/kort-logo.png",
             "resources/images/kort-logo_white.png",
+            "resources/images/listStarIcon.png",
+            "resources/images/listStarIcon@X2.png",
+            "resources/images/logo_sourcepole.png",
+            "resources/images/transparent_loader.gif",
             "resources/images/badges/fix_count_1.png",
             "resources/images/badges/fix_count_10.png",
-            "resources/images/badges/fix_count_100.png",
             "resources/images/badges/fix_count_50.png",
+            "resources/images/badges/fix_count_100.png",
             "resources/images/badges/highscore_place_1.png",
             "resources/images/badges/highscore_place_2.png",
             "resources/images/badges/highscore_place_3.png",
@@ -121,8 +134,8 @@
             "resources/images/badges/vote_count_100.png",
             "resources/images/badges/vote_count_1000.png",
             "resources/images/koins/koin_no_value.png",
-            "resources/images/marker_icons/language_unknown.png",
-            "resources/images/marker_icons/language_unknown@2x.png",
+            "resources/images/marker_icons/language_unknown_mission.png",
+            "resources/images/marker_icons/language_unknown_mission@2x.png",
             "resources/images/marker_icons/missing_maxspeed.png",
             "resources/images/marker_icons/missing_maxspeed@2x.png",
             "resources/images/marker_icons/missing_track_type.png",
@@ -141,6 +154,9 @@
             "resources/images/marker_icons/way_wo_tags.png",
             "resources/images/marker_icons/way_wo_tags@2x.png",
             "resources/images/profile/highscore.png",
+            "resources/images/promotion/promotionCircle.png",
+            "resources/images/promotion/promotionCircle@2X.png",
+            "resources/images/promotion/promotionInfoButton@X2.png",
             "resources/images/validation/thumbs-down.png",
             "resources/images/validation/thumbs-up.png",
             "resources/images/validation/votes-left.png"
@@ -168,7 +184,7 @@
         "resources/styles/styles.css",
         "resources/i18n",
         "resources/stores",
-        "lib/Leaflet-0.5.0/dist/images",
+        "lib/Leaflet-0.7/dist/images",
         "lib/Slim-2.1.0/Slim",
         "lib/google-api-php-client/src",
         "lib/oauth-php/library",
@@ -198,28 +214,14 @@
     "archivePath": "archive",
 
     /**
-     * Default paths to build this application to for each environment
+     * List of package names to require for the cmd build process
      */
-    "buildPaths": {
-        "testing": "build/testing",
-        "production": "build/production",
-        "package": "build/package",
-        "native": "build/native"
-    },
-
-    /**
-     * Build options
-     */
-    "buildOptions": {
-        "product": "touch",
-        "minVersion": 3,
-        "debug": false,
-        "logger": false
-    },
+    "requires": [
+    ],
 
     /**
      * Uniquely generated id for this application, used as prefix for localStorage keys.
      * Normally you should never change this value.
      */
-    "id": "d6069029-dcbb-4cf2-b20b-cefd12012a6c"
+    "id": "fbb39b29-532a-449b-bc50-7d1890386993"
 }

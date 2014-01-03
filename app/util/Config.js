@@ -8,18 +8,13 @@ Ext.define('Kort.util.Config', {
         /**
          * @cfg {String} version Current version number of application
          */
-        version: '2.0.{BUILD_NR}',
+        version: '2.1.{BUILD_NR}',
         
         /**
          * @cfg {String[]} supportedLanguages Supported languages of the app
          */
-        supportedLanguages: ['en', 'de', 'it', 'fr', 'sl', 'hr', 'cs', 'nl', 'gl', 'pt', 'ro', 'ja', 'ca', 'es'],
-        
-        /**
-         * @cfg {String[]} supportedBrowsers List of supported browsers
-         */
-        supportedBrowsers: ['WebKit'],
-        
+        supportedLanguages: ['ca', 'cs', 'de', 'en', 'es', 'fr', 'gl', 'hr', 'hu', 'id', 'is', 'it', 'ja', 'nl', 'pt', 'ro', 'ru', 'sk', 'sl', 'sr', 'tr', 'vi'],
+
         /**
          * @cfg {String} defaultLanguage Default language of app when no language setting could be detected
          */
@@ -28,20 +23,16 @@ Ext.define('Kort.util.Config', {
         /**
          * @cfg {Object} leafletMap Configuration for {@link Ext.ux.LeafletMap} component
          * @cfg {Number} [leafletMap.zoom=15] (required) Default zoom level of leaflet map
-         * @cfg {Function} [leafletMap.getTileLayerUrl] (required) URL to tile server
+         * @cfg {String} [leafletMap.tileLayerUrl] (required) URL to tile server
+         * @cfg {String} [leafletMap.retinaTileLayerUrl] (required) URL to retina tile server
          * @cfg {String} [leafletMap.tileLayerAttribution="Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>"] (required) Copyright information of map
          * @cfg {String} [leafletMap.apiKey=729242682cb24de8aa825c8aed993cba] (required) API key for cloudmade tiles
          * @cfg {Number} [leafletMap.styleId=997] (required) Style id for cloudmade tiles
          */
 		leafletMap: {
             zoom: 15,
-			getTileLayerUrl: function(isRetina) {
-                if(isRetina) {
-                    return 'http://{s}.tile.cloudmade.com/{apikey}/{styleId}@2x/256/{z}/{x}/{y}.png';
-                } else {
-                    return 'http://{s}.tile.cloudmade.com/{apikey}/{styleId}/256/{z}/{x}/{y}.png';
-                }
-            },
+			tileLayerUrl: 'http://{s}.tile.cloudmade.com/{apiKey}/{styleId}/256/{z}/{x}/{y}.png',
+            retinaTileLayerUrl: 'http://{s}.tile.cloudmade.com/{apiKey}/{styleId}@2x/256/{z}/{x}/{y}.png',
             tileLayerAttribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>',
 			apiKey: '729242682cb24de8aa825c8aed993cba',
             styleId: 997
@@ -156,6 +147,14 @@ Ext.define('Kort.util.Config', {
          * @cfg {Object} messages Ext.i18n.bundle plugin doesn't work for form placeholders so these are stored in config file
          */
         messages: {
+            ca: {
+                'firststeps.form.username.placeholder': "Nom d'usuari",
+                'pullrefresh.dateformat': 'm/d/Y h:iA'
+            },
+            cs: {
+                'firststeps.form.username.placeholder': 'Uživatelské jméno',
+                'pullrefresh.dateformat': 'd.m.Y H:i:s'
+            },
             de: {
                 'firststeps.form.username.placeholder': 'Benutzername',
                 'pullrefresh.dateformat': 'd.m.Y H:i:s'
@@ -164,33 +163,45 @@ Ext.define('Kort.util.Config', {
                 'firststeps.form.username.placeholder': 'Username',
                 'pullrefresh.dateformat': 'm/d/Y h:iA'
             },
-            it: {
-                'firststeps.form.username.placeholder': 'Nome utente',
-                'pullrefresh.dateformat': 'd.m.Y h:i:s'
+            es: {
+                'firststeps.form.username.placeholder': 'Nombre de usuario',
+                'pullrefresh.dateformat': 'd/m/Y  h:i A'
             },
             fr: {
                 'firststeps.form.username.placeholder': "Nom d'utilisateur",
                 'pullrefresh.dateformat': 'd/m/Y H:i'
             },
-            sl: {
-                'firststeps.form.username.placeholder': 'Uporabniško ime',
-                'pullrefresh.dateformat': 'd/m/l h:iA'
+            gl: {
+                'firststeps.form.username.placeholder': 'Nome de usuario',
+                'pullrefresh.dateformat': 'm/d/A h:iA'
             },
             hr: {
                 'firststeps.form.username.placeholder': 'Korisničko ime',
                 'pullrefresh.dateformat': 'd/m/Y h:iA'
             },
-            cs: {
-                'firststeps.form.username.placeholder': 'Uživatelské jméno',
-                'pullrefresh.dateformat': 'd.m.Y H:i:s'
+            hu: {
+                'firststeps.form.username.placeholder': 'Felhasználónév',
+                'pullrefresh.dateformat': 'Y. m. d. h:iA'
+            },
+            id: {
+                'firststeps.form.username.placeholder': 'Nama pengguna',
+                'pullrefresh.dateformat': 'm/d/Y h:iA'
+            },
+            is: {
+                'firststeps.form.username.placeholder': 'Notandanafn',
+                'pullrefresh.dateformat': 'd/m/Y h:iA'
+            },
+            it: {
+                'firststeps.form.username.placeholder': 'Nome utente',
+                'pullrefresh.dateformat': 'd.m.Y h:i:s'
+            },
+            ja: {
+                'firststeps.form.username.placeholder': 'ユーザー名',
+                'pullrefresh.dateformat': 'Y/m/d h:iA'
             },
             nl: {
                 'firststeps.form.username.placeholder': 'Gebruikersnaam',
                 'pullrefresh.dateformat': 'm/d/J u:m'
-            },
-            gl: {
-                'firststeps.form.username.placeholder': 'Nome de usuario',
-                'pullrefresh.dateformat': 'm/d/A h:iA'
             },
             pt: {
                 'firststeps.form.username.placeholder': 'Nome do usuario',
@@ -200,17 +211,29 @@ Ext.define('Kort.util.Config', {
                 'firststeps.form.username.placeholder': 'Nume de utilizator',
                 'pullrefresh.dateformat': 'm/d/Y h:iA'
             },
-            ja: {
-                'firststeps.form.username.placeholder': 'ユーザー名',
-                'pullrefresh.dateformat': 'Y/m/d h:iA'
+            ru: {
+                'firststeps.form.username.placeholder': 'Имя',
+                'pullrefresh.dateformat': 'd.m.Y H:i'
             },
-            ca: {
-                'firststeps.form.username.placeholder': "Nom d'usuari",
-                'pullrefresh.dateformat': 'm/d/Y h:iA'
+            sk: {
+                'firststeps.form.username.placeholder': 'Používateľské meno',
+                'pullrefresh.dateformat': 'd. m. Y H:i'
             },
-            es: {
-                'firststeps.form.username.placeholder': 'Nombre de usuario',
-                'pullrefresh.dateformat': 'd/m/Y  h:i A'
+            sl: {
+                'firststeps.form.username.placeholder': 'Uporabniško ime',
+                'pullrefresh.dateformat': 'd/m/l h:iA'
+            },
+            sr: {
+                'firststeps.form.username.placeholder': 'Корисничко име',
+                'pullrefresh.dateformat': 'd/m/Y h:iA'
+            },
+            tr: {
+                'firststeps.form.username.placeholder': 'Kullanıcı adı',
+                'pullrefresh.dateformat': 'd/m/Y h:iA'
+            },
+            vi: {
+                'firststeps.form.username.placeholder': 'tên người dùng',
+                'pullrefresh.dateformat': 'd.m.Y H:i:s'
             }
         },
 
@@ -355,23 +378,6 @@ Ext.define('Kort.util.Config', {
         }
         return this.getDefaultLanguage();
 	},
-
-    /**
-     * Tells if current browser is supported
-     */
-	isBrowserSupported: function() {
-        var supportedBrowsers = this.getSupportedBrowsers(),
-            supportedBrowsersLen = supportedBrowsers.length,
-            i;
-
-        for(i = 0; i < supportedBrowsersLen; i++) {
-            if(Ext.browser.is(supportedBrowsers[i])) {
-                return true;
-            }
-        }
-        return false;
-	},
-
 
     /**
      * Returns a Leaflet marker icon for a given type

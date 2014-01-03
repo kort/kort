@@ -1,0 +1,173 @@
+# error types
+error_type.title.motorway_ref=Hraðbraut án tilvísunar
+error_type.title.poi_wo_name=Hlutur án nafns
+error_type.title.missing_speedlimit=Vantar hámarkshraða
+error_type.title.tracktype=Óskilgreind tegund vegslóða
+error_type.title.worship_religion=Trúarbrögð tilbeiðslustaðar óskilgreind
+error_type.title.language_name=Tungumál nafnsins óskilgreint
+error_type.title.street_wo_name=Gata/vegur án nafns
+error_type.title.missing_cuisine=Restaurant without a cuisine
+
+# error type placeholders
+error_type.placeholder.ref=Tilvísun
+error_type.placeholder.religion=Trúarbrögð
+error_type.placeholder.name=Nafn
+error_type.placeholder.speed_limit=Hámarkshraði
+error_type.placeholder.language=Tungumál
+error_type.placeholder.type=Tegund
+error_type.placeholder.street_name=Götunafn / vegnafn
+error_type.placeholder.missing_cuisine=Cuisine
+
+# vote questions
+vote.question.ref=Er tilvísun þessarar hraðbrautar rétt?
+vote.question.place_of_worship=Er þetta tilbeiðslustaður fyrir þessi trúarbrögð?
+vote.question.name=Er þetta rétta nafnið á $1?
+vote.question.maxspeed=Er hámarkshraðinn réttur?
+vote.question.language_unknown=Er nafnið '$2' á eftirfarandi tungumáli?
+vote.question.tracktype=Er slóðinn af eftirfarandi tegund?
+vote.question.street_name=Er þetta hið rétta nafn götunnar/vegsins?
+vote.question.missing_cuisine=Is this the correct cuisine type of $1?
+
+# badge names
+badge.name.first_place=1. sæti
+badge.name.second_place=2. sæti
+badge.name.third_place=3. sæti
+badge.name.100_missions=100 verkefni
+badge.name.50_missions=50 verkefni
+badge.name.10_missions=10 verkefni
+badge.name.1000_checks=1000 staðfestingar
+badge.name.100_checks=100 staðfestingar
+badge.name.10_checks=10 staðfestingar
+badge.name.first_mission=Fyrsta verkefni
+badge.name.first_check=Fyrsta staðfesting
+
+# badge descriptions
+badge.description.reached_1st_place=Hefur náð 1. sæti á stigatöflunni.
+badge.description.reached_2nd_place=Hefur náð 2. sæti á stigatöflunni.
+badge.description.reached_3rd_place=Hefur náð 3. sæti á stigatöflunni.
+badge.description.100_missions_completed=100 verkefni kláruð.
+badge.description.50_missions_completed=50 verkefni kláruð.
+badge.description.10_missions_completed=10 verkefni kláruð.
+badge.description.1000_checks=Staðfest 1000 svör.
+badge.description.100_checks=Staðfest 100 svör.
+badge.description.10_checks=Staðfest 10 svör.
+badge.description.1st_mission=Fyrsta verkefni lokið.
+badge.description.1st_check=Fyrsta staðfesta svar.
+
+# missing_track_types (http://wiki.openstreetmap.org/wiki/Key:tracktype)
+answer.track_type.grade1=Asfalt, steinsteypa eða bundið steinlag
+answer.track_type.grade2=Óbundið steinlag
+answer.track_type.grade3=Blanda af hörðum og mjúkum efnum
+answer.track_type.grade4=Mold, sandur eða gras
+answer.track_type.grade5=Ómalbikaður slóði
+
+# religion (http://wiki.openstreetmap.org/wiki/Key:religion)
+answer.religion.buddhist=Búddismi (musteri)
+answer.religion.christian=Kristni (kirkja)
+answer.religion.hindu=Hindúismi (musteri)
+answer.religion.jewish=Gyðingdómur (sýnagóga)
+answer.religion.muslim=Íslam (moska)
+answer.religion.pastafari=Kirkja hins fljúgandi spagettískrímslis
+answer.religion.shinto=Sjintóismi (hof)
+answer.religion.sikh=Síkismi (musteri)
+answer.religion.multiple=Mörg trúarbrögð
+
+# language (http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
+answer.language.arabic=Arabíska
+answer.language.catalan=Katalónska
+answer.language.chinese=Kínversk mállýska
+answer.language.danish=Danska
+answer.language.dutch=Hollenska
+answer.language.english=Enska
+answer.language.estonian=Eistneska
+answer.language.finnish=Finnska
+answer.language.french=Franska
+answer.language.german=Þýska
+answer.language.greek=Gríska
+answer.language.hebrew=Hebreska
+answer.language.hungarian=Hungarian
+answer.language.irish=Írska
+answer.language.icelandic=Íslenska
+answer.language.italian=Ítalska
+answer.language.japanese=Japanska
+answer.language.korean=Kóreska
+answer.language.croatian=Króatíska
+answer.language.latin=Latína
+answer.language.luxembourgish=Lúxemborgíska
+answer.language.norwegian=Norska
+answer.language.persian=Persneska
+answer.language.polish=Pólska
+answer.language.portuguese=Portúgalska
+answer.language.romansh=Rómanska
+answer.language.romanian=Rúmenska
+answer.language.russian=Rússneska
+answer.language.sardinian=Sardiníska
+answer.language.scottish_gaelic=Gelíska
+answer.language.swiss_german=Svissnesk þýska
+answer.language.serbian=Serbneska
+answer.language.slovakian=Slóvakíska
+answer.language.slovenian=Slóvenska
+answer.language.spanish=Spænska
+answer.language.swedish=Sænska
+answer.language.thai=Tælenska
+answer.language.tibetan=Tíbeska
+answer.language.czech=Tékkneska
+answer.language.turkish=Tyrkneska
+answer.language.uzbek=Úsbekíska
+answer.language.vietnamese=Víetnamska
+answer.language.welsh=Velska
+
+# missing_cuisine
+answer.missing_cuisine.regional=Regional
+answer.missing_cuisine.coffee_shop=Coffee Shop
+answer.missing_cuisine.international=International
+answer.missing_cuisine.italian=Italian
+answer.missing_cuisine.turkish=Turkish
+answer.missing_cuisine.chinese=Chinese
+answer.missing_cuisine.thai=Thai
+answer.missing_cuisine.asian=Asian
+answer.missing_cuisine.indian=Indian
+answer.missing_cuisine.french=French
+answer.missing_cuisine.mexican=Mexican
+answer.missing_cuisine.american=American
+answer.missing_cuisine.japanese=Japanese
+answer.missing_cuisine.greek=Greek
+answer.missing_cuisine.sandwich=Sandwich
+answer.missing_cuisine.steak_house=Steakhouse
+answer.missing_cuisine.chicken=Chicken
+answer.missing_cuisine.bistro_brasserie=Bistro, Brasserie
+answer.missing_cuisine.seafood=Seafood
+answer.missing_cuisine.burger=Burger
+
+##############################################################
+# THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT AND OSM_ERRORS#
+##############################################################
+
+# error descriptions (KeepRight)
+bug.question.track=Hvers konar slóði er þetta?
+bug.question.poi=Hvað heitir þetta $1?
+bug.question.speed=Hver er hámarkshraðinn á þessari götu/þessum veg?
+bug.question.name_of_street=Hvað heitir þessi gata/vegur?
+bug.question.language=Á hvaða tungumáli er '$2' ritað?
+bug.question.motorway_ref=Hver er tilvísun (t.d. A3 eða E385) þessarar hraðbrautar?
+bug.question.place_of_worship=Fyrir hvaða trú er þessi tilbeiðslustaður?
+bug.question.cuisine_of_restaurant=What's the cuisine type of '$1'?
+
+# single values
+cafe=kaffihús
+fast_food=skyndibitastaður
+restaurant=veitingastaður
+school=skóli
+pharmacy=apótek
+fuel=bensínstöð
+cinema=bíó
+bank=banki
+university=háskóli
+theatre=leikhús
+pub=krá
+place_of_worship=tilbeiðslustaður
+library=bókasafn
+hospital=sjúkrahús
+courthouse=dómshús
+way=vegur
+node=staður

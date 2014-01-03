@@ -12,11 +12,10 @@ Ext.define('Kort.view.overlay.firststeps.Panel', {
 
 	config: {
 		id: 'firststepsPanel',
-		layout: 'vbox',
-        modal: true,
         scrollable: true,
         cls: 'overlayLeafletMap',
-        
+
+        hidden: true,
         showAnimation: {
             type: 'slideIn',
             direction: 'down'
@@ -25,7 +24,7 @@ Ext.define('Kort.view.overlay.firststeps.Panel', {
             type: 'slideOut',
             direction: 'up'
         },
-        
+
 		items: [
 			{
                 html:   '<div class="overlay-content">' +
@@ -40,7 +39,7 @@ Ext.define('Kort.view.overlay.firststeps.Panel', {
             {
                 xtype: 'formpanel',
                 id: 'usernameForm',
-                scrollable: false,
+                scrollable: null,
                 layout: 'vbox',
                 items: [
                     {

@@ -13,7 +13,7 @@ Ext.define('Kort.view.profile.BadgesDataView', {
                         '<img src="./resources/images/badges/<tpl if="won">{name}<tpl else>locked</tpl>.png" />' +
                         '<p class="badge-title">{title}</p>' +
                     '</div>',
-        scrollable: false,
+        scrollable: null,
         emptyText: '<div class="emptytext">' + Ext.i18n.Bundle.message('profile.badges.emptytext') + '</div>',
         // disable loading mask for badges dataview
         loadingText: false

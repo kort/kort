@@ -3,6 +3,9 @@
  */
 Ext.define('Kort.store.NewsRemote', {
     extend: 'Ext.data.Store',
+    requires: [
+        'Ext.data.reader.Xml'
+    ],
     config: {
         model: 'Kort.model.News',
         proxy: {

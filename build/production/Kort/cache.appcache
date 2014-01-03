@@ -1,0 +1,80 @@
+CACHE MANIFEST
+# c7bf70c19a60824248c32bba0265de208e652e09
+index.html
+# 2145bfd88f8aa885be336ade8a6928d90c0045a7
+resources/images/ajax-loader.gif
+# 98836e42520b89367263ea701005ffa3725abcd8
+resources/images/arrow_black.png
+# 1ed05dd1938d025c8114e6018b5289ec8cf7a5d0
+resources/images/hsr_logo.png
+# d862fa6f5facd26f723a0b37b97f2d4f6b10c556
+resources/images/kort-favicon.ico
+# b6e606a7721417a892eddc84a7be189b6b40082b
+resources/images/kort-icon.png
+# 94b8ade5c5d5da4f1faaf28a755d0dff4d69412e
+resources/images/kort-logo.png
+# a25f9d47a10ebfb260aa8b39fa8ec97bce03a580
+resources/images/kort-logo_white.png
+# 1fd4f41d01095658e0ad2b09aae392cf5e978474
+resources/images/listStarIcon.png
+# c66dd71dfcd0b3e9e1b9412b56a995bc28a838f8
+resources/images/listStarIcon@X2.png
+# f83095820e5f5a6c525bf628c585cac1e744d22f
+resources/images/logo_sourcepole.png
+# 4d57f703e70b0ed6f56376cab1a205aa245c5bf8
+resources/images/transparent_loader.gif
+# 84aea6bed80a422b5fea8903f5af888cd3e85f10
+resources/images/badges/fix_count_1.png
+# e404710ad40a1da431da5e4f9eae19588c7d9052
+resources/images/badges/fix_count_10.png
+# 9d7b7a806f4b38f4b57541e3a3a958dec044de0e
+resources/images/badges/fix_count_50.png
+# 00acf444fdc97aa0c9cc6de2cec0b7e68a1513a0
+resources/images/badges/fix_count_100.png
+# 7ea6732c1f8a8bf0c9de10e5f8b26a5e9fb7d814
+resources/images/badges/highscore_place_1.png
+# 5cb49201f378433153cdc6544c180640b57ee413
+resources/images/badges/highscore_place_2.png
+# 0281c776d9378a99ee206be7a6f79e6199102115
+resources/images/badges/highscore_place_3.png
+# 605bedf34467cfbf38e4daca1cfc818dab724a0a
+resources/images/badges/locked.png
+# 34041c635ec449bf3d8c001c4073c355d8da54fe
+resources/images/badges/vote_count_1.png
+# 8a735d94dc77c60c0478c81f27b492f8e57e211d
+resources/images/badges/vote_count_10.png
+# d613cb6a65819db3da2abed4f5dd4f16aaa6a7d0
+resources/images/badges/vote_count_100.png
+# c8f6328e6156964f107bc49f51420eb087c3db0e
+resources/images/badges/vote_count_1000.png
+# c15a0ddd2d5f7afebcb6322d13c69cfd3a5f4339
+resources/images/koins/koin_no_value.png
+# 39ae2834ae78901e3cf6e56c1c67629e8c4b5281
+resources/images/marker_icons/language_unknown_mission.png
+# 0285f7aac7b7897838684228872611f0f18ca7fa
+resources/images/marker_icons/language_unknown_mission@2x.png
+# 8cf2a9864903483ec5d5fe6b121bcb8919295a02
+resources/images/marker_icons/shadow.png
+# 98555d5e2404d3e41c4fa424b0ffbad942f442af
+resources/images/marker_icons/shadow@2x.png
+# 89514b38350ac1ad7f1b77c3d0a7a42a65b5590b
+resources/images/profile/highscore.png
+# e8273fe80aba4da8317d30601d0431ed527c31bd
+resources/images/promotion/promotionCircle.png
+# 8c1e2ef29ebcc516b6f3d4b21a0b1466daf18183
+resources/images/promotion/promotionCircle@2X.png
+# 2336e6ca6fc033dd73c9bbd98d2a8a51010c1263
+resources/images/promotion/promotionInfoButton@X2.png
+# 419bb2056c7012932187390094907a51093fe2c1
+resources/images/validation/thumbs-down.png
+# 91c3b924bc761d5e3c714fc1f98c933cec0c4990
+resources/images/validation/thumbs-up.png
+# 39b6b0fbf895c7544fc137bd970d7b4d4c771915
+resources/images/validation/votes-left.png
+
+
+FALLBACK:
+
+
+NETWORK:
+*

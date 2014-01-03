@@ -14,9 +14,10 @@ Ext.define('Kort.view.profile.BadgesContainer', {
 	config: {
         zIndex: Kort.util.Config.getZIndex().overlayLeafletMap,
         layout: 'vbox',
-        
+
+        hidden: true,
         showAnimation: {
-            type: 'slideIn',
+            type: 'slide',
             direction: 'up'
         },
         hideAnimation: {

@@ -1,131 +1,10 @@
 <!DOCTYPE HTML>
-<html manifest="" lang="de-CH">
+<html manifest="" lang="en-US">
 <head>
     <meta charset="UTF-8">
     <title>Kort</title>
     <link rel="icon" href="./resources/images/kort-favicon.ico" type="image/png" />
-    <script type="text/javascript">
-        // create namespace
-        var KortStartscreen = {};
-        KortStartscreen.supportedLanguages = ['en', 'de', 'it', 'fr', 'sl', 'hr', 'cs', 'nl', 'gl', 'pt', 'ro', 'ja', 'ca', 'es'];
-        KortStartscreen.supportedBrowsers = ['WebKit'];
-        KortStartscreen.defaultLanguage = 'en';
-        
-        KortStartscreen.getLanguage = function() {
-            var currentLang = (navigator.language || navigator.browserLanguage || navigator.userLanguage || KortStartscreen.defaultLanguage),
-                supportedLanguages = KortStartscreen.supportedLanguages,
-                langLen = supportedLanguages.length,
-                i;
 
-            currentLang = currentLang.substring(0, 2).toLowerCase();
-            for(i = 0; i < langLen; i++) {
-                if (supportedLanguages[i] === currentLang) {
-                    return currentLang;
-                }
-            }
-            return KortStartscreen.defaultLanguage;
-        }
-        
-        KortStartscreen.isBrowserSupported = function() {
-            var supportedBrowsers = KortStartscreen.supportedBrowsers,
-                supportedBrowsersLen = supportedBrowsers.length,
-                i;
-
-            for(i = 0; i < supportedBrowsersLen; i++) {
-                if(Ext.browser.is(supportedBrowsers[i])) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        KortStartscreen.lang = KortStartscreen.getLanguage();
-        KortStartscreen.messages = {
-            de: {
-                'startscreen.loadingtext': 'Kort wird geladen. Gleich gehts los...',
-                'startscreen.browsererror': 'Dein Browser wird leider nicht unterstützt. Kort ist optimiert für den Betrieb auf mobilen Geräten. Versuch es doch damit.'
-            },
-            en: {
-                'startscreen.loadingtext': 'Kort is loading. Get ready...',
-                'startscreen.browsererror': 'Your browser is not supported yet. Try it on your mobile phone.'
-            },
-            it: {
-                'startscreen.loadingtext': 'Kort si sta caricando. Tieniti pronto...',
-                'startscreen.browsererror': 'Questo browser non è supportato al momento. Prova dal tuo smartphone.'
-            },
-            fr: {
-                'startscreen.loadingtext': 'Chargement de Kort. Tenez vous prêts...',
-                'startscreen.browsererror': "Votre navigateur n'est pas encore supporté. Veuillez essayer sur votre téléphone mobile."
-            },
-            sl: {
-                'startscreen.loadingtext': 'Kort se nalaga. Pripavi se...',
-                'startscreen.browsererror': 'Tvoj brskalnik še ne podpira uporabe. Poskusi s tvojim mobilnim telefonom.'
-            },
-            hr: {
-                'startscreen.loadingtext': 'Kort se učitava. Spremite se...',
-                'startscreen.browsererror': 'Your browser is not supported yet. Try it on your mobile phone.'
-            },
-            cs: {
-                'startscreen.loadingtext': 'se nahrává. Připravte se...',
-                'startscreen.browsererror': 'Your browser is not supported yet. Try it on your mobile phone.'
-            },
-            nl: {
-                'startscreen.loadingtext': 'Is aan het inladen. Bereid je voor...',
-                'startscreen.browsererror': 'Je browser wordt nog niet ondersteund. Probeer het op je smartphone.'
-            },
-            gl: {
-                'startscreen.loadingtext': 'Kort está a cargar. Prepárate...',
-                'startscreen.browsererror': 'O teu navegador non está aínda soportado. Téntao co teu teléfono móbil.'
-            },
-            pt: {
-                'startscreen.loadingtext': 'Kort está a carregar. Prepare-se...',
-                'startscreen.browsererror': 'Your browser is not supported yet. Try it on your mobile phone.'
-            },
-            ro: {
-                'startscreen.loadingtext': 'Kort se încarcă. Pregătiți-vă...',
-                'startscreen.browsererror': 'Navigatorul dumneavoastră web nu este încă suportat. Încercați-l pe telefonul mobil.'
-            },
-            ja: {
-                'startscreen.loadingtext': 'Kortを読み込み中。Get ready...',
-                'startscreen.browsererror': 'ご利用中のブラウザーにはまだ対応していません。携帯電話でお試しください。'
-            },
-            ca: {
-                'startscreen.loadingtext': "Kort està carregant. Prepara't...",
-                'startscreen.browsererror': 'El teu navegador encara no està suportat. Prova amb el teu telèfon mòbil.'
-            },
-            es: {
-                'startscreen.loadingtext': 'Kort está cargando. Preparate...',
-                'startscreen.browsererror': 'Tu navegador aún no está soportado. Prueba en tu teléfono móvil.'
-            }
-        }
-        
-        KortStartscreen.init = function() {
-            KortStartscreen.setLanguage();
-            KortStartscreen.detectBrowser();
-        }
-        
-        KortStartscreen.getMessage = function(key) {
-            return KortStartscreen.messages[KortStartscreen.lang][key];
-        }
-        
-        KortStartscreen.setLanguage = function() {
-            if(document.getElementById('startscreen-loading-text')) {
-                document.getElementById('startscreen-loading-text').innerHTML = KortStartscreen.getMessage('startscreen.loadingtext');
-            }
-        }
-        KortStartscreen.detectBrowser = function() {
-            if(!KortStartscreen.isBrowserSupported()) {
-                document.getElementById('startscreen-kort-logo').innerHTML = '<img src="./resources/images/kort-logo.png" />';
-                document.getElementById('appStartscreen').style.backgroundColor = '#eee';
-                document.getElementById('appStartscreen').style.color = '#000';
-                document.getElementById('startscreen-loading-content').innerHTML =
-                    '<div class="sadsmiley">:(</div>' +
-                    '<div class="browser-error">' +
-                        KortStartscreen.getMessage('startscreen.browsererror') +
-                    '</div>';
-            }
-        }
-    </script>
     <style type="text/css">
         html, body {
             height: 100%;
@@ -160,13 +39,11 @@
             font-size: 4em;
         }
     </style>
-    <!-- Allow webapp to run in fullscreen mode when added to homescreen in mobile safari -->
-    <meta name="apple-mobile-web-app-capable" content="yes" />
 
     <!-- The line below must be kept intact for Sencha Command to build your application -->
-    <script id="microloader" type="text/javascript" src="touch/microloader/development.js"></script>
+    <script id="microloader" type="text/javascript" src=".sencha/app/microloader/development.js"></script>
 </head>
-<body onload="KortStartscreen.init()">
+<body>
     <div id="appStartscreen">
         <div id="startscreen-kort-logo">
             <img src="./resources/images/kort-logo_white.png" />

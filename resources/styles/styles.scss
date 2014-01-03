@@ -32,6 +32,10 @@ $message-box-background-color:#232e39;
 
 // Login
 #loginPanel {
+    .x-panel-inner {
+        padding: 1em;
+    }
+    
     ul.kort-description {
         margin-top: 0.5em;
         border-radius: 0.5em;
@@ -46,27 +50,25 @@ $message-box-background-color:#232e39;
         }
     }
     
-    .x-panel-inner {
-        padding: 1em;
-    }
-    
     .loginButtons {
         margin: 0.5em 0;
         
         .x-zocial-button {
             margin: 0.2em 0;
+
+            .x-button-label {
+                line-height: inherit;
+            }
         }
         .x-zocial-button.x-layout-box-item {
             display: list-item !important;
+            list-style: none;
         }
     }
     
     #loginButtonOsm {
         &.zocial.pinboard {
             background-color: #68C03F;
-        }
-        .x-button-label {
-            font-size: 0.9em;
         }
     }
 }
@@ -107,25 +109,11 @@ $message-box-background-color:#232e39;
 /* -----------------------
    Map
    ----------------------- */
-.popup-content {
-    h1 {
-        font-size: 1.4em;
-        font-weight: bold;
-        margin: 0 0 0.3em 0;
-    }
-    
-    p {
-        margin: 0 0 0.5em 0;
-    }
-}
-
 .fixTabPanel {
     .fixContentComponent {
         padding: $panel-padding;
         
         .fix-content {
-            text-align: left;
-
             .textpic {
                 overflow: hidden;
                 margin: 0.5em 0;
@@ -133,7 +121,7 @@ $message-box-background-color:#232e39;
                 .image {
                     float: left;
                     width: 40px;
-                    height: 40px;
+                    height: 45px;
 
                     .missiontype-image {
                         $missiontype-image-width: 70px;
@@ -149,9 +137,8 @@ $message-box-background-color:#232e39;
                     }
                 }
                 .content {
-                    font-size: $default-font-size;
-                    line-height: 1.3em;
                     margin-left: 45px;
+                    margin-top: 5px;
                 }
             }
         }
@@ -165,7 +152,6 @@ $message-box-background-color:#232e39;
             margin-bottom: 0.3em;
         }
         .x-toggle-field {
-            font-size: 0.8em;
             margin-bottom: 0.5em;
         }
     }
@@ -179,98 +165,6 @@ $message-box-background-color:#232e39;
     }
 }
 
-#mapNavigationView {
-    .x-toolbar {
-        .x-title {
-            .x-innerhtml {
-                font-size: 0.8em;
-            }
-        }
-    }
-}
-
-/* -----------------------
-   Validation
-   ----------------------- */
-#validationNavigationView {
-    .x-list-header {
-        text-shadow: rgba(0, 0, 0, 0.25) 0 0.08em 0;
-        color: #fff;
-        
-        .text {
-            font-size: 0.9em;
-        }
-    }
-
-    .x-list-item {
-        .x-list-item-body {
-            padding: 0.4em 0.6em;
-        }
-
-		&.x-item-pressed .x-list-item-body {
-			background: #D8E3EE none;
-			border-top: 0.1em solid #aaaaaa;
-			box-shadow: inset 0 0 0.5em #abccee;
-		}
-        
-        .validation-item {
-            overflow: hidden;
-            font-size: $default-font-size;
-
-            .image {
-                $image-width: 64px;
-                $image-height: 74px;
-                float: left;
-                margin-right: 0.8em;
-
-                .missiontype-image {
-                    width: $image-width/2;
-                    height: $image-height/2;
-                }
-            }
-            .content {
-                float: left;
-
-                .title {
-                    margin-bottom: 0.4em;
-                }
-                .ratings {
-                    font-size: 0.8em;
-
-                    img.thumb {
-                        $thumb-width: 20px;
-                        $thumb-height: 25px;
-
-                        width: $thumb-width/2;
-                        height: $thumb-height/2;
-                        margin-left: 0.3em;
-                    }
-
-                    .upratings,
-                    .downratings {
-                        color: $dark-grey;
-                        margin: 0 0.3em;
-                    }
-                }
-            } 
-            
-            .distance {
-                float: right;
-                text-align: right;
-                
-                .title {
-                    color: $dark-grey;
-                    font-size: 0.7em;
-                    text-transform: uppercase;
-                    margin-bottom: 0.1em;
-                }
-                .value {
-                    font-weight: bold;
-                }
-            }
-        }
-    }
-}
 
 // PullRefresh Plugin
 .x-list-pullrefresh-arrow {
@@ -374,7 +268,7 @@ $message-box-background-color:#232e39;
    Highscore
    ----------------------- */
 #highscoreNavigationView {
-    .x-list-item-body {
+    .x-list-item.x-list-item-tpl .x-innerhtml {
         padding: 0;
     }
     
@@ -382,7 +276,6 @@ $message-box-background-color:#232e39;
         overflow: hidden;
         font-size: $default-font-size;
         padding: 0.65em 0.8em;
-        box-shadow: inset 0 0 1em #D1D1D1;
         
         .ranking {
             float: left;
@@ -397,21 +290,18 @@ $message-box-background-color:#232e39;
         }
         &.firstPlace {
             background-color: #fff4b8;
-            box-shadow: inset 0 0 1em #A29F6F;
             .ranking {
                 background-color: #ffe139;
             }
         }
         &.secondPlace {
             background-color: #d1d1d1;
-            box-shadow: inset 0 0 1em #979797;
             .ranking {
                 background-color: #7d7d7d;
             }
         }
         &.thirdPlace {
             background-color: #e2c89b;
-            box-shadow: inset 0 0 1em #B68768;
             .ranking {
                 background-color: #8f6823;
             }
@@ -478,64 +368,39 @@ $message-box-background-color:#232e39;
 /* -----------------------
    News
    ----------------------- */
-
-#newsSettingsPanel {
-  .newsSettingsTitle {
-    padding: 6px 0px 6px 12px;
-    font-size:$default-font-size;
-    background:$message-box-background-color;
-    border-bottom: 1px solid white;
-  }
-
-  .newsSettingsBottomToolbar, .newsSettingsSelectionToolbar{
-    background:$message-box-background-color;
-  }
-
-
-}
-
-  .newsItem{
-    ul {
-      padding-left:1em;
-      li {
-        list-style-image: url('../images/listStarIcon.png');
-      }
+#newsNavigationView {
+    .newsItem {
+        ul {
+            padding-left:1em;
+            li {
+                list-style-image: url('../images/listStarIcon.png');
+            }
+        }
+    }
+    .unreadstyle {
+        font-weight: bold;
     }
 
+    .newsNewsEntryContentComponent {
+        .newsclass {
+            padding: $panel-padding;
 
-
-  }
-  .unreadstyle {
-    font-weight: bold;
-  }
-
-
-
-.newsNewsEntryContentComponent{
-  .newsclass{
-    padding: $panel-padding;
-    max-width: 500px;
-    .title{
-     // font-family: "Helvetica";
-      font-size: 1.5em;
-      font-weight: bold;
-      color: black;
-      //color: #747474;
+            .title {
+                font-size: 1.5em;
+                font-weight: bold;
+            }
+            .date {
+                font-size: 0.8em;
+            }
+            .text {
+                margin-top:  1.0em;
+                font-size: 1.0em;
+            }
+            a:link, a:visited {
+                font-style: normal;
+            }
+        }
     }
-    .date{
-      //font-style: italic;
-      font-size: 0.8em;
-    }
-    .text{
-      margin-top:  1.0em;
-      font-size: 1.0em;
-      //font-family: "Georgia, serif";
-    }
-    a:link, a:visited {
-      font-style: normal;
-      color: black;
-    }
-  }
 }
 
 /* -----------------------
@@ -543,14 +408,14 @@ $message-box-background-color:#232e39;
    ----------------------- */
 .profileContentComponent,
 .highscoreUserContentComponent {
+    padding: $panel-padding;
     .info {
-        padding: $panel-padding;
         overflow: hidden;
     
         .picture {
             $profile-picture-size: 80px;
 
-            border: .1em solid #858585;
+            border: 1px solid #858585;
             float: left;
             width: $profile-picture-size + 2px;
             height: $profile-picture-size + 2px;
@@ -569,18 +434,17 @@ $message-box-background-color:#232e39;
     }
     
     .user-header {
-        font-size: 0.9em;
-        margin: 0.5em 0;
-        text-transform: uppercase;
-        
-        .x-list-header {
-            text-shadow: rgba(0, 0, 0, 0.25) 0 0.08em 0;
-            color: #fff;
+        clear: both;
+
+        .header-content {
+            margin-top: 1em;
+            margin-bottom: 0.4em;
+            color: #4b4b4b;
+            text-transform: uppercase;
         }
     }
     .koins,
     .ranking {
-        padding: 0.1em $panel-padding;
         clear: both;
         
         .koins-image,
@@ -611,8 +475,6 @@ $message-box-background-color:#232e39;
 
 .profileBadgesDataView,
 .highscoreUserBadgesDataView {
-    padding: $panel-padding;
-    
     .badge {
         $badge-image-size: 160px;
         width: $badge-image-size/2;
@@ -706,135 +568,137 @@ $message-box-background-color:#232e39;
    Message Boxes
    ----------------------- */
 .promotionMessageBox {
-  background-image: url('../images/promotion/promotionCircle.png');
-  background-position:center top;
-  background-repeat: no-repeat;
-  background-color: transparent;
-  overflow: auto;
-  width:320px;
-  height:301px;
-  box-shadow:none!important;
-  border:none!important;
+    background-image: url('../images/promotion/promotionCircle.png');
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    overflow: auto;
+    width: 320px;
+    height: 301px;
+    box-shadow: none !important;
+    border: none !important;
 
-  #promotionMessageBox-wrapper {
-    max-width: 270px;
-    max-height:200px;
-    padding: 35px 0px 60px 25px;
-    overflow: hidden;
-  }
+    #promotionMessageBox-wrapper {
+        max-width: 270px;
+        max-height:200px;
+        padding: 35px 0px 60px 25px;
+        overflow: hidden;
+    }
 
+    .titleText {
+        font-weight: bold;
+        padding: 0px 0px 13px 0px;
+    }
 
-  .titleText {
-    font-weight: bold;
-    padding: 0px 0px 13px 0px;
-  }
-
-  .dateText {
-    font-style: italic;
-  }
-
-  .koinsText {
-
-  }
+    .dateText {
+        font-style: italic;
+    }
 }
 
 
 .validationMessageBox{
-  .messagebox-content {
-    text-align: left;
-  }
-  .textpic {
-    overflow: hidden;
-    margin: 0.5em 0;
-  .image {
-    float: left;
-    width: 40px;
-    height: 40px;
+    .messagebox-content {
+        text-align: left;
+    }
+    .textpic {
+        $image-width: 40px;
+        overflow: hidden;
+        margin: 0.5em 0;
 
-    .missiontype-image {
-      float: left;;
-      $missiontype-image-width: 70px;
-      $missiontype-image-height: 83px;
-      width: $missiontype-image-width/2;
-      height: $missiontype-image-height/2;
+        .image {
+            float: left;
+            width: $image-width;
+            height: 43px;
+
+            .missiontype-image {
+                float: left;
+                $missiontype-image-width: 70px;
+                $missiontype-image-height: 83px;
+                width: $missiontype-image-width/2;
+                height: $missiontype-image-height/2;
+            }
+            .koin-image {
+                $koin-image-width: 70px;
+                $koin-image-height: 70px;
+                width: $koin-image-width/2;
+                height: $koin-image-height/2;
+            }
+        }
+        .content {
+            margin-top: 5px;
+            margin-left: $image-width + 5px;
+        }
+            
     }
-    .koin-image {
-      $koin-image-width: 70px;
-      $koin-image-height: 70px;
-      width: $koin-image-width/2;
-      height: $koin-image-height/2;
-    }
-  }}
 }
 
 
 .missionMessageBox ,
 .notificationMessageBox {
-  .x-msgbox-text {
-    padding: 0.5em;
+    .x-msgbox-text {
+        padding: 0.5em;
 
-    .messagebox-content {
-      text-align: left;
+        .messagebox-content {
+            text-align: left;
 
-      .text {
-        .content {
-          font-size: $default-font-size;
+            .text {
+                .content {
+                    font-size: $default-font-size;
 
+                    h1 {
+                        font-weight: bold;
+                    }
 
-          h1 {
-            font-weight: bold;
-          }
+                    .badges {
+                        $badge-image-size: 110px;
+                        overflow: hidden;
 
-          .badges {
-            $badge-image-size: 110px;
-            overflow: hidden;
+                        .badge {
+                            float: left;
+                            width: $badge-image-size/2;
+                            margin: 0.2em 0.5em;
+                            text-align: center;
+                            overflow: hidden;
 
-            .badge {
-              float: left;
-              width: $badge-image-size/2;
-              margin: 0.2em 0.5em;
-              text-align: center;
-              overflow: hidden;
-
-              img {
-                width: $badge-image-size/2;
-                height: $badge-image-size/2;
-              }
+                            img {
+                                width: $badge-image-size/2;
+                                height: $badge-image-size/2;
+                            }
+                        }
+                    }
+                }
             }
-          }
-        }
-      }
 
-      .textpic {
-        overflow: hidden;
-        margin: 0.5em 0;
+            .textpic {
+                overflow: hidden;
+                margin: 0.5em 0;
 
-        .image {
-          float: left;
-          width: 40px;
-          height: 40px;
+                .image {
+                    float: left;
+                    width: 40px;
+                    height: 40px;
 
-          .missiontype-image {
-            $missiontype-image-width: 70px;
-            $missiontype-image-height: 80px;
-            width: $missiontype-image-width/2;
-            height: $missiontype-image-height/2;
-          }
-          .koin-image {
-            $koin-image-width: 70px;
-            $koin-image-height: 70px;
-            width: $koin-image-width/2;
-            height: $koin-image-height/2;
-          }
+                    .missiontype-image {
+                        $missiontype-image-width: 70px;
+                        $missiontype-image-height: 80px;
+                        width: $missiontype-image-width/2;
+                        height: $missiontype-image-height/2;
+                    }
+                    .koin-image {
+                        $koin-image-width: 70px;
+                        $koin-image-height: 70px;
+                        width: $koin-image-width/2;
+                        height: $koin-image-height/2;
+                    }
+                }
+                .content {
+                    font-size: $default-font-size;
+                    line-height: 1.3em;
+                    margin-left: 50px;
+                }
+            }
         }
-        .content {
-          font-size: $default-font-size;
-          line-height: 1.3em;
-          margin-left: 50px;
-        }
-      }
     }
-  }
 }
 
 /* -----------------------
@@ -857,24 +721,6 @@ $message-box-background-color:#232e39;
     font-size: 0.8em;
 }
 
-// TabPanel tabBar
-.fixTabPanel,
-.voteTabPanel,
-.highscoreTabPanel,
-{
-    .x-tabbar.x-docked-top {
-        height: auto;
-        min-height: 1.6em !important;
-        font-size: 0.9em;
-    }
-    .x-tabbar .x-tab {
-        -webkit-border-radius: 0;
-        border-radius: 0;
-        height: auto;
-        margin: 0;
-        padding: 0.6em 0.8em;
-    }
-}
 
 .kort-label {
     font-weight: bold;
@@ -886,14 +732,13 @@ $message-box-background-color:#232e39;
 
 .kort-definitionlist {
     dt {
-        font-size: 0.6em;
+        font-size: 0.7em;
         margin-top: 0.8em;
         margin-bottom: 0.1em;
         color: $dark-grey;
         text-transform: uppercase;
     }
     dd {
-        font-size: $default-font-size;
         margin: 0.2em 0;
     }
 }
@@ -931,38 +776,49 @@ $message-box-background-color:#232e39;
 }
 
 .map-promotion-overlay {
-  background-image: url('../images/promotion/promotionCircle.png');
-  background-position:center top;
-  background-repeat: no-repeat;
-  position:absolute;
-  left:50%;
-  top:50%;
-  margin-left:-160px;
-  margin-top:-150px;
-  width:320px;
-  height:301px;}
+    background-image: url('../images/promotion/promotionCircle.png');
+    background-position: center top;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -160px;
+    margin-top: -150px;
+    width: 320px;
+    height: 301px;
+}
 
 #promotionInfoButton {
-  $promotionInfoButton-width: 40px;
-  $promotionInfoButton-height: 40px;
-  width: $promotionInfoButton-width/2;
-  height: $promotionInfoButton-height/2;
-  position: absolute;
-  margin-left:5px;
+    $promotionInfoButton-width: 40px;
+    $promotionInfoButton-height: 40px;
+    width: $promotionInfoButton-width/2;
+    height: $promotionInfoButton-height/2;
+    position: absolute;
+    margin-left: 5px;
 }
 
 //should become obsolete
 #campaignInfoButton {
-  $campaignInfoButton-width: 40px;
-  $campaignInfoButton-height: 40px;
-  width: $campaignInfoButton-width/2;
-  height: $campaignInfoButton-height/2;
-  position: absolute;
-  margin-left:5px;
+    $campaignInfoButton-width: 40px;
+    $campaignInfoButton-height: 40px;
+    width: $campaignInfoButton-width/2;
+    height: $campaignInfoButton-height/2;
+    position: absolute;
+    margin-left: 5px;
 }
 
 .x-msgbox {
-  min-width: 305px;
-  max-width: 305px;
+    min-width: 305px;
+    max-width: 305px;
 }
-.emptyMessageBox {background: url('../images/promotion/promotionCircle.png');width:320px;height:301px;box-shadow:none!important;border:none!important}
+.emptyMessageBox {
+    background: url('../images/promotion/promotionCircle.png');
+    width: 320px;
+    height: 301px;
+    box-shadow: none !important;
+    border: none !important
+}
+
+.x-mask .x-mask-message {
+    color: #fff;
+}

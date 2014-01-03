@@ -13,7 +13,7 @@ Ext.define('Kort.view.news.NavigationView', {
         title: Ext.i18n.Bundle.message('tab.news'),
         url: 'news',
         id: 'newsNavigationView',
-        iconCls: 'bulb',
+        iconCls: 'news',
         defaultBackButtonText: Ext.i18n.Bundle.message('button.back'),
 
         navigationBar: {

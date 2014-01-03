@@ -6,9 +6,14 @@
 /lib/sencha-touch-2.1.0/
 /lib/sencha-touch-2.2.0-alpha/
 /lib/touch-2.2.1/
+/lib/touch-2.3.0/
+/lib/touch-2.3.1/
 resources/styles/styles.css
 server/php/Webservice/Database/DbConfig.php
 build/Kort/production/server/php/Webservice/Database/DbConfig.php
+build/production/Kort/server/php/Webservice/Database/DbConfig.php
+build/archive/
+build/temp/
 *.bak
 .idea/
 docs/Kort

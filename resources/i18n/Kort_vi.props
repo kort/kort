@@ -1,0 +1,222 @@
+# Main View (TabPanel)
+tab.map=Bản đồ
+tab.bugmap=nhiệm vụ
+tab.validation=kiểm tra
+tab.highscore=xếp hạng
+tab.profile=hồ sơ cá nhân
+tab.about=về Kort
+tab.news=Tin tức
+
+# Login
+login.kort.description.1=nhiệm vụ hoàn thành
+login.kort.description.2=thu thập Koins
+login.kort.description.3=cải thiện OpenStreetMap
+login.kort.introduction.1=Kort giúp cải thiện các dữ liệu trong OpenStreetMap.
+login.kort.introduction.2=Do đó bạn sẽ thấy nhiệm vụ của bạn trên bản đồ. Bằng cách hoàn thành nhiệm vụ bạn nhận được Koins và phù hiệu.
+login.kort.introduction.3=Mỗi nhiệm vụ được giải quyết sẽ được kiểm tra lại tính đúng đắn bởi các người chơi khác. Ngay khi câu trả lời nhận đủ đánh giá tích cực, nó sẽ được đưa trở lại OpenStreetMap.
+login.kort.introduction.4=Đăng nhập ngay để bắt đầu nhiệm vụ của bạn\!
+login.button.google=đăng nhập với Google
+login.button.osm=đăng nhập với OpenStreetMap
+login.button.facebook=Đăng nhập với Facebook
+login.loadmask.message=đăng nhập...
+
+# Firststeps
+firststeps.introduction=Chào mừng bạn đến Kort\! Chọn một tên người dùng\:
+firststeps.form.button.submit=bắt đầu nhiệm vụ\!
+firststeps.alert.username.empty.title=nhập tên người dùng
+firststeps.alert.username.empty.message=hãy nhập tên người dùng.
+firststeps.alert.username.specialchars.title=Vấn đề với kí tự
+firststeps.alert.username.specialchars.message=Xin vui lòng chỉ sử dụng chữ cái và chữ số cho tên đăng nhập của bạn.
+firststeps.alert.submit.failure.title=Lỗi trong khi gửi
+firststeps.alert.submit.failure.message=Rất tiếc\! Có một lỗi trong khi gửi tên người dùng. Khởi động lại ứng dụng có thể giúp đỡ.
+
+# Geolocation error
+geolocationerror.introduction=Để sử dụng Kort, quyền truy cập vào vị trí địa lý của bạn là cần thiết.
+geolocationerror.button.reload=tải lại ứng dụng
+geolocationerror.loadmask.message=Đang tải lại ứng dụng ...
+
+#Map
+map.title=Missions
+map.loadmask.message=Tải nhiệm vụ ...
+map.mission.promotionmessagebox.close=Đóng
+map.mission.promotionmessagebox.earn=Nhận thêm {extra_coins} Koins
+map.mission.promotionmessagebox.date={startdate} đến {enddate}
+map.mission.missionmessagebox.koins.earn=Nhận được {fix_koin_count} tiền
+map.mission.missionmessagebox.koins.earnpromotion=Nhận được {fix_koin_count} + {extra_coins} Koins
+map.mission.missionmessagebox.yes=trả lời
+map.mission.missionmessagebox.no=Không biết
+map.mission.missionmessagebox.close=Đóng
+map.mission.layername=Nhiệm vụ
+map.missionInactive.layername=Nhiệm vụ chưa hoạt động
+map.validation.layername=Kiểm tra
+map.validation.validationmessagebox.koins.earn=Nhận được {validation_koin_count} Koins
+map.validation.validationmessagebox.koins.earnpromotion=Nhận được {validation_koin_count} + {extra_coins} Koins
+map.mission.validationmessagebox.yes=trả lời
+map.mission.validationmessagebox.no=Không biết
+map.mission.validationmessagebox.close=Đóng
+map.validation.validationmessagebox.checkit=Kiểm tra đáp án
+
+## Fix
+fix.form.title=nhiệm vụ
+fix.form.koins.earn=được {fix_koin_count} tiền\!
+fix.form.koins.earnpromotion=Nhận được {fix_koin_count} + {extra_coins} Koins
+fix.form.message.placeholder=trả lời của bạn...
+fix.form.button.showonmap=hiện trong bản đồ
+fix.form.button.submit=hoàn thành nhiệm vụ
+fix.form.loadmask.message=tải câu trả lời...
+fix.form.falsepositive.toggle.label=Không thể giải quyết
+fix.map.title=bản đồ
+fix.sendmask.message=đang gửi đáp án...
+fix.alert.fixfield.empty.title=Điền vào các mục
+fix.alert.fixfield.empty.message=Làm ơn điền vào tất cả các mục.
+fix.alert.submit.failure.title=lỗi khi đang gửi
+fix.alert.submit.failure.message=Rất tiếc\! Có một lỗi trong khi gửi câu trả lời của bạn. Khởi động lại ứng dụng có thể giúp đỡ.
+
+## Vote
+vote.falsepositive.question=Nhiệm vụ này được đánh dấu là 'không thể giải quyết. Điều này là đúng?
+vote.container.button.answer=trả lời
+vote.container.votes.left=cần {votes_left} đánh giá cần 
+vote.answeractionsheet.button.accept=có
+vote.answeractionsheet.button.decline=không
+vote.answeractionsheet.button.cancel=Không biết
+vote.answeractionsheet.question=đó là câu trả lời đúng?
+vote.sendmask.message=đang gửi câu trả lời...
+vote.alert.submit.failure.title=lỗi khi đang gửi
+vote.alert.submit.failure.message=Rất tiếc\! Có một lỗi trong khi gửi câu trả lời của bạn. Khởi động lại ứng dụng có thể giúp đỡ.
+
+# Highscore
+highscore.title=xếp hạng
+highscore.absolute.tabtitle=Đầu bảng
+highscore.relative.tabtitle=Điểm của tôi
+highscore.loadmask.message=đang tải xếp hạng...
+highscore.emptytext=không thể tải xếp hạng.
+highscore.you=đó là bạn\!
+highscore.koins=Koins
+highscore.fixcount=nhiệm vụ\:
+highscore.votecount=kiểm tra\:
+highscore.user.badges.emptytext=không thể tải huy hiệu.
+
+# Profil
+profile.title=hồ sơ cá nhân
+profile.button.logout=đăng xuất
+profile.button.changeusername=thay đổi tên người dùng
+profile.settings.messagebox.title=Cài đặt
+profile.settings.messagebox.message=nhập tên người dùng mới của bạn
+profile.username.loadmask.message=đang nhớ tên người dùng...
+profile.content.username=tên người dùng
+profile.content.oauthprovider=đăng nhập bằng
+profile.content.fixes=nhiệm vụ đã hoàn thành
+profile.content.votes=kiểm tra đã thực hiện
+profile.content.koins.header=Koins thu được
+profile.content.koins.title=Koins
+profile.content.ranking.title=địa điểm
+profile.content.badges.header=huy hiệu đạt được
+profile.logout.loadmask.message=đăng xuất...
+profile.refresh.loadmask.message=đang tải hồ sơ cá nhân...
+profile.badges.title=huy hiệu của bạn
+profile.badges.recieved=Nhận được lúc\:
+profile.badges.emptytext=huy hiệu của bạn không thể tải được.
+profile.badges.button.close=đóng
+profile.alert.username.empty.title=nhập tên người dùng
+profile.alert.username.empty.message=hãy nhập tên người dùng.
+profile.alert.username.specialchars.title=vấn đề với kí tự
+profile.alert.username.specialchars.message=Xin vui lòng chỉ sử dụng chữ cái và chữ số cho tên đăng nhập của bạn.
+profile.alert.submit.failure.title=lỗi khi đang gửi
+profile.alert.submit.failure.message=Rất tiếc\! Có một lỗi trong khi gửi tên người dùng. Khởi động lại ứng dụng có thể giúp đỡ.
+
+#News
+news.title=Tin tức
+news.unread=Chưa đọc
+news.read=Đã đọc
+news.list.emptytext=Không có bài viết nào
+news.updated=Đã cập nhật
+news.settings.save=Lưu
+news.settings.cancel=Hủy
+news.settings.acceptNoLanguage=Hủy chọn tất cả
+news.settings.acceptAllLanguages=Chọn tất cả
+news.settings.label=Tôi muốn nhận tin tức bằng những ngôn ngữ\:
+
+# About
+about.title=về
+about.version.title=phiên bản
+about.information.title=Thông tin thêm
+about.information.homepage=Website\:
+about.information.feedback=Thông tin phản hồi/Hỏi đáp\:
+about.information.bugs=Thông báo lỗi\:
+about.developers.title=Nhà phát triển
+about.project.title=Dự án
+about.project.advisor=Người hướng dân\:
+about.credits.title=Credits
+about.credits.partner=đối tác\:
+about.credits.mapdata=Dữ liệu địa lý\:
+about.credits.tiledata=Bản đồ\:
+about.credits.markers=Biểu tượng ghi\:
+about.credits.translation=Bản dịch\:
+about.credits.dbhosting=DB Hosting\:
+about.legal.title=Lưu ý pháp lý\:
+about.legal.message=Hãy làm theo các hướng dẫn của OpenStreetMap và không sử dụng các nguồn được bảo vệ bản quyền mà không được phép.
+
+# PullRefresh Plugin
+pullrefresh.pullrefresh=Kéo xuống để tải lại
+pullrefresh.releaserefresh=Thả tay để tải lại ...
+pullrefresh.loading=đang tải...
+pullrefresh.lastupdated=cập nhật lần cuối\:
+
+# ListPaging Plugin
+listpaging.loadmore=tải thêm...
+listpaging.nomorerecords=Không có dữ liệu có sẵn.
+
+# Button
+button.back=quay lại
+
+# MessageBox
+messagebox.ok=OK
+messagebox.yes=có
+messagebox.no=không
+messagebox.cancel=hủy
+
+# Picker
+picker.done=kết thúc
+picker.cancel=hủy
+
+# Reward
+reward.alert.title=Danh tiếng của bạn được tăng\!
+reward.alert.koins.new=Chúc mừng\! Bạn đã nhận được {koin_count_new} Koins.
+reward.alert.koins.total=Bây giờ bạn có tổng số tiền là {koin_count_total} Koins.
+reward.alert.badges.title=Huy hiệu đạt được
+
+# App update
+update.title=Phiên bản mới của ứng dụng
+update.message=Ứng dụng đã được cập nhật lên phiên bản mới nhất. Tải lại?
+
+#Languages
+en=tiếng Anh
+de=tiếng Đức
+it=tiếng Ý
+fr=tiếng Pháp
+sl=tiếng Slovenia
+hr=tiếng Croatia
+cs=tiếng Séc
+nl=tiếng Hà Lan
+gl=tiếng Galicia
+pt=tiếng Bồ Đào Nha
+ro=tiếng Romania
+ja=tiếng Nhật
+ca=tiếng Catalan
+es=tiếng Tây Ban Nha
+
+###############################
+# Labels used directly in source files (without Ext.i18n.Bundle plugin)
+###############################
+
+# index.html
+## App startscreen
+startscreen.loadingtext=Kort đang tải. Chuẩn bị sẵn sàng ...
+startscreen.browsererror=Trình duyệt của bạn chưa được hỗ trợ. Hãy thử nó trên điện thoại di động của bạn.
+
+# app/util/Config.js
+## Firststeps
+firststeps.form.username.placeholder=tên người dùng
+
+## PullRefresh Plugin
+pullrefresh.dateformat=d.m.Y H\:i\:s

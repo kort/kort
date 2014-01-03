@@ -62,7 +62,7 @@ Ext.define('Kort.controller.MapValidation', {
      * @param {Boolean} useMapCenterInsteadOfGPS
      */
     updateDataStoreProxyUrl: function(useMapCenterInsteadOfGPS) {
-        var coordinateSource = (useMapCenterInsteadOfGPS && this.getLMapWrapper()) ? this.getLMapWrapper().getMapCenter() : this.getCurrentLocationLatLng();
+        var coordinateSource = (useMapCenterInsteadOfGPS && this.getLMapWrapper()) ? this.getLMapWrapper().getMap().getCenter() : this.getCurrentLocationLatLng();
         //ToDo Refactor
         this.setDataStoreProxyURL(Kort.util.Config.getWebservices().validation.getUrl(coordinateSource.lat, coordinateSource.lng));
     },

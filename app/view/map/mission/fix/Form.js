@@ -9,7 +9,6 @@ Ext.define('Kort.view.map.mission.fix.Form', {
     ],
     
 	config: {
-		layout: 'vbox',
         cls: 'fixform',
         scrollable: true,
         title: Ext.i18n.Bundle.message('fix.form.title')
@@ -28,7 +27,7 @@ Ext.define('Kort.view.map.mission.fix.Form', {
         fixContentComponent = {
             xtype: 'component',
             cls: 'fixContentComponent',
-            scrollable: false,
+            scrollable: null,
             record: this.getRecord(),
             tpl:    new Ext.XTemplate(
                         '<div class="fix-content">',
@@ -73,7 +72,7 @@ Ext.define('Kort.view.map.mission.fix.Form', {
         fixFormPanel = {
             xtype: 'formpanel',
             cls: 'fixFormPanel',
-            scrollable: false,
+            scrollable: null,
             items: [
                 {
                     xtype: 'togglefield',

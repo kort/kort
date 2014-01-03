@@ -11,8 +11,7 @@ Ext.define('Kort.view.news.newsEntry.Container', {
 
     config: {
         cls: 'newsNewsEntryContainer',
-        scrollable: true,
-        layout: 'vbox'
+        scrollable: true
     },
 
     /**

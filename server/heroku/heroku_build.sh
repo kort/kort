@@ -8,11 +8,11 @@ mkdir $BUILD_DIR
 
 if [[ $TARGET_ENV == "prod" ]] ; then
     echo "Production build... copying files from $SOURCE_DIR to $BUILD_DIR"
-    cp -r $SOURCE_DIR/build/Kort/production/* $BUILD_DIR
+    cp -r $SOURCE_DIR/build/production/Kort/* $BUILD_DIR
     cp -r $SOURCE_DIR/docs $BUILD_DIR
 else
     echo "Development build... copying files from $SOURCE_DIR to $BUILD_DIR"
-    mkdir -p $BUILD_DIR/lib/Leaflet-0.5.0
+    mkdir -p $BUILD_DIR/lib/Leaflet-0.7
     mkdir -p $BUILD_DIR/lib/Slim-2.1.0
     mkdir -p $BUILD_DIR/lib/google-api-php-client
     mkdir -p $BUILD_DIR/lib/oauth-php
@@ -20,6 +20,8 @@ else
 
     cp $SOURCE_DIR/index*.* $BUILD_DIR
     cp $SOURCE_DIR/app.* $BUILD_DIR/
+    cp $SOURCE_DIR/bootstrap.* $BUILD_DIR/
+    cp -r $SOURCE_DIR/.sencha $BUILD_DIR/
     cp -r $SOURCE_DIR/app $BUILD_DIR/
     cp -r $SOURCE_DIR/docs $BUILD_DIR
     cp -r $SOURCE_DIR/resources $BUILD_DIR/
@@ -31,7 +33,7 @@ else
     cp -r $SOURCE_DIR/vendor $BUILD_DIR
     cp -r $SOURCE_DIR/proposals $BUILD_DIR
 
-    cp -r $SOURCE_DIR/lib/Leaflet-0.5.0/dist/ $BUILD_DIR/lib/Leaflet-0.5.0/
+    cp -r $SOURCE_DIR/lib/Leaflet-0.7/dist/ $BUILD_DIR/lib/Leaflet-0.7/
     cp -r $SOURCE_DIR/lib/leafletplugins/ $BUILD_DIR/lib/leafletplugins/
     cp -r $SOURCE_DIR/lib/Slim-2.1.0/Slim/ $BUILD_DIR/lib/Slim-2.1.0/
     cp -r $SOURCE_DIR/lib/google-api-php-client/src $BUILD_DIR/lib/google-api-php-client/
@@ -45,4 +47,8 @@ else
     cp -r $SOURCE_DIR/server/php/ $BUILD_DIR/server/
     cp -r $SOURCE_DIR/server/webservices/ $BUILD_DIR/server/
     cp -r $SOURCE_DIR/server/oauth2callback/ $BUILD_DIR/server/
+
+    echo "Copying production build..."
+    mkdir -p $BUILD_DIR/build/production
+    cp -r $SOURCE_DIR/build/production/Kort $BUILD_DIR/build/production/
 fi

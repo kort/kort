@@ -41,7 +41,7 @@ Ext.define('Kort.controller.MapAbstractType', {
      */
     init: function() {
         var me = this;
-        this.setLLayerGroup(L.layerGroup());
+        this.setLLayerGroup(window.L.layerGroup());
         me.setMapController(me.getApplication().getController('Map'));
         me.getMapController().registerMapType(this);
         me.getApplication().on({
@@ -147,7 +147,7 @@ Ext.define('Kort.controller.MapAbstractType', {
      */
     _createLMarkerFromRecord: function(record) {
         var me = this,
-            marker = L.marker([record.get('latitude'), record.get('longitude')], {
+            marker = window.L.marker([record.get('latitude'), record.get('longitude')], {
                 icon: Kort.util.Config.getMarkerIcon(record.get('type'),record.get('state'),record.get('inOperationalRange'))
             });
         marker.record=record;
