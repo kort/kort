@@ -47,4 +47,8 @@ else
     cp -r $SOURCE_DIR/server/php/ $BUILD_DIR/server/
     cp -r $SOURCE_DIR/server/webservices/ $BUILD_DIR/server/
     cp -r $SOURCE_DIR/server/oauth2callback/ $BUILD_DIR/server/
+
+    echo "Copying production build..."
+    mkdir -p $BUILD_DIR/build/production
+    cp -r $SOURCE_DIR/build/production/Kort $BUILD_DIR/build/production/
 fi
