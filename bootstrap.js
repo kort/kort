@@ -20,7 +20,6 @@ Ext.Loader.addClassPathMappings({
   "Ext.i18n": "i18n",
   "Ext.ux.LeafletMap": "ux/LeafletMap.js",
   "Kort": "app",
-  "Kort.MessageBox": "app.js",
   "patch": "patch"
 });
 Ext.ClassManager.addNameAlternateMappings({
@@ -751,7 +750,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.viewport.WindowsPhone": [
     "Ext.viewport.WP"
   ],
-  "Kort.MessageBox": [],
   "Kort.controller.About": [],
   "Kort.controller.Firststeps": [],
   "Kort.controller.Fix": [],
@@ -1787,7 +1785,6 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.Ios": [],
   "Ext.viewport.Viewport": [],
   "Ext.viewport.WindowsPhone": [],
-  "Kort.MessageBox": [],
   "Kort.controller.About": [],
   "Kort.controller.Firststeps": [],
   "Kort.controller.Fix": [],

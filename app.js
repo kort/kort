@@ -1,12 +1,14 @@
-//<debug>
-Ext.Loader.setPath({
-    'Ext': 'touch/src',
-    'patch': 'patch',
-    'Ext.i18n': 'i18n',
-    'Ext.ux': 'ux',
-    'Kort': 'app'
-});
-//</debug>
+/*
+ This file is generated and updated by Sencha Cmd. You can edit this file as
+ needed for your application, but these edits will have to be merged by
+ Sencha Cmd when it performs code generation tasks such as generating new
+ models, controllers or views and when running "sencha app upgrade".
+
+ Ideally changes to this file would be limited and most work would be done
+ in other places (such as Controllers). If Sencha Cmd cannot merge your
+ changes and its generated code, it will produce a "merge conflict" that you
+ will need to resolve manually.
+ */
 
 /**
  * @class Kort
@@ -147,13 +149,6 @@ Ext.application({
         '640x920': './resources/images/kort-startup-alldev-640x920.png'
     },
 
-    viewport: {
-        // attempt to stop zooming when you double tap on the screen on mobile devices, typically HTC devices with HTC Sense UI
-        preventZooming: true
-        // hide navigation bar of iOS browsers
-        //autoMaximize: (navigator.userAgent.search("Safari") !== -1 && navigator.userAgent.search("CriOS") === -1 && (!Ext.browser.is.Standalone && Ext.os.is.iOS && Ext.browser.version.isGreaterThan(3) ) ? true : false)
-    },
-
     // launch function is called as soon as app is ready
     launch: function() {
         if(Kort.util.Config.isBrowserSupported()) {
@@ -282,7 +277,7 @@ Ext.application({
         // load badges of user
         userBadges.getProxy().setUrl(Kort.util.Config.getWebservices().userBadges.getUrl(Kort.user.get('id')));
         userBadges.load();
-        
+
         // load highscore
         //highscoreStore.load();
         this.showMainPanel(mainPanel);
@@ -323,35 +318,12 @@ Ext.application({
 
     configureMessageBox: function() {
         // Override MessageBox default messages
-        Ext.define('Kort.MessageBox', {
-            override: 'Ext.MessageBox',
-
-            statics: {
-                YES   : {text: Ext.i18n.Bundle.message('messagebox.yes'),    itemId: 'yes', ui: 'action'},
-                NO    : {text: Ext.i18n.Bundle.message('messagebox.no'),     itemId: 'no'},
-                CANCEL: {text: Ext.i18n.Bundle.message('messagebox.cancel'), itemId: 'cancel'},
-
-                OKCANCEL: [
-                    {text: Ext.i18n.Bundle.message('messagebox.ok'), itemId: 'ok', ui: 'action'},
-                    {text: Ext.i18n.Bundle.message('messagebox.cancel'), itemId: 'cancel'}
-                ],
-                YESNOCANCEL: [
-                    {text: Ext.i18n.Bundle.message('messagebox.yes'),    itemId: 'yes', ui: 'action'},
-                    {text: Ext.i18n.Bundle.message('messagebox.no'),     itemId: 'no'},
-                    {text: Ext.i18n.Bundle.message('messagebox.cancel'), itemId: 'cancel'}
-                ],
-                YESNO: [
-                    {text: Ext.i18n.Bundle.message('messagebox.yes'), itemId: 'yes', ui: 'action'},
-                    {text: Ext.i18n.Bundle.message('messagebox.no'),  itemId: 'no'}
-                ]
-            }
-        });
     },
 
     onUpdated: function() {
         Kort.app.configureMessageBox();
         Kort.app.prepareI18n();
-        
+
         Ext.Msg.defaultAllowedConfig.zIndex = Kort.util.Config.getZIndex().overlayOverlayPanel;
         Ext.Msg.confirm(
             Ext.i18n.Bundle.message('update.title'),

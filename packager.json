@@ -117,7 +117,7 @@
 	 * @cfg  certificatePassword
 	 * The password which was specified during certificate export
 	 */
-	"certificatePassword":"osm2012",
+	"certificatePassword":"",
     
 	/**
 	 * @cfg  provisionProfile
