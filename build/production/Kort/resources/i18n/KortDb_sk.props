@@ -6,17 +6,17 @@ error_type.title.tracktype=Neznámy typ povrchu cesty
 error_type.title.worship_religion=Náboženské miesto bez vierovyznania
 error_type.title.language_name=Neznámy jazyk názvu
 error_type.title.street_wo_name=Ulica bez názvu
-# error_type.title.missing_cuisine=Restaurant without a cuisine
+error_type.title.missing_cuisine=Restaurant without a cuisine
 
 # error type placeholders
-# error_type.placeholder.ref=Reference
+error_type.placeholder.ref=Reference
 error_type.placeholder.religion=Náboženstvo
 error_type.placeholder.name=Názov
 error_type.placeholder.speed_limit=Rýchlostný limit
 error_type.placeholder.language=Jazyk
 error_type.placeholder.type=Typ
 error_type.placeholder.street_name=Názov ulice
-# error_type.placeholder.missing_cuisine=Cuisine
+error_type.placeholder.missing_cuisine=Cuisine
 
 # vote questions
 vote.question.ref=Je to správne označenie diaľnice?
@@ -24,9 +24,9 @@ vote.question.place_of_worship=Je toto náboženské miesto nasledujúceho viero
 vote.question.name=Je to názov pre '$1'?
 vote.question.maxspeed=Je to správny rýchlostný limit pre túto cestu?
 vote.question.language_unknown=Je názov '$2' v tomto jazyku?
-# vote.question.tracktype=Is this path of the following kind?
+vote.question.tracktype=Is this path of the following kind?
 vote.question.street_name=Je to správny názov ulice?
-# vote.question.missing_cuisine=Is this the correct cuisine type of $1?
+vote.question.missing_cuisine=Is this the correct cuisine type of $1?
 
 # badge names
 badge.name.first_place=1. miesto
@@ -42,9 +42,9 @@ badge.name.first_mission=1. misia
 badge.name.first_check=1. kontrola
 
 # badge descriptions
-# badge.description.reached_1st_place=Reached 1st place in highscore.
-# badge.description.reached_2nd_place=Reached 2nd place in highscore.
-# badge.description.reached_3rd_place=Reached 3rd place in highscore.
+badge.description.reached_1st_place=Reached 1st place in highscore.
+badge.description.reached_2nd_place=Reached 2nd place in highscore.
+badge.description.reached_3rd_place=Reached 3rd place in highscore.
 badge.description.100_missions_completed=100 misií ukončených.
 badge.description.50_missions_completed=50 misií ukončených.
 badge.description.10_missions_completed=10 misií ukončených.
@@ -57,7 +57,7 @@ badge.description.1st_check=Prvá odpoveď skontrolovaná.
 # missing_track_types (http://wiki.openstreetmap.org/wiki/Key:tracktype)
 answer.track_type.grade1=Asfalt, betón alebo dlažobné kocky
 answer.track_type.grade2=Štrková cesta
-# answer.track_type.grade3=Mixture of hard and soft materials
+answer.track_type.grade3=Mixture of hard and soft materials
 answer.track_type.grade4=Zemina, piesok alebo tráva
 answer.track_type.grade5=Nespevnená cesta
 
@@ -67,9 +67,9 @@ answer.religion.christian=Kresťanské (kostol)
 answer.religion.hindu=Hinduistické (chrám)
 answer.religion.jewish=Židovské (synagóga)
 answer.religion.muslim=Muslimské (mešita)
-# answer.religion.pastafari=Pastafarian
-# answer.religion.shinto=Shinto (shrine)
-# answer.religion.sikh=Sikh (Gurdwara)
+answer.religion.pastafari=Pastafarian
+answer.religion.shinto=Shinto (shrine)
+answer.religion.sikh=Sikh (Gurdwara)
 answer.religion.multiple=Viac náboženstiev
 
 # language (http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
@@ -98,11 +98,11 @@ answer.language.norwegian=Nórsky
 answer.language.persian=Persky
 answer.language.polish=Poľsky
 answer.language.portuguese=Portugalsky
-# answer.language.romansh=Romansh
+answer.language.romansh=Romansh
 answer.language.romanian=Rumunský
 answer.language.russian=Ruský
-# answer.language.sardinian=Sardinian
-# answer.language.scottish_gaelic=Scottish Gaelic
+answer.language.sardinian=Sardinian
+answer.language.scottish_gaelic=Scottish Gaelic
 answer.language.swiss_german=Švajčiarska nemčina
 answer.language.serbian=Srbský
 answer.language.slovakian=Slovenský
@@ -119,7 +119,7 @@ answer.language.welsh=Waleštínsky
 
 # missing_cuisine
 answer.missing_cuisine.regional=Regionálna
-# answer.missing_cuisine.coffee_shop=Coffee Shop
+answer.missing_cuisine.coffee_shop=Coffee Shop
 answer.missing_cuisine.international=Medzinárodná
 answer.missing_cuisine.italian=Talianska
 answer.missing_cuisine.turkish=Turecká
@@ -132,12 +132,12 @@ answer.missing_cuisine.mexican=Mexická
 answer.missing_cuisine.american=Americká
 answer.missing_cuisine.japanese=Japonská
 answer.missing_cuisine.greek=Grécka
-# answer.missing_cuisine.sandwich=Sandwich
-# answer.missing_cuisine.steak_house=Steakhouse
-# answer.missing_cuisine.chicken=Chicken
-# answer.missing_cuisine.bistro_brasserie=Bistro, Brasserie
-# answer.missing_cuisine.seafood=Seafood
-# answer.missing_cuisine.burger=Burger
+answer.missing_cuisine.sandwich=Sandwich
+answer.missing_cuisine.steak_house=Steakhouse
+answer.missing_cuisine.chicken=Chicken
+answer.missing_cuisine.bistro_brasserie=Bistro, Brasserie
+answer.missing_cuisine.seafood=Seafood
+answer.missing_cuisine.burger=Burger
 
 ##############################################################
 # THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT AND OSM_ERRORS#
@@ -151,7 +151,7 @@ bug.question.name_of_street=Aký je názov tejto ulice?
 bug.question.language=Akým jazykom je napísaný názov '$2'?
 bug.question.motorway_ref=Aké je označenie tejto diaľnice?  (napr. D1)
 bug.question.place_of_worship=K akému náboženstvu patrí toto miesto?
-# bug.question.cuisine_of_restaurant=What's the cuisine type of '$1'?
+bug.question.cuisine_of_restaurant=What's the cuisine type of '$1'?
 
 # single values
 cafe=kaviareň
