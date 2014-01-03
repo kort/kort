@@ -1,0 +1,173 @@
+# error types
+error_type.title.motorway_ref=Đường cao tốc không có mã đường
+error_type.title.poi_wo_name=Vật thể không có tên
+error_type.title.missing_speedlimit=Giới hạn tốc độ bị thiếu
+error_type.title.tracktype=Loại đường chưa biết
+error_type.title.worship_religion=Nơi thờ cúng chưa rõ tôn giáo
+error_type.title.language_name=Chưa rõ ngôn ngữ của cái tên
+error_type.title.street_wo_name=Đường chưa rõ tên
+error_type.title.missing_cuisine=Nhà hàng chưa rõ phong cách ẩm thực
+
+# error type placeholders
+error_type.placeholder.ref=Mã đường
+error_type.placeholder.religion=Tôn giáo
+error_type.placeholder.name=Tên
+error_type.placeholder.speed_limit=Giới hạn tốc độ
+error_type.placeholder.language=Ngôn ngữ
+error_type.placeholder.type=Loại
+error_type.placeholder.street_name=Tên đường
+error_type.placeholder.missing_cuisine=Ẩm thực
+
+# vote questions
+vote.question.ref=Đây có phải là mã đường của đường cao tốc này?
+vote.question.place_of_worship=Nơi thờ cúng này có thuộc tôn giáo này không?
+vote.question.name=Đây có phải là tên của $1?
+vote.question.maxspeed=Đây có phải giới hạn tốc độ của con đường này?
+vote.question.language_unknown=Cái tên '$2' có được viết bằng ngôn ngữ này không?
+vote.question.tracktype=Con đường này có phải thuộc loại sau?
+vote.question.street_name=Đây có phải tên của con đường này?
+vote.question.missing_cuisine=Đây có phải phong cách ẩm thực của $1?
+
+# badge names
+badge.name.first_place=vị trí số 1
+badge.name.second_place=vị trí số 2
+badge.name.third_place=vị trí số 3
+badge.name.100_missions=100 nhiệm vụ
+badge.name.50_missions=50 nhiệm vụ
+badge.name.10_missions=10 nhiệm vụ
+badge.name.1000_checks=1000 kiểm tra
+badge.name.100_checks=100 lần kiểm tra
+badge.name.10_checks=10 lần kiểm tra
+badge.name.first_mission=nhiệm vụ lần 1
+badge.name.first_check=kiểm tra lần 1
+
+# badge descriptions
+badge.description.reached_1st_place=Đạt được vị trí 1 trong xếp hạng
+badge.description.reached_2nd_place=Đạt được vị trí 2 trong xếp hạng
+badge.description.reached_3rd_place=Đạt được vị trí 3 trong xếp hạng.
+badge.description.100_missions_completed=100 nhiệm vụ được hoàn thành.
+badge.description.50_missions_completed=50 nhiệm vụ được hoàn thành.
+badge.description.10_missions_completed=10 nhiệm vụ được hoàn thành.
+badge.description.1000_checks=1000 câu trả lời được kiểm tra.
+badge.description.100_checks=100 câu trả lời được kiểm tra.
+badge.description.10_checks=10 câu trả lời được kiểm tra.
+badge.description.1st_mission=nhiệm vụ đầu được hoàn thành.
+badge.description.1st_check=câu trả lời được kiểm tra đầu tiên.
+
+# missing_track_types (http://wiki.openstreetmap.org/wiki/Key:tracktype)
+answer.track_type.grade1=Nhựa đường, bê tông hoặc lát đá cuội
+answer.track_type.grade2=con đường sỏi
+answer.track_type.grade3=Hỗn hợp của các vật liệu cứng và mềm
+answer.track_type.grade4=Đất, cát hoặc cỏ
+answer.track_type.grade5=không trải nhựa đường
+
+# religion (http://wiki.openstreetmap.org/wiki/Key:religion)
+answer.religion.buddhist=Phật giáo (chùa)
+answer.religion.christian=Thiên chúa giáo (nhà thờ)
+answer.religion.hindu=Ấn Độ giáo (đền thờ)
+answer.religion.jewish=Do Thái (giáo đường Do Thái)
+answer.religion.muslim=Hồi giáo (nhà thờ Hồi giáo)
+answer.religion.pastafari=Pastafarian
+answer.religion.shinto=Shinto (đền thờ)
+answer.religion.sikh=Sikh (Gurdwara)
+answer.religion.multiple=nhiều tôn giáo
+
+# language (http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
+answer.language.arabic=Tiếng Ả Rập
+answer.language.catalan=Catalan
+answer.language.chinese=Tiếng Trung Quốc
+answer.language.danish=tiếng Đan Mạch
+answer.language.dutch=tiếng Hà Lan
+answer.language.english=tiếng Anh
+answer.language.estonian=Tiếng Estonia
+answer.language.finnish=tiếng Phần Lan
+answer.language.french=tiếng Pháp
+answer.language.german=tiếng Đức
+answer.language.greek=Tiếng Hy Lạp
+answer.language.hebrew=Do Thái
+answer.language.hungarian=Tiếng Hungary
+answer.language.irish=tiếng Ai-len
+answer.language.icelandic=tiếng Băng Đảo (Ai-xơ-len)
+answer.language.italian=tiếng Ý
+answer.language.japanese=tiếng Nhật Bản
+answer.language.korean=tiếng Hàn Quốc
+answer.language.croatian=tiếng Croatia
+answer.language.latin=tiếng Latinh
+answer.language.luxembourgish=tiếng Luxembourg
+answer.language.norwegian=tiếng Na Uy
+answer.language.persian=tiếng Ba Tư
+answer.language.polish=tiếng Ba Lan
+answer.language.portuguese=tiếng Bồ Đào Nha
+answer.language.romansh=tiếng Romansh
+answer.language.romanian=tiếng Romania
+answer.language.russian=tiếng Nga
+answer.language.sardinian=Sardinian
+answer.language.scottish_gaelic=Scotland Gaelic
+answer.language.swiss_german=Thụy Sĩ Đức
+answer.language.serbian=Serbia
+answer.language.slovakian=Tiếng Slovak
+answer.language.slovenian=tiếng Slovenia
+answer.language.spanish=tiếng Tây Ban Nha
+answer.language.swedish=Thụy Điển
+answer.language.thai=Thai
+answer.language.tibetan=Tây Tạng
+answer.language.czech=séc
+answer.language.turkish=Thổ Nhĩ Kỳ
+answer.language.uzbek=Uzbek
+answer.language.vietnamese=tiếng Việt
+answer.language.welsh=Welsh
+
+# missing_cuisine
+answer.missing_cuisine.regional=Địa phương
+answer.missing_cuisine.coffee_shop=Quán cà phê
+answer.missing_cuisine.international=Quốc tế
+answer.missing_cuisine.italian=Ý
+answer.missing_cuisine.turkish=Thổ Nhĩ Kỳ
+answer.missing_cuisine.chinese=Trung Quốc
+answer.missing_cuisine.thai=Thái
+answer.missing_cuisine.asian=Châu Á
+answer.missing_cuisine.indian=Ấn Độ
+answer.missing_cuisine.french=Pháp
+answer.missing_cuisine.mexican=Mê-hi-cô
+answer.missing_cuisine.american=Mỹ
+answer.missing_cuisine.japanese=Nhật Bản
+answer.missing_cuisine.greek=Hy Lạp
+answer.missing_cuisine.sandwich=Bánh mì kẹp
+answer.missing_cuisine.steak_house=Nhà hàng bít tết
+answer.missing_cuisine.chicken=Gà
+answer.missing_cuisine.bistro_brasserie=Bistro, brasserie
+answer.missing_cuisine.seafood=Đồ biển
+answer.missing_cuisine.burger=Burger
+
+##############################################################
+# THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT AND OSM_ERRORS#
+##############################################################
+
+# error descriptions (KeepRight)
+bug.question.track=Loại của con đường này là?
+bug.question.poi=1$ được gọi là gì?
+bug.question.speed=tốc độ giới hạn áp dụng trên con đường này là?
+bug.question.name_of_street=tên con đường này là gì ?
+bug.question.language=Cái tên '$2' được viết  bằng ngôn ngữ gì?
+bug.question.motorway_ref=Mã đường (ví dụ như A3 hay E385) của đường cao tốc này là gì?
+bug.question.place_of_worship=Nơi thờ cúng này thuộc tôn giáo nào?
+bug.question.cuisine_of_restaurant=Phong cách ẩm thực của '$1' là gì?
+
+# single values
+cafe=cafe
+fast_food=nhà hàng đồ ăn nhanh
+restaurant=nhà hàng
+school=trường học
+pharmacy=hiệu thuốc
+fuel=trạm xăng
+cinema=rạp phim
+bank=ngân hàng
+university=đại học
+theatre=nhà hát
+pub=quán rượu
+place_of_worship=nơi thờ cúng
+library=thư viện
+hospital=bệnh viện
+courthouse=tòa án
+way=đường đi
+node=địa điểm

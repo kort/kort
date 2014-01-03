@@ -1,0 +1,222 @@
+# Main View (TabPanel)
+tab.map=Karte
+tab.bugmap=Aufträge
+tab.validation=Prüfen
+tab.highscore=Highscore
+tab.profile=Profil
+tab.about=Über Kort
+tab.news=News
+
+# Login
+login.kort.description.1=Löse Aufträge
+login.kort.description.2=Sammle Koins
+login.kort.description.3=Verbessere OpenStreetMap
+login.kort.introduction.1=Kort soll dazu beitragen die Daten in OpenStreetMap zu verbessern.
+login.kort.introduction.2=Dazu werden dir auf der Karte Fehler in Form von Aufträgen angezeigt. Durch das Lösen solcher Aufträge erhältst du Koins und kannst Auszeichnungen gewinnen.
+login.kort.introduction.3=Gelöste Aufträge können dann wiederum von anderen Spielern überprüft werden, um deren Korrektheit zu bestätigen. Sobald ein Lösungsvorschlag genügend positive Bewertungen erhalten hat, ist er bereit, um zu OpenStreetMap zurückgeschrieben zu werden.
+login.kort.introduction.4=Logge dich jetzt ein, um damit zu beginnen\!
+login.button.google=Login mit Google
+login.button.osm=Login mit OpenStreetMap
+login.button.facebook=Login mit Facebook
+login.loadmask.message=Login...
+
+# Firststeps
+firststeps.introduction=Willkommen bei Kort\! Wähle einen Benutzernamen\:
+firststeps.form.button.submit=Mission beginnen\!
+firststeps.alert.username.empty.title=Benutzernamen eingeben
+firststeps.alert.username.empty.message=Bitte gib einen Benutzernamen ein.
+firststeps.alert.username.specialchars.title=Zeichenproblem
+firststeps.alert.username.specialchars.message=Verwende bitte nur Buchstaben und Zahlen für deinen Benutzernamen.
+firststeps.alert.submit.failure.title=Fehler beim Senden
+firststeps.alert.submit.failure.message=Ups\! Beim Übertragen deines Benutzernamens ist etwas schief gelaufen. Eventuell hilft ein Neustart der App.
+
+# Geolocation error
+geolocationerror.introduction=Um Kort verwenden zu können, muss auf deine Position zugegriffen werden können.
+geolocationerror.button.reload=Applikation neu laden
+geolocationerror.loadmask.message=Lade App neu...
+
+#Map
+map.title=Aufträge
+map.loadmask.message=Lade Aufträge...
+map.mission.promotionmessagebox.close=Schliessen
+map.mission.promotionmessagebox.earn=Hol dir zusätzliche {extra_coins} Koins
+map.mission.promotionmessagebox.date={startdate} bis {enddate}
+map.mission.missionmessagebox.koins.earn=Verdiene dir {fix_koin_count} Koins
+map.mission.missionmessagebox.koins.earnpromotion=Verdiene dir {fix_koin_count} + {extra_coins} Koins
+map.mission.missionmessagebox.yes=Beantworten
+map.mission.missionmessagebox.no=Weiss nicht
+map.mission.missionmessagebox.close=Schliessen
+map.mission.layername=Aufträge
+map.missionInactive.layername=Inaktive Aufträge
+map.validation.layername=Überprüfungen
+map.validation.validationmessagebox.koins.earn=Verdiene dir {validation_koin_count} Koins
+map.validation.validationmessagebox.koins.earnpromotion=Verdiene dir {validation_koin_count} + {extra_coins} Koins
+map.mission.validationmessagebox.yes=Beantworten
+map.mission.validationmessagebox.no=Weiss nicht
+map.mission.validationmessagebox.close=Schliessen
+map.validation.validationmessagebox.checkit=Überprüfe die Lösung
+
+## Fix
+fix.form.title=Auftrag
+fix.form.koins.earn=Hol dir die {fix_koin_count} Koins\!
+fix.form.koins.earnpromotion=Hol dir die {fix_koin_count} + {extra_coins} Koins\!
+fix.form.message.placeholder=Deine Antwort...
+fix.form.button.showonmap=Auf der Karte anzeigen
+fix.form.button.submit=Auftrag abschliessen
+fix.form.loadmask.message=Lade Antworten...
+fix.form.falsepositive.toggle.label=Nicht lösbar
+fix.map.title=Karte
+fix.sendmask.message=Sende Lösung...
+fix.alert.fixfield.empty.title=Felder ausfüllen
+fix.alert.fixfield.empty.message=Bitte alle Felder ausfüllen.
+fix.alert.submit.failure.title=Fehler beim Senden
+fix.alert.submit.failure.message=Ups\! Beim Übertragen der Lösung ist etwas schief gelaufen. Eventuell hilft ein Neustart der App.
+
+## Vote
+vote.falsepositive.question=Es wurde angegeben, dass es keine Lösung zu dieser Frage gibt. Ist dies korrekt?
+vote.container.button.answer=Beantworten
+vote.container.votes.left={votes_left} Bewertungen nötig
+vote.answeractionsheet.button.accept=Ja
+vote.answeractionsheet.button.decline=Nein
+vote.answeractionsheet.button.cancel=Weiss nicht
+vote.answeractionsheet.question=Ist die Antwort korrekt?
+vote.sendmask.message=Sende Antwort...
+vote.alert.submit.failure.title=Fehler beim Senden
+vote.alert.submit.failure.message=Ups\! Beim Übertragen deiner Antwort ist etwas schief gelaufen. Eventuell hilft ein Neustart der App.
+
+# Highscore
+highscore.title=Highscore
+highscore.absolute.tabtitle=Top
+highscore.relative.tabtitle=Meine Platzierung
+highscore.loadmask.message=Lade Highscore...
+highscore.emptytext=Highscore kann nicht geladen werden.
+highscore.you=Das bist du\!
+highscore.koins=Koins
+highscore.fixcount=Aufträge\:
+highscore.votecount=Prüfungen\:
+highscore.user.badges.emptytext=Die Auszeichnungen konnten nicht geladen werden.
+
+# Profil
+profile.title=Profil
+profile.button.logout=Logout
+profile.button.changeusername=Benutzername ändern
+profile.settings.messagebox.title=Einstellungen
+profile.settings.messagebox.message=Gib deinen neuen Benutzernamen ein
+profile.username.loadmask.message=Benutzername wird gespeichert
+profile.content.username=Benutzername
+profile.content.oauthprovider=Eingeloggt über
+profile.content.fixes=Erledigte Aufträge
+profile.content.votes=Getätigte Überprüfungen
+profile.content.koins.header=Gesammelte Koins
+profile.content.koins.title=Koins
+profile.content.ranking.title=Platz
+profile.content.badges.header=Gewonnene Auszeichnungen
+profile.logout.loadmask.message=Logout...
+profile.refresh.loadmask.message=Lade Profil...
+profile.badges.title=Deine Auszeichnungen
+profile.badges.recieved=Erhalten am\:
+profile.badges.emptytext=Deine Auszeichnungen konnten nicht geladen werden.
+profile.badges.button.close=Schliessen
+profile.alert.username.empty.title=Benutzernamen eingeben
+profile.alert.username.empty.message=Bitte gib einen Benutzernamen ein.
+profile.alert.username.specialchars.title=Zeichenproblem
+profile.alert.username.specialchars.message=Verwende bitte nur Buchstaben und Zahlen für deinen Benutzernamen.
+profile.alert.submit.failure.title=Fehler beim Senden
+profile.alert.submit.failure.message=Ups\! Beim Übertragen deines Benutzernamens ist etwas schief gelaufen. Eventuell hilft ein Neustart der App.
+
+#News
+news.title=News
+news.unread=Ungelesen
+news.read=Gelesen
+news.list.emptytext=Derzeit keine News
+news.updated=Publiziert am
+news.settings.save=Speichern
+news.settings.cancel=Abbrechen
+news.settings.acceptNoLanguage=Keine auswählen
+news.settings.acceptAllLanguages=Alle auswählen
+news.settings.label=Die News welcher Sprache möchtest du erhalten?
+
+# About
+about.title=Über
+about.version.title=Version
+about.information.title=Weitere Informationen
+about.information.homepage=Webseite\:
+about.information.feedback=Feedback/FAQ\:
+about.information.bugs=Fehler melden\:
+about.developers.title=Entwickler
+about.project.title=Projekte
+about.project.advisor=Leitung\:
+about.credits.title=Credits
+about.credits.partner=Partner\:
+about.credits.mapdata=Geodaten\:
+about.credits.tiledata=Kartenkacheln\:
+about.credits.markers=Marker Icons\:
+about.credits.translation=Übersetzung\:
+about.credits.dbhosting=DB Hosting\:
+about.legal.title=Rechtliche Hinweise\:
+about.legal.message=Halte die Richtlinien von OpenStreetMap ein und verwende z.B. keine urheberrechtlich geschützten Quellen ohne Erlaubnis.
+
+# PullRefresh Plugin
+pullrefresh.pullrefresh=Zum Aktualisieren herunterziehen
+pullrefresh.releaserefresh=Zum Aktualisieren loslassen...
+pullrefresh.loading=wird aktualisiert...
+pullrefresh.lastupdated=Zuletzt aktualisiert\:
+
+# ListPaging Plugin
+listpaging.loadmore=Weitere Einträge laden...
+listpaging.nomorerecords=Keine weiteren Einträge vorhanden.
+
+# Button
+button.back=Zurück
+
+# MessageBox
+messagebox.ok=OK
+messagebox.yes=Ja
+messagebox.no=Nein
+messagebox.cancel=Abbrechen
+
+# Picker
+picker.done=Fertig
+picker.cancel=Abbrechen
+
+# Reward
+reward.alert.title=Dein Ansehen ist gestiegen\!
+reward.alert.koins.new=Bravo\! Du hast {koin_count_new} Koins gewonnen.
+reward.alert.koins.total=Deine Gesamtpunktzahl beträgt nun {koin_count_total} Koins.
+reward.alert.badges.title=Gewonnene Auszeichnungen
+
+# App update
+update.title=Neue App-Version
+update.message=Die App wurde auf die neuste Version aktualisiert. App neu laden?
+
+#Languages
+en=Englisch
+de=Deutsch
+it=Italienisch
+fr=Französisch
+sl=Slowenisch
+hr=Kroatisch
+cs=Tschechisch
+nl=Holländisch
+gl=Galizisch
+pt=Portugiesisch
+ro=Rumänisch
+ja=Japanisch
+ca=Katalanisch
+es=Spanisch
+
+###############################
+# Labels used directly in source files (without Ext.i18n.Bundle plugin)
+###############################
+
+# index.html
+## App startscreen
+startscreen.loadingtext=Kort wird geladen. Gleich gehts los...
+startscreen.browsererror=Dein Browser wird leider noch nicht unterstützt. Kort ist optimiert für den Betrieb auf mobilen Geräten. Versuch es doch damit.
+
+# app/util/Config.js
+## Firststeps
+firststeps.form.username.placeholder=Benutzername
+
+## PullRefresh Plugin
+pullrefresh.dateformat=d.m.Y H\:i\:s

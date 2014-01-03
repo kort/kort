@@ -1,0 +1,222 @@
+# Main View (TabPanel)
+tab.map=Map
+tab.bugmap=Missions
+tab.validation=Comprovar
+tab.highscore=Màxima puntuació
+tab.profile=Perfil
+tab.about=A sobre de Kort
+tab.news=News
+
+# Login
+login.kort.description.1=Missions completades
+login.kort.description.2=Koins recollides
+login.kort.description.3=Millorar OpenStreetMap
+login.kort.introduction.1=Kort ajuda a millorar les dades d'OpenStreetMap
+login.kort.introduction.2=Per tant veuràs les teues missions en un mapa. Completant missions obtindràs Koins i aconseguiràs medalles.
+login.kort.introduction.3=Cada missió resolta és comprovada per altres jugadors per verificar si és correcta. Tan bon punt s'introdueixen suficients valoracions positives per a una solució suggerida, està preparada per a ser enviada a OpenStreetMap.
+login.kort.introduction.4=Inicia la sessió per a començar la teua missió\!
+login.button.google=Inicia la sessió amb Google
+login.button.osm=Inicia la sessió amb OpenStreetMap
+login.button.facebook=Inicia la sessió amb Facebook
+login.loadmask.message=Iniciant sessió...
+
+# Firststeps
+firststeps.introduction=Benvinguts a Kort\! Tria un nom d'usuari\:
+firststeps.form.button.submit=Començar missió\!
+firststeps.alert.username.empty.title=Introduir nom d'usuari
+firststeps.alert.username.empty.message=Per favor, introdueix un nom d'usuari.
+firststeps.alert.username.specialchars.title=Problema amb el caràcter
+firststeps.alert.username.specialchars.message=Per favor, utilitza només lletres i dígits per al teu nom d'usuari.
+firststeps.alert.submit.failure.title=Error a l'enviar
+firststeps.alert.submit.failure.message=Ui\! S'ha produit un error a l'enviar el nom d'usuari. Reiniciar l'aplicació podria ajudar a resoldre'l.
+
+# Geolocation error
+geolocationerror.introduction=Per utilitzar Kort, és necessari accedir a la teua geolocalització.
+geolocationerror.button.reload=Recarregar aplicació
+geolocationerror.loadmask.message=Recarregant aplicació...
+
+#Map
+map.title=Missions
+map.loadmask.message=Carregant missions
+map.mission.promotionmessagebox.close=Close
+map.mission.promotionmessagebox.earn=Earn additional {extra_coins} Koins
+map.mission.promotionmessagebox.date={startdate} to {enddate}
+map.mission.missionmessagebox.koins.earn=Guanyar {fix_koin_count} Koins
+map.mission.missionmessagebox.koins.earnpromotion=Earn {fix_koin_count} + {extra_coins} Koins
+map.mission.missionmessagebox.yes=Resposta
+map.mission.missionmessagebox.no=No ho sé.
+map.mission.missionmessagebox.close=Close
+map.mission.layername=Missions
+map.missionInactive.layername=Inactive Missions
+map.validation.layername=Checks
+map.validation.validationmessagebox.koins.earn=Earn {validation_koin_count} Koins
+map.validation.validationmessagebox.koins.earnpromotion=Earn {validation_koin_count} + {extra_coins} Koins
+map.mission.validationmessagebox.yes=Resposta
+map.mission.validationmessagebox.no=No ho sé.
+map.mission.validationmessagebox.close=Close
+map.validation.validationmessagebox.checkit=Check the solution
+
+## Fix
+fix.form.title=Missió
+fix.form.koins.earn=Aconsegueix {fix_koin_count} Koins\!
+fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins\!
+fix.form.message.placeholder=La teua resposta...
+fix.form.button.showonmap=Mostrar al mapa
+fix.form.button.submit=Completar missió
+fix.form.loadmask.message=Carregant respostes
+fix.form.falsepositive.toggle.label=No es pot resoldre
+fix.map.title=Mapa
+fix.sendmask.message=Enviant solució...
+fix.alert.fixfield.empty.title=Ompli els camps
+fix.alert.fixfield.empty.message=Per favor, ompli tots els camps.
+fix.alert.submit.failure.title=Error a l'enviar
+fix.alert.submit.failure.message=Ui\! S'ha produit un error mentre s'enviava la teua resposta. Reiniciar l'aplicació podria ajudar a resoldre'l.
+
+## Vote
+vote.falsepositive.question=Esta missió ha sigut marcada com a 'incapaç de resoldre'. És correcte?
+vote.container.button.answer=Resposta
+vote.container.votes.left=Es necessiten {votes_left} valoracions
+vote.answeractionsheet.button.accept=Si
+vote.answeractionsheet.button.decline=No
+vote.answeractionsheet.button.cancel=No ho sé.
+vote.answeractionsheet.question=Es aquesta la resposta correcta?
+vote.sendmask.message=Enviant resposta...
+vote.alert.submit.failure.title=Error a l'enviar
+vote.alert.submit.failure.message=Ui\! S'ha produit un error mentre s'enviava la teua resposta. Reiniciar l'aplicació podria ajudar a resoldre'l.
+
+# Highscore
+highscore.title=Màxima puntuació
+highscore.absolute.tabtitle=Top
+highscore.relative.tabtitle=My score
+highscore.loadmask.message=Carregant puntuació màxima
+highscore.emptytext=No es pot carregar la puntuació màxima
+highscore.you=Eres tu\!
+highscore.koins=Koins
+highscore.fixcount=Missions\:
+highscore.votecount=Comprovacions\:
+highscore.user.badges.emptytext=No s'han pogut carregar les medalles.
+
+# Profil
+profile.title=Perfil
+profile.button.logout=Finalitza la sessió
+profile.button.changeusername=Canviar nom d'usuari
+profile.settings.messagebox.title=Opcions
+profile.settings.messagebox.message=Introdueix el teu nou nom d'usuari
+profile.username.loadmask.message=Guardant nom d'usuari...
+profile.content.username=Nom d'usuari
+profile.content.oauthprovider=Iniciar sessió via
+profile.content.fixes=Missions completades
+profile.content.votes=Comprovacions realitzades
+profile.content.koins.header=Koins recollides
+profile.content.koins.title=Koins
+profile.content.ranking.title=Lloc
+profile.content.badges.header=Medalles guanyades
+profile.logout.loadmask.message=Finalitzar sessió...
+profile.refresh.loadmask.message=Carregant perfil...
+profile.badges.title=Les teues medalles
+profile.badges.recieved=Rebut el\:
+profile.badges.emptytext=No s'han pogut carregar les teues medalles.
+profile.badges.button.close=Tancar.
+profile.alert.username.empty.title=Introdueix nom d'usuari
+profile.alert.username.empty.message=Per favor, introdueix un nom d'usuari.
+profile.alert.username.specialchars.title=Problema amb el caràcter
+profile.alert.username.specialchars.message=Per favor, utilitza només lletres i dígits per al teu nom d'usuari.
+profile.alert.submit.failure.title=Error a l'enviar
+profile.alert.submit.failure.message=Ui\! S'ha produit un error mentre s'enviava el nom d'usuari. Reiniciar l'aplicació podria ajudar a resoldre'l.
+
+#News
+news.title=News
+news.unread=Unread
+news.read=Read
+news.list.emptytext=No entries
+news.updated=Updated
+news.settings.save=Save
+news.settings.cancel=Cancel
+news.settings.acceptNoLanguage=Deselect all
+news.settings.acceptAllLanguages=Select all
+news.settings.label=I want to receive news in the following languages\:
+
+# About
+about.title=A sobre
+about.version.title=Versió
+about.information.title=Més informació
+about.information.homepage=Lloc web\:
+about.information.feedback=Preguntes més freqüents\:
+about.information.bugs=Informa d'un error\:
+about.developers.title=Desenvolupador
+about.project.title=Projects
+about.project.advisor=Guiat\:
+about.credits.title=Crèdits
+about.credits.partner=Soci\:
+about.credits.mapdata=Geodades\:
+about.credits.tiledata=Tessel·la\:
+about.credits.markers=Marcadors\:
+about.credits.translation=Translation\:
+about.credits.dbhosting=DB Hosting\:
+about.legal.title=Nota legal_
+about.legal.message=Per favor, segueix les directrius d'OpenStreetMap i no utilitzes fonts protegides amb copyright sense permís.
+
+# PullRefresh Plugin
+pullrefresh.pullrefresh=Arrossega cap a baix per a actualitzar
+pullrefresh.releaserefresh=Deixa anar per a actualitzar...
+pullrefresh.loading=Carregant...
+pullrefresh.lastupdated=Última actualització\:
+
+# ListPaging Plugin
+listpaging.loadmore=Carregar més...
+listpaging.nomorerecords=No hi ha més registres disponibles.
+
+# Button
+button.back=Arrere
+
+# MessageBox
+messagebox.ok=OK
+messagebox.yes=Si
+messagebox.no=No
+messagebox.cancel=Cancel·la
+
+# Picker
+picker.done=Finalitzar
+picker.cancel=Cancel·la
+
+# Reward
+reward.alert.title=Has augmentat la teua reputació\!
+reward.alert.koins.new=Fantàstic\! Has guanyat {koin_count_new} Koins.
+reward.alert.koins.total=Tens ara un total de {koin_count_total} Koins.
+reward.alert.badges.title=Medalles guanyades
+
+# App update
+update.title=Nova versió de l'aplicació
+update.message=L'aplicació ha sigut actualitzada a la darrera versió. Recarregar?
+
+#Languages
+en=English
+de=German
+it=Italian
+fr=French
+sl=Slovenian
+hr=Croatian
+cs=Czech
+nl=Dutch
+gl=Galician
+pt=Portuguese
+ro=Romanian
+ja=Japanese
+ca=Catalan
+es=Spanish
+
+###############################
+# Labels used directly in source files (without Ext.i18n.Bundle plugin)
+###############################
+
+# index.html
+## App startscreen
+startscreen.loadingtext=Kort està carregant. Prepara't...
+startscreen.browsererror=El teu navegador encara no està suportat. Prova amb el teu telèfon mòbil.
+
+# app/util/Config.js
+## Firststeps
+firststeps.form.username.placeholder=Nom d'usuari
+
+## PullRefresh Plugin
+pullrefresh.dateformat=m/d/Y h\:iA

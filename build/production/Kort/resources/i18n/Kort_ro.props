@@ -1,0 +1,222 @@
+# Main View (TabPanel)
+tab.map=Map
+tab.bugmap=Misiuni
+tab.validation=Verificare
+tab.highscore=Punctaj 
+tab.profile=Profil
+tab.about=Despre Kort
+tab.news=News
+
+# Login
+login.kort.description.1=Misiuni terminate
+login.kort.description.2=Colectează monede
+login.kort.description.3=Îmbunătățește OpenStreetMap
+login.kort.introduction.1=Kort contribuie la îmbunătățirea datelor din OpenStreetMap.
+login.kort.introduction.2=Astfel îți vei vedea misiunile pe hartă. Prin terminarea misiunilor vei obține monede și vei câștiga insigne.
+login.kort.introduction.3=Fiecare misiune terminată va fi verificată de alți jucători în privința corectitudinii. De îndată ce o soluție sugerată a primit îndeajuns de multe aprecieri pozitive, ea este gata să fie trimisă la OpenStreetMap.
+login.kort.introduction.4=Loghează-te acum pentru a începe misiunea\!
+login.button.google=Loghează-te cu Google
+login.button.osm=Loghează-te cu OpenStreetMap
+login.button.facebook=Loghează-te cu Facebook
+login.loadmask.message=Logare
+
+# Firststeps
+firststeps.introduction=Bine ați venit la Kort\! Alegeți un nume de utilizator\:
+firststeps.form.button.submit=Începeți misiunea\!
+firststeps.alert.username.empty.title=Introduceți numele de utilizator
+firststeps.alert.username.empty.message=Vă rugăm introduceți un nume de utilizator.
+firststeps.alert.username.specialchars.title=Problemă cu personajul
+firststeps.alert.username.specialchars.message=Vă rugăm introduceți litere și cifre în numele de utilizator
+firststeps.alert.submit.failure.title=Eroare la trimitere
+firststeps.alert.submit.failure.message=Oops\! S-a înregistrat o eroare la trimiterea numelui de utilizator. Restartarea aplicației s-ar putea să ajute.
+
+# Geolocation error
+geolocationerror.introduction=Pentru a utiliza Kort, accesarea poziției tale geografice este esențială.
+geolocationerror.button.reload=Reîncărcarea aplicației
+geolocationerror.loadmask.message=Aplicația se încarcă...
+
+# Map
+map.title=Missions
+map.loadmask.message=Misiunile se încarcă...
+map.mission.promotionmessagebox.close=Close
+map.mission.promotionmessagebox.earn=Earn additional {extra_coins} Koins
+map.mission.promotionmessagebox.date={startdate} to {enddate}
+map.mission.missionmessagebox.koins.earn=Câștigă {fix_koin_count} Monede
+map.mission.missionmessagebox.koins.earnpromotion=Earn {fix_koin_count} + {extra_coins} Koins
+map.mission.missionmessagebox.yes=Răspuns
+map.mission.missionmessagebox.no=Nu știu
+map.mission.missionmessagebox.close=Close
+map.mission.layername=Missions
+map.missionInactive.layername=Inactive Missions
+map.validation.layername=Checks
+map.validation.validationmessagebox.koins.earn=Earn {validation_koin_count} Koins
+map.validation.validationmessagebox.koins.earnpromotion=Earn {validation_koin_count} + {extra_coins} Koins
+map.mission.validationmessagebox.yes=Răspuns
+map.mission.validationmessagebox.no=Nu știu
+map.mission.validationmessagebox.close=Close
+map.validation.validationmessagebox.checkit=Check the solution
+
+## Fix
+fix.form.title=Misiune
+fix.form.koins.earn=Obține {fix_koin_count} Monede\!
+fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins\!
+fix.form.message.placeholder=Răspunsul tău...
+fix.form.button.showonmap=Arată pe hartă
+fix.form.button.submit=Termină misiunea
+fix.form.loadmask.message=Răspunsurile se încarcă...
+fix.form.falsepositive.toggle.label=Fără soluție
+fix.map.title=Hartă
+fix.sendmask.message=Soluția se trimite...
+fix.alert.fixfield.empty.title=Umpleți câmpurile
+fix.alert.fixfield.empty.message=Vă rugăm umpleți câmpurile.
+fix.alert.submit.failure.title=Eroare în timpul trimiterii
+fix.alert.submit.failure.message=Oops\! A existat o eroare la trimitere răspunsului tău. Restartarea aplicației s-ar putea să ajute.
+
+## Vote
+vote.falsepositive.question=Această misiune este marcată ca "Fără soluție". Este corect?
+vote.container.button.answer=Răspuns
+vote.container.votes.left={votes_left} Apreciere necesară
+vote.answeractionsheet.button.accept=Da
+vote.answeractionsheet.button.decline=Nu
+vote.answeractionsheet.button.cancel=Nu știu
+vote.answeractionsheet.question=Este acest răspuns corect?
+vote.sendmask.message=Răspunsul se trimite...
+vote.alert.submit.failure.title=Eroare la trimitere
+vote.alert.submit.failure.message=Oops\! A existat o eroare la trimiterea răspunsului tău. Restartarea aplicației ar putea ajuta.
+
+# Highscore
+highscore.title=Punctaj maxim
+highscore.absolute.tabtitle=Top
+highscore.relative.tabtitle=My score
+highscore.loadmask.message=Punctajul maxim se încarcă
+highscore.emptytext=Punctajul maxim nu se poate încărca
+highscore.you=Acesta ești tu\!
+highscore.koins=Monede
+highscore.fixcount=Misiuni\:
+highscore.votecount=Verificări\:
+highscore.user.badges.emptytext=Nu s-au putut încărca insignele.
+
+# Profil
+profile.title=Profil
+profile.button.logout=Ieșire cont
+profile.button.changeusername=Schimbă numele
+profile.settings.messagebox.title=Setări
+profile.settings.messagebox.message=Introduceți numele de utilizator
+profile.username.loadmask.message=Numele de utilizator se salvează...
+profile.content.username=Nume de utilizator
+profile.content.oauthprovider=Autentificare prin
+profile.content.fixes=Misiuni terminate
+profile.content.votes=Verificări efectuate
+profile.content.koins.header=Monede câțtigate
+profile.content.koins.title=Monede
+profile.content.ranking.title=Loc
+profile.content.badges.header=Insigne câștigate
+profile.logout.loadmask.message=Ieșire cont
+profile.refresh.loadmask.message=Profilul se încarcă...
+profile.badges.title=Insignele tale
+profile.badges.recieved=Primit la\:
+profile.badges.emptytext=Insignele tale nu au putut fi încărcate
+profile.badges.button.close=Închidere
+profile.alert.username.empty.title=Introduceți numele de utilizator
+profile.alert.username.empty.message=Vă rugăm introduceți numele de utilizator
+profile.alert.username.specialchars.title=Problemă cu personajul
+profile.alert.username.specialchars.message=Vă rugăm utilizați doar litere și cifre în numele de utilizator
+profile.alert.submit.failure.title=Eroare în timpul trimiterii
+profile.alert.submit.failure.message=Oops\! A existat o eroare la trimiterea numelui de utilizator. Restartarea aplicației ar putea ajuta
+
+#News
+news.title=News
+news.unread=Unread
+news.read=Read
+news.list.emptytext=No entries
+news.updated=Updated
+news.settings.save=Save
+news.settings.cancel=Cancel
+news.settings.acceptNoLanguage=Deselect all
+news.settings.acceptAllLanguages=Select all
+news.settings.label=I want to receive news in the following languages\:
+
+# About
+about.title=Despre
+about.version.title=Versiune
+about.information.title=Mai multe informații
+about.information.homepage=Website
+about.information.feedback=Feedback/Întrebări frecvente
+about.information.bugs=Raportează un bug.
+about.developers.title=Dezvoltator
+about.project.title=Projects
+about.project.advisor=În frunte\:
+about.credits.title=Mulțumiri\:
+about.credits.partner=Partener\:
+about.credits.mapdata=Date geografice\:
+about.credits.tiledata=Pătrate-imagine care compun harta\:
+about.credits.markers=Pictogramele marcajelor\:
+about.credits.translation=Translation\:
+about.credits.dbhosting=DB Hosting\:
+about.legal.title=Precizare legală\:
+about.legal.message=Vă rugăm urmați principiile directoare ale OpenStreetMap și nu utilizați surse protejate de copyright fără permisiune.
+
+# PullRefresh Plugin
+pullrefresh.pullrefresh=Trageți în jos pentru refresh
+pullrefresh.releaserefresh=Eliberați pentru refresh...
+pullrefresh.loading=e
+pullrefresh.lastupdated=Ultima actualizare\:
+
+# ListPaging Plugin
+listpaging.loadmore=Încarcă mai multe...
+listpaging.nomorerecords=Nu mai sunt disponibile alte înregistrări.
+
+# Button
+button.back=Înapoi
+
+# MessageBox
+messagebox.ok=Ok
+messagebox.yes=Da
+messagebox.no=Nu
+messagebox.cancel=Renunță
+
+# Picker
+picker.done=Termină
+picker.cancel=Renunță
+
+# Reward
+reward.alert.title=V-ați îmbunătățit reputația\!
+reward.alert.koins.new=Bravo\! Ați câștigat  {koin_count_new} Monede.
+reward.alert.koins.total=Ași câștigat un număr total de {koin_count_total} Monede.
+reward.alert.badges.title=Insigne câștigate
+
+# App update
+update.title=Noua versiune a aplicației
+update.message=Aplicația a fost actualizată la cea mai nouă versiune. Reîncărcați?
+
+#Languages
+en=English
+de=German
+it=Italian
+fr=French
+sl=Slovenian
+hr=Croatian
+cs=Czech
+nl=Dutch
+gl=Galician
+pt=Portuguese
+ro=Romanian
+ja=Japanese
+ca=Catalan
+es=Spanish
+
+###############################
+# Labels used directly in source files (without Ext.i18n.Bundle plugin)
+###############################
+
+# index.html
+## App startscreen
+startscreen.loadingtext=Kort se încarcă. Pregătiți-vă...
+startscreen.browsererror=Navigatorul dumneavoastră web nu este încă suportat. Încercați-l pe telefonul mobil.
+
+# app/util/Config.js
+## Firststeps
+firststeps.form.username.placeholder=Nume de utilizator
+
+## PullRefresh Plugin
+pullrefresh.dateformat=m/d/Y h\:iA
