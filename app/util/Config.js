@@ -14,12 +14,7 @@ Ext.define('Kort.util.Config', {
          * @cfg {String[]} supportedLanguages Supported languages of the app
          */
         supportedLanguages: ['ca', 'cs', 'de', 'en', 'es', 'fr', 'gl', 'hr', 'hu', 'id', 'is', 'it', 'ja', 'nl', 'pt', 'ro', 'ru', 'sk', 'sl', 'sr', 'tr', 'vi'],
-        
-        /**
-         * @cfg {String[]} supportedBrowsers List of supported browsers
-         */
-        supportedBrowsers: ['WebKit', 'IE', 'Firefox'],
-        
+
         /**
          * @cfg {String} defaultLanguage Default language of app when no language setting could be detected
          */
@@ -383,23 +378,6 @@ Ext.define('Kort.util.Config', {
         }
         return this.getDefaultLanguage();
 	},
-
-    /**
-     * Tells if current browser is supported
-     */
-	isBrowserSupported: function() {
-        var supportedBrowsers = this.getSupportedBrowsers(),
-            supportedBrowsersLen = supportedBrowsers.length,
-            i;
-
-        for(i = 0; i < supportedBrowsersLen; i++) {
-            if(Ext.browser.is(supportedBrowsers[i])) {
-                return true;
-            }
-        }
-        return false;
-	},
-
 
     /**
      * Returns a Leaflet marker icon for a given type
