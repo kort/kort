@@ -50,7 +50,7 @@ Ext.define('Kort.view.about.Container', {
                                 '<dd>' + Ext.i18n.Bundle.message('about.credits.markers') + ' ' + Kort.util.Config.getAbout().credits.markers + '</dd>' +
                                 '<dd>' + Ext.i18n.Bundle.message('about.credits.translation') + ' ' + Kort.util.Config.getAbout().credits.translation + '</dd>' +
                                 '<dd>' + Ext.i18n.Bundle.message('about.credits.dbhosting') + ' ' + Kort.util.Config.getAbout().credits.dbhosting + '</dd>' +
-                                '<dd class="image-sourcepole-logo"><a href="http://www.sourcepole.ch" target="_blank"><img src="resources/images/logo_sourcepole.png" /></a></dd>' +
+                                '<dd class="image-logo-sourcepole"><a href="http://www.sourcepole.ch" target="_blank"><img src="resources/images/logo_sourcepole.png" /></a></dd>' +
                                 '<dt>' + Ext.i18n.Bundle.message('about.legal.title') + '</dt>' +
                                 '<dd>' + Ext.i18n.Bundle.message('about.legal.message') + '</dd>' +
                             '</dl>' +

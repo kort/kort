@@ -555,6 +555,13 @@ $message-box-background-color:#232e39;
                     width: $hsr-logo-width/2;
                 }
             }
+
+            &.image-logo-sourcepole {
+                img {
+                    $logo-sourcepole-width: 350px;
+                    width: $logo-sourcepole-width/2;
+                }
+            }
         }
         
         a, a:hover, a:active, a:focus {
