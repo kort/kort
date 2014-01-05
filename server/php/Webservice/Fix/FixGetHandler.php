@@ -38,6 +38,7 @@ class FixGetHandler extends DbProxyHandler
             'error_type',
             'error_type_description',
             'answer',
+            'source',
             'falsepositive',
             'description',
             'complete',
