@@ -138,15 +138,24 @@ Ext.application({
         xclass: 'Kort.plugin.QueryRouter'
     },
 
-    statusBarStyle: 'black',
+    statusBarStyle: 'black-translucent',
 
-    icon: './resources/images/kort-icon.png',
+    icon: {
+        57: './resources/images/kort-icon-57.png',
+        72: './resources/images/kort-icon-72.png',
+        114: './resources/images/kort-icon-114.png',
+        144: './resources/images/kort-icon-144.png'
+    },
+
+    isIconPrecomposed: true,
 
     startupImage: {
-        // Non-retina iPhone, iPod touch, and all Android devices
-        '320x460': './resources/images/kort-startup-alldev-320x460.png',
-        // Retina iPhone and iPod touch
-        '640x920': './resources/images/kort-startup-alldev-640x920.png'
+        '320x460': './resources/images/kort-startup-320x460.png',
+        '640x920': './resources/images/kort-startup-640x920.png',
+        '768x1004': './resources/images/kort-startup-768x1004.png',
+        '748x1024': './resources/images/kort-startup-748x1024.png',
+        '1536x2008': './resources/images/kort-startup-1536x2008.png',
+        '1496x2048': './resources/images/kort-startup-1496x2048.png'
     },
 
     // launch function is called as soon as app is ready
