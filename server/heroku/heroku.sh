@@ -8,6 +8,11 @@ if [[ $TRAVIS_BRANCH != "master" && $TARGET_ENV == "prod" ]] ; then
     DEPLOY="false"
 fi
 
+echo "=> PR: $TRAVIS_PULL_REQUEST"
+if [[ $TRAVIS_BRANCH == "master" && $TRAVIS_PULL_REQUEST != "false" ]] ; then
+    DEPLOY="false"
+fi
+
 
 if [[ $DEPLOY == "true" ]] ; then
     if [ -z $BUILD_DIR -a -z $CI_HOME -a -z $TARGET_ENV ] ; then
