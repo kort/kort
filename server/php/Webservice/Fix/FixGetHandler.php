@@ -38,6 +38,7 @@ class FixGetHandler extends DbProxyHandler
             'error_type',
             'error_type_description',
             'answer',
+            'source',
             'falsepositive',
             'description',
             'complete',
@@ -70,7 +71,7 @@ class FixGetHandler extends DbProxyHandler
      */
     public function getCompletedValidFixes()
     {
-        return $this->getFixes("complete and valid and not in_osm");
+        return $this->getFixes("complete and valid and not in_osm and not falsepositive");
     }
 
     /**
