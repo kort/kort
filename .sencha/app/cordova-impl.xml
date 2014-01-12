@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Cordova">
+    <!-- ////////////// -->
+    <!-- Public Targets -->
+    <!-- ////////////// -->
+    <target name="Sencha + Cordova Build" 
+            description="Builds into the Cordova general WWW folder"
+            depends="cordova-sencha-build"/>
+
+    <target name="Sencha + Cordova Prepare"
+            description="Builds then prepares application for all platforms"
+            depends="cordova-sencha-prepare"/>
+
+    <target name="Sencha + Cordova Emulate" 
+            description="Builds then Emulates in all platforms"
+            depends="cordova-sencha-emulate"/>
+
+    <target name="Build" 
+            description="Builds all platforms without building th Sencha App"
+            depends="cordova-build"/>
+
+    <target name="Prepare" 
+            description="Prepares all platforms without building the Sencha App"
+            depends="cordova-prepare"/>
+
+    <target name="Emulate" 
+            description="Emulates all platforms without building the Sencha App"
+            depends="cordova-emulate"/>
+
+    <target name="Clean" 
+            description="Cleans the General Cordova WWW Folder"
+            depends="cordova-clean"/>
+
+    <!-- Command Line Targets -->
+    <target name="cordova-sencha-build" depends="native, build"/>
+    <target name="cordova-sencha-emulate" depends="native, -autorun, build"/>
+    <target name="cordova-sencha-prepare" depends="package, build, cordova-prepare"/>
+
+    <!--Init for All Cordova Task-->
+    <target name="-before-cordova-init"/>
+    <target name="-cordova-init">
+        <property name="cordova.local.properties" value="${app.dir}/cordova.local.properties"/>
+        <property file="${cordova.local.properties}"/>
+    </target>
+    <target name="-after-cordova-init"/>
+    <target name="cordova-init"
+            depends="init, -before-cordova-init, -cordova-init, -after-cordova-init"/>
+
+    <!-- Cleaning target for the Cordova WWW directory  -->
+    <target name="-before-cordova-clean"/>
+    <target name="-cordova-clean">
+        <delete includeemptydirs="true">
+            <fileset dir="${app.cordova.www.dir}" includes="**/*"/>
+        </delete>
+    </target>
+    <target name="-after-cordova-clean"/>
+    <target name="cordova-clean" depends="cordova-init, -before-cordova-clean, -cordova-clean, -after-cordova-clean"/>
+
+    <!-- Copies a build folder into the Cordova WWW Folder. Used for Native bulding command -->
+    <target name="-before-cordova-copy-build"/>
+    <target name="-cordova-copy-build">
+        <if>
+            <not>
+                <equals arg1="${build.dir}" arg2="${app.cordova.www.dir}"/>
+            </not>
+            <then>
+                <copy todir="${app.cordova.www.dir}" failonerror="false" quiet="true">
+                    <fileset dir="${build.dir}">
+                        <include name="**/*"/>
+                    </fileset>
+                </copy>
+            </then>
+        </if>
+    </target>
+    <target name="-after-cordova-copy-build"/>
+    <target name="cordova-copy-build" depends="cordova-init">
+        <x-ant-call unless="skip.cordova-copy-build">
+            <target name="-before-cordova-copy-build"/>
+            <target name="-cordova-copy-build"/>
+            <target name="-after-cordova-copy-build"/>
+        </x-ant-call>
+    </target>
+
+    <target name="-before-cordova"/>
+    <target name="-after-cordova"/>
+
+    <!-- Prepares application for all platforms -->
+    <target name="-before-cordova-prepare"/>
+    <target name="-cordova-prepare">
+        <x-shell reloadprofile="true" dir="${app.cordova.dir}">
+            cordova prepare ${cordova.platforms.clean}
+        </x-shell>
+    </target>
+    <target name="-after-cordova-prepare"/>
+    <target name="cordova-prepare" depends="cordova-init, cordova-copy-build, cordova-platform-add">
+        <x-ant-call unless="skip.cordova-prepare">
+            <target name="-before-cordova"/>
+            <target name="-before-cordova-prepare"/>
+            <target name="-cordova-prepare"/>
+            <target name="-after-cordova-prepare"/>
+            <target name="-after-cordova"/>
+        </x-ant-call>
+    </target>
+
+    <!-- Emulates application on all platforms -->
+    <target name="-before-cordova-emulate"/>
+    <target name="-cordova-emulate" if="args.autorun">
+        <x-shell reloadprofile="true" dir="${app.cordova.dir}">
+            cordova emulate ${cordova.platforms.clean}
+        </x-shell>
+    </target>
+    <target name="-after-cordova-emulate"/>
+    <target name="cordova-emulate"  depends="cordova-init, -autorun, cordova-platform-add, -before-cordova, -before-cordova-emulate, -cordova-emulate, -after-cordova-emulate, -after-cordova"/>
+
+    <!-- Builds application for all platforms -->
+    <target name="-before-cordova-build"/>
+    <target name="-cordova-build">
+        <x-shell reloadprofile="true" dir="${app.cordova.dir}">
+            cordova build ${cordova.platforms.clean}
+        </x-shell>
+    </target>
+    <target name="-after-cordova-build"/>
+    <target name="cordova-build" depends="cordova-init, cordova-copy-build, cordova-platform-add, -before-cordova, -before-cordova-build, -cordova-build, -after-cordova-build, -after-cordova"/>
+
+    <!-- Adds all missing Platforms from properties file to the project-->
+    <target name="-before-cordova-platform-add"/>
+    <target name="-cordova-platform-add">
+        <script language="javascript">
+            var platforms = project.getProperty("cordova.platforms");
+
+            if(!platforms) platforms = ""
+            platforms = platforms.replace("/all/gi", "");
+            platforms = platforms.replace("/,/g", " ");
+            project.setProperty("cordova.platforms.clean", platforms);
+        </script>
+
+        <x-shell reloadprofile="true" dir="${app.cordova.dir}" outputproperty="cordova.platforms.list">
+            cordova platform list
+        </x-shell>
+        
+        <script language="javascript">
+            var target_platforms = project.getProperty("cordova.platforms.clean").split(" ");
+            var existing_platforms = project.getProperty("cordova.platforms.list");
+            var available = existing_platforms.indexOf("Available");
+            if (available >= 0) {
+                existing_platforms = existing_platforms.substring(0, available);
+            }
+            
+            var missing_platforms = [], platformIndex, platform;
+            for (platformIndex in target_platforms) {
+                platform = target_platforms[platformIndex];
+                if(existing_platforms.indexOf(platform) === -1){
+                    missing_platforms.push(platform);
+                }
+            }
+
+            if(missing_platforms.length > 0) {
+                self.log("Cordova: Missing platforms " + missing_platforms.toString() + ". Attempting add.");
+                project.setProperty("cordova.platforms.missing", missing_platforms.join(" "));
+            } else if(existing_platforms.length() >0){
+                self.log("Cordova: All requested platforms exist");
+            } else {
+                self.log("Cordova: No platforms exist");
+            }
+        </script>
+
+        <if>
+            <isset property="cordova.platforms.missing"/>
+            <then>
+                <x-shell reloadprofile="true" dir="${app.cordova.dir}">
+                    cordova platform add ${cordova.platforms.missing}
+                </x-shell>
+            </then>
+        </if>
+    </target>
+    <target name="-after-cordova-platform-add"/>
+    <target name="cordova-platform-add" depends="cordova-init, cordova-copy-build,-before-cordova-platform-add, -cordova-platform-add, -after-cordova-platform-add"/>
+
+    <target name="-before-native-package"/>
+    <target name="-native-package" depends="cordova-init, cordova-copy-build, cordova-platform-add, -before-cordova, -cordova-build, -cordova-emulate, -after-cordova"/> 
+    <target name="-after-native-package"/>
+
+    <!-- Utility Target for specifing autorun -->
+    <target name="-autorun">
+        <property name="args.autorun" value="true"/>
+    </target>
+</project>

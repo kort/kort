@@ -39,6 +39,10 @@
      *      }
      */
     "js": [
+		{
+			"path": "cordova.js",
+			"remote": true
+		},
         {
             "path": "touch/sencha-touch-all-debug.js",
             "x-bootstrap": true
@@ -177,6 +181,7 @@
      * Extra resources to be copied along when build
      */
     "resources": [
+		"config.xml",
         ".htaccess",
         "index.php",
         "index_iphone.html",

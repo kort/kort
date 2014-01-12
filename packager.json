@@ -11,7 +11,7 @@
 	 * @cfg  applicationId
 	 * This is the name namespace for your application. On IOS, this should match the name of your application in the Apple Provisioning Portal.
 	 */
-	"applicationId":"com.herokuapp.Kort",
+	"applicationId":"ch.kort.Kort",
 
 	/**
 	 * @cfg  bundleSeedId
