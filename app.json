@@ -40,7 +40,7 @@
      */
     "js": [
 		{
-			"path": "cordova.js",
+			"path": "phonegap.js",
 			"remote": true
 		},
         {

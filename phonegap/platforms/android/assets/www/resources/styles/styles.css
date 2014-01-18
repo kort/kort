@@ -1,0 +1,570 @@
+/* -----------------------
+   Overlay / About
+   ----------------------- */
+.overlay-content .logo,
+.about-content .logo {
+  text-align: center; }
+  .overlay-content .logo img,
+  .about-content .logo img {
+    width: 150px;
+    height: 150px; }
+.overlay-content .introduction,
+.about-content .introduction {
+  font-size: 0.9em;
+  margin: 1em 0; }
+  .overlay-content .introduction p,
+  .about-content .introduction p {
+    margin-bottom: 0.6em; }
+
+#loginPanel .x-panel-inner {
+  padding: 1em; }
+#loginPanel ul.kort-description {
+  margin-top: 0.5em;
+  border-radius: 0.5em;
+  padding: 0.5em 0.7em;
+  background-color: #4b4b4b;
+  color: #fff;
+  box-shadow: inset 0 0 0.5em #303030; }
+  #loginPanel ul.kort-description li {
+    list-style: square;
+    margin-left: 2em; }
+#loginPanel .loginButtons {
+  margin: 0.5em 0; }
+  #loginPanel .loginButtons .x-zocial-button {
+    margin: 0.2em 0; }
+    #loginPanel .loginButtons .x-zocial-button .x-button-label {
+      line-height: inherit; }
+  #loginPanel .loginButtons .x-zocial-button.x-layout-box-item {
+    display: list-item !important;
+    list-style: none; }
+#loginPanel #loginButtonOsm.zocial.pinboard {
+  background-color: #68C03F; }
+
+#firststepsPanel .x-panel-inner {
+  padding: 1em; }
+#firststepsPanel #usernameForm .x-form-inner {
+  margin: 0.5em 0; }
+#firststepsPanel #usernameForm .usernameTextfield {
+  margin-bottom: 0.4em; }
+
+#geolocationerrorPanel .x-panel-inner {
+  padding: 1em; }
+#geolocationerrorPanel .x-button {
+  margin-top: 0.5em; }
+#geolocationerrorPanel .sadsmiley {
+  text-align: center;
+  font-size: 4em; }
+
+/* -----------------------
+   Map
+   ----------------------- */
+.fixTabPanel .fixContentComponent {
+  padding: 0.5em; }
+  .fixTabPanel .fixContentComponent .fix-content .textpic {
+    overflow: hidden;
+    margin: 0.5em 0; }
+    .fixTabPanel .fixContentComponent .fix-content .textpic .image {
+      float: left;
+      width: 40px;
+      height: 45px; }
+      .fixTabPanel .fixContentComponent .fix-content .textpic .image .missiontype-image {
+        width: 35px;
+        height: 41.5px; }
+      .fixTabPanel .fixContentComponent .fix-content .textpic .image .koin-image {
+        width: 35px;
+        height: 35px; }
+    .fixTabPanel .fixContentComponent .fix-content .textpic .content {
+      margin-left: 45px;
+      margin-top: 5px; }
+.fixTabPanel .fixFormPanel {
+  margin: 0 0.5em 0.5em 0.5em; }
+  .fixTabPanel .fixFormPanel .fixfield,
+  .fixTabPanel .fixFormPanel .x-button {
+    margin-bottom: 0.3em; }
+  .fixTabPanel .fixFormPanel .x-toggle-field {
+    margin-bottom: 0.5em; }
+
+.mapLoadingIcon .x-button-icon {
+  width: 1.1em!important;
+  height: 1.1em!important;
+  -webkit-mask-size: 1.1em!important; }
+
+.x-list-pullrefresh-arrow {
+  background: center center url("../images/arrow_black.png") no-repeat;
+  background-size: 17px 47px;
+  -webkit-transition-property: -webkit-transform;
+  -webkit-transition-duration: 200ms;
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg); }
+
+.x-list-pullrefresh {
+  top: -4.5em; }
+  .x-list-pullrefresh .x-loading-spinner {
+    font-size: 1.8em; }
+  .x-list-pullrefresh .x-list-pullrefresh-message {
+    font-size: 1.2em;
+    margin-bottom: 0.2em; }
+  .x-list-pullrefresh .x-list-pullrefresh-updated {
+    font-size: 0.9em; }
+
+/* -----------------------
+   Vote
+   ----------------------- */
+.voteContainer .vote-content {
+  padding: 0.5em 0.5em 0 0.5em; }
+  .voteContainer .vote-content .question {
+    margin: 0.5em 0; }
+  .voteContainer .vote-content .fixmessage {
+    border-radius: 0.5em;
+    padding: 0.5em 0.7em;
+    background-color: #4b4b4b;
+    color: #fff;
+    box-shadow: inset 0 0 0.5em #303030; }
+  .voteContainer .vote-content .ratings {
+    font-size: 0.8em;
+    margin-top: 0.3em; }
+    .voteContainer .vote-content .ratings img.thumb {
+      width: 10px;
+      height: auto;
+      margin-left: 0.3em; }
+    .voteContainer .vote-content .ratings .upratings,
+    .voteContainer .vote-content .ratings .downratings {
+      color: #fff;
+      margin: 0 0.3em; }
+    .voteContainer .vote-content .ratings .votesLeft {
+      margin-left: 1em; }
+      .voteContainer .vote-content .ratings .votesLeft img {
+        width: 17px;
+        height: auto;
+        margin-right: 0.4em; }
+.voteContainer .voteMap {
+  min-height: 300px; }
+.voteContainer .voteAnswerButton {
+  margin: 0.5em; }
+  .voteContainer .voteAnswerButton .x-badge {
+    color: #fff; }
+
+.voteAnswerActionSheet .answerContent {
+  color: white;
+  margin-bottom: 0.5em; }
+.voteAnswerActionSheet .x-button {
+  margin-bottom: 0.3em; }
+
+/* -----------------------
+   Highscore
+   ----------------------- */
+#highscoreNavigationView .x-list-item.x-list-item-tpl .x-innerhtml {
+  padding: 0; }
+#highscoreNavigationView .highscore-item {
+  overflow: hidden;
+  font-size: 0.9em;
+  padding: 0.65em 0.8em; }
+  #highscoreNavigationView .highscore-item .ranking {
+    float: left;
+    border-radius: 5em;
+    padding: 0.4em;
+    background-color: #4e6490;
+    color: #fff; }
+  #highscoreNavigationView .highscore-item.you .username {
+    font-weight: bold; }
+  #highscoreNavigationView .highscore-item.firstPlace {
+    background-color: #fff4b8; }
+    #highscoreNavigationView .highscore-item.firstPlace .ranking {
+      background-color: #ffe139; }
+  #highscoreNavigationView .highscore-item.secondPlace {
+    background-color: #d1d1d1; }
+    #highscoreNavigationView .highscore-item.secondPlace .ranking {
+      background-color: #7d7d7d; }
+  #highscoreNavigationView .highscore-item.thirdPlace {
+    background-color: #e2c89b; }
+    #highscoreNavigationView .highscore-item.thirdPlace .ranking {
+      background-color: #8f6823; }
+  #highscoreNavigationView .highscore-item .information {
+    float: left;
+    margin-left: 0.7em; }
+    #highscoreNavigationView .highscore-item .information .username {
+      margin-bottom: 0.3em; }
+      #highscoreNavigationView .highscore-item .information .username .you {
+        text-transform: uppercase;
+        font-size: 0.6em;
+        padding: 0.2em 0.4em;
+        background-color: #4b4b4b;
+        color: #fff;
+        margin-left: 0.5em; }
+    #highscoreNavigationView .highscore-item .information .fixCount {
+      font-size: 0.9em;
+      float: left;
+      overflow: hidden; }
+    #highscoreNavigationView .highscore-item .information .voteCount {
+      font-size: 0.9em;
+      float: left;
+      margin-left: 0.5em;
+      overflow: hidden; }
+    #highscoreNavigationView .highscore-item .information .fixCount .title,
+    #highscoreNavigationView .highscore-item .information .voteCount .title {
+      font-size: 0.75em;
+      text-transform: uppercase;
+      color: #4b4b4b; }
+    #highscoreNavigationView .highscore-item .information .fixCount .value,
+    #highscoreNavigationView .highscore-item .information .voteCount .value {
+      font-weight: bold; }
+  #highscoreNavigationView .highscore-item .koins {
+    float: right;
+    text-align: right; }
+    #highscoreNavigationView .highscore-item .koins .title {
+      color: #4b4b4b;
+      font-size: 0.7em;
+      text-transform: uppercase;
+      margin-bottom: 0.1em; }
+    #highscoreNavigationView .highscore-item .koins .value {
+      font-weight: bold;
+      font-size: 1.1em; }
+
+/* -----------------------
+   News
+   ----------------------- */
+#newsNavigationView .newsItem ul {
+  padding-left: 1em; }
+  #newsNavigationView .newsItem ul li {
+    list-style-image: url("../images/listStarIcon.png"); }
+#newsNavigationView .unreadstyle {
+  font-weight: bold; }
+#newsNavigationView .newsNewsEntryContentComponent .newsclass {
+  padding: 0.5em; }
+  #newsNavigationView .newsNewsEntryContentComponent .newsclass .title {
+    font-size: 1.5em;
+    font-weight: bold; }
+  #newsNavigationView .newsNewsEntryContentComponent .newsclass .date {
+    font-size: 0.8em; }
+  #newsNavigationView .newsNewsEntryContentComponent .newsclass .text {
+    margin-top: 1.0em;
+    font-size: 1.0em; }
+  #newsNavigationView .newsNewsEntryContentComponent .newsclass a:link, #newsNavigationView .newsNewsEntryContentComponent .newsclass a:visited {
+    font-style: normal; }
+
+/* -----------------------
+   Highscore / Profile
+   ----------------------- */
+.profileContentComponent,
+.highscoreUserContentComponent {
+  padding: 0.5em; }
+  .profileContentComponent .info,
+  .highscoreUserContentComponent .info {
+    overflow: hidden; }
+    .profileContentComponent .info .picture,
+    .highscoreUserContentComponent .info .picture {
+      border: 1px solid #858585;
+      float: left;
+      width: 82px;
+      height: 82px;
+      margin: 0.3em 0.5em 0.5em 0; }
+      .profileContentComponent .info .picture img,
+      .highscoreUserContentComponent .info .picture img {
+        border: 0.25em solid white;
+        width: 80px;
+        height: 80px; }
+    .profileContentComponent .info dl.text,
+    .highscoreUserContentComponent .info dl.text {
+      float: left; }
+  .profileContentComponent .user-header,
+  .highscoreUserContentComponent .user-header {
+    clear: both; }
+    .profileContentComponent .user-header .header-content,
+    .highscoreUserContentComponent .user-header .header-content {
+      margin-top: 1em;
+      margin-bottom: 0.4em;
+      color: #4b4b4b;
+      text-transform: uppercase; }
+  .profileContentComponent .koins,
+  .profileContentComponent .ranking,
+  .highscoreUserContentComponent .koins,
+  .highscoreUserContentComponent .ranking {
+    clear: both; }
+    .profileContentComponent .koins .koins-image,
+    .profileContentComponent .koins .ranking-image,
+    .profileContentComponent .ranking .koins-image,
+    .profileContentComponent .ranking .ranking-image,
+    .highscoreUserContentComponent .koins .koins-image,
+    .highscoreUserContentComponent .koins .ranking-image,
+    .highscoreUserContentComponent .ranking .koins-image,
+    .highscoreUserContentComponent .ranking .ranking-image {
+      float: left; }
+      .profileContentComponent .koins .koins-image img,
+      .profileContentComponent .koins .ranking-image img,
+      .profileContentComponent .ranking .koins-image img,
+      .profileContentComponent .ranking .ranking-image img,
+      .highscoreUserContentComponent .koins .koins-image img,
+      .highscoreUserContentComponent .koins .ranking-image img,
+      .highscoreUserContentComponent .ranking .koins-image img,
+      .highscoreUserContentComponent .ranking .ranking-image img {
+        width: 30px;
+        height: 30px; }
+    .profileContentComponent .koins .koins-info,
+    .profileContentComponent .koins .ranking-info,
+    .profileContentComponent .ranking .koins-info,
+    .profileContentComponent .ranking .ranking-info,
+    .highscoreUserContentComponent .koins .koins-info,
+    .highscoreUserContentComponent .koins .ranking-info,
+    .highscoreUserContentComponent .ranking .koins-info,
+    .highscoreUserContentComponent .ranking .ranking-info {
+      margin-top: 0.2em; }
+      .profileContentComponent .koins .koins-info .value,
+      .profileContentComponent .koins .ranking-info .value,
+      .profileContentComponent .ranking .koins-info .value,
+      .profileContentComponent .ranking .ranking-info .value,
+      .highscoreUserContentComponent .koins .koins-info .value,
+      .highscoreUserContentComponent .koins .ranking-info .value,
+      .highscoreUserContentComponent .ranking .koins-info .value,
+      .highscoreUserContentComponent .ranking .ranking-info .value {
+        margin: 0 0.3em 0 0.5em;
+        font-size: 1.2em;
+        font-weight: bold; }
+      .profileContentComponent .koins .koins-info .text,
+      .profileContentComponent .koins .ranking-info .text,
+      .profileContentComponent .ranking .koins-info .text,
+      .profileContentComponent .ranking .ranking-info .text,
+      .highscoreUserContentComponent .koins .koins-info .text,
+      .highscoreUserContentComponent .koins .ranking-info .text,
+      .highscoreUserContentComponent .ranking .koins-info .text,
+      .highscoreUserContentComponent .ranking .ranking-info .text {
+        text-transform: uppercase;
+        font-size: 0.7em; }
+
+.profileBadgesDataView .badge,
+.highscoreUserBadgesDataView .badge {
+  width: 80px;
+  margin: 0.2em 0.5em;
+  text-align: center;
+  overflow: hidden; }
+  .profileBadgesDataView .badge .badge-title,
+  .highscoreUserBadgesDataView .badge .badge-title {
+    font-size: 0.6em; }
+  .profileBadgesDataView .badge img,
+  .highscoreUserBadgesDataView .badge img {
+    width: 80px;
+    height: 80px; }
+.profileBadgesDataView .emptytext,
+.highscoreUserBadgesDataView .emptytext {
+  font-size: 0.9em; }
+
+/* -----------------------
+   Profile
+   ----------------------- */
+.profileBadgesCarousel .carouselitem-content {
+  text-align: center;
+  padding: 0.5em; }
+  .profileBadgesCarousel .carouselitem-content .badge-recieved {
+    font-size: 0.7em;
+    margin-bottom: 0.4em; }
+  .profileBadgesCarousel .carouselitem-content h1 {
+    font-weight: bold;
+    margin-bottom: 0.5em; }
+  .profileBadgesCarousel .carouselitem-content img.badge-image {
+    width: 110px;
+    width: 110px; }
+  .profileBadgesCarousel .carouselitem-content .badge-description {
+    font-size: 0.9em;
+    margin: 0.5em 0; }
+
+/* -----------------------
+   About
+   ----------------------- */
+#aboutContainer .x-title .version {
+  font-size: 0.8em; }
+#aboutContainer .about-content {
+  padding: 0.5em; }
+  #aboutContainer .about-content dt {
+    margin-top: 1.8em; }
+  #aboutContainer .about-content dd {
+    font-size: 0.8em; }
+    #aboutContainer .about-content dd.image-hsr-logo {
+      margin: 1em 0; }
+      #aboutContainer .about-content dd.image-hsr-logo img {
+        width: 175px; }
+    #aboutContainer .about-content dd.image-logo-sourcepole img {
+      width: 175px; }
+  #aboutContainer .about-content a, #aboutContainer .about-content a:hover, #aboutContainer .about-content a:active, #aboutContainer .about-content a:focus {
+    color: #115F9C;
+    text-decoration: none; }
+
+/* -----------------------
+   Message Boxes
+   ----------------------- */
+.promotionMessageBox {
+  background-image: url("../images/promotion/promotionCircle.png");
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  overflow: auto;
+  width: 320px;
+  height: 301px;
+  box-shadow: none !important;
+  border: none !important; }
+  .promotionMessageBox #promotionMessageBox-wrapper {
+    max-width: 270px;
+    max-height: 200px;
+    padding: 35px 0px 60px 25px;
+    overflow: hidden; }
+  .promotionMessageBox .titleText {
+    font-weight: bold;
+    padding: 0px 0px 13px 0px; }
+  .promotionMessageBox .dateText {
+    font-style: italic; }
+
+.validationMessageBox .messagebox-content {
+  text-align: left; }
+.validationMessageBox .textpic {
+  overflow: hidden;
+  margin: 0.5em 0; }
+  .validationMessageBox .textpic .image {
+    float: left;
+    width: 40px;
+    height: 43px; }
+    .validationMessageBox .textpic .image .missiontype-image {
+      float: left;
+      width: 35px;
+      height: 41.5px; }
+    .validationMessageBox .textpic .image .koin-image {
+      width: 35px;
+      height: 35px; }
+  .validationMessageBox .textpic .content {
+    margin-top: 5px;
+    margin-left: 45px; }
+
+.missionMessageBox .x-msgbox-text,
+.notificationMessageBox .x-msgbox-text {
+  padding: 0.5em; }
+  .missionMessageBox .x-msgbox-text .messagebox-content,
+  .notificationMessageBox .x-msgbox-text .messagebox-content {
+    text-align: left; }
+    .missionMessageBox .x-msgbox-text .messagebox-content .text .content,
+    .notificationMessageBox .x-msgbox-text .messagebox-content .text .content {
+      font-size: 0.9em; }
+      .missionMessageBox .x-msgbox-text .messagebox-content .text .content h1,
+      .notificationMessageBox .x-msgbox-text .messagebox-content .text .content h1 {
+        font-weight: bold; }
+      .missionMessageBox .x-msgbox-text .messagebox-content .text .content .badges,
+      .notificationMessageBox .x-msgbox-text .messagebox-content .text .content .badges {
+        overflow: hidden; }
+        .missionMessageBox .x-msgbox-text .messagebox-content .text .content .badges .badge,
+        .notificationMessageBox .x-msgbox-text .messagebox-content .text .content .badges .badge {
+          float: left;
+          width: 55px;
+          margin: 0.2em 0.5em;
+          text-align: center;
+          overflow: hidden; }
+          .missionMessageBox .x-msgbox-text .messagebox-content .text .content .badges .badge img,
+          .notificationMessageBox .x-msgbox-text .messagebox-content .text .content .badges .badge img {
+            width: 55px;
+            height: 55px; }
+    .missionMessageBox .x-msgbox-text .messagebox-content .textpic,
+    .notificationMessageBox .x-msgbox-text .messagebox-content .textpic {
+      overflow: hidden;
+      margin: 0.5em 0; }
+      .missionMessageBox .x-msgbox-text .messagebox-content .textpic .image,
+      .notificationMessageBox .x-msgbox-text .messagebox-content .textpic .image {
+        float: left;
+        width: 40px;
+        height: 40px; }
+        .missionMessageBox .x-msgbox-text .messagebox-content .textpic .image .missiontype-image,
+        .notificationMessageBox .x-msgbox-text .messagebox-content .textpic .image .missiontype-image {
+          width: 35px;
+          height: 40px; }
+        .missionMessageBox .x-msgbox-text .messagebox-content .textpic .image .koin-image,
+        .notificationMessageBox .x-msgbox-text .messagebox-content .textpic .image .koin-image {
+          width: 35px;
+          height: 35px; }
+      .missionMessageBox .x-msgbox-text .messagebox-content .textpic .content,
+      .notificationMessageBox .x-msgbox-text .messagebox-content .textpic .content {
+        font-size: 0.9em;
+        line-height: 1.3em;
+        margin-left: 50px; }
+
+/* -----------------------
+   Global Styles
+   ----------------------- */
+.x-form .x-scroll-container > .x-inner {
+  padding: 0; }
+
+.overlayLeafletMap {
+  z-index: 1500; }
+
+.x-toolbar .x-title {
+  font-size: 1em; }
+
+.x-picker-slot .x-picker-item {
+  font-size: 0.8em; }
+
+.kort-label {
+  font-weight: bold;
+  background-color: #46578d;
+  padding: 0.4em 0.6em;
+  color: white;
+  text-shadow: rgba(0, 0, 0, 0.25) 0 0.08em 0; }
+
+.kort-definitionlist dt {
+  font-size: 0.7em;
+  margin-top: 0.8em;
+  margin-bottom: 0.1em;
+  color: #4b4b4b;
+  text-transform: uppercase; }
+.kort-definitionlist dd {
+  margin: 0.2em 0; }
+
+.kort-title {
+  font-weight: bold; }
+  .kort-title .kort-ort {
+    font-size: 0.8em; }
+
+.emptytext {
+  text-align: center;
+  margin: 1em 0.5em; }
+
+.x-form-label span {
+  font-size: 1em; }
+
+.important {
+  font-weight: bold; }
+
+.x-list-paging .x-list-paging-msg {
+  color: #4e6490; }
+.x-list-paging .x-loading-spinner {
+  margin-top: 0.1em !important; }
+
+.map-promotion-overlay {
+  background-image: url("../images/promotion/promotionCircle.png");
+  background-position: center top;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -160px;
+  margin-top: -150px;
+  width: 320px;
+  height: 301px; }
+
+#promotionInfoButton {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  margin-left: 5px; }
+
+#campaignInfoButton {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  margin-left: 5px; }
+
+.x-msgbox {
+  min-width: 305px;
+  max-width: 305px; }
+
+.emptyMessageBox {
+  background: url("../images/promotion/promotionCircle.png");
+  width: 320px;
+  height: 301px;
+  box-shadow: none !important;
+  border: none !important; }
+
+.x-mask .x-mask-message {
+  color: #fff; }

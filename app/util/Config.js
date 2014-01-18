@@ -272,51 +272,51 @@ Ext.define('Kort.util.Config', {
         webservices: {
             mission: {
                 getUrl: function(latitude, longitude) {
-                    return './server/webservices/mission/position/' + latitude + ',' + longitude;
+                    return 'http://play.kort.ch/server/webservices/mission/position/' + latitude + ',' + longitude;
                 },
                 radius: this.operationalRange,
                 limit: 25
             },
             validation: {
                 getUrl: function(latitude, longitude) {
-                    return './server/webservices/validation/position/' + latitude + ',' + longitude;
+                    return 'http://play.kort.ch/server/webservices/validation/position/' + latitude + ',' + longitude;
                 },
                 radius: this.operationalRange,
                 limit: 25
             },
             promotion: {
-                url: './server/webservices/promotion/'
+                url: 'http://play.kort.ch/server/webservices/promotion/'
             },
             user: {
-                url: './server/webservices/user/'
+                url: 'http://play.kort.ch/server/webservices/user/'
             },
             userLogout: {
                 getUrl: function(userid) {
-                    return './server/webservices/user/' + userid + '/logout';
+                    return 'http://play.kort.ch/server/webservices/user/' + userid + '/logout';
                 }
             },
             userBadges: {
                 getUrl: function(userid) {
-                    return './server/webservices/user/' + userid + '/badges';
+                    return 'http://play.kort.ch/server/webservices/user/' + userid + '/badges';
                 }
             },
             highscore: {
-                absoluteUrl: './server/webservices/highscore/absolute',
-                relativeUrl: './server/webservices/highscore/relative',
+                absoluteUrl: 'http://play.kort.ch/server/webservices/highscore/absolute',
+                relativeUrl: 'http://play.kort.ch/server/webservices/highscore/relative',
                 limit: 10
             },
             answer: {
-                url: './server/webservices/answer/'
+                url: 'http://play.kort.ch/server/webservices/answer/'
             },
             fix: {
-                url: './server/webservices/mission/fix'
+                url: 'http://play.kort.ch/server/webservices/mission/fix'
             },
             vote: {
-                url: './server/webservices/validation/vote'
+                url: 'http://play.kort.ch/server/webservices/validation/vote'
             },
             osm: {
                 getUrl: function(objectId, objectType) {
-                    return './server/webservices/osm/' + objectType + '/' + objectId;
+                    return 'http://play.kort.ch/server/webservices/osm/' + objectType + '/' + objectId;
                 }
             }
         },

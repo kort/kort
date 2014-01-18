@@ -1,0 +1,173 @@
+# error types
+error_type.title.motorway_ref=Jalan Tol tanpa referensi
+error_type.title.poi_wo_name=Objek tanpa nama
+error_type.title.missing_speedlimit=Batas kecepatan tidak ada
+error_type.title.tracktype=Tipe trek tidak diketahui
+error_type.title.worship_religion=Tempat ibadah tanpa keterangan agama
+error_type.title.language_name=Bahasa dari nama tidak diketahui
+error_type.title.street_wo_name=Jalan tanpa nama
+error_type.title.missing_cuisine=Restaurant without a cuisine
+
+# error type placeholders
+error_type.placeholder.ref=Referensi
+error_type.placeholder.religion=Agama
+error_type.placeholder.name=Nama
+error_type.placeholder.speed_limit=Batas kecepatan
+error_type.placeholder.language=Bahasa
+error_type.placeholder.type=Tipe
+error_type.placeholder.street_name=Nama jalan
+error_type.placeholder.missing_cuisine=Cuisine
+
+# vote questions
+vote.question.ref=Apakah ini merupakan referensi yang benar untuk jalan tol ini?
+vote.question.place_of_worship=Apakah ini tempat ibadah untuk agama ini?
+vote.question.name=Apakah ini nama untuk $1 ini?
+vote.question.maxspeed=Apakah ini batas kecepatan untuk jalan ini?
+vote.question.language_unknown=Apakah nama '$2' termasuk dalam bahasa berikut?
+vote.question.tracktype=Apakah ini path untuk jenis berikut?
+vote.question.street_name=Apakah ini nama jalan yang benar untuk jalan tersebut?
+vote.question.missing_cuisine=Is this the correct cuisine type of $1?
+
+# badge names
+badge.name.first_place=1st place
+badge.name.second_place=2nd place
+badge.name.third_place=3rd place
+badge.name.100_missions=100 misi
+badge.name.50_missions=50 misi
+badge.name.10_missions=10 misi
+badge.name.1000_checks=1000 cek
+badge.name.100_checks=100 cek
+badge.name.10_checks=10 cek
+badge.name.first_mission=1st mission
+badge.name.first_check=1st check
+
+# badge descriptions
+badge.description.reached_1st_place=Mencapai urutan 1st atau pertama dalam nilai tertinggi.
+badge.description.reached_2nd_place=Mencapai urutan 2nd atau kedua dalam nilai tertinggi.
+badge.description.reached_3rd_place=Mencapai urutan 3rd atau ketiga dalam urutan nilai tertinggi.
+badge.description.100_missions_completed=100 misi terselesaikan.
+badge.description.50_missions_completed=50 misi terselesaikan.
+badge.description.10_missions_completed=10 misi terselesaikan.
+badge.description.1000_checks=1000 jawaban diperiksa.
+badge.description.100_checks=100 jawaban diperiksa.
+badge.description.10_checks=10 jawaban diperiksa.
+badge.description.1st_mission=Misi pertama telah diselesaikan.
+badge.description.1st_check=Pemeriksaan jawaban pertama.
+
+# missing_track_types (http://wiki.openstreetmap.org/wiki/Key:tracktype)
+answer.track_type.grade1=Aspal, beton, atau batu
+answer.track_type.grade2=Jalan kerikil
+answer.track_type.grade3=Campuran material kasar dan lembut
+answer.track_type.grade4=Tanah, pasir atau rumput
+answer.track_type.grade5=Trek tak beraspal
+
+# religion (http://wiki.openstreetmap.org/wiki/Key:religion)
+answer.religion.buddhist=Budha (candi)
+answer.religion.christian=Kristen (Gereja)
+answer.religion.hindu=Hindu (candi)
+answer.religion.jewish=Yahudi (syanagogue)
+answer.religion.muslim=Muslim (Masjid)
+answer.religion.pastafari=Pastafarian
+answer.religion.shinto=Shinto (kuil)
+answer.religion.sikh=Sikh (Gurdwara)
+answer.religion.multiple=Kepercayaan beraneka ragam
+
+# language (http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
+answer.language.arabic=Arabic
+answer.language.catalan=Catalan
+answer.language.chinese=China
+answer.language.danish=Denmark
+answer.language.dutch=Belanda
+answer.language.english=Inggris
+answer.language.estonian=Estonian
+answer.language.finnish=Finlandia
+answer.language.french=Perancis
+answer.language.german=Jerman
+answer.language.greek=Yunani
+answer.language.hebrew=Ibrani
+answer.language.hungarian=Hungarian
+answer.language.irish=Irlandia
+answer.language.icelandic=Islandia
+answer.language.italian=Itali
+answer.language.japanese=Jepang
+answer.language.korean=Korea
+answer.language.croatian=Kroasia
+answer.language.latin=Latin
+answer.language.luxembourgish=Luksemburg
+answer.language.norwegian=Norwegia
+answer.language.persian=Persia
+answer.language.polish=Polish
+answer.language.portuguese=Portugis
+answer.language.romansh=Romansh
+answer.language.romanian=Rumania
+answer.language.russian=Rusia
+answer.language.sardinian=Sardinia
+answer.language.scottish_gaelic=Skotlandia
+answer.language.swiss_german=Jerman Swiss
+answer.language.serbian=Serbia
+answer.language.slovakian=Slovakia
+answer.language.slovenian=Slovenia
+answer.language.spanish=Swedia
+answer.language.swedish=Swedia
+answer.language.thai=Thailand
+answer.language.tibetan=Tibet
+answer.language.czech=Ceko
+answer.language.turkish=Turki
+answer.language.uzbek=Uzbekistan
+answer.language.vietnamese=Vietnam
+answer.language.welsh=Welsh
+
+# missing_cuisine
+answer.missing_cuisine.regional=Regional
+answer.missing_cuisine.coffee_shop=Coffee Shop
+answer.missing_cuisine.international=International
+answer.missing_cuisine.italian=Italian
+answer.missing_cuisine.turkish=Turkish
+answer.missing_cuisine.chinese=Chinese
+answer.missing_cuisine.thai=Thai
+answer.missing_cuisine.asian=Asian
+answer.missing_cuisine.indian=Indian
+answer.missing_cuisine.french=French
+answer.missing_cuisine.mexican=Mexican
+answer.missing_cuisine.american=American
+answer.missing_cuisine.japanese=Japanese
+answer.missing_cuisine.greek=Greek
+answer.missing_cuisine.sandwich=Sandwich
+answer.missing_cuisine.steak_house=Steakhouse
+answer.missing_cuisine.chicken=Chicken
+answer.missing_cuisine.bistro_brasserie=Bistro, Brasserie
+answer.missing_cuisine.seafood=Seafood
+answer.missing_cuisine.burger=Burger
+
+##############################################################
+# THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT AND OSM_ERRORS#
+##############################################################
+
+# error descriptions (KeepRight)
+bug.question.track=Apakah jenis trek ini?
+bug.question.poi=Disebut apakah $1 ?
+bug.question.speed=Berapakah batas kecepatan yang diterapkan pada jalan ini?
+bug.question.name_of_street=Apa nama jalan ini?
+bug.question.language=Dalam bahasa apa nama '$2' ditulis?
+bug.question.motorway_ref=Apa referensi (contoh A3 atau E385) untuk jalan tol ini?
+bug.question.place_of_worship=Masuk kedalam agama manakah tempat ibadah ini?
+bug.question.cuisine_of_restaurant=What's the cuisine type of '$1'?
+
+# single values
+cafe=kafe
+fast_food=restoran cepat saji
+restaurant=restoran
+school=sekolah
+pharmacy=apotik
+fuel=pom bensin
+cinema=sinema
+bank=bank
+university=universitas
+theatre=teater
+pub=pub
+place_of_worship=tempat ibadah
+library=perpustakaan
+hospital=rumah sakit
+courthouse=gedung pengadilan
+way=garis
+node=tempat

@@ -1,0 +1,222 @@
+# Main View (TabPanel)
+tab.map=Map
+tab.bugmap=Opdrachten
+tab.validation=Controleer
+tab.highscore=Hoogste score
+tab.profile=Profiel
+tab.about=Over Kort
+tab.news=News
+
+# Login
+login.kort.description.1=Voltooide opdrachten
+login.kort.description.2=Verzamel Koins
+login.kort.description.3=Verbeter Openstreetmap
+login.kort.introduction.1=Verbetert data in Openstreetmap
+login.kort.introduction.2=Je ziet je opdrachten op een kaart. Door het voltooien van opdrachten krijg je Koins en verdien je badges.
+login.kort.introduction.3=Elke opgeloste opdracht wordt later door andere spelers op juistheid gecontroleerd. Zodra er voldoende positieve waarderingen zijn ingevoerd voor de voorgestelde oplossing wordt deze verzonden naar Openstreetmap.
+login.kort.introduction.4=Log nu in om te beginnen met je opdracht\!
+login.button.google=Inloggen met Google
+login.button.osm=Inloggen met Openstreetmap
+login.button.facebook=Inloggen met Facebook
+login.loadmask.message=Inloggen...
+
+# Firststeps
+firststeps.introduction=Welkom bij het Kortspel\! Kies een pseudoniem\:
+firststeps.form.button.submit=Begin opdracht\!
+firststeps.alert.username.empty.title=Voer gebruikersnaam in
+firststeps.alert.username.empty.message=Voer s.v.p. een gebruikersnaam in.
+firststeps.alert.username.specialchars.title=Probleem met karakter
+firststeps.alert.username.specialchars.message=Gebruik alleen letters en cijfers voor je gebruikersnaam.
+firststeps.alert.submit.failure.title=Fout tijdens verzenden
+firststeps.alert.submit.failure.message=Oeps\! Er was een fout tijdens het verzenden van de gebruikersnaam. Start de app opnieuw op.
+
+# Geolocation error
+geolocationerror.introduction=Om dit spel te kunnen spelen, is het essentieel dat we uw positie kunnen bepalen.
+geolocationerror.button.reload=Herlaad applicatie
+geolocationerror.loadmask.message=Applicatie opnieuw laden...
+
+#Map
+map.title=Missions
+map.loadmask.message=Opdrachten aan het laden...
+map.mission.promotionmessagebox.close=Close
+map.mission.promotionmessagebox.earn=Earn additional {extra_coins} Koins
+map.mission.promotionmessagebox.date={startdate} to {enddate}
+map.mission.missionmessagebox.koins.earn=Verdien {fix_koin_count} Koins
+map.mission.missionmessagebox.koins.earnpromotion=Earn {fix_koin_count} + {extra_coins} Koins
+map.mission.missionmessagebox.yes=Antwoord
+map.mission.missionmessagebox.no=Weet niet
+map.mission.missionmessagebox.close=Close
+map.mission.layername=Missions
+map.missionInactive.layername=Inactive Missions
+map.validation.layername=Checks
+map.validation.validationmessagebox.koins.earn=Earn {validation_koin_count} Koins
+map.validation.validationmessagebox.koins.earnpromotion=Earn {validation_koin_count} + {extra_coins} Koins
+map.mission.validationmessagebox.yes=Antwoord
+map.mission.validationmessagebox.no=Weet niet
+map.mission.validationmessagebox.close=Close
+map.validation.validationmessagebox.checkit=Check the solution
+
+## Fix
+fix.form.title=Opdracht
+fix.form.koins.earn=Krijg de
+fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins\!
+fix.form.message.placeholder=Je antwoord...
+fix.form.button.showonmap=Laat zien op de kaart
+fix.form.button.submit=Voltooi opdracht
+fix.form.loadmask.message=Antwoorden ophalen...
+fix.form.falsepositive.toggle.label=Niet op te lossen
+fix.map.title=Kaart
+fix.sendmask.message=Oplossing aan het versturen...
+fix.alert.fixfield.empty.title=Vul de velden in
+fix.alert.fixfield.empty.message=Vul s.v.p. de velden in
+fix.alert.submit.failure.title=Fout tijdens versturen
+fix.alert.submit.failure.message=Oeps\! Oeps\! Er was een fout tijdens het verzenden van je antwoord. Start de app opnieuw op.
+
+## Vote
+vote.falsepositive.question=Deze opdracht is gemarkeerd als 'niet op te lossen'. Is dit juist?
+vote.container.button.answer=Antwoord
+vote.container.votes.left={votes_left} Benodigde ratings
+vote.answeractionsheet.button.accept=Ja
+vote.answeractionsheet.button.decline=Nee
+vote.answeractionsheet.button.cancel=Weet niet
+vote.answeractionsheet.question=Is het antwoord juist?
+vote.sendmask.message=Antwoord aan het versturen...
+vote.alert.submit.failure.title=Fout tijdens versturen
+vote.alert.submit.failure.message=Oeps\! Er was een fout tijdens het versturen van je antwoord. Start de app opnieuw op.
+
+# Highscore
+highscore.title=Hoogste score
+highscore.absolute.tabtitle=Top
+highscore.relative.tabtitle=My score
+highscore.loadmask.message=Hoogste score aan het laden...
+highscore.emptytext=Kan hoogste score niet laden.
+highscore.you=Dit ben jij\!
+highscore.koins=Koins
+highscore.fixcount=Opdrachten\:
+highscore.votecount=Controles\:
+highscore.user.badges.emptytext=Kan badges niet laden.
+
+# Profil
+profile.title=Profiel
+profile.button.logout=Uitloggen
+profile.button.changeusername=Wijzig gebruikersnaam
+profile.settings.messagebox.title=Instellingen
+profile.settings.messagebox.message=Voer je nieuwe gebruikersnaam in
+profile.username.loadmask.message=Gebruikersnaam aan het opslaan
+profile.content.username=Gebruikersnaam
+profile.content.oauthprovider=Inloggen via
+profile.content.fixes=Voltooide opdrachten
+profile.content.votes=Uitgevoerde controles
+profile.content.koins.header=Verzamelde Koins
+profile.content.koins.title=Koins
+profile.content.ranking.title=Plaats
+profile.content.badges.header=Gewonnen badges
+profile.logout.loadmask.message=Uitloggen...
+profile.refresh.loadmask.message=Profiel aan het laden...
+profile.badges.title=Je badges
+profile.badges.recieved=Ontvangen op\:
+profile.badges.emptytext=Het laden van je badges lukt niet.
+profile.badges.button.close=Afsluiten
+profile.alert.username.empty.title=Voer gebruikersnaam in
+profile.alert.username.empty.message=Voer s.v.p. een gebruikersnaam in.
+profile.alert.username.specialchars.title=Probleem met karakter
+profile.alert.username.specialchars.message=Gebruik alleen letters en cijfers voor je gebruikersnaam.
+profile.alert.submit.failure.title=Fout tijdens versturen
+profile.alert.submit.failure.message=Oeps\! Er was een fout tijdens het versturen van de gebruikersnaam. Start de app opnieuw op.
+
+#News
+news.title=News
+news.unread=Unread
+news.read=Read
+news.list.emptytext=No entries
+news.updated=Updated
+news.settings.save=Save
+news.settings.cancel=Cancel
+news.settings.acceptNoLanguage=Deselect all
+news.settings.acceptAllLanguages=Select all
+news.settings.label=I want to receive news in the following languages\:
+
+# About
+about.title=Over
+about.version.title=Versie
+about.information.title=Meer informatie
+about.information.homepage=Website\:
+about.information.feedback=Feedback/FAQ\:
+about.information.bugs=Rapporteer een fout\:
+about.developers.title=Ontwikkelaar
+about.project.title=Projects
+about.project.advisor=Lead\:
+about.credits.title=Credits\:
+about.credits.partner=Partner\:
+about.credits.mapdata=Geodata\:
+about.credits.tiledata=Tiles\:
+about.credits.markers=Symbolen\:
+about.credits.translation=Translation\:
+about.credits.dbhosting=DB Hosting\:
+about.legal.title=Juridisch\:
+about.legal.message=Volg de richtlijnen van Openstreetmap. Gebruik zonder toestemming geen data die auteursrechtelijk beschermd zijn.
+
+# PullRefresh Plugin
+pullrefresh.pullrefresh=Sleep naar beneden om te verversen
+pullrefresh.releaserefresh=Laat los om te verversen...
+pullrefresh.loading=Ophalen...
+pullrefresh.lastupdated=Laatst bijgewerkt\:
+
+# ListPaging Plugin
+listpaging.loadmore=Laad nieuwe in...
+listpaging.nomorerecords=Geen nieuwe records beschikbaar.
+
+# Button
+button.back=Terug
+
+# MessageBox
+messagebox.ok=OK
+messagebox.yes=Ja
+messagebox.no=Nee
+messagebox.cancel=Annuleer
+
+# Picker
+picker.done=Stop
+picker.cancel=Annuleer
+
+# Reward
+reward.alert.title=Je reputatie is verhoogd\!
+reward.alert.koins.new=Gefeliciteerd\! Je hebt  {koin_count_new} Koins verdiend.
+reward.alert.koins.total=Je hebt al {koin_count_total} Koins verzameld.
+reward.alert.badges.title=Gewonnen badges
+
+# App update
+update.title=Nieuwe versie van de app
+update.message=The app moet bijgewerkt worden naar de nieuwste versie. Herladen?
+
+#Languages
+en=English
+de=German
+it=Italian
+fr=French
+sl=Slovenian
+hr=Croatian
+cs=Czech
+nl=Dutch
+gl=Galician
+pt=Portuguese
+ro=Romanian
+ja=Japanese
+ca=Catalan
+es=Spanish
+
+###############################
+# Labels used directly in source files (without Ext.i18n.Bundle plugin)
+###############################
+
+# index.html
+## App startscreen
+startscreen.loadingtext=Is aan het inladen. Bereid je voor...
+startscreen.browsererror=Je browser wordt nog niet ondersteund. Probeer het op je smartphone.
+
+# app/util/Config.js
+## Firststeps
+firststeps.form.username.placeholder=Gebruikersnaam
+
+## PullRefresh Plugin
+pullrefresh.dateformat=m/d/J u\:m

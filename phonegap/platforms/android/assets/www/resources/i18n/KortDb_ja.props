@@ -1,0 +1,174 @@
+# error types
+error_type.title.motorway_ref=道路番号の指定なし
+error_type.title.poi_wo_name=オブジェクト名称が未設定
+error_type.title.missing_speedlimit=最高速度制限の設定なし
+error_type.title.tracktype=道路種別が未設定
+error_type.title.worship_religion=宗教指定のない礼拝施設
+error_type.title.language_name=名称の言語指定なし
+error_type.title.street_wo_name=道路名称が不明
+error_type.title.missing_cuisine=Restaurant without a cuisine
+
+# error type placeholders
+error_type.placeholder.ref=道路番号
+error_type.placeholder.religion=宗教
+error_type.placeholder.name=名称
+error_type.placeholder.speed_limit=最高速度制限
+error_type.placeholder.language=言語
+error_type.placeholder.type=種別
+error_type.placeholder.street_name=道路名称
+error_type.placeholder.missing_cuisine=Cuisine
+
+# vote questions
+vote.question.ref=この高速道路につけられている道路番号は正しいですか？
+vote.question.place_of_worship=この礼拝施設で祀られている宗教は正しいですか？
+vote.question.name=この $1 はこの名称であっていますか？
+vote.question.maxspeed=この道路の最高速度はこれで正しいですか？
+vote.question.language_unknown=以下の言語で「$2」という名称は正しい記述でしょうか？
+vote.question.tracktype=この道の種類はこれであっていますか？
+vote.question.street_name=この道路の名称はこれで正しいですか？
+vote.question.missing_cuisine=Is this the correct cuisine type of $1?
+
+# badge names
+badge.name.first_place=1位獲得
+badge.name.second_place=2位獲得
+badge.name.third_place=3位獲得
+badge.name.100_missions=100 ミッション達成
+badge.name.50_missions=50 ミッション達成
+badge.name.10_missions=10 ミッション達成
+badge.name.1000_checks=1000 チェック完了
+badge.name.100_checks=100 チェック完了
+badge.name.10_checks=10 チェック完了
+badge.name.first_mission=最初のミッション
+badge.name.first_check=最初のチェック
+
+# badge descriptions
+badge.description.reached_1st_place=スコアが1位にランクインしました
+badge.description.reached_2nd_place=スコアが2位にランクインしました
+badge.description.reached_3rd_place=スコアが3位にランクインしました
+badge.description.100_missions_completed=100ミッション達成！
+badge.description.50_missions_completed=50ミッション達成！
+badge.description.10_missions_completed=10ミッション達成！
+badge.description.1000_checks=1000回めのチェックに回答しました
+badge.description.100_checks=100回めのチェックに回答しました
+badge.description.10_checks=10回めのチェックに回答しました
+badge.description.1st_mission=最初のミッションを達成しました！
+badge.description.1st_check=最初のチェックに回答しました！
+
+# missing_track_types (http://wiki.openstreetmap.org/wiki/Key:tracktype)
+answer.track_type.grade1=アスファルトやコンクリート、玉砂利舗装
+answer.track_type.grade2=砂利道
+answer.track_type.grade3=硬軟混合
+answer.track_type.grade4=むき出しの地面や砂地、芝生
+answer.track_type.grade5=未舗装道路
+
+# religion (http://wiki.openstreetmap.org/wiki/Key:religion)
+answer.religion.buddhist=仏教 (寺院)
+answer.religion.christian=キリスト教 (教会)
+answer.religion.hindu=ヒンズー教 (寺院)
+answer.religion.jewish=ユダヤ教 (シナゴーグ)
+answer.religion.muslim=イスラム教 (モスク)
+answer.religion.pastafari=空飛ぶスパゲッティモンスター教
+answer.religion.shinto=神道 (神社)
+answer.religion.sikh=シーク教 (寺院)
+answer.religion.multiple=多宗教合祀
+
+# language (http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
+answer.language.arabic=アラビア語
+answer.language.catalan=カタロニア語
+answer.language.chinese=中国語
+answer.language.danish=デンマーク語
+answer.language.dutch=オランダ語
+answer.language.english=英語
+answer.language.estonian=エストニア語
+answer.language.finnish=フィンランド語
+answer.language.french=フランス語
+answer.language.german=ドイツ語
+answer.language.greek=ギリシャ語
+answer.language.hebrew=ヘブライ語
+answer.language.hungarian=Hungarian
+answer.language.irish=アイルランド語
+answer.language.icelandic=アイスランド語
+answer.language.italian=イタリア語
+answer.language.japanese=日本語
+answer.language.korean=韓国語
+answer.language.croatian=クロアチア語
+answer.language.latin=ラテン語
+answer.language.luxembourgish=ルクセンブルク語
+answer.language.norwegian=ノルウェー語
+answer.language.persian=ペルシア語
+answer.language.polish=ポーランド語
+answer.language.portuguese=ポルトガル語
+answer.language.romansh=ローマ語
+answer.language.romanian=ルーマニア語
+answer.language.russian=ロシア語
+answer.language.sardinian=サルディーニャ語
+answer.language.scottish_gaelic=スコットランド・ゲール語
+answer.language.swiss_german=スイス・ドイツ語
+answer.language.serbian=セルビア語
+answer.language.slovakian=スロバキア語
+answer.language.slovenian=スロベニア語
+answer.language.spanish=スペイン語
+answer.language.swedish=スウェーデン語
+answer.language.thai=タイ語
+answer.language.tibetan=チベット語
+answer.language.czech=チェコ語
+answer.language.turkish=トルコ語
+answer.language.ukrainian=Ukrainian
+answer.language.uzbek=ウズベク語
+answer.language.vietnamese=ベトナム語
+answer.language.welsh=ウェールズ語
+
+# missing_cuisine
+answer.missing_cuisine.regional=Regional
+answer.missing_cuisine.coffee_shop=Coffee Shop
+answer.missing_cuisine.international=International
+answer.missing_cuisine.italian=Italian
+answer.missing_cuisine.turkish=Turkish
+answer.missing_cuisine.chinese=Chinese
+answer.missing_cuisine.thai=Thai
+answer.missing_cuisine.asian=Asian
+answer.missing_cuisine.indian=Indian
+answer.missing_cuisine.french=French
+answer.missing_cuisine.mexican=Mexican
+answer.missing_cuisine.american=American
+answer.missing_cuisine.japanese=Japanese
+answer.missing_cuisine.greek=Greek
+answer.missing_cuisine.sandwich=Sandwich
+answer.missing_cuisine.steak_house=Steakhouse
+answer.missing_cuisine.chicken=Chicken
+answer.missing_cuisine.bistro_brasserie=Bistro, Brasserie
+answer.missing_cuisine.seafood=Seafood
+answer.missing_cuisine.burger=Burger
+
+##############################################################
+# THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT AND OSM_ERRORS#
+##############################################################
+
+# error descriptions (KeepRight)
+bug.question.track=これはどんな種類の道路でしょう？
+bug.question.poi=この $1 の名称は何でしょう？
+bug.question.speed=この道路で指定されている最高時速は何キロでしょう？
+bug.question.name_of_street=この道路の名前は何でしょう？
+bug.question.language=「$2」という名称はどの言語で書かれていますか?
+bug.question.motorway_ref=この高速道路の道路番号は何でしょう？ (例\: 国道○号線、県道○号線など)
+bug.question.place_of_worship=この礼拝施設で崇拝されているのは何教でしょうか？
+bug.question.cuisine_of_restaurant=What's the cuisine type of '$1'?
+
+# single values
+cafe=喫茶店
+fast_food=ファストフード
+restaurant=レストラン
+school=学校
+pharmacy=薬局
+fuel=ガソリンスタンド
+cinema=映画館
+bank=銀行
+university=大学
+theatre=劇場
+pub=居酒屋
+place_of_worship=礼拝施設
+library=図書館
+hospital=病院
+courthouse=裁判所
+way=ウェイ
+node=ポイント
