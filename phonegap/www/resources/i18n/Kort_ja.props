@@ -1,0 +1,222 @@
+# Main View (TabPanel)
+tab.map=Map
+tab.bugmap=ミッション
+tab.validation=チェック
+tab.highscore=ハイスコア
+tab.profile=プロフィール
+tab.about=Kortについて
+tab.news=News
+
+# Login
+login.kort.description.1=ミッション完了
+login.kort.description.2=Koin獲得
+login.kort.description.3=OpenStreetMap を改善
+login.kort.introduction.1=Kort は OpenStreetMap のデータの改善を支援します。
+login.kort.introduction.2=地図上にミッションが表示されます。ミッションを達成することで、Koinとバッジを獲得できます
+login.kort.introduction.3=解決済みのミッションへは、別のプレーヤーによるチェックが行われます。ミッションの成果に対してある程度のよい評価が得られた場合、投稿内容は OpenStreetMapへ還元されます。
+login.kort.introduction.4=ミッションを開始するにはログインが必要です！
+login.button.google=Googleでログイン
+login.button.osm=OpenStreetMapでログイン
+login.button.facebook=Login with Facebook
+login.loadmask.message=ログイン...
+
+# Firststeps
+firststeps.introduction=Kortへようこそ\! ユーザー名を決めてください\:
+firststeps.form.button.submit=ミッション開始\!
+firststeps.alert.username.empty.title=ユーザー名を入力
+firststeps.alert.username.empty.message=ユーザー名を入力してください。
+firststeps.alert.username.specialchars.title=文字に問題点があります
+firststeps.alert.username.specialchars.message=ユーザ名に使えるのは英数字のみです
+firststeps.alert.submit.failure.title=送信エラー
+firststeps.alert.submit.failure.message=すみませんが、ユーザー名を送信する際にエラーが発生しました。アプリを再起動してみてください。
+
+# Geolocation error
+geolocationerror.introduction=Kortをプレイするには、ブラウザの位置情報サービスを有効化してください
+geolocationerror.button.reload=アプリを再読み込み
+geolocationerror.loadmask.message=アプリを再読み込み中...
+
+#Map
+map.title=Missions
+map.loadmask.message=ミッションを読み込み中...
+map.mission.promotionmessagebox.close=Close
+map.mission.promotionmessagebox.earn=Earn additional {extra_coins} Koins
+map.mission.promotionmessagebox.date={startdate} to {enddate}
+map.mission.missionmessagebox.koins.earn={fix_koin_count} Koin獲得
+map.mission.missionmessagebox.koins.earnpromotion=Earn {fix_koin_count} + {extra_coins} Koins
+map.mission.missionmessagebox.yes=回答
+map.mission.missionmessagebox.no=分かりません
+map.mission.missionmessagebox.close=Close
+map.mission.layername=Missions
+map.missionInactive.layername=Inactive Missions
+map.validation.layername=Checks
+map.validation.validationmessagebox.koins.earn=Earn {validation_koin_count} Koins
+map.validation.validationmessagebox.koins.earnpromotion=Earn {validation_koin_count} + {extra_coins} Koins
+map.mission.validationmessagebox.yes=回答
+map.mission.validationmessagebox.no=分かりません
+map.mission.validationmessagebox.close=Close
+map.validation.validationmessagebox.checkit=Check the solution
+
+## Fix
+fix.form.title=ミッション
+fix.form.koins.earn={fix_koin_count} Koin獲得可能
+fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins\!
+fix.form.message.placeholder=あなたの回答...
+fix.form.button.showonmap=マップ上で確認
+fix.form.button.submit=ミッション完了
+fix.form.loadmask.message=回答を読み込み中...
+fix.form.falsepositive.toggle.label=解決不能
+fix.map.title=マップ
+fix.sendmask.message=解決案を投稿しています...
+fix.alert.fixfield.empty.title=入力欄へ内容を記入してください
+fix.alert.fixfield.empty.message=すべての入力欄を記入してください
+fix.alert.submit.failure.title=送信エラー
+fix.alert.submit.failure.message=すみませんが、回答を送信する際にエラーが発生しました。もう一度アプリを起動してください
+
+## Vote
+vote.falsepositive.question=このミッションには '解決不能'の評価がされています。この評価は正しいですか？
+vote.container.button.answer=回答
+vote.container.votes.left=承認されるには {votes_left} 個の評価が必要です
+vote.answeractionsheet.button.accept=はい
+vote.answeractionsheet.button.decline=いいえ
+vote.answeractionsheet.button.cancel=分かりません
+vote.answeractionsheet.question=回答は正しいですか?
+vote.sendmask.message=回答を送信中...
+vote.alert.submit.failure.title=送信エラー
+vote.alert.submit.failure.message=すみませんが、回答を送信する際にエラーが発生しました。アプリを再起動してもう一度入力をお願いします
+
+# Highscore
+highscore.title=ハイスコア
+highscore.absolute.tabtitle=Top
+highscore.relative.tabtitle=My score
+highscore.loadmask.message=ハイスコア読み込み中...
+highscore.emptytext=ハイスコアを読み込めません。
+highscore.you=あなたです\!
+highscore.koins=Koin
+highscore.fixcount=ミッション\:
+highscore.votecount=チェック\:
+highscore.user.badges.emptytext=バッジ情報を読み込めませんでした。
+
+# Profil
+profile.title=プロフィール
+profile.button.logout=ログアウト
+profile.button.changeusername=ユーザー名の変更
+profile.settings.messagebox.title=設定
+profile.settings.messagebox.message=新しいユーザー名を入力してください
+profile.username.loadmask.message=ユーザー名を保存中...
+profile.content.username=ユーザー名
+profile.content.oauthprovider=他サイト経由でログイン
+profile.content.fixes=達成したミッション
+profile.content.votes=実行済みのチェック
+profile.content.koins.header=獲得したKoin
+profile.content.koins.title=Koin
+profile.content.ranking.title=Place
+profile.content.badges.header=獲得したバッジ
+profile.logout.loadmask.message=ログアウト...
+profile.refresh.loadmask.message=プロフィールを読み込み中...
+profile.badges.title=獲得済みバッジ
+profile.badges.recieved=受信日\:
+profile.badges.emptytext=バッジを読み込めません。
+profile.badges.button.close=閉じる
+profile.alert.username.empty.title=ユーザー名を入力
+profile.alert.username.empty.message=ユーザー名を入力してください。
+profile.alert.username.specialchars.title=文字に問題点があります
+profile.alert.username.specialchars.message=ユーザー名には英数字のみを使用できます。
+profile.alert.submit.failure.title=送信エラー
+profile.alert.submit.failure.message=すみませんが、ユーザー名を送信する際にエラーが発生しました。アプリを再起動してもう一度入力をお願いします
+
+#News
+news.title=News
+news.unread=Unread
+news.read=Read
+news.list.emptytext=No entries
+news.updated=Updated
+news.settings.save=Save
+news.settings.cancel=Cancel
+news.settings.acceptNoLanguage=Deselect all
+news.settings.acceptAllLanguages=Select all
+news.settings.label=I want to receive news in the following languages\:
+
+# About
+about.title=About
+about.version.title=バージョン
+about.information.title=詳細情報
+about.information.homepage=Webサイト\:
+about.information.feedback=フィードバック/FAQ
+about.information.bugs=バグ報告\:
+about.developers.title=開発者
+about.project.title=Projects
+about.project.advisor=Lead\:
+about.credits.title=クレジット
+about.credits.partner=パートナー\:
+about.credits.mapdata=位置情報\:
+about.credits.tiledata=タイル画像\:
+about.credits.markers=マーカーアイコン\:
+about.credits.translation=Translation\:
+about.credits.dbhosting=DB Hosting\:
+about.legal.title=免責事項\: 
+about.legal.message=OpenStreetMapのガイドラインに従い、他の誰かの著作物を許可無く転載することは避けてください
+
+# PullRefresh Plugin
+pullrefresh.pullrefresh=プルダウンで更新
+pullrefresh.releaserefresh=更新するには離してください...
+pullrefresh.loading=読み込み中...
+pullrefresh.lastupdated=最終更新\:
+
+# ListPaging Plugin
+listpaging.loadmore=続きを読み込む...
+listpaging.nomorerecords=より以前の履歴はありません
+
+# Button
+button.back=戻る
+
+# MessageBox
+messagebox.ok=OK
+messagebox.yes=はい
+messagebox.no=いいえ
+messagebox.cancel=キャンセル
+
+# Picker
+picker.done=完了
+picker.cancel=キャンセル
+
+# Reward
+reward.alert.title=あなたの投稿が評価されました！
+reward.alert.koins.new=おめでとうございます\! {koin_count_new}  Koinを手に入れました\!
+reward.alert.koins.total={koin_count_total} Koin獲得しています。
+reward.alert.badges.title=バッジを獲得
+
+# App update
+update.title=アプリの新バージョン
+update.message=アプリケーションのバージョンが新しくなりました。再読み込みしますか？
+
+#Languages
+en=English
+de=German
+it=Italian
+fr=French
+sl=Slovenian
+hr=Croatian
+cs=Czech
+nl=Dutch
+gl=Galician
+pt=Portuguese
+ro=Romanian
+ja=Japanese
+ca=Catalan
+es=Spanish
+
+###############################
+# Labels used directly in source files (without Ext.i18n.Bundle plugin)
+###############################
+
+# index.html
+## App startscreen
+startscreen.loadingtext=Kortを読み込み中。Get ready...
+startscreen.browsererror=ご利用中のブラウザにはまだ対応していません。携帯電話でお試しください。
+
+# app/util/Config.js
+## Firststeps
+firststeps.form.username.placeholder=ユーザー名
+
+## PullRefresh Plugin
+pullrefresh.dateformat=Y/m/d h\:iA

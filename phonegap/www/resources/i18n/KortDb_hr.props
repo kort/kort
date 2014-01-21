@@ -1,0 +1,174 @@
+# error types
+error_type.title.motorway_ref=Autocesta bez oznake
+error_type.title.poi_wo_name=Objekt bez imena
+error_type.title.missing_speedlimit=Nema ograničenja brzine
+error_type.title.tracktype=Nepoznat tip makadama
+error_type.title.worship_religion=Crkva bez odabrane religije
+error_type.title.language_name=Nepoznat jezik imena
+error_type.title.street_wo_name=Ulica bez imena
+error_type.title.missing_cuisine=Restaurant without a cuisine
+
+# error type placeholders
+error_type.placeholder.ref=Oznaka
+error_type.placeholder.religion=Religija
+error_type.placeholder.name=Ime
+error_type.placeholder.speed_limit=Ograničenje brzine
+error_type.placeholder.language=Jezik
+error_type.placeholder.type=Tip
+error_type.placeholder.street_name=Ime ulice
+error_type.placeholder.missing_cuisine=Cuisine
+
+# vote questions
+vote.question.ref=Je li ovo dobra oznaka autoceste?
+vote.question.place_of_worship=Je li ova crkva od ove religije?
+vote.question.name=Je li ovo ime od $1?
+vote.question.maxspeed=Je li ovo dobro ograničenje brzine ove ulice?
+vote.question.language_unknown=Je li ime '$2' u ovom jeziku?
+vote.question.tracktype=Je li ovaj makadam ovog tipa?
+vote.question.street_name=Je li ovo ispravno ime ulice?
+vote.question.missing_cuisine=Is this the correct cuisine type of $1?
+
+# badge names
+badge.name.first_place=1. mjesto
+badge.name.second_place=2. mjesto
+badge.name.third_place=3. mjesto
+badge.name.100_missions=100 misija
+badge.name.50_missions=50 misija
+badge.name.10_missions=10 misija
+badge.name.1000_checks=1000 provjera
+badge.name.100_checks=100 provjera
+badge.name.10_checks=10 provjera
+badge.name.first_mission=1. misija
+badge.name.first_check=1. provjera
+
+# badge descriptions
+badge.description.reached_1st_place=Dosegnuto 1. mjesto u najvišim rezultatima
+badge.description.reached_2nd_place=Dosegnuto 2. mjesto u najvišim rezultatima
+badge.description.reached_3rd_place=Dosegnuto 3. mjesto u najvišim rezultatima
+badge.description.100_missions_completed=Dovršeno 100 misija.
+badge.description.50_missions_completed=Dovršeno 50 misija.
+badge.description.10_missions_completed=Dovršeno 10 misija.
+badge.description.1000_checks=Provjereno 1000 odgovora.
+badge.description.100_checks=Provjereno 100 odgovora.
+badge.description.10_checks=Provjereno 10 odgovora.
+badge.description.1st_mission=Prva misija dovršena.
+badge.description.1st_check=Prvi provjereni odgovor.
+
+# missing_track_types (http://wiki.openstreetmap.org/wiki/Key:tracktype)
+answer.track_type.grade1=Asfalt, beton ili kocke
+answer.track_type.grade2=Šljunčana cesta
+answer.track_type.grade3=Mješani tvrđi i mekši materijali
+answer.track_type.grade4=Zemlja, pjesak ili trava
+answer.track_type.grade5=Neasfaltirana cesta
+
+# religion (http://wiki.openstreetmap.org/wiki/Key:religion)
+answer.religion.buddhist=Budistički (hram)
+answer.religion.christian=Krščanska (crkva)
+answer.religion.hindu=Hindu (hram)
+answer.religion.jewish=Židovsko (sinagoga)
+answer.religion.muslim=Muslimansko (đamija)
+answer.religion.pastafari=Pastafarijansko
+answer.religion.shinto=Šinto (hram)
+answer.religion.sikh=Sikh (Gurdwara)
+answer.religion.multiple=Više vjera
+
+# language (http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
+answer.language.arabic=Arapski
+answer.language.catalan=Katalanski
+answer.language.chinese=Kineski
+answer.language.danish=Danski
+answer.language.dutch=Nizozemski
+answer.language.english=Engleski
+answer.language.estonian=Estonski
+answer.language.finnish=Finski
+answer.language.french=Francuski
+answer.language.german=Njemački
+answer.language.greek=Grčki
+answer.language.hebrew=Hebrejski
+answer.language.hungarian=Hungarian
+answer.language.irish=Irski
+answer.language.icelandic=Islandski
+answer.language.italian=Talijanski
+answer.language.japanese=Japanski
+answer.language.korean=Korejski
+answer.language.croatian=Hrvatski
+answer.language.latin=Latinski
+answer.language.luxembourgish=Luksemburški
+answer.language.norwegian=Norveški
+answer.language.persian=Perzijski
+answer.language.polish=Poljski
+answer.language.portuguese=Portugalski
+answer.language.romansh=Retoromanski
+answer.language.romanian=Rumunjski
+answer.language.russian=Ruski
+answer.language.sardinian=Sardinijski
+answer.language.scottish_gaelic=Škotski gaelski
+answer.language.swiss_german=Švicarski njemački
+answer.language.serbian=Srpski
+answer.language.slovakian=Slovački
+answer.language.slovenian=Slovenski
+answer.language.spanish=Španjolski
+answer.language.swedish=Švedski
+answer.language.thai=Tajlandski
+answer.language.tibetan=Tibetanski
+answer.language.czech=Češki
+answer.language.turkish=Turski
+answer.language.ukrainian=Ukrainian
+answer.language.uzbek=Uzbekistanski
+answer.language.vietnamese=Vjetnamski
+answer.language.welsh=Velški
+
+# missing_cuisine
+answer.missing_cuisine.regional=Regional
+answer.missing_cuisine.coffee_shop=Coffee Shop
+answer.missing_cuisine.international=International
+answer.missing_cuisine.italian=Italian
+answer.missing_cuisine.turkish=Turkish
+answer.missing_cuisine.chinese=Chinese
+answer.missing_cuisine.thai=Thai
+answer.missing_cuisine.asian=Asian
+answer.missing_cuisine.indian=Indian
+answer.missing_cuisine.french=French
+answer.missing_cuisine.mexican=Mexican
+answer.missing_cuisine.american=American
+answer.missing_cuisine.japanese=Japanese
+answer.missing_cuisine.greek=Greek
+answer.missing_cuisine.sandwich=Sandwich
+answer.missing_cuisine.steak_house=Steakhouse
+answer.missing_cuisine.chicken=Chicken
+answer.missing_cuisine.bistro_brasserie=Bistro, Brasserie
+answer.missing_cuisine.seafood=Seafood
+answer.missing_cuisine.burger=Burger
+
+##############################################################
+# THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT AND OSM_ERRORS#
+##############################################################
+
+# error descriptions (KeepRight)
+bug.question.track=Koja je ovo vrsta makadama?
+bug.question.poi=Kako se zove $1?
+bug.question.speed=Koje ograničenje brzine važi u ovoj ulici?
+bug.question.name_of_street=Koje je ime ove ulice?
+bug.question.language=Na kojem jeziku je ime '$2' napisano?
+bug.question.motorway_ref=Koja je oznaka (npr. A3 ili E385) na ovoj autocesti?
+bug.question.place_of_worship=Kojoj religiji pripada ovo mjesto molitve?
+bug.question.cuisine_of_restaurant=What's the cuisine type of '$1'?
+
+# single values
+cafe=kafić
+fast_food=restoran brze hrane
+restaurant=restoran
+school=škola
+pharmacy=ljekarna
+fuel=benziska crpka
+cinema=kino
+bank=banka
+university=fakultet
+theatre=kazalište
+pub=pivnica
+place_of_worship=mjesto molitve
+library=knjižnica
+hospital=bolnica
+courthouse=sudnica
+way=put
+node=mjesto

@@ -1,0 +1,222 @@
+# Main View (TabPanel)
+tab.map=Harita
+tab.bugmap=Görevler
+tab.validation=Denetleme
+tab.highscore=highscore
+tab.profile=Profil
+tab.about=Kort üzerine
+tab.news=Haberler
+
+# Login
+login.kort.description.1=Tamamlanmiş  görevler
+login.kort.description.2=Koin topla
+login.kort.description.3=OpenStreetMap i geliştir
+login.kort.introduction.1=Kort OpenStreetMap deki verileri geliştirmeye yardim ediyor.
+login.kort.introduction.2=Bu yüzden haritada eksiklikler  görev olarak canlandırılıyor. Görevleri cözerek Koins toplayıp ve rozetler kazana bilirsin.
+login.kort.introduction.3=Bütün çözülmüş görevler sornadan başka oyunculardan denetlenecek. Yeterince positiv sınıflandırma toplanınca, cözüm olarak OpenStreetMap'e göndermeye hazırlanıyor.
+login.kort.introduction.4=Görevi başlamak için oturumu aç\!
+login.button.google=Google ile giriş yap
+login.button.osm=OpenStreetMap ile giriş yap
+login.button.facebook=Facebook ile giriş yap
+login.loadmask.message=Giriş yap...
+
+# Firststeps
+firststeps.introduction=Kort a hoşgeldiniz\! Kullanıcı adı seciniz\:
+firststeps.form.button.submit=Görevi başla\!
+firststeps.alert.username.empty.title=Kullanıcı adını girin
+firststeps.alert.username.empty.message=Lütfen kullanıcı adını girin
+firststeps.alert.username.specialchars.title=Harf ile bir problem var
+firststeps.alert.username.specialchars.message=Lütfen kullanıcı adınızı için sadece harfler ve sayılar kullanın.
+firststeps.alert.submit.failure.title=Gönderirken sorun çıkdı
+firststeps.alert.submit.failure.message=Oops\! Kullanıcı adı gönderirken bir sorun çıkdı. Uygulamayı yeniden başlatmak işe yariya bilir.
+
+# Geolocation error
+geolocationerror.introduction=Kort'u kulana bilmek icin coğrafi pozisyon erişim halinde olmasi lazım.
+geolocationerror.button.reload=Uygulamayı yeniden yükle
+geolocationerror.loadmask.message=Uygulama yeniden yükleniyor...
+
+#Map
+map.title=Görevler
+map.loadmask.message=Görevler yükleniyor...
+map.mission.promotionmessagebox.close=Kapat
+map.mission.promotionmessagebox.earn={extra_coins} ek puan topla
+map.mission.promotionmessagebox.date={startdate} den  {enddate} e kadar
+map.mission.missionmessagebox.koins.earn={fix_koin_count}  Puan kazan
+map.mission.missionmessagebox.koins.earnpromotion={fix_koin_count} + {extra_coins} Puan kazan
+map.mission.missionmessagebox.yes=Cevap
+map.mission.missionmessagebox.no=Bilmiyorum
+map.mission.missionmessagebox.close=Kapat
+map.mission.layername=Görevler
+map.missionInactive.layername=Etkin olmayan görevler
+map.validation.layername=Onaylalar
+map.validation.validationmessagebox.koins.earn={validation_koin_count} puan kazan
+map.validation.validationmessagebox.koins.earnpromotion={validation_koin_count} + {extra_coins} puan kazan
+map.mission.validationmessagebox.yes=Cevap
+map.mission.validationmessagebox.no=Bilmiyorum
+map.mission.validationmessagebox.close=Kapat
+map.validation.validationmessagebox.checkit=Çözelti onayla
+
+## Fix
+fix.form.title=Görev
+fix.form.koins.earn={fix_koin_count} Puan topla\!
+fix.form.koins.earnpromotion={fix_koin_count} + {extra_coins} puanları topla\!
+fix.form.message.placeholder=Senin cevabin...
+fix.form.button.showonmap=Haritada göster
+fix.form.button.submit=Görevi tamamla
+fix.form.loadmask.message=Çevaplar yükleniyor...
+fix.form.falsepositive.toggle.label=Çözülmesi imkansız
+fix.map.title=Harita
+fix.sendmask.message=Cevabı gönder...
+fix.alert.fixfield.empty.title=alanları doldurun
+fix.alert.fixfield.empty.message=Lütfen bütün alanları doldurun
+fix.alert.submit.failure.title=Gönderirken bir sorun çıktı
+fix.alert.submit.failure.message=Oops\! Cevap gönderirken bir sorun çıkdı. Uygulamayı yeniden başlatmak işe yariya bilir.
+
+## Vote
+vote.falsepositive.question=Bu Görev 'çözmek imkansız' olarak işaretlenmiş. Doğru mu?
+vote.container.button.answer=Cevap
+vote.container.votes.left={votes_left} denetlemeler eksik
+vote.answeractionsheet.button.accept=Evet
+vote.answeractionsheet.button.decline=Hayır
+vote.answeractionsheet.button.cancel=Bilmiyorum
+vote.answeractionsheet.question=Bu  cevap doğru mu?
+vote.sendmask.message=Cevabı gönder...
+vote.alert.submit.failure.title=Gönderirken bir sorun çıktı
+vote.alert.submit.failure.message=Oops\! Cevap gönderirken bir sorun çıkdı. Uygulamayı yeniden başlatmak işe yariya bilir.
+
+# Highscore
+highscore.title=highscore
+highscore.absolute.tabtitle=Üst
+highscore.relative.tabtitle=Benim puanım
+highscore.loadmask.message=Highscore yükleniyor...
+highscore.emptytext=Highscore yüklenemedi.
+highscore.you=Bu sensin\!
+highscore.koins=Puan
+highscore.fixcount=Görevler\:
+highscore.votecount=Denetlemeler\:
+highscore.user.badges.emptytext=Rozetler yüklenemedi.
+
+# Profil
+profile.title=Profil
+profile.button.logout=Cıkıs
+profile.button.changeusername=Kullanıcı adınızı değiştirme
+profile.settings.messagebox.title=Ayarlar
+profile.settings.messagebox.message=Yeni kullanıcı adı girin
+profile.username.loadmask.message=Kulanıcı adı kaydediliyor
+profile.content.username=kullanıcı adı
+profile.content.oauthprovider=Üzerinden  giriş yap
+profile.content.fixes=Tamamlanan görevler
+profile.content.votes=Yapılmış denetlemeler
+profile.content.koins.header=toplanılan puan 
+profile.content.koins.title=Koin
+profile.content.ranking.title=Yer
+profile.content.badges.header=kazanılmış rozetler
+profile.logout.loadmask.message=Cıkıs
+profile.refresh.loadmask.message=Profil yükleniyor...
+profile.badges.title=Sizin rozetleriniz
+profile.badges.recieved=İletişim kuruldu\: 
+profile.badges.emptytext=Rozetlerniniz yüklenemedi. 
+profile.badges.button.close=Kapat
+profile.alert.username.empty.title=kulanıcı adını gir
+profile.alert.username.empty.message=Lütfen kulanıcı adını gir
+profile.alert.username.specialchars.title=Harflerle bir sorun var
+profile.alert.username.specialchars.message=Lütfen kullanıcı adını icin sadece harfler ve sayılar kullanın.
+profile.alert.submit.failure.title=Gönderirken  sorun çıktı
+profile.alert.submit.failure.message=Oops\! Kullanıcı adı gönderirken bir sorun çıkdı. Uygulamayı yeniden başlatmak işe yariya bilir.
+
+#News
+news.title=Haberler
+news.unread=Okunulmamış
+news.read=Okunulmuş
+news.list.emptytext=Giriş yok
+news.updated=Yenilendi
+news.settings.save=Kaydet
+news.settings.cancel=Kapat
+news.settings.acceptNoLanguage=Tüm seçimi kaldır
+news.settings.acceptAllLanguages=Hepsini sec
+news.settings.label=Haberleri şu dillerde almak istiyorum\: 
+
+# About
+about.title=hakkında
+about.version.title=versiyon 
+about.information.title=Ek bilgi
+about.information.homepage=Website\:
+about.information.feedback=görüş/FAQ\:
+about.information.bugs=Hata bildir\:
+about.developers.title=Geliştirici
+about.project.title=Projeler
+about.project.advisor=Lider\:
+about.credits.title=Kontör
+about.credits.partner=Ortak\:
+about.credits.mapdata=Yer bilgisi\:
+about.credits.tiledata=Harita parçaları\:
+about.credits.markers=İm simgeler\:
+about.credits.translation=Cevirme\:
+about.credits.dbhosting=DB Hosting\:
+about.legal.title=Yasal bilgiler\:
+about.legal.message=Lütfen OpenStreetMap'in kılavuz kural uyun ve telif hakkınla korulan kaynakları izinsiz kullanmayın.
+
+# PullRefresh Plugin
+pullrefresh.pullrefresh=Güncelleştirmek icin aşa çek
+pullrefresh.releaserefresh=Güncelleştirmek icin serbest bırak...
+pullrefresh.loading=yükliyor...
+pullrefresh.lastupdated=Son güncelleme\:
+
+# ListPaging Plugin
+listpaging.loadmore=Daha çok yükle... 
+listpaging.nomorerecords=Başka kayıt kalmadı.
+
+# Button
+button.back=Geriye
+
+# MessageBox
+messagebox.ok=Tamam
+messagebox.yes=Evet
+messagebox.no=Hayır
+messagebox.cancel=İptal
+
+# Picker
+picker.done=Bitir
+picker.cancel=İptal
+
+# Reward
+reward.alert.title=Şöhretinizi yükseltdiniz\!
+reward.alert.koins.new=Tebrikler\! {koin_count_new} Poan kazandınız.
+reward.alert.koins.total=Şu andaki toplam Koin sayısı  {koin_count_total}.
+reward.alert.badges.title=Kazanılmış rozetler
+
+# App update
+update.title=Uygulamanın yeni versionu
+update.message=Uygulama yeni bir versiona güncelleştirildi. Yeniden yükle?
+
+#Languages
+en=İngilizce
+de=Almanca
+it=İtalianca
+fr=Fransızca
+sl=Slovence
+hr=Hırvatça
+cs=Çekçe 
+nl=Felemenkçe
+gl=Galiçyaca
+pt=Portugizce
+ro=Rumence
+ja=Japonca
+ca=Katalanca
+es=İspanyolca
+
+###############################
+# Labels used directly in source files (without Ext.i18n.Bundle plugin)
+###############################
+
+# index.html
+## App startscreen
+startscreen.loadingtext=Kort yükliyor. Hazırlan...
+startscreen.browsererror=Tarayıcınız şuanda desteklenmemektedir. Cep telefonuyla deneyin.
+
+# app/util/Config.js
+## Firststeps
+firststeps.form.username.placeholder=Kullanıcı adı
+
+## PullRefresh Plugin
+pullrefresh.dateformat=d/m/Y h\:iA

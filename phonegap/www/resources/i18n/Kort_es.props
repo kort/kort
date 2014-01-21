@@ -1,0 +1,222 @@
+# Main View (TabPanel)
+tab.map=Map
+tab.bugmap=Misiones
+tab.validation=Comprobar
+tab.highscore=Ranking
+tab.profile=Perfil
+tab.about=Acerca de Kort
+tab.news=News
+
+# Login
+login.kort.description.1=Completa misiones
+login.kort.description.2=Recoge Koins
+login.kort.description.3=Mejora OpenStreetMap
+login.kort.introduction.1=ayuda a mejorar los datos geográficos de OpenStreetMap.
+login.kort.introduction.2=Por tanto verás tus misiones en el mapa. Completando misiones obtendrás Koins y conseguirás medallas.
+login.kort.introduction.3=Cada misión resuelta es comprobada por otros jugadores para verificar que es correcta. En cuanto se tienen suficientes valoraciones positivas para una solución sugerida, ésta estará lista para ser enviada a OpenStreetMap.
+login.kort.introduction.4=Inicia una sesión ahora para empezar tu misión\!
+login.button.google=Iniciar sesión con Google
+login.button.osm=Iniciar sesión con OpenStreetMap
+login.button.facebook=Iniciar sesión con Facebook
+login.loadmask.message=Iniciar sesión...
+
+# Firststeps
+firststeps.introduction=¡Bienvenido a Kort\! Elige un nombre de usuario\:
+firststeps.form.button.submit=Empezar misión\!
+firststeps.alert.username.empty.title=Entra tu nombre de usuario
+firststeps.alert.username.empty.message=Por favor entra tu nombre de usuario.
+firststeps.alert.username.specialchars.title=Problema con el carácter
+firststeps.alert.username.specialchars.message=Por favor, utiliza solamente letras y dígitos para tu nombre de usuario.
+firststeps.alert.submit.failure.title=Error durante el envío
+firststeps.alert.submit.failure.message=Ups\! Ha habido un error mientras se enviaba el nombre de usuario. Reiniciar la aplicación puede resolver el error.
+
+# Geolocation error
+geolocationerror.introduction=Para usar Kort, es necesario acceder a tu geolocalización.
+geolocationerror.button.reload=Recargar aplicación
+geolocationerror.loadmask.message=Recargando aplicación...
+
+#Map
+map.title=Missions
+map.loadmask.message=Cargando misiones...
+map.mission.promotionmessagebox.close=Close
+map.mission.promotionmessagebox.earn=Earn additional {extra_coins} Koins
+map.mission.promotionmessagebox.date={startdate} to {enddate}
+map.mission.missionmessagebox.koins.earn=Earn {fix_koin_count} Koins
+map.mission.missionmessagebox.koins.earnpromotion=Earn {fix_koin_count} + {extra_coins} Koins
+map.mission.missionmessagebox.yes=Respónde
+map.mission.missionmessagebox.no=No sé
+map.mission.missionmessagebox.close=Close
+map.mission.layername=Missions
+map.missionInactive.layername=Inactive Missions
+map.validation.layername=Checks
+map.validation.validationmessagebox.koins.earn=Earn {validation_koin_count} Koins
+map.validation.validationmessagebox.koins.earnpromotion=Earn {validation_koin_count} + {extra_coins} Koins
+map.mission.validationmessagebox.yes=Respónde
+map.mission.validationmessagebox.no=No sé
+map.mission.validationmessagebox.close=Close
+map.validation.validationmessagebox.checkit=Check the solution
+
+## Fix
+fix.form.title=Misión
+fix.form.koins.earn=Consigue las {fix_koin_count} Koins\!
+fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins\!
+fix.form.message.placeholder=Tu respuesta...
+fix.form.button.showonmap=Muestra en el mapa
+fix.form.button.submit=Completa la misión
+fix.form.loadmask.message=Cargando respuestas...
+fix.form.falsepositive.toggle.label=Imposible resolver
+fix.map.title=Mapa
+fix.sendmask.message=Transmitiendo solución...
+fix.alert.fixfield.empty.title=Rellena los campos
+fix.alert.fixfield.empty.message=Por favor, completa todos los campos.
+fix.alert.submit.failure.title=Error durante el envío
+fix.alert.submit.failure.message=Uy\! Ha habido un error mientras se enviaba tu respuesta. Reiniciar la aplicación podría solucionarlo.
+
+## Vote
+vote.falsepositive.question=Esta misión se ha etiquetado como 'incapaz de resolver'. Es esto correcto?
+vote.container.button.answer=Respuesta
+vote.container.votes.left=Se necesitan {votes_left} valoraciones
+vote.answeractionsheet.button.accept=Sí
+vote.answeractionsheet.button.decline=No
+vote.answeractionsheet.button.cancel=No sé
+vote.answeractionsheet.question=Es esta la respuesta correcta?
+vote.sendmask.message=Enviando respuesta...
+vote.alert.submit.failure.title=Error durante el envío
+vote.alert.submit.failure.message=Uy\! Ha habido un error mientras se enviaba tu respuesta. Reiniciar la aplicación podría solucionarlo.
+
+# Highscore
+highscore.title=Máxima puntuación
+highscore.absolute.tabtitle=Top
+highscore.relative.tabtitle=My score
+highscore.loadmask.message=Cargando máxima puntuación
+highscore.emptytext=No se puede cargar la puntuación máxima.
+highscore.you=Eres tu\!
+highscore.koins=Koins
+highscore.fixcount=Misiones\:
+highscore.votecount=Comprobaciones\:
+highscore.user.badges.emptytext=No se pueden cargar las medallas.
+
+# Profil
+profile.title=Perfil
+profile.button.logout=Desconectar
+profile.button.changeusername=Cambiar nombre de usuario
+profile.settings.messagebox.title=Configuración
+profile.settings.messagebox.message=Introduce tu nuevo nombre de usuario
+profile.username.loadmask.message=Guardando nombre de usuario...
+profile.content.username=Nombre de usuario
+profile.content.oauthprovider=Iniciar sesión con
+profile.content.fixes=MIsiones completadas
+profile.content.votes=Comprobaciones realizadas
+profile.content.koins.header=Koins regogidos
+profile.content.koins.title=Koins
+profile.content.ranking.title=Lugar
+profile.content.badges.header=Medallas ganadas
+profile.logout.loadmask.message=Desconectar...
+profile.refresh.loadmask.message=Cargando perfil...
+profile.badges.title=Tus medallas
+profile.badges.recieved=Recibido el\:
+profile.badges.emptytext=No se han podido cargar tus medallas.
+profile.badges.button.close=Cerrar
+profile.alert.username.empty.title=Introduce nombre de usuario.
+profile.alert.username.empty.message=Por favor, introduce un nombre de usuario.
+profile.alert.username.specialchars.title=Problema con el carácter
+profile.alert.username.specialchars.message=Por favor, utiliza solamente letras y dígitos para tu nombre de usuario.
+profile.alert.submit.failure.title=Error durante el envío
+profile.alert.submit.failure.message=Ups\! Ha habido un error mientras se enviaba el nombre de usuario. Reiniciar la aplicación puede resolver el error.
+
+#News
+news.title=News
+news.unread=Unread
+news.read=Read
+news.list.emptytext=No entries
+news.updated=Updated
+news.settings.save=Save
+news.settings.cancel=Cancel
+news.settings.acceptNoLanguage=Deselect all
+news.settings.acceptAllLanguages=Select all
+news.settings.label=I want to receive news in the following languages\:
+
+# About
+about.title=Sobre
+about.version.title=Versión
+about.information.title=Más información
+about.information.homepage=Pagina web\:
+about.information.feedback=Preguntas más frecuentes
+about.information.bugs=Informar de un error
+about.developers.title=Programador
+about.project.title=Projects
+about.project.advisor=Guiar\:
+about.credits.title=Créditos
+about.credits.partner=Socio\:
+about.credits.mapdata=Geodatos\:
+about.credits.tiledata=Teselas\:
+about.credits.markers=Marcadores\:
+about.credits.translation=Translation\:
+about.credits.dbhosting=DB Hosting\:
+about.legal.title=Nota legal\:
+about.legal.message=Por favor, sigue las directrices de OpenStreetMap y no uses fuentes protegidas con copyright sin permiso.
+
+# PullRefresh Plugin
+pullrefresh.pullrefresh=Arrastra hacia abajo para actualizar
+pullrefresh.releaserefresh=Suelta para actualizar...
+pullrefresh.loading=cargando...
+pullrefresh.lastupdated=Última actualización\:
+
+# ListPaging Plugin
+listpaging.loadmore=Cargar más...
+listpaging.nomorerecords=No hay más registros disponibles.
+
+# Button
+button.back=Atrás
+
+# MessageBox
+messagebox.ok=Aceptar
+messagebox.yes=Sí
+messagebox.no=No
+messagebox.cancel=Cancelar
+
+# Picker
+picker.done=Terminar
+picker.cancel=Cancelar
+
+# Reward
+reward.alert.title=Tu reputación ha aumentado\!
+reward.alert.koins.new=Bien\! Has ganado {koin_count_new} Koins.
+reward.alert.koins.total=Tienes un total de {koin_count_total} Koins.
+reward.alert.badges.title=Medallas ganadas
+
+# App update
+update.title=Nueva versión de la aplicación
+update.message=La aplicación se ha actualizado a su versión más actual. Recargar?
+
+#Languages
+en=English
+de=German
+it=Italian
+fr=French
+sl=Slovenian
+hr=Croatian
+cs=Czech
+nl=Dutch
+gl=Galician
+pt=Portuguese
+ro=Romanian
+ja=Japanese
+ca=Catalan
+es=Spanish
+
+###############################
+# Labels used directly in source files (without Ext.i18n.Bundle plugin)
+###############################
+
+# index.html
+## App startscreen
+startscreen.loadingtext=Kort está cargando. Preparate...
+startscreen.browsererror=Tu navegador aún no está soportado. Prueba en tu teléfono móvil.
+
+# app/util/Config.js
+## Firststeps
+firststeps.form.username.placeholder=Nombre de usuario
+
+## PullRefresh Plugin
+pullrefresh.dateformat=d/m/Y  h\:i A

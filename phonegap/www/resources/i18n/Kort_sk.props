@@ -1,0 +1,222 @@
+# Main View (TabPanel)
+tab.map=Map
+tab.bugmap=Misie
+tab.validation=Kontrola
+tab.highscore=Highscore
+tab.profile=Profil
+tab.about=O Kort
+tab.news=News
+
+# Login
+login.kort.description.1=Ukončené misie
+login.kort.description.2=Zbierajte Koiny
+login.kort.description.3=Vylepšujte OpenStreetMap
+login.kort.introduction.1=pomáha vylepšovať dáta v OpenStreetMap.
+login.kort.introduction.2=Misie uvidíte na mape. Ich splenením získate Koiny a medaile.
+login.kort.introduction.3=Každá vyriešená misia je neskôr skontrolovaná inými hráčmi. Akonáhle je dostatok pozitívnych hodnotení pre riešenie, je toto pripravené na odoslanie do OpenStreetMap.
+login.kort.introduction.4=Prihláste sa a začnite svoju misiu\!
+login.button.google=Prihlásenie cez Google
+login.button.osm=Prihlásenie cez OpenStreetMap
+login.button.facebook=Login with Facebook
+login.loadmask.message=Prihlasovanie...
+
+# Firststeps
+firststeps.introduction=Vitajte v Kort\! Zvoľte si používateľské meno\:
+firststeps.form.button.submit=Začnite misiu\!
+firststeps.alert.username.empty.title=Používateľské meno
+firststeps.alert.username.empty.message=Prosím zadajte používateľské meno.
+firststeps.alert.username.specialchars.title=Problém so znakom
+firststeps.alert.username.specialchars.message=Prosím používajte iba písmená a čísla v používateľskom mene.
+firststeps.alert.submit.failure.title=Chyba pri odosielaní
+firststeps.alert.submit.failure.message=Chyba pri odosielaní Vášho prihlasovacieho mena. Skúste reštartovať aplikáciu.
+
+# Geolocation error
+geolocationerror.introduction=Aby ste mohli použiť Kort je potrebný prístup v Vašej polohe. 
+geolocationerror.button.reload=Znova načítať aplikáciu
+geolocationerror.loadmask.message=Opätovné načítanie aplikácie...
+
+#Map
+map.title=Missions
+map.loadmask.message=Nahrávam misie...
+map.mission.promotionmessagebox.close=Close
+map.mission.promotionmessagebox.earn=Earn additional {extra_coins} Koins
+map.mission.promotionmessagebox.date={startdate} to {enddate}
+map.mission.missionmessagebox.koins.earn=Získajte {fix_koin_count} Koinov.
+map.mission.missionmessagebox.koins.earnpromotion=Earn {fix_koin_count} + {extra_coins} Koins
+map.mission.missionmessagebox.yes=Odpovedať
+map.mission.missionmessagebox.no=Neviem
+map.mission.missionmessagebox.close=Close
+map.mission.layername=Missions
+map.missionInactive.layername=Inactive Missions
+map.validation.layername=Checks
+map.validation.validationmessagebox.koins.earn=Earn {validation_koin_count} Koins
+map.validation.validationmessagebox.koins.earnpromotion=Earn {validation_koin_count} + {extra_coins} Koins
+map.mission.validationmessagebox.yes=Odpovedať
+map.mission.validationmessagebox.no=Neviem
+map.mission.validationmessagebox.close=Close
+map.validation.validationmessagebox.checkit=Check the solution
+
+## Fix
+fix.form.title=Misie
+fix.form.koins.earn=Získajte {fix_koin_count} Koinov\!
+fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins\!
+fix.form.message.placeholder=Vaša odpoveď...
+fix.form.button.showonmap=Zobraziť na mape
+fix.form.button.submit=Ukončené misie
+fix.form.loadmask.message=Nahrávam odpovede...
+fix.form.falsepositive.toggle.label=Nedá sa vyriešiť
+fix.map.title=Mapa
+fix.sendmask.message=Odosielam riešenie...
+fix.alert.fixfield.empty.title=Vypľňte polia
+fix.alert.fixfield.empty.message=Prosím vyplňte všetky polia.
+fix.alert.submit.failure.title=Chyba pri odosielaní
+fix.alert.submit.failure.message=Chyba pri odosielaní Vašej odpovede. Skúste reštartovať aplikáciu.
+
+## Vote
+vote.falsepositive.question=Táto misia je označená ako "nedá sa vyriešiť". Je to správne?
+vote.container.button.answer=Odpovedať
+vote.container.votes.left=Ešte je potrebných {votes_left} hodnotení
+vote.answeractionsheet.button.accept=Áno
+vote.answeractionsheet.button.decline=Nie
+vote.answeractionsheet.button.cancel=Neviem
+vote.answeractionsheet.question=Je odpoveď správna?
+vote.sendmask.message=Odosielam odpoveď...
+vote.alert.submit.failure.title=Chyba pri odosielaní
+vote.alert.submit.failure.message=Chyba pri odosielaní Vašej odpovede. Skúste reštartovať aplikáciu.
+
+# Highscore
+highscore.title=Highscore
+highscore.absolute.tabtitle=Top
+highscore.relative.tabtitle=My score
+highscore.loadmask.message=Loading highscore...
+highscore.emptytext=Can't load highscore.
+highscore.you=Toto ste Vy\!
+highscore.koins=Koiny
+highscore.fixcount=Misie\:
+highscore.votecount=Kontroly\:
+highscore.user.badges.emptytext=Nemôžem načítať medaile.
+
+# Profil
+profile.title=Profil
+profile.button.logout=Odhlásiť
+profile.button.changeusername=Zmeniť používateľské meno
+profile.settings.messagebox.title=Nastavenia
+profile.settings.messagebox.message=Zadajte nové používateľské meno
+profile.username.loadmask.message=Ukladám používateľské meno...
+profile.content.username=Používateľské meno
+profile.content.oauthprovider=Prihlásenie cez
+profile.content.fixes=Ukončené misie
+profile.content.votes=Vykonané kontroly
+profile.content.koins.header=Získané Koiny
+profile.content.koins.title=Koiny
+profile.content.ranking.title=Miesto
+profile.content.badges.header=Získané medaile
+profile.logout.loadmask.message=Odhlásiť...
+profile.refresh.loadmask.message=Nahrávam profil...
+profile.badges.title=Vaše medaile
+profile.badges.recieved=Získaná\:
+profile.badges.emptytext=Nedali sa načítať Vaše medaile.
+profile.badges.button.close=Zavrieť
+profile.alert.username.empty.title=Zadajte používateľské meno
+profile.alert.username.empty.message=Prosím zadajte používateľské meno.
+profile.alert.username.specialchars.title=Problém so znakom
+profile.alert.username.specialchars.message=Prosím použite iba písmená a číslice v používateľskom mene.
+profile.alert.submit.failure.title=Chyba pri odosielaní
+profile.alert.submit.failure.message=Chyba pri odosielaní Vášho prihlasovacieho mena. Skúste reštartovať aplikáciu.
+
+#News
+news.title=News
+news.unread=Unread
+news.read=Read
+news.list.emptytext=No entries
+news.updated=Updated
+news.settings.save=Save
+news.settings.cancel=Cancel
+news.settings.acceptNoLanguage=Deselect all
+news.settings.acceptAllLanguages=Select all
+news.settings.label=I want to receive news in the following languages\:
+
+# About
+about.title=O
+about.version.title=Verzia
+about.information.title=Viac informácií
+about.information.homepage=web stránka\:
+about.information.feedback=Pripomienky/FAQ\:
+about.information.bugs=Nahláste chybu\:
+about.developers.title=Vývojár
+about.project.title=Projects
+about.project.advisor=Vedenie\:
+about.credits.title=Credits
+about.credits.partner=Partner\:
+about.credits.mapdata=Geo dáta\:
+about.credits.tiledata=Mapové dlaždice\:
+about.credits.markers=Ikony\:
+about.credits.translation=Translation\:
+about.credits.dbhosting=DB Hosting\:
+about.legal.title=Právna poznámka\:
+about.legal.message=Prosím dodržujte pravidlá OpenStreetMap a NEPOUŽÍVAJTE zdroje chránené autorským právom bez povolenia.
+
+# PullRefresh Plugin
+pullrefresh.pullrefresh=Potiahnite dole pre obnovenie...
+pullrefresh.releaserefresh=Pustite pre obnovenie...
+pullrefresh.loading=nahrávam...
+pullrefresh.lastupdated=Naposledy aktualizované\:
+
+# ListPaging Plugin
+listpaging.loadmore=Načítať viac...
+listpaging.nomorerecords=Žiadne ďalšie záznamy nie sú k dispozícií.
+
+# Button
+button.back=Spať
+
+# MessageBox
+messagebox.ok=OK
+messagebox.yes=Áno
+messagebox.no=Nie
+messagebox.cancel=Zrušiť
+
+# Picker
+picker.done=Hotovo
+picker.cancel=Zrušiť
+
+# Reward
+reward.alert.title=Zvýšili ste svoju reputáciu\!
+reward.alert.koins.new=Výborne\! Získali ste {koin_count_new} Koinov.
+reward.alert.koins.total=Momentálne máte {koin_count_total} koinov.
+reward.alert.badges.title=Získané medaile
+
+# App update
+update.title=Nová verzia aplikácie
+update.message=Aplikácia bola aktualizovaná na novšiu verziu. Znova načítať?
+
+#Languages
+en=English
+de=German
+it=Italian
+fr=French
+sl=Slovenian
+hr=Croatian
+cs=Czech
+nl=Dutch
+gl=Galician
+pt=Portuguese
+ro=Romanian
+ja=Japanese
+ca=Catalan
+es=Spanish
+
+###############################
+# Labels used directly in source files (without Ext.i18n.Bundle plugin)
+###############################
+
+# index.html
+## App startscreen
+startscreen.loadingtext=Kort sa nahráva. Pripravte sa...
+startscreen.browsererror=Váš prehliadač nie je podporovaný. Vyskúšajte to na Vašom mobile.
+
+# app/util/Config.js
+## Firststeps
+firststeps.form.username.placeholder=Používateľské meno
+
+## PullRefresh Plugin
+pullrefresh.dateformat=d. m. Y H\:i
