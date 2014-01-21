@@ -25,5 +25,6 @@ vendor/
 bin/
 .sencha_backup/      
 .idea/workspace.xml
+.idea/kort.iml
 /Icon
 data/
