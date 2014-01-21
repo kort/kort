@@ -14,7 +14,7 @@ Ext.define('Kort.store.HighscoreRelative', {
 
 		proxy: {
 			type: 'rest',
-            url: Kort.util.Config.getWebservices().highscore.relativeUrl,
+            url: Kort.util.Config.getWebservices().highscore.getRelativeUrl(),
             startParam: false,
             extraParams: {
                 'lang': Kort.util.Config.getLanguage(),

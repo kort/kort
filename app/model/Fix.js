@@ -18,7 +18,7 @@ Ext.define('Kort.model.Fix', {
         
 		proxy: {
 			type: 'rest',
-            url: Kort.util.Config.getWebservices().fix.url
+            url: Kort.util.Config.getWebservices().fix.getUrl()
 		}
     }
 });
