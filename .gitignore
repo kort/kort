@@ -28,3 +28,4 @@ bin/
 .idea/kort.iml
 /Icon
 data/
+.idea/watcherTasks.xml
