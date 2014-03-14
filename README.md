@@ -2,6 +2,8 @@
 
 Kort is a cross-platform, crowdsourcing app aimed to improve OpenStreetMap.
 
+[![Stories in Ready](https://badge.waffle.io/kort/kort.png?label=ready&title=Ready)](http://waffle.io/kort/kort)
+
 ## Build
 
 Kort is built using [Travis CI](https://travis-ci.org):
