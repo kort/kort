@@ -10,7 +10,7 @@
     <id>hsr.ch_kort</id>
 
     <entry>
-        <title xml:lang="de">Kort-Kampagne in Berlin anlässtlich der FOSSGIS 2014</title>
+        <title xml:lang="de">Kort-Kampagne in Berlin anlässlich der FOSSGIS 2014</title>
         <link href="#"/>
         <id>hsr.ch_kort_odi_3</id>
         <updated>2014-03-18T14:29:49Z</updated>
@@ -19,7 +19,7 @@
                 Zur diesjährigen FOSSGIS gibt es in Berlin (und nur dort!) eine spezielle Kort-Kampagne: für alle gelösten oder überprüften "Objekt ohne Namen"-Aufträge gibt es 10 zusätzliche Koins!
             </p>
             <p>
-                In Sachen Kort gibt es übrigens einige News, wir sind z.B. gerade dabei unsere Website komplett neu zu erstellen, endlich mit einem ordentlichen CMS dahinter. Da CloudMade leider keine kostenlosen Tiles mehr anbietet, sind wir gerade in der Umstellung auf den <a href="https://geodienste.lyrk.de/">Dienst von Lyrk</a>. Danach steht das Projekt "native App" auf dem Programm, wir müssen die Realität anerkennen: der Durchschnittsbenutzer sucht seine Apps einfach im App Store/Play Store.
+                In Sachen Kort gibt es übrigens einige News, wir sind z.B. gerade dabei unsere Website komplett neu zu erstellen, endlich mit einem ordentlichen CMS dahinter. Und da CloudMade leider keine kostenlosen Tiles mehr anbietet, bereiten wir die Umstellung auf den <a href="https://geodienste.lyrk.de/">Dienst von Lyrk</a> vor. Danach steht dann das Projekt "native App" auf dem Programm. Wir müssen die Realität anerkennen: der Durchschnittsbenutzer sucht seine Apps einfach im App Store/Play Store. Deshalb wollen wir (zumindest für iOS und Android) auch dort auffindbar sein.
             </p>
             <p>
                 Und noch als Info: wir haben ab sofort <a href="http://forum.geoclub.de/viewforum.php?f=175">ein deutschsprachiges Support-Forum beim Geoclub</a>!
@@ -34,11 +34,9 @@
         <updated>2013-12-01T16:20:11Z</updated>
         <content type="text/html"><![CDATA[
             <p style="margin-bottom: 12px;">
+                <img src="https://www.electrosuisse.ch/fileadmin/user_upload_electrosuisse/Verband/ITG/ITG_Innovationspreis/Innovpreis_Oderbolz_und_Hunziker.jpg" alt="ITG Innovationspreis" title="ITG Innovationspreise" />
                 Kort has been awarded with the ITG innovation award from Electrosuisse.
                 It is a great honor and we'd like to thank everybody for this wonderful event.
-            </p>
-            <p>
-                <img src="https://www.electrosuisse.ch/fileadmin/user_upload_electrosuisse/Verband/ITG/ITG_Innovationspreis/Innovpreis_Oderbolz_und_Hunziker.jpg" alt="ITG Innovationspreis" title="ITG Innovationspreise" />
             </p>
         ]]></content>
     </entry>
