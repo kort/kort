@@ -208,7 +208,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.data.identifier.Sequential": [],
   "Ext.data.identifier.Simple": [],
   "Ext.data.identifier.Uuid": [],
-  "Ext.data.plugin.Buffered": [],
   "Ext.data.proxy.Ajax": [
     "Ext.data.HttpProxy",
     "Ext.data.AjaxProxy"
@@ -1141,9 +1140,6 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "Ext.data.identifier.Uuid": [
     "data.identifier.uuid"
-  ],
-  "Ext.data.plugin.Buffered": [
-    "plugin.storebuffered"
   ],
   "Ext.data.proxy.Ajax": [
     "proxy.ajax"

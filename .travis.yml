@@ -19,7 +19,7 @@ before_install:
   - gem install sass
   - gem install compass
   - gem install jsduck
-  - wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh >/dev/null 2>&1
+  - wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
   - npm install -g grunt-cli
   - npm install 
   - curl -s http://getcomposer.org/installer | php --

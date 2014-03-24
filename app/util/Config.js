@@ -8,7 +8,7 @@ Ext.define('Kort.util.Config', {
         /**
          * @cfg {String} version Current version number of application
          */
-        version: '2.1.{BUILD_NR}',
+        version: '2.2.{BUILD_NR}',
         
         /**
          * @cfg {String[]} supportedLanguages Supported languages of the app
@@ -31,11 +31,10 @@ Ext.define('Kort.util.Config', {
          */
 		leafletMap: {
             zoom: 15,
-			tileLayerUrl: 'http://{s}.tile.cloudmade.com/{apiKey}/{styleId}/256/{z}/{x}/{y}.png',
-            retinaTileLayerUrl: 'http://{s}.tile.cloudmade.com/{apiKey}/{styleId}@2x/256/{z}/{x}/{y}.png',
-            tileLayerAttribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>',
-			apiKey: '729242682cb24de8aa825c8aed993cba',
-            styleId: 997
+            tileLayerUrl: 'http://{s}.tiles.lyrk.org/ls/{z}/{x}/{y}?apikey={apiKey}',
+            retinaTileLayerUrl: 'http://{s}.tiles.lyrk.org/lr/{z}/{x}/{y}?apikey={apiKey}',
+            tileLayerAttribution: 'Map data &copy; <a href="http://openstreetmap.org" target="_blank">OpenStreetMap</a> | Tiles by <a href="http://geodienste.lyrk.de/" target="_blank">Lyrk</a>',
+            apiKey: '079ab13252d244d0a153d652489ad110'
 		},
 
         /**
@@ -71,8 +70,6 @@ Ext.define('Kort.util.Config', {
                 redirect_path: 'server/oauth2callback/facebook',
                 response_type: 'code',
                 client_id: '290615117735384'
-
-
             }
         },
 
@@ -136,7 +133,7 @@ Ext.define('Kort.util.Config', {
             credits: {
                 partner: '<a href="http://bitforge.ch" target="_blank">bitforge AG</a>',
                 mapdata: '<a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap-Mitwirkende</a> (ODbL)',
-                tiledata: '<a href="http://cloudmade.com" target="_blank">CloudMade</a> (CC-BY-SA)',
+                tiledata: '<a href="http://geodienste.lyrk.de/" target="_blank">Lyrk</a> (<a href="https://geodienste.lyrk.de/copyright" target="_blank">Copyright</a>)',
                 markers: '<a href="http://mapicons.nicolasmollet.com" target="_blank">mapicons collection</a>',
                 translation: '<a href="https://www.transifex.com/projects/p/kort/" target="_blank">Transifex</a>',
                 dbhosting: '<a href="http://www.sourcepole.ch" target="_blank">sourcepole</a>'

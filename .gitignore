@@ -15,7 +15,6 @@ build/production/Kort/server/php/Webservice/Database/DbConfig.php
 build/archive/
 build/temp/
 *.bak
-.idea/
 docs/Kort
 docs/Kort-backend
 docs/Ext.ux.LeafletMap
@@ -25,6 +24,8 @@ npm-debug.log
 vendor/
 bin/
 .sencha_backup/      
-.idea/
+.idea/workspace.xml
+.idea/kort.iml
 /Icon
 data/
+.idea/watcherTasks.xml
