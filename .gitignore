@@ -23,7 +23,7 @@ composer.lock
 npm-debug.log
 vendor/
 bin/
-.sencha_backup/      
+.sencha_backup/
 .idea/workspace.xml
 .idea/kort.iml
 /Icon
