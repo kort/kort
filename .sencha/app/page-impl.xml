@@ -50,6 +50,15 @@
         <if>
             <x-is-true value="${build.enable.embedded.microloader}"/>
             <then>
+                <x-sencha-command dir="${app.dir}" inheritall="true">
+                    <![CDATA[
+                        fs
+                            minify
+                                ${build.embedded.microloader.compressor}
+                                -from=${build.microloader.path}
+                                -to=${build.microloader.path}
+                    ]]>
+                </x-sencha-command>
                 <x-compile refid="${compiler.ref.id}">
                     <![CDATA[
                     markup

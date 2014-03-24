@@ -3,7 +3,7 @@
  * @author Jacky Nguyen <jacky@sencha.com>
  */
 (function(global) {
-    var head = global.document.head,
+    var head = global.document.head || global.document.getElementsByTagName('head')[0],
         Ext = global.Ext;
 
     if (typeof Ext == 'undefined') {
@@ -25,7 +25,7 @@
     Ext.blink = function(options) {
         var scripts = options.js || [],
             styleSheets = options.css || [],
-            i, ln, path, platform, theme;
+            i, ln, path, platform, theme, exclude;
 
         if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
             var msViewportStyle = document.createElement("style");
@@ -50,7 +50,7 @@
         var filterPlatform = window.Ext.filterPlatform = function(platform) {
             var profileMatch = false,
                 ua = navigator.userAgent,
-                j, jln, exclude;
+                j, jln;
 
             platform = [].concat(platform);
 
@@ -148,9 +148,12 @@
                 if (!filterPlatform(platform) || filterPlatform(exclude)) {
                     continue;
                 }
-                Ext.theme = {
-                    name: theme || 'Default'
-                };
+                if(!Ext.theme) {
+                    Ext.theme = {};
+                }
+                if(!Ext.theme.name) {
+                    Ext.theme.name = theme || 'Default';
+                }
             }
             write('<link rel="stylesheet" href="'+path+'">');
         }

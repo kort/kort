@@ -273,7 +273,6 @@ Ext.application({
         var me = this,
             userBadges = Ext.getStore('UserBadges'),
             selectAnswersStore = Ext.getStore('SelectAnswers');
-            //highscoreStore = Ext.getStore('Highscore');
 
         // wait until correct position is found
         Ext.defer(me.fireEvent, 500, me, ['geolocationready', geo]);
@@ -285,8 +284,7 @@ Ext.application({
         userBadges.getProxy().setUrl(Kort.util.Config.getWebservices().userBadges.getUrl(Kort.user.get('id')));
         userBadges.load();
 
-        // load highscore
-        //highscoreStore.load();
+        // show main panel
         this.showMainPanel(mainPanel);
     },
 
