@@ -33,7 +33,7 @@ Ext.define('Kort.util.Config', {
             zoom: 15,
             tileLayerUrl: 'http://{s}.tiles.lyrk.org/ls/{z}/{x}/{y}?apikey={apiKey}',
             retinaTileLayerUrl: 'http://{s}.tiles.lyrk.org/lr/{z}/{x}/{y}?apikey={apiKey}',
-            tileLayerAttribution: 'Map data &copy; <a href="http://openstreetmap.org" target="_blank">OpenStreetMap</a>, Tyles by <a href="http://lyrk.de" target="_blank">Lyrk</a>',
+            tileLayerAttribution: 'Map data &copy; <a href="http://openstreetmap.org" target="_blank">OpenStreetMap</a> | Tiles by <a href="http://geodienste.lyrk.de/" target="_blank">Lyrk</a>',
             apiKey: '079ab13252d244d0a153d652489ad110'
 		},
 
@@ -133,7 +133,7 @@ Ext.define('Kort.util.Config', {
             credits: {
                 partner: '<a href="http://bitforge.ch" target="_blank">bitforge AG</a>',
                 mapdata: '<a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap-Mitwirkende</a> (ODbL)',
-                tiledata: '<a href="http://cloudmade.com" target="_blank">CloudMade</a> (CC-BY-SA)',
+                tiledata: '<a href="http://geodienste.lyrk.de/" target="_blank">Lyrk</a> (<a href="https://geodienste.lyrk.de/copyright" target="_blank">Copyright</a>)',
                 markers: '<a href="http://mapicons.nicolasmollet.com" target="_blank">mapicons collection</a>',
                 translation: '<a href="https://www.transifex.com/projects/p/kort/" target="_blank">Transifex</a>',
                 dbhosting: '<a href="http://www.sourcepole.ch" target="_blank">sourcepole</a>'
