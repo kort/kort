@@ -115,7 +115,7 @@ Ext.define('Kort.controller.Map', {
      */
     getCurrentLocationLatLng: function() {
         var geo = this.getLMapWrapper().getGeo();
-        return L.latLng(geo.getLatitude(), geo.getLongitude());
+        return window.L.latLng(geo.getLatitude(), geo.getLongitude());
     },
 
     registerMapType: function(mapType) {
@@ -184,7 +184,7 @@ Ext.define('Kort.controller.Map', {
      */
     _onLMapRendered: function(cmp, map, tileLayer) {
         this.setLMap(map);
-        var lLayerControl = new L.Control.Layers();
+        var lLayerControl = new window.L.Control.Layers();
         lLayerControl.addTo(map);
         this.setLLayerControl(lLayerControl);
         this.getApplication().fireEvent('leafletmaprendered');
