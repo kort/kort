@@ -209,6 +209,15 @@
         }
     </style>
 
+    <script type="text/javascript">
+        var isLocalStorageUpdated = window.localStorage.getItem("kort-updated-cmd404");
+        if(!isLocalStorageUpdated) {
+            window.localStorage.clear();
+            window.localStorage.setItem("kort-updated-cmd404", "true");
+            window.location.reload();
+        }
+    </script>
+
     <!-- The line below must be kept intact for Sencha Command to build your application -->
     <script id="microloader" type="text/javascript" src=".sencha/app/microloader/development.js"></script>
 </head>
