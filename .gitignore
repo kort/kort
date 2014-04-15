@@ -31,3 +31,4 @@ bin/
 /Icon
 data/
 .idea/watcherTasks.xml
+.DS_Store
