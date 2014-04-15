@@ -388,7 +388,7 @@ Ext.define('Kort.util.Config', {
             icon,
             iconCenterCorrectionFactor=0.064;
 
-        icon = L.icon({
+        icon = window.L.icon({
             iconUrl: this.constructMissionIconURL(type,state,false, inOperationalRange),
             iconRetinaUrl: this.constructMissionIconURL(type,state,true, inOperationalRange),
             iconSize: [iconWidth, iconHeight],
