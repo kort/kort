@@ -1,1 +1,1 @@
- : D:\xampp\htdocs\kort\phonegap\platforms\android\CordovaLib\bin\AndroidManifest.xml \
+ : /Applications/XAMPP/xamppfiles/htdocs/kort/phonegap/platforms/android/CordovaLib/bin/AndroidManifest.xml \

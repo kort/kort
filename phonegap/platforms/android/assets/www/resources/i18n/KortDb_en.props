@@ -147,7 +147,7 @@ answer.missing_cuisine.burger=Burger
 # error descriptions (KeepRight)
 bug.question.track=What kind of track is this?
 bug.question.poi=What's this $1 called?
-bug.question.speed=What speed limit does apply on this street?
+bug.question.speed=What's the speed limit for this street?
 bug.question.name_of_street=What's the name of this street?
 bug.question.language=In what language is the name '$2' written?
 bug.question.motorway_ref=What's the reference (e.g. A3 or E385) of this motorway?

@@ -133,7 +133,7 @@
 	 * @cfg  sdkPath
 	 * This is the path to the Android SDK, if you are developing an Android application.
 	 */
-	"sdkPath":"C:\\AndroidSDK\\sdk",
+	"sdkPath":"/Users/tschortsch/bin/AndroidSDK/sdk",
 
 	/**
 	 * @cfg  androidAPILevel

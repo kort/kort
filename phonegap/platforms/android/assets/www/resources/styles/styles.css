@@ -85,9 +85,57 @@
     margin-bottom: 0.5em; }
 
 .mapLoadingIcon .x-button-icon {
-  width: 1.1em!important;
-  height: 1.1em!important;
-  -webkit-mask-size: 1.1em!important; }
+  width: 1.1em !important;
+  height: 1.1em !important;
+  -webkit-mask-size: 1.1em !important; }
+
+/* -----------------------
+   Validation
+   ----------------------- */
+#validationNavigationView .x-list-header {
+  text-shadow: rgba(0, 0, 0, 0.25) 0 0.08em 0;
+  color: #fff; }
+  #validationNavigationView .x-list-header .text {
+    font-size: 0.9em; }
+#validationNavigationView .x-list-item .x-list-item-body {
+  padding: 0.4em 0.6em; }
+#validationNavigationView .x-list-item.x-item-pressed .x-list-item-body {
+  background: #D8E3EE none;
+  border-top: 0.1em solid #aaaaaa;
+  box-shadow: inset 0 0 0.5em #abccee; }
+#validationNavigationView .x-list-item .validation-item {
+  overflow: hidden;
+  font-size: 0.9em; }
+  #validationNavigationView .x-list-item .validation-item .image {
+    float: left;
+    margin-right: 0.8em; }
+    #validationNavigationView .x-list-item .validation-item .image .missiontype-image {
+      width: 32px;
+      height: 37px; }
+  #validationNavigationView .x-list-item .validation-item .content {
+    float: left; }
+    #validationNavigationView .x-list-item .validation-item .content .title {
+      margin-bottom: 0.4em; }
+    #validationNavigationView .x-list-item .validation-item .content .ratings {
+      font-size: 0.8em; }
+      #validationNavigationView .x-list-item .validation-item .content .ratings img.thumb {
+        width: 10px;
+        height: 12.5px;
+        margin-left: 0.3em; }
+      #validationNavigationView .x-list-item .validation-item .content .ratings .upratings,
+      #validationNavigationView .x-list-item .validation-item .content .ratings .downratings {
+        color: #4b4b4b;
+        margin: 0 0.3em; }
+  #validationNavigationView .x-list-item .validation-item .distance {
+    float: right;
+    text-align: right; }
+    #validationNavigationView .x-list-item .validation-item .distance .title {
+      color: #4b4b4b;
+      font-size: 0.7em;
+      text-transform: uppercase;
+      margin-bottom: 0.1em; }
+    #validationNavigationView .x-list-item .validation-item .distance .value {
+      font-weight: bold; }
 
 .x-list-pullrefresh-arrow {
   background: center center url("../images/arrow_black.png") no-repeat;
@@ -253,7 +301,7 @@
     overflow: hidden; }
     .profileContentComponent .info .picture,
     .highscoreUserContentComponent .info .picture {
-      border: 1px solid #858585;
+      border: .1em solid #858585;
       float: left;
       width: 82px;
       height: 82px;
@@ -381,8 +429,6 @@
       margin: 1em 0; }
       #aboutContainer .about-content dd.image-hsr-logo img {
         width: 175px; }
-    #aboutContainer .about-content dd.image-logo-sourcepole img {
-      width: 175px; }
   #aboutContainer .about-content a, #aboutContainer .about-content a:hover, #aboutContainer .about-content a:active, #aboutContainer .about-content a:focus {
     color: #115F9C;
     text-decoration: none; }
