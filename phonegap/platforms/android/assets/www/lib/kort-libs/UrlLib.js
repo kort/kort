@@ -12,8 +12,13 @@
         me.getAppUrl = function() {
             var host = window.location.host,
                 url = 'http://' + host;
-            if (host === 'localhost') {
-                url += '/kort';
+
+            if(this.isNative()) {
+                url = "http://play.kort.ch"
+            } else {
+                if (host === 'localhost') {
+                    url += '/kort';
+                }
             }
             return url;
         };
@@ -31,6 +36,10 @@
                 }
             }
             return env;
+        };
+
+        me.isNative = function() {
+            return document.URL.indexOf( 'http://' ) === -1 && document.URL.indexOf( 'https://' ) === -1;
         };
 
         me.getUrlParams = function() {
