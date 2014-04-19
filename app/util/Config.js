@@ -60,7 +60,9 @@ Ext.define('Kort.util.Config', {
                 client_id: '653755350671.apps.googleusercontent.com'
             },
             osm: {
-                url: './server/oauth2callback/osm/authorize.php'
+                getUrl: function() {
+                    return Kort.util.Config.getWebServicesHost() + '/server/oauth2callback/osm/authorize.php'
+                }
             },
             facebook: {
                 url: 'https://www.facebook.com/dialog/oauth',

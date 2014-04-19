@@ -43,16 +43,14 @@ Ext.define('Kort.controller.Login', {
      * @private
      */
     _onLoginButtonOsmTap: function() {
-        this._showLoadMask();
-        document.location.href = Kort.util.Config.getOAuth().osm.url;
+        this._openLoginPage(Kort.util.Config.getOAuth().osm.getUrl());
     },
 
     /**
      * @private
      */
     _onLoginButtonFacebookTap: function() {
-        this._showLoadMask();
-        document.location.href = this._buildFacebookUrl(Kort.util.Config.getOAuth().facebook);
+        this._openLoginPage(this._buildFacebookUrl(Kort.util.Config.getOAuth().facebook));
     },
 
     /**
@@ -62,7 +60,7 @@ Ext.define('Kort.controller.Login', {
         var authWindow;
         this._showLoadMask();
 
-        // redirect to google login page
+        // redirect to login page
         if(Kort.util.Config.isNative()) {
             authWindow = window.open(url, '_blank', 'location=no,toolbar=no');
 
