@@ -36,9 +36,7 @@ Ext.define('Kort.controller.Login', {
      * @private
      */
     _onLoginButtonGoogleTap: function() {
-        this._showLoadMask();
-        // redirect to google login page
-        document.location.href = this._buildGoogleUrl(Kort.util.Config.getOAuth().google);
+        this._openLoginPage(this._buildGoogleUrl(Kort.util.Config.getOAuth().google));
     },
 
     /**
@@ -46,7 +44,6 @@ Ext.define('Kort.controller.Login', {
      */
     _onLoginButtonOsmTap: function() {
         this._showLoadMask();
-        // redirect to osm login page
         document.location.href = Kort.util.Config.getOAuth().osm.url;
     },
 
@@ -55,8 +52,32 @@ Ext.define('Kort.controller.Login', {
      */
     _onLoginButtonFacebookTap: function() {
         this._showLoadMask();
-        //redirect to facebook login page
         document.location.href = this._buildFacebookUrl(Kort.util.Config.getOAuth().facebook);
+    },
+
+    /**
+     * @private
+     */
+    _openLoginPage: function(url) {
+        var authWindow;
+        this._showLoadMask();
+
+        // redirect to google login page
+        if(Kort.util.Config.isNative()) {
+            authWindow = window.open(url, '_blank', 'location=no,toolbar=no');
+
+            authWindow.addEventListener('loadstart', function(e) {
+                var url = e.url;
+
+                // after successful authentication application gets redirected to play.kort.ch
+                if(url === "http://play.kort.ch/") {
+                    authWindow.close();
+                    location.reload();
+                }
+            });
+        } else {
+            document.location.href = url;
+        }
     },
 
     /**
