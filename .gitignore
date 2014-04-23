@@ -1,4 +1,5 @@
 .sass-cache/
+.vagrant/
 /archive/
 /nbproject/private/
 /node_modules/

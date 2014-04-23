@@ -1,0 +1,28 @@
+# Override the Apache User (vhosts are included at the end of apache2.conf)
+User vagrant
+Group vagrant
+
+<VirtualHost *:80>
+
+  ServerName <%= node[:host_name] %>
+  ServerAlias <%= node[:host_aliases].join(" ") %>
+
+  SetEnv KORT_DB_API_KEY kOrTvaGrANtLocaLhOSt
+  
+  DocumentRoot /vagrant
+  <Directory "/vagrant">
+    AllowOverride All
+    Options FollowSymLinks
+    Order allow,deny
+    Allow from all
+    Require all granted
+  </Directory>
+  
+  # Possible values include: debug, info, notice, warn, error, crit,
+  # alert, emerg.
+  LogLevel warn
+
+  ServerAdmin webmaster@localhost
+  ErrorLog /var/log/apache2/<%= node[:host_name] %>.error.log
+  CustomLog /var/log/apache2/<%= node[:host_name] %>.custom.log combined
+</VirtualHost>
