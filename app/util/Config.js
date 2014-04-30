@@ -332,7 +332,7 @@ Ext.define('Kort.util.Config', {
         mapMarkerState: {
             mission: 'missionState',
             missionPromotion: 'missionPromotionState',
-            validation: 'validationSate',
+            validation: 'validationState',
             validationPromotion: 'validationPromotionState',
             inactive: 'inactiveState'
         },
@@ -381,25 +381,71 @@ Ext.define('Kort.util.Config', {
      * @param {String} type Type of marker
      */
     getMarkerIcon: function(type, state, inOperationalRange) {
-        var iconWidth = 35,
-            iconHeight = 42,
-            shadowWidth = 51,
-            shadowHeight = 37,
-            icon,
-            iconCenterCorrectionFactor=0.064;
+        var typeMapping,
+            iconInfo,
+            markerOptions;
 
-        icon = window.L.icon({
-            iconUrl: this.constructMissionIconURL(type,state,false, inOperationalRange),
-            iconRetinaUrl: this.constructMissionIconURL(type,state,true, inOperationalRange),
-            iconSize: [iconWidth, iconHeight],
-            iconAnchor: [((iconWidth/2)*(1-iconCenterCorrectionFactor)), iconHeight],
-            shadowUrl: './resources/images/marker_icons/shadow.png',
-            shadowRetinaUrl: './resources/images/marker_icons/shadow@2x.png',
-            shadowSize: [shadowWidth, shadowHeight],
-            shadowAnchor: [(iconWidth/2), shadowHeight],
-            popupAnchor: [0, -(2*iconHeight/3)]
-        });
-        return icon;
+        typeMapping = {
+            language_unknown: {
+                icon: 'comments',
+                color: 'green'
+            },
+            missing_cuisine: {
+                icon: 'cutlery',
+                color: 'blue'
+            },
+            missing_maxspeed: {
+                icon: 'tachometer',
+                color: 'darkpuple'
+            },
+            missing_track_type: {
+                icon: 'road',
+                color: 'darkgreen'
+            },
+            motorway_ref: {
+                icon: 'road',
+                color: 'darkred'
+            },
+            poi_name: {
+                icon: 'building-o',
+                color: 'orange'
+            },
+            religion: {
+                icon: 'bolt',
+                color: 'purple'
+            },
+            way_no_tags: {
+                icon: 'road',
+                color: 'cadetblue'
+            }
+        };
+        iconInfo = typeMapping[type];
+
+        markerOptions = {
+            prefix: 'fa',
+            icon: 'exclamation',
+            markerColor: 'red',
+            markerType: 'awesome-marker-soft'
+        };
+
+        if(state === Kort.util.Config.getMapMarkerState().validation) {
+            markerOptions.markerType = 'awesome-marker-soft-validaiton';
+        } else if(state === Kort.util.Config.getMapMarkerState().missionPromotion) {
+            markerOptions.markerType = 'awesome-marker-soft-promotion';
+        } else if(state === Kort.util.Config.getMapMarkerState().validationPromotion) {
+            markerOptions.markerType = 'awesome-marker-soft-validaiton-promotion';
+        }
+
+        if(iconInfo) {
+            markerOptions.icon = iconInfo.icon;
+            markerOptions.markerColor = iconInfo.color;
+        }
+
+        if(!inOperationalRange) {
+            markerOptions.markerColor = 'darkgrey';
+        }
+
+        return window.L.AwesomeMarkers.icon(markerOptions);
     },
 
     /**
