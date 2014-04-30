@@ -425,13 +425,13 @@ Ext.define('Kort.util.Config', {
             prefix: 'fa',
             icon: 'exclamation',
             markerColor: 'red',
-            markerType: 'awesome-marker-soft'
+            markerType: 'awesome-marker-soft-mission'
         };
 
         if(state === Kort.util.Config.getMapMarkerState().validation) {
             markerOptions.markerType = 'awesome-marker-soft-validaiton';
         } else if(state === Kort.util.Config.getMapMarkerState().missionPromotion) {
-            markerOptions.markerType = 'awesome-marker-soft-promotion';
+            markerOptions.markerType = 'awesome-marker-soft-mission-promotion';
         } else if(state === Kort.util.Config.getMapMarkerState().validationPromotion) {
             markerOptions.markerType = 'awesome-marker-soft-validaiton-promotion';
         }
@@ -446,29 +446,6 @@ Ext.define('Kort.util.Config', {
         }
 
         return window.L.AwesomeMarkers.icon(markerOptions);
-    },
-
-    /**
-     * Constructs the correct Path to the mission icons depending
-     * on type, state, retina and if it is in operationalRange.
-     */
-    constructMissionIconURL: function(type, state, retina, inOperationalRange) {
-        if(typeof(state)==='undefined') {state=Kort.util.Config.getMapMarkerState().mission;}
-        if(typeof(retina)==='undefined') {retina=false;}
-        if(typeof(inOperationalRange)==='undefined') {inOperationalRange=true;}
-
-        var pathToResourceFolder = './resources/images/marker_icons/',
-            stateToPathSuffix = [],
-            retinaPathSuffix = retina ? '@2x' : '',
-            inOperationalStatePathSuffix = inOperationalRange ? '' : 'inactive';
-
-        stateToPathSuffix[Kort.util.Config.getMapMarkerState().mission] = 'mission';
-        stateToPathSuffix[Kort.util.Config.getMapMarkerState().missionPromotion] = 'missionpromotion';
-        stateToPathSuffix[Kort.util.Config.getMapMarkerState().validation] = 'validation';
-        stateToPathSuffix[Kort.util.Config.getMapMarkerState().validationPromotion] = 'validationpromotion';
-
-        return pathToResourceFolder + type  + '_' + stateToPathSuffix[state] + inOperationalStatePathSuffix + retinaPathSuffix + '.png';
     }
-
 
 });

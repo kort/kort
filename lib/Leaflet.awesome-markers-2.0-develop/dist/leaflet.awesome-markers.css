@@ -16,12 +16,12 @@ Version: 1.0
     text-align: center;
 }
 
-.awesome-marker-soft {
-    background: url('images/markers-soft.png') no-repeat 0 0;
+.awesome-marker-soft-mission {
+    background: url('images/markers-soft-mission.png') no-repeat 0 0;
 }
 
-.awesome-marker-soft-promotion {
-    background: url('images/markers-soft-promotion.png') no-repeat 0 0;
+.awesome-marker-soft-mission-promotion {
+    background: url('images/markers-soft-mission-promotion.png') no-repeat 0 0;
 }
 
 .awesome-marker-soft-validaiton {
@@ -45,12 +45,12 @@ Version: 1.0
         /*background-image: url('images/markers-soft@2x.png');*/
         background-size: 720px 46px;
     }
-    .awesome-marker-soft {
-        background-image: url('images/markers-soft@2x.png');
+    .awesome-marker-soft-mission {
+        background-image: url('images/markers-soft-mission@2x.png');
     }
 
-    .awesome-marker-soft-promotion {
-        background-image: url('images/markers-soft-promotion@2x.png');
+    .awesome-marker-soft-mission-promotion {
+        background-image: url('images/markers-soft-mission-promotion@2x.png');
     }
 
     .awesome-marker-soft-validaiton {
