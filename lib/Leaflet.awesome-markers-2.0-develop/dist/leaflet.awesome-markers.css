@@ -16,6 +16,10 @@ Version: 1.0
     text-align: center;
 }
 
+.awesome-marker-soft {
+    background: url('images/markers-soft.png') no-repeat 0 0;
+}
+
 .awesome-marker-soft-mission {
     background: url('images/markers-soft-mission.png') no-repeat 0 0;
 }
@@ -45,6 +49,11 @@ Version: 1.0
         /*background-image: url('images/markers-soft@2x.png');*/
         background-size: 720px 46px;
     }
+
+    .awesome-marker-soft {
+        background-image: url('images/markers-soft@2x.png');
+    }
+
     .awesome-marker-soft-mission {
         background-image: url('images/markers-soft-mission@2x.png');
     }
