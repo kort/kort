@@ -43,7 +43,7 @@ Version: 1.0
 (-webkit-min-device-pixel-ratio: 1.5),(min-device-pixel-ratio: 1.5),(min-resolution: 1.5dppx) {
     .awesome-marker {
         /*background-image: url('images/markers-soft@2x.png');*/
-        background-size: 360px 46px;
+        background-size: 720px 46px;
     }
     .awesome-marker-soft {
         background-image: url('images/markers-soft@2x.png');
@@ -83,10 +83,6 @@ Version: 1.0
     background-position: 0 0;
 }
 
-.awesome-marker-icon-darkred {
-    background-position: -180px 0;
-}
-
 .awesome-marker-icon-orange {
     background-position: -36px 0;
 }
@@ -95,20 +91,24 @@ Version: 1.0
     background-position: -72px 0;
 }
 
-.awesome-marker-icon-darkgreen {
-    background-position: -252px 0;
-}
-
 .awesome-marker-icon-blue {
     background-position: -108px 0;
+}
+
+.awesome-marker-icon-purple {
+    background-position: -144px 0;
+}
+
+.awesome-marker-icon-darkred {
+    background-position: -180px 0;
 }
 
 .awesome-marker-icon-darkblue {
     background-position: -216px 0;
 }
 
-.awesome-marker-icon-purple {
-    background-position: -144px 0;
+.awesome-marker-icon-darkgreen {
+    background-position: -252px 0;
 }
 
 .awesome-marker-icon-darkpurple {
@@ -117,4 +117,44 @@ Version: 1.0
 
 .awesome-marker-icon-cadetblue {
     background-position: -324px 0;
+}
+
+.awesome-marker-icon-ligthred {
+    background-position: -360px 0;
+}
+
+.awesome-marker-icon-ligthorange {
+    background-position: -396px 0;
+}
+
+.awesome-marker-icon-ligthgreen {
+    background-position: -432px 0;
+}
+
+.awesome-marker-icon-ligthblue {
+    background-position: -468px 0;
+}
+
+.awesome-marker-icon-ligthpurple {
+    background-position: -504px 0;
+}
+
+.awesome-marker-icon-ligthdarkred {
+    background-position: -540px 0;
+}
+
+.awesome-marker-icon-white {
+    background-position: -576px 0;
+}
+
+.awesome-marker-icon-grey {
+    background-position: -612px 0;
+}
+
+.awesome-marker-icon-darkgrey {
+    background-position: -648px 0;
+}
+
+.awesome-marker-icon-black {
+    background-position: -684px 0;
 }
