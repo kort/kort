@@ -400,11 +400,11 @@ Ext.define('Kort.util.Config', {
             },
             missing_track_type: {
                 icon: 'road',
-                color: 'darkgreen'
+                color: 'brown'
             },
             motorway_ref: {
                 icon: 'road',
-                color: 'darkred'
+                color: 'yellow'
             },
             poi_name: {
                 icon: 'building-o',
