@@ -399,11 +399,11 @@ Ext.define('Kort.util.Config', {
                 color: 'darkpuple'
             },
             missing_track_type: {
-                icon: 'road',
+                icon: 'tree',
                 color: 'brown'
             },
             motorway_ref: {
-                icon: 'road',
+                icon: 'car',
                 color: 'yellow'
             },
             poi_name: {

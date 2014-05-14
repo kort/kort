@@ -101,7 +101,7 @@
             "path": "lib/zocial/css/zocial.css"
         },
         {
-            "path": "lib/font-awesome-4.0.3/css/font-awesome.min.css"
+            "path": "lib/font-awesome-4.1.0/css/font-awesome.min.css"
         },
         {
             "path": "lib/Leaflet.awesome-markers-2.0-develop/dist/leaflet.awesome-markers.css"
