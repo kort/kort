@@ -34,6 +34,7 @@ vim
 git
 postgresql-9.1
 postgresql-9.1-postgis
+postgresql-contrib-9.1
 php5
 php5-dev
 php5-curl
@@ -67,6 +68,11 @@ execute "a2enmod rewrite"
 execute "a2enmod php5"
 
 service "apache2" do
+  supports :restart => true, :reload => true, :status => true
+  action [ :enable, :start ]
+end
+
+service "postgres" do
   supports :restart => true, :reload => true, :status => true
   action [ :enable, :start ]
 end
@@ -114,4 +120,41 @@ template "/vagrant/server/php/Webservice/Database/DbConfig.php" do
   user "vagrant"
   group "vagrant"
   source "DbConfig.php"
+end
+
+template "/etc/postgresql/9.1/main/pg_hba.conf" do
+  user "postgres"
+  group "postgres"
+  source "pg_hba.conf"
+end
+
+bash "Setup PostgreSQL user" do
+  user "postgres"
+  cwd "/vagrant"
+  notifies :reload, "service[postgres]"
+  code <<-EOH
+  set -e
+  psql -c "CREATE USER kortdbuser WITH PASSWORD 'kortVagrant'"
+  EOH
+end
+
+bash "Setup PostgreSQL database" do
+  user "postgres"
+  cwd "/vagrant/server/database"
+  code <<-EOH
+  set -e
+  ./setup_keepright_db.sh -o kortdbuser -n kortdb -d -m
+  ./setup_osm_errors_db.sh -o kortdbuser -n kortdb -m
+  ./setup_all_errors_db.sh -o kortdbuser -n kortdb
+  ./setup_kort_db.sh -o kortdbuser -n kortdb
+  EOH
+end
+
+bash "Load fixtures" do
+  user "postgres"
+  cwd "/vagrant"
+  code <<-EOH
+  set -e
+  psql -d kortdb -f /vagrant/server/database/all_errors/fixtures.sql
+  EOH
 end
