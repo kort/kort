@@ -1,0 +1,43 @@
+{
+    "data_format": 1,
+    "data_url": "http://play.kort.ch/taginfo.json",
+    "project": {
+        "name": "Kort",
+        "description": "Gamified Mobile App to improve OpenStreetMap",
+        "project_url": "http://www.kort.ch",
+        "doc_url": "https://github.com/kort/kort-to-osm",
+        "icon_url": "http://play.kort.ch/resources/images/kort-icon.png",
+        "contact_name": "Stefan Oderbolz",
+        "contact_email": "odi@readmore.ch"
+    },
+    "tags": [
+        {
+           "key": "name",          
+           "description": "Name of Point of interest"
+        }, 
+        {
+           "key": "ref",          
+           "object_types": ["way"],
+           "description": "Ref of motorway"
+        }, 
+        {
+           "key": "religion",          
+           "object_types": ["node"],
+           "description": "Religion of place of worship"
+        }, 
+        {
+           "key": "maxspeed",          
+           "object_types": ["way"],
+           "description": "Maxspeed of ways"
+        },
+        {
+           "key": "name:<lg>",          
+           "description": "Name in different languages, where <lg> can be any valid language abbreviation"
+        },
+        {
+           "key": "cuisine",          
+           "object_types": ["node", "area"],
+           "description": "Type of cuisine of a restaurant"
+        }
+    ]
+}
