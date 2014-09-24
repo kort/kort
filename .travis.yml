@@ -34,5 +34,5 @@ before_script:
 
 script: ant -f build_kort.xml build
 
-after_script:
+after_success:
   - bash $CI_HOME/server/heroku/heroku.sh
