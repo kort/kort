@@ -29,6 +29,7 @@ before_deploy: $CI_HOME/deploy_heroku.sh
 
 deploy:
   provider: heroku
+  strategy: git
   skip_cleanup: true
   app:
     master: kort
