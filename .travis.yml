@@ -6,7 +6,7 @@ php:
 
 env:
   global:
-    - CI_HOME=`pwd`/kort/kort
+    - CI_HOME=$TRAVIS_BUILD_DIR
     - DEPLOY="true"
     - BUILD_DIR=`pwd`/build_heroku
     - secure: "r/MlYsFk0/T1aAuzDmLhoE92EQQ+866Bkq04yLPw1RgcIQN0O2Q7fhCx++EZ\nE7Nz/JXxLLNn9Tg8KXU0JRHcw2PBP04/WzCU+3mo6vqLLUk/JtTsBjiQ3svW\nerCmRNP4H4Yb+YbdSKzWT1J9+GCIOoTW8zrj6JKOOErIkz+uypU="
