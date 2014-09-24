@@ -19,6 +19,7 @@ else
     mkdir -p $BUILD_DIR/server
 
     cp $SOURCE_DIR/index*.* $BUILD_DIR
+    cp $SOURCE_DIR/taginfo.json $BUILD_DIR
     cp $SOURCE_DIR/app.* $BUILD_DIR/
     cp $SOURCE_DIR/bootstrap.* $BUILD_DIR/
     cp -r $SOURCE_DIR/.sencha $BUILD_DIR/
