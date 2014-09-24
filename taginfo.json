@@ -13,7 +13,7 @@
     "tags": [
         {
            "key": "name",          
-           "description": "Name of Point of interest"
+           "description": "Name of Point of Interest"
         }, 
         {
            "key": "ref",          
@@ -38,6 +38,10 @@
            "key": "cuisine",          
            "object_types": ["node", "area"],
            "description": "Type of cuisine of a restaurant"
+        },
+        {
+           "key": "tracktype",          
+           "description": "Type of track for highway=track"
         }
     ]
 }
