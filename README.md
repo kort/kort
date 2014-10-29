@@ -51,8 +51,27 @@ Finally he can earn badges for different kind of actions.
 The whole gamification is a huge area and we only implemented a few basics.
 There is a lot of room for improvement to keep the players motivated and  serve all the different types of gamers.
 
+## Development
+
+To develop Kort, you should use the provided Vagrant setup. The prerequisite is to have vagrant and VirtualBox installed.
+
+To start the vagrant box use:
+
+```bash
+vagrant up
+```
+
+Finally add the following line to your hosts file (usually `/etc/hosts`):
+
+```
+172.23.23.5 kort.lo
+```
+
+Then you should be able to access Kort locally using the following URL: http://kort.lo
+
 ## Other repositories
 
+* [kort/kort-to-osm](https://github.com/kort/kort-to-osm): Script to write Kort data back to OpenStreetMap
 * [kort/kort-docu](https://github.com/kort/kort-docu): Documents of Kort
 * [kort/kort-home](https://github.com/kort/kort-home): Website of Kort (http://www.kort.ch)
 

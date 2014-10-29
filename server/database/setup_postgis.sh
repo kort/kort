@@ -38,13 +38,13 @@ fi
 
 # uninstall extension (in case it was already installed)
 echo "Uninstall previous installation of PostGIS"
-psql -d $DB_NAME -f /usr/share/postgresql/9.1/contrib/postgis-2.0/uninstall_postgis.sql 
+psql -d $DB_NAME -f /usr/share/postgresql/9.1/contrib/postgis-2.1/uninstall_postgis.sql 
 
 # install extension
 echo "Install PostGIS"
-psql -d $DB_NAME -f /usr/share/postgresql/9.1/contrib/postgis-2.0/postgis.sql
+psql -d $DB_NAME -f /usr/share/postgresql/9.1/contrib/postgis-2.1/postgis.sql
 echo "Install spatial_ref_sys"
-psql -d $DB_NAME -f /usr/share/postgresql/9.1/contrib/postgis-2.0/spatial_ref_sys.sql
+psql -d $DB_NAME -f /usr/share/postgresql/9.1/contrib/postgis-2.1/spatial_ref_sys.sql
 
 echo "Grants for PostGIS"
 psql -d $DB_NAME -c "GRANT ALL ON geometry_columns TO PUBLIC;"

@@ -1,6 +1,6 @@
 #!/bin/bash
 DIR="$( cd "$( dirname "$0" )" && pwd )"
-while getopts ":o:n:s:dclmp:" opt; do
+while getopts ":o:n:s:c" opt; do
     case $opt in
         o)
             DB_OWNER="$OPTARG"
@@ -17,8 +17,8 @@ while getopts ":o:n:s:dclmp:" opt; do
         \?) # fall-through
             ;&
         :)
-            echo "USAGE: `basename $0` [-o <db owner>] [-n <database name>] [-s <schema name>] [-d drop database if exists] [-c cleanup data after import] [-p path to previously downloaded error csv] [-m minimal setup]" >&2
-            echo "Example: `basename $0` -o `whoami` -n osm_bugs -s keepright -p /tmp/keepright_errors.txt" >&2
+            echo "USAGE: `basename $0` [-o <db owner>] [-n <database name>] [-s <schema name>] [-c cleanup data after import]" >&2
+            echo "Example: `basename $0` -o `whoami` -n osm_bugs -s keepright" >&2
             exit 1
             ;;
     esac
@@ -60,5 +60,3 @@ if [[ $CLEANUP ]] ; then
 else
     echo "Omitting cleanup"
 fi
-
-
