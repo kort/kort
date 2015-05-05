@@ -19,21 +19,23 @@ class TestGravatarHelper extends AbstractKortUnitTestCase
 
     public function testGetGravatarUrlValid()
     {
-        $originalPic = "c09e513365b88655d158e4df59a1fe122bffe3a8";
+        $originalPicUrl = "http://www.gravatar.com/avatar/28183e09aff101bc1f80c7e7a1917d83?s=200&d=mm&r=r";
         $avatarUrl = GravatarHelper::getGravatarUrl("oderbolz@gmail.com");
-        $pic = sha1(base64_encode($this->http->get($avatarUrl)));
+        $pic = base64_encode($this->http->get($avatarUrl));
 
         $this->assertNotNull($avatarUrl);
-        $this->assertEqual($originalPic, $pic, "Pictures should match");
+        $this->assertNotNull($pic);
+        $this->assertEqual($originalPicUrl, $avatarUrl, "URLs should match");
     }
 
     public function testGetGravatarUrlNotExistingEmail()
     {
-        $defaultPic = "716f8c6307c85c35e3636475c5bb168b55a07bdd";
+        $picUrl = "http://www.gravatar.com/avatar/b4b5e684119038eca5b9ccf84d594d03?s=200&d=mm&r=r";
         $avatarUrl = GravatarHelper::getGravatarUrl("non-existing@email.address");
-        $pic = sha1(base64_encode($this->http->get($avatarUrl)));
+        $pic = base64_encode($this->http->get($avatarUrl));
 
         $this->assertNotNull($avatarUrl);
-        $this->assertEqual($defaultPic, $pic, "Pictures should match");
+        $this->assertNotNull($pic);
+        $this->assertEqual($picUrl, $avatarUrl, "URLs should match");
     }
 }

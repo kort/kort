@@ -8,7 +8,7 @@ Ext.define('Kort.util.Config', {
         /**
          * @cfg {String} version Current version number of application
          */
-        version: '2.2.{BUILD_NR}',
+        version: '2.3.{BUILD_NR}',
         
         /**
          * @cfg {String[]} supportedLanguages Supported languages of the app
@@ -31,10 +31,10 @@ Ext.define('Kort.util.Config', {
          */
 		leafletMap: {
             zoom: 15,
-            tileLayerUrl: 'http://{s}.tiles.lyrk.org/ls/{z}/{x}/{y}?apikey={apiKey}',
-            retinaTileLayerUrl: 'http://{s}.tiles.lyrk.org/lr/{z}/{x}/{y}?apikey={apiKey}',
-            tileLayerAttribution: 'Map data &copy; <a href="http://openstreetmap.org" target="_blank">OpenStreetMap</a> | Tiles by <a href="http://geodienste.lyrk.de/" target="_blank">Lyrk</a>',
-            apiKey: '079ab13252d244d0a153d652489ad110'
+            tileLayerUrl: 'http://api.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token={apiKey}',
+            retinaTileLayerUrl: 'http://api.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}@2x.png?access_token={apiKey}',
+            tileLayerAttribution: 'Map data &copy; <a href="http://openstreetmap.org" target="_blank">OpenStreetMap</a> | Tiles by <a href="http://www.mapbox.com/" target="_blank">Mapbox</a>',
+            apiKey: 'pk.eyJ1IjoidHNjaG9ydHNjaCIsImEiOiJHNEpQRkVrIn0.Wu8qta3IgW9odBpCN2SH_w'
 		},
 
         /**
@@ -133,7 +133,7 @@ Ext.define('Kort.util.Config', {
             credits: {
                 partner: '<a href="http://bitforge.ch" target="_blank">bitforge AG</a>',
                 mapdata: '<a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap-Mitwirkende</a> (ODbL)',
-                tiledata: '<a href="http://geodienste.lyrk.de/" target="_blank">Lyrk</a> (<a href="https://geodienste.lyrk.de/copyright" target="_blank">Copyright</a>)',
+                tiledata: '<a href="http://www.mapbox.com/" target="_blank">Mapbox</a>',
                 markers: '<a href="http://mapicons.nicolasmollet.com" target="_blank">mapicons collection</a>',
                 translation: '<a href="https://www.transifex.com/projects/p/kort/" target="_blank">Transifex</a>',
                 dbhosting: '<a href="http://www.sourcepole.ch" target="_blank">sourcepole</a>'
@@ -388,7 +388,7 @@ Ext.define('Kort.util.Config', {
             icon,
             iconCenterCorrectionFactor=0.064;
 
-        icon = L.icon({
+        icon = window.L.icon({
             iconUrl: this.constructMissionIconURL(type,state,false, inOperationalRange),
             iconRetinaUrl: this.constructMissionIconURL(type,state,true, inOperationalRange),
             iconSize: [iconWidth, iconHeight],

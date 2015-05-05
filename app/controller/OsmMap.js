@@ -19,7 +19,7 @@ Ext.define('Kort.controller.OsmMap', {
         var record = this.getDetailComponent().getRecord();
 
         this.setMap(map);
-        cmp.setMapCenter(L.latLng(record.get('latitude'), record.get('longitude')));
+        cmp.setMapCenter(window.L.latLng(record.get('latitude'), record.get('longitude')));
         this.renderOsmElement(record);
     },
     
@@ -57,7 +57,7 @@ Ext.define('Kort.controller.OsmMap', {
         var icon = Kort.util.Config.getMarkerIcon(record.get('type'),record.get('state')),
             layer;
 
-        layer = new L.OSM.DataLayer(xml, {
+        layer = new window.L.OSM.DataLayer(xml, {
             styles: {
                 node: {
                     clickable: false,
