@@ -12,5 +12,4 @@ trap "cleanup" EXIT
 DIR=`dirname $0`
 
 cp -r $DIR/build/production/Kort/* $DIR
-rm $DIR/package.json
 ls -al
