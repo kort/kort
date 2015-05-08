@@ -55,6 +55,7 @@ There is a lot of room for improvement to keep the players motivated and  serve 
 
 * [kort/kort-docu](https://github.com/kort/kort-docu): Documents of Kort
 * [kort/kort-home](https://github.com/kort/kort-home): Website of Kort (http://www.kort.ch)
+* [kort/kort-to-osm](https://github.com/kort/kort-to-osm): Transfer changes from Kort to OpenStreetMap
 
 ## License
 
