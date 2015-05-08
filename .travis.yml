@@ -29,6 +29,7 @@ before_deploy: $CI_HOME/deploy_heroku.sh
 
 deploy:
   provider: heroku
+  buildpack: php
   strategy: api
   skip_cleanup: true
   app:
