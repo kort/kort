@@ -1,1 +1,1 @@
-/*93c2817bc961eb43ffcfdedd274e8db34b4cd0a7*/if(typeof(Number.prototype.toRad)==="undefined"){Number.prototype.toRad=function(){return this*Math.PI/180}};
+function _93c2817bc961eb43ffcfdedd274e8db34b4cd0a7(){};if(typeof(Number.prototype.toRad)==="undefined"){Number.prototype.toRad=function(){return this*Math.PI/180}};

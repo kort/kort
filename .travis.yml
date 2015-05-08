@@ -1,38 +1,41 @@
 language: php
 
-php: 
-  - 5.3
-  - 5.4
+php:
+- 5.3
+- 5.4
 
 env:
   global:
-    - CI_HOME=`pwd`/kort/kort
-    - DEPLOY="true"
-    - BUILD_DIR=`pwd`/build_heroku
-    - secure: "r/MlYsFk0/T1aAuzDmLhoE92EQQ+866Bkq04yLPw1RgcIQN0O2Q7fhCx++EZ\nE7Nz/JXxLLNn9Tg8KXU0JRHcw2PBP04/WzCU+3mo6vqLLUk/JtTsBjiQ3svW\nerCmRNP4H4Yb+YbdSKzWT1J9+GCIOoTW8zrj6JKOOErIkz+uypU="
-    - secure: "w1wo6x6y8IZH6ZyykNeJxO13K3IjBBLKKaASHp7Ebp0gcPcOui/DRTx9D0EZ\n/rvEEgpkubkgTOst0zq2e6UhYF/oBXx+21/OHrfuzPcT9MfXC+/NCscjMMY4\n041HRSp0zJCE6dvl6xOmvuYCZbKLeDKnLlSIijlkhvJw2B0BdDo="
-  matrix:
-    - TARGET_ENV="dev"
-    - TARGET_ENV="prod"
+  - CI_HOME=$TRAVIS_BUILD_DIR
 
 before_install:
-  - gem install sass
-  - gem install compass
-  - gem install jsduck
-  - wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
-  - npm install -g grunt-cli
-  - npm install 
-  - curl -s http://getcomposer.org/installer | php --
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq graphviz
+- gem install sass
+- gem install compass
+- gem install jsduck
+- npm install -g grunt-cli
+- npm install
+- curl -s https://getcomposer.org/installer | php --
+- sudo apt-get update -qq
+- sudo apt-get install -qq graphviz
 
 before_script:
-  - php composer.phar install --dev
-  - export PATH="$PATH:$CI_HOME:/usr/local/heroku/bin"
-  - mv $CI_HOME/server/php/Webservice/Database/DbConfig.example.php $CI_HOME/server/php/Webservice/Database/DbConfig.php
-  - phpenv rehash
+- php composer.phar install --dev
+- mv $CI_HOME/server/php/Webservice/Database/DbConfig.example.php $CI_HOME/server/php/Webservice/Database/DbConfig.php
+- phpenv rehash
 
 script: ant -f build_kort.xml build
 
-after_script:
-  - bash $CI_HOME/server/heroku/heroku.sh
+before_deploy: $CI_HOME/deploy_heroku.sh
+
+deploy:
+  provider: heroku
+  strategy: git
+  skip_cleanup: true
+  app:
+    master: kort
+    develop: kort-dev
+  on:
+    repo: kort/kort
+    php: '5.4'
+  api_key:
+    secure: NL10DAVFJJPk7mHdKeN3q5hpKgRq/gKpEnsXeBb7dDcnW0XuwmO88srMVbYHOA6w3kw50aPkKZ1AirElPjcpm2uxEz/tW7PpshY8fGDKdCyuczXKh24avTpD8nF8lskTIPXVpwWBYxCoFziRsd+eQBKHCsRyrQcv0mjg2j2MoNE=
