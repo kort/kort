@@ -51,6 +51,15 @@ Finally he can earn badges for different kind of actions.
 The whole gamification is a huge area and we only implemented a few basics.
 There is a lot of room for improvement to keep the players motivated and  serve all the different types of gamers.
 
+## Configuration
+
+In order to be able to run the application, these settings must be set on heroku
+
+```bash
+heroku config:add BUILDPACK_URL=https://github.com/heroku/heroku-buildpack-php --app kort
+heroku config:add KORT_DB_API_KEY=<secrect key> --app kort
+```
+
 ## Other repositories
 
 * [kort/kort-docu](https://github.com/kort/kort-docu): Documents of Kort
@@ -61,7 +70,7 @@ There is a lot of room for improvement to keep the players motivated and  serve 
 
 (The MIT License)
 
-Copyright (c) 2012 Stefan Oderbolz, Jürg Hunziker
+Copyright (c) 2015 Stefan Oderbolz, Jürg Hunziker
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
