@@ -9,8 +9,6 @@ Ext.define('Kort.controller.MapAbstractType', {
         dataStore: null,
         //must be overridden or set by derived class before this class gets initialized
         dataStoreProxyURL: null,
-        //must be overridden or set by derived class before this class gets initialized
-        lLayerGroupName:null,
 
         refs: {
             mapNavigationView: '#mapNavigationView',
@@ -73,7 +71,7 @@ Ext.define('Kort.controller.MapAbstractType', {
      */
     _initData: function() {
         var me = this;
-        me.getMapController().addLayerGroupToMap(me.getLLayerGroup(),me.getLLayerGroupName());
+        me.getMapController().addLayerGroupToMap(me.getLLayerGroup());
         me.updateDataStoreProxyUrl();
         me._updateData();
     },
@@ -88,15 +86,15 @@ Ext.define('Kort.controller.MapAbstractType', {
      * @private
      * Abstract function; MUST be overidden by derived class.
      */
-    updateDataStoreProxyUrl: function(useMapCenterInsteadOfGPS) {},
+    updateDataStoreProxyUrl: function() {},
 
 
     /**
      * @private
      */
-    _onMapTypeUpdateRequest: function(useMapCenterInsteadOfGPS) {
+    _onMapTypeUpdateRequest: function() {
         this.setIsLoaded(false);
-        this.updateDataStoreProxyUrl(useMapCenterInsteadOfGPS);
+        this.updateDataStoreProxyUrl();
         this._updateData();
     },
 

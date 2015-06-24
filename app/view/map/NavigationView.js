@@ -27,18 +27,6 @@ Ext.define('Kort.view.map.NavigationView', {
                     align: 'left'
                 },
                 {
-                    xtype: 'segmentedbutton',
-                    cls: 'sneakyPeak',
-                    allowMultiple: true,
-                    items: [
-                        {
-                            iconCls: 'eye',
-                            iconMask: true
-                        }
-                    ],
-                    align: 'right'
-                },
-                {
                     cls: 'mapLoadingIcon',
                     icon : './resources/images/transparent_loader.gif',
                     align: 'right',
