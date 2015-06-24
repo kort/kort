@@ -6,7 +6,7 @@
     "minimum-stability": "dev",
     "require-dev": {
         "squizlabs/php_codesniffer": "dev-master",
-        "phpdocumentor/phpdocumentor": "dev-develop"
+        "phpdocumentor/phpdocumentor": "~2.2"
     },
     "config": {
         "bin-dir": "bin"
