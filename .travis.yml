@@ -8,6 +8,8 @@ env:
   global:
   - CI_HOME=$TRAVIS_BUILD_DIR
 
+sudo: false
+
 before_install:
 - gem install sass
 - gem install compass
@@ -15,8 +17,7 @@ before_install:
 - npm install -g grunt-cli
 - npm install
 - curl -s https://getcomposer.org/installer | php --
-- sudo apt-get update -qq
-- sudo apt-get install -qq graphviz
+
 
 before_script:
 - php composer.phar install --dev
