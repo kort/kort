@@ -301,8 +301,7 @@ Ext.define('Kort.util.Config', {
                 }
             },
             highscore: {
-                absoluteUrl: './server/webservices/highscore/absolute',
-                relativeUrl: './server/webservices/highscore/relative',
+                url: './server/webservices/highscore',
                 limit: 10
             },
             answer: {

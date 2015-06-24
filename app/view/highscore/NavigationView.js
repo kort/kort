@@ -1,21 +1,21 @@
 /**
- * Main navigation view for highscore tab.
+ * Main navigation view for highscore tab
  */
 Ext.define('Kort.view.highscore.NavigationView', {
-	extend: 'Ext.navigation.View',
-	alias: 'widget.highscorenavigationview',
+    extend: 'Ext.navigation.View',
+    alias: 'widget.highscorenavigationview',
     requires: [
         'Ext.TitleBar',
-        'Kort.view.highscore.TabPanel'
+        'Kort.view.highscore.List'
     ],
-	
-	config: {
-		title: Ext.i18n.Bundle.message('tab.highscore'),
-		url: 'highscore',
-		id: 'highscoreNavigationView',
-		iconCls: 'list',
+
+    config: {
+        title: Ext.i18n.Bundle.message('tab.highscore'),
+        url: 'highscore',
+        id: 'highscoreNavigationView',
+        iconCls: 'list',
         defaultBackButtonText: Ext.i18n.Bundle.message('button.back'),
-        
+
         navigationBar: {
             items: [
                 {
@@ -26,16 +26,16 @@ Ext.define('Kort.view.highscore.NavigationView', {
                     align: 'right'
                 }
             ],
-            // SENCHA TOUCH BUGFIX:
+            // SENCAH TOUCH BUGFIX:
             // disable navigationBar animation because of wrong title positioning
             animation: false
         },
-        
-		items: [
-			{
+
+        items: [
+            {
                 title: Ext.i18n.Bundle.message('highscore.title'),
-                xtype: 'highscoretabpanel'
-			}
-		]
-	}
+                xtype: 'highscorelist'
+            }
+        ]
+    }
 });

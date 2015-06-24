@@ -14,6 +14,7 @@ Ext.define('Kort.controller.Main', {
             aboutContainer: '#aboutContainer',
             mapNavigationView: '#mapNavigationView',
             highscoreNavigationView: '#highscoreNavigationView',
+            highscoreList: '#highscoreNavigationView .highscorelist',
             profileContainer: '#profileContainer'
         },
         control: {
@@ -49,7 +50,7 @@ Ext.define('Kort.controller.Main', {
      */
     showHighscore: function() {
         this._showView(this.getHighscoreNavigationView());
-        Kort.app.getController('Highscore').refreshAllLists();
+        this.getHighscoreList().refresh();
     },
     
     /**
