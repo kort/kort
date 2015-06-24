@@ -125,7 +125,6 @@ Ext.define('Kort.controller.Profile', {
         Ext.Ajax.request({
             url: Kort.util.Config.getWebservices().userLogout.getUrl(Kort.user.get('id')),
             success: function(response){
-                //ToDo doesnt work at all. Should remove only kort-user keys ant not newsItem-keys
                 userLocalStore.removeAll();
                 
                 // reload current page

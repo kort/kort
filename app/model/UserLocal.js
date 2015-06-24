@@ -11,8 +11,7 @@ Ext.define('Kort.model.UserLocal', {
         identifier: 'uuid',
 
         fields: [
-			{ name: 'secret', type: 'string' },
-            { name: 'newsAcceptedLanguageArray', type:'auto', defaultValue:Kort.util.Config.getSupportedLanguages()}
+			{ name: 'secret', type: 'string' }
         ]
     }
 });
