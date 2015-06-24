@@ -1,7 +1,7 @@
 language: php
 
 php:
-- 5.4
+- 5.5
 
 env:
   global:
@@ -36,6 +36,6 @@ deploy:
     develop: kort-dev
   on:
     repo: kort/kort
-    php: '5.4'
+    php: '5.5'
   api_key:
     secure: NL10DAVFJJPk7mHdKeN3q5hpKgRq/gKpEnsXeBb7dDcnW0XuwmO88srMVbYHOA6w3kw50aPkKZ1AirElPjcpm2uxEz/tW7PpshY8fGDKdCyuczXKh24avTpD8nF8lskTIPXVpwWBYxCoFziRsd+eQBKHCsRyrQcv0mjg2j2MoNE=
