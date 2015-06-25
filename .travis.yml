@@ -1,12 +1,13 @@
 language: php
 
 php:
-- 5.3
-- 5.4
+- 5.5
 
 env:
   global:
   - CI_HOME=$TRAVIS_BUILD_DIR
+
+sudo: false
 
 before_install:
 - gem install sass
@@ -15,8 +16,7 @@ before_install:
 - npm install -g grunt-cli
 - npm install
 - curl -s https://getcomposer.org/installer | php --
-- sudo apt-get update -qq
-- sudo apt-get install -qq graphviz
+
 
 before_script:
 - php composer.phar install --dev
@@ -36,6 +36,6 @@ deploy:
     develop: kort-dev
   on:
     repo: kort/kort
-    php: '5.4'
+    php: '5.5'
   api_key:
     secure: NL10DAVFJJPk7mHdKeN3q5hpKgRq/gKpEnsXeBb7dDcnW0XuwmO88srMVbYHOA6w3kw50aPkKZ1AirElPjcpm2uxEz/tW7PpshY8fGDKdCyuczXKh24avTpD8nF8lskTIPXVpwWBYxCoFziRsd+eQBKHCsRyrQcv0mjg2j2MoNE=
