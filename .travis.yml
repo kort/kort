@@ -19,7 +19,7 @@ before_install:
 
 
 before_script:
-- php composer.phar install --dev
+- php composer.phar install --dev --no-interaction
 - mv $CI_HOME/server/php/Webservice/Database/DbConfig.example.php $CI_HOME/server/php/Webservice/Database/DbConfig.php
 - phpenv rehash
 
