@@ -184,12 +184,11 @@ class ValidationHandler extends DbProxyHandler
         $params['type'] = "SQL";
 
         $position = $this->getDbProxy()->addToTransaction($params);
-        return $this->getDbProxy()->sendTransaction();
-        // $result = json_decode($this->getDbProxy()->sendTransaction(), true);
-        // $validationData = array_map(array($this, "convertBoolean"), $result[$position - 1]);
-        // $validationData = array_map(array($this, "translateValidation"), $validationData);
+        $result = json_decode($this->getDbProxy()->sendTransaction(), true);
+        $validationData = array_map(array($this, "convertBoolean"), $result[$position - 1]);
+        $validationData = array_map(array($this, "translateValidation"), $validationData);
 
-        // return json_encode($validationData);
+        return json_encode($validationData);
     }
 
     /**
