@@ -127,11 +127,14 @@ class ValidationHandler extends DbProxyHandler
         $sql .= "       txt4, ";
         $sql .= "       txt5 ";
         $sql .= " from kort.validations";
-        $sql .= " where fix_user_id != " . $_SESSION['user_id'] . " ";
-        $sql .= " AND not exists (select 1 ";
-        $sql .= "                 from kort.vote v ";
-        $sql .= "                 where v.fix_id = id ";
-        $sql .= "                 and v.user_id = " . $_SESSION['user_id'] . ")";
+        $sql .= " where 1 = 1 ";
+        if (isset($_SESSION['user_id'])) {
+            $sql .= " AND fix_user_id != " . $_SESSION['user_id'] . " ";
+            $sql .= " AND not exists (select 1 ";
+            $sql .= "                 from kort.vote v ";
+            $sql .= "                 where v.fix_id = id ";
+            $sql .= "                 and v.user_id = " . $_SESSION['user_id'] . ")";
+        }
         $sql .= " order by " . "geom <-> " . PostGisSqlHelper::getLatLngGeom($lat, $lng);
         $sql .= " limit " . $limit;
         $sql .= ") t";
