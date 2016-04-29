@@ -1,128 +1,80 @@
 /**
- * Controller for highscore tab and lists.
+ * Controller for highscore tab
  */
 Ext.define('Kort.controller.Highscore', {
     extend: 'Ext.app.Controller',
-    
+
     config: {
         views: [
             'highscore.NavigationView',
-            'highscore.AbsoluteList',
-            'highscore.RelativeList',
+            'highscore.List',
             'highscore.user.Container'
         ],
         refs: {
             mainTabPanel: '#mainTabPanel',
-            highscoreTabPanel: '#highscoreTabPanelId',
             highscoreNavigationView: '#highscoreNavigationView',
-            highscoreAbsoluteList: '#highScoreAbsoluteList',
-            highscoreRelativeList: '#highScoreRelativeList',
+            highscoreList: '.highscorelist',
             highscoreRefreshButton: '#highscoreNavigationView .button[cls=highscoreRefreshButton]',
             profileContainer: '#profileContainer'
         },
         control: {
             highscoreRefreshButton: {
-                tap: '_onHighscoreRefreshButtonTap'
+                tap: 'onHighscoreRefreshButtonTap'
             },
             highscoreNavigationView: {
-                detailpush: '_onHighscoreNavigationViewDetailPush',
-                back: '_onHighscoreNavigationViewBack'
+                detailpush: 'onHighscoreNavigationViewDetailPush',
+                back: 'onHighscoreNavigationViewBack'
             },
-            highscoreAbsoluteList: {
-                itemtap: '_onHighscoreListItemTap'
-            },
-            highscoreRelativeList: {
-                itemtap: '_onHighscoreListItemTap'
+            highscoreList: {
+                itemtap: 'onHighscoreListItemTap'
             }
         },
 
-        /**
-         * @private
-         */
         detailPushDisabled: false,
-        /**
-         * @private
-         */
-        storesInLoadingState: []
+        highscoreStore: null
     },
 
     /**
      * @private
+     * Initilizes the controller
      */
     init: function() {
-        var me = this;
+        var me = this,
+            highscoreStore = Ext.getStore('Highscore');
         me.callParent(arguments);
+
+        me.setHighscoreStore(highscoreStore);
+
         me.getApplication().on({
-            votesend: { fn: function(){me._loadStores(true);}, scope: me },
-            fixsend: { fn: function(){me._loadStores(true);}, scope: me },
-            userchange: { fn: function(){me._loadStores(false);}, scope: me }
+            votesend: { fn: me.loadStore, scope: me },
+            fixsend: { fn: me.loadStore, scope: me },
+            userchange: { fn: me.loadStore, scope: me }
+        });
+
+        highscoreStore.on({
+            load: { fn: me.refreshView, scope: me }
         });
     },
 
-    /**
-     * Refreshes all highscore lists from it's corresponding stores without update the stores itself (no ajax call).
-     */
-    refreshAllLists: function() {
-        this.getHighscoreAbsoluteList().refresh();
-        this.getHighscoreRelativeList().refresh();
-    },
-
-
-    /**
-     * @private
-     */
-    _onHighscoreRefreshButtonTap: function() {
-        this._loadStores(false);
+    // @private
+    onHighscoreRefreshButtonTap: function() {
+        this.loadStore(true);
     },
 
     /**
      * @private
-     * Delegate the load store request to the lists underlying ListTwoWayPaging-Plugin. When a list has finished loading,
-     * the _loadCallback function gets called (once for each list).
+     * Displays highscore user panel for given user
      */
-    _loadStores: function(waitForUserRefreshedEvent) {
-        var me = this;
-        me.getHighscoreRefreshButton().disable();
-        me.getStoresInLoadingState().push(me.getHighscoreAbsoluteList());
-        me.getStoresInLoadingState().push(me.getHighscoreRelativeList());
-
-        me.getStoresInLoadingState().forEach(function(list, index, listArray) {
-            list.getStore().requestToWayUpdate(waitForUserRefreshedEvent,'_loadCallback',me);
-        });
-
-    },
-
-    /**
-     * @private
-     * Callback function for the highscore list ListTwoWayPaging plugin. Gets called after a list has finished loading.
-     * If a callback from the last loading list is received, reenables the loading button.
-     */
-    _loadCallback: function() {
-        this.getStoresInLoadingState().pop();
-        if(!this.getStoresInLoadingState().length) {
-            this.getHighscoreRefreshButton().enable();
-        }
-    },
-
-    /**
-     * @private
-     * Displays highscore user panel for given user.
-     * @param {Kort.view.highscore.List} list
-     * @param {Number} index
-     * @param {Ext.dataview.component.DataItem} target
-     * @param {Kort.model.HighscoreEntry} record
-     * @param {Ext.EventObject} e
-     */
-    _onHighscoreListItemTap: function(list, index, target, record, e) {
+    onHighscoreListItemTap: function(list, index, target, record, e) {
         var me = this,
             highscoreUserBadgesStore = Ext.getStore('HighscoreUserBadges'),
             highscoreNavigationView = me.getHighscoreNavigationView(),
             highscoreUserContainer;
-        
+
         if(!me.getDetailPushDisabled()) {
             // disable fast tapping
             me.setDetailPushDisabled(true);
-            
+
             if(record.get('you')) {
                 // reenable detail push after certain time
                 Ext.defer(function() {
@@ -133,6 +85,7 @@ Ext.define('Kort.controller.Highscore', {
                 // loading badges of user
                 highscoreUserBadgesStore.getProxy().setUrl(Kort.util.Config.getWebservices().userBadges.getUrl(record.get('user_id')));
                 highscoreUserBadgesStore.load();
+
                 highscoreUserContainer = Ext.create('Kort.view.highscore.user.Container', {
                     record: record,
                     title: record.get('username')
@@ -145,26 +98,65 @@ Ext.define('Kort.controller.Highscore', {
 
     /**
      * @private
-     * @param {Kort.view.highscore.NavigationView} cmp
-     * @param {Mixed} view
-     * @param {Object} opts
+     * Loads highscore store
      */
-    _onHighscoreNavigationViewDetailPush: function(cmp, view, opts) {
+    loadStore: function(showLoadmask) {
+        if(showLoadmask) {
+            this.showLoadMask();
+        }
+        // reset store and load first page
+        this.getHighscoreStore().loadPage(1, {
+            addRecords: false
+        });
+    },
+
+    /**
+     * @private
+     * Refreshs highscore
+     */
+    refreshView: function() {
+        if(this.getHighscoreList()) {
+            this.getHighscoreList().refresh();
+        }
+        this.hideLoadMask();
+    },
+
+    /**
+     * @private
+     * Shows load mask
+     */
+    showLoadMask: function() {
+        this.getHighscoreRefreshButton().disable();
+        this.getHighscoreNavigationView().setMasked({
+            xtype: 'loadmask',
+            message: Ext.i18n.Bundle.message('highscore.loadmask.message'),
+            zIndex: Kort.util.Config.getZIndex().overlayLeafletMap
+        });
+    },
+
+    /**
+     * @private
+     * Hides load mask
+     */
+    hideLoadMask: function() {
+        this.getHighscoreNavigationView().setMasked(false);
+        this.getHighscoreRefreshButton().enable();
+    },
+
+    // @private
+    onHighscoreNavigationViewDetailPush: function(cmp, view, opts) {
         var me = this;
+
         me.getHighscoreRefreshButton().hide();
+
         // reenable detail push after certain time
         Ext.defer(function() {
             me.setDetailPushDisabled(false);
         }, 2000);
     },
 
-    /**
-     * @private
-     * @param {Kort.view.highscore.NavigationView} cmp
-     * @param {Mixed} view
-     * @param {Object} opts
-     */
-    _onHighscoreNavigationViewBack: function(cmp, view, opts) {
+    // @private
+    onHighscoreNavigationViewBack: function(cmp, view, opts) {
         this.getHighscoreRefreshButton().show();
     }
 });

@@ -1,7 +1,7 @@
 /**
- * Store for relative highscore entries.
+ * Store for highscore entries.
  */
-Ext.define('Kort.store.HighscoreRelative', {
+Ext.define('Kort.store.Highscore', {
     extend: 'Ext.data.Store',
 
 	config: {
@@ -14,7 +14,7 @@ Ext.define('Kort.store.HighscoreRelative', {
 
 		proxy: {
 			type: 'rest',
-            url: Kort.util.Config.getWebservices().highscore.relativeUrl,
+            url: Kort.util.Config.getWebservices().highscore.url,
             startParam: false,
             extraParams: {
                 'lang': Kort.util.Config.getLanguage(),
