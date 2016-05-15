@@ -17,31 +17,14 @@ Ext.define('Kort.controller.MapValidation', {
          * @private
          * override REQUIRED from base class
          */
-        dataStoreProxyURL: null,
-        /**
-         * @private
-         * override REQUIRED from base class
-         */
-        lLayerGroupName:null,
-        /**
-         * @private
-         */
-        promotionOverlayBackground:null,
-        /**
-         * @private
-         */
-        promotionStore: null
+        dataStoreProxyURL: null
     },
 
     /**
      * @private
      */
     init: function() {
-        this.setLLayerGroupName(Ext.i18n.Bundle.message('map.validation.layername'));
         this.setDataStore(Ext.getStore('Validations'));
-        this.setPromotionStore(Ext.getStore('Promotions'));
-        this._loadPromotionStore();
-        this.setPromotionOverlayBackground(Ext.create('Kort.view.map.mission.PromotionOverlay'));
         //call init function of parent AFTER having overidden the required properties
         this.callParent();
     },
@@ -51,18 +34,14 @@ Ext.define('Kort.controller.MapValidation', {
      */
     onMarkerClickCallbackFunction: function() {
         Ext.create('Kort.view.map.validation.ValidationMessageBox').confirm(this.getActiveRecord(), this._returnFromValidationMessageBox, this);
-        if(this.getActiveRecord().get('state') === Kort.util.Config.getMapMarkerState().validationPromotion) {
-            this.getLMapWrapper().add(this.getPromotionOverlayBackground());
-        }
     },
 
     /**
      * Defines how the proxy url of the dataStore has to be updated before the markers are plot on the map or need to be updated.
      * This is nescessary if the underlying proxy depends on gps or current map center coordiantes.
-     * @param {Boolean} useMapCenterInsteadOfGPS
      */
-    updateDataStoreProxyUrl: function(useMapCenterInsteadOfGPS) {
-        var coordinateSource = (useMapCenterInsteadOfGPS && this.getLMapWrapper()) ? this.getLMapWrapper().getMap().getCenter() : this.getCurrentLocationLatLng();
+    updateDataStoreProxyUrl: function() {
+        var coordinateSource = this.getCurrentLocationLatLng();
         //ToDo Refactor
         this.setDataStoreProxyURL(Kort.util.Config.getWebservices().validation.getUrl(coordinateSource.lat, coordinateSource.lng));
     },
@@ -75,24 +54,10 @@ Ext.define('Kort.controller.MapValidation', {
      * @param {Object} opt The config object passed to show.
      */
     _returnFromValidationMessageBox: function(buttonId, value, opt){
-        if(this.getActiveRecord().get('state') === Kort.util.Config.getMapMarkerState().validationPromotion) {
-            this.getLMapWrapper().remove(this.getPromotionOverlayBackground(),false);
-        }
         if (buttonId === 'yes'){
             this._showVote();
         }
         this.setActiveRecord(null);
-    },
-
-    /**
-     * @private
-     * Show details about the record's corresponding promotion.
-     * This function is called from within Kort.view.map.validation.ValidationMessageBox (promotion state) after a click on the info button has been detected.
-     * This is done this way because the info button has to be registered from within the view.
-     */
-    _showPromotionMessageBox: function () {
-        Kort.view.map.validation.ValidationMessageBox.preventOpening=true;
-        Ext.create('Kort.view.map.mission.PromotionMessageBox').confirm(this.getPromotionStore().getById(this.getActiveRecord().get('promo_id')), Ext.emptyFn, this, this.getActiveRecord().get('extra_coins'));
     },
 
     /**
@@ -106,13 +71,5 @@ Ext.define('Kort.controller.MapValidation', {
         });
         this.getMapNavigationView().push(voteContainer);
         this.getMapNavigationView().fireEvent('detailpush', this.getMapNavigationView());
-    },
-
-    /**
-     * @private
-     */
-    _loadPromotionStore: function() {
-        //ToDo Relink PromotionStore to Webservice-URL - waiting for MWO
-        this.getPromotionStore().load();
     }
 });

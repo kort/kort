@@ -301,8 +301,7 @@ Ext.define('Kort.util.Config', {
                 }
             },
             highscore: {
-                absoluteUrl: './server/webservices/highscore/absolute',
-                relativeUrl: './server/webservices/highscore/relative',
+                url: './server/webservices/highscore',
                 limit: 10
             },
             answer: {
@@ -335,12 +334,7 @@ Ext.define('Kort.util.Config', {
             validation: 'validationSate',
             validationPromotion: 'validationPromotionState',
             inactive: 'inactiveState'
-        },
-
-        /**
-         * @cfg {String} URL of Atom news feed
-         */
-        newsAtomFeedUrl: './resources/stores/news_default.xml'
+        }
 	},
 
     /**

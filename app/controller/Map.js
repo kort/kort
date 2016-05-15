@@ -16,7 +16,6 @@ Ext.define('Kort.controller.Map', {
             mapNavigationView: '#mapNavigationView',
             mapCenterButton: '#mapNavigationView .button[cls=mapCenterButton]',
             mapRefreshButton: '#mapNavigationView .button[cls=mapRefreshButton]',
-            mapSneakyPeakSegmentedButton: '#mapNavigationView .segmentedbutton[cls=sneakyPeak]',
             mapLoadingIcon: '#mapNavigationView .button[cls=mapLoadingIcon]'
         },
         control: {
@@ -30,9 +29,6 @@ Ext.define('Kort.controller.Map', {
             },
             mapRefreshButton: {
                 tap: '_onMapNavigationViewRefreshButtonTap'
-            },
-            mapSneakyPeakSegmentedButton: {
-                toggle: '_onSneakyPeakSegmentedButtonToggle'
             }
 
         },
@@ -56,11 +52,6 @@ Ext.define('Kort.controller.Map', {
         lMapWrapper: null,
         /**
          * @private
-         * The leaflet layer control [L.Layer](http://leafletjs.com/reference.html#control)
-         */
-        lLayerControl: null,
-        /**
-         * @private
          */
         permalinkLLatLong:null,
         /**
@@ -70,15 +61,7 @@ Ext.define('Kort.controller.Map', {
         /**
          * @private
          */
-        mapMarkerTypeArray: [],
-        /**
-         * @private
-         */
-        isSneakyPeakActivated: false,
-        /**
-         * @private
-         */
-        sneakyPeakTimeout: null
+        mapMarkerTypeArray: []
     },
 
     /**
@@ -97,16 +80,9 @@ Ext.define('Kort.controller.Map', {
     /**
      * Add a leaflet layer group to the leaflet map.
      * @param {L.LayerGroup} lLayerGroup
-     * @param {String} lLayerGroupName
      */
-    addLayerGroupToMap: function(lLayerGroup,lLayerGroupName) {
-        this.getLLayerControl().addOverlay(lLayerGroup,lLayerGroupName);
-        //there is no possibility to dynamically add a layer group to the leaflet map which is directly visible through default leaflet api.
-        //Hack to circumvent this restriction: programmatically check all control checkboxes and call lefalet.control update function (same effect as if all the control checkboxes where clicked by hand).
-        var inputNodeList = document.getElementsByClassName('leaflet-control-layers-selector'),
-            i;
-        for (i = 0; i<inputNodeList.length; i++) { inputNodeList[i].checked=true; }
-        this.getLLayerControl()._onInputClick();//potentially dangerous call of leaflet private method. No other possibility yet discovered.
+    addLayerGroupToMap: function(lLayerGroup) {
+        lLayerGroup.addTo(this.getLMap());
     },
 
     /**
@@ -138,14 +114,8 @@ Ext.define('Kort.controller.Map', {
                 id: 'leafletmapwrapper'
             });
         lMapWrapper.on('maprender', me._onLMapRendered,me);
-        //omit false movestart and moveend events right after the map has been created
-        Ext.defer(function() {
-            lMapWrapper.on('movestart',me._onMapMoveStart,me);
-            lMapWrapper.on('moveend',me._onMapMoveEnd,me);
-        },1000);
         me.setLMapWrapper(lMapWrapper);
         me.getMapNavigationView().add(lMapWrapper);
-        me.getMapNavigationView().on('sneakypeaktoggled', me._onSneakyPeakToggeled,me);
         //if there is a JumpPosition set through route query, use this one as starting center position.
         if(me.getPermalinkLLatLong()) {
             me._centerMapToPermalinkPosition();
@@ -184,45 +154,7 @@ Ext.define('Kort.controller.Map', {
      */
     _onLMapRendered: function(cmp, map, tileLayer) {
         this.setLMap(map);
-        var lLayerControl = new window.L.Control.Layers();
-        lLayerControl.addTo(map);
-        this.setLLayerControl(lLayerControl);
         this.getApplication().fireEvent('leafletmaprendered');
-    },
-
-    /**
-     * @private
-     * @param {Ext.SegmentedButton} segmentedButton
-     * @param {Ext.Button} button
-     * @param {Boolean} isPressed
-     * @param {Object} eOpts
-     */
-    _onSneakyPeakSegmentedButtonToggle: function(segmentedButton, button, isPressed, eOpts) {
-        this.setIsSneakyPeakActivated(isPressed);
-        this._triggerMapTypesUpdateProcess();
-    },
-
-    /**
-     * @private
-     * Called when a leaflet map [moveend event](http://leafletjs.com/reference.html#map-events) was detected.
-     */
-    _onMapMoveEnd: function() {
-        var me = this;
-        if(me.getIsSneakyPeakActivated()) {
-            //prevent exhausting ajax calls when user scrolls heavily on map: User has to stay "calm" on one
-            // point for 2 seconds to trigger the sneaky peak update call.
-            me.setSneakyPeakTimeout(setTimeout(function(){me._triggerMapTypesUpdateProcess(me);},2000));
-        }
-    },
-
-    /**
-     * @private
-     * Called when a leaflet map [movestart event](http://leafletjs.com/reference.html#map-events) was detected.
-     */
-    _onMapMoveStart: function() {
-        if(this.getSneakyPeakTimeout()) {
-            window.clearTimeout(this.getSneakyPeakTimeout());
-        }
     },
 
     /**
@@ -235,7 +167,7 @@ Ext.define('Kort.controller.Map', {
         var me = this;
         //change context according to parameter. Exclude sencha internal context call.
         if(typeof(context)!=='undefined' && typeof(context.fn)==='undefined') {me=context;}
-        me.getApplication().fireEvent('maptypeupdaterequest',me.getIsSneakyPeakActivated());
+        me.getApplication().fireEvent('maptypeupdaterequest');
         me._enterLoadingState(true);
     },
 
@@ -271,7 +203,6 @@ Ext.define('Kort.controller.Map', {
      * @private
      */
     _showLoadMask: function(silentLoading) {
-        this.getMapSneakyPeakSegmentedButton().disable();
         this.getMapCenterButton().disable();
         this.getMapRefreshButton().hide();
         this.getMapLoadingIcon().show();
@@ -289,7 +220,6 @@ Ext.define('Kort.controller.Map', {
      */
     _hideLoadMask: function(silentLoading) {
         this.getMapLoadingIcon().hide();
-        this.getMapSneakyPeakSegmentedButton().enable();
         this.getMapCenterButton().enable();
         this.getMapRefreshButton().show();
         if(!silentLoading) {this.getMapNavigationView().setMasked(false);}
@@ -305,7 +235,6 @@ Ext.define('Kort.controller.Map', {
     _onMapNavigationViewDetailViewPush: function(cmp, view, opts) {
         this.getMapCenterButton().hide();
         this.getMapRefreshButton().hide();
-        this.getMapSneakyPeakSegmentedButton().hide();
     },
 
     /**
@@ -317,7 +246,6 @@ Ext.define('Kort.controller.Map', {
     _onMapNavigationViewDetailViewBack: function(cmp, view, opts) {
         this.getMapCenterButton().show();
         this.getMapRefreshButton().show();
-        this.getMapSneakyPeakSegmentedButton().show();
     },
 
     /**
