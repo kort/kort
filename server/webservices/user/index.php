@@ -5,6 +5,10 @@
 
 /** Load Slim library */
 require_once('../../../lib/Slim-2.1.0/Slim/Slim.php');
+/** Load the Google API Client */
+require_once "../../../lib/google-api-php-client/src/Google_Client.php";
+/** Load the Google OAuth 2.0 service */
+require_once '../../../lib/google-api-php-client/src/contrib/Google_Oauth2Service.php';
 /** Load ClassLoader */
 require_once('../../../server/php/ClassLoader.php');
 
@@ -34,6 +38,21 @@ $app->get(
         }
         $userData = $userGetHandler->getUserBySecret($secret);
         $slim->returnData($userData);
+    }
+);
+
+// define REST resources
+$app->get(
+    '/verify/google',
+    function ($secret = null) use ($userHandler, $slim, $app) {
+        $googleOAuth = new \OAuth\GoogleOAuth();
+        $userData = $userHandler->authenticateUser($googleOAuth, $app->request()->params('id_token'));
+        if (!$userData) {
+            $app->response()->status(401);
+            $app->response()->write("401 Unauthorized");
+            return;
+        }
+        $app->response()->write($userData);
     }
 );
 

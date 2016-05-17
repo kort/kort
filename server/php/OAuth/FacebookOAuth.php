@@ -72,6 +72,17 @@ class FacebookOAuth extends AbstractOAuthCallback
     }
 
     /**
+     * Verify a given token again the OAuth provider.
+     *
+     * @param mixed $idToken The id token to verify.
+     *
+     * @return boolean True if verification was successful, false otherwise
+     */
+    public function verify($idToken) {
+        return false;
+    }
+
+    /**
      * Returns the OAuth access token for this session.
      *
      * @return string The OAuth access token for this session
@@ -125,7 +136,7 @@ class FacebookOAuth extends AbstractOAuthCallback
     {
         return "Facebook";
     }
-    
+
     /**
      * The URL of the user's picture (avatar).
      *

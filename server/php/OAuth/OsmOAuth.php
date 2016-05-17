@@ -126,6 +126,17 @@ class OsmOAuth extends AbstractOAuthCallback
     }
 
     /**
+     * Verify a given token again the OAuth provider.
+     *
+     * @param mixed $idToken The id token to verify.
+     *
+     * @return boolean True if verification was successful, false otherwise
+     */
+    public function verify($idToken) {
+        return false;
+    }
+
+    /**
      * Returns the OAuth access token for this session.
      *
      * @return string The OAuth access token for this session
@@ -161,11 +172,11 @@ class OsmOAuth extends AbstractOAuthCallback
             $doc = new \DOMDocument();
             $doc->loadXML($result['body']);
             $xPath = new \DOMXpath($doc);
-            
+
             $userTag = $doc->getElementsByTagName("user")->item(0);
             $this->user['name'] = $userTag->getAttribute('display_name');
             $this->user['id'] = $userTag->getAttribute('id');
-            
+
             $imgTags = $xPath->query("//user/img");
             if ($imgTags->length > 0) {
                 $this->user['pic_url'] = $imgTags->item(0)->getAttribute('href');
@@ -184,7 +195,7 @@ class OsmOAuth extends AbstractOAuthCallback
         $user = $this->getOauthUser();
         return $user['id'];
     }
-    
+
     /**
      * Return the URL of the user's picture (avatar).
      *

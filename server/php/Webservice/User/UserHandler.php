@@ -84,4 +84,18 @@ class UserHandler extends DbProxyHandler
         $this->getDbProxy()->setReturnFields($this->getReturnFields());
         return $this->getDbProxy()->insert($data);
     }
+
+    public function authenticateUser($oauth, $id_token) {
+        $token = $oauth->verify($id_token);
+        if ($token === false) {
+            return false;
+        }
+
+        $dbUser = $oauth->saveApplicationUser();
+        $userData = array();
+        $userData['secret'] = $dbUser['secret'];
+        $userData['user_id'] = $dbUser['user_id'];
+
+        return json_encode($userData);
+    }
 }
