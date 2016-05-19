@@ -25,8 +25,9 @@ $app->get(
         $validationHandler->setLanguage($app->request()->params('lang'));
         $limit = $app->request()->params('limit');
         $radius = $app->request()->params('radius');
+        $user_id = $_SESSION['user_id'];
 
-        $validationData = $validationHandler->getValidationsByOwnPosition($lat, $lng, $limit, $radius);
+        $validationData = $validationHandler->getValidationsByOwnPosition($lat, $lng, $limit, $radius, $user_id);
         $slim->returnData($validationData);
     }
 );

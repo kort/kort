@@ -7,7 +7,7 @@ namespace Webservice\Database;
 use Helper\PgHelper;
 
 /**
- *The PsqlConnection class is an abstraction of a PostgreSQL database connection.
+ * The PsqlConnection class is an abstraction of a PostgreSQL database connection.
  */
 class PsqlConnection
 {

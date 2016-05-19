@@ -27,8 +27,23 @@ $app->get(
         $highscoreHandler->setLanguage($app->request()->params('lang'));
         $limit = $app->request()->params('limit');
         $page = $app->request()->params('page');
-        $highscoreData = $highscoreHandler->getAbsoluteHighscore($limit, $page);
-        $slim->returnData($highscoreData);
+
+        if (!$limit) {
+            $limit = 10;
+        }
+        if (!$page) {
+            $page = 1;
+        }
+
+        if ($app->request()->headers('PHP_AUTH_USER')) {
+            $user_id = $app->request()->headers('PHP_AUTH_USER');
+        } else {
+            $user_id = $_SESSION['user_id'];
+        }
+
+        $highscoreData = $highscoreHandler->getAbsoluteHighscore($limit, $page, $user_id);
+        $app->response()->write($highscoreData);
+        //$slim->returnData($highscoreData);
     }
 );
 
@@ -38,7 +53,20 @@ $app->get(
         $highscoreHandler->setLanguage($app->request()->params('lang'));
         $limit = $app->request()->params('limit');
         $page = $app->request()->params('page');
-        $highscoreData = $highscoreHandler->getRelativeHighscore($limit, $page);
+
+        if (!$limit) {
+            $limit = 10;
+        }
+        if (!$page) {
+            $page = 1;
+        }
+
+        if ($app->request()->headers('PHP_AUTH_USER')) {
+            $user_id = $app->request()->headers('PHP_AUTH_USER');
+        } else {
+            $user_id = $_SESSION['user_id'];
+        }
+        $highscoreData = $highscoreHandler->getRelativeHighscore($limit, $page, $user_id);
         $slim->returnData($highscoreData);
     }
 );

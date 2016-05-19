@@ -5,6 +5,7 @@
 namespace Webservice\User;
 
 use Webservice\DbProxyHandler;
+use OAuth\AbstractOAuthCallback;
 
 /**
  * The UserHandler class handles all POST and PUT requests to the user webservice.
@@ -83,5 +84,28 @@ class UserHandler extends DbProxyHandler
     {
         $this->getDbProxy()->setReturnFields($this->getReturnFields());
         return $this->getDbProxy()->insert($data);
+    }
+
+    /**
+     * Verifies a given token and if successful updates the user.
+     *
+     * @param AbstractOAuthCallback $oauth    An OAuth handler.
+     * @param string                $id_token The token to verify.
+     *
+     * @return boolean|string Returns the user data for authentication if successful, otherwise false
+     */
+    public function authenticateUser(AbstractOAuthCallback $oauth, $id_token)
+    {
+        $token = $oauth->verify($id_token);
+        if ($token === false) {
+            return false;
+        }
+
+        $dbUser = $oauth->saveApplicationUser();
+        $userData = array();
+        $userData['secret'] = $dbUser['secret'];
+        $userData['user_id'] = $dbUser['user_id'];
+
+        return json_encode($userData);
     }
 }

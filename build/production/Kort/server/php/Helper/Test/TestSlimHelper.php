@@ -16,7 +16,7 @@ class TestSlimHelper extends AbstractKortUnitTestCase
 
     public function setUp()
     {
-        $this->mockApp = M::mock("\\Slim\\Slim");
+        $this->mockApp = M::mock("\\Slim\\Slim")->shouldReceive('add')->getMock();
         $this->mockResponse = M::mock("\\Slim\\Http\\Response");
 
         $this->slim = new SlimHelper($this->mockApp);
