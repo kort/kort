@@ -32,11 +32,23 @@ $userBadgesHandler = new UserBadgesHandler();
 // define REST resources
 $app->get(
     '/(:secret)',
-    function ($secret = null) use ($userGetHandler, $slim) {
+    function ($secret = null) use ($userGetHandler, $slim, $app) {
         if (empty($secret) && isset($_SESSION['secret'])) {
             $secret = $_SESSION['secret'];
         }
-        $userData = $userGetHandler->getUserBySecret($secret);
+        if (empty($secret) && $app->request()->headers('PHP_AUTH_PW')) {
+            $secret = $app->request()->headers('PHP_AUTH_PW');
+        }
+        if ($app->request()->headers('PHP_AUTH_USER')) {
+            $user_id = $app->request()->headers('PHP_AUTH_USER');
+        } else {
+            if (isset($_SESSION['user_id'])) {
+                $user_id = $_SESSION['user_id'];
+            }
+            $user_id = '';
+        }
+
+        $userData = $userGetHandler->getUserByIdAndSecret($user_id, $secret);
         $slim->returnData($userData);
     }
 );

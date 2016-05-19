@@ -67,7 +67,7 @@ class HighscoreHandler extends DbProxyHandler
      *
      * @return string|bool the JSON-encoded highscore if successful, false otherwise
      */
-    public function getAbsoluteHighscore($limit, $page)
+    public function getAbsoluteHighscore($limit, $page, $user_id)
     {
         $offset = ($page * $limit) - $limit;
 
@@ -78,7 +78,7 @@ class HighscoreHandler extends DbProxyHandler
         $sql .= "select * from ";
         $sql .= "(select " . implode($this->getFields(), ',');
         $sql .= " from " . $this->getTable();
-        $sql .= " ) my where my.user_id = " . $_SESSION['user_id'];
+        $sql .= " ) my where my.user_id = " . $user_id;
         $sql .= " order by ranking";
 
         $params = array();
@@ -86,12 +86,19 @@ class HighscoreHandler extends DbProxyHandler
         $params['type'] = "SQL";
 
         $position = $this->getDbProxy()->addToTransaction($params);
+        return json_encode($this->getDbProxy()->sendTransaction());
         $result = json_decode($this->getDbProxy()->sendTransaction(), true);
         $scoreList = $result[$position - 1];
         if (!$scoreList) {
             return false;
         }
-        $scoreList = array_map("self::isYourScore", $scoreList);
+        $scoreList = array_map(
+            function($score) use ($user_id) {
+                return self::isYourScore($score, $user_id);
+            },
+            $scoreList
+        );
+
         $scoreList = array_map("self::setPicUrl", $scoreList);
 
         return json_encode($scoreList);
@@ -105,7 +112,7 @@ class HighscoreHandler extends DbProxyHandler
      *
      * @return string|bool the JSON-encoded highscore if successful, false otherwise
      */
-    public function getRelativeHighscore($limit, $page)
+    public function getRelativeHighscore($limit, $page, $user_id)
     {
         $offset = ($page * $limit) - $limit;
 
@@ -124,7 +131,13 @@ class HighscoreHandler extends DbProxyHandler
         if (!$scoreList) {
             return false;
         }
-        $scoreList = array_map("self::isYourScore", $scoreList);
+
+        $scoreList = array_map(
+            function($score) use ($user_id) {
+                return self::isYourScore($score, $user_id);
+            },
+            $scoreList
+        );
         $scoreList = array_map("self::setPicUrl", $scoreList);
 
         return json_encode($scoreList);
@@ -138,10 +151,10 @@ class HighscoreHandler extends DbProxyHandler
      *
      * @return array the $score array with an additional field "you"
      */
-    protected static function isYourScore(array $score)
+    protected static function isYourScore(array $score, $user_id)
     {
-        if (isset($_SESSION['user_id'])) {
-            $score['you'] = ($score['user_id'] == $_SESSION['user_id']);
+        if (!empty($user_id)) {
+            $score['you'] = ($score['user_id'] == $user_id);
         }
         return $score;
     }
