@@ -45,24 +45,19 @@ class SlimAuthMiddleware extends \Slim\Middleware
     {
         $req = $this->app->request();
         $res = $this->app->response();
-        $authUser = $req->headers('PHP_AUTH_USER');
-        $authPass = $req->headers('PHP_AUTH_PW');
-
-        $userGetHandler = new UserGetHandler();
-        $userAuthenticated = $userGetHandler->userExists($authUser, $authPass);
-
         $path =  $req->getPath();
 
+        // allow all calls that are *not* to a webservice
         if (!preg_match('@^.*/webservices/.*$@', $path)) {
             $this->next->call();
             return;
         }
 
+        // allow certain routes without authentication
         $openRoutes = array(
             '.*/user/verify/.*',
             '.*/statistics.*'
         );
-
         foreach ($openRoutes as $openRoute) {
             if (preg_match('@^' . $openRoute . '$@', $path)) {
                 $this->next->call();
@@ -70,6 +65,13 @@ class SlimAuthMiddleware extends \Slim\Middleware
             }
         }
 
+        // authenticate the user with HTTP Basic Auth
+        // Username = user_id, Password = secret
+        $authUser = $req->headers('PHP_AUTH_USER');
+        $authPass = $req->headers('PHP_AUTH_PW');
+
+        $userGetHandler = new UserGetHandler();
+        $userAuthenticated = $userGetHandler->userExists($authUser, $authPass);
 
         if ($userAuthenticated) {
             $this->next->call();
