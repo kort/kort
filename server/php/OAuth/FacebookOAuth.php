@@ -78,7 +78,8 @@ class FacebookOAuth extends AbstractOAuthCallback
      *
      * @return boolean True if verification was successful, false otherwise
      */
-    public function verify($idToken) {
+    public function verify($idToken)
+    {
         return false;
     }
 

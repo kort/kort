@@ -77,10 +77,11 @@ class ValidationHandler extends DbProxyHandler
     /**
      * Return the validations around the users current position.
      *
-     * @param float   $lat    User positions latitude.
-     * @param float   $lng    User positions longitude.
-     * @param integer $limit  Amount of validations to return.
-     * @param integer $radius Radius around the user position to look for validations.
+     * @param float   $lat     User positions latitude.
+     * @param float   $lng     User positions longitude.
+     * @param integer $limit   Amount of validations to return.
+     * @param integer $radius  Radius around the user position to look for validations.
+     * @param integer $user_id ID of the user.
      *
      * @return string JSON-encoded validations around the users current position
      */

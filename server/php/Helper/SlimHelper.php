@@ -34,7 +34,8 @@ class SlimHelper
      *
      * @return void
      */
-    protected function addAuthMiddleware() {
+    protected function addAuthMiddleware()
+    {
         $this->app->add(new SlimAuthMiddleware());
     }
 

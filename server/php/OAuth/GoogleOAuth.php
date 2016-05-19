@@ -9,10 +9,19 @@ namespace OAuth;
  */
 class GoogleOAuth extends AbstractOAuthCallback
 {
+    /**
+     * @var string
+     */
     protected $accessToken = null;
 
+    /**
+     * @var string
+     */
     protected $refreshToken = null;
 
+    /**
+     * @var string
+     */
     protected $oauthUserId = null;
     /**
      * The Google API Client.
@@ -63,7 +72,8 @@ class GoogleOAuth extends AbstractOAuthCallback
      *
      * @return boolean True if verification was successful, false otherwise
      */
-    public function verify($idToken) {
+    public function verify($idToken)
+    {
         try {
             // Client library can verify the ID token.
             $jwt = $this->client->verifyIdToken($idToken)->getAttributes();
@@ -95,8 +105,8 @@ class GoogleOAuth extends AbstractOAuthCallback
     public function getRefreshToken()
     {
         if (empty($this->refreshToken)) {
-            $authObj = json_decode( $this->getAccessToken() );
-            if ( isset( $authObj->refresh_token ) ) {
+            $authObj = json_decode($this->getAccessToken());
+            if (isset($authObj->refresh_token)) {
                 $this->refreshToken = $authObj->refresh_token;
             }
         }

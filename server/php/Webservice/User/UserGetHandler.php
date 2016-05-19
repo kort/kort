@@ -49,6 +49,7 @@ class UserGetHandler extends DbProxyHandler
     /**
      * Returns a user identified by his specific secret.
      *
+     * @param string $userId The id of the user.
      * @param string $secret The user's secret.
      *
      * @return the JSON encoded user information
@@ -66,7 +67,7 @@ class UserGetHandler extends DbProxyHandler
                 }
                 $_SESSION['secret'] = $secret;
                 $_SESSION['user_id'] = $userData['id'];
-                if (empty( $userData['pic_url'])) {
+                if (empty($userData['pic_url'])) {
                     $userData['pic_url'] = GravatarHelper::getGravatarUrl($userData['oauth_user_id']);
                 }
                 $userData['logged_in'] = true;
