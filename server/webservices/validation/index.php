@@ -25,7 +25,12 @@ $app->get(
         $validationHandler->setLanguage($app->request()->params('lang'));
         $limit = $app->request()->params('limit');
         $radius = $app->request()->params('radius');
-        $user_id = $_SESSION['user_id'];
+
+        if ($app->request()->headers('PHP_AUTH_USER')) {
+            $user_id = $app->request()->headers('PHP_AUTH_USER');
+        } else {
+            $user_id = $_SESSION['user_id'];
+        }
 
         $validationData = $validationHandler->getValidationsByOwnPosition($lat, $lng, $limit, $radius, $user_id);
         $slim->returnData($validationData);
