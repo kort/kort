@@ -118,6 +118,11 @@ class VoteHandler extends DbProxyHandler implements IKoinCount
         $transProxy->addToTransaction($malusParams);
 
         $result = json_decode($transProxy->sendTransaction(), true);
+
+        if (empty($result)) {
+            return false;
+        }
+
         $reward = $rewardHandler->extractReward($result);
         return $reward->toJson();
     }

@@ -63,7 +63,7 @@ $app->post(
         $result = $voteHandler->insertVote($data);
         if (!$result) {
             $app->response()->status(400);
-            $app->response()->write("Could not insert record: " . $result);
+            $app->response()->write("Could not insert record. Did you already sent it? No cheating! :)");
         } else {
             $app->response()->write($result);
         }
