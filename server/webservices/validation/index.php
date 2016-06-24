@@ -43,7 +43,13 @@ $app->post(
         $voteHandler->setLanguage($app->request()->params('lang'));
         $data = json_decode($app->request()->getBody(), true);
 
-        if (!isset($_SESSION) || $data['user_id'] != $_SESSION['user_id']) {
+        if ($app->request()->headers('PHP_AUTH_USER')) {
+            $user_id = $app->request()->headers('PHP_AUTH_USER');
+        } else {
+            $user_id = $_SESSION['user_id'];
+        }
+
+        if ($data['user_id'] != $user_id) {
             $app->response()->status(403);
             $app->response()->write("Wrong user_id");
             return;
