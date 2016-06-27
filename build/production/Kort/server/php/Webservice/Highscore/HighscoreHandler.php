@@ -62,12 +62,13 @@ class HighscoreHandler extends DbProxyHandler
     /**
      * Return the current highscore with users, points etc.
      *
-     * @param integer $limit The amount of entries this method should return.
-     * @param integer $page  The current page which should be loaded.
+     * @param integer $limit   The amount of entries this method should return.
+     * @param integer $page    The current page which should be loaded.
+     * @param integer $user_id ID of the user.
      *
      * @return string|bool the JSON-encoded highscore if successful, false otherwise
      */
-    public function getAbsoluteHighscore($limit, $page)
+    public function getAbsoluteHighscore($limit, $page, $user_id)
     {
         $offset = ($page * $limit) - $limit;
 
@@ -78,7 +79,7 @@ class HighscoreHandler extends DbProxyHandler
         $sql .= "select * from ";
         $sql .= "(select " . implode($this->getFields(), ',');
         $sql .= " from " . $this->getTable();
-        $sql .= " ) my where my.user_id = " . $_SESSION['user_id'];
+        $sql .= " ) my where my.user_id = " . $user_id;
         $sql .= " order by ranking";
 
         $params = array();
@@ -91,7 +92,13 @@ class HighscoreHandler extends DbProxyHandler
         if (!$scoreList) {
             return false;
         }
-        $scoreList = array_map("self::isYourScore", $scoreList);
+        $scoreList = array_map(
+            function ($score) use ($user_id) {
+                return self::isYourScore($score, $user_id);
+            },
+            $scoreList
+        );
+
         $scoreList = array_map("self::setPicUrl", $scoreList);
 
         return json_encode($scoreList);
@@ -100,12 +107,13 @@ class HighscoreHandler extends DbProxyHandler
     /**
      * Return the current highscore with users, points etc.
      *
-     * @param integer $limit The amount of entries this method should return.
-     * @param integer $page  The current page which should be loaded.
+     * @param integer $limit   The amount of entries this method should return.
+     * @param integer $page    The current page which should be loaded.
+     * @param integer $user_id ID of the user.
      *
      * @return string|bool the JSON-encoded highscore if successful, false otherwise
      */
-    public function getRelativeHighscore($limit, $page)
+    public function getRelativeHighscore($limit, $page, $user_id)
     {
         $offset = ($page * $limit) - $limit;
 
@@ -124,7 +132,13 @@ class HighscoreHandler extends DbProxyHandler
         if (!$scoreList) {
             return false;
         }
-        $scoreList = array_map("self::isYourScore", $scoreList);
+
+        $scoreList = array_map(
+            function ($score) use ($user_id) {
+                return self::isYourScore($score, $user_id);
+            },
+            $scoreList
+        );
         $scoreList = array_map("self::setPicUrl", $scoreList);
 
         return json_encode($scoreList);
@@ -134,14 +148,15 @@ class HighscoreHandler extends DbProxyHandler
     /**
      * Adds a field to a score to indicate whether a user is the currently logged in user or not.
      *
-     * @param array $score The score data.
+     * @param array   $score   The score data.
+     * @param integer $user_id ID of the user.
      *
      * @return array the $score array with an additional field "you"
      */
-    protected static function isYourScore(array $score)
+    protected static function isYourScore(array $score, $user_id)
     {
-        if (isset($_SESSION['user_id'])) {
-            $score['you'] = ($score['user_id'] == $_SESSION['user_id']);
+        if (!empty($user_id)) {
+            $score['you'] = ($score['user_id'] == $user_id);
         }
         return $score;
     }

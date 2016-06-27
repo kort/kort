@@ -16,7 +16,7 @@ class SecretGenerator
 {
     /**
      * Returns a unique secret to identify a user.
-     * 
+     *
      * @return string a double-salted SHA1 hash
      */
     public function getSecret()

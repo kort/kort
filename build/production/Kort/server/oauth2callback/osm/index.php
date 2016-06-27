@@ -19,7 +19,6 @@ require_once(\OAuth\OsmOAuth::getSecretFile());
 $osmOAuth = new \OAuth\OsmOAuth($consumerKey, $consumersecret);
 
 if (isset($_GET['oauth_token'])) {
-
     $osmOAuth->authenticate($_GET['oauth_token']);
     $dbUser = $osmOAuth->saveApplicationUser();
 

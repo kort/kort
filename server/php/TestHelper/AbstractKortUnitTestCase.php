@@ -42,7 +42,7 @@ abstract class AbstractKortUnitTestCase extends \UnitTestCase
         $test = new \TestSuite($this->getLabel());
         $test->add($this);
         if (\TextReporter::inCli()) {
-            exit ($test->run(new  KortCliReporter()) ? 0 : 1);
+            exit($test->run(new KortCliReporter()) ? 0 : 1);
         }
         $test->run(new KortHTMLReporter());
     }

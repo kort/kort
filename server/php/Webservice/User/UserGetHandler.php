@@ -49,13 +49,14 @@ class UserGetHandler extends DbProxyHandler
     /**
      * Returns a user identified by his specific secret.
      *
+     * @param string $userId The id of the user.
      * @param string $secret The user's secret.
      *
      * @return the JSON encoded user information
      */
-    public function getUserBySecret($secret)
+    public function getUserByIdAndSecret($userId, $secret)
     {
-        if (!empty($secret)) {
+        if (!empty($userId) && !empty($secret)) {
             $this->getDbProxy()->setWhere("secret = '". $secret . "'");
             $userData = json_decode($this->getDbProxy()->select(), true);
             $userData = $userData[0];
@@ -66,7 +67,7 @@ class UserGetHandler extends DbProxyHandler
                 }
                 $_SESSION['secret'] = $secret;
                 $_SESSION['user_id'] = $userData['id'];
-                if (empty( $userData['pic_url'])) {
+                if (empty($userData['pic_url'])) {
                     $userData['pic_url'] = GravatarHelper::getGravatarUrl($userData['oauth_user_id']);
                 }
                 $userData['logged_in'] = true;
@@ -74,6 +75,28 @@ class UserGetHandler extends DbProxyHandler
             }
         }
         return $this->getDefaultUserJson();
+    }
+
+    /**
+     * Checks if a user exists.
+     *
+     * @param string $userId The id of the user.
+     * @param string $secret The user's secret.
+     *
+     * @return boolean True if user was found, false otherwise
+     */
+    public function userExists($userId, $secret)
+    {
+        if (empty($userId) || empty($secret)) {
+            return false;
+        }
+        $this->getDbProxy()->setWhere("secret = '". $secret . "'");
+        $userData = json_decode($this->getDbProxy()->select(), true);
+        $userData = $userData[0];
+        if (!empty($userData) && $userData['id'] === $userId) {
+            return true;
+        }
+        return false;
     }
 
     /**

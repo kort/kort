@@ -186,7 +186,7 @@ class DbHandler
         $returnValues = array();
         $this->db->beginTransaction();
         foreach ($statements as $params) {
-            switch($params['type']) {
+            switch ($params['type']) {
                 case "SQL":
                     $returnValue = $this->doSql($params['sql']);
                     break;

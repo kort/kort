@@ -25,6 +25,15 @@ abstract class AbstractOAuthCallback
     abstract public function authenticate($code);
 
     /**
+     * Verify a given token again the OAuth provider.
+     *
+     * @param mixed $idToken The id token to verify.
+     *
+     * @return boolean True if verification was successful, false otherwise
+     */
+    abstract public function verify($idToken);
+
+    /**
      * Returns the OAuth refresh token, which typically lives a long time.
      *
      * @return string The OAuth refresh token
@@ -58,10 +67,10 @@ abstract class AbstractOAuthCallback
      * @return string Name of the OAuth provider
      */
     abstract public function getOauthProvider();
-    
+
     /**
      * The URL of the user's picture (avatar).
-     * 
+     *
      * If this value is empty, Gravatar is used to get a picure.
      *
      * @return string URL of the user's picutre

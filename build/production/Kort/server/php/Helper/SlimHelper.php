@@ -26,6 +26,17 @@ class SlimHelper
     public function __construct($app)
     {
         $this->app = $app;
+        $this->addAuthMiddleware();
+    }
+
+    /**
+     * Add basic auth to routes
+     *
+     * @return void
+     */
+    protected function addAuthMiddleware()
+    {
+        $this->app->add(new SlimAuthMiddleware());
     }
 
     /**

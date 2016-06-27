@@ -89,8 +89,7 @@ class HttpHelper
      */
     protected function request($method, $url, $data = null)
     {
-        switch ($method)
-        {
+        switch ($method) {
             case "POST":
                 $this->curl->setOption(CURLOPT_POST, 1);
 

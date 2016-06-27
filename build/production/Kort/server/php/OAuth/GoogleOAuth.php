@@ -10,6 +10,20 @@ namespace OAuth;
 class GoogleOAuth extends AbstractOAuthCallback
 {
     /**
+     * @var string
+     */
+    protected $accessToken = null;
+
+    /**
+     * @var string
+     */
+    protected $refreshToken = null;
+
+    /**
+     * @var string
+     */
+    protected $oauthUserId = null;
+    /**
      * The Google API Client.
      *
      * @var Google_Client
@@ -52,13 +66,35 @@ class GoogleOAuth extends AbstractOAuthCallback
     }
 
     /**
+     * Verify a given token again the OAuth provider.
+     *
+     * @param mixed $idToken The id token to verify.
+     *
+     * @return boolean True if verification was successful, false otherwise
+     */
+    public function verify($idToken)
+    {
+        try {
+            // Client library can verify the ID token.
+            $jwt = $this->client->verifyIdToken($idToken)->getAttributes();
+            $this->oauthUserId = $jwt['payload']['email'];
+            return $jwt;
+        } catch (\Google_AuthException $e) {
+            return false;
+        }
+    }
+
+    /**
      * Returns the OAuth access token for this session.
      *
      * @return string The OAuth access token for this session
      */
     protected function getAccessToken()
     {
-        return $this->client->getAccessToken();
+        if (empty($this->accessToken)) {
+            $this->accessToken = $this->client->getAccessToken();
+        }
+        return $this->accessToken;
     }
 
     /**
@@ -68,11 +104,13 @@ class GoogleOAuth extends AbstractOAuthCallback
      */
     public function getRefreshToken()
     {
-        $authObj = json_decode($this->getAccessToken());
-        if (isset($authObj->refresh_token)) {
-            return $authObj->refresh_token;
+        if (empty($this->refreshToken)) {
+            $authObj = json_decode($this->getAccessToken());
+            if (isset($authObj->refresh_token)) {
+                $this->refreshToken = $authObj->refresh_token;
+            }
         }
-        return null;
+        return $this->refreshToken;
     }
 
     /**
@@ -82,6 +120,9 @@ class GoogleOAuth extends AbstractOAuthCallback
      */
     public function getOauthUser()
     {
+        if (!empty($this->oauthUserId)) {
+            return array();
+        }
         if (empty($this->user)) {
             $this->user = $this->oAuthService->userinfo->get();
         }
@@ -95,8 +136,13 @@ class GoogleOAuth extends AbstractOAuthCallback
      */
     protected function getOauthUserId()
     {
-        $user = $this->getOauthUser();
-        return $user['email'];
+        if (empty($this->oauthUserId)) {
+            $user = $this->getOauthUser();
+            if (!empty($user)) {
+                $this->oauthUserId = $user['email'];
+            }
+        }
+        return $this->oauthUserId;
     }
 
     /**
@@ -108,15 +154,18 @@ class GoogleOAuth extends AbstractOAuthCallback
     {
         return "Google";
     }
-    
+
     /**
      * The URL of the user's picture (avatar).
      *
-     * @return string URL of the user's picutre
+     * @return string URL of the user's picture
      */
     public function getPictureUrl()
     {
         $user = $this->getOauthUser();
+        if (empty($user)) {
+            return "";
+        }
         return $user['picture'];
     }
 }

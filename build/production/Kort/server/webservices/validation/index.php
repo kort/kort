@@ -26,7 +26,13 @@ $app->get(
         $limit = $app->request()->params('limit');
         $radius = $app->request()->params('radius');
 
-        $validationData = $validationHandler->getValidationsByOwnPosition($lat, $lng, $limit, $radius);
+        if ($app->request()->headers('PHP_AUTH_USER')) {
+            $user_id = $app->request()->headers('PHP_AUTH_USER');
+        } else {
+            $user_id = $_SESSION['user_id'];
+        }
+
+        $validationData = $validationHandler->getValidationsByOwnPosition($lat, $lng, $limit, $radius, $user_id);
         $slim->returnData($validationData);
     }
 );
@@ -37,7 +43,13 @@ $app->post(
         $voteHandler->setLanguage($app->request()->params('lang'));
         $data = json_decode($app->request()->getBody(), true);
 
-        if (!isset($_SESSION) || $data['user_id'] != $_SESSION['user_id']) {
+        if ($app->request()->headers('PHP_AUTH_USER')) {
+            $user_id = $app->request()->headers('PHP_AUTH_USER');
+        } else {
+            $user_id = $_SESSION['user_id'];
+        }
+
+        if ($data['user_id'] != $user_id) {
             $app->response()->status(403);
             $app->response()->write("Wrong user_id");
             return;
@@ -51,7 +63,7 @@ $app->post(
         $result = $voteHandler->insertVote($data);
         if (!$result) {
             $app->response()->status(400);
-            $app->response()->write("Could not insert record: " . $result);
+            $app->response()->write("Could not insert record. Did you already sent it? No cheating! :)");
         } else {
             $app->response()->write($result);
         }
