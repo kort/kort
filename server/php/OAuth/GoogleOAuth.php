@@ -120,7 +120,7 @@ class GoogleOAuth extends AbstractOAuthCallback
      */
     public function getOauthUser()
     {
-        if (!empty($this->oauthUserId)) {
+        if (empty($this->oauthUserId)) {
             return array();
         }
         if (empty($this->user)) {
