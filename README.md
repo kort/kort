@@ -2,7 +2,7 @@
 
 Kort is/was a cross-platform, crowdsourcing app aimed to improve OpenStreetMap 2012-2016. 
 
-**NOTE - This repo has been abandoned in favor of Kort Native!**
+**NOTE - This repo has been abandoned in favour of Kort Native!**
 
 [![Stories in Ready](https://badge.waffle.io/kort/kort.png?label=ready&title=Ready)](http://waffle.io/kort/kort)
 
