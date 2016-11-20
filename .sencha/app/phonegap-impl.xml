@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="PhoneGap">
+
+    <!-- ////////////// -->
+    <!-- Public Targets -->
+    <!-- ////////////// -->
+
+    <target name="PhoneGap + Sencha - Build" description="Builds the Application and the PhoneGap Native Platform"
+            depends="phonegap-sencha-build"/>
+    
+    <target name="PhoneGap + Sencha - Run" description="Builds the Application and the PhoneGap Native app then runs it"
+            depends="phonegap-sencha-run"/>
+
+    <target name="Build" description="Builds the application without building the Sencha app"
+            depends="phonegap-build"/>
+
+    <target name="Run" description="Runs the Native Application without building the Sencha app"
+            depends="phonegap-run"/>
+
+    <target name="Clean" 
+            description="Cleans the General PhoneGap WWW Folder"
+            depends="phonegap-clean"/>
+
+    <target name="phonegap-sencha-build" depends="native, build"/>
+    <target name="phonegap-sencha-run" depends="native, -autorun, build"/>
+   
+    <!--Init for All PhoneGap Tasks-->
+    <target name="-before-phonegap-init"/>
+    <target name="-phonegap-init">
+        <property name="phonegap.local.properties" value="${app.dir}/phonegap.local.properties"/>
+        <property file="${phonegap.local.properties}"/>
+    </target>
+    <target name="-after-phonegap-init"/>
+    <target name="phonegap-init"
+            depends="init, -before-phonegap-init, -phonegap-init, -after-phonegap-init"/>
+
+    <!-- Clean target for the Phonegap WWW directory  -->
+    <target name="-before-phonegap-clean"/>
+    <target name="-phonegap-clean">
+        <delete includeemptydirs="true">
+            <fileset dir="${app.phonegap.www.dir}" includes="**/*"/>
+        </delete>
+    </target>
+    <target name="-after-phonegap-clean"/>
+    <target name="phonegap-clean" depends="phonegap-init, -before-phonegap-clean, -phonegap-clean, -after-phonegap-clean "/>
+
+    <!-- Copies a build folder into the Phonegap WWW Folder. Used for Native bulding command -->
+    <target name="-before-phonegap-copy-build"/>
+    <target name="-phonegap-copy-build">
+        <if>
+            <not>
+                <equals arg1="${build.dir}" arg2="${app.phonegap.www.dir}"/>
+            </not>
+            <then>
+                <copy todir="${app.phonegap.www.dir}" failonerror="false" quiet="true">
+                    <fileset dir="${build.dir}">
+                        <include name="**/*"/>
+                    </fileset>
+                </copy>
+            </then>
+        </if>
+    </target>
+    <target name="-after-phonegap-copy-build"/>
+    <target name="phonegap-copy-build" depends="phonegap-init">
+        <x-ant-call unless="skip.phonegap-copy-build">
+            <target name="-before-phonegap-copy-build"/>
+            <target name="-phonegap-copy-build"/>
+            <target name="-after-phonegap-copy-build"/>
+        </x-ant-call>
+    </target>
+
+    <target name="-before-phonegap"/>
+    <target name="-after-phonegap"/>
+    
+    <!-- Overall Phonegap Build Target. Determines type of build to use -->
+    <target name="-before-phonegap-build"/>
+    <target name="-phonegap-build" depends="phonegap-init, phonegap-copy-build">
+        <if>
+            <x-is-false value="${args.autorun}"/>
+            <then>
+                <if>
+                    <x-is-true value="${phonegap.build.remote}"/>
+                    <then>
+                        <x-ant-call target="-phonegap-remote-build"/>
+                    </then>
+                    <else>
+                        <x-ant-call target="-phonegap-local-build"/>
+                    </else>
+                </if>
+            </then>
+        </if>
+    </target>
+    <target name="-after-phonegap-build"/>
+    <target name="phonegap-build" depends="phonegap-init, -before-phonegap, -before-phonegap-build, -phonegap-build, -after-phonegap-build, -after-phonegap" />
+
+    <target name="-before-phonegap-run"/>
+    <target name="-phonegap-run" depends="phonegap-init, phonegap-copy-build">
+         <if>
+            <x-is-true value="${args.autorun}"/>
+            <then>
+                <if>
+                    <x-is-true value="${phonegap.build.remote}"/>
+                    <then>
+                        <x-ant-call target="-phonegap-remote-run"/>
+                    </then>
+                    <else>
+                        <x-ant-call target="-phonegap-local-run"/>
+                    </else>
+                </if>
+            </then>
+        </if>
+    </target>
+    <target name="-after-phonegap-run"/>
+    <target name="phonegap-run" depends="phonegap-init, -autorun, -before-phonegap, -before-phonegap-run, -phonegap-run, -after-phonegap-run, -after-phonegap" />
+
+    <!-- Remote BUILD TARGETS -->
+    <target name="-phonegap-remote-login">
+        <x-shell reloadprofile="true" dir="${app.phonegap.dir}">
+            phonegap remote login --username="${phonegap.build.remote.username}" --password="${phonegap.build.remote.password}"
+        </x-shell>
+    </target>
+
+    <target name="-phonegap-remote-build" depends="-phonegap-remote-login">
+         <x-shell reloadprofile="true" dir="${app.phonegap.dir}">
+            phonegap remote build ${phonegap.platform}
+         </x-shell>
+    </target>
+
+    <target name="-phonegap-remote-run" depends="-phonegap-remote-login">
+         <x-shell reloadprofile="true" dir="${app.phonegap.dir}">
+            phonegap remote run ${phonegap.platform}
+         </x-shell>
+    </target>
+
+    <!-- LOCAL BUILD TARGETS -->
+    <target name="-phonegap-local-build">
+        <x-shell reloadprofile="true" dir="${app.phonegap.dir}">
+            phonegap local build ${phonegap.platform}
+        </x-shell>
+    </target>
+
+    <target name="-phonegap-local-run">
+        <x-shell reloadprofile="true" dir="${app.phonegap.dir}">
+            phonegap local run ${phonegap.platform}
+        </x-shell>        
+    </target>
+
+    <target name="-before-native-package"/>
+    <target name="-native-package" depends="phonegap-init, -before-phonegap, -phonegap-build, -phonegap-run, -after-phonegap"/>
+    <target name="-after-native-package"/>
+
+       <!-- Utility Target for specifing autorun -->
+    <target name="-autorun">
+        <property name="args.autorun" value="true"/>
+    </target>
+</project>

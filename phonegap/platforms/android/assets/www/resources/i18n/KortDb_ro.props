@@ -1,0 +1,174 @@
+# error types
+error_type.title.motorway_ref=Autostradă fără referință
+error_type.title.poi_wo_name=Obiect fără nume
+error_type.title.missing_speedlimit=Limită de viteză neprecizată
+error_type.title.tracktype=Tip de drum nespecificat
+error_type.title.worship_religion=Loc de rugăciune fără religie precizată
+error_type.title.language_name=Limba numelui necunoscută
+error_type.title.street_wo_name=Stradă fără nume
+error_type.title.missing_cuisine=Restaurant without a cuisine
+
+# error type placeholders
+error_type.placeholder.ref=Referință
+error_type.placeholder.religion=Religie
+error_type.placeholder.name=Nume
+error_type.placeholder.speed_limit=Limită de viteză
+error_type.placeholder.language=Limbă
+error_type.placeholder.type=Tip
+error_type.placeholder.street_name=Numele străzii
+error_type.placeholder.missing_cuisine=Cuisine
+
+# vote questions
+vote.question.ref=Este aceasta referința corectă pentru autostradă?
+vote.question.place_of_worship=Este aceasta religia corespunzătoare acestui loc de rugăciune?
+vote.question.name=Este acesta numele pentru acest $1?
+vote.question.maxspeed=Este aceasta limita de viteză corectă pentru această stradă?
+vote.question.language_unknown=Este numele '$2' în limba următoare?
+vote.question.tracktype=Este această cale de tipul următor?
+vote.question.street_name=Este acesta numele corect al străzii?
+vote.question.missing_cuisine=Is this the correct cuisine type of $1?
+
+# badge names
+badge.name.first_place=Locul 1
+badge.name.second_place=Locul 2
+badge.name.third_place=Locul 3
+badge.name.100_missions=100 de misiuni
+badge.name.50_missions=50 de misiuni
+badge.name.10_missions=10 misiuni
+badge.name.1000_checks=1000 de verificări
+badge.name.100_checks=100 de verificări
+badge.name.10_checks=10 verificări
+badge.name.first_mission=Misiunea 1
+badge.name.first_check=Verificarea 1
+
+# badge descriptions
+badge.description.reached_1st_place=Ați obținut locul 1 cu scor mare.
+badge.description.reached_2nd_place=Ați obținut locul 2 cu scor mare.
+badge.description.reached_3rd_place=Ați obținut locul 3 cu scor mare.
+badge.description.100_missions_completed=100 de misiuni terminate.
+badge.description.50_missions_completed=50 de misiuni terminate.
+badge.description.10_missions_completed=10 misiuni terminate.
+badge.description.1000_checks=1000 de răspunsuri verificate.
+badge.description.100_checks=100 de răspunsuri verificate.
+badge.description.10_checks=10 răspunsuri verificate.
+badge.description.1st_mission=Prima misiune terminată.
+badge.description.1st_check=Primul răspuns verificat.
+
+# missing_track_types (http://wiki.openstreetmap.org/wiki/Key:tracktype)
+answer.track_type.grade1=Asfalt, beton sau caldarâm
+answer.track_type.grade2=Drum cu pietriș
+answer.track_type.grade3=Amestec de materiale dure și moi
+answer.track_type.grade4=Sol, nisip și iarbă
+answer.track_type.grade5=Drum nepavat
+
+# religion (http://wiki.openstreetmap.org/wiki/Key:religion)
+answer.religion.buddhist=Budist (templu)
+answer.religion.christian=Creștină (biserică)
+answer.religion.hindu=Hindus (templu)
+answer.religion.jewish=Evreiască (sinagogă)
+answer.religion.muslim=Musulmană (moschee)
+answer.religion.pastafari=Pastafarian
+answer.religion.shinto=Șintoist (altar)
+answer.religion.sikh=Sikhit (Gurdwara)
+answer.religion.multiple=Mai multe credințe, religii.
+
+# language (http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
+answer.language.arabic=Arabă
+answer.language.catalan=Catalană
+answer.language.chinese=Chineză
+answer.language.danish=Daneză
+answer.language.dutch=Olandeză
+answer.language.english=Engleză
+answer.language.estonian=Estoniană
+answer.language.finnish=Finlandeză
+answer.language.french=Franceză
+answer.language.german=Germană
+answer.language.greek=Greacă
+answer.language.hebrew=Ebraică
+answer.language.hungarian=Hungarian
+answer.language.irish=Irlandeză
+answer.language.icelandic=Islandeză
+answer.language.italian=Italiană
+answer.language.japanese=Japoneză
+answer.language.korean=Coreană
+answer.language.croatian=Croată
+answer.language.latin=Latină
+answer.language.luxembourgish=Luxemburgheză
+answer.language.norwegian=Norvegiană
+answer.language.persian=Persană
+answer.language.polish=Poloneză
+answer.language.portuguese=Potugheză
+answer.language.romansh=Romanșă
+answer.language.romanian=Română
+answer.language.russian=Rusă
+answer.language.sardinian=Sardă
+answer.language.scottish_gaelic=Galica scoțiană
+answer.language.swiss_german=Germană elvețiană
+answer.language.serbian=Sârbă
+answer.language.slovakian=Slovacă
+answer.language.slovenian=Slovenă
+answer.language.spanish=Spaniolă
+answer.language.swedish=Suedeză
+answer.language.thai=Tailandeză
+answer.language.tibetan=Tibetană
+answer.language.czech=Cehă
+answer.language.turkish=Turcă
+answer.language.ukrainian=Ukrainian
+answer.language.uzbek=Uzbecă
+answer.language.vietnamese=Vietnameză
+answer.language.welsh=Galeză
+
+# missing_cuisine
+answer.missing_cuisine.regional=Regional
+answer.missing_cuisine.coffee_shop=Coffee Shop
+answer.missing_cuisine.international=International
+answer.missing_cuisine.italian=Italian
+answer.missing_cuisine.turkish=Turkish
+answer.missing_cuisine.chinese=Chinese
+answer.missing_cuisine.thai=Thai
+answer.missing_cuisine.asian=Asian
+answer.missing_cuisine.indian=Indian
+answer.missing_cuisine.french=French
+answer.missing_cuisine.mexican=Mexican
+answer.missing_cuisine.american=American
+answer.missing_cuisine.japanese=Japanese
+answer.missing_cuisine.greek=Greek
+answer.missing_cuisine.sandwich=Sandwich
+answer.missing_cuisine.steak_house=Steakhouse
+answer.missing_cuisine.chicken=Chicken
+answer.missing_cuisine.bistro_brasserie=Bistro, Brasserie
+answer.missing_cuisine.seafood=Seafood
+answer.missing_cuisine.burger=Burger
+
+##############################################################
+# THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT AND OSM_ERRORS#
+##############################################################
+
+# error descriptions (KeepRight)
+bug.question.track=ce fel de traseu este acesta?
+bug.question.poi=Cum se numește acest $1?
+bug.question.speed=Ce limită de viteză se aplică acestei străzi?
+bug.question.name_of_street=Care este numele acestei străzi?
+bug.question.language=În ce limbă este numele $2 scris?
+bug.question.motorway_ref=Care este referința (de ex. A3 sau E385) acestei autostrăzi?
+bug.question.place_of_worship=Cărei religii aparține acest loc de rugăciune?
+bug.question.cuisine_of_restaurant=What's the cuisine type of '$1'?
+
+# single values
+cafe=cafenea
+fast_food=fast-food
+restaurant=restaurant
+school=scoala
+pharmacy=farmacie
+fuel=benzinărie
+cinema=cinema
+bank=bancă
+university=universitate
+theatre=teatru
+pub=pub
+place_of_worship=loc de rugăciune
+library=bibliotecă
+hospital=spital
+courthouse=tribunal
+way=cale
+node=loc

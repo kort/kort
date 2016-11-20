@@ -1,0 +1,173 @@
+# error types
+error_type.title.motorway_ref=Referanssız motoryolu
+error_type.title.poi_wo_name=Adsız obje
+error_type.title.missing_speedlimit=Hız sınırı eksik
+error_type.title.tracktype=Yolun türü bilinmiyor
+error_type.title.worship_religion=Dinsiz ibadet yeri
+error_type.title.language_name=Dilin adı bilinmiyor
+error_type.title.street_wo_name=Adsız sokak
+error_type.title.missing_cuisine=Mutfaksız restorant
+
+# error type placeholders
+error_type.placeholder.ref=Referans
+error_type.placeholder.religion=Din
+error_type.placeholder.name=Ad
+error_type.placeholder.speed_limit=Hız sınırı
+error_type.placeholder.language=Dil
+error_type.placeholder.type=Tür
+error_type.placeholder.street_name=Sokağın adı
+error_type.placeholder.missing_cuisine=Mutfak
+
+# vote questions
+vote.question.ref=Bu motoryolun referansı doğrumu?
+vote.question.place_of_worship=İbadet yerin dini doğrumu?
+vote.question.name=Bunun adı bu $1 mu?
+vote.question.maxspeed=Hızlimiti bu yol icin doğrumu?
+vote.question.language_unknown=Bu ad $2 şu dildemi?
+vote.question.tracktype=Bu yol şu türden mi?
+vote.question.street_name=Bu sokağın adı doğrumu?
+vote.question.missing_cuisine=Mutfak tipi şu mu $1?
+
+# badge names
+badge.name.first_place=Birinci
+badge.name.second_place=İkinci 
+badge.name.third_place=Ücüncü
+badge.name.100_missions=100 görev
+badge.name.50_missions=50 görev
+badge.name.10_missions=10 görev
+badge.name.1000_checks=1000 denetlemeler
+badge.name.100_checks=100 denetlemeler
+badge.name.10_checks=10 denetlemeler
+badge.name.first_mission=\ görev
+badge.name.first_check=İlk denetleme
+
+# badge descriptions
+badge.description.reached_1st_place=Yüksek skorda birinci oldunuz.
+badge.description.reached_2nd_place=Yüksek skorda ikinci oldunuz.
+badge.description.reached_3rd_place=Yüksek skorda üçüncü oldunuz.
+badge.description.100_missions_completed=100 görev tamamlandı
+badge.description.50_missions_completed=50 görev tamamlandı
+badge.description.10_missions_completed=10 görev tamamlandı
+badge.description.1000_checks=1000 cevap denetlendi
+badge.description.100_checks=100 cevap denetlendi
+badge.description.10_checks=10 cevap denetlendi
+badge.description.1st_mission=İlk görev tamamlandı
+badge.description.1st_check=İlk cevap denetlendi
+
+# missing_track_types (http://wiki.openstreetmap.org/wiki/Key:tracktype)
+answer.track_type.grade1=asfalt, beton yada parke taşı
+answer.track_type.grade2=keçiyolu
+answer.track_type.grade3=yumuşak ve sert malzeme karışımı
+answer.track_type.grade4=Toprak, kum veya cimen
+answer.track_type.grade5=patika
+
+# religion (http://wiki.openstreetmap.org/wiki/Key:religion)
+answer.religion.buddhist=Buddist (tapınak)
+answer.religion.christian=Hristian (Kilise)
+answer.religion.hindu=Hint (tapınak)
+answer.religion.jewish=Yahudi (Sinagog)
+answer.religion.muslim=Müslüman (Cami)
+answer.religion.pastafari=Pastafarian
+answer.religion.shinto=Şinto (tapınak)
+answer.religion.sikh=Sih (gurdwara)
+answer.religion.multiple=Çeşitli dinler
+
+# language (http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
+answer.language.arabic=Arabca
+answer.language.catalan=Katalanca
+answer.language.chinese=Çince
+answer.language.danish=Danimarkaca
+answer.language.dutch=Holandaca
+answer.language.english=İngilizce
+answer.language.estonian=Estonyaca
+answer.language.finnish=Fince
+answer.language.french=Fransızca
+answer.language.german=Almanca
+answer.language.greek=Yunanca
+answer.language.hebrew=İbranice
+answer.language.hungarian=Macarca
+answer.language.irish=İrlandaca
+answer.language.icelandic=İzlandaca
+answer.language.italian=Italian
+answer.language.japanese=Japonca
+answer.language.korean=Korece
+answer.language.croatian=Hırvatca
+answer.language.latin=Latince
+answer.language.luxembourgish=Lüksemburgca
+answer.language.norwegian=Norveççe
+answer.language.persian=Farsça
+answer.language.polish=Lehçe
+answer.language.portuguese=Portekizce
+answer.language.romansh=Romanşça
+answer.language.romanian=Rumence
+answer.language.russian=Rusça
+answer.language.sardinian=Sarduca
+answer.language.scottish_gaelic=İskoçça
+answer.language.swiss_german=İsvicre almancası
+answer.language.serbian=Sırpca
+answer.language.slovakian=Slovakça
+answer.language.slovenian=Slovence
+answer.language.spanish=İspanyolca
+answer.language.swedish=İsvecce
+answer.language.thai=Tayca
+answer.language.tibetan=Tibetçe
+answer.language.czech=Çekçe
+answer.language.turkish=Türkçe
+answer.language.uzbek=Özbekçe
+answer.language.vietnamese=Vietnamca
+answer.language.welsh=Galce
+
+# missing_cuisine
+answer.missing_cuisine.regional=Bölgeden
+answer.missing_cuisine.coffee_shop=Kahve
+answer.missing_cuisine.international=Uluslararası 
+answer.missing_cuisine.italian=İtalian
+answer.missing_cuisine.turkish=Türkçe 
+answer.missing_cuisine.chinese=Çince
+answer.missing_cuisine.thai=Tayca
+answer.missing_cuisine.asian=Asialı
+answer.missing_cuisine.indian=Hintçe
+answer.missing_cuisine.french=Fransiz
+answer.missing_cuisine.mexican=Mexicalı
+answer.missing_cuisine.american=Americalı
+answer.missing_cuisine.japanese=Japon
+answer.missing_cuisine.greek=Yünanlı
+answer.missing_cuisine.sandwich=Sandviç
+answer.missing_cuisine.steak_house=Steakhouse
+answer.missing_cuisine.chicken=Tavuk
+answer.missing_cuisine.bistro_brasserie=Bistro
+answer.missing_cuisine.seafood=Su ürünleri
+answer.missing_cuisine.burger=Hamburger
+
+##############################################################
+# THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT AND OSM_ERRORS#
+##############################################################
+
+# error descriptions (KeepRight)
+bug.question.track=Bu iz hangi türden?
+bug.question.poi=Buna $1 ne denilir?
+bug.question.speed=Bu yolda hangi hız sınırı gecerlidir?
+bug.question.name_of_street=Bu sokağın adı nedir?
+bug.question.language='$2' hangi dilde yazılmış?
+bug.question.motorway_ref=Bu yolun adı (örn. A3 vea E385) nedir?
+bug.question.place_of_worship=Bu ibadet yeri hangi dine aittir?
+bug.question.cuisine_of_restaurant='$1' nun mutfaktürü nedir?
+
+# single values
+cafe=kahve
+fast_food=fast food lokantası
+restaurant=restoran
+school=okul
+pharmacy=eczane
+fuel=eczane
+cinema=sinema
+bank=banka
+university=üniversite
+theatre=theatro
+pub=bar
+place_of_worship=ibadet yeri
+library=kütüpahne
+hospital=hastane
+courthouse=mahkeme
+way=yol
+node=yer

@@ -60,7 +60,9 @@ Ext.define('Kort.util.Config', {
                 client_id: '653755350671.apps.googleusercontent.com'
             },
             osm: {
-                url: './server/oauth2callback/osm/authorize.php'
+                getUrl: function() {
+                    return Kort.util.Config.getWebServicesHost() + '/server/oauth2callback/osm/authorize.php'
+                }
             },
             facebook: {
                 url: 'https://www.facebook.com/dialog/oauth',
@@ -272,51 +274,65 @@ Ext.define('Kort.util.Config', {
         webservices: {
             mission: {
                 getUrl: function(latitude, longitude) {
-                    return './server/webservices/mission/position/' + latitude + ',' + longitude;
+                    return Kort.util.Config.getWebServicesHost() + '/server/webservices/mission/position/' + latitude + ',' + longitude;
                 },
                 radius: this.operationalRange,
                 limit: 25
             },
             validation: {
                 getUrl: function(latitude, longitude) {
-                    return './server/webservices/validation/position/' + latitude + ',' + longitude;
+                    return Kort.util.Config.getWebServicesHost() + '/server/webservices/validation/position/' + latitude + ',' + longitude;
                 },
                 radius: this.operationalRange,
                 limit: 25
             },
             promotion: {
-                url: './server/webservices/promotion/'
+                getUrl: function() {
+                    return Kort.util.Config.getWebServicesHost() + '/server/webservices/promotion/'
+                }
             },
             user: {
-                url: './server/webservices/user/'
+                getUrl: function() {
+                    return Kort.util.Config.getWebServicesHost() + '/server/webservices/user/'
+                }
             },
             userLogout: {
                 getUrl: function(userid) {
-                    return './server/webservices/user/' + userid + '/logout';
+                    return Kort.util.Config.getWebServicesHost() + '/server/webservices/user/' + userid + '/logout';
                 }
             },
             userBadges: {
                 getUrl: function(userid) {
-                    return './server/webservices/user/' + userid + '/badges';
+                    return Kort.util.Config.getWebServicesHost() + '/server/webservices/user/' + userid + '/badges';
                 }
             },
             highscore: {
-                absoluteUrl: './server/webservices/highscore/absolute',
-                relativeUrl: './server/webservices/highscore/relative',
+                getAbsoluteUrl: function() {
+                    return Kort.util.Config.getWebServicesHost() + '/server/webservices/highscore/absolute'
+                },
+                getRelativeUrl: function() {
+                    return Kort.util.Config.getWebServicesHost() + '/server/webservices/highscore/relative'
+                },
                 limit: 10
             },
             answer: {
-                url: './server/webservices/answer/'
+                getUrl: function() {
+                    return Kort.util.Config.getWebServicesHost() + '/server/webservices/answer/'
+                }
             },
             fix: {
-                url: './server/webservices/mission/fix'
+                getUrl: function() {
+                    return Kort.util.Config.getWebServicesHost() + '/server/webservices/mission/fix'
+                }
             },
             vote: {
-                url: './server/webservices/validation/vote'
+                getUrl: function() {
+                    return Kort.util.Config.getWebServicesHost() + '/server/webservices/validation/vote'
+                }
             },
             osm: {
                 getUrl: function(objectId, objectType) {
-                    return './server/webservices/osm/' + objectType + '/' + objectId;
+                    return Kort.util.Config.getWebServicesHost() + '/server/webservices/osm/' + objectType + '/' + objectId;
                 }
             }
         },
@@ -422,7 +438,18 @@ Ext.define('Kort.util.Config', {
         stateToPathSuffix[Kort.util.Config.getMapMarkerState().validationPromotion] = 'validationpromotion';
 
         return pathToResourceFolder + type  + '_' + stateToPathSuffix[state] + inOperationalStatePathSuffix + retinaPathSuffix + '.png';
-    }
+    },
 
+    isNative: function() {
+        return document.URL.indexOf( 'http://' ) === -1 && document.URL.indexOf( 'https://' ) === -1;
+    },
+
+    getWebServicesHost: function() {
+        if(Kort.util.Config.isNative()) {
+            return 'http://play.kort.ch';
+        } else {
+            return '.';
+        }
+    }
 
 });

@@ -1,0 +1,174 @@
+# error types
+error_type.title.motorway_ref=Autosnelweg zonder referentienummer
+error_type.title.poi_wo_name=Object zonder naam
+error_type.title.missing_speedlimit=Snelheidslimiet ontbreekt
+error_type.title.tracktype=Tracktype onbekend
+error_type.title.worship_religion=Religieuze plaats zonder godsdienstovertuiging
+error_type.title.language_name=Taal van de naam onbekend
+error_type.title.street_wo_name=Straat zonder naam
+error_type.title.missing_cuisine=Restaurant without a cuisine
+
+# error type placeholders
+error_type.placeholder.ref=Referentie
+error_type.placeholder.religion=Godsdienst
+error_type.placeholder.name=Naam
+error_type.placeholder.speed_limit=Maximumsnelheid
+error_type.placeholder.language=Taal
+error_type.placeholder.type=Type
+error_type.placeholder.street_name=Straatnaam
+error_type.placeholder.missing_cuisine=Cuisine
+
+# vote questions
+vote.question.ref=Is de referentie voor deze autosnelweg correct?
+vote.question.place_of_worship=Klopt de godsdienst voor deze religieuze plaats?
+vote.question.name=Klopt het dat dit de naam van $1 is?
+vote.question.maxspeed=Klopt de snelheidsbeperking van deze straat?
+vote.question.language_unknown=Is de naam $2 in de volgende taal?
+vote.question.tracktype=Is dit pad van de volgende soort?
+vote.question.street_name=Klopt de naam van deze straat?
+vote.question.missing_cuisine=Is this the correct cuisine type of $1?
+
+# badge names
+badge.name.first_place=1ste plaats
+badge.name.second_place=2de plaats
+badge.name.third_place=3e plaats
+badge.name.100_missions=100 missies
+badge.name.50_missions=50 missies
+badge.name.10_missions=10 missies
+badge.name.1000_checks=1000 items nagekeken
+badge.name.100_checks=100 items nagekeken
+badge.name.10_checks=10 items nagekeken
+badge.name.first_mission=1ste missie
+badge.name.first_check=1ste item om te verifiëren
+
+# badge descriptions
+badge.description.reached_1st_place=U staat op de eerste plaats.
+badge.description.reached_2nd_place=U staat op de tweede plaats
+badge.description.reached_3rd_place=U staat op de derde plaats
+badge.description.100_missions_completed=100 opdrachten uitgevoerd
+badge.description.50_missions_completed=50 opdrachten uitgevoerd
+badge.description.10_missions_completed=10 opdrachten uitgevoerd
+badge.description.1000_checks=1000 antwoorden nagekeken
+badge.description.100_checks=100 antwoorden nagekeken
+badge.description.10_checks=10 antwoorden nagekeken
+badge.description.1st_mission=Eerste opdracht volbracht
+badge.description.1st_check=Eerste nagekeken antwoord
+
+# missing_track_types (http://wiki.openstreetmap.org/wiki/Key:tracktype)
+answer.track_type.grade1=Asfalt, beton of kasseien
+answer.track_type.grade2=Weg met kiezels
+answer.track_type.grade3=Zowel verharde gedeeltes als onverharde
+answer.track_type.grade4=Aarde, zand of gras
+answer.track_type.grade5=Onverharde veldweg
+
+# religion (http://wiki.openstreetmap.org/wiki/Key:religion)
+answer.religion.buddhist=Boedhistisch (tempel)
+answer.religion.christian=Christelijk (kerk)
+answer.religion.hindu=Hindoe (tempel)
+answer.religion.jewish=Joods (synagoge)
+answer.religion.muslim=Moslim (moskee)
+answer.religion.pastafari=Pastafarisch
+answer.religion.shinto=Shinto (heiligdom)
+answer.religion.sikh=Sikh (Gurdwara)
+answer.religion.multiple=Meerdere geloofsovertuigingen
+
+# language (http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
+answer.language.arabic=Arabisch
+answer.language.catalan=Catalaans
+answer.language.chinese=Chinees
+answer.language.danish=Deens
+answer.language.dutch=Nederlands
+answer.language.english=Engels
+answer.language.estonian=Ests
+answer.language.finnish=Fins
+answer.language.french=Frans
+answer.language.german=Duits
+answer.language.greek=Grieks
+answer.language.hebrew=Hebreeuws
+answer.language.hungarian=Hungarian
+answer.language.irish=Iers
+answer.language.icelandic=Ijslands
+answer.language.italian=Italiaans
+answer.language.japanese=Japans
+answer.language.korean=Koreaans
+answer.language.croatian=Kroatisch
+answer.language.latin=Latijns
+answer.language.luxembourgish=Luxemburgs
+answer.language.norwegian=Noors
+answer.language.persian=Perzisch
+answer.language.polish=Pools
+answer.language.portuguese=Portugees
+answer.language.romansh=Romansh
+answer.language.romanian=Roemeens
+answer.language.russian=Russisch
+answer.language.sardinian=Sardeens
+answer.language.scottish_gaelic=Schots
+answer.language.swiss_german=Zwitserduits
+answer.language.serbian=Servisch
+answer.language.slovakian=Slovaaks
+answer.language.slovenian=Sloveens
+answer.language.spanish=Spaans
+answer.language.swedish=Zweeds
+answer.language.thai=Thais
+answer.language.tibetan=Tibetaans
+answer.language.czech=Tsjechisch
+answer.language.turkish=Turks
+answer.language.ukrainian=Ukrainian
+answer.language.uzbek=Oezbeeks
+answer.language.vietnamese=Vietnamees
+answer.language.welsh=Welsh
+
+# missing_cuisine
+answer.missing_cuisine.regional=Regional
+answer.missing_cuisine.coffee_shop=Coffee Shop
+answer.missing_cuisine.international=International
+answer.missing_cuisine.italian=Italian
+answer.missing_cuisine.turkish=Turkish
+answer.missing_cuisine.chinese=Chinese
+answer.missing_cuisine.thai=Thai
+answer.missing_cuisine.asian=Asian
+answer.missing_cuisine.indian=Indian
+answer.missing_cuisine.french=French
+answer.missing_cuisine.mexican=Mexican
+answer.missing_cuisine.american=American
+answer.missing_cuisine.japanese=Japanese
+answer.missing_cuisine.greek=Greek
+answer.missing_cuisine.sandwich=Sandwich
+answer.missing_cuisine.steak_house=Steakhouse
+answer.missing_cuisine.chicken=Chicken
+answer.missing_cuisine.bistro_brasserie=Bistro, Brasserie
+answer.missing_cuisine.seafood=Seafood
+answer.missing_cuisine.burger=Burger
+
+##############################################################
+# THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT AND OSM_ERRORS#
+##############################################################
+
+# error descriptions (KeepRight)
+bug.question.track=Welk soort veldweg is dit?
+bug.question.poi=Hoe heet deze $1?
+bug.question.speed=Welke snelheidslimiet is er van toepassing op deze straat?
+bug.question.name_of_street=Hoe heet deze straat?
+bug.question.language=In welke taal is de naam '$2' geschreven?
+bug.question.motorway_ref=Wat is de referentie (bv. A3 of E385) voor deze autosnelweg?
+bug.question.place_of_worship=Tot welke religie behoort deze gebedsplaats?
+bug.question.cuisine_of_restaurant=What's the cuisine type of '$1'?
+
+# single values
+cafe=café
+fast_food=fast food restaurant
+restaurant=restaurant
+school=school
+pharmacy=apotheek
+fuel=benzinestation
+cinema=bioscoop
+bank=bank (financieel)
+university=universiteit
+theatre=theater
+pub=bar
+place_of_worship=gebedsplaats
+library=bibliotheek
+hospital=hospitaal
+courthouse=gerechtshof
+way=weg
+node=plaats

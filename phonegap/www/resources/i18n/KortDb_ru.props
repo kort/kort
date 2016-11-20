@@ -1,0 +1,173 @@
+# error types
+error_type.title.motorway_ref=Магистраль без номера
+error_type.title.poi_wo_name=Объект без названия
+error_type.title.missing_speedlimit=Отсутсвует ограничение скорости
+error_type.title.tracktype=Тип дороги неизвестен
+error_type.title.worship_religion=Храм без указания религии
+error_type.title.language_name=Название с неизвестным языком
+error_type.title.street_wo_name=Улица без названия
+error_type.title.missing_cuisine=Ресторан без кухни
+
+# error type placeholders
+error_type.placeholder.ref=Индекс
+error_type.placeholder.religion=Религия
+error_type.placeholder.name=Название
+error_type.placeholder.speed_limit=Скоростное ограничение
+error_type.placeholder.language=Язык
+error_type.placeholder.type=Тип
+error_type.placeholder.street_name=Название улицы
+error_type.placeholder.missing_cuisine=Кухня
+
+# vote questions
+vote.question.ref=Это правильный индекс магистрали?
+vote.question.place_of_worship=Это храм данной религии?
+vote.question.name=Это верное название для $1?
+vote.question.maxspeed=Это верное ограничение скорости для улицы?
+vote.question.language_unknown=Это верный язык для названия '$2'?
+vote.question.tracktype=Это верный вид тропы?
+vote.question.street_name=Это верное название улицы?
+vote.question.missing_cuisine=Это верный вид кухни для '$1'?
+
+# badge names
+badge.name.first_place=1-е место
+badge.name.second_place=2-е место
+badge.name.third_place=3-е место
+badge.name.100_missions=100 миссий
+badge.name.50_missions=50 миссий
+badge.name.10_missions=10 миссий
+badge.name.1000_checks=1000 проверок
+badge.name.100_checks=100 проверок
+badge.name.10_checks=10 проверок
+badge.name.first_mission=1-ая миссия
+badge.name.first_check=1-ая проверка
+
+# badge descriptions
+badge.description.reached_1st_place=Заработал певое место в рейтинге.
+badge.description.reached_2nd_place=Заработал второе место в рейтинге.
+badge.description.reached_3rd_place=Заработал третье место в рейтинге.
+badge.description.100_missions_completed=100 миссий завершено.
+badge.description.50_missions_completed=50 миссий завершено.
+badge.description.10_missions_completed=10 миссий завершено.
+badge.description.1000_checks=1000 ответов проверено.
+badge.description.100_checks=100 ответов проверено.
+badge.description.10_checks=10 ответов проверено.
+badge.description.1st_mission=Первая миссия завершена.
+badge.description.1st_check=Первый проверенный ответ.
+
+# missing_track_types (http://wiki.openstreetmap.org/wiki/Key:tracktype)
+answer.track_type.grade1=Асфальт, бетон или булыжники
+answer.track_type.grade2=Гравийная дорога
+answer.track_type.grade3=Смесь жёстких и мягких материалов
+answer.track_type.grade4=Почва, песок или трава
+answer.track_type.grade5=Дорога без покрытия
+
+# religion (http://wiki.openstreetmap.org/wiki/Key:religion)
+answer.religion.buddhist=Буддизм (храм)
+answer.religion.christian=Христианство (церковь)
+answer.religion.hindu=Индуизм (храм)
+answer.religion.jewish=Иудаизм (синагога)
+answer.religion.muslim=Мусульманство (мечеть)
+answer.religion.pastafari=Пастафарианец (поклоняющиеся Летающему Макаронному Монстру)
+answer.religion.shinto=Синтоизм (рака)
+answer.religion.sikh=Сикхизм (гурдвара)
+answer.religion.multiple=Несколько религий
+
+# language (http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
+answer.language.arabic=Арабский
+answer.language.catalan=Каталонский
+answer.language.chinese=Китайский
+answer.language.danish=Датский
+answer.language.dutch=Нидерландский
+answer.language.english=Английский
+answer.language.estonian=Эстонский
+answer.language.finnish=Финский
+answer.language.french=Французский
+answer.language.german=Немецкий
+answer.language.greek=Греческий
+answer.language.hebrew=Иврит
+answer.language.hungarian=Венгерская
+answer.language.irish=Ирландский
+answer.language.icelandic=Исландский
+answer.language.italian=Итальянский
+answer.language.japanese=Японский
+answer.language.korean=Корейский
+answer.language.croatian=Хорватский
+answer.language.latin=Латинский
+answer.language.luxembourgish=Люксембургский
+answer.language.norwegian=Норвежский
+answer.language.persian=Персидский
+answer.language.polish=Польский
+answer.language.portuguese=Португальский
+answer.language.romansh=Романшский
+answer.language.romanian=Румынский
+answer.language.russian=Русский
+answer.language.sardinian=Сардинский
+answer.language.scottish_gaelic=Шотландский
+answer.language.swiss_german=Швейцарский диалект немецкого
+answer.language.serbian=Сербский
+answer.language.slovakian=Словацкий
+answer.language.slovenian=Словенский
+answer.language.spanish=Испанский
+answer.language.swedish=Шведский
+answer.language.thai=Тайский
+answer.language.tibetan=Тибетский
+answer.language.czech=Чешский
+answer.language.turkish=Турецкий
+answer.language.uzbek=Узбекский
+answer.language.vietnamese=Вьетнамский
+answer.language.welsh=Валлийский
+
+# missing_cuisine
+answer.missing_cuisine.regional=Местная
+answer.missing_cuisine.coffee_shop=Кофейня
+answer.missing_cuisine.international=Международная
+answer.missing_cuisine.italian=Итальянская
+answer.missing_cuisine.turkish=Турецкая
+answer.missing_cuisine.chinese=Китайская
+answer.missing_cuisine.thai=Тайская
+answer.missing_cuisine.asian=Азиатская
+answer.missing_cuisine.indian=Индийская
+answer.missing_cuisine.french=Французская
+answer.missing_cuisine.mexican=Мексиканская
+answer.missing_cuisine.american=Американская
+answer.missing_cuisine.japanese=Японская
+answer.missing_cuisine.greek=Греческая
+answer.missing_cuisine.sandwich=Сэндвич
+answer.missing_cuisine.steak_house=Стейкхаус
+answer.missing_cuisine.chicken=Цыпленок
+answer.missing_cuisine.bistro_brasserie=Bistro, Brasserie
+answer.missing_cuisine.seafood=Морепродукты
+answer.missing_cuisine.burger=Бургер
+
+##############################################################
+# THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT AND OSM_ERRORS#
+##############################################################
+
+# error descriptions (KeepRight)
+bug.question.track=Какой тип покрытия у этой дороги?
+bug.question.poi=Как это $1 называется?
+bug.question.speed=Какое ограничение скорости стоит на этой улице?
+bug.question.name_of_street=Какое название у этой улицы?
+bug.question.language=На каком языке написано название '$2'?
+bug.question.motorway_ref=Какой индекс (например, A3 или E385) у этой магистрали?
+bug.question.place_of_worship=К какой религии относится этот храм?
+bug.question.cuisine_of_restaurant=Какой вид кухни в '$1'?
+
+# single values
+cafe=кафе
+fast_food=ресторан быстрого питания
+restaurant=ресторан
+school=школа
+pharmacy=аптека
+fuel=заправка
+cinema=кинотеарт
+bank=банк
+university=университет
+theatre=театр
+pub=паб
+place_of_worship=храм
+library=библиотека
+hospital=больница
+courthouse=суд
+way=дорога
+node=место

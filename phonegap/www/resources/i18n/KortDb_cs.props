@@ -1,0 +1,174 @@
+# error types
+error_type.title.motorway_ref=Dálnice bez čísla
+error_type.title.poi_wo_name=Objekt beze jména
+error_type.title.missing_speedlimit=Chybějící maximální dovolená rychlost
+error_type.title.tracktype=Neznámá kvalita povrchu cesty
+error_type.title.worship_religion=Svatostánek bez určení náboženství
+error_type.title.language_name=Neznámý jazyk jména
+error_type.title.street_wo_name=Ulice bez jména
+error_type.title.missing_cuisine=Restaurant without a cuisine
+
+# error type placeholders
+error_type.placeholder.ref=Reference
+error_type.placeholder.religion=Náboženství
+error_type.placeholder.name=Jméno
+error_type.placeholder.speed_limit=Maximální dovolená rychlost
+error_type.placeholder.language=Jazyk
+error_type.placeholder.type=Typ
+error_type.placeholder.street_name=Jméno ulice
+error_type.placeholder.missing_cuisine=Cuisine
+
+# vote questions
+vote.question.ref=Je číslo této dálnice správně?
+vote.question.place_of_worship=Je to svatostánek tohoto náboženství?
+vote.question.name=Je toto jméno tohoto $1?
+vote.question.maxspeed=Je maximální dovolená rychlost na této ulici správně?
+vote.question.language_unknown=Je jméno  '$2' v tomto jazyce?
+vote.question.tracktype=Je uvedený druh této cesty správně?
+vote.question.street_name=Je to správné jméno ulice?
+vote.question.missing_cuisine=Is this the correct cuisine type of $1?
+
+# badge names
+badge.name.first_place=1. místo
+badge.name.second_place=2. místo
+badge.name.third_place=3. místo
+badge.name.100_missions=100 misí
+badge.name.50_missions=50 misí
+badge.name.10_missions=10 misí
+badge.name.1000_checks=1000 kontrol
+badge.name.100_checks=100 kontrol
+badge.name.10_checks=10 kontrol
+badge.name.first_mission=1. mise
+badge.name.first_check=1. kontrola
+
+# badge descriptions
+badge.description.reached_1st_place=Dosáhl 1. místa v žebříčku.
+badge.description.reached_2nd_place=Dosáhl 2. místa v žebříčku
+badge.description.reached_3rd_place=Dosáhl 3. místa v žebříčku
+badge.description.100_missions_completed=Splněno 100 misí.
+badge.description.50_missions_completed=Splněno 50 misí.
+badge.description.10_missions_completed=Splněno 10 misí.
+badge.description.1000_checks=Zkontrolováno 1000 odpovědí.
+badge.description.100_checks=Zkontrolováno 100 odpovědí.
+badge.description.10_checks=Zkontrolováno 10 odpovědí.
+badge.description.1st_mission=Splněna první mise.
+badge.description.1st_check=Zkontrolována první odpověď.
+
+# missing_track_types (http://wiki.openstreetmap.org/wiki/Key:tracktype)
+answer.track_type.grade1=Asfalt, beton nebo dlažba.
+answer.track_type.grade2=Zpevněná štěrková cesta
+answer.track_type.grade3=Částečně zpevněná - mix stěrku a hlíny.
+answer.track_type.grade4=Hlína, písek nebo tráva.
+answer.track_type.grade5=Cesta téměř neznatelná.
+
+# religion (http://wiki.openstreetmap.org/wiki/Key:religion)
+answer.religion.buddhist=Buddhistický
+answer.religion.christian=Křesťanský (kostel, kaple)
+answer.religion.hindu=Hinduistický
+answer.religion.jewish=Židovský (synagoga)
+answer.religion.muslim=Muslimské (mešita)
+answer.religion.pastafari=Pastafariánské
+answer.religion.shinto=Šintoistické
+answer.religion.sikh=Sikhské
+answer.religion.multiple=Více náboženství
+
+# language (http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
+answer.language.arabic=Arabský
+answer.language.catalan=Katalánský
+answer.language.chinese=Čínský
+answer.language.danish=Dánský
+answer.language.dutch=Holandský
+answer.language.english=Anglický
+answer.language.estonian=Estonský
+answer.language.finnish=Finský
+answer.language.french=Francouzský
+answer.language.german=Německý
+answer.language.greek=Řecký
+answer.language.hebrew=Hebrejský
+answer.language.hungarian=Hungarian
+answer.language.irish=Irský
+answer.language.icelandic=Islandský
+answer.language.italian=Italský
+answer.language.japanese=Japonský
+answer.language.korean=Korejský
+answer.language.croatian=Chorvatský
+answer.language.latin=Latinský
+answer.language.luxembourgish=Lucemburský
+answer.language.norwegian=Norský
+answer.language.persian=Perský
+answer.language.polish=Polský
+answer.language.portuguese=Portugalský
+answer.language.romansh=Rétorománský
+answer.language.romanian=Rumunský
+answer.language.russian=Ruský
+answer.language.sardinian=Sardinský
+answer.language.scottish_gaelic=Skotský Gaelský
+answer.language.swiss_german=Švýcarský Německý
+answer.language.serbian=Srbský
+answer.language.slovakian=Slovenský
+answer.language.slovenian=Slovinský
+answer.language.spanish=Španělský
+answer.language.swedish=Švádský
+answer.language.thai=Thajský
+answer.language.tibetan=Tibetský
+answer.language.czech=Český
+answer.language.turkish=Turecký
+answer.language.ukrainian=Ukrainian
+answer.language.uzbek=Uzbecký
+answer.language.vietnamese=Vietnamský
+answer.language.welsh=Velšský
+
+# missing_cuisine
+answer.missing_cuisine.regional=Regional
+answer.missing_cuisine.coffee_shop=Coffee Shop
+answer.missing_cuisine.international=International
+answer.missing_cuisine.italian=Italian
+answer.missing_cuisine.turkish=Turkish
+answer.missing_cuisine.chinese=Chinese
+answer.missing_cuisine.thai=Thai
+answer.missing_cuisine.asian=Asian
+answer.missing_cuisine.indian=Indian
+answer.missing_cuisine.french=French
+answer.missing_cuisine.mexican=Mexican
+answer.missing_cuisine.american=American
+answer.missing_cuisine.japanese=Japanese
+answer.missing_cuisine.greek=Greek
+answer.missing_cuisine.sandwich=Sandwich
+answer.missing_cuisine.steak_house=Steakhouse
+answer.missing_cuisine.chicken=Chicken
+answer.missing_cuisine.bistro_brasserie=Bistro, Brasserie
+answer.missing_cuisine.seafood=Seafood
+answer.missing_cuisine.burger=Burger
+
+##############################################################
+# THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT AND OSM_ERRORS#
+##############################################################
+
+# error descriptions (KeepRight)
+bug.question.track=Jaký má cesta povrch?
+bug.question.poi=Jak se jmenuje $1?
+bug.question.speed=Jaká je maximální dovolená rychlost na této ulici?
+bug.question.name_of_street=Jaké je jméno této ulice?
+bug.question.language=V jakém jazyce je jméno '$2' ?
+bug.question.motorway_ref=Jaké je číslo (např. D1 nebo R65) této dálnice?
+bug.question.place_of_worship=Jakému náboženství náleží tento svatostánek?
+bug.question.cuisine_of_restaurant=What's the cuisine type of '$1'?
+
+# single values
+cafe=kavárna
+fast_food=rychlé občerstvení
+restaurant=restaurace
+school=škola
+pharmacy=lékárna
+fuel=benzínová pumpa
+cinema=kino
+bank=banka
+university=univerzita
+theatre=divadlo
+pub=hospoda
+place_of_worship=svatostánek
+library=knihovna
+hospital=nemocnice
+courthouse=soud
+way=cesta
+node=místo

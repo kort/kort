@@ -1,0 +1,222 @@
+# Main View (TabPanel)
+tab.map=Map
+tab.bugmap=Мисије
+tab.validation=Провера
+tab.highscore=Најбољи резултати
+tab.profile=Профил
+tab.about=О Корту
+tab.news=News
+
+# Login
+login.kort.description.1=Завршене мисије
+login.kort.description.2=Сакупите Ковчиће
+login.kort.description.3=Побољшајте OpenStreetMap
+login.kort.introduction.1=Корт помаже у побољшању података за OpenStreetMap.
+login.kort.introduction.2=Стога ћете видети мисије на мапи. Завршавањем мисија добијате Ковчиће и заслужујете значке.
+login.kort.introduction.3=Исправност сваке решене мисије касније проверавају други играчи. Чим се унесе довољно позитивних оцена за предложено решење, оно је спремно за слање на OpenStreetMap.
+login.kort.introduction.4=Пријавите се сада да бисте кренули у своју мисију\!
+login.button.google=Пријава користећи Google
+login.button.osm=Пријава користећи OpenStreetMap
+login.button.facebook=Login with Facebook
+login.loadmask.message=Пријава...
+
+# Firststeps
+firststeps.introduction=Добродошли на Корт\! Одаберите корисничко име\:
+firststeps.form.button.submit=Почни мисију\!
+firststeps.alert.username.empty.title=Унесите корисничко име
+firststeps.alert.username.empty.message=Молим унесите корисничко име.
+firststeps.alert.username.specialchars.title=Проблем са знаком
+firststeps.alert.username.specialchars.message=Молим користите само слова и бројке за корисничко име.
+firststeps.alert.submit.failure.title=Грешка при слању
+firststeps.alert.submit.failure.message=Опа\! Дошло је до грешке при слању корисничког имена. Поновно покретање апликације би помогло.
+
+# Geolocation error
+geolocationerror.introduction=Да бисте користили Корт, неопходан је приступ Вашој гео-локацији.
+geolocationerror.button.reload=Поново покрени апликацију
+geolocationerror.loadmask.message=Поновно покретање...
+
+#Map
+map.title=Missions
+map.loadmask.message=Учитавање мисија...
+map.mission.promotionmessagebox.close=Close
+map.mission.promotionmessagebox.earn=Earn additional {extra_coins} Koins
+map.mission.promotionmessagebox.date={startdate} to {enddate}
+map.mission.missionmessagebox.koins.earn=Заради {fix_koin_count} Ковчића
+map.mission.missionmessagebox.koins.earnpromotion=Earn {fix_koin_count} + {extra_coins} Koins
+map.mission.missionmessagebox.yes=Одговор
+map.mission.missionmessagebox.no=Не знам
+map.mission.missionmessagebox.close=Close
+map.mission.layername=Missions
+map.missionInactive.layername=Inactive Missions
+map.validation.layername=Checks
+map.validation.validationmessagebox.koins.earn=Earn {validation_koin_count} Koins
+map.validation.validationmessagebox.koins.earnpromotion=Earn {validation_koin_count} + {extra_coins} Koins
+map.mission.validationmessagebox.yes=Одговор
+map.mission.validationmessagebox.no=Не знам
+map.mission.validationmessagebox.close=Close
+map.validation.validationmessagebox.checkit=Check the solution
+
+## Fix
+fix.form.title=Мисија
+fix.form.koins.earn=Заради {fix_koin_count} Ковчића\!
+fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins\!
+fix.form.message.placeholder=Ваш одговор...
+fix.form.button.showonmap=Прикажи на мапи
+fix.form.button.submit=Заврши мисију
+fix.form.loadmask.message=Учитавам одговоре...
+fix.form.falsepositive.toggle.label=Не могу решити
+fix.map.title=Мапа
+fix.sendmask.message=Шаљем решење...
+fix.alert.fixfield.empty.title=Попуните поља
+fix.alert.fixfield.empty.message=Молим попуните сва поља.
+fix.alert.submit.failure.title=Грешка при слању
+fix.alert.submit.failure.message=Опа\! Дошло је до грешке при слању одговора. Поновно покретање апликације би помогло.
+
+## Vote
+vote.falsepositive.question=Ова мисија је означена као 'нерешива'. Да ли је ово исправно?
+vote.container.button.answer=Одговор
+vote.container.votes.left={votes_left} потребне оцене
+vote.answeractionsheet.button.accept=Да
+vote.answeractionsheet.button.decline=Не
+vote.answeractionsheet.button.cancel=Не знам
+vote.answeractionsheet.question=Да ли је одговор исправан?
+vote.sendmask.message=Шаљем одговор...
+vote.alert.submit.failure.title=Грешка при слању
+vote.alert.submit.failure.message=Опа\! Дошло је до грешке при слању одговора. Поновно покретање апликације би помогло.
+
+# Highscore
+highscore.title=Најбољи резултати
+highscore.absolute.tabtitle=Top
+highscore.relative.tabtitle=My score
+highscore.loadmask.message=Учитавам најбоље резултате...
+highscore.emptytext=Не могу да учитам најбоље резултате.
+highscore.you=Ово сте Ви\!
+highscore.koins=Ковчићи
+highscore.fixcount=Мисије\:
+highscore.votecount=Провере\:
+highscore.user.badges.emptytext=Не могу да учитам значке.
+
+# Profil
+profile.title=Профил
+profile.button.logout=Одјава
+profile.button.changeusername=Промени корисничко име
+profile.settings.messagebox.title=Поставке
+profile.settings.messagebox.message=Унесите ново корисничко име
+profile.username.loadmask.message=Чувам корисничко име...
+profile.content.username=Корисничко име
+profile.content.oauthprovider=Пријава користећи
+profile.content.fixes=Завршене мисије
+profile.content.votes=Обављене провере
+profile.content.koins.header=Прикопљени Ковчићи
+profile.content.koins.title=Ковчићи
+profile.content.ranking.title=Место
+profile.content.badges.header=Заслужене значке
+profile.logout.loadmask.message=Одјава...
+profile.refresh.loadmask.message=Учитавам профил...
+profile.badges.title=Ваше значке
+profile.badges.recieved=Заслужене\:
+profile.badges.emptytext=Ваше значке нису могле бити учитане.
+profile.badges.button.close=Затвори
+profile.alert.username.empty.title=Унесите корисничко име
+profile.alert.username.empty.message=Молим унесите корисничко име.
+profile.alert.username.specialchars.title=Проблем са знаком
+profile.alert.username.specialchars.message=Молим користите само слова и бројке за корисничко име.
+profile.alert.submit.failure.title=Грешка при слању
+profile.alert.submit.failure.message=Опа\! Дошло је до грешке при слању корисничког имена. Поновно покретање апликације би помогло.
+
+#News
+news.title=News
+news.unread=Unread
+news.read=Read
+news.list.emptytext=No entries
+news.updated=Updated
+news.settings.save=Save
+news.settings.cancel=Cancel
+news.settings.acceptNoLanguage=Deselect all
+news.settings.acceptAllLanguages=Select all
+news.settings.label=I want to receive news in the following languages\:
+
+# About
+about.title=Више о
+about.version.title=Верзија
+about.information.title=Више информација
+about.information.homepage=Веб страница\:
+about.information.feedback=Повратна информација/ЧПП\:
+about.information.bugs=Пријавите грешку\:
+about.developers.title=Програмер
+about.project.title=Projects
+about.project.advisor=Вођа\:
+about.credits.title=Заслуге
+about.credits.partner=Партнер\:
+about.credits.mapdata=Гео подаци\:
+about.credits.tiledata=Плочице\:
+about.credits.markers=Иконе маркера\:
+about.credits.translation=Translation\:
+about.credits.dbhosting=DB Hosting\:
+about.legal.title=Правна напомена\:
+about.legal.message=Молим пратите OpenStreetMap смернице и немојте користити изворе заштићене ауторским правом без дозволе.
+
+# PullRefresh Plugin
+pullrefresh.pullrefresh=Повуците доле за освежавање
+pullrefresh.releaserefresh=Пустите за освежавање...
+pullrefresh.loading=учитавам...
+pullrefresh.lastupdated=Последњи пут ажурирано\:
+
+# ListPaging Plugin
+listpaging.loadmore=Учитај још...
+listpaging.nomorerecords=Нема више доступних ставки.
+
+# Button
+button.back=Назад
+
+# MessageBox
+messagebox.ok=У реду
+messagebox.yes=Да
+messagebox.no=Не
+messagebox.cancel=Откажи
+
+# Picker
+picker.done=Заврши
+picker.cancel=Откажи
+
+# Reward
+reward.alert.title=Поправили сте свој углед\!
+reward.alert.koins.new=Браво\! Зарадили сте {koin_count_new} Ковчића.
+reward.alert.koins.total=Сада имате укупно {koin_count_total} Ковчића.
+reward.alert.badges.title=Заслужене значке
+
+# App update
+update.title=Нова верзија апликације
+update.message=Апликација је ажурирана на најновију верзију. Учитати је поново?
+
+#Languages
+en=English
+de=German
+it=Italian
+fr=French
+sl=Slovenian
+hr=Croatian
+cs=Czech
+nl=Dutch
+gl=Galician
+pt=Portuguese
+ro=Romanian
+ja=Japanese
+ca=Catalan
+es=Spanish
+
+###############################
+# Labels used directly in source files (without Ext.i18n.Bundle plugin)
+###############################
+
+# index.html
+## App startscreen
+startscreen.loadingtext=Корт се учитава. Спремите се...
+startscreen.browsererror=Ваш претраживач још није подржан. Пробајте са мобилног телефона.
+
+# app/util/Config.js
+## Firststeps
+firststeps.form.username.placeholder=Корисничко име
+
+## PullRefresh Plugin
+pullrefresh.dateformat=d/m/Y h\:iA

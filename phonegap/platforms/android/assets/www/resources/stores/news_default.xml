@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+    <title>Kort News</title>
+    <link href="http://kort.ch/"/>
+    <updated>2013-10-28T00:15:07Z</updated>
+    <author>
+        <name>Kort Team</name>
+    </author>
+    <id>hsr.ch_kort</id>
+
+    <entry>
+        <title xml:lang="de">Kort-Kampagne in Berlin anlässlich der FOSSGIS 2014</title>
+        <link href="#"/>
+        <id>hsr.ch_kort_odi_3</id>
+        <updated>2014-03-18T14:29:49Z</updated>
+        <content type="text/html"><![CDATA[
+            <p style="margin-bottom: 12px;">
+                Zur diesjährigen FOSSGIS gibt es in Berlin (und nur dort!) eine spezielle Kort-Kampagne: für alle gelösten oder überprüften "Objekt ohne Namen"-Aufträge gibt es 10 zusätzliche Koins!
+            </p>
+            <p>
+                In Sachen Kort gibt es übrigens einige News, wir sind z.B. gerade dabei unsere Website komplett neu zu erstellen, endlich mit einem ordentlichen CMS dahinter. Und da CloudMade leider keine kostenlosen Tiles mehr anbietet, bereiten wir die Umstellung auf den <a href="https://geodienste.lyrk.de/">Dienst von Lyrk</a> vor. Danach steht dann das Projekt "native App" auf dem Programm. Wir müssen die Realität anerkennen: der Durchschnittsbenutzer sucht seine Apps einfach im App Store/Play Store. Deshalb wollen wir (zumindest für iOS und Android) auch dort auffindbar sein.
+            </p>
+            <p>
+                Und noch als Info: wir haben ab sofort <a href="http://forum.geoclub.de/viewforum.php?f=175">ein deutschsprachiges Support-Forum beim Geoclub</a>!
+            </p>
+          
+        ]]></content>
+    </entry>
+    <entry>
+        <title xml:lang="en">Kort wins the ITG innovation award</title>
+        <link href="#"/>
+        <id>hsr.ch_kort_odi_2</id>
+        <updated>2013-12-01T16:20:11Z</updated>
+        <content type="text/html"><![CDATA[
+            <p style="margin-bottom: 12px;">
+                <img src="https://www.electrosuisse.ch/fileadmin/user_upload_electrosuisse/Verband/ITG/ITG_Innovationspreis/Innovpreis_Oderbolz_und_Hunziker.jpg" alt="ITG Innovationspreis" title="ITG Innovationspreise" />
+                Kort has been awarded with the ITG innovation award from Electrosuisse.
+                It is a great honor and we'd like to thank everybody for this wonderful event.
+            </p>
+        ]]></content>
+    </entry>
+    <entry>
+        <title xml:lang="en">Kort is nominated for the Swisscom Innovation Award</title>
+        <link href="#"/>
+        <id>hsr.ch_kort_odi_1</id>
+        <updated>2013-10-28T00:15:07Z</updated>
+        <content type="text/html"><![CDATA[
+            <p style="margin-bottom: 12px;">
+                Kort is one of three finalists for the Swisscom Innovation Award. Apart from the jury there is an online voting, where you can support us by voting
+                for our project. The ceremony will take place on the <span style="font-weight:bold;">7th of November 2013</span>, until then you have time to give us your vote!
+            </p>
+            <p>Please support us now by voting for our bachelor thesis "Gamified Mobile App für die Verbesserung von OpenStreetMap": 
+                <a style="color: #115F9C; font-weight:bold;" href="http://labs.swisscom.ch/t5/News/Innovationspreis-2013-Stimm-ab-f%C3%BCr-die-beste-Arbeit/ba-p/215601" target="_blank">
+                    Swisscom Innovation Award Voting
+                </a>
+            </p>
+        ]]></content>
+    </entry>
+    <entry>
+        <title xml:lang="en">Kort Reloaded!</title>
+        <link href="#"/>
+        <id>hsr.ch_kort_carmelo_1</id>
+        <updated>2013-05-28T14:30:02Z</updated>
+        <content type="text/html"><![CDATA[
+            The last few month we worked hard to make Kort an even better experience.
+            Today we proudly release the brand new features and hope you like them as much as we do.
+
+            Kort Reloaded comes with an overall improved map that let's you solve missions and validations at the same place, just to name one of the new improvements.
+            But the most important new feature still operates in the shadows until it is activated on the 12th of june, just in time when the <a href="http://www.fossgis.de/konferenz/2013/" target="_BLANK">FOSSGIS 2013</a> conference opens it's door at the HSR in Rapperswil.<br /><br />
+
+            We are still very interested in your opinions. Please keep telling us what you think about Kort.<br /><br />
+
+            Stay tuned for more news that are expected to be delivered soon.<br /><br />
+
+            Cheers,<br />
+            The Kort development team
+        ]]></content>
+    </entry>
+    <entry>
+        <title xml:lang="de">Auf die Plätze, fertig, los...</title>
+        <link href="#"/>
+        <id>hsr.ch_kort_carmelo_2</id>
+        <updated>2013-06-13T10:00:02Z</updated>
+        <content type="text/html"><![CDATA[
+            Eine brandneue Funktion feiert heute Premiere in der Deutschschweiz: Die Kort-Aktion. Nur für kurze Zeit finden sich in der Region Deutschschweiz Missionen und Überprüfungen, deren Lösung sich auszahlt! Wenn ihr euch in der Deutschschweiz befindet, haltet ausschau nach speziell gekennzeichneten Aufträgen und seit schneller als die Konkurrenz...<br /><br />
+Alle anderen seit auf der Hut: Es ist in Zukunft vermehrt mit regionalen Aktionen zu rechnen.<br /><br />
+Sonniges Punktesammeln!<br />
+Das Kort-Entwicklungsteam
+        ]]></content>
+    </entry>
+    <entry>
+        <title xml:lang="de">Koins sammeln im Land von Red Bull</title>
+        <link href="#"/>
+        <id>hsr.ch_kort_stefankeller_1</id>
+        <updated>2013-07-02T13:30:02Z</updated>
+        <content type="text/html"><![CDATA[
+            Liebe Mapper!<br /><br />
+            Anlässlich der AGIT 25 in Salzburg wollen wir zeigen, dass nicht nur Red Bull Kampagnen machen kann.
+            Es gibt nämlich eine Kort-Aktion für unbekannte Wegtypen (Asphalt, Schotter...)!<br /><br />
+            Die Aktion dauert noch bis Sonntag und gilt für alle Strassen und Wege in der Stadt Salzburg. Nutzt die Gelegenheit, um doppelte Koins zu sammeln.<br /><br /> Und vergesst nicht, im OpenStreetMap-Spezialforum vorbeizuschauen (3. Juli, ab 15 Uhr, Blauer Hörsaal).
+        ]]></content>
+    </entry>
+
+</feed>

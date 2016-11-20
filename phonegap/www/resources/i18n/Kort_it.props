@@ -1,0 +1,222 @@
+# Main View (TabPanel)
+tab.map=Mappa
+tab.bugmap=Incarichi
+tab.validation=Verifica
+tab.highscore=Highscore
+tab.profile=Profilo
+tab.about=A proposito di Kort
+tab.news=News
+
+# Login
+login.kort.description.1=Risolvi incarichi
+login.kort.description.2=Raccogli Koins
+login.kort.description.3=Migliora OpenStreetMap
+login.kort.introduction.1=consente di migliorari i dati presenti in OpenStreetMap.
+login.kort.introduction.2=Sulla mappa vengono mostrati errori sotto forma di incarichi. Risolvendo questi incarichi ricevi dei Koins e puoi conquistare dei Badge.
+login.kort.introduction.3=Gli incarichi risolti possono essere verificati da altri giocatori, che ne confermano la correttezza. Quando una proposta riceve abbastanza valutazioni positive è pronta per essere inviata ad Openstreetmap.
+login.kort.introduction.4=Fai login per cominciare\!
+login.button.google=Login con Google
+login.button.osm=Login con OpenStreetMap
+login.button.facebook=Login con Facebook
+login.loadmask.message=Login...
+
+# Firststeps
+firststeps.introduction=Benvenuto in Kort\! Scegli un nome utente\:
+firststeps.form.button.submit=Comincia la missione\!
+firststeps.alert.username.empty.title=Scelta nome utente
+firststeps.alert.username.empty.message=Scegli il tuo nome utente.
+firststeps.alert.username.specialchars.title=Carattere non valido
+firststeps.alert.username.specialchars.message=Il nome utente puó contenere solo lettere e numeri.
+firststeps.alert.submit.failure.title=Errore nell'invio
+firststeps.alert.submit.failure.message=C'è stato un problema nell'invio del nome utente. Potrebbe essere necessario un riavvio dell'applicazione.
+
+# Geolocation error
+geolocationerror.introduction=Per poter usare Kort è necessario accedere alla tua posizione corrente.
+geolocationerror.button.reload=Ricarica l'applicazione
+geolocationerror.loadmask.message=Ricarico l'applicazione...
+
+#Map
+map.title=Incarichi
+map.loadmask.message=Caricamento incarichi...
+map.mission.promotionmessagebox.close=Chiudi
+map.mission.promotionmessagebox.earn=Ricevi {extra_coins} Koins aggiuntivi
+map.mission.promotionmessagebox.date=da {startdate} a {enddate}
+map.mission.missionmessagebox.koins.earn=Guadagna {fix_koin_count} Koins
+map.mission.missionmessagebox.koins.earnpromotion=Ricevi {fix_koin_count} + {extra_coins} Koins
+map.mission.missionmessagebox.yes=Rispondere
+map.mission.missionmessagebox.no=Non so
+map.mission.missionmessagebox.close=Chiudi
+map.mission.layername=Incarichi
+map.missionInactive.layername=Missioni non attive
+map.validation.layername=Verifiche
+map.validation.validationmessagebox.koins.earn=Ricevi {validation_koin_count} Koins
+map.validation.validationmessagebox.koins.earnpromotion=Ricevi {validation_koin_count} + {extra_coins} Koins
+map.mission.validationmessagebox.yes=Rispondere
+map.mission.validationmessagebox.no=Non so
+map.mission.validationmessagebox.close=Chiudi
+map.validation.validationmessagebox.checkit=Verifica la soluzione
+
+## Fix
+fix.form.title=Incarico
+fix.form.koins.earn=Prendi i {fix_koin_count} Koins\!
+fix.form.koins.earnpromotion=Prendi i {fix_koin_count} + {extra_coins} Koins\!
+fix.form.message.placeholder=La tua risposta...
+fix.form.button.showonmap=Mostra sulla mappa
+fix.form.button.submit=Risolvi l'incarico
+fix.form.loadmask.message=Carico risposte...
+fix.form.falsepositive.toggle.label=Non risolvibile
+fix.map.title=Mappa
+fix.sendmask.message=Invia risposta...
+fix.alert.fixfield.empty.title=Campo vuoto\!
+fix.alert.fixfield.empty.message=È necessario compilare tutti i campi.
+fix.alert.submit.failure.title=Errore nell'invio
+fix.alert.submit.failure.message=C'è stato un problema nell'invio della riposta. Potrebbe essere necessario un riavvio dell'applicazione.
+
+## Vote
+vote.falsepositive.question=È stato detto che non è possibile rispondere a quest domanda. È vero?
+vote.container.button.answer=Rispondere
+vote.container.votes.left={votes_left} valutazioni necessarie
+vote.answeractionsheet.button.accept=Si
+vote.answeractionsheet.button.decline=No
+vote.answeractionsheet.button.cancel=Non so
+vote.answeractionsheet.question=La soluzione proposta è corretta?
+vote.sendmask.message=Invio risposta...
+vote.alert.submit.failure.title=Errore nell'invio
+vote.alert.submit.failure.message=C'è stato un problema nell'invio della riposta. Potrebbe essere necessario un riavvio dell'applicazione.
+
+# Highscore
+highscore.title=Highscore
+highscore.absolute.tabtitle=Top
+highscore.relative.tabtitle=Il mio punteggio
+highscore.loadmask.message=Carico Highscore...
+highscore.emptytext=Impossibile caricare gli Highscore.
+highscore.you=Sei tu\!
+highscore.koins=Koins
+highscore.fixcount=Incarichi\:
+highscore.votecount=Verifiche\:
+highscore.user.badges.emptytext=Impossibile caricare i badge.
+
+# Profil
+profile.title=Profilo
+profile.button.logout=Logout
+profile.button.changeusername=Cambio nome utente
+profile.settings.messagebox.title=Impostazioni
+profile.settings.messagebox.message=Inserisci il tuo nome utente
+profile.username.loadmask.message=Salvataggio nome utente
+profile.content.username=Nome utente
+profile.content.oauthprovider=Loggato con
+profile.content.fixes=Incarichi svolti
+profile.content.votes=Verifiche effettuate
+profile.content.koins.header=Koin raccolti
+profile.content.koins.title=Koin
+profile.content.ranking.title=Posto
+profile.content.badges.header=I tuoi badge
+profile.logout.loadmask.message=Logout...
+profile.refresh.loadmask.message=Carico il profilo...
+profile.badges.title=I tuoi badge
+profile.badges.recieved=Ottenuto il\:
+profile.badges.emptytext=Impossibile caricare i tuoi badge.
+profile.badges.button.close=Chiudi
+profile.alert.username.empty.title=Scelta nome utente
+profile.alert.username.empty.message=Scegli il tuo nome utente.
+profile.alert.username.specialchars.title=Carattere non valido
+profile.alert.username.specialchars.message=Il nome utente puó contenere solo lettere e numeri.
+profile.alert.submit.failure.title=Errore nell'invio
+profile.alert.submit.failure.message=C'è stato un problema nell'invio del nome utente. Potrebbe essere necessario un riavvio dell'applicazione.
+
+#News
+news.title=News
+news.unread=Non letti
+news.read=Letti
+news.list.emptytext=Lista vuota
+news.updated=Aggiornato
+news.settings.save=Salva
+news.settings.cancel=Annulla
+news.settings.acceptNoLanguage=Deseleziona tutti
+news.settings.acceptAllLanguages=Seleziona tutti
+news.settings.label=Voglio ricevere gli aggiornamenti in queste lingue\:
+
+# About
+about.title=A proposito
+about.version.title=Versione
+about.information.title=Ulteriori informazioni
+about.information.homepage=Sito web\:
+about.information.feedback=Feedback/FAQ\:
+about.information.bugs=Segnalazione errori\:
+about.developers.title=Sviluppo
+about.project.title=Progetti
+about.project.advisor=Responsabile\:
+about.credits.title=Credits
+about.credits.partner=Partner\:
+about.credits.mapdata=Dati geografici\:
+about.credits.tiledata=Mappe (tiles)\:
+about.credits.markers=Icone dei marker\:
+about.credits.translation=Traduzione\:
+about.credits.dbhosting=Hosting Database\:
+about.legal.title=Indicazioni legali
+about.legal.message=Segui le indicazioni legali di OpenStreetMap, ad esempio non utilizzare sorgenti protette senza permesso.
+
+# PullRefresh Plugin
+pullrefresh.pullrefresh=Trascinare in basso per aggiornare
+pullrefresh.releaserefresh=Rilasciare per aggiornare...
+pullrefresh.loading=sto aggiornando...
+pullrefresh.lastupdated=Ultimo aggiornamento\:
+
+# ListPaging Plugin
+listpaging.loadmore=Carica altri...
+listpaging.nomorerecords=Non ci sono altre voci da visualizzare.
+
+# Button
+button.back=Indietro
+
+# MessageBox
+messagebox.ok=OK
+messagebox.yes=Si
+messagebox.no=No
+messagebox.cancel=Annulla
+
+# Picker
+picker.done=Finito
+picker.cancel=Annulla
+
+# Reward
+reward.alert.title=Sei migliorato\!
+reward.alert.koins.new=Congratulazioni\! Hai guadagnato {koin_count_new} Koins.
+reward.alert.koins.total=Il tuo punteggio adesso è {koin_count_total}
+reward.alert.badges.title=Nuovo Badge
+
+# App update
+update.title=Nuova versione dell'app
+update.message=L'app è stata aggiornata all'ultima versione. Ricaricare?
+
+#Languages
+en=Inglese
+de=Tedesco
+it=Italiano
+fr=Francese
+sl=Sloveno
+hr=Croato
+cs=Ceco
+nl=Fiammingo
+gl=Gallego
+pt=Portoghese
+ro=Rumeno
+ja=Giapponese
+ca=Catalano
+es=Spagnolo
+
+###############################
+# Labels used directly in source files (without Ext.i18n.Bundle plugin)
+###############################
+
+# index.html
+## App startscreen
+startscreen.loadingtext=Kort si sta caricando. Tieniti pronto...
+startscreen.browsererror=Questo browser non è supportato al momento. Prova dal tuo smartphone.
+
+# app/util/Config.js
+## Firststeps
+firststeps.form.username.placeholder=Nome utente
+
+## PullRefresh Plugin
+pullrefresh.dateformat=d.m.Y h\:i\:s

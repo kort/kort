@@ -1,0 +1,222 @@
+# Main View (TabPanel)
+tab.map=Map
+tab.bugmap=Naloge
+tab.validation=Preveri
+tab.highscore=Dosežki
+tab.profile=Profil
+tab.about=O Kortu
+tab.news=News
+
+# Login
+login.kort.description.1=Reši naloge
+login.kort.description.2=Zbiraj Koins
+login.kort.description.3=Izboljšaj OpenStreetMap
+login.kort.introduction.1=Kort omogoča izboljšati podatke v OpenStreetMap
+login.kort.introduction.2=Tako boš videl svoje naloge na zemljevidu. Z izpolnitvijo naloge si pridobiš Koins in značke.
+login.kort.introduction.3=Vsako rešeno nalogo preverijo tudi ostali igralci. Takoj, ko predlagana rešitev prejme dovolj pozitivnih ocen je poslana nazaj na OpenStreetMap
+login.kort.introduction.4=Prijavi se zdaj in začni svojo nalogo
+login.button.google=Prijavi se z Google
+login.button.osm=Prijavi se z OpenStreetMap
+login.button.facebook=Prijavi se z Facebook
+login.loadmask.message=Prijavi se
+
+# Firststeps
+firststeps.introduction=Dobrodošel na Kort\! Izberi uporabniško ime\:
+firststeps.form.button.submit=Začni nalogo
+firststeps.alert.username.empty.title=Vpiši uporabniško ime
+firststeps.alert.username.empty.message=Prosim, vpiši uporabniško ime
+firststeps.alert.username.specialchars.title=Težave z znaki
+firststeps.alert.username.specialchars.message=Uporabi samo črke in številke za svoje uporabniško ime
+firststeps.alert.submit.failure.title=Napaka pri pošiljanju
+firststeps.alert.submit.failure.message=Ups\! Prišlo je do napake pri pošiljanju uporabniškega imena. Poizkusi ponovno zagnati aplikacijo.
+
+# Geolocation error
+geolocationerror.introduction=Če želiš uporabiti Kort, je potreben dostop do tvojega geo-položaja.
+geolocationerror.button.reload=Ponovno naloži aplikacijo
+geolocationerror.loadmask.message=Ponovno nalaganje aplikacije...
+
+#Map
+map.title=Missions
+map.loadmask.message=Nalaganje nalog...
+map.mission.promotionmessagebox.close=Close
+map.mission.promotionmessagebox.earn=Earn additional {extra_coins} Koins
+map.mission.promotionmessagebox.date={startdate} to {enddate}
+map.mission.missionmessagebox.koins.earn=Zaslužite {fix_koin_count} Koins
+map.mission.missionmessagebox.koins.earnpromotion=Earn {fix_koin_count} + {extra_coins} Koins
+map.mission.missionmessagebox.yes=Odgovor
+map.mission.missionmessagebox.no=Ne vem
+map.mission.missionmessagebox.close=Close
+map.mission.layername=Missions
+map.missionInactive.layername=Inactive Missions
+map.validation.layername=Checks
+map.validation.validationmessagebox.koins.earn=Earn {validation_koin_count} Koins
+map.validation.validationmessagebox.koins.earnpromotion=Earn {validation_koin_count} + {extra_coins} Koins
+map.mission.validationmessagebox.yes=Odgovor
+map.mission.validationmessagebox.no=Ne vem
+map.mission.validationmessagebox.close=Close
+map.validation.validationmessagebox.checkit=Check the solution
+
+## Fix
+fix.form.title=Naloga
+fix.form.koins.earn=Zasluži {fix_koin_count} Koins\!
+fix.form.koins.earnpromotion=Get the {fix_koin_count} + {extra_coins} Koins\!
+fix.form.message.placeholder=Tvoj odgovor...
+fix.form.button.showonmap=Prikaži na zemljevidu
+fix.form.button.submit=Reši nalogo
+fix.form.loadmask.message=Nalaganje odgovorov...
+fix.form.falsepositive.toggle.label=Ne morem rešiti
+fix.map.title=Zemljevid
+fix.sendmask.message=Pošiljanje rešitve...
+fix.alert.fixfield.empty.title=Izpolni polja
+fix.alert.fixfield.empty.message=Prosim, izpolni vsa polja
+fix.alert.submit.failure.title=Napaka pri pošiljanju
+fix.alert.submit.failure.message=Ups\! Prišlo je do napake pri pošiljanju odgovora. Poiskusi ponovno zagnati aplikacijo.
+
+## Vote
+vote.falsepositive.question=Ta naloga je označena kot "ne morem rešiti". Je to pravilno?
+vote.container.button.answer=Odgovor
+vote.container.votes.left={votes_left} Potrebne ocene
+vote.answeractionsheet.button.accept=Da
+vote.answeractionsheet.button.decline=Ne
+vote.answeractionsheet.button.cancel=Ne vem
+vote.answeractionsheet.question=Je odgovor pravilen?
+vote.sendmask.message=Pošiljanje odgovora...
+vote.alert.submit.failure.title=Napaka pri pošiljanju
+vote.alert.submit.failure.message=Ups\! Prišlo je do napake pri pošiljanju vašega odgovora. Ponovno poizkusi zagnati aplikacijo.
+
+# Highscore
+highscore.title=Dosežki
+highscore.absolute.tabtitle=Top
+highscore.relative.tabtitle=My score
+highscore.loadmask.message=Nalaganje dosežkov...
+highscore.emptytext=Ne morem naložiti statistike.
+highscore.you=To si ti\!
+highscore.koins=Koins
+highscore.fixcount=Naloge\:
+highscore.votecount=Pregledi\:
+highscore.user.badges.emptytext=Ne morem naložiti značke
+
+# Profil
+profile.title=Profil
+profile.button.logout=Odjava
+profile.button.changeusername=Spremeni uporabniško ime
+profile.settings.messagebox.title=Nastavitve
+profile.settings.messagebox.message=Vpiši svoje novo uporabniško ime
+profile.username.loadmask.message=Shranjevanje uporabniškega imena...
+profile.content.username=Uporabniško ime
+profile.content.oauthprovider=Prijava preko
+profile.content.fixes=Opravljene naloge
+profile.content.votes=Opravljeni pregledi
+profile.content.koins.header=Zbrani Koins
+profile.content.koins.title=Koins
+profile.content.ranking.title=Mesto
+profile.content.badges.header=Zmagane značke
+profile.logout.loadmask.message=Odjava...
+profile.refresh.loadmask.message=Nalaganje profila...
+profile.badges.title=Tvoje značke
+profile.badges.recieved=Prejete dne\:
+profile.badges.emptytext=Tvojih značk ni bilo mogoče naložiti.
+profile.badges.button.close=Zapri
+profile.alert.username.empty.title=Vpiši uporabniško ime
+profile.alert.username.empty.message=Prosim, vpiši uporabniško ime.
+profile.alert.username.specialchars.title=Težave z znaki
+profile.alert.username.specialchars.message=Uporabi samo črke in številke za svoje uporabniško ime.
+profile.alert.submit.failure.title=Napaka pri pošiljanju
+profile.alert.submit.failure.message=Ups\! Prišlo je do napake pri pošiljanju uporabniškega imena. Ponovno poizkusi zagnati aplikacijo.
+
+#News
+news.title=News
+news.unread=Unread
+news.read=Read
+news.list.emptytext=No entries
+news.updated=Updated
+news.settings.save=Save
+news.settings.cancel=Cancel
+news.settings.acceptNoLanguage=Deselect all
+news.settings.acceptAllLanguages=Select all
+news.settings.label=I want to receive news in the following languages\:
+
+# About
+about.title=O
+about.version.title=Različica
+about.information.title=Več informacij
+about.information.homepage=Spletna stran\:
+about.information.feedback=Predlogi/vprašanja\:
+about.information.bugs=Prijavite napako\:
+about.developers.title=Razvijalec
+about.project.title=Projects
+about.project.advisor=Vodja
+about.credits.title=Zahvale
+about.credits.partner=Partner\:
+about.credits.mapdata=Geo podatki\:
+about.credits.tiledata=Ploščice
+about.credits.markers=Označevalne ikone
+about.credits.translation=Translation\:
+about.credits.dbhosting=DB Hosting\:
+about.legal.title=Pravno opozorilo\:
+about.legal.message=Prosimo, upoštevaj smernice OpenStreetMap in ne uporabljaj avtorsko zaščitenih virov brez dovoljenja.
+
+# PullRefresh Plugin
+pullrefresh.pullrefresh=Potegni dol za osvežitev
+pullrefresh.releaserefresh=Sprosti za osvežitev...
+pullrefresh.loading=nalagam...
+pullrefresh.lastupdated=Zadnja posodobitev\:
+
+# ListPaging Plugin
+listpaging.loadmore=Naloži več...
+listpaging.nomorerecords=Ni več zapisov na razpolago.
+
+# Button
+button.back=Nazaj
+
+# MessageBox
+messagebox.ok=OK
+messagebox.yes=Da
+messagebox.no=Ne
+messagebox.cancel=Prekliči
+
+# Picker
+picker.done=Konec
+picker.cancel=Prekliči
+
+# Reward
+reward.alert.title=Povečal si svoj ugled
+reward.alert.koins.new=Čestitam\! Osvojil si {koin_count_new} Koins.
+reward.alert.koins.total=Skupaj imaš {koin_count_total} Koins.
+reward.alert.badges.title=Pridobljene značke
+
+# App update
+update.title=Nova različica aplikacije
+update.message=Aplikacija mora biti posodobljena z novo verzijo. Osveži?
+
+#Languages
+en=English
+de=German
+it=Italian
+fr=French
+sl=Slovenian
+hr=Croatian
+cs=Czech
+nl=Dutch
+gl=Galician
+pt=Portuguese
+ro=Romanian
+ja=Japanese
+ca=Catalan
+es=Spanish
+
+###############################
+# Labels used directly in source files (without Ext.i18n.Bundle plugin)
+###############################
+
+# index.html
+## App startscreen
+startscreen.loadingtext=Kort se nalaga. Pripavi se...
+startscreen.browsererror=Tvoj brskalnik še ne podpira uporabe. Poskusi s tvojim mobilnim telefonom.
+
+# app/util/Config.js
+## Firststeps
+firststeps.form.username.placeholder=Uporabniško ime
+
+## PullRefresh Plugin
+pullrefresh.dateformat=d/m/l h\:iA

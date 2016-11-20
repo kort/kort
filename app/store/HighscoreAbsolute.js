@@ -14,7 +14,7 @@ Ext.define('Kort.store.HighscoreAbsolute', {
 
 		proxy: {
 			type: 'rest',
-            url: Kort.util.Config.getWebservices().highscore.absoluteUrl,
+            url: Kort.util.Config.getWebservices().highscore.getAbsoluteUrl(),
             startParam: false,
             extraParams: {
                 'lang': Kort.util.Config.getLanguage(),

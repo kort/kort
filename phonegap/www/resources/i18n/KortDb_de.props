@@ -1,0 +1,174 @@
+# error types
+error_type.title.motorway_ref=Autobahn ohne Bezeichner
+error_type.title.poi_wo_name=Objekt ohne Namen
+error_type.title.missing_speedlimit=Fehlendes Tempolimit
+error_type.title.tracktype=Typ des Wegs unbekannt
+error_type.title.worship_religion=Kultstätte/Kirche ohne Religion
+error_type.title.language_name=Sprache des Namens unbekannt
+error_type.title.street_wo_name=Strasse ohne Namen
+error_type.title.missing_cuisine=Art des Restaurants
+
+# error type placeholders
+error_type.placeholder.ref=Bezeichner
+error_type.placeholder.religion=Religion
+error_type.placeholder.name=Name
+error_type.placeholder.speed_limit=Tempolimit
+error_type.placeholder.language=Sprache
+error_type.placeholder.type=Typ
+error_type.placeholder.street_name=Strassenname
+error_type.placeholder.missing_cuisine=Küche
+
+# vote questions
+vote.question.ref=Ist diese Bezeichnung korrekt?
+vote.question.place_of_worship=Ist diese Kultstätte/Kirche von dieser Religion?
+vote.question.name=Passt der Name zu diesem/dieser $1?
+vote.question.maxspeed=Darf man auf dieser Strasse mit dieser Geschwindigkeit fahren?
+vote.question.language_unknown=Ist der Name '$2' in folgender Sprache?
+vote.question.tracktype=Ist der Weg folgendermassen beschaffen?
+vote.question.street_name=Ist dieser Strassenname korrekt?
+vote.question.missing_cuisine=Ist dies die korrekte Angabe der Küche von $1?
+
+# badge names
+badge.name.first_place=1. Rang
+badge.name.second_place=2. Rang
+badge.name.third_place=3. Rang
+badge.name.100_missions=100 Aufträge
+badge.name.50_missions=50 Aufträge
+badge.name.10_missions=10 Aufträge
+badge.name.1000_checks=1000 Prüfungen
+badge.name.100_checks=100 Prüfungen
+badge.name.10_checks=10 Prüfungen
+badge.name.first_mission=1. Auftrag
+badge.name.first_check=1. Prüfung
+
+# badge descriptions
+badge.description.reached_1st_place=Erster Rang in der Highscore erreicht.
+badge.description.reached_2nd_place=Zweiter Rang in der Highscore erreicht.
+badge.description.reached_3rd_place=Dritter Rang in der Highscore erreicht.
+badge.description.100_missions_completed=100 Aufträge erledigt.
+badge.description.50_missions_completed=50 Aufträge erledigt.
+badge.description.10_missions_completed=10 Aufträge erledigt.
+badge.description.1000_checks=1000 Antworten überprüft.
+badge.description.100_checks=100 Antworten überprüft.
+badge.description.10_checks=10 Antworten überprüft.
+badge.description.1st_mission=Erster Auftrag erledigt.
+badge.description.1st_check=Erste Antwort überprüft.
+
+# missing_track_types (http://wiki.openstreetmap.org/wiki/Key:tracktype)
+answer.track_type.grade1=Asphalt, Beton oder Pflastersteine
+answer.track_type.grade2=Schotter
+answer.track_type.grade3=Feinschotter-, Sand- oder Erdweg
+answer.track_type.grade4=Weg mit Pflanzenwuchs entlang der Spurmitte
+answer.track_type.grade5=Unbefestigter Weg
+
+# religion (http://wiki.openstreetmap.org/wiki/Key:religion)
+answer.religion.buddhist=Buddhismus (Tempel)
+answer.religion.christian=Christentum (Kirche)
+answer.religion.hindu=Hinduismus (Tempel)
+answer.religion.jewish=Judentum (Synagoge)
+answer.religion.muslim=Islam (Moschee)
+answer.religion.pastafari=Pastafarianismus
+answer.religion.shinto=Shinto (Schrein)
+answer.religion.sikh=Sikh (Gurdwara)
+answer.religion.multiple=Mehrere Religionen
+
+# language (http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
+answer.language.arabic=Arabisch
+answer.language.catalan=Katalanisch
+answer.language.chinese=Chinesisch
+answer.language.danish=Dänisch
+answer.language.dutch=Holländisch
+answer.language.english=Englisch
+answer.language.estonian=Estnisch
+answer.language.finnish=Finnisch
+answer.language.french=Französisch
+answer.language.german=Deutsch
+answer.language.greek=Griechisch
+answer.language.hebrew=Hebräisch
+answer.language.hungarian=Ungarisch
+answer.language.irish=Irisch
+answer.language.icelandic=Isländisch
+answer.language.italian=Italienisch
+answer.language.japanese=Japanisch
+answer.language.korean=Korean
+answer.language.croatian=Koreanisch
+answer.language.latin=Lateinisch
+answer.language.luxembourgish=Luxemburgisch
+answer.language.norwegian=Norwegisch
+answer.language.persian=Persisch
+answer.language.polish=Polnisch
+answer.language.portuguese=Portugiesisch
+answer.language.romansh=Rätoromanisch
+answer.language.romanian=Rumänisch
+answer.language.russian=Russisch
+answer.language.sardinian=Sardisch
+answer.language.scottish_gaelic=Schottisch-Gälisch
+answer.language.swiss_german=Schweizerdeutsch
+answer.language.serbian=Serbisch
+answer.language.slovakian=Slowakisch
+answer.language.slovenian=Slowenisch
+answer.language.spanish=Spanisch
+answer.language.swedish=Schwedisch
+answer.language.thai=Thailändisch
+answer.language.tibetan=Tibetisch
+answer.language.czech=Tschechisch
+answer.language.turkish=Türkisch
+answer.language.ukrainian=Ukrainisch
+answer.language.uzbek=Uzbekisch
+answer.language.vietnamese=Vietnamesisch
+answer.language.welsh=Walisisch
+
+# missing_cuisine
+answer.missing_cuisine.regional=Regional
+answer.missing_cuisine.coffee_shop=Café
+answer.missing_cuisine.international=International
+answer.missing_cuisine.italian=Italienisch
+answer.missing_cuisine.turkish=Türkisch
+answer.missing_cuisine.chinese=Chinesisch
+answer.missing_cuisine.thai=Thailändisch
+answer.missing_cuisine.asian=Asiatisch
+answer.missing_cuisine.indian=Indisch
+answer.missing_cuisine.french=Französisch
+answer.missing_cuisine.mexican=Mexikanisch
+answer.missing_cuisine.american=Amerikanisch
+answer.missing_cuisine.japanese=Japanisch
+answer.missing_cuisine.greek=Griechisch
+answer.missing_cuisine.sandwich=Sandwich
+answer.missing_cuisine.steak_house=Steakhouse
+answer.missing_cuisine.chicken=Brathähnchen
+answer.missing_cuisine.bistro_brasserie=Bistro, Biergarten
+answer.missing_cuisine.seafood=Meeresfrüchte
+answer.missing_cuisine.burger=Burger
+
+##############################################################
+# THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT AND OSM_ERRORS#
+##############################################################
+
+# error descriptions (KeepRight)
+bug.question.track=Um welchen Weg-Typ handelt es sich hier?
+bug.question.poi=Wie heisst diese/s $1?
+bug.question.speed=Welches Tempolimit gilt auf dieser Strasse?
+bug.question.name_of_street=Wie heisst diese Strasse?
+bug.question.language=In welcher Sprache ist der Name '$2' geschrieben?
+bug.question.motorway_ref=Wie lautet die Bezeichnung dieser Autobahn (z.B. A3 oder E385)?
+bug.question.place_of_worship=Zu welcher Religion gehört diese Kirche/Kultstätte?
+bug.question.cuisine_of_restaurant=Welche Art der Küche hat '$1'?
+
+# single values
+cafe=Café
+fast_food=Fast-Food Restaurant
+restaurant=Restaurant
+school=Schule
+pharmacy=Apotheke
+fuel=Tankstelle
+cinema=Kino
+bank=Bank
+university=Universität
+theatre=Theater
+pub=Pub
+place_of_worship=Kirche/Kultstätte
+library=Bibliothek
+hospital=Spital
+courthouse=Gerichtsgebäude
+way=Weg
+node=Ort

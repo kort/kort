@@ -1,0 +1,263 @@
+<!DOCTYPE HTML>
+<html manifest="" lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Kort</title>
+    <link rel="shortcut icon" sizes="196x196" href="./resources/images/kort-favicon-196.png" />
+    <link rel="shortcut icon" sizes="128x128" href="./resources/images/kort-favicon-128.png" />
+    <link rel="icon" href="./resources/images/kort-favicon.ico" type="image/png" />
+
+    <style type="text/css">
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: "Helvetica Neue", HelveticaNeue, "Helvetica-Neue", Helvetica, "BBAlpha Sans", sans-serif;
+        }
+        #appStartscreen {
+            font-size: 18px !important;
+            height: 100%;
+            background-color: #395971;
+            color: #fff;
+            padding: 1.5em 0.5em 0.5em 0.5em;
+            text-align: center;
+        }
+        #appStartscreen #startscreen-kort-logo img {
+            width: 150px;
+            height: 150px;
+        }
+        #appStartscreen #startscreen-loading-content #startscreen-loading-text,
+        #appStartscreen #startscreen-loading-content .browser-error {
+            font-size: 0.9em;
+            margin: 1.5em 0.8em 0 0.8em;
+        }
+        #appStartscreen #startscreen-loading-content #startscreen-loading-text {
+            text-transform: uppercase;
+        }
+        #appStartscreen #startscreen-loading-content .sadsmiley {
+            font-size: 4em;
+        }
+
+        #floatingCirclesG{
+            margin: auto;
+            margin-top: 0.5em;
+            position:relative;
+            width:60px;
+            height:60px;
+            -moz-transform:scale(0.6);
+            -webkit-transform:scale(0.6);
+            -ms-transform:scale(0.6);
+            -o-transform:scale(0.6);
+            transform:scale(0.6);
+        }
+
+        .f_circleG{
+            position:absolute;
+            background-color:#708798;
+            height:11px;
+            width:11px;
+            -moz-border-radius:5px;
+            -moz-animation-name:f_fadeG;
+            -moz-animation-duration:1.04s;
+            -moz-animation-iteration-count:infinite;
+            -moz-animation-direction:linear;
+            -webkit-border-radius:5px;
+            -webkit-animation-name:f_fadeG;
+            -webkit-animation-duration:1.04s;
+            -webkit-animation-iteration-count:infinite;
+            -webkit-animation-direction:linear;
+            -ms-border-radius:5px;
+            -ms-animation-name:f_fadeG;
+            -ms-animation-duration:1.04s;
+            -ms-animation-iteration-count:infinite;
+            -ms-animation-direction:linear;
+            -o-border-radius:5px;
+            -o-animation-name:f_fadeG;
+            -o-animation-duration:1.04s;
+            -o-animation-iteration-count:infinite;
+            -o-animation-direction:linear;
+            border-radius:5px;
+            animation-name:f_fadeG;
+            animation-duration:1.04s;
+            animation-iteration-count:infinite;
+            animation-direction:linear;
+        }
+
+        #frotateG_01{
+            left:0;
+            top:25px;
+            -moz-animation-delay:0.39s;
+            -webkit-animation-delay:0.39s;
+            -ms-animation-delay:0.39s;
+            -o-animation-delay:0.39s;
+            animation-delay:0.39s;
+        }
+
+        #frotateG_02{
+            left:7px;
+            top:7px;
+            -moz-animation-delay:0.52s;
+            -webkit-animation-delay:0.52s;
+            -ms-animation-delay:0.52s;
+            -o-animation-delay:0.52s;
+            animation-delay:0.52s;
+        }
+
+        #frotateG_03{
+            left:25px;
+            top:0;
+            -moz-animation-delay:0.65s;
+            -webkit-animation-delay:0.65s;
+            -ms-animation-delay:0.65s;
+            -o-animation-delay:0.65s;
+            animation-delay:0.65s;
+        }
+
+        #frotateG_04{
+            right:7px;
+            top:7px;
+            -moz-animation-delay:0.78s;
+            -webkit-animation-delay:0.78s;
+            -ms-animation-delay:0.78s;
+            -o-animation-delay:0.78s;
+            animation-delay:0.78s;
+        }
+
+        #frotateG_05{
+            right:0;
+            top:25px;
+            -moz-animation-delay:0.91s;
+            -webkit-animation-delay:0.91s;
+            -ms-animation-delay:0.91s;
+            -o-animation-delay:0.91s;
+            animation-delay:0.91s;
+        }
+
+        #frotateG_06{
+            right:7px;
+            bottom:7px;
+            -moz-animation-delay:1.04s;
+            -webkit-animation-delay:1.04s;
+            -ms-animation-delay:1.04s;
+            -o-animation-delay:1.04s;
+            animation-delay:1.04s;
+        }
+
+        #frotateG_07{
+            left:25px;
+            bottom:0;
+            -moz-animation-delay:1.17s;
+            -webkit-animation-delay:1.17s;
+            -ms-animation-delay:1.17s;
+            -o-animation-delay:1.17s;
+            animation-delay:1.17s;
+        }
+
+        #frotateG_08{
+            left:7px;
+            bottom:7px;
+            -moz-animation-delay:1.3s;
+            -webkit-animation-delay:1.3s;
+            -ms-animation-delay:1.3s;
+            -o-animation-delay:1.3s;
+            animation-delay:1.3s;
+        }
+
+        @-moz-keyframes f_fadeG{
+            0%{
+                background-color:#FFFFFF}
+
+            100%{
+                background-color:#708798}
+
+        }
+
+        @-webkit-keyframes f_fadeG{
+            0%{
+                background-color:#FFFFFF}
+
+            100%{
+                background-color:#708798}
+
+        }
+
+        @-ms-keyframes f_fadeG{
+            0%{
+                background-color:#FFFFFF}
+
+            100%{
+                background-color:#708798}
+
+        }
+
+        @-o-keyframes f_fadeG{
+            0%{
+                background-color:#FFFFFF}
+
+            100%{
+                background-color:#708798}
+
+        }
+
+        @keyframes f_fadeG{
+            0%{
+                background-color:#FFFFFF}
+
+            100%{
+                background-color:#708798}
+
+        }
+    </style>
+
+    <script type="text/javascript">
+        var isLocalStorageUpdated = window.localStorage.getItem("kort-updated-cmd404");
+        if(!isLocalStorageUpdated) {
+            window.localStorage.clear();
+            window.localStorage.setItem("kort-updated-cmd404", "true");
+            window.location.reload();
+        }
+    </script>
+
+    <!-- The line below must be kept intact for Sencha Command to build your application -->
+    <script type="text/javascript">(function(e){var c=e.document.head||e.document.getElementsByTagName("head")[0],b=e.Ext;if(typeof b=="undefined"){e.Ext=b={}}function d(f){document.write(f)}function a(f,g){var h=document.createElement("meta");h.setAttribute("name",f);h.setAttribute("content",g);c.appendChild(h)}b.blink=function(q){var k=q.js||[],o=q.css||[],m,n,p,h,l,g;if(navigator.userAgent.match(/IEMobile\/10\.0/)){var j=document.createElement("style");j.appendChild(document.createTextNode("@media screen and (orientation: portrait) {@-ms-viewport {width: 320px !important;}}@media screen and (orientation: landscape) {@-ms-viewport {width: 560px !important;}}"));document.getElementsByTagName("head")[0].appendChild(j)}a("viewport","width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no");a("apple-mobile-web-app-capable","yes");a("apple-touch-fullscreen","yes");b.microloaded=true;var f=window.Ext.filterPlatform=function(u){var D=false,s=navigator.userAgent,w,A;u=[].concat(u);function z(E){var i=/Mobile(\/|\s)/.test(E);return/(iPhone|iPod)/.test(E)||(!/(Silk)/.test(E)&&(/(Android)/.test(E)&&(/(Android 2)/.test(E)||i)))||(/(BlackBerry|BB)/.test(E)&&i)||/(Windows Phone)/.test(E)}function y(i){return !z(i)&&(/iPad/.test(i)||/Android|Silk/.test(i)||/(RIM Tablet OS)/.test(i)||(/MSIE 10/.test(i)&&/; Touch/.test(i)))}var r=window.location.search.substr(1),t=r.split("&"),v={},B,x;for(x=0;x<t.length;x++){var C=t[x].split("=");v[C[0]]=C[1]}B=v.platform;if(B){return u.indexOf(B)!=-1}for(w=0,A=u.length;w<A;w++){switch(u[w]){case"phone":D=z(s);break;case"tablet":D=y(s);break;case"desktop":D=!z(s)&&!y(s);break;case"ios":D=/(iPad|iPhone|iPod)/.test(s);break;case"android":D=/(Android|Silk)/.test(s);break;case"blackberry":D=/(BlackBerry|BB)/.test(s);break;case"safari":D=/Safari/.test(s)&&!(/(BlackBerry|BB)/.test(s));break;case"chrome":D=/Chrome/.test(s);break;case"ie10":D=/MSIE 10/.test(s);break;case"windows":D=/MSIE 10/.test(s)||/Trident/.test(s);break;case"tizen":D=/Tizen/.test(s);break;case"firefox":D=/Firefox/.test(s)}if(D){return true}}return false};for(m=0,n=o.length;m<n;m++){p=o[m];if(typeof p!="string"){h=p.platform;g=p.exclude;l=p.theme;p=p.path}if(h){if(!f(h)||f(g)){continue}if(!b.theme){b.theme={}}if(!b.theme.name){b.theme.name=l||"Default"}}d('<link rel="stylesheet" href="'+p+'">')}for(m=0,n=k.length;m<n;m++){p=k[m];if(typeof p!="string"){h=p.platform;g=p.exclude;p=p.path}if(h){if(!f(h)||f(g)){continue}}d('<script src="'+p+'"><\/script>')}}})(this);Ext.blink({id:"fbb39b29-532a-449b-bc50-7d1890386993",js:[{path:"phonegap.js",remote:true},{path:"lib/Leaflet-0.7/dist/leaflet-src.js",update:"full"},{path:"lib/Leaflet-0.7/dist/leaflet-osm.js",update:"full"},{path:"lib/kort-libs/UrlLib.js",update:"full"},{path:"lib/kort-libs/Math.js",update:"full"},{path:"app.js",update:"full"}],css:[{path:"resources/css/app.css"},{path:"lib/Leaflet-0.7/dist/leaflet.css"},{path:"lib/zocial/css/zocial.css"},{path:"resources/styles/styles.css"}]});</script>
+</head>
+<body>
+    <div id="appStartscreen">
+        <div id="startscreen-kort-logo">
+            <img src="./resources/images/kort-logo_white.png" />
+        </div>
+        <div id="startscreen-loading-content">
+            <p id="startscreen-loading-text">Kort is loading. Get ready...</p>
+            <div id="floatingCirclesG">
+                <div class="f_circleG" id="frotateG_01">
+                </div>
+                <div class="f_circleG" id="frotateG_02">
+                </div>
+                <div class="f_circleG" id="frotateG_03">
+                </div>
+                <div class="f_circleG" id="frotateG_04">
+                </div>
+                <div class="f_circleG" id="frotateG_05">
+                </div>
+                <div class="f_circleG" id="frotateG_06">
+                </div>
+                <div class="f_circleG" id="frotateG_07">
+                </div>
+                <div class="f_circleG" id="frotateG_08">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-37644286-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+  </script>
+</body>
+</html>

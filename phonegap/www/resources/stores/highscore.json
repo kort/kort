@@ -1,0 +1,22 @@
+{
+    "return": [
+        {
+            "user_id": 10,
+            "username": "mapper22",
+            "koinCount": "200",
+            "ranking": 1
+        },
+        {
+            "user_id": 20,
+            "username": "tschortsch",
+            "koinCount": "160",
+            "ranking": 2
+        },
+        {
+            "user_id": 30,
+            "username": "odi",
+            "koinCount": "10",
+            "ranking": 3
+        }
+    ]
+}

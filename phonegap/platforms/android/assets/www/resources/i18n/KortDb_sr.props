@@ -1,0 +1,173 @@
+# error types
+error_type.title.motorway_ref=Аутопут без ознаке
+error_type.title.poi_wo_name=Објекат без имена
+error_type.title.missing_speedlimit=Нема ограничења брзине
+error_type.title.tracktype=Непознат тип макадама
+error_type.title.worship_religion=Богомоља без одабране религије
+error_type.title.language_name=Непознат језик назива
+error_type.title.street_wo_name=Улица без имена
+error_type.title.missing_cuisine=Restaurant without a cuisine
+
+# error type placeholders
+error_type.placeholder.ref=Ознака
+error_type.placeholder.religion=Религија
+error_type.placeholder.name=Име
+error_type.placeholder.speed_limit=Ограничење брзине
+error_type.placeholder.language=Језик
+error_type.placeholder.type=Тип
+error_type.placeholder.street_name=Име улице
+error_type.placeholder.missing_cuisine=Cuisine
+
+# vote questions
+vote.question.ref=Да ли је ово добра ознака аутопута?
+vote.question.place_of_worship=Да ли је ово религија ове богомоље?
+vote.question.name=Да ли је ово име за $1?
+vote.question.maxspeed=Да ли је ово добро ограничење брзине за ову улицу?
+vote.question.language_unknown=Да ли је назив '$2' на овом језику?
+vote.question.tracktype=Да ли је овај макадам овог типа?
+vote.question.street_name=Да ли је ово исправно име улице?
+vote.question.missing_cuisine=Is this the correct cuisine type of $1?
+
+# badge names
+badge.name.first_place=1. место
+badge.name.second_place=2. место
+badge.name.third_place=3. место
+badge.name.100_missions=100 мисија
+badge.name.50_missions=50 мисија
+badge.name.10_missions=10 мисија
+badge.name.1000_checks=1000 провера
+badge.name.100_checks=100 провера
+badge.name.10_checks=10 провера
+badge.name.first_mission=1. мисија
+badge.name.first_check=1. провера
+
+# badge descriptions
+badge.description.reached_1st_place=Досегнуто 1. место у највишим резултатима
+badge.description.reached_2nd_place=Досегнуто 2. место у највишим резултатима
+badge.description.reached_3rd_place=Досегнуто 3. место у највишим резултатима
+badge.description.100_missions_completed=Довршено 100 мисија.
+badge.description.50_missions_completed=Довршено 50 мисија.
+badge.description.10_missions_completed=Довршено 10 мисија.
+badge.description.1000_checks=Проверено 1000 одговора.
+badge.description.100_checks=Проверено 100 одговора.
+badge.description.10_checks=Проверено 10 одговора.
+badge.description.1st_mission=Прва мисија довршена.
+badge.description.1st_check=Први проверени одговор.
+
+# missing_track_types (http://wiki.openstreetmap.org/wiki/Key:tracktype)
+answer.track_type.grade1=Асфалт, бетон или коцке
+answer.track_type.grade2=Шљунак
+answer.track_type.grade3=Мешани тврђи и мекши материјали
+answer.track_type.grade4=Земља, песак или трава
+answer.track_type.grade5=Неасфалтиран пут
+
+# religion (http://wiki.openstreetmap.org/wiki/Key:religion)
+answer.religion.buddhist=Будистичка (храм)
+answer.religion.christian=Хришћанска (црква)
+answer.religion.hindu=Хинду (храм)
+answer.religion.jewish=Јеврејска (синагога)
+answer.religion.muslim=Муслиманска (џамија)
+answer.religion.pastafari=Пастафаријанска
+answer.religion.shinto=Шинто (храм)
+answer.religion.sikh=Сикх (гурдвара)
+answer.religion.multiple=Мултиконфесионална
+
+# language (http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
+answer.language.arabic=Арапски
+answer.language.catalan=Каталонски
+answer.language.chinese=Кинески
+answer.language.danish=Дански
+answer.language.dutch=Холандски
+answer.language.english=Енглески
+answer.language.estonian=Естонски
+answer.language.finnish=Фински
+answer.language.french=Француски
+answer.language.german=Немачки
+answer.language.greek=Грчки
+answer.language.hebrew=Хебрејски
+answer.language.hungarian=Hungarian
+answer.language.irish=Ирски
+answer.language.icelandic=Исландски
+answer.language.italian=Италијански
+answer.language.japanese=Јапански
+answer.language.korean=Корејски
+answer.language.croatian=Хрватски
+answer.language.latin=Латински
+answer.language.luxembourgish=Луксембуршки
+answer.language.norwegian=Норвешки
+answer.language.persian=Персијски
+answer.language.polish=Пољски
+answer.language.portuguese=Португалски
+answer.language.romansh=Реторомански
+answer.language.romanian=Румунски
+answer.language.russian=Руски
+answer.language.sardinian=Сардинијски
+answer.language.scottish_gaelic=Шкотски гаелски
+answer.language.swiss_german=Швајцарски немачки
+answer.language.serbian=Српски
+answer.language.slovakian=Словачки
+answer.language.slovenian=Словенски
+answer.language.spanish=Шпански
+answer.language.swedish=Шведски
+answer.language.thai=Тајландски
+answer.language.tibetan=Тибетански
+answer.language.czech=Чешки
+answer.language.turkish=Турски
+answer.language.uzbek=Узбекистански
+answer.language.vietnamese=Вијетнамски
+answer.language.welsh=Велшки
+
+# missing_cuisine
+answer.missing_cuisine.regional=Regional
+answer.missing_cuisine.coffee_shop=Coffee Shop
+answer.missing_cuisine.international=International
+answer.missing_cuisine.italian=Italian
+answer.missing_cuisine.turkish=Turkish
+answer.missing_cuisine.chinese=Chinese
+answer.missing_cuisine.thai=Thai
+answer.missing_cuisine.asian=Asian
+answer.missing_cuisine.indian=Indian
+answer.missing_cuisine.french=French
+answer.missing_cuisine.mexican=Mexican
+answer.missing_cuisine.american=American
+answer.missing_cuisine.japanese=Japanese
+answer.missing_cuisine.greek=Greek
+answer.missing_cuisine.sandwich=Sandwich
+answer.missing_cuisine.steak_house=Steakhouse
+answer.missing_cuisine.chicken=Chicken
+answer.missing_cuisine.bistro_brasserie=Bistro, Brasserie
+answer.missing_cuisine.seafood=Seafood
+answer.missing_cuisine.burger=Burger
+
+##############################################################
+# THE FOLLOWING TRANSLATIONS ARE FOR KEEPRIGHT AND OSM_ERRORS#
+##############################################################
+
+# error descriptions (KeepRight)
+bug.question.track=Која је ово врста макадама?
+bug.question.poi=Како се зове $1?
+bug.question.speed=Које ограничење брзине важи у овој улици?
+bug.question.name_of_street=Које је име ове улице?
+bug.question.language=На којем језику је написан назив '$2'?
+bug.question.motorway_ref=Која је ознака (нпр. М4 или Е75) овог аутопута?
+bug.question.place_of_worship=Којој религији припада ова богомоља?
+bug.question.cuisine_of_restaurant=What's the cuisine type of '$1'?
+
+# single values
+cafe=кафић
+fast_food=ресторан брзе хране
+restaurant=ресторан
+school=школа
+pharmacy=апотека
+fuel=бензиска пумпа
+cinema=биоскоп
+bank=банка
+university=факултет
+theatre=позориште
+pub=пивница
+place_of_worship=богомоља
+library=библиотека
+hospital=болница
+courthouse=суд
+way=пут
+node=место

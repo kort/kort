@@ -13,7 +13,7 @@ Ext.define('Kort.store.SelectAnswers', {
 
 		proxy: {
 			type: 'rest',
-            url: Kort.util.Config.getWebservices().answer.url,
+            url: Kort.util.Config.getWebservices().answer.getUrl(),
             pageParam: false,
             startParam: false,
             limitParam: false,
