@@ -14,8 +14,7 @@ Ext.define('Kort.controller.Main', {
             aboutContainer: '#aboutContainer',
             mapNavigationView: '#mapNavigationView',
             highscoreNavigationView: '#highscoreNavigationView',
-            profileContainer: '#profileContainer',
-            newsNavigationView: '#newsNavigationView'
+            profileContainer: '#profileContainer'
         },
         control: {
             mainTabPanel: {
@@ -27,8 +26,7 @@ Ext.define('Kort.controller.Main', {
             'about': 'showAbout',
             'map': 'showMap',
             'highscore': 'showHighscore',
-            'profile': 'showProfile',
-            'news': 'showNews'
+            'profile': 'showProfile'
         }
     },
 
@@ -59,13 +57,6 @@ Ext.define('Kort.controller.Main', {
      */
     showProfile: function() {
         this._showView(this.getProfileContainer());
-    },
-
-    /**
-     * Redirects to news tab.
-     */
-    showNews: function(){
-        this._showView(this.getNewsNavigationView());
     },
     
     /**

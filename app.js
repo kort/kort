@@ -59,16 +59,6 @@ Ext.application({
      * Fired to trigger update process of map abstract types (markers on leaflet map).
      */
 
-    /**
-     * @event newsupdated
-     * Fired after the news local storage was successfuly synced with online atom feed.
-     */
-
-    /**
-     * @event newsacceptedlanguagesupdated
-     * Fired when a change in the news settings was successfully saved.
-     */
-
     requires: [
         'patch.AjaxProxy',
         'Ext.MessageBox',
@@ -98,9 +88,7 @@ Ext.application({
         'MapValidation',
         'OsmMap',
         'Profile',
-        'Vote',
-        'News',
-        'Notifications'
+        'Vote'
     ],
 
     models: [
@@ -116,8 +104,7 @@ Ext.application({
         'UserBadge',
         'UserLocal',
         'Validation',
-        'Vote',
-        'News'
+        'Vote'
     ],
 
     stores: [
@@ -129,9 +116,7 @@ Ext.application({
         'SelectAnswers',
         'UserBadges',
         'UserLocal',
-        'Validations',
-        'NewsLocal',
-        'NewsRemote'
+        'Validations'
     ],
 
     router: {

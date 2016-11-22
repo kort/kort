@@ -335,12 +335,7 @@ Ext.define('Kort.util.Config', {
             validation: 'validationSate',
             validationPromotion: 'validationPromotionState',
             inactive: 'inactiveState'
-        },
-
-        /**
-         * @cfg {String} URL of Atom news feed
-         */
-        newsAtomFeedUrl: './resources/stores/news_default.xml'
+        }
 	},
 
     /**
