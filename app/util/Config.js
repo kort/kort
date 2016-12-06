@@ -332,7 +332,7 @@ Ext.define('Kort.util.Config', {
         mapMarkerState: {
             mission: 'missionState',
             missionPromotion: 'missionPromotionState',
-            validation: 'validationSate',
+            validation: 'validationState',
             validationPromotion: 'validationPromotionState',
             inactive: 'inactiveState'
         },
@@ -381,48 +381,71 @@ Ext.define('Kort.util.Config', {
      * @param {String} type Type of marker
      */
     getMarkerIcon: function(type, state, inOperationalRange) {
-        var iconWidth = 35,
-            iconHeight = 42,
-            shadowWidth = 51,
-            shadowHeight = 37,
-            icon,
-            iconCenterCorrectionFactor=0.064;
+        var typeMapping,
+            iconInfo,
+            markerOptions;
 
-        icon = window.L.icon({
-            iconUrl: this.constructMissionIconURL(type,state,false, inOperationalRange),
-            iconRetinaUrl: this.constructMissionIconURL(type,state,true, inOperationalRange),
-            iconSize: [iconWidth, iconHeight],
-            iconAnchor: [((iconWidth/2)*(1-iconCenterCorrectionFactor)), iconHeight],
-            shadowUrl: './resources/images/marker_icons/shadow.png',
-            shadowRetinaUrl: './resources/images/marker_icons/shadow@2x.png',
-            shadowSize: [shadowWidth, shadowHeight],
-            shadowAnchor: [(iconWidth/2), shadowHeight],
-            popupAnchor: [0, -(2*iconHeight/3)]
-        });
-        return icon;
-    },
+        typeMapping = {
+            language_unknown: {
+                icon: 'comments',
+                color: 'green'
+            },
+            missing_cuisine: {
+                icon: 'cutlery',
+                color: 'blue'
+            },
+            missing_maxspeed: {
+                icon: 'tachometer',
+                color: 'darkpuple'
+            },
+            missing_track_type: {
+                icon: 'tree',
+                color: 'brown'
+            },
+            motorway_ref: {
+                icon: 'car',
+                color: 'yellow'
+            },
+            poi_name: {
+                icon: 'building-o',
+                color: 'orange'
+            },
+            religion: {
+                icon: 'bolt',
+                color: 'purple'
+            },
+            way_no_tags: {
+                icon: 'road',
+                color: 'cadetblue'
+            }
+        };
+        iconInfo = typeMapping[type];
 
-    /**
-     * Constructs the correct Path to the mission icons depending
-     * on type, state, retina and if it is in operationalRange.
-     */
-    constructMissionIconURL: function(type, state, retina, inOperationalRange) {
-        if(typeof(state)==='undefined') {state=Kort.util.Config.getMapMarkerState().mission;}
-        if(typeof(retina)==='undefined') {retina=false;}
-        if(typeof(inOperationalRange)==='undefined') {inOperationalRange=true;}
+        markerOptions = {
+            prefix: 'fa',
+            icon: 'exclamation',
+            markerColor: 'red',
+            markerType: 'awesome-marker-soft-mission'
+        };
 
-        var pathToResourceFolder = './resources/images/marker_icons/',
-            stateToPathSuffix = [],
-            retinaPathSuffix = retina ? '@2x' : '',
-            inOperationalStatePathSuffix = inOperationalRange ? '' : 'inactive';
+        if(state === Kort.util.Config.getMapMarkerState().validation) {
+            markerOptions.markerType = 'awesome-marker-soft-validaiton';
+        } else if(state === Kort.util.Config.getMapMarkerState().missionPromotion) {
+            markerOptions.markerType = 'awesome-marker-soft-mission-promotion';
+        } else if(state === Kort.util.Config.getMapMarkerState().validationPromotion) {
+            markerOptions.markerType = 'awesome-marker-soft-validaiton-promotion';
+        }
 
-        stateToPathSuffix[Kort.util.Config.getMapMarkerState().mission] = 'mission';
-        stateToPathSuffix[Kort.util.Config.getMapMarkerState().missionPromotion] = 'missionpromotion';
-        stateToPathSuffix[Kort.util.Config.getMapMarkerState().validation] = 'validation';
-        stateToPathSuffix[Kort.util.Config.getMapMarkerState().validationPromotion] = 'validationpromotion';
+        if(iconInfo) {
+            markerOptions.icon = iconInfo.icon;
+            markerOptions.markerColor = iconInfo.color;
+        }
 
-        return pathToResourceFolder + type  + '_' + stateToPathSuffix[state] + inOperationalStatePathSuffix + retinaPathSuffix + '.png';
+        if(!inOperationalRange) {
+            markerOptions.markerColor = 'darkgrey';
+        }
+
+        return window.L.AwesomeMarkers.icon(markerOptions);
     }
-
 
 });

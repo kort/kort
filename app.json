@@ -64,6 +64,10 @@
             "update": "full"
         },
         {
+            "path": "lib/Leaflet.awesome-markers-2.0-develop/dist/leaflet.awesome-markers.js",
+            "update": "full"
+        },
+        {
             "path": "app.js",
             "update": "full",
             "bundle": true  /* Indicates that all class dependencies are concatenated into this file when build */
@@ -95,6 +99,12 @@
         },
         {
             "path": "lib/zocial/css/zocial.css"
+        },
+        {
+            "path": "lib/font-awesome-4.1.0/css/font-awesome.min.css"
+        },
+        {
+            "path": "lib/Leaflet.awesome-markers-2.0-develop/dist/leaflet.awesome-markers.css"
         },
         {
             "path": "resources/styles/styles.css"
